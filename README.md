@@ -68,8 +68,11 @@ the left sidebar) and send it over.
 ## Using it
 
 - **Mark the pan:** tap the pan for a quick box, or drag to draw one, then **Start
-  watching**. Keep the phone still from then on. If you move the phone, mark the pan again.
+  watching** (bottom bar) or press a volume button. Keep the phone still from then on.
+  If you move the phone, mark the pan again.
 - **Next step / Back:** buttons along the bottom, or press a volume button for Next.
+  A volume button always does the obvious thing: accept an offer, confirm the pan box,
+  or go to the next step.
 - **Waveform button:** opens the detection panel: live state, hand tracking dots, a meter
   of how much the pan differs from its before-picture, the last decision with before, after,
   and changed-pixel pictures, and sliders for tuning. Tuning is saved between launches.

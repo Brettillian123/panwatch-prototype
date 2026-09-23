@@ -30,11 +30,12 @@ struct WatchStatusChip: View {
 
     var body: some View {
         let status = self.status
+        // Title size, not subheadline: this is the line a cook reads from a meter away.
         Label(status.text, systemImage: status.symbol)
-            .font(.subheadline.weight(.semibold))
+            .font(.title3.weight(.semibold))
             .foregroundStyle(status.color)
-            .padding(.horizontal, 12)
-            .padding(.vertical, 6)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 7)
             .background(status.color.opacity(0.18), in: Capsule())
     }
 
@@ -84,6 +85,9 @@ struct TimerStack: View {
                             .frame(width: 44, height: 44)
                             .contentShape(Rectangle())
                     }
+                    // Button labels take the tint, not the inherited white, so set it here
+                    // or the mark comes out accent-blue on the red "done" capsule.
+                    .tint(.white)
                     .accessibilityLabel("Remove \(timer.label) timer")
                 }
                 .foregroundStyle(.white)
@@ -96,26 +100,50 @@ struct TimerStack: View {
     }
 }
 
-/// Step navigation and setup controls along the bottom.
+/// Step navigation and setup controls along the bottom. While the pan is being marked,
+/// the step buttons give way to Cancel and Start watching, so nothing has to sit over
+/// the pan.
 struct ControlBar: View {
     let session: CookSession
 
     var body: some View {
+        // With the debug panel open there isn't room for the titles, so the buttons
+        // fall back to their icons. VoiceOver still reads the titles.
+        ViewThatFits(in: .horizontal) {
+            buttons
+            buttons.labelStyle(.iconOnly)
+        }
+    }
+
+    private var buttons: some View {
         HStack(spacing: 10) {
-            Button { session.previousStep() } label: {
-                Label("Back", systemImage: "chevron.left")
-            }
-            .disabled(session.stepIndex == 0)
+            if session.isMarkingPan {
+                if session.region != nil {
+                    Button { session.cancelMarking() } label: {
+                        Label("Cancel", systemImage: "xmark")
+                    }
+                }
+                Button { session.confirmPan() } label: {
+                    Label("Start watching", systemImage: "eye")
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.green)
+                .disabled(session.draftRegion == nil)
+            } else {
+                Button { session.previousStep() } label: {
+                    Label("Back", systemImage: "chevron.left")
+                }
+                .disabled(session.stepIndex == 0)
 
-            Button { session.nextStep() } label: {
-                Label("Next step", systemImage: "chevron.right")
-            }
-            .disabled(session.isLastStep)
+                Button { session.nextStep() } label: {
+                    Label("Next step", systemImage: "chevron.right")
+                }
+                .disabled(session.isLastStep)
 
-            Button { session.markPan() } label: {
-                Label("Mark pan", systemImage: "viewfinder")
+                Button { session.markPan() } label: {
+                    Label("Mark pan", systemImage: "viewfinder")
+                }
             }
-            .disabled(session.isMarkingPan)
 
             Spacer(minLength: 8)
 
@@ -142,36 +170,33 @@ struct ControlBar: View {
     }
 }
 
-/// Instructions while the cook draws the pan box.
+/// Instructions while the cook draws the pan box. Kept small and in the top-left corner
+/// so the pan, which sits in the middle of the picture, stays visible and touchable.
+/// The Cancel and Start watching buttons live in the control bar at the bottom.
 struct MarkPanBanner: View {
     let session: CookSession
 
     var body: some View {
-        VStack(spacing: 10) {
-            Text(session.draftRegion == nil ? "Draw a box around the pan" : "Adjust the box, or start watching")
+        VStack(alignment: .leading, spacing: 6) {
+            Text(session.draftRegion == nil ? "Draw a box around the pan" : "Box drawn. Start watching?")
                 .font(.title2.weight(.bold))
-            Text(session.markingReason
-                 ?? "Tap the pan for a quick box, or drag to draw one. Keep the phone still afterwards: exposure and white balance lock so lighting changes can't fool the camera.")
+            Text(hint)
                 .font(.subheadline)
                 .foregroundStyle(.white.opacity(0.8))
-                .multilineTextAlignment(.center)
-            HStack(spacing: 12) {
-                if session.region != nil {
-                    Button("Cancel") { session.cancelMarking() }
-                        .buttonStyle(.bordered)
-                }
-                Button { session.confirmPan() } label: {
-                    Label("Start watching", systemImage: "eye")
-                }
-                .buttonStyle(.borderedProminent)
-                .disabled(session.draftRegion == nil)
-            }
-            .controlSize(.large)
         }
         .foregroundStyle(.white)
-        .padding(18)
-        .frame(maxWidth: 560)
+        .padding(16)
+        .frame(maxWidth: 380, alignment: .leading)
         .background(.black.opacity(0.75), in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+        .accessibilityElement(children: .combine)
+    }
+
+    private var hint: String {
+        if let reason = session.markingReason { return reason }
+        if session.draftRegion == nil {
+            return "Tap the pan for a quick box, or drag to draw one."
+        }
+        return "Drag again to redraw it. Keep the phone still from now on: exposure and white balance lock when watching starts."
     }
 }
 

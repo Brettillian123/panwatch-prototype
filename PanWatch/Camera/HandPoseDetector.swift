@@ -15,7 +15,7 @@ final class HandPoseDetector {
         // Frames arrive already rotated upright, so no orientation correction is needed.
         let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up, options: [:])
         guard (try? handler.perform([request])) != nil, let observations = request.results else { return [] }
-        return observations.compactMap { observation in
+        return observations.compactMap { observation -> [NormPoint]? in
             guard let points = try? observation.recognizedPoints(.all) else { return nil }
             let joints = points.values
                 .filter { $0.confidence >= 0.3 }

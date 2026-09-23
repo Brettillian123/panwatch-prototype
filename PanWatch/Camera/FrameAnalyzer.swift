@@ -95,6 +95,8 @@ final class FrameAnalyzer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
 
     private func show(_ sampleBuffer: CMSampleBuffer, on renderer: AVSampleBufferVideoRenderer) {
         if renderer.status == .failed { renderer.flush() }
+        // Never enqueue into a full renderer; drop the frame instead of piling them up.
+        guard renderer.isReadyForMoreMediaData else { return }
         // Camera frames carry capture timestamps. Tell the layer to draw each frame as it
         // arrives instead of scheduling it against a clock it doesn't have.
         if let attachments = CMSampleBufferGetSampleAttachmentsArray(sampleBuffer, createIfNecessary: true),

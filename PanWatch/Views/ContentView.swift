@@ -14,13 +14,16 @@ struct ContentView: View {
             HStack(alignment: .top, spacing: 0) {
                 VStack(spacing: 12) {
                     if session.isMarkingPan {
+                        // Top-left corner, away from the pan in the middle of the picture.
                         MarkPanBanner(session: session)
-                            .frame(maxWidth: .infinity)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     } else {
                         HStack(alignment: .top, spacing: 12) {
                             StepCard(session: session)
                             Spacer(minLength: 12)
                             TimerStack(session: session)
+                                // Timers keep their width; the step text wraps and shrinks instead.
+                                .fixedSize(horizontal: true, vertical: false)
                         }
                     }
                     Spacer(minLength: 0)

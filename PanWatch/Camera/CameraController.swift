@@ -32,7 +32,7 @@ final class CameraController: @unchecked Sendable {
     /// `position`. Calling it again switches cameras.
     func start(position: AVCaptureDevice.Position) async -> CameraStatus {
         guard await Self.hasPermission() else { return .denied }
-        return await onSessionQueue {
+        return await onSessionQueue { () -> CameraStatus in
             let status = self.configure(position: position)
             if status == .running, !self.session.isRunning {
                 self.session.startRunning()
@@ -147,9 +147,12 @@ final class CameraController: @unchecked Sendable {
         rotationAngle = nil
         let coordinator = AVCaptureDevice.RotationCoordinator(device: device, previewLayer: nil)
         rotationCoordinator = coordinator
+        // Apply the current angle right now, before the session starts, so even the first
+        // frames are upright. Later changes arrive on the main queue and are applied on ours.
+        applyRotation(coordinator.videoRotationAngleForHorizonLevelCapture)
         rotationObservation = coordinator.observe(
             \.videoRotationAngleForHorizonLevelCapture,
-            options: [.initial, .new]
+            options: [.new]
         ) { [weak self] coordinator, _ in
             let angle = coordinator.videoRotationAngleForHorizonLevelCapture
             self?.sessionQueue.async { self?.applyRotation(angle) }

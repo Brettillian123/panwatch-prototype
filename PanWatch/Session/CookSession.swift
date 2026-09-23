@@ -237,12 +237,15 @@ final class CookSession {
         refreshArming()
     }
 
-    /// Volume buttons and Camera Control: accept the offer if there is one, otherwise
-    /// go to the next step. Wet hands never have to touch the screen.
+    /// Volume buttons and Camera Control: accept the offer if there is one, confirm the
+    /// pan box while marking, otherwise go to the next step. Wet hands never have to
+    /// touch the screen.
     func hardwareButtonPressed() {
         if suggestion != nil {
             acceptSuggestion()
-        } else if !isMarkingPan {
+        } else if isMarkingPan {
+            if draftRegion != nil { confirmPan() }
+        } else {
             nextStep()
         }
     }

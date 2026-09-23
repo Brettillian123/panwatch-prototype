@@ -77,7 +77,7 @@ struct PanOverlay: View {
                 if !marking {
                     let y = boxRect.minY > 36 ? boxRect.minY - 18 : boxRect.minY + 18
                     context.draw(
-                        Text(label).font(.headline.weight(.semibold)).foregroundStyle(color),
+                        Text(label).font(.title3.weight(.bold)).foregroundStyle(color),
                         at: CGPoint(x: boxRect.midX, y: y)
                     )
                 }
