@@ -25,6 +25,6 @@ struct SpokenAnswerTests {
         let garlic = Recipe.garlicButterPasta.steps.first { $0.watch?.ingredient == "garlic" }
         let pasta = Recipe.garlicButterPasta.steps.first { $0.watch?.ingredient == "pasta" }
         #expect(garlic?.watch?.minimumChange == 0)
-        #expect(pasta?.watch?.minimumChange == 0.02)
+        #expect(pasta?.watch?.minimumChange == 0)
     }
 }
