@@ -30,6 +30,14 @@ struct AdditionDetectorTests {
         #expect(results.map(\.outcome) == [.noChange])
     }
 
+    @Test func aHandVisitIsEnoughWhenNoChangeIsNeeded() {
+        // Minced garlic: too small to see in the pan, so the visit itself counts.
+        var settings = DetectorSettings()
+        settings.additionThreshold = 0
+        let results = decisions(for: visit(settlingOn: Pans.empty), settings: settings)
+        #expect(results.map(\.outcome) == [.addition])
+    }
+
     @Test func aHandPassingOverIsIgnored() {
         var timeline = Timeline()
         timeline.hold(1.0, patch: Pans.empty)

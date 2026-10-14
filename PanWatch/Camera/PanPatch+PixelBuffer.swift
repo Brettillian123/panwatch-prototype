@@ -2,7 +2,7 @@ import CoreVideo
 
 extension PanPatch {
     /// Samples `rect` from a bi-planar YCbCr camera frame. Returns nil for any other pixel format.
-    static func sample(from pixelBuffer: CVPixelBuffer, rect: NormRect, longSide: Int = 64) -> PanPatch? {
+    static func sample(from pixelBuffer: CVPixelBuffer, rect: NormRect, longSide: Int = 128) -> PanPatch? {
         guard CVPixelBufferGetPlaneCount(pixelBuffer) == 2 else { return nil }
         CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly)
         defer { CVPixelBufferUnlockBaseAddress(pixelBuffer, .readOnly) }

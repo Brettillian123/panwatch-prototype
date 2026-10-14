@@ -17,7 +17,7 @@ and on-device speech. No trained model, no network, and no video is saved.
    lock. The picture of the pan then only changes when the pan does.
 3. **A hand has to visit.** Apple's hand-pose model tracks hands 15 times a second. A
    visit counts when a hand spends at least 0.3 s over the pan, then leaves.
-4. **Compare before and after.** Once the pan stops moving, a 64-pixel color thumbnail of
+4. **Compare before and after.** Once the pan stops moving, a 128-pixel color thumbnail of
    it is compared with one taken just before the hand arrived. If at least 5% of the pan
    changed in brightness or color, it's an addition. If the whole pan shifted evenly, it's
    a light switching on, and it's ignored.
@@ -139,6 +139,21 @@ During the demo:
   that check off).
 - Keep the phone fairly upright and still. If it reads as turned, it asks you to mark the
   pan again.
+
+## What's new for the pitch
+
+- **Say "yes" or "no".** After the app asks "Start a 9 minute timer?", it listens for up
+  to 12 seconds. "Yes", "sure" or "start" starts the timer; "no" or "not now" dismisses it.
+  The volume button still works. It asks for microphone and speech permission at launch.
+- **A natural voice.** The app uses the best English voice installed on the phone. Download
+  a Premium voice (Settings, search "Voices", English, e.g. Ava or Zoe) for the most human sound.
+- **Smarter steps.** Each step has its amount. After the pasta timer starts, the app waits
+  and calls out the butter (3:00 left), the garlic (1:30 left) and draining (when it ends).
+  The step card shows "Next step in". Tapping the timer's X cancels the call-outs too.
+- **Small ingredients.** Pasta needs 2% of the pan to change. Minced garlic is too small to
+  see in the pan, so on the garlic step a hand reaching over the pan and leaving is enough.
+- **Rehearse fast:** turn on Fast timers in the detection panel and the whole recipe plays
+  out in seconds instead of minutes.
 
 ## Layout
 

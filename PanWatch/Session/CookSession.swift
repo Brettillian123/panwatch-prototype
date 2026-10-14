@@ -21,6 +21,16 @@ struct TimerSuggestion: Identifiable {
     let after: CGImage?
 }
 
+/// A recipe step that will be called out once a running timer reaches its cue.
+struct ScheduledStep: Identifiable, Sendable {
+    let id = UUID()
+    let stepIndex: Int
+    let timerID: UUID
+    let at: Date
+    /// Called out together with the timer's own "done", not by a separate task.
+    let atTimerEnd: Bool
+}
+
 /// Pictures of the most recent decision, for the debug panel.
 struct DecisionPictures {
     let before: CGImage?
@@ -61,6 +71,13 @@ final class CookSession {
     /// Newest first.
     private(set) var decisions: [DetectorDecision] = []
     private(set) var lastPictures: DecisionPictures?
+    /// Watched steps whose ingredient already went in, so the camera stops judging them.
+    private(set) var finishedSteps: Set<Int> = []
+    /// Steps waiting to be called out at the right moment, earliest first.
+    private(set) var scheduledSteps: [ScheduledStep] = []
+    /// The next step the recipe will call out on its own, if one is waiting.
+    var nextScheduledStep: ScheduledStep? { scheduledSteps.first { $0.stepIndex > stepIndex } }
+    @ObservationIgnored private var cueTasks: [UUID: Task<Void, Never>] = [:]
 
     var showDebug = false
     var voiceOn = true
@@ -112,12 +129,12 @@ final class CookSession {
         go(to: stepIndex - 1)
     }
 
-    private func go(to index: Int) {
+    private func go(to index: Int, saying text: String? = nil) {
         listener.stop()
         stepIndex = index
         suggestion = nil
         refreshArming()
-        say("Step \(index + 1). \(currentStep.instruction)")
+        say(text ?? "Step \(index + 1). \(currentStep.instruction)")
     }
 
     // MARK: Marking the pan
@@ -176,6 +193,7 @@ final class CookSession {
     /// Whether the camera should be judging right now.
     private func refreshArming() {
         let armed = region != nil && !isMarkingPan && suggestion == nil && currentStep.watch != nil
+            && !finishedSteps.contains(stepIndex)
         camera.analyzer.update(settings: effectiveSettings)
         camera.analyzer.setArmed(armed)
     }
@@ -251,15 +269,60 @@ final class CookSession {
         guard let offer = suggestion else { return }
         listener.stop()
         suggestion = nil
-        startTimer(label: offer.watch.timerLabel, minutes: offer.watch.timerMinutes)
-        if offer.stepIndex == stepIndex, !isLastStep {
+        finishedSteps.insert(offer.stepIndex)
+        let label = offer.watch.timerLabel
+        let timer = startTimer(label: label, minutes: offer.watch.timerMinutes)
+        scheduleSteps(for: timer)
+        let nextIsTimed = scheduledSteps.contains { $0.stepIndex == stepIndex + 1 }
+        if offer.stepIndex == stepIndex, !isLastStep, nextIsTimed {
+            // The next step depends on this timer, so the recipe waits and calls it out.
+            say("\(label) timer started. I'll tell you when it's time for the next step.")
+        } else if offer.stepIndex == stepIndex, !isLastStep {
             // The camera just confirmed this step happened, so the recipe moves on.
             stepIndex += 1
-            say("\(offer.watch.timerLabel) timer started. Next, \(Self.lowercasingFirst(currentStep.instruction))")
+            say("\(label) timer started. Next, \(Self.lowercasingFirst(currentStep.instruction))")
         } else {
-            say("\(offer.watch.timerLabel) timer started.")
+            say("\(label) timer started.")
         }
         refreshArming()
+    }
+
+    /// Steps cued to this timer are called out when it has that much time left, so the
+    /// parts of the dish finish together. Removing the timer cancels them.
+    private func scheduleSteps(for timer: CookTimer) {
+        let scale = fastTimers ? 1.0 / 60 : 1.0
+        for (index, step) in recipe.steps.enumerated() where index > stepIndex {
+            guard let cue = step.cue, cue.timerLabel == timer.label else { continue }
+            let atEnd = cue.secondsLeft <= 0
+            let at = atEnd ? timer.end : max(Date(), timer.end.addingTimeInterval(-Double(cue.secondsLeft) * scale))
+            let scheduled = ScheduledStep(stepIndex: index, timerID: timer.id, at: at, atTimerEnd: atEnd)
+            scheduledSteps.append(scheduled)
+            guard !atEnd else { continue }
+            let id = scheduled.id
+            let delay = max(0, at.timeIntervalSinceNow)
+            cueTasks[id] = Task { [weak self] in
+                try? await Task.sleep(for: .seconds(delay))
+                guard !Task.isCancelled else { return }
+                self?.cueArrived(id)
+            }
+        }
+        scheduledSteps.sort { $0.at < $1.at }
+    }
+
+    private func cueArrived(_ id: UUID) {
+        guard let scheduled = scheduledSteps.first(where: { $0.id == id }) else { return }
+        removeScheduled([scheduled])
+        if scheduled.stepIndex > stepIndex {
+            go(to: scheduled.stepIndex)
+        }
+    }
+
+    private func removeScheduled(_ items: [ScheduledStep]) {
+        let ids = Set(items.map(\.id))
+        for id in ids {
+            cueTasks.removeValue(forKey: id)?.cancel()
+        }
+        scheduledSteps.removeAll { ids.contains($0.id) }
     }
 
     func dismissSuggestion() {
@@ -284,9 +347,11 @@ final class CookSession {
 
     func removeTimer(_ id: UUID) {
         timers.removeAll { $0.id == id }
+        removeScheduled(scheduledSteps.filter { $0.timerID == id })
     }
 
-    private func startTimer(label: String, minutes: Int) {
+    @discardableResult
+    private func startTimer(label: String, minutes: Int) -> CookTimer {
         let seconds = Double(minutes) * (fastTimers ? 1 : 60)
         let now = Date()
         let timer = CookTimer(label: label, start: now, end: now.addingTimeInterval(seconds))
@@ -295,12 +360,21 @@ final class CookSession {
             try? await Task.sleep(for: .seconds(seconds))
             self?.finishTimer(timer.id)
         }
+        return timer
     }
 
     private func finishTimer(_ id: UUID) {
         guard let index = timers.firstIndex(where: { $0.id == id }), !timers[index].isDone else { return }
         timers[index].isDone = true
-        say("\(timers[index].label) timer is done.")
+        let label = timers[index].label
+        // A step cued for the end of this timer is called out together with it.
+        let atEnd = scheduledSteps.filter { $0.timerID == id && $0.atTimerEnd }
+        removeScheduled(atEnd)
+        if let step = atEnd.map(\.stepIndex).max(), step > stepIndex {
+            go(to: step, saying: "\(label) timer is done. Step \(step + 1). \(recipe.steps[step].instruction)")
+        } else {
+            say("\(label) timer is done.")
+        }
     }
 
     private func say(_ text: String, then: (() -> Void)? = nil) {
