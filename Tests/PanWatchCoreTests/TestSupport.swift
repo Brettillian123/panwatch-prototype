@@ -7,15 +7,15 @@ struct Timeline {
     private(set) var frames: [FrameObservation] = []
     private var time = 0.0
 
-    mutating func hold(_ seconds: Double, hand: Bool = false, patch: PanPatch) {
-        hold(seconds, hand: hand) { _ in patch }
+    mutating func hold(_ seconds: Double, hand: Bool = false, openness: Double? = nil, patch: PanPatch) {
+        hold(seconds, hand: hand, openness: openness) { _ in patch }
     }
 
     /// Appends `seconds` of frames; `patch` receives the frame's index within this stretch.
-    mutating func hold(_ seconds: Double, hand: Bool = false, patch: (Int) -> PanPatch) {
+    mutating func hold(_ seconds: Double, hand: Bool = false, openness: Double? = nil, patch: (Int) -> PanPatch) {
         let count = Int((seconds / Self.frameInterval).rounded())
         for index in 0..<count {
-            frames.append(FrameObservation(time: time, handInZone: hand, region: patch(index)))
+            frames.append(FrameObservation(time: time, handInZone: hand, handOpenness: openness, region: patch(index)))
             time += Self.frameInterval
         }
     }

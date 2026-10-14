@@ -27,6 +27,8 @@ struct DebugPanel: View {
             MetricRow(name: "Hand over pan", value: live.handInZone ? "Yes" : "No")
             MetricRow(name: "Hands seen", value: "\(live.hands.count)")
             MetricRow(name: "Hand time", value: seconds(live.dwell))
+            MetricRow(name: "Hand openness", value: live.handOpenness.map { String(format: "%.2f", $0) } ?? "-")
+            MetricRow(name: "Hand opened", value: String(format: "%.2f", live.handOpened))
             MetricRow(name: "Motion", value: percent(live.motion))
             ChangeMeter(value: live.liveChange, threshold: session.settings.additionThreshold)
             MetricRow(name: "Analysis rate", value: String(format: "%.0f fps", live.analysisFPS))
@@ -42,6 +44,7 @@ struct DebugPanel: View {
                 MetricRow(name: "Pan changed", value: "\(percent(decision.changedFraction)) of \(percent(decision.additionThreshold)) needed")
                 MetricRow(name: "Brightness shift", value: String(format: "%+.0f", decision.medianLumaShift))
                 MetricRow(name: "Hand time", value: seconds(decision.dwell))
+                MetricRow(name: "Hand let go", value: decision.released ? "Yes" : String(format: "No (opened %.2f)", decision.handOpened))
                 MetricRow(name: "Settled", value: decision.settledCleanly ? "Yes" : "Timed out")
                 if let pictures = session.lastPictures {
                     HStack(alignment: .top, spacing: 6) {
@@ -65,8 +68,11 @@ struct DebugPanel: View {
             TuningSlider(title: "Brightness step", value: $session.settings.lumaThreshold, range: 8...60) { String(format: "%.0f", $0) }
             TuningSlider(title: "Color step", value: $session.settings.chromaThreshold, range: 8...80) { String(format: "%.0f", $0) }
             TuningSlider(title: "Hand time needed", value: $session.settings.minimumDwell, range: 0.1...2.0, format: seconds)
+            TuningSlider(title: "Longer is stirring", value: $session.settings.maximumDwell, range: 2...20, format: seconds)
+            TuningSlider(title: "Hand opening needed", value: $session.settings.releaseThreshold, range: 0.1...1.0) { String(format: "%.2f", $0) }
             TuningSlider(title: "Hand zone margin", value: $session.settings.handZoneMargin, range: 0...0.6, format: percent)
             Toggle("Require a hand", isOn: $session.settings.requireHand)
+            Toggle("Count a hand letting go", isOn: $session.settings.countRelease)
             Toggle("Ignore lighting changes", isOn: $session.settings.lightingVeto)
             Toggle("Fast timers (seconds)", isOn: $session.fastTimers)
             Button("Reset tuning") { session.resetSettings() }
@@ -107,6 +113,7 @@ struct DebugPanel: View {
         case .addition: "Addition"
         case .noChange: "No change"
         case .lightingChange: "Lighting change"
+        case .stirring: "Stirring, ignored"
         }
     }
 
@@ -115,6 +122,7 @@ struct DebugPanel: View {
         case .addition: .green
         case .noChange: .gray
         case .lightingChange: .orange
+        case .stirring: .gray
         }
     }
 

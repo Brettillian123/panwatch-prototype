@@ -4,7 +4,12 @@ import Foundation
 /// pan region's pixels.
 struct DetectorSettings: Codable, Equatable, Sendable {
     /// How long a hand must be over the pan before its visit counts.
-    var minimumDwell = 0.3
+    var minimumDwell = 0.4
+    /// A hand over the pan for longer than this is stirring or checking on the food, not
+    /// adding something, so the visit is ignored.
+    var maximumDwell = 6.0
+    /// After stirring, a hand that comes back within this long is still stirring.
+    var stirQuiet = 1.5
     /// How long the hand must be gone before the visit is over. Bridges frames where
     /// hand tracking blinks.
     var exitHold = 0.5
@@ -39,6 +44,11 @@ struct DetectorSettings: Codable, Equatable, Sendable {
     /// The hand zone is the pan region grown by this fraction on every side, because a
     /// hand pouring from above sits over the rim, not inside the box.
     var handZoneMargin = 0.25
+    /// Count a hand that opens over the pan as an addition. It catches ingredients held in
+    /// the hand, like a handful of pasta, that the pot hides once they're in.
+    var countRelease = true
+    /// How far the hand must open, in palm lengths, to count as letting go.
+    var releaseThreshold = 0.35
 
     var changeRule: ChangeRule {
         ChangeRule(lumaThreshold: lumaThreshold, chromaThreshold: chromaThreshold)
@@ -51,6 +61,9 @@ struct FrameObservation: Sendable {
     var time: Double
     /// Whether a tracked hand is inside the hand zone around the pan.
     var handInZone: Bool
+    /// How open the hand over the pan is, in palm lengths (about 1 for a fist, 1.8 for an
+    /// open hand). Nil when it can't be measured, or when two hands are over the pan.
+    var handOpenness: Double? = nil
     /// The pan region, sampled from this frame.
     var region: PanPatch
 }
@@ -61,6 +74,8 @@ struct DetectorDecision: Identifiable, Sendable {
         case addition
         case noChange
         case lightingChange
+        /// The hand stayed too long: stirring, not adding.
+        case stirring
     }
 
     let id: Int
@@ -74,6 +89,10 @@ struct DetectorDecision: Identifiable, Sendable {
     let medianLumaShift: Double
     /// Seconds the hand spent over the pan.
     let dwell: Double
+    /// How far the hand opened while over the pan, in palm lengths.
+    let handOpened: Double
+    /// True when the hand letting go is what made this an addition.
+    let released: Bool
     /// False when the pan never stopped moving and the after-picture was taken at the time limit.
     let settledCleanly: Bool
     let before: PanPatch
@@ -126,6 +145,8 @@ struct AdditionDetector {
     private(set) var motion = 0.0
     /// Fraction of the pan that differs from the current before-picture.
     private(set) var liveChange = 0.0
+    /// How far the hand has opened during the current or last visit, in palm lengths.
+    private(set) var handOpened = 0.0
 
     private var isArmed = false
     private var history: [Snapshot] = []
@@ -138,6 +159,10 @@ struct AdditionDetector {
     private var stillSince: Double?
     private var cooldownUntil = 0.0
     private var decisionCount = 0
+    private var visitIsStirring = false
+    private var stirQuietUntil = -Double.infinity
+    private var recentOpenness: [Double] = []
+    private var leastOpen: Double?
 
     init(settings: DetectorSettings = DetectorSettings()) {
         self.settings = settings
@@ -160,6 +185,9 @@ struct AdditionDetector {
         dwell = 0
         motion = 0
         liveChange = 0
+        visitIsStirring = false
+        stirQuietUntil = -Double.infinity
+        resetOpenness()
         phase = isArmed ? .warmingUp : .disarmed
     }
 
@@ -198,6 +226,7 @@ struct AdditionDetector {
         case .watching:
             if active {
                 beginVisit(at: t)
+                if phase == .handInPan { track(frame.handOpenness) }
             } else if still {
                 remember(frame)
             }
@@ -206,8 +235,12 @@ struct AdditionDetector {
             if active {
                 dwell += dt
                 lastActiveTime = t
+                track(frame.handOpenness)
+                if dwell > settings.maximumDwell { visitIsStirring = true }
             } else if t - lastActiveTime >= settings.exitHold {
-                if dwell >= settings.minimumDwell {
+                if visitIsStirring {
+                    return stirred(frame)
+                } else if dwell >= settings.minimumDwell {
                     phase = .settling
                     settleStart = t
                     stillSince = nil
@@ -221,6 +254,7 @@ struct AdditionDetector {
             if active {
                 phase = .handInPan
                 lastActiveTime = t
+                track(frame.handOpenness)
                 return nil
             }
             if still {
@@ -252,13 +286,61 @@ struct AdditionDetector {
         frozenBaseline = baseline.patch
         dwell = 0
         lastActiveTime = t
+        // A hand back right after stirring is still stirring.
+        visitIsStirring = t < stirQuietUntil
+        resetOpenness()
         phase = .handInPan
     }
 
     private mutating func endVisit() {
         frozenBaseline = nil
         dwell = 0
+        visitIsStirring = false
         phase = .watching
+    }
+
+    private mutating func resetOpenness() {
+        recentOpenness.removeAll()
+        leastOpen = nil
+        handOpened = 0
+    }
+
+    /// Follows how open the hand is, as the median of the last three readings so one bad
+    /// frame can't fake a release, and keeps the largest opening since it was most closed.
+    private mutating func track(_ openness: Double?) {
+        guard let openness else { return }
+        recentOpenness.append(openness)
+        if recentOpenness.count > 3 { recentOpenness.removeFirst() }
+        guard recentOpenness.count == 3 else { return }
+        let smoothed = recentOpenness.sorted()[1]
+        let least = min(leastOpen ?? smoothed, smoothed)
+        leastOpen = least
+        handOpened = max(handOpened, smoothed - least)
+    }
+
+    /// The hand stayed too long, so it was stirring. Nothing is judged, the pan as it
+    /// looks now becomes the new normal, and a hand coming straight back is ignored too.
+    private mutating func stirred(_ frame: FrameObservation) -> DetectorDecision {
+        let before = frozenBaseline ?? frame.region
+        decisionCount += 1
+        let decision = DetectorDecision(
+            id: decisionCount,
+            time: frame.time,
+            outcome: .stirring,
+            changedFraction: frame.region.changedFraction(from: before, rule: settings.changeRule),
+            additionThreshold: settings.additionThreshold,
+            medianLumaShift: frame.region.medianLumaShift(from: before),
+            dwell: dwell,
+            handOpened: handOpened,
+            released: false,
+            settledCleanly: false,
+            before: before,
+            after: frame.region
+        )
+        stirQuietUntil = frame.time + settings.stirQuiet
+        history = [Snapshot(time: frame.time, patch: frame.region)]
+        endVisit()
+        return decision
     }
 
     private mutating func decide(_ frame: FrameObservation, settledCleanly: Bool) -> DetectorDecision? {
@@ -270,8 +352,12 @@ struct AdditionDetector {
         let changed = after.changedFraction(from: before, rule: settings.changeRule)
         let shift = after.medianLumaShift(from: before)
 
+        // A hand opening over the pan let go of something, even if the pot hides it.
+        let released = settings.countRelease && handOpened >= settings.releaseThreshold
         let outcome: DetectorDecision.Outcome
-        if settings.lightingVeto && abs(shift) >= settings.lightingShiftThreshold
+        if released {
+            outcome = .addition
+        } else if settings.lightingVeto && abs(shift) >= settings.lightingShiftThreshold
             && after.fractionShifted(by: shift, within: max(settings.lumaThreshold, abs(shift) / 2), from: before)
                 >= Self.lightingEvenness {
             outcome = .lightingChange
@@ -290,6 +376,8 @@ struct AdditionDetector {
             additionThreshold: settings.additionThreshold,
             medianLumaShift: shift,
             dwell: dwell,
+            handOpened: handOpened,
+            released: released,
             settledCleanly: settledCleanly,
             before: before,
             after: after
@@ -297,6 +385,7 @@ struct AdditionDetector {
 
         // Whatever happened, the pan as it looks now is the new normal.
         frozenBaseline = nil
+        visitIsStirring = false
         history = [Snapshot(time: frame.time, patch: after)]
         if outcome == .addition {
             phase = .cooldown

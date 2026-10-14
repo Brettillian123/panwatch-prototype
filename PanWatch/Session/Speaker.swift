@@ -6,6 +6,11 @@ import AVFoundation
 final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     private let synthesizer = AVSpeechSynthesizer()
     private var whenDone: [ObjectIdentifier: () -> Void] = [:]
+    /// Utterances started and not yet finished or cut off.
+    private var unfinished = 0
+    /// Called with true when the app starts talking and false once it has stopped, so
+    /// listening can pause in between.
+    var onSpeakingChanged: ((Bool) -> Void)?
 
     /// Premium and enhanced voices sound far more human than the default one. They're
     /// free downloads in Settings > Accessibility > Spoken Content > Voices > English.
@@ -34,16 +39,30 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         if let then {
             whenDone[ObjectIdentifier(utterance)] = then
         }
+        unfinished += 1
+        if unfinished == 1 { onSpeakingChanged?(true) }
         synthesizer.speak(utterance)
+    }
+
+    private func ended() {
+        // Once the synthesizer is quiet nothing is left to wait for, even if a callback was missed.
+        unfinished = synthesizer.isSpeaking ? max(0, unfinished - 1) : 0
+        if unfinished == 0 { onSpeakingChanged?(false) }
     }
 
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         let id = ObjectIdentifier(utterance)
-        Task { @MainActor in self.whenDone.removeValue(forKey: id)?() }
+        Task { @MainActor in
+            self.ended()
+            self.whenDone.removeValue(forKey: id)?()
+        }
     }
 
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
         let id = ObjectIdentifier(utterance)
-        Task { @MainActor in _ = self.whenDone.removeValue(forKey: id) }
+        Task { @MainActor in
+            self.ended()
+            _ = self.whenDone.removeValue(forKey: id)
+        }
     }
 }

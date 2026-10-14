@@ -10,6 +10,8 @@ struct AnalyzerSnapshot: Sendable {
     var dwell = 0.0
     var motion = 0.0
     var liveChange = 0.0
+    var handOpenness: Double?
+    var handOpened = 0.0
     var analysisFPS = 0.0
 }
 
@@ -74,14 +76,20 @@ final class FrameAnalyzer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
         var snapshot = AnalyzerSnapshot(
             frameWidth: CVPixelBufferGetWidth(pixelBuffer),
             frameHeight: CVPixelBufferGetHeight(pixelBuffer),
-            hands: hands,
+            hands: hands.map(\.joints),
             analysisFPS: analysisFPS
         )
 
         if let region, let patch = PanPatch.sample(from: pixelBuffer, rect: region) {
-            let handInZone = HandGeometry.anyHand(hands, in: region.expanded(by: settings.handZoneMargin))
+            // Three joints, not one: a fingertip grazing the edge of the zone isn't a visit.
+            let zone = region.expanded(by: settings.handZoneMargin)
+            let inZone = hands.filter { HandGeometry.anyHand([$0.joints], in: zone, minimumJoints: 3) }
+            let handInZone = !inZone.isEmpty
             snapshot.handInZone = handInZone
-            let frame = FrameObservation(time: time, handInZone: handInZone, region: patch)
+            // With two hands over the pan, there's no telling which one let go.
+            let openness = inZone.count == 1 ? inZone[0].openness : nil
+            snapshot.handOpenness = openness
+            let frame = FrameObservation(time: time, handInZone: handInZone, handOpenness: openness, region: patch)
             if let decision = detector.process(frame) {
                 onDecision?(decision)
             }
@@ -90,6 +98,7 @@ final class FrameAnalyzer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
         snapshot.dwell = detector.dwell
         snapshot.motion = detector.motion
         snapshot.liveChange = detector.liveChange
+        snapshot.handOpened = detector.handOpened
         onSnapshot?(snapshot)
     }
 
