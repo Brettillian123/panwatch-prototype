@@ -21,10 +21,10 @@ struct SpokenAnswerTests {
         }
     }
 
-    @Test func garlicAsksForLessChange() {
+    @Test func smallAdditionsAskForLessChange() {
         let garlic = Recipe.garlicButterPasta.steps.first { $0.watch?.ingredient == "garlic" }
         let pasta = Recipe.garlicButterPasta.steps.first { $0.watch?.ingredient == "pasta" }
         #expect(garlic?.watch?.minimumChange == 0.015)
-        #expect(pasta?.watch?.minimumChange == nil)
+        #expect(pasta?.watch?.minimumChange == 0.02)
     }
 }

@@ -33,7 +33,7 @@ extension Recipe {
             RecipeStep(
                 id: 2,
                 instruction: "Add the pasta to the boiling water.",
-                watch: AdditionWatch(ingredient: "pasta", timerLabel: "Pasta", timerMinutes: 9)
+                watch: AdditionWatch(ingredient: "pasta", timerLabel: "Pasta", timerMinutes: 9, minimumChange: 0.02)
             ),
             RecipeStep(id: 3, instruction: "Melt 3 tablespoons of butter in a pan over medium heat.", watch: nil),
             RecipeStep(
