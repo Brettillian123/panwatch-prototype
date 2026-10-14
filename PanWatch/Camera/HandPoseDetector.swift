@@ -27,7 +27,7 @@ final class HandPoseDetector {
                 guard let point, point.confidence >= 0.3 else { return nil }
                 return NormPoint(x: Double(point.location.x), y: 1 - Double(point.location.y))
             }
-            let joints = points.values.compactMap(confident)
+            let joints = points.values.compactMap { confident($0) }
             // A real hand shows several joints. One or two stray points are usually noise.
             guard joints.count >= 4 else { return nil }
             let openness = HandGeometry.openness(
