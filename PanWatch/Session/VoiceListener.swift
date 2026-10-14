@@ -239,12 +239,12 @@ private final class AudioFeed: @unchecked Sendable {
     private var request: SFSpeechAudioBufferRecognitionRequest?
 
     func set(_ newRequest: SFSpeechAudioBufferRecognitionRequest?) {
-        let old = lock.withLock {
-            let old = request
+        let previous: SFSpeechAudioBufferRecognitionRequest? = lock.withLock {
+            let current = request
             request = newRequest
-            return old
+            return current
         }
-        old?.endAudio()
+        previous?.endAudio()
     }
 
     func append(_ buffer: AVAudioPCMBuffer) {
