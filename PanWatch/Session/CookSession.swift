@@ -71,6 +71,7 @@ final class CookSession {
 
     let camera = CameraController()
     private let speaker = Speaker()
+    private let listener = VoiceListener()
     @ObservationIgnored private var started = false
 
     var currentStep: RecipeStep { recipe.steps[stepIndex] }
@@ -78,7 +79,7 @@ final class CookSession {
 
     init() {
         settings = Self.loadSettings()
-        camera.analyzer.update(settings: settings)
+        camera.analyzer.update(settings: effectiveSettings)
         camera.analyzer.onSnapshot = { [weak self] snapshot in
             Task { @MainActor in self?.receive(snapshot) }
         }
@@ -95,6 +96,8 @@ final class CookSession {
         started = true
         cameraStatus = await camera.start(position: cameraPosition)
         refreshArming()
+        // Ask for the microphone at launch, so the prompt never appears mid-cook.
+        await listener.requestPermission()
     }
 
     // MARK: Recipe steps
@@ -110,6 +113,7 @@ final class CookSession {
     }
 
     private func go(to index: Int) {
+        listener.stop()
         stepIndex = index
         suggestion = nil
         refreshArming()
@@ -172,11 +176,22 @@ final class CookSession {
     /// Whether the camera should be judging right now.
     private func refreshArming() {
         let armed = region != nil && !isMarkingPan && suggestion == nil && currentStep.watch != nil
+        camera.analyzer.update(settings: effectiveSettings)
         camera.analyzer.setArmed(armed)
     }
 
+    /// The tuning in force for the current step. Some ingredients, like minced garlic,
+    /// change only a little of the pan, so their step asks for less change.
+    private var effectiveSettings: DetectorSettings {
+        var effective = settings
+        if let minimum = currentStep.watch?.minimumChange {
+            effective.additionThreshold = min(effective.additionThreshold, minimum)
+        }
+        return effective
+    }
+
     func applySettings() {
-        camera.analyzer.update(settings: settings)
+        camera.analyzer.update(settings: effectiveSettings)
         Self.save(settings)
     }
 
@@ -212,13 +227,29 @@ final class CookSession {
             after: pictures.after
         )
         refreshArming()
-        say("Looks like the \(watch.ingredient) went in. Start a \(watch.timerMinutes) minute timer?")
+        say("Looks like the \(watch.ingredient) went in. Start a \(watch.timerMinutes) minute timer?") { [weak self] in
+            self?.listenForAnswer()
+        }
+    }
+
+    /// Once the offer has been spoken, "yes" starts the timer and "no" dismisses it.
+    /// The volume buttons and the card's buttons keep working the whole time.
+    private func listenForAnswer() {
+        guard let offerID = suggestion?.id else { return }
+        listener.listen(for: 12) { [weak self] answer in
+            guard let self, self.suggestion?.id == offerID else { return }
+            switch answer {
+            case .yes: self.acceptSuggestion()
+            case .no: self.dismissSuggestion()
+            }
+        }
     }
 
     // MARK: Suggestions and timers
 
     func acceptSuggestion() {
         guard let offer = suggestion else { return }
+        listener.stop()
         suggestion = nil
         startTimer(label: offer.watch.timerLabel, minutes: offer.watch.timerMinutes)
         if offer.stepIndex == stepIndex, !isLastStep {
@@ -233,6 +264,7 @@ final class CookSession {
 
     func dismissSuggestion() {
         guard suggestion != nil else { return }
+        listener.stop()
         suggestion = nil
         refreshArming()
     }
@@ -271,8 +303,12 @@ final class CookSession {
         say("\(timers[index].label) timer is done.")
     }
 
-    private func say(_ text: String) {
-        if voiceOn { speaker.say(text) }
+    private func say(_ text: String, then: (() -> Void)? = nil) {
+        if voiceOn {
+            speaker.say(text, then: then)
+        } else {
+            then?()
+        }
     }
 
     private static func lowercasingFirst(_ text: String) -> String {
@@ -281,7 +317,8 @@ final class CookSession {
 
     // MARK: Saved tuning
 
-    private static let settingsKey = "detectorSettings.v1"
+    // v2: the defaults changed, so tuning saved by older builds is ignored.
+    private static let settingsKey = "detectorSettings.v2"
 
     private static func loadSettings() -> DetectorSettings {
         guard let data = UserDefaults.standard.data(forKey: settingsKey),
