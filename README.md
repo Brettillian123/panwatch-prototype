@@ -33,25 +33,37 @@ You need an Xcode version at least as new as your iPhone's iOS (iOS 27 needs Xco
 
 1. **Install Xcode** from the Mac App Store and open it once so it can install its
    components. If it asks which platforms to download, iOS is the one you need.
-2. **Sign in:** Xcode > Settings > Accounts > `+` > Apple ID. A free Apple ID works.
-3. **Connect to GitHub:** Xcode > Settings > Accounts > `+` > GitHub. Xcode asks for a
-   token. On github.com go to Settings > Developer settings > Personal access tokens >
-   Tokens (classic) > Generate new token, tick **repo**, generate, and paste it into Xcode.
-4. **Get the code:** close Settings, then File > Clone (or "Clone Git Repository" on the
-   welcome window), pick `panwatch-prototype`, and choose a folder. If Xcode asks what to
-   open, pick **PanWatch.xcodeproj** (not Package.swift).
-5. **Set signing:** click the blue PanWatch project at the top of the left sidebar, then
-   the PanWatch target > Signing & Capabilities > Team > pick your name (Personal Team).
-   If it says the bundle identifier is taken, change `com.brettillian123.panwatch` to
-   anything unique, like `com.brettillian123.panwatch2`.
-6. **Connect the iPhone** with a USB-C cable, unlock it, and tap **Trust**. In Xcode's top
-   bar, click the device menu (next to "PanWatch") and pick your iPhone.
-7. **Turn on Developer Mode** on the iPhone: Settings > Privacy & Security > Developer
-   Mode > On. The phone restarts and asks you to confirm.
-8. **Run:** press the ▶ button (or Cmd-R). The first build takes a few minutes.
-9. **Trust yourself on the phone:** the first launch is blocked as an "Untrusted
+2. **Sign in:** Xcode > Settings > Apple Accounts (just "Accounts" in older Xcode) > `+`
+   at the bottom left > sign in with your Apple ID. A free Apple ID works.
+3. **Get the code.** Simplest: in Safari, sign in to github.com, open
+   `Brettillian123/panwatch-prototype`, click the green **Code** button > **Download ZIP**.
+   Safari unzips it into Downloads as `panwatch-prototype-main` (double-click the .zip if
+   it didn't). Open **PanWatch.xcodeproj** inside it (not Package.swift).
+
+   Or clone it: Xcode > Settings > Source Control > Add Account > GitHub. Xcode asks for
+   a token. On github.com go to Settings > Developer settings > Personal access tokens >
+   Tokens (classic) > Generate new token, tick **repo**, generate, and paste it into
+   Xcode. Then Integrate > Clone (or "Clone Git Repository" on the welcome window), pick
+   `panwatch-prototype`, choose a folder, and open **PanWatch.xcodeproj** if asked.
+4. **Set signing:** click the blue PanWatch project at the top of the left sidebar, then
+   the PanWatch target > Signing & Capabilities. If there is a **Set Up Signing** button,
+   click it, pick your name (Personal Team) as the Team, and click Set Up. Otherwise pick
+   your name in the Team menu. If it says the bundle identifier is taken, change
+   `com.brettillian123.panwatch` to anything unique, like `com.brettillian123.panwatch2`.
+5. **Connect the iPhone** with a USB-C cable, unlock it, and tap **Trust**. In Xcode's top
+   bar, click the device menu (next to "PanWatch") and pick your iPhone. If it isn't
+   listed, choose **Manage Devices…** at the bottom of that menu: Device Hub opens; click
+   the iPhone in its sidebar and click **Pair** if it offers it. If the menu shows a
+   **Get** button next to "Any iOS Device", click that first; it downloads iOS support.
+6. **Turn on Developer Mode** on the iPhone (the switch only appears after step 5):
+   Settings > Privacy & Security > Developer Mode > On > Restart. After the restart, tap
+   Enable and enter your passcode. Then check the iPhone is still picked in Xcode's
+   device menu.
+7. **Run:** press the ▶ button (or Cmd-R). If a **Register** button appears under
+   Signing & Capabilities, click it. The first build takes a few minutes.
+8. **Trust yourself on the phone:** the first launch is blocked as an "Untrusted
    Developer". On the iPhone go to Settings > General > VPN & Device Management, tap your
-   Apple ID, tap Trust, then press ▶ in Xcode again.
+   Apple ID under Developer App, tap Trust, then press ▶ in Xcode again.
 
 If Xcode offers to "Update to recommended settings", skip it for now (see the demo-day
 checklist below).
@@ -61,7 +73,8 @@ Do this the day before any presentation.
 
 ## Getting updates
 
-Xcode menu: Integrate > Pull. Then press ▶.
+If you downloaded the ZIP: download it again, open the new PanWatch.xcodeproj, and set
+the Team again (step 4). If you cloned: Integrate > Pull. Then press ▶.
 
 If the build fails, copy the red error text from Xcode's Issue navigator (the ⚠ icon in
 the left sidebar) and send it over.
@@ -102,7 +115,7 @@ Before you leave for the pitch:
 - If Xcode offers "Update to recommended settings", skip it until after the pitch.
 - The first build may ask for the Mac's password so `codesign` can use your signing key.
   Have the owner type it and click **Always Allow** so later builds don't ask again.
-- Trusting yourself on the iPhone (step 9 above) needs internet. Do it before you leave Wi-Fi.
+- Trusting yourself on the iPhone (step 8 above) needs internet. Do it before you leave Wi-Fi.
 - Rehearse once with the detection panel open, then tap **Reset tuning**: tuning is saved
   between launches, so rehearsal tweaks would carry into the pitch.
 
