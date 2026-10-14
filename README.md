@@ -61,6 +61,7 @@ You need an Xcode version at least as new as your iPhone's iOS (iOS 27 needs Xco
    device menu.
 7. **Run:** press the ▶ button (or Cmd-R). If a **Register** button appears under
    Signing & Capabilities, click it. The first build takes a few minutes.
+   On the iPhone the app is named **Sous Vision** (PanWatch is only the project's code name).
 8. **Trust yourself on the phone:** the first launch is blocked as an "Untrusted
    Developer". On the iPhone go to Settings > General > VPN & Device Management, tap your
    Apple ID under Developer App, tap Trust, then press ▶ in Xcode again.
@@ -121,7 +122,7 @@ Before you leave for the pitch:
 
 Right before the demo:
 
-- Raise the media volume in Control Center **before** opening PanWatch. While its camera
+- Raise the media volume in Control Center **before** opening the app. While its camera
   runs, the volume buttons belong to the app and no longer change the volume.
 
 During the demo:
