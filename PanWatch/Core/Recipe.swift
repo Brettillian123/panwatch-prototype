@@ -46,7 +46,9 @@ extension Recipe {
             RecipeStep(
                 id: 2,
                 instruction: "Add 1 pound of pasta to the boiling water.",
-                watch: AdditionWatch(ingredient: "pasta", timerLabel: "Pasta", timerMinutes: 9, minimumChange: 0.02)
+                // A phone propped on the counter sees the side of the pot, not inside it, so a
+                // hand reaching over the pot and leaving is the signal.
+                watch: AdditionWatch(ingredient: "pasta", timerLabel: "Pasta", timerMinutes: 9, minimumChange: 0)
             ),
             RecipeStep(
                 id: 3,
