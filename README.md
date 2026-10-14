@@ -53,7 +53,8 @@ You need an Xcode version at least as new as your iPhone's iOS (iOS 27 needs Xco
    Developer". On the iPhone go to Settings > General > VPN & Device Management, tap your
    Apple ID, tap Trust, then press ▶ in Xcode again.
 
-If Xcode offers to "Update to recommended settings", either choice is fine.
+If Xcode offers to "Update to recommended settings", skip it for now (see the demo-day
+checklist below).
 
 **Free Apple ID builds stop opening after 7 days.** Plug in and press ▶ again to renew.
 Do this the day before any presentation.
@@ -118,8 +119,10 @@ During the demo:
 - If the box never turns yellow while your hand is over the pan, hand tracking isn't
   seeing your hand. Open the panel and turn off **Require a hand**; then motion in the
   pan starts a visit instead.
-- Keep the pasta to well under half of the box. If most of the box changes brightness
-  at once, it's read as a light switching on and ignored.
+- One handful of pasta is the safest pour. A pour can cover up to about three quarters of
+  the box; if nearly all of it changes brightness evenly, it's read as a light switching
+  on and ignored (the panel shows "Lighting change", and **Ignore lighting changes** turns
+  that check off).
 - Keep the phone fairly upright and still. If it reads as turned, it asks you to mark the
   pan again.
 
