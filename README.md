@@ -94,6 +94,35 @@ the left sidebar) and send it over.
 To show the gating, reach into the pan during step 3: nothing happens, because that step
 doesn't add anything.
 
+### Demo-day checklist
+
+Before you leave for the pitch:
+
+- If Xcode offers "Update to recommended settings", skip it until after the pitch.
+- The first build may ask for the Mac's password so `codesign` can use your signing key.
+  Have the owner type it and click **Always Allow** so later builds don't ask again.
+- Trusting yourself on the iPhone (step 9 above) needs internet. Do it before you leave Wi-Fi.
+- Rehearse once with the detection panel open, then tap **Reset tuning**: tuning is saved
+  between launches, so rehearsal tweaks would carry into the pitch.
+
+Right before the demo:
+
+- Raise the media volume in Control Center **before** opening PanWatch. While its camera
+  runs, the volume buttons belong to the app and no longer change the volume.
+
+During the demo:
+
+- Press a volume button only after the offer appears. Before that, a press means "Next
+  step" and skips past the pasta step (**Back** fixes it).
+- The offer closes itself after 20 seconds, and the pasta in the pan becomes the new normal.
+- If the box never turns yellow while your hand is over the pan, hand tracking isn't
+  seeing your hand. Open the panel and turn off **Require a hand**; then motion in the
+  pan starts a visit instead.
+- Keep the pasta to well under half of the box. If most of the box changes brightness
+  at once, it's read as a light switching on and ignored.
+- Keep the phone fairly upright and still. If it reads as turned, it asks you to mark the
+  pan again.
+
 ## Layout
 
 ```
