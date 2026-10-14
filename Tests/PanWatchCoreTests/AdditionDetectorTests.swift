@@ -43,6 +43,23 @@ struct AdditionDetectorTests {
         #expect(results.map(\.outcome) == [.lightingChange])
     }
 
+    @Test func anUnevenLightIsStillVetoed() {
+        // A hood light brightens the near half of the pan a little more than the far half.
+        let uneven = PanPatch(width: Pans.side, height: Pans.side, luma: 90).painting(x: 16..<32, y: 0..<32, luma: 110)
+        let results = decisions(for: visit(settlingOn: uneven))
+        #expect(results.map(\.outcome) == [.lightingChange])
+    }
+
+    @Test func pastaCoveringMostOfThePanIsStillAnAddition() throws {
+        // Three quarters of a dark pan turn pale. The median brightness jumps like a light
+        // switching on, but the last quarter didn't move, so it isn't the light.
+        let results = decisions(for: visit(settlingOn: Pans.mostlyCovered))
+        #expect(results.map(\.outcome) == [.addition])
+        let decision = try #require(results.first)
+        #expect(decision.medianLumaShift == 140)
+        #expect(decision.changedFraction == 0.75)
+    }
+
     @Test func turningTheVetoOffLetsLightingThrough() {
         var settings = DetectorSettings()
         settings.lightingVeto = false

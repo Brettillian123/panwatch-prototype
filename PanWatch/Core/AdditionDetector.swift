@@ -112,6 +112,10 @@ struct AdditionDetector {
     private static let historyDuration = 3.0
     /// Warm-up gives up waiting for perfect stillness after this long.
     private static let warmUpPatience = 3.0
+    /// A median brightness shift only counts as lighting when at least this share of the
+    /// pan moved by about that much. Without it, pasta covering more than half of a dark
+    /// pan moves the median as far as a light does and is thrown away.
+    private static let lightingEvenness = 0.8
 
     var settings: DetectorSettings
 
@@ -267,7 +271,9 @@ struct AdditionDetector {
         let shift = after.medianLumaShift(from: before)
 
         let outcome: DetectorDecision.Outcome
-        if settings.lightingVeto && abs(shift) >= settings.lightingShiftThreshold {
+        if settings.lightingVeto && abs(shift) >= settings.lightingShiftThreshold
+            && after.fractionShifted(by: shift, within: max(settings.lumaThreshold, abs(shift) / 2), from: before)
+                >= Self.lightingEvenness {
             outcome = .lightingChange
         } else if changed >= settings.additionThreshold {
             outcome = .addition

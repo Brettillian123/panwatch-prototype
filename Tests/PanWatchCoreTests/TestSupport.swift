@@ -31,6 +31,8 @@ enum Pans {
     static let withMore = withPasta.painting(x: 16..<32, y: 16..<32, luma: 180, cb: 150, cr: 110)
     /// The whole pan brighter, as when a hood light switches on.
     static let brighter = PanPatch(width: side, height: side, luma: 100)
+    /// A big pour: pale pasta over the top three quarters of the pan.
+    static let mostlyCovered = empty.painting(x: 0..<32, y: 0..<24, luma: 200, cb: 100, cr: 150)
 
     /// An arm reaching over the pan: a large blob that shifts every frame.
     static func arm(_ frame: Int) -> PanPatch {

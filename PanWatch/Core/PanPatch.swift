@@ -166,4 +166,17 @@ struct PanPatch: Equatable, Sendable {
         }
         return 0
     }
+
+    /// Fraction of pixels whose signed brightness change from `other` is within
+    /// `tolerance` of `shift`; 0 if the sizes differ. A light switching on moves nearly
+    /// every pixel by about the same amount. Food covering most of the pan also moves the
+    /// median, but the part of the pan it didn't cover stays where it was.
+    func fractionShifted(by shift: Double, within tolerance: Double, from other: PanPatch) -> Double {
+        guard other.width == width, other.height == height, pixelCount > 0 else { return 0 }
+        var near = 0
+        for i in 0..<pixelCount where abs(Double(Int(luma[i]) - Int(other.luma[i])) - shift) <= tolerance {
+            near += 1
+        }
+        return Double(near) / Double(pixelCount)
+    }
 }

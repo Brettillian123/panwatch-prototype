@@ -92,6 +92,16 @@ struct PanPatchTests {
         #expect(Pans.brighter.medianLumaShift(from: Pans.empty) == 40)
         #expect(Pans.withPasta.medianLumaShift(from: Pans.empty) == 0)
     }
+
+    @Test func evenShiftSeparatesLightingFromABigPour() {
+        // Every pixel of the lit pan moved by 40.
+        #expect(Pans.brighter.fractionShifted(by: 40, within: 24, from: Pans.empty) == 1)
+        // The pour moved the median by 140, but only the covered three quarters moved.
+        #expect(Pans.mostlyCovered.medianLumaShift(from: Pans.empty) == 140)
+        #expect(Pans.mostlyCovered.fractionShifted(by: 140, within: 70, from: Pans.empty) == 0.75)
+        let small = PanPatch(width: 8, height: 8, luma: 255)
+        #expect(small.fractionShifted(by: 0, within: 24, from: Pans.empty) == 0)
+    }
 }
 
 @Suite("Geometry")
