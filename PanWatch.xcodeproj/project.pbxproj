@@ -178,8 +178,8 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = PanWatch;
-				INFOPLIST_KEY_NSCameraUsageDescription = "PanWatch watches your pan to notice when an ingredient goes in, so it can offer the right timer. Video is analyzed on this phone and never saved or sent.";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sous Vision";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Sous Vision watches your pan to notice when an ingredient goes in, so it can offer the right timer. Video is analyzed on this phone and never saved or sent.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -205,8 +205,8 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = PanWatch;
-				INFOPLIST_KEY_NSCameraUsageDescription = "PanWatch watches your pan to notice when an ingredient goes in, so it can offer the right timer. Video is analyzed on this phone and never saved or sent.";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sous Vision";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Sous Vision watches your pan to notice when an ingredient goes in, so it can offer the right timer. Video is analyzed on this phone and never saved or sent.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -215,7 +215,7 @@ struct CameraStatusOverlay: View {
         case .denied:
             message(
                 symbol: "camera.fill",
-                title: "PanWatch needs the camera to watch your pan",
+                title: "Sous Vision needs the camera to watch your pan",
                 detail: "Video is analyzed on this phone and never saved or sent anywhere.",
                 showsSettings: true
             )
