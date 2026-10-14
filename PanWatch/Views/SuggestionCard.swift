@@ -41,7 +41,7 @@ struct SuggestionCard: View {
                     .tint(.green)
                 }
                 .controlSize(.extraLarge)
-                Text("Or press a volume button")
+                Text("Say “yes”, or press a volume button")
                     .font(.footnote)
                     .foregroundStyle(.white.opacity(0.7))
             }

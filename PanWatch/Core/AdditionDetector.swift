@@ -20,7 +20,7 @@ struct DetectorSettings: Codable, Equatable, Sendable {
     /// Color difference, |ΔCb| + |ΔCr|, for a pixel to count as changed.
     var chromaThreshold = 22.0
     /// Fraction of the pan that must differ between before and after to call it an addition.
-    var additionThreshold = 0.05
+    var additionThreshold = 0.03
     /// Reject a decision when the whole pan got uniformly brighter or darker.
     var lightingVeto = true
     /// Median brightness shift that counts as a lighting change rather than food.

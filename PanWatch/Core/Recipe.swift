@@ -6,6 +6,9 @@ struct AdditionWatch: Equatable, Sendable {
     let ingredient: String
     let timerLabel: String
     let timerMinutes: Int
+    /// Share of the pan that must change for this step, when it should be less than the
+    /// usual setting. Small or scattered ingredients, like minced garlic, change little.
+    var minimumChange: Double? = nil
 }
 
 struct RecipeStep: Identifiable, Equatable, Sendable {
@@ -36,7 +39,7 @@ extension Recipe {
             RecipeStep(
                 id: 4,
                 instruction: "Add the minced garlic to the butter.",
-                watch: AdditionWatch(ingredient: "garlic", timerLabel: "Garlic", timerMinutes: 1)
+                watch: AdditionWatch(ingredient: "garlic", timerLabel: "Garlic", timerMinutes: 1, minimumChange: 0.015)
             ),
             RecipeStep(id: 5, instruction: "Drain the pasta and toss it in the garlic butter.", watch: nil),
         ]

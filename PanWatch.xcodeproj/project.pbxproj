@@ -180,6 +180,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Sous Vision";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Sous Vision watches your pan to notice when an ingredient goes in, so it can offer the right timer. Video is analyzed on this phone and never saved or sent.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Sous Vision listens for a quick yes or no after it offers a timer, so you can answer without touching the phone. Audio is not saved.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Sous Vision turns your spoken yes or no into an answer, on this phone when it can.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -207,6 +209,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Sous Vision";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Sous Vision watches your pan to notice when an ingredient goes in, so it can offer the right timer. Video is analyzed on this phone and never saved or sent.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Sous Vision listens for a quick yes or no after it offers a timer, so you can answer without touching the phone. Audio is not saved.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Sous Vision turns your spoken yes or no into an answer, on this phone when it can.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
