@@ -16,6 +16,11 @@ struct StepCard: View {
                 .minimumScaleFactor(0.6)
                 .fixedSize(horizontal: false, vertical: true)
             WatchStatusChip(session: session)
+            if let next = session.nextScheduledStep {
+                (Text("Next step in ") + Text(next.at, style: .timer).monospacedDigit())
+                    .font(.title3.weight(.semibold))
+                    .foregroundStyle(.white.opacity(0.85))
+            }
         }
         .padding(18)
         .frame(maxWidth: 470, alignment: .leading)
@@ -42,6 +47,9 @@ struct WatchStatusChip: View {
     private var status: (symbol: String, text: String, color: Color) {
         guard let watch = session.currentStep.watch else {
             return ("eye.slash", "Camera not needed for this step", .gray)
+        }
+        if session.finishedSteps.contains(session.stepIndex) {
+            return ("checkmark.circle.fill", "The \(watch.ingredient) is in", .green)
         }
         if session.isMarkingPan || session.region == nil {
             return ("viewfinder", "Mark the pan to start watching", .orange)
