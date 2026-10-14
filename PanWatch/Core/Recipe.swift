@@ -10,6 +10,9 @@ struct AdditionWatch: Equatable, Sendable {
     /// usual setting. Zero means a hand visiting the pan and leaving is enough, for
     /// ingredients too small to see once they're in, like minced garlic.
     var minimumChange: Double? = nil
+    /// For ingredients carried in the hand, like a handful of pasta: the hand opening over
+    /// the pot counts too, even when the pot hides the food from a phone on the counter.
+    var countsRelease = false
 }
 
 /// When a step should be announced on its own: once the named timer has this much time
@@ -46,9 +49,9 @@ extension Recipe {
             RecipeStep(
                 id: 2,
                 instruction: "Add 1 pound of pasta to the boiling water.",
-                // A phone propped on the counter sees the side of the pot, not inside it, so a
-                // hand reaching over the pot and leaving is the signal.
-                watch: AdditionWatch(ingredient: "pasta", timerLabel: "Pasta", timerMinutes: 9, minimumChange: 0)
+                // Pasta is big enough to see: it sticks out of the pot, or the hand holding
+                // it opens over the pot. A hand that only visits isn't enough.
+                watch: AdditionWatch(ingredient: "pasta", timerLabel: "Pasta", timerMinutes: 9, minimumChange: 0.02, countsRelease: true)
             ),
             RecipeStep(
                 id: 3,

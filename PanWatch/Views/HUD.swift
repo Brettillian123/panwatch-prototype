@@ -21,6 +21,7 @@ struct StepCard: View {
                     .font(.title3.weight(.semibold))
                     .foregroundStyle(.white.opacity(0.85))
             }
+            VoiceHint(session: session)
         }
         .padding(18)
         .frame(maxWidth: 470, alignment: .leading)
@@ -61,6 +62,28 @@ struct WatchStatusChip: View {
             return ("eye", "Watching for the \(watch.ingredient)", .green)
         }
         return (PhaseStyle.symbol(for: session.phase), PhaseStyle.label(for: session.phase), PhaseStyle.color(for: session.phase))
+    }
+}
+
+/// What the cook can say, or what was just heard.
+struct VoiceHint: View {
+    let session: CookSession
+
+    var body: some View {
+        if session.micReady && session.listeningOn {
+            Group {
+                if let heard = session.heardText {
+                    Label("Heard \u{201C}\(heard)\u{201D}", systemImage: "checkmark.bubble.fill")
+                        .foregroundStyle(.cyan)
+                } else {
+                    Label("Say \u{201C}next\u{201D}, \u{201C}back\u{201D}, \u{201C}repeat\u{201D} or \u{201C}start the timer\u{201D}", systemImage: "mic.fill")
+                        .foregroundStyle(.white.opacity(0.7))
+                }
+            }
+            .font(.headline)
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
+        }
     }
 }
 
@@ -154,6 +177,11 @@ struct ControlBar: View {
             }
 
             Spacer(minLength: 8)
+
+            Button { session.toggleListening() } label: {
+                Image(systemName: session.listeningOn ? "mic.fill" : "mic.slash.fill")
+            }
+            .accessibilityLabel(session.listeningOn ? "Stop listening for commands" : "Listen for commands")
 
             Button { session.voiceOn.toggle() } label: {
                 Image(systemName: session.voiceOn ? "speaker.wave.2.fill" : "speaker.slash.fill")

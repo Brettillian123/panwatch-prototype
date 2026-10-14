@@ -78,4 +78,30 @@ enum HandGeometry {
             joints.filter { zone.contains($0) }.count >= minimumJoints
         }
     }
+
+    /// How open a hand is: the average distance from the wrist to the fingertips, in palm
+    /// lengths (wrist to the base of the middle finger). About 1 for a fist or a hand
+    /// closed around food, about 1.8 for an open hand. `aspect` is the frame's width over
+    /// its height, so distances are measured in pixels rather than stretched coordinates.
+    /// Nil without the wrist, the palm, and at least three fingertips.
+    static func openness(wrist: NormPoint?, palm: NormPoint?, tips: [NormPoint], aspect: Double) -> Double? {
+        guard let wrist, let palm, tips.count >= 3 else { return nil }
+        func distance(_ a: NormPoint, _ b: NormPoint) -> Double {
+            let dx = (a.x - b.x) * aspect
+            let dy = a.y - b.y
+            return (dx * dx + dy * dy).squareRoot()
+        }
+        let palmLength = distance(wrist, palm)
+        guard palmLength > 0.005 else { return nil }
+        let reach = tips.map { distance(wrist, $0) }.reduce(0, +) / Double(tips.count)
+        return reach / palmLength
+    }
+}
+
+/// A hand found in one frame.
+struct TrackedHand: Sendable {
+    /// Its confident joints.
+    var joints: [NormPoint]
+    /// See `HandGeometry.openness`.
+    var openness: Double?
 }

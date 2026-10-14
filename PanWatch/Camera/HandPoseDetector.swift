@@ -10,19 +10,33 @@ final class HandPoseDetector {
         return request
     }()
 
-    /// The confident joints of each hand found, in normalized top-left image coordinates.
-    func hands(in pixelBuffer: CVPixelBuffer) -> [[NormPoint]] {
+    private static let tipNames: [VNHumanHandPoseObservation.JointName] = [.thumbTip, .indexTip, .middleTip, .ringTip, .littleTip]
+
+    /// Each hand found: its confident joints in normalized top-left image coordinates,
+    /// and how open it is.
+    func hands(in pixelBuffer: CVPixelBuffer) -> [TrackedHand] {
         // Frames arrive already rotated upright, so no orientation correction is needed.
         let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up, options: [:])
         guard (try? handler.perform([request])) != nil, let observations = request.results else { return [] }
-        return observations.compactMap { observation -> [NormPoint]? in
+        let height = Double(CVPixelBufferGetHeight(pixelBuffer))
+        let aspect = height > 0 ? Double(CVPixelBufferGetWidth(pixelBuffer)) / height : 1
+        return observations.compactMap { observation -> TrackedHand? in
             guard let points = try? observation.recognizedPoints(.all) else { return nil }
-            let joints = points.values
-                .filter { $0.confidence >= 0.3 }
-                // Vision puts the origin at the bottom-left; the rest of the app uses top-left.
-                .map { NormPoint(x: Double($0.location.x), y: 1 - Double($0.location.y)) }
+            // Vision puts the origin at the bottom-left; the rest of the app uses top-left.
+            func confident(_ point: VNRecognizedPoint?) -> NormPoint? {
+                guard let point, point.confidence >= 0.3 else { return nil }
+                return NormPoint(x: Double(point.location.x), y: 1 - Double(point.location.y))
+            }
+            let joints = points.values.compactMap(confident)
             // A real hand shows several joints. One or two stray points are usually noise.
-            return joints.count >= 4 ? joints : nil
+            guard joints.count >= 4 else { return nil }
+            let openness = HandGeometry.openness(
+                wrist: confident(points[.wrist]),
+                palm: confident(points[.middleMCP]),
+                tips: Self.tipNames.compactMap { confident(points[$0]) },
+                aspect: aspect
+            )
+            return TrackedHand(joints: joints, openness: openness)
         }
     }
 }

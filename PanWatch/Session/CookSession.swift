@@ -81,6 +81,13 @@ final class CookSession {
 
     var showDebug = false
     var voiceOn = true
+    /// Spoken commands are on. The microphone button turns them off, say while presenting.
+    private(set) var listeningOn = true
+    /// Microphone and speech recognition are allowed.
+    private(set) var micReady = false
+    /// What was last heard as a command, shown for a moment so the cook knows it landed.
+    private(set) var heardText: String?
+    @ObservationIgnored private var heardClear: Task<Void, Never>?
     /// Timers count seconds instead of minutes, for rehearsing the demo.
     var fastTimers = false
     /// Detector tuning. Views change it directly; call `applySettings()` afterwards.
@@ -106,6 +113,9 @@ final class CookSession {
         camera.onRotationChanged = { [weak self] in
             Task { @MainActor in self?.phoneTurned() }
         }
+        speaker.onSpeakingChanged = { [weak self] speaking in
+            self?.speakingChanged(speaking)
+        }
     }
 
     func start() async {
@@ -114,7 +124,8 @@ final class CookSession {
         cameraStatus = await camera.start(position: cameraPosition)
         refreshArming()
         // Ask for the microphone at launch, so the prompt never appears mid-cook.
-        await listener.requestPermission()
+        micReady = await listener.requestPermission()
+        refreshListening()
     }
 
     // MARK: Recipe steps
@@ -130,7 +141,6 @@ final class CookSession {
     }
 
     private func go(to index: Int, saying text: String? = nil) {
-        listener.stop()
         stepIndex = index
         suggestion = nil
         refreshArming()
@@ -205,6 +215,8 @@ final class CookSession {
         if let minimum = currentStep.watch?.minimumChange {
             effective.additionThreshold = min(effective.additionThreshold, minimum)
         }
+        // Only ingredients carried in the hand count a hand letting go.
+        effective.countRelease = settings.countRelease && currentStep.watch?.countsRelease == true
         return effective
     }
 
@@ -245,39 +257,147 @@ final class CookSession {
             after: pictures.after
         )
         refreshArming()
-        say("Looks like the \(watch.ingredient) went in. Start a \(watch.timerMinutes) minute timer?") { [weak self] in
-            self?.listenForAnswer()
+        // "Yes" or "start the timer" accepts, "no" dismisses; so do the volume buttons.
+        say(offerText(watch))
+    }
+
+    private func offerText(_ watch: AdditionWatch) -> String {
+        "Looks like the \(watch.ingredient) went in. Start a \(watch.timerMinutes) minute timer?"
+    }
+
+    // MARK: Voice commands
+
+    func toggleListening() {
+        listeningOn.toggle()
+        refreshListening()
+    }
+
+    private func refreshListening() {
+        if listeningOn && micReady {
+            listener.start { [weak self] command, text in
+                self?.handle(command, heard: text)
+            }
+        } else {
+            listener.stop()
         }
     }
 
-    /// Once the offer has been spoken, "yes" starts the timer and "no" dismisses it.
-    /// The volume buttons and the card's buttons keep working the whole time.
-    private func listenForAnswer() {
-        guard let offerID = suggestion?.id else { return }
-        listener.listen(for: 12) { [weak self] answer in
-            guard let self, self.suggestion?.id == offerID else { return }
-            switch answer {
-            case .yes: self.acceptSuggestion()
-            case .no: self.dismissSuggestion()
-            }
+    private func speakingChanged(_ speaking: Bool) {
+        if speaking {
+            listener.hold()
+        } else {
+            listener.resume()
         }
+    }
+
+    /// Everything the buttons do, by voice, so the cook never has to touch the phone.
+    private func handle(_ command: VoiceCommand, heard text: String) {
+        showHeard(text)
+        switch command {
+        case .next:
+            if isMarkingPan {
+                if draftRegion != nil { confirmPanByVoice() }
+            } else if isLastStep {
+                say("That's the last step.")
+            } else {
+                nextStep()
+            }
+        case .back:
+            if stepIndex == 0 {
+                say("This is the first step.")
+            } else {
+                previousStep()
+            }
+        case .repeatStep:
+            if let suggestion {
+                say(offerText(suggestion.watch))
+            } else {
+                say("Step \(stepIndex + 1). \(currentStep.instruction)")
+            }
+        case .yes:
+            if suggestion != nil {
+                acceptSuggestion()
+            } else if isMarkingPan, draftRegion != nil {
+                confirmPanByVoice()
+            }
+        case .no:
+            if suggestion != nil {
+                dismissSuggestion()
+                say("Okay.")
+            }
+        case .startTimer:
+            if suggestion != nil {
+                acceptSuggestion()
+            } else if let watch = currentStep.watch, !finishedSteps.contains(stepIndex) {
+                // The camera missed it, or the cook was quicker: start the step's timer anyway.
+                ingredientWentIn(step: stepIndex, watch: watch)
+            } else {
+                say("There's no timer for this step.")
+            }
+        case .timeLeft:
+            sayTimeLeft()
+        case .startWatching:
+            if isMarkingPan, draftRegion != nil { confirmPanByVoice() }
+        }
+    }
+
+    private func confirmPanByVoice() {
+        confirmPan()
+        say("Watching the pan.")
+    }
+
+    private func sayTimeLeft() {
+        let running = timers.filter { !$0.isDone }
+        guard !running.isEmpty else {
+            say("No timers are running.")
+            return
+        }
+        var text = running.map { "\($0.label), \(Self.spoken($0.end.timeIntervalSinceNow)) left." }.joined(separator: " ")
+        if let next = nextScheduledStep {
+            text += " Next step in \(Self.spoken(next.at.timeIntervalSinceNow))."
+        }
+        say(text)
+    }
+
+    private func showHeard(_ text: String) {
+        heardText = text
+        heardClear?.cancel()
+        heardClear = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(3))
+            guard !Task.isCancelled else { return }
+            self?.heardText = nil
+        }
+    }
+
+    private static func spoken(_ seconds: TimeInterval) -> String {
+        let total = max(0, Int(seconds.rounded()))
+        let minutes = total / 60
+        let rest = total % 60
+        func unit(_ count: Int, _ word: String) -> String { "\(count) \(word)\(count == 1 ? "" : "s")" }
+        if minutes == 0 { return unit(rest, "second") }
+        if rest == 0 { return unit(minutes, "minute") }
+        return "\(unit(minutes, "minute")) \(unit(rest, "second"))"
     }
 
     // MARK: Suggestions and timers
 
     func acceptSuggestion() {
         guard let offer = suggestion else { return }
-        listener.stop()
         suggestion = nil
-        finishedSteps.insert(offer.stepIndex)
-        let label = offer.watch.timerLabel
-        let timer = startTimer(label: label, minutes: offer.watch.timerMinutes)
+        ingredientWentIn(step: offer.stepIndex, watch: offer.watch)
+    }
+
+    /// Starts the ingredient's timer, lines up the steps that wait on it, and says what's next.
+    private func ingredientWentIn(step index: Int, watch: AdditionWatch) {
+        finishedSteps.insert(index)
+        let label = watch.timerLabel
+        let timer = startTimer(label: label, minutes: watch.timerMinutes)
         scheduleSteps(for: timer)
         let nextIsTimed = scheduledSteps.contains { $0.stepIndex == stepIndex + 1 }
-        if offer.stepIndex == stepIndex, !isLastStep, nextIsTimed {
+        if index == stepIndex, !isLastStep, nextIsTimed {
             // The next step depends on this timer, so the recipe waits and calls it out.
             say("\(label) timer started. I'll tell you when it's time for the next step.")
-        } else if offer.stepIndex == stepIndex, !isLastStep {
+        } else if index == stepIndex, !isLastStep {
             // The camera just confirmed this step happened, so the recipe moves on.
             stepIndex += 1
             say("\(label) timer started. Next, \(Self.lowercasingFirst(currentStep.instruction))")
@@ -327,7 +447,6 @@ final class CookSession {
 
     func dismissSuggestion() {
         guard suggestion != nil else { return }
-        listener.stop()
         suggestion = nil
         refreshArming()
     }
@@ -391,8 +510,8 @@ final class CookSession {
 
     // MARK: Saved tuning
 
-    // v2: the defaults changed, so tuning saved by older builds is ignored.
-    private static let settingsKey = "detectorSettings.v2"
+    // v3: the defaults changed, so tuning saved by older builds is ignored.
+    private static let settingsKey = "detectorSettings.v3"
 
     private static func loadSettings() -> DetectorSettings {
         guard let data = UserDefaults.standard.data(forKey: settingsKey),

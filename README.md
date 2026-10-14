@@ -16,7 +16,8 @@ and on-device speech. No trained model, no network, and no video is saved.
 2. **Lock the camera.** When you confirm the pan box, exposure, white balance, and focus
    lock. The picture of the pan then only changes when the pan does.
 3. **A hand has to visit.** Apple's hand-pose model tracks hands 15 times a second. A
-   visit counts when a hand spends at least 0.3 s over the pan, then leaves.
+   visit counts when a hand spends at least 0.4 s over the pan, then leaves. A hand that
+   stays more than 6 s is stirring, and is ignored (so is one that comes straight back).
 4. **Compare before and after.** Once the pan stops moving, a 128-pixel color thumbnail of
    it is compared with one taken just before the hand arrived. If at least 5% of the pan
    changed in brightness or color, it's an addition. If the whole pan shifted evenly, it's
@@ -142,16 +143,22 @@ During the demo:
 
 ## What's new for the pitch
 
-- **Say "yes" or "no".** After the app asks "Start a 9 minute timer?", it listens for up
-  to 12 seconds. "Yes", "sure" or "start" starts the timer; "no" or "not now" dismisses it.
-  The volume button still works. It asks for microphone and speech permission at launch.
+- **Hands-free voice.** The app listens the whole time (the mic button turns it off) and
+  acts on short phrases once you pause: "next", "go back", "repeat", "start the timer",
+  "yes", "no" / "not now", "how much time is left", and "start watching" while marking the
+  pan. Longer sentences are ignored, so talking doesn't trigger it. Listening pauses while
+  the app speaks. "Start the timer" also works when the camera missed the ingredient. The
+  step card shows what it heard. It asks for microphone and speech permission at launch.
 - **A natural voice.** The app uses the best English voice installed on the phone. Download
   a Premium voice (Settings, search "Voices", English, e.g. Ava or Zoe) for the most human sound.
 - **Smarter steps.** Each step has its amount. After the pasta timer starts, the app waits
   and calls out the butter (3:00 left), the garlic (1:30 left) and draining (when it ends).
   The step card shows "Next step in". Tapping the timer's X cancels the call-outs too.
-- **Small ingredients.** Pasta needs 2% of the pan to change. Minced garlic is too small to
-  see in the pan, so on the garlic step a hand reaching over the pan and leaving is enough.
+- **Each ingredient is judged its own way.** Pasta counts when 2% of the pot and the space
+  above it changes (pasta sticking out), or when a hand closed around it opens over the pot
+  (a handful let go), so a hand that only visits isn't enough. Minced garlic is too small
+  to see, so on the garlic step a hand reaching over the pan and leaving is enough, but
+  never a hand that stays to stir. The detection panel shows how open the hand is.
 - **Rehearse fast:** turn on Fast timers in the detection panel and the whole recipe plays
   out in seconds instead of minutes.
 

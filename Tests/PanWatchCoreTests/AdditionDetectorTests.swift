@@ -160,4 +160,105 @@ struct AdditionDetectorTests {
         detector.setArmed(true)
         #expect(detector.phase == .warmingUp)
     }
+
+    // MARK: Stirring and letting go
+
+    /// Learn the empty pan, then a hand over it whose openness goes from `from` to `to`
+    /// halfway through, then the hand leaves and the pan settles unchanged.
+    private func handOver(seconds: Double, from: Double?, to: Double?) -> Timeline {
+        var timeline = Timeline()
+        timeline.hold(1.0, patch: Pans.empty)
+        timeline.hold(seconds / 2, hand: true, openness: from, patch: Pans.arm)
+        timeline.hold(seconds / 2, hand: true, openness: to, patch: Pans.arm)
+        timeline.hold(0.6, patch: Pans.arm)
+        timeline.hold(1.5, patch: Pans.empty)
+        return timeline
+    }
+
+    @Test func aHandLettingGoCountsWhenThePotHidesTheFood() {
+        // A handful of pasta: the fist opens over the pot, and from the counter the pot looks the same.
+        let results = decisions(for: handOver(seconds: 1.4, from: 1.0, to: 1.8))
+        #expect(results.map(\.outcome) == [.addition])
+        #expect(results.first?.released == true)
+    }
+
+    @Test func aClosedHandThatLeavesIsNotAnAddition() {
+        // A hand gripping a spoon or the pot handle visits and leaves without opening.
+        let results = decisions(for: handOver(seconds: 1.4, from: 1.0, to: 1.05))
+        #expect(results.map(\.outcome) == [.noChange])
+        #expect(results.first?.released == false)
+    }
+
+    @Test func anOpenHandThatClosesIsNotAnAddition() {
+        // Reaching in open and grabbing something is the opposite of letting go.
+        let results = decisions(for: handOver(seconds: 1.4, from: 1.8, to: 1.0))
+        #expect(results.map(\.outcome) == [.noChange])
+    }
+
+    @Test func letGoIsOffWhenTheStepDoesNotCountIt() {
+        var settings = DetectorSettings()
+        settings.countRelease = false
+        let results = decisions(for: handOver(seconds: 1.4, from: 1.0, to: 1.8), settings: settings)
+        #expect(results.map(\.outcome) == [.noChange])
+    }
+
+    @Test func oneOddReadingDoesNotFakeALetGo() {
+        var timeline = Timeline()
+        timeline.hold(1.0, patch: Pans.empty)
+        timeline.hold(0.6, hand: true, openness: 1.0, patch: Pans.arm)
+        timeline.hold(0.07, hand: true, openness: 2.0, patch: Pans.arm)   // one frame
+        timeline.hold(0.6, hand: true, openness: 1.0, patch: Pans.arm)
+        timeline.hold(0.6, patch: Pans.arm)
+        timeline.hold(1.5, patch: Pans.empty)
+        #expect(decisions(for: timeline).map(\.outcome) == [.noChange])
+    }
+
+    @Test func stirringIsIgnoredEvenWhenAHandVisitIsEnough() {
+        // Garlic counts on a hand visit alone, but a hand that stays is stirring.
+        var settings = DetectorSettings()
+        settings.additionThreshold = 0
+        let results = decisions(for: handOver(seconds: 8, from: 1.0, to: 1.8), settings: settings)
+        #expect(results.map(\.outcome) == [.stirring])
+    }
+
+    @Test func aHandComingStraightBackAfterStirringIsStillStirring() {
+        var settings = DetectorSettings()
+        settings.additionThreshold = 0
+        var timeline = Timeline()
+        timeline.hold(1.0, patch: Pans.empty)
+        timeline.hold(8, hand: true, patch: Pans.arm)
+        timeline.hold(0.6, patch: Pans.arm)          // the stirring visit ends here
+        timeline.hold(0.5, patch: Pans.empty)
+        timeline.hold(1.0, hand: true, patch: Pans.arm)
+        timeline.hold(0.6, patch: Pans.arm)
+        timeline.hold(1.5, patch: Pans.empty)
+        #expect(decisions(for: timeline, settings: settings).map(\.outcome) == [.stirring, .stirring])
+    }
+
+    @Test func aVisitAfterTheStirringHasStoppedCountsAgain() {
+        var settings = DetectorSettings()
+        settings.additionThreshold = 0
+        var timeline = Timeline()
+        timeline.hold(1.0, patch: Pans.empty)
+        timeline.hold(8, hand: true, patch: Pans.arm)
+        timeline.hold(0.6, patch: Pans.arm)
+        timeline.hold(3.0, patch: Pans.empty)        // a pause, then the garlic
+        timeline.hold(1.0, hand: true, patch: Pans.arm)
+        timeline.hold(0.6, patch: Pans.arm)
+        timeline.hold(1.5, patch: Pans.empty)
+        #expect(decisions(for: timeline, settings: settings).map(\.outcome) == [.stirring, .addition])
+    }
+
+    @Test func handOpennessIsMeasuredInPalmLengths() {
+        let wrist = NormPoint(x: 0.5, y: 0.8)
+        let palm = NormPoint(x: 0.5, y: 0.7)
+        let fist = [NormPoint(x: 0.5, y: 0.7), NormPoint(x: 0.52, y: 0.7), NormPoint(x: 0.48, y: 0.7)]
+        let open = [NormPoint(x: 0.5, y: 0.6), NormPoint(x: 0.5, y: 0.6), NormPoint(x: 0.5, y: 0.6)]
+        let closed = HandGeometry.openness(wrist: wrist, palm: palm, tips: fist, aspect: 1) ?? 0
+        let opened = HandGeometry.openness(wrist: wrist, palm: palm, tips: open, aspect: 1) ?? 0
+        #expect(abs(closed - 1.0) < 0.05)
+        #expect(abs(opened - 2.0) < 0.001)
+        #expect(HandGeometry.openness(wrist: wrist, palm: palm, tips: Array(open.prefix(2)), aspect: 1) == nil)
+        #expect(HandGeometry.openness(wrist: nil, palm: palm, tips: open, aspect: 1) == nil)
+    }
 }
