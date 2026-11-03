@@ -39,6 +39,9 @@ struct Recipe: Sendable {
 }
 
 extension Recipe {
+    /// Lists every recipe the app offers, in menu order.
+    static let all: [Recipe] = [garlicButterPasta]
+
     /// Two watched steps and three unwatched ones, so the demo shows the camera switching
     /// itself on and off as the recipe moves. Once the pasta timer runs, the butter, the
     /// garlic and the draining are each called out at the right moment.
