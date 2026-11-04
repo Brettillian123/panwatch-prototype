@@ -46,8 +46,6 @@ struct DecisionPictures {
 @Observable
 final class CookSession {
     private(set) var recipe = Recipe.garlicButterPasta
-    /// True while the recipe menu is up: at launch, and when the cook asks for it.
-    private(set) var isChoosingRecipe = true
     /// Touches, voice commands and offers in this cook, for the Nov 4 gates.
     private(set) var stats = CookStats()
     private(set) var stepIndex = 0
@@ -201,7 +199,7 @@ final class CookSession {
     /// waiting on them belonged to the old recipe, so those are dropped.
     func choose(_ recipe: Recipe) {
         self.recipe = recipe
-        isChoosingRecipe = false
+        screen = .cook
         removeScheduled(scheduledSteps)
         finishedSteps = []
         suggestion = nil
@@ -213,7 +211,7 @@ final class CookSession {
     }
 
     func showRecipes() {
-        isChoosingRecipe = true
+        screen = .recipes
         suggestion = nil
         refreshArming()
     }
@@ -418,6 +416,8 @@ final class CookSession {
     // MARK: Voice commands
 
     func toggleListening() {
+        listeningResume?.cancel()
+        listeningPausedUntil = nil
         listeningOn.toggle()
         refreshListening()
     }
@@ -433,9 +433,8 @@ final class CookSession {
     }
 
     /// What the screen shows, for the on-device model that reads what the keywords miss.
-    /// Nil while the recipe menu is up, where nothing is done by voice.
+    /// On every screen, so a menu can be closed in the cook's own words.
     private var intentContext: IntentContext? {
-        guard !isChoosingRecipe else { return nil }
         return IntentContext(
             step: currentStep.instruction,
             offer: suggestion.map { offerText($0.watch) },
@@ -474,12 +473,173 @@ final class CookSession {
         speaker.stop()
     }
 
+    // MARK: Screens
+
+    /// What fills the screen. Menus are opened by voice or a tap; "done" goes back to cook.
+    private(set) var screen: AppScreen = .recipes
+    /// True while the recipe menu is up: at launch, and when the cook asks for it.
+    var isChoosingRecipe: Bool { screen == .recipes }
+    /// The screen the help overlay was opened from, whose commands it lists first.
+    private(set) var helpFrom: AppScreen = .cook
+    @ObservationIgnored private var helpClose: Task<Void, Never>?
+
+    /// The three or four phrases that work right now, for the Say line.
+    var sayPhrases: [String] {
+        AppScreen.sayPhrases(
+            screen: screen, drawing: isMarkingPan, offer: suggestion != nil, timerDone: timers.contains(where: \.isDone),
+            needsPan: needsPan, canStartTimer: canStartStepTimer, cameraOn: cameraOn,
+            voiceName: voiceOptions.first { $0.id == highlightedVoiceID }?.name ?? "Samantha"
+        )
+    }
+
+    /// Opens a menu over the cook screen, or the cook screen itself. Help closes after 30 s.
+    func open(_ next: AppScreen) {
+        helpClose?.cancel()
+        switch next {
+        case .recipes:
+            showRecipes()
+            return
+        case .voices:
+            voiceOptions = Speaker.options()
+            if highlightedVoiceID == nil || !voiceOptions.contains(where: { $0.id == highlightedVoiceID }) {
+                highlightedVoiceID = voiceID ?? voiceOptions.first?.id
+            }
+        case .help:
+            if screen != .help { helpFrom = screen }
+            helpClose = Task { [weak self] in
+                try? await Task.sleep(for: .seconds(30))
+                guard !Task.isCancelled, let self, self.screen == .help else { return }
+                self.closeMenu()
+            }
+        case .cook, .settings:
+            break
+        }
+        screen = next
+        refreshArming()
+    }
+
+    /// "Done", "close" or the Done button: back to the cook screen from any menu.
+    func closeMenu() {
+        helpClose?.cancel()
+        if screen == .voices { stopSample() }
+        screen = .cook
+        refreshArming()
+    }
+
+    // MARK: Voices by voice
+
+    /// The voices in the voice menu, best first; read when the menu opens.
+    private(set) var voiceOptions: [VoiceOption] = []
+    /// The row "next voice" and "use this one" point at.
+    private(set) var highlightedVoiceID: String?
+
+    /// A tap on a row in the voice menu.
+    func highlightVoice(_ id: String) {
+        highlightedVoiceID = id
+    }
+
+    /// "Next voice": the row below the highlighted one, played.
+    func nextVoice() {
+        if voiceOptions.isEmpty { voiceOptions = Speaker.options() }
+        guard !voiceOptions.isEmpty else { return }
+        let index = voiceOptions.firstIndex { $0.id == highlightedVoiceID } ?? -1
+        let next = voiceOptions[(index + 1) % voiceOptions.count]
+        highlightedVoiceID = next.id
+        playSample(voiceID: next.id)
+    }
+
+    /// "Use Samantha": chooses the voice and says hello in it.
+    func useVoice(_ option: VoiceOption) {
+        chooseVoice(option.id)
+        highlightedVoiceID = option.id
+        sampleVoiceID = option.id
+        speaker.say("Hi, I'm \(option.name).", voice: option.id)
+    }
+
+    /// The English voice called `name` (as heard, lowercased), the best of that name first.
+    private func voice(named name: String) -> VoiceOption? {
+        if voiceOptions.isEmpty { voiceOptions = Speaker.options() }
+        return voiceOptions.first { $0.name.lowercased() == name }
+            ?? voiceOptions.first { $0.name.lowercased().hasPrefix(name) || name.hasPrefix($0.name.lowercased()) }
+    }
+
+    /// "Use my voice": the cook's Personal Voice, asking for it first if needed.
+    private func useMyVoice() {
+        if let mine = Speaker.options().first(where: \.isPersonal) {
+            useVoice(mine)
+            return
+        }
+        Task { [weak self] in
+            _ = await Speaker.requestPersonalVoice()
+            guard let self else { return }
+            self.voiceOptions = Speaker.options()
+            if let mine = self.voiceOptions.first(where: \.isPersonal) {
+                self.useVoice(mine)
+            } else {
+                self.say("There's no Personal Voice on this phone.")
+            }
+        }
+    }
+
+    // MARK: Pausing the microphone
+
+    /// When listening comes back by itself after "stop listening"; nil when not paused.
+    private(set) var listeningPausedUntil: Date?
+    @ObservationIgnored private var listeningResume: Task<Void, Never>?
+    static let listeningPause: TimeInterval = 120
+
+    /// "Stop listening": the microphone is off for 2 minutes, or until the Say line is tapped.
+    func pauseListening() {
+        listeningOn = false
+        listeningPausedUntil = Date().addingTimeInterval(Self.listeningPause)
+        refreshListening()
+        listeningResume?.cancel()
+        listeningResume = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(Self.listeningPause))
+            guard !Task.isCancelled, let self, !self.listeningOn else { return }
+            self.listeningPausedUntil = nil
+            self.listeningOn = true
+            self.refreshListening()
+            self.say("Listening again.")
+        }
+    }
+
+    // MARK: Handling commands
+
+    /// A question waiting for a yes: only "start over" and cancelling a long timer ask.
+    private enum Question {
+        case startOver
+        case cancelTimer(UUID)
+    }
+    @ObservationIgnored private var question: Question?
+
     /// Everything the buttons do, by voice, so the cook never has to touch the phone.
     private func handle(_ command: VoiceCommand, heard text: String) {
-        // The recipe menu is picked by touch; nothing should change behind it.
-        guard !isChoosingRecipe else { return }
-        stats.noteVoice()
+        // Picking a recipe is setup and isn't counted.
+        if screen != .recipes { stats.noteVoice() }
         showHeard(text)
+        let asked = question
+        question = nil
+        if let asked, command == .yes || command == .no {
+            answer(asked, yes: command == .yes)
+            return
+        }
+        // A menu covers the cook screen: "back" and "done" close it, and nothing moves behind it.
+        if screen != .cook {
+            switch command {
+            case .back, .done:
+                closeMenu()
+                say("Okay.")
+                return
+            case .next where screen == .voices:
+                nextVoice()
+                return
+            case .next, .repeatStep, .goToStep, .startOver, .yes, .no, .startTimer, .startWatching, .nudge, .mark:
+                return
+            default:
+                break
+            }
+        }
         switch command {
         case .next:
             if isMarkingPan {
@@ -508,6 +668,8 @@ final class CookSession {
                 confirmPanByVoice()
             } else if needsPan, offeredPan != nil {
                 reuseLastPanByVoice()
+            } else if timers.contains(where: \.isDone) {
+                clearDoneTimers()
             }
         case .no:
             if suggestion != nil {
@@ -528,25 +690,193 @@ final class CookSession {
                 reuseLastPanByVoice()
             }
         case .drawPan:
-            if cameraOn {
-                markPan()
-                say("Draw a box around the pan.")
-            } else {
+            guard cameraOn else {
                 say("Turn on the camera first.")
+                return
             }
+            if screen != .cook { closeMenu() }
+            markPan()
+            // With no box to start from, one is drawn in the middle for the voice to move.
+            if draftRegion == nil { draftRegion = .voiceStart }
+            say("Is the box around the pan?")
+        case .nudge(let nudge):
+            guard isMarkingPan else { return }
+            draftRegion = (draftRegion ?? .voiceStart).nudged(nudge)
         case .ingredients:
             sayIngredients()
         case .cancelTimer:
             if let newest = timers.last(where: { !$0.isDone }) {
-                removeTimer(newest.id)
-                say("\(newest.label) timer cancelled.")
+                cancelByVoice(newest)
             } else {
                 say("No timers are running.")
+            }
+        case .cancelNamedTimer(let name):
+            let named = timers.filter { VoiceCommand.timer(named: name, matches: $0.label) }
+            if let timer = named.last(where: { !$0.isDone }) ?? named.last {
+                cancelByVoice(timer)
+            } else {
+                say("There's no \(name) timer.")
+            }
+        case .setTimer(let minutes):
+            startTimer(label: "\(minutes) minute", minutes: minutes)
+            say("Timer set for \(Self.spoken(Double(minutes) * 60)).")
+        case .clearDone:
+            if timers.contains(where: \.isDone) {
+                clearDoneTimers()
+            } else {
+                say("No timer is done.")
             }
         case .mark:
             // Practice: the cook marks each real add for the replay to score against.
             say(camera.analyzer.recorder.mark() ? "Marked." : "Practice recording is off.")
+        case .goToStep(let number):
+            if number - 1 == stepIndex {
+                say("Step \(number). \(currentStep.instruction)")
+            } else if recipe.steps.indices.contains(number - 1) {
+                go(to: number - 1)
+            } else {
+                say("This recipe has \(recipe.steps.count) steps.")
+            }
+        case .whereAmI:
+            say("\(recipe.title), step \(stepIndex + 1) of \(recipe.steps.count). \(currentStep.instruction)")
+        case .startOver:
+            if stepIndex == 0 {
+                say("Step 1. \(currentStep.instruction)")
+            } else {
+                question = .startOver
+                say("Start over from step 1?")
+            }
+        case .showRecipes:
+            open(.recipes)
+            say("What are you cooking?")
+        case .makeRecipe(let title):
+            guard let dish = Recipe.all.first(where: { $0.title == title }) else { return }
+            if dish.title == recipe.title && !isChoosingRecipe {
+                say("Already cooking \(dish.title). Step \(stepIndex + 1).")
+            } else if dish.title == recipe.title && stepIndex > 0 {
+                // Back from the menu to the dish already under way, where it was.
+                closeMenu()
+                say("\(dish.title). Step \(stepIndex + 1). \(currentStep.instruction)")
+            } else {
+                choose(dish)
+            }
+        case .camera(let on):
+            if on == cameraOn {
+                say(on ? "The camera is on." : "The camera is off.")
+            } else {
+                setCamera(on: on)
+                say(on ? "Camera on." : "Camera off.")
+            }
+        case .switchCamera(let toFront):
+            guard cameraOn else {
+                say("Turn on the camera first.")
+                return
+            }
+            let front = toFront ?? (cameraPosition != .front)
+            if front == (cameraPosition == .front) {
+                say("Already using the \(front ? "front" : "back") camera.")
+            } else {
+                Task { [weak self] in await self?.flipCamera() }
+                say(front ? "Front camera. Draw a box around the pan." : "Back camera. Draw a box around the pan.")
+            }
+        case .showVoices:
+            open(.voices)
+            say("Say next voice to hear them.")
+        case .tryVoice(let name):
+            if screen != .voices { open(.voices) }
+            if let name {
+                if let option = voice(named: name) {
+                    highlightedVoiceID = option.id
+                    playSample(voiceID: option.id)
+                } else {
+                    say("There's no voice called \(name).")
+                }
+            } else if let id = highlightedVoiceID {
+                playSample(voiceID: id)
+            }
+        case .nextVoice:
+            if screen != .voices { open(.voices) }
+            nextVoice()
+        case .useVoice(let pick):
+            switch pick {
+            case .named(let name):
+                if let option = voice(named: name) {
+                    useVoice(option)
+                } else {
+                    say("There's no voice called \(name).")
+                }
+            case .highlighted:
+                if let option = voiceOptions.first(where: { $0.id == highlightedVoiceID }) { useVoice(option) }
+            case .mine:
+                useMyVoice()
+            }
+        case .quiet:
+            speaker.stop()
+            voiceOn = false
+        case .talk:
+            voiceOn = true
+            say("Talking again.")
+        case .stopListening:
+            say("Not listening for 2 minutes.")
+            pauseListening()
+        case .help:
+            open(.help)
+            let phrases = AppScreen.sayPhrases(
+                screen: helpFrom, drawing: isMarkingPan, offer: suggestion != nil,
+                timerDone: timers.contains(where: \.isDone), needsPan: needsPan,
+                canStartTimer: canStartStepTimer, cameraOn: cameraOn
+            ).prefix(4)
+            say("You can say " + phrases.joined(separator: ", ") + ".")
+        case .settings:
+            open(.settings)
+            say("Settings.")
+        case .details(let show):
+            showDebug = show ?? !showDebug
+            if showDebug, screen != .cook { closeMenu() }
+            say(showDebug ? "Details shown." : "Details hidden.")
+        case .done:
+            if isMarkingPan {
+                cancelMarking()
+                say("Okay.")
+            }
+        case .recordPractice(let on):
+            setPracticeRecording(on)
+            say(on ? "Recording practice. Say mark when something goes in." : "Practice recording stopped.")
         }
+    }
+
+    private func answer(_ asked: Question, yes: Bool) {
+        guard yes else {
+            say("Okay.")
+            return
+        }
+        switch asked {
+        case .startOver:
+            choose(recipe)
+        case .cancelTimer(let id):
+            guard let timer = timers.first(where: { $0.id == id }) else { return }
+            removeTimer(id)
+            say("\(timer.label) timer cancelled.")
+        }
+    }
+
+    /// A timer with more than a minute left is asked about first; a short one just goes.
+    private func cancelByVoice(_ timer: CookTimer) {
+        let left = timer.end.timeIntervalSinceNow
+        if !timer.isDone && left > 60 {
+            question = .cancelTimer(timer.id)
+            say("Cancel the \(timer.label) timer, \(Self.spoken(left)) left?")
+        } else {
+            removeTimer(timer.id)
+            say("\(timer.label) timer cancelled.")
+        }
+    }
+
+    /// "Clear it", "got it", the Clear button on a done row: done timers go.
+    func clearDoneTimers() {
+        let done = timers.filter(\.isDone)
+        for timer in done { removeTimer(timer.id) }
+        if !done.isEmpty { say("Cleared.") }
     }
 
     private func sayIngredients() {
@@ -815,7 +1145,7 @@ final class CookSession {
         self.recipe = recipe
         stepIndex = cook.stepIndex
         finishedSteps = cook.finishedSteps
-        isChoosingRecipe = false
+        screen = .cook
         let resumed = StepCallOuts.resumed(from: saved, in: recipe, at: stepIndex, now: Date())
         if let step = resumed.catchUp {
             stepIndex = step
