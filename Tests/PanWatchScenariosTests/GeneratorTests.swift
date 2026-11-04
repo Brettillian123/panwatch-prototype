@@ -66,6 +66,26 @@ struct GeneratorTests {
         #expect(openOpenness.count >= 10 && openOpenness.allSatisfy { $0 > 1.3 })
     }
 
+    @Test func theHoldoutIsItsOwnSetWithHonestExpectations() {
+        let holdout = Stage.holdout()
+        #expect(holdout.count >= 28)
+        #expect(Set(holdout.map(\.name)).count == holdout.count)
+        #expect(holdout.filter(\.action.isAdd).count >= 12 && holdout.filter { !$0.action.isAdd }.count >= 12)
+        #expect(Set(holdout.map(\.name)).isDisjoint(with: Run.suite().map(\.name)))
+    }
+
+    @Test func stressRunsRepeatAndSeedsDiffer() {
+        let first = Stage.stress(count: 20, seed: Stage.stressSeeds[0]), again = Stage.stress(count: 20, seed: Stage.stressSeeds[0])
+        #expect(first.map(\.name) == again.map(\.name))
+        #expect(first.map { $0.factors.map(\.1) } == again.map { $0.factors.map(\.1) })
+        #expect(first.map(\.name) != Stage.stress(count: 20, seed: Stage.stressSeeds[1]).map(\.name))
+        // Both kinds turn up, and an add's expectation comes only from its action.
+        let many = Stage.stress(count: 200, seed: Stage.stressSeeds[0])
+        #expect(many.contains(where: \.action.isAdd) && many.contains { !$0.action.isAdd })
+        let a = Array(first[0].frames.prefix(40)), b = Array(first[0].frames.prefix(40))
+        #expect(a.map(\.patch) == b.map(\.patch))
+    }
+
     @Test func theSuiteCoversAddsAndNonAddsWithUniqueNames() {
         let suite = Run.suite()
         #expect(suite.count >= 40)

@@ -16,6 +16,20 @@ if let flag = CommandLine.arguments.firstIndex(of: "--explain"), flag + 1 < Comm
     exit(0)
 }
 
+if CommandLine.arguments.contains("--holdout") {
+    runHoldout()
+    exit(0)
+}
+
+if let flag = CommandLine.arguments.firstIndex(of: "--random") {
+    let arguments = CommandLine.arguments
+    let count = flag + 1 < arguments.count ? Int(arguments[flag + 1]) ?? 200 : 200
+    let seeds = arguments.firstIndex(of: "--seed").flatMap { $0 + 1 < arguments.count ? UInt64(arguments[$0 + 1]) : nil }
+        .map { [$0] } ?? Stage.stressSeeds
+    runStress(count: count, seeds: seeds)
+    exit(0)
+}
+
 let results = Run.suite().map(RunResult.evaluate)
 
 print(pad("situation", 20), pad("environment", 12), pad("step", 7), pad("expected", 9), pad("got", 46), pad("time", 6), "pass")

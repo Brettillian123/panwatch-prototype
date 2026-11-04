@@ -12,21 +12,26 @@ struct SyntheticFrame {
 struct ScenarioFrames: Sequence, IteratorProtocol {
     static let rate = 15.0
 
-    let run: Run
     let script: Script
     let view: CounterView
     let count: Int
+    private let environment: Environment
     private var renderer: SceneRenderer
     private var random: SeededRandom
     private var index = 0
 
     init(run: Run) {
-        self.run = run
-        script = run.script()
-        view = CounterView(vessel: run.vessel)
-        count = Int((run.duration * Self.rate).rounded())
-        renderer = SceneRenderer(view: view, environment: run.environment, seed: run.name)
-        random = SeededRandom(name: run.name + "/vision")
+        self.init(name: run.name, script: run.script(), view: CounterView(vessel: run.vessel), environment: run.environment, duration: run.duration)
+    }
+
+    /// Any scripted situation: the name seeds the picture and what Vision sees.
+    init(name: String, script: Script, view: CounterView, environment: Environment, duration: Double) {
+        self.script = script
+        self.view = view
+        self.environment = environment
+        count = Int((duration * Self.rate).rounded())
+        renderer = SceneRenderer(view: view, environment: environment, seed: name)
+        random = SeededRandom(name: name + "/vision")
     }
 
     mutating func next() -> SyntheticFrame? {
@@ -35,7 +40,7 @@ struct ScenarioFrames: Sequence, IteratorProtocol {
         var vision: [VisionHand] = []
         var painted: [PaintedHand] = []
         for track in script.hands {
-            if let seen = track.observe(at: t, in: run.environment, random: &random) { vision.append(seen) }
+            if let seen = track.observe(at: t, in: environment, random: &random) { vision.append(seen) }
             if let paint = track.painted(at: t, in: view) { painted.append(paint) }
         }
         let patch = renderer.render(script.scene(t), hands: painted, frame: index)
@@ -44,35 +49,26 @@ struct ScenarioFrames: Sequence, IteratorProtocol {
     }
 }
 
-/// The app's per-frame flow, step for step as `FrameAnalyzer.captureOutput` runs it: Vision's
-/// hands through the app's checks, then `HandFilter`, the zone around the pan, the openness of
-/// a lone hand, then `AdditionDetector`. Everything a frame goes through is in `process`, so it
-/// can be swapped for a shared replay pipeline without touching the scenarios.
+/// The app's per-frame flow: Vision's hands as `HandReading`s through `PanWatcher`, the same
+/// code the phone and the replay run (the hand rules, `HandFilter`, the zone around the pan,
+/// the openness of a lone hand, then `AdditionDetector`).
 struct FramePipeline {
     let settings: DetectorSettings
     let region: NormRect
-    private(set) var detector: AdditionDetector
-    private var handFilter: HandFilter
+    private var watcher: PanWatcher
+    var detector: AdditionDetector { watcher.detector }
 
     init(settings: DetectorSettings, region: NormRect) {
         self.settings = settings
         self.region = region
-        detector = AdditionDetector(settings: settings)
-        detector.setArmed(true)
-        handFilter = HandFilter(settings: settings)
+        watcher = PanWatcher(settings: settings)
     }
 
     mutating func process(_ frame: SyntheticFrame) -> DetectorDecision? {
-        let seen = trackedHands(frame.vision, settings: settings)
-        let filtered = handFilter.update(seen.map { HandGeometry.centroid($0.joints) }, at: frame.time)
-        let hands = filtered.counted.map { seen[$0] }
-        // Three joints, not one: a fingertip grazing the edge of the zone isn't a visit.
-        let zone = region.expanded(by: settings.handZoneMargin)
-        let inZone = hands.filter { HandGeometry.anyHand([$0.joints], in: zone, minimumJoints: 3) }
-        // With two hands over the pan, there's no telling which one let go.
-        let openness = inZone.count == 1 ? inZone[0].openness : nil
-        let observation = FrameObservation(time: frame.time, handInZone: !inZone.isEmpty, handOpenness: openness, region: frame.patch)
-        return detector.process(observation)
+        watcher.process(
+            time: frame.time, hands: frame.vision.map { $0.reading }, aspect: CounterView.aspect,
+            region: region, patch: frame.patch, armed: true
+        ).decision
     }
 }
 
@@ -173,7 +169,7 @@ func trace(_ run: Run, from start: Double = -1, to stop: Double = 3) -> String {
     var filter = HandFilter(settings: settings)
     var lines: [String] = []
     while let frame = frames.next() {
-        let gated = trackedHands(frame.vision, settings: settings)
+        let gated = frame.vision.compactMap { $0.reading.tracked(settings, aspect: CounterView.aspect) }
         let counted = filter.update(gated.map { HandGeometry.centroid($0.joints) }, at: frame.time).counted.count
         let decision = pipeline.process(frame)
         let t = frame.time - frames.script.eventTime

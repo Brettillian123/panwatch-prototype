@@ -11,14 +11,7 @@ enum StepWatch: String, Sendable {
     }
 
     /// The detector settings during the step, built the way `CookSession.effectiveSettings` builds them.
-    var settings: DetectorSettings {
-        var effective = DetectorSettings()
-        if let minimum = watch.minimumChange {
-            effective.additionThreshold = min(effective.additionThreshold, minimum)
-        }
-        effective.countRelease = effective.countRelease && watch.countsRelease
-        return effective
-    }
+    var settings: DetectorSettings { DetectorSettings().applying(watch) }
 }
 
 /// What happens at the stove.
