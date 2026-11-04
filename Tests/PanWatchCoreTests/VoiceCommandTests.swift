@@ -50,6 +50,25 @@ struct VoiceCommandTests {
         }
     }
 
+    @Test func fillerWordsDoNotCount() {
+        for (text, command) in [
+            ("okay next step please", VoiceCommand.next), ("um go back", .back),
+            ("please go to the next step now", .next), ("um uh okay go to the next step please", .next),
+            ("uh, repeat that please", .repeatStep), ("hey, start the timer now please", .startTimer),
+            ("okay", .yes), ("okay please", .yes), ("start it now", .yes), ("not now", .no), ("um, not now", .no),
+        ] {
+            #expect(VoiceCommand.parse(text) == command, "\(text)")
+        }
+        #expect(VoiceCommand.words(in: "Um, next step please") == ["next", "step"])
+    }
+
+    @Test func fillerAloneOrInASentenceIsIgnored() {
+        for text in ["um", "hey", "now", "please", "uh the", "um so now I am going to stir the pasta please"] {
+            #expect(VoiceCommand.parse(text) == nil, "\(text)")
+        }
+        #expect(VoiceCommand.words(in: "um so now I am going to stir the pasta please").count == 7)
+    }
+
     @Test func smallAdditionsAskForLessChange() {
         let garlic = Recipe.garlicButterPasta.steps.first { $0.watch?.ingredient == "garlic" }
         let pasta = Recipe.garlicButterPasta.steps.first { $0.watch?.ingredient == "pasta" }

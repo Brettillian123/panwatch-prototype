@@ -6,16 +6,19 @@ import Speech
 /// it. Each utterance is judged once the cook pauses, so only short phrases count, and
 /// listening pauses while the app itself is talking so it never hears its own voice.
 /// If permission is missing or recognition fails, nothing happens and the volume buttons
-/// and the screen still work.
+/// and the screen still work. A watchdog starts listening again whatever stopped it.
 @MainActor
 final class VoiceListener {
     private let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
-    private let engine = AVAudioEngine()
+    /// Replaced when the phone resets its audio, which leaves the old engine dead.
+    private var engine = AVAudioEngine()
     private let feed = AudioFeed()
     private var task: SFSpeechRecognitionTask?
     private var pauseTimer: Task<Void, Never>?
     private var restartTimer: Task<Void, Never>?
+    private var watchdog: Task<Void, Never>?
     private var configurationObserver: (any NSObjectProtocol)?
+    private var sessionObservers: [any NSObjectProtocol] = []
     private var handler: ((VoiceCommand, String) -> Void)?
     private var transcript = ""
     /// Bumped for every new recognition request, so late results from an old one are ignored.
@@ -27,11 +30,30 @@ final class VoiceListener {
     private var wanted = false
     /// The app is talking.
     private var held = false
+    private var heldSince: Date?
+    /// When a recognition request was last running, for the watchdog.
+    private var lastActive = Date.now
+    private var requestStarted = Date.now
+    /// Recognition runs on the phone when it can. Off after on-phone requests keep failing
+    /// at once, which happens while the phone's speech model is missing or downloading.
+    private var preferOnDevice = true
+    private var requestOnDevice = false
+
+    /// Whether the app is still talking, so a "finished talking" that never came can't
+    /// hold listening for good.
+    var isAppSpeaking: (() -> Bool)?
+    /// Called whenever `report` changes.
+    var onReport: ((VoiceReport) -> Void)?
+    private(set) var report = VoiceReport() {
+        didSet { if report != oldValue { onReport?(report) } }
+    }
 
     /// How long a pause ends an utterance.
     private static let pauseLength = 0.8
     /// Recognition requests are limited to about a minute, so each is replaced sooner.
     private static let requestLifetime = 50.0
+    /// With no recognition request for this long, the watchdog starts one.
+    private static let watchdogDelay = 3.0
 
     /// Asks for speech recognition and microphone access. Call once at launch so the
     /// prompts never appear in the middle of a cook.
@@ -39,6 +61,7 @@ final class VoiceListener {
         let speech = await Self.speechAuthorization()
         let microphone = await AVAudioApplication.requestRecordPermission()
         allowed = speech && microphone
+        updateState()
         return allowed
     }
 
@@ -47,29 +70,37 @@ final class VoiceListener {
         handler = onCommand
         guard !wanted else { return }
         wanted = true
-        guard startEngine() else {
-            wanted = false
-            return
-        }
-        beginRequest()
+        observeAudioSession()
+        startWatchdog()
+        // If the microphone can't start yet, the watchdog tries again.
+        if startEngine() { beginRequest() }
+        updateState()
     }
 
     func stop() {
         wanted = false
         handler = nil
+        watchdog?.cancel()
+        watchdog = nil
         endRequest()
         stopEngine()
+        updateState()
     }
 
     /// Pauses while the app talks, so it doesn't hear itself.
     func hold() {
         held = true
+        heldSince = .now
         endRequest()
+        updateState()
     }
 
     /// Picks up again once the app has finished talking.
     func resume() {
         held = false
+        heldSince = nil
+        lastActive = .now
+        updateState()
         guard wanted else { return }
         let current = generation
         // A short gap, so the end of the app's own sentence isn't heard.
@@ -84,25 +115,32 @@ final class VoiceListener {
 
     private func beginRequest() {
         endRequest()
-        guard wanted, !held, allowed, let recognizer, recognizer.isAvailable else { return }
+        guard wanted, !held, allowed, let recognizer else { return }
+        // Unavailable, say offline without the on-phone model: the watchdog tries again.
+        guard recognizer.isAvailable else {
+            updateState()
+            return
+        }
         let request = SFSpeechAudioBufferRecognitionRequest()
         request.shouldReportPartialResults = true
-        if recognizer.supportsOnDeviceRecognition {
-            request.requiresOnDeviceRecognition = true
-        }
+        requestOnDevice = recognizer.supportsOnDeviceRecognition && preferOnDevice
+        request.requiresOnDeviceRecognition = requestOnDevice
         request.contextualStrings = ["next step", "go back", "repeat", "start the timer", "yes", "no", "not now", "time left", "start watching"]
         generation += 1
         let current = generation
         transcript = ""
+        requestStarted = .now
+        lastActive = .now
         feed.set(request)
-        task = recognizer.recognitionTask(with: request, resultHandler: Self.resultHandler { [weak self] text, isFinal, failed in
-            self?.received(text, isFinal: isFinal, failed: failed, generation: current)
+        task = recognizer.recognitionTask(with: request, resultHandler: Self.resultHandler { [weak self] text, isFinal, failure in
+            self?.received(text, isFinal: isFinal, failure: failure, generation: current)
         })
         restartTimer = Task { [weak self] in
             try? await Task.sleep(for: .seconds(Self.requestLifetime))
             guard let self, !Task.isCancelled, self.generation == current else { return }
             self.utteranceEnded()
         }
+        updateState()
     }
 
     private func endRequest() {
@@ -117,7 +155,7 @@ final class VoiceListener {
         transcript = ""
     }
 
-    private func received(_ text: String?, isFinal: Bool, failed: Bool, generation current: Int) {
+    private func received(_ text: String?, isFinal: Bool, failure: String?, generation current: Int) {
         guard current == generation else { return }
         if let text, !text.isEmpty {
             failures = 0
@@ -133,18 +171,34 @@ final class VoiceListener {
                 guard let self, !Task.isCancelled, self.generation == current else { return }
                 self.utteranceEnded()
             }
-        } else if failed || isFinal {
-            // Recognition stopped, for example after a long silence. Start again, backing
-            // off if it keeps failing.
+        } else if let failure {
+            // Recognition failed. Start again, backing off a little if it keeps failing.
             failures += 1
-            endRequest()
-            let delay = min(5.0, 0.5 * Double(failures))
-            let next = generation
-            Task { [weak self] in
-                try? await Task.sleep(for: .seconds(delay))
-                guard let self, self.generation == next, self.wanted, !self.held else { return }
-                self.beginRequest()
+            report.errors += 1
+            report.lastError = failure
+            // Failing at once, twice in a row, means this kind of recognition isn't working
+            // (on the phone: the speech model is missing; on Apple's servers: no network),
+            // so try the other kind.
+            let quick = Date.now.timeIntervalSince(requestStarted) < 2
+            if quick, failures.isMultiple(of: 2), recognizer?.supportsOnDeviceRecognition == true {
+                preferOnDevice = !requestOnDevice
             }
+            restart(after: min(2.0, 0.5 * Double(failures)))
+        } else if isFinal {
+            // Recognition ended on its own after a quiet spell. Start again straight away;
+            // backing off here left gaps of up to 5 seconds where nothing was heard.
+            failures = 0
+            restart(after: 0.1)
+        }
+    }
+
+    private func restart(after delay: Double) {
+        endRequest()
+        let next = generation
+        Task { [weak self] in
+            try? await Task.sleep(for: .seconds(delay))
+            guard let self, self.generation == next, self.wanted, !self.held else { return }
+            self.beginRequest()
         }
     }
 
@@ -152,11 +206,79 @@ final class VoiceListener {
     private func utteranceEnded() {
         let text = transcript
         endRequest()
-        if let command = VoiceCommand.parse(text) {
+        let command = VoiceCommand.parse(text)
+        if !text.isEmpty {
+            report.heard = text
+            report.outcome = Self.outcome(of: text, command: command)
+        }
+        if let command {
             handler?(command, text)
         }
         // The command may have made the app talk, which holds listening until it's done.
         if wanted, !held { beginRequest() }
+    }
+
+    /// "next", "ignored: 9 words" or "no command", for the debug panel.
+    private static func outcome(of text: String, command: VoiceCommand?) -> String {
+        if let command { return "\(command)" }
+        let count = VoiceCommand.words(in: text).count
+        return count > VoiceCommand.maximumWords ? "ignored: \(count) words" : "no command"
+    }
+
+    // MARK: Watchdog
+
+    private func startWatchdog() {
+        guard watchdog == nil else { return }
+        watchdog = Task { [weak self] in
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(1))
+                guard let self else { return }
+                self.checkListening()
+            }
+        }
+    }
+
+    /// Once a second: whatever stopped listening, start it again.
+    private func checkListening() {
+        guard wanted else { return }
+        if held {
+            // Speech that ended without saying so would otherwise hold listening for good.
+            if let heldSince, Date.now.timeIntervalSince(heldSince) > Self.watchdogDelay, isAppSpeaking?() == false {
+                report.restarts += 1
+                resume()
+            }
+            return
+        }
+        if task != nil {
+            lastActive = .now
+            return
+        }
+        guard Date.now.timeIntervalSince(lastActive) >= Self.watchdogDelay else { return }
+        lastActive = .now
+        report.restarts += 1
+        if engine.isRunning {
+            beginRequest()
+        } else {
+            restartEngine()
+        }
+        updateState()
+    }
+
+    private func updateState() {
+        report.onDevice = requestOnDevice
+        if !allowed {
+            report.state = .noPermission
+        } else if !wanted {
+            report.state = .stopped
+        } else if held {
+            report.state = .paused
+        } else if recognizer?.isAvailable != true {
+            report.state = .unavailable
+        } else if task != nil, engine.isRunning {
+            report.state = .listening
+        } else {
+            report.state = .starting
+        }
     }
 
     // MARK: Audio
@@ -197,12 +319,62 @@ final class VoiceListener {
         }
     }
 
+    /// The watchdog calls this again if the engine won't start.
     private func restartEngine() {
         guard wanted else { return }
         endRequest()
         stopEngine()
-        guard startEngine() else { return }
+        // The session may have been switched off by an interruption.
+        AudioSessionSetup.reset()
+        guard startEngine() else {
+            updateState()
+            return
+        }
         if !held { beginRequest() }
+    }
+
+    /// A phone call, Siri or an alarm stops the engine and switches the audio session off,
+    /// and nothing started them again. Neither did a reset of the phone's audio.
+    private func observeAudioSession() {
+        guard sessionObservers.isEmpty else { return }
+        let center = NotificationCenter.default
+        sessionObservers.append(center.addObserver(
+            forName: AVAudioSession.interruptionNotification, object: nil, queue: .main
+        ) { [weak self] note in
+            let type = note.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt
+            let began = type == AVAudioSession.InterruptionType.began.rawValue
+            Task { @MainActor in self?.interrupted(began: began) }
+        })
+        sessionObservers.append(center.addObserver(
+            forName: AVAudioSession.mediaServicesWereResetNotification, object: nil, queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in self?.mediaServicesReset() }
+        })
+    }
+
+    private func interrupted(began: Bool) {
+        if began {
+            report.lastError = "Audio interrupted"
+            endRequest()
+            stopEngine()
+            updateState()
+        } else {
+            restartEngine()
+        }
+    }
+
+    /// Every audio object is gone after a reset, so the engine is built again.
+    private func mediaServicesReset() {
+        report.lastError = "Audio reset"
+        endRequest()
+        if let configurationObserver {
+            NotificationCenter.default.removeObserver(configurationObserver)
+        }
+        configurationObserver = nil
+        tapInstalled = false
+        engine = AVAudioEngine()
+        AudioSessionSetup.reset()
+        restartEngine()
     }
 
     // These build the callbacks outside the main actor, because speech and audio call
@@ -221,15 +393,39 @@ final class VoiceListener {
     }
 
     nonisolated private static func resultHandler(
-        _ onResult: @escaping @MainActor (String?, Bool, Bool) -> Void
+        _ onResult: @escaping @MainActor (String?, Bool, String?) -> Void
     ) -> (SFSpeechRecognitionResult?, (any Error)?) -> Void {
         { result, error in
             let text = result?.bestTranscription.formattedString
-            let isFinal = result?.isFinal ?? false
-            let failed = error != nil
-            Task { @MainActor in onResult(text, isFinal, failed) }
+            let nsError = error as NSError?
+            // "No speech detected" only means the kitchen was quiet: a normal end, not a failure.
+            let quiet = nsError?.domain == "kAFAssistantErrorDomain" && nsError?.code == 1110
+            let isFinal = (result?.isFinal ?? false) || quiet
+            let failure = quiet ? nil : nsError.map { "\($0.domain) \($0.code)" }
+            Task { @MainActor in onResult(text, isFinal, failure) }
         }
     }
+}
+
+/// What listening is doing and what it last heard, for the debug panel.
+struct VoiceReport: Equatable {
+    enum State: String {
+        case listening = "Listening"
+        case paused = "Paused while speaking"
+        case starting = "Starting"
+        case stopped = "Stopped"
+        case noPermission = "No permission"
+        case unavailable = "Recognizer unavailable"
+    }
+
+    var state = State.stopped
+    var heard: String?
+    /// What became of `heard`: the command, "ignored: 9 words" or "no command".
+    var outcome: String?
+    var restarts = 0
+    var errors = 0
+    var lastError: String?
+    var onDevice = false
 }
 
 /// Hands microphone audio to whichever recognition request is current. The audio thread
@@ -262,7 +458,13 @@ enum AudioSessionSetup {
         guard !configured else { return }
         let audio = AVAudioSession.sharedInstance()
         try? audio.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .mixWithOthers])
-        try? audio.setActive(true)
-        configured = true
+        // Only counted as done once the session is on, so a failure is tried again.
+        configured = (try? audio.setActive(true)) != nil
+    }
+
+    /// After an interruption or an audio reset the session is off; the next `configure()`
+    /// sets it up again.
+    static func reset() {
+        configured = false
     }
 }
