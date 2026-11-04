@@ -47,6 +47,13 @@ final class VoiceListener {
     private(set) var report = VoiceReport() {
         didSet { if report != oldValue { onReport?(report) } }
     }
+    /// What the app is showing, for the on-device model that reads what the keywords miss.
+    /// Without it, or without the model on this phone, the keywords are all there is.
+    var intentContext: (() -> IntentContext?)?
+    private let intentReader = IntentReader()
+    /// Bumped for every utterance, so a model answer that comes back after the cook said
+    /// something else is dropped.
+    private var utterances = 0
 
     /// How long a pause ends an utterance.
     private static let pauseLength = 0.8
@@ -70,6 +77,8 @@ final class VoiceListener {
         handler = onCommand
         guard !wanted else { return }
         wanted = true
+        intentReader.prepare()
+        if !intentReader.isAvailable { report.model = "Off: keywords only" }
         observeAudioSession()
         startWatchdog()
         // If the microphone can't start yet, the watchdog tries again.
@@ -80,6 +89,8 @@ final class VoiceListener {
     func stop() {
         wanted = false
         handler = nil
+        utterances += 1
+        intentReader.release()
         watchdog?.cancel()
         watchdog = nil
         endRequest()
@@ -206,6 +217,8 @@ final class VoiceListener {
     private func utteranceEnded() {
         let text = transcript
         endRequest()
+        utterances += 1
+        // Keywords first: a clear short command acts at once, with no model to wait for.
         let command = VoiceCommand.parse(text)
         if !text.isEmpty {
             report.heard = text
@@ -213,9 +226,35 @@ final class VoiceListener {
         }
         if let command {
             handler?(command, text)
+        } else if VoiceIntent.worthAsking(text), intentReader.isAvailable, let context = intentContext?() {
+            readIntent(text, context: context)
         }
         // The command may have made the app talk, which holds listening until it's done.
         if wanted, !held { beginRequest() }
+    }
+
+    /// Asks the on-device model about words the keywords missed, while listening goes on.
+    /// Its answer only does what saying that command does, and only if the cook hasn't
+    /// said anything since and the step and the offer are still the ones it was asked about.
+    private func readIntent(_ text: String, context: IntentContext) {
+        let utterance = utterances
+        report.outcome = "asking the model"
+        Task { [weak self, intentReader] in
+            let reading = await intentReader.read(text, context: context)
+            guard let self else { return }
+            let current = utterance == utterances && wanted
+            let fits = intentContext?().map(context.stillApplies) ?? false
+            let command = current && fits ? reading.intent.command : nil
+            var line = "\"\(text)\": \(reading.intent.rawValue), \(reading.milliseconds) ms"
+            if let problem = reading.problem {
+                line += " (\(problem))"
+            } else if reading.intent.command != nil, command == nil {
+                line += " (dropped: things moved on)"
+            }
+            report.model = line
+            if utterance == utterances { report.outcome = "model: \(reading.intent.rawValue)" }
+            if let command { handler?(command, text) }
+        }
     }
 
     /// "next", "ignored: 9 words" or "no command", for the debug panel.
@@ -420,8 +459,10 @@ struct VoiceReport: Equatable {
 
     var state = State.stopped
     var heard: String?
-    /// What became of `heard`: the command, "ignored: 9 words" or "no command".
+    /// What became of `heard`: the command, "ignored: 9 words", "no command" or the model's answer.
     var outcome: String?
+    /// The on-device model's last answer: what it heard, the intent and how long it took.
+    var model: String?
     var restarts = 0
     var errors = 0
     var lastError: String?
