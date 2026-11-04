@@ -113,6 +113,8 @@ struct MenuVoiceTests {
         case .details: "details"
         case .done: "done"
         case .recordPractice: "record practice"
+        case .checkSetup: "check setup"
+        case .skip: "skip"
         }
     }
 }
