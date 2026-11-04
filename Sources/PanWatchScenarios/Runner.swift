@@ -44,35 +44,41 @@ struct ScenarioFrames: Sequence, IteratorProtocol {
     }
 }
 
-/// The app's per-frame flow, step for step as `FrameAnalyzer.captureOutput` runs it: Vision's
-/// hands through the app's checks, then `HandFilter`, the zone around the pan, the openness of
-/// a lone hand, then `AdditionDetector`. Everything a frame goes through is in `process`, so it
-/// can be swapped for a shared replay pipeline without touching the scenarios.
+/// The app's per-frame flow: Vision's hands, as `HandReading`s, through `PanWatcher`, the
+/// same code `FrameAnalyzer.captureOutput` and the practice replay run, so the suite
+/// measures the real app.
 struct FramePipeline {
     let settings: DetectorSettings
     let region: NormRect
-    private(set) var detector: AdditionDetector
-    private var handFilter: HandFilter
+    private var watcher: PanWatcher
+    var detector: AdditionDetector { watcher.detector }
+    /// What the watcher made of the latest frame, for tracing.
+    private(set) var last = PanWatcher.Result()
 
     init(settings: DetectorSettings, region: NormRect) {
         self.settings = settings
         self.region = region
-        detector = AdditionDetector(settings: settings)
-        detector.setArmed(true)
-        handFilter = HandFilter(settings: settings)
+        watcher = PanWatcher(settings: settings)
     }
 
     mutating func process(_ frame: SyntheticFrame) -> DetectorDecision? {
-        let seen = trackedHands(frame.vision, settings: settings)
-        let filtered = handFilter.update(seen.map { HandGeometry.centroid($0.joints) }, at: frame.time)
-        let hands = filtered.counted.map { seen[$0] }
-        // Three joints, not one: a fingertip grazing the edge of the zone isn't a visit.
-        let zone = region.expanded(by: settings.handZoneMargin)
-        let inZone = hands.filter { HandGeometry.anyHand([$0.joints], in: zone, minimumJoints: 3) }
-        // With two hands over the pan, there's no telling which one let go.
-        let openness = inZone.count == 1 ? inZone[0].openness : nil
-        let observation = FrameObservation(time: frame.time, handInZone: !inZone.isEmpty, handOpenness: openness, region: frame.patch)
-        return detector.process(observation)
+        last = watcher.process(
+            time: frame.time, hands: frame.vision.map(\.reading), aspect: CounterView.aspect,
+            region: region, patch: frame.patch, armed: true
+        )
+        return last.decision
+    }
+}
+
+extension VisionHand {
+    /// The hand as the app records it. The generator reports only the joints Vision is sure
+    /// of, so each carries full confidence.
+    var reading: HandReading {
+        HandReading(confidence: confidence, joints: Joint.allCases.compactMap { joint in
+            joints[joint].map {
+                HandReading.Joint(name: HandReading.JointName(rawValue: UInt8(joint.rawValue))!, point: $0, confidence: 1)
+            }
+        })
     }
 }
 
@@ -170,12 +176,11 @@ func trace(_ run: Run, from start: Double = -1, to stop: Double = 3) -> String {
     var frames = ScenarioFrames(run: run)
     let settings = run.step.settings
     var pipeline = FramePipeline(settings: settings, region: CounterView.region)
-    var filter = HandFilter(settings: settings)
     var lines: [String] = []
     while let frame = frames.next() {
-        let gated = trackedHands(frame.vision, settings: settings)
-        let counted = filter.update(gated.map { HandGeometry.centroid($0.joints) }, at: frame.time).counted.count
         let decision = pipeline.process(frame)
+        let gated = pipeline.last.seen
+        let counted = pipeline.last.handsCounted
         let t = frame.time - frames.script.eventTime
         guard t >= start, t <= stop else { continue }
         let joints = frame.vision.map { "\($0.joints.count)@\(String(format: "%.2f", $0.confidence))" }.joined(separator: ",")

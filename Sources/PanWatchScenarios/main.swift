@@ -1,4 +1,5 @@
 import Foundation
+@testable import PanWatchCore
 
 // Scores the detector on synthetic kitchen situations seen from a phone on the counter.
 // A report, not a gate: it always exits 0.
@@ -12,6 +13,34 @@ if let flag = CommandLine.arguments.firstIndex(of: "--explain"), flag + 1 < Comm
     for run in Run.suite() where run.name == wanted {
         print(explain(RunResult.evaluate(run)))
         if CommandLine.arguments.contains("--trace") { print(trace(run)) }
+    }
+    exit(0)
+}
+
+if CommandLine.arguments.contains("--diagnose") {
+    for run in Run.suite() {
+        var frames = ScenarioFrames(run: run)
+        var pipeline = FramePipeline(settings: run.step.settings, region: CounterView.region)
+        var path: [String] = [], lines: [String] = []
+        var index = 0
+        while let frame = frames.next() {
+            let decision = pipeline.process(frame)
+            let t = frame.time - frames.script.eventTime
+            if let d = decision, t >= -1 {
+                let rule = run.step.settings.changeRule
+                lines.append(String(
+                    format: "   %@ %+.1f chg %.3f s2 %.3f s4 %.3f sh %.0f dw %.1f op %.2f", d.outcome.rawValue, t, d.changedFraction,
+                    d.after.structureChange(from: d.before, rule: rule, radius: 2), d.after.structureChange(from: d.before, rule: rule, radius: 4),
+                    d.medianLumaShift, d.dwell, d.handOpened
+                ))
+            }
+            if t >= -1, t <= 3, index % 3 == 0 {
+                path.append(pipeline.last.handPoint.map { String(format: "%.2f,%.2f", $0.x, $0.y) } ?? "-")
+            }
+            index += 1
+        }
+        print("\(run.name) [\(run.step.rawValue)] " + path.joined(separator: " "))
+        lines.forEach { print($0) }
     }
     exit(0)
 }

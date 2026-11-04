@@ -14,6 +14,8 @@ enum NoOffer: Equatable, Sendable {
     case handNotCounted(HandMiss)
     case visitTooShort(Double)
     case visitTooLong(Double)
+    /// The hand stayed at the pan's edge or beside it, never over the opening.
+    case handBesidePan
     case changeTooSmall(changed: Double, needed: Double)
     /// Most of the box changed at once: the view, not the food.
     case viewChanged(Double)
@@ -34,6 +36,8 @@ enum NoOffer: Equatable, Sendable {
             "No hand counted: it held still like a pattern"
         case .visitTooShort(let dwell):
             String(format: "Hand over the pan too briefly (%.1f s)", dwell)
+        case .handBesidePan:
+            "Hand stayed at the edge of the pan, never over it"
         case .visitTooLong(let dwell):
             String(format: "Moving over the pan too long (%.1f s), taken for stirring", dwell)
         case .changeTooSmall(let changed, let needed):
@@ -60,6 +64,8 @@ struct PanWatcher {
         var handsIgnoredAsStill = 0
         var handInZone = false
         var handOpenness: Double?
+        /// Where the hand over the pan is, relative to the pan box. See `FrameObservation.handPoint`.
+        var handPoint: NormPoint?
         var decision: DetectorDecision?
     }
 
@@ -104,7 +110,19 @@ struct PanWatcher {
             result.handInZone = !inZone.isEmpty
             // With two hands over the pan, there's no telling which one let go.
             result.handOpenness = inZone.count == 1 ? inZone[0].openness : nil
-            let frame = FrameObservation(time: time, handInZone: result.handInZone, handOpenness: result.handOpenness, region: patch)
+            if !inZone.isEmpty {
+                let centers = inZone.map { HandGeometry.centroid($0.joints) }
+                let x = centers.map(\.x).reduce(0, +) / Double(centers.count)
+                let y = centers.map(\.y).reduce(0, +) / Double(centers.count)
+                result.handPoint = NormPoint(
+                    x: newRegion.width > 0 ? (x - newRegion.x) / newRegion.width : 0.5,
+                    y: newRegion.height > 0 ? (y - newRegion.y) / newRegion.height : 0.5
+                )
+            }
+            let frame = FrameObservation(
+                time: time, handInZone: result.handInZone, handOpenness: result.handOpenness, region: patch,
+                handPoint: result.handPoint, handsInZone: inZone.count
+            )
             result.decision = detector.process(frame)
             noteWhy(result, readings: readings, zone: zone, ignoredAsStill: filtered.ignoredAsStill)
         }
