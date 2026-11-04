@@ -15,3 +15,19 @@ let package = Package(
         ),
     ]
 )
+
+// Scenario suite: synthetic counter-height kitchen situations scored against the detector.
+// A report, not a gate: `swift run -c release PanWatchScenarios`. Kept in one block so it
+// merges cleanly with changes to the targets above.
+package.targets += [
+    .executableTarget(name: "PanWatchScenarios", dependencies: ["PanWatchCore"], path: "Sources/PanWatchScenarios"),
+    .testTarget(
+        name: "PanWatchScenariosTests",
+        dependencies: ["PanWatchScenarios", "PanWatchCore"],
+        path: "Tests/PanWatchScenariosTests"
+    ),
+]
+// The runner drives the core's internal types, so a release build compiles the core testable too.
+for target in package.targets where target.name == "PanWatchCore" {
+    target.swiftSettings = (target.swiftSettings ?? []) + [.unsafeFlags(["-enable-testing"], .when(configuration: .release))]
+}
