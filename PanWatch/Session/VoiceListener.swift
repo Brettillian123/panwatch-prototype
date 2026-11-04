@@ -3,16 +3,20 @@ import Speech
 
 /// Listens for spoken commands the whole time the app is open: "next", "back", "repeat",
 /// "start the timer", "yes", "no". Recognition runs on the phone when the phone supports
-/// it. Each utterance is judged once the cook pauses, so only short phrases count, and
-/// listening pauses while the app itself is talking so it never hears its own voice.
+/// it. Each utterance is judged once the cook pauses, so only short phrases count.
+/// Listening goes on while the app talks (voice processing keeps the app's voice out of
+/// the microphone) and the cook speaking cuts the app short; without voice processing,
+/// listening pauses while the app talks so it never hears its own voice.
 /// If permission is missing or recognition fails, nothing happens and the volume buttons
 /// and the screen still work. A watchdog starts listening again whatever stopped it.
 @MainActor
 final class VoiceListener {
     private let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
-    /// Replaced when the phone resets its audio, which leaves the old engine dead.
-    private var engine = AVAudioEngine()
+    /// The engine shared with the speaker, so its voice processing cancels the app's own voice.
+    private let audio: AudioIO
     private let feed = AudioFeed()
+    /// Watches the microphone level for the cook starting to talk over the app.
+    private let levelGate = LevelGate()
     private var task: SFSpeechRecognitionTask?
     private var pauseTimer: Task<Void, Never>?
     private var restartTimer: Task<Void, Never>?
@@ -24,12 +28,14 @@ final class VoiceListener {
     /// Bumped for every new recognition request, so late results from an old one are ignored.
     private var generation = 0
     private var failures = 0
-    private var tapInstalled = false
     private var allowed = false
     /// Listening was asked for and not stopped.
     private var wanted = false
-    /// The app is talking.
+    /// Listening is paused while the app talks (only without voice processing).
     private var held = false
+    var isHeld: Bool { held }
+    /// What the app was saying when this utterance began, so its own words are left out.
+    private var spokenDuring: String?
     private var heldSince: Date?
     /// When a recognition request was last running, for the watchdog.
     private var lastActive = Date.now
@@ -42,6 +48,10 @@ final class VoiceListener {
     /// Whether the app is still talking, so a "finished talking" that never came can't
     /// hold listening for good.
     var isAppSpeaking: (() -> Bool)?
+    /// What the app is saying right now, for the self-echo guard.
+    var spokenText: (() -> String?)?
+    /// The cook started talking over the app: stop the app's voice at once.
+    var onBargeIn: (() -> Void)?
     /// The screen showing, since the recipe menu also takes one word of a dish's name.
     var screen: (() -> AppScreen)?
     /// Called whenever `report` changes.
@@ -63,6 +73,13 @@ final class VoiceListener {
     private static let requestLifetime = 50.0
     /// With no recognition request for this long, the watchdog starts one.
     private static let watchdogDelay = 3.0
+
+    init(audio: AudioIO) {
+        self.audio = audio
+        levelGate.onSpeech = { [weak self] in
+            Task { @MainActor in self?.heardSpeechLevel() }
+        }
+    }
 
     /// Asks for speech recognition and microphone access. Call once at launch so the
     /// prompts never appear in the middle of a cook.
@@ -173,6 +190,13 @@ final class VoiceListener {
         if let text, !text.isEmpty {
             failures = 0
             transcript = text
+            if isAppSpeaking?() == true, !held {
+                // Heard over the app: its own words are left out when the utterance is
+                // judged, and any the app isn't saying are the cook's, which cuts it short.
+                let spoken = spokenText?()
+                if spokenDuring == nil { spokenDuring = spoken }
+                if !SelfEcho.newWords(in: text, spoken: spoken).isEmpty { bargeIn(spoken: spoken) }
+            }
             if isFinal {
                 utteranceEnded()
                 return
@@ -217,7 +241,9 @@ final class VoiceListener {
 
     /// Acts on what was said, then starts a fresh request for the next utterance.
     private func utteranceEnded() {
-        let text = transcript
+        // Whatever recognition heard of the app's own voice is left out.
+        let text = spokenDuring.map { SelfEcho.strip(transcript, spoken: $0) } ?? transcript
+        spokenDuring = nil
         endRequest()
         utterances += 1
         // Keywords first: a clear short command acts at once, with no model to wait for.
@@ -266,6 +292,21 @@ final class VoiceListener {
         return count > VoiceCommand.maximumWords ? "ignored: \(count) words" : "no command"
     }
 
+    // MARK: Barge-in
+
+    /// The microphone stayed loud for a quarter second: with the app's voice cancelled
+    /// out, that's the cook. While the app is quiet it's just the kitchen.
+    private func heardSpeechLevel() {
+        guard wanted, !held, isAppSpeaking?() == true else { return }
+        bargeIn(spoken: spokenText?())
+    }
+
+    private func bargeIn(spoken: String?) {
+        if spokenDuring == nil { spokenDuring = spoken }
+        report.bargeIns += 1
+        onBargeIn?()
+    }
+
     // MARK: Watchdog
 
     private func startWatchdog() {
@@ -297,7 +338,7 @@ final class VoiceListener {
         guard Date.now.timeIntervalSince(lastActive) >= Self.watchdogDelay else { return }
         lastActive = .now
         report.restarts += 1
-        if engine.isRunning {
+        if audio.isRunning {
             beginRequest()
         } else {
             restartEngine()
@@ -315,7 +356,7 @@ final class VoiceListener {
             report.state = .paused
         } else if recognizer?.isAvailable != true {
             report.state = .unavailable
-        } else if task != nil, engine.isRunning {
+        } else if task != nil, audio.isRunning {
             report.state = .listening
         } else {
             report.state = .starting
@@ -326,25 +367,15 @@ final class VoiceListener {
 
     private func startEngine() -> Bool {
         guard allowed, recognizer != nil else { return false }
-        AudioSessionSetup.configure()
-        let input = engine.inputNode
-        let format = input.outputFormat(forBus: 0)
-        guard format.sampleRate > 0, format.channelCount > 0 else { return false }
-        if !tapInstalled {
-            input.installTap(onBus: 0, bufferSize: 1024, format: format, block: Self.tap(feeding: feed))
-            tapInstalled = true
-        }
-        engine.prepare()
-        do {
-            try engine.start()
-        } catch {
+        audio.installTap(Self.tap(feeding: feed, gate: levelGate))
+        guard audio.start() else {
             stopEngine()
             return false
         }
         if configurationObserver == nil {
             // Plugging in a display or headphones stops the engine; start it again.
             configurationObserver = NotificationCenter.default.addObserver(
-                forName: .AVAudioEngineConfigurationChange, object: engine, queue: .main
+                forName: .AVAudioEngineConfigurationChange, object: nil, queue: .main
             ) { [weak self] _ in
                 Task { @MainActor in self?.restartEngine() }
             }
@@ -352,12 +383,10 @@ final class VoiceListener {
         return true
     }
 
+    /// Takes the microphone off the engine. The engine itself keeps running for speech.
     private func stopEngine() {
-        if engine.isRunning { engine.stop() }
-        if tapInstalled {
-            engine.inputNode.removeTap(onBus: 0)
-            tapInstalled = false
-        }
+        audio.removeTap()
+        levelGate.reset()
     }
 
     /// The watchdog calls this again if the engine won't start.
@@ -365,6 +394,7 @@ final class VoiceListener {
         guard wanted else { return }
         endRequest()
         stopEngine()
+        audio.stop()
         // The session may have been switched off by an interruption.
         AudioSessionSetup.reset()
         guard startEngine() else {
@@ -408,12 +438,7 @@ final class VoiceListener {
     private func mediaServicesReset() {
         report.lastError = "Audio reset"
         endRequest()
-        if let configurationObserver {
-            NotificationCenter.default.removeObserver(configurationObserver)
-        }
-        configurationObserver = nil
-        tapInstalled = false
-        engine = AVAudioEngine()
+        audio.rebuild()
         AudioSessionSetup.reset()
         restartEngine()
     }
@@ -429,8 +454,11 @@ final class VoiceListener {
         }
     }
 
-    nonisolated private static func tap(feeding feed: AudioFeed) -> AVAudioNodeTapBlock {
-        { buffer, _ in feed.append(buffer) }
+    nonisolated private static func tap(feeding feed: AudioFeed, gate: LevelGate) -> AVAudioNodeTapBlock {
+        { buffer, _ in
+            feed.append(buffer)
+            gate.feed(level: AudioIO.level(of: buffer), at: ProcessInfo.processInfo.systemUptime)
+        }
     }
 
     nonisolated private static func resultHandler(
@@ -467,6 +495,8 @@ struct VoiceReport: Equatable {
     var model: String?
     var restarts = 0
     var errors = 0
+    /// Times the cook cut the app short by talking over it.
+    var bargeIns = 0
     var lastError: String?
     var onDevice = false
 }
@@ -488,6 +518,22 @@ private final class AudioFeed: @unchecked Sendable {
 
     func append(_ buffer: AVAudioPCMBuffer) {
         lock.withLock { request }?.append(buffer)
+    }
+}
+
+/// Runs the speech detector on the audio thread and says once when speech starts.
+private final class LevelGate: @unchecked Sendable {
+    private let lock = NSLock()
+    private var detector = SpeechDetector()
+    var onSpeech: (@Sendable () -> Void)?
+
+    func feed(level: Double, at time: Double) {
+        let started = lock.withLock { detector.feed(level: level, at: time) }
+        if started { onSpeech?() }
+    }
+
+    func reset() {
+        lock.withLock { detector.reset() }
     }
 }
 
