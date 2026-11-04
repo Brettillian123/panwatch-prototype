@@ -120,6 +120,9 @@ final class CookSession {
     /// Said at launch when a saved cook is picked up again.
     @ObservationIgnored private var welcome: String?
 
+    /// AI confirm: the latest on-device checks, newest first, for the debug panel.
+    var aiChecks: [AICheckRecord] = []
+
     var currentStep: RecipeStep { recipe.steps[stepIndex] }
     var isLastStep: Bool { stepIndex == recipe.steps.count - 1 }
 
@@ -131,6 +134,10 @@ final class CookSession {
         }
         camera.analyzer.onDecision = { [weak self] decision in
             Task { @MainActor in self?.receive(decision) }
+        }
+        // AI confirm: each on-device check, for the debug panel.
+        camera.analyzer.checker.onRecords = { [weak self] records in
+            Task { @MainActor in self?.aiChecks = records }
         }
         // Setup check.
         setupCheck.connect(
@@ -361,6 +368,7 @@ final class CookSession {
         camera.analyzer.update(settings: effectiveSettings)
         camera.analyzer.setArmed(armed)
         camera.analyzer.recorder.setStep(stepIndex, watch: currentStep.watch)
+        camera.analyzer.setStep(stepIndex, instruction: currentStep.spokenText) // AI confirm
     }
 
     /// The tuning in force for the current step (see `DetectorSettings.applying`).

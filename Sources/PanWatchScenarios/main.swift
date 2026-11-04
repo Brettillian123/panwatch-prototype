@@ -59,6 +59,13 @@ if let flag = CommandLine.arguments.firstIndex(of: "--random") {
     exit(0)
 }
 
+// AI confirm: the suite through the candidate rules and the gate, with a mock model.
+if let flag = CommandLine.arguments.firstIndex(of: "--verifier") {
+    let name = flag + 1 < CommandLine.arguments.count ? CommandLine.arguments[flag + 1] : "perfect"
+    runVerifier(MockVerifier(rawValue: name) ?? .perfect)
+    exit(0)
+}
+
 let results = Run.suite().map(RunResult.evaluate)
 
 print(pad("situation", 20), pad("environment", 12), pad("step", 7), pad("expected", 9), pad("got", 46), pad("time", 6), "pass")

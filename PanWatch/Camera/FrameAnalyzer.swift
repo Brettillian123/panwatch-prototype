@@ -40,6 +40,8 @@ final class FrameAnalyzer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
 
     /// Writes practice recordings while the debug panel's switch is on. Thread-safe.
     let recorder = PracticeRecorder()
+    /// AI confirm: keyframes, candidates and the on-device check. Thread-safe.
+    let checker = AddChecker()
 
     // Only touched on the frame queue.
     private var watcher = PanWatcher()
@@ -67,6 +69,8 @@ final class FrameAnalyzer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     func attach(renderer: AVSampleBufferVideoRenderer) { lock.withLock { self.renderer = renderer } }
     /// Setup check: hands the calibrator its readings; nil stops.
     func setCalibrationTap(_ tap: (@Sendable (SetupCalibration.Frame) -> Void)?) { lock.withLock { calibrationTap = tap } }
+    /// AI confirm: the recipe step, for the check's context and to drop stale answers.
+    func setStep(_ index: Int, instruction: String) { checker.setStep(index, instruction: instruction) }
 
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         let (region, armed, settings, renderer, onSnapshot, onDecision) = lock.withLock {
@@ -89,6 +93,8 @@ final class FrameAnalyzer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
         // Which hands count, whether one is over the pan, and the verdict: shared with the
         // practice replay, so a recording is judged the way this frame is.
         watcher.settings = settings
+        let checking = checker.isChecking // AI confirm: Apple's on-device model is ready
+        watcher.proposesCandidates = checking
         let result = watcher.process(
             time: time, hands: readings, aspect: height > 0 ? Double(width) / Double(height) : 1,
             region: region, patch: patch, armed: armed
@@ -96,8 +102,14 @@ final class FrameAnalyzer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
         recorder.record(time: time, frameWidth: width, frameHeight: height, armed: armed, hands: readings, region: region, patch: patch)
         if let decision = result.decision {
             recorder.noteDecision(decision)
-            onDecision?(decision)
+            // AI confirm: while the on-device check is on, a rules offer waits for its answer.
+            if !(checking && decision.outcome == .addition) { onDecision?(decision) }
         }
+        // AI confirm: keyframes, candidates and answers. Offers come back through `onDecision`.
+        checker.observe(
+            time: time, checking: checking, result: result, opened: watcher.candidateDetector.handOpened,
+            settings: settings, pixelBuffer: pixelBuffer, region: region, deliver: onDecision
+        )
         let detector = watcher.detector
         var snapshot = AnalyzerSnapshot(
             frameWidth: width,

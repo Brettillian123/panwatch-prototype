@@ -67,6 +67,8 @@ struct PanWatcher {
         /// Where the hand over the pan is, relative to the pan box. See `FrameObservation.handPoint`.
         var handPoint: NormPoint?
         var decision: DetectorDecision?
+        /// AI confirm: the looser rules' candidate for the on-device check, when one was proposed.
+        var candidate: DetectorDecision?
     }
 
     var settings: DetectorSettings
@@ -76,6 +78,10 @@ struct PanWatcher {
     private var missesSeen = 0
     /// The latest reason nothing was offered. Nil after an addition.
     private(set) var noOffer: NoOffer?
+    /// AI confirm: whether looser rules, run beside today's, propose candidates for the on-device check.
+    var proposesCandidates = false
+    /// AI confirm: the looser rules' detector. Today's `detector` is untouched by it.
+    private(set) var candidateDetector = AdditionDetector()
 
     init(settings: DetectorSettings = DetectorSettings()) {
         self.settings = settings
@@ -92,6 +98,7 @@ struct PanWatcher {
         if newRegion != region {
             region = newRegion
             detector.reset()
+            candidateDetector.reset() // AI confirm
         }
         detector.settings = settings
         detector.setArmed(armed && newRegion != nil)
@@ -124,6 +131,15 @@ struct PanWatcher {
                 handPoint: result.handPoint, handsInZone: inZone.count
             )
             result.decision = detector.process(frame)
+            // AI confirm: the looser rules, beside today's, propose candidates for the on-device check.
+            candidateDetector.settings = settings.candidateRules
+            candidateDetector.shortVisitChange = settings.candidateShortVisitChange
+            candidateDetector.setArmed(proposesCandidates && armed)
+            if proposesCandidates, let candidate = candidateDetector.process(frame),
+               candidate.outcome == .addition || candidate.outcome == .stirring {
+                // A visit long enough to be stirring may have started with an add: the model decides.
+                result.candidate = candidate.asCandidate
+            }
             noteWhy(result, readings: readings, zone: zone, ignoredAsStill: filtered.ignoredAsStill)
         }
         return result
