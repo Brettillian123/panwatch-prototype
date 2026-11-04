@@ -20,6 +20,8 @@ struct AnalyzerSnapshot: Sendable {
     /// Warm-up gave up and learned the pan with a hand in view.
     var learnedWithHand = false
     var analysisFPS = 0.0
+    /// Why nothing was offered lately: a hand that didn't count, a visit too short, and so on.
+    var noOffer: NoOffer?
 }
 
 /// Receives every camera frame on the capture queue. It shows each one, and on every
@@ -34,11 +36,12 @@ final class FrameAnalyzer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     private var snapshotHandler: (@Sendable (AnalyzerSnapshot) -> Void)?
     private var decisionHandler: (@Sendable (DetectorDecision) -> Void)?
 
+    /// Writes practice recordings while the debug panel's switch is on. Thread-safe.
+    let recorder = PracticeRecorder()
+
     // Only touched on the frame queue.
-    private var detector = AdditionDetector()
+    private var watcher = PanWatcher()
     private let handDetector = HandPoseDetector()
-    private var handFilter = HandFilter()
-    private var detectorRegion: NormRect?
     private var frameCount = 0
     private var lastAnalysisTime: Double?
     private var analysisFPS = 0.0
@@ -73,41 +76,34 @@ final class FrameAnalyzer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
         let time = CMSampleBufferGetPresentationTimeStamp(sampleBuffer).seconds
         trackRate(at: time)
 
-        if region != detectorRegion {
-            detectorRegion = region
-            detector.reset()
-        }
-        detector.settings = settings
-        detector.setArmed(armed && region != nil)
-        handFilter.settings = settings
-
-        let seen = handDetector.hands(in: pixelBuffer, settings: settings)
-        // Only hands that hold steady from frame to frame and move over seconds count.
-        let filtered = handFilter.update(seen.map { HandGeometry.centroid($0.joints) }, at: time)
-        let hands = filtered.counted.map { seen[$0] }
-        var snapshot = AnalyzerSnapshot(
-            frameWidth: CVPixelBufferGetWidth(pixelBuffer),
-            frameHeight: CVPixelBufferGetHeight(pixelBuffer),
-            hands: seen.map(\.joints),
-            handsCounted: hands.count,
-            handsIgnoredAsStill: filtered.ignoredAsStill,
-            analysisFPS: analysisFPS
+        let width = CVPixelBufferGetWidth(pixelBuffer)
+        let height = CVPixelBufferGetHeight(pixelBuffer)
+        let readings = handDetector.readings(in: pixelBuffer)
+        let patch = region.flatMap { PanPatch.sample(from: pixelBuffer, rect: $0) }
+        // Which hands count, whether one is over the pan, and the verdict: shared with the
+        // practice replay, so a recording is judged the way this frame is.
+        watcher.settings = settings
+        let result = watcher.process(
+            time: time, hands: readings, aspect: height > 0 ? Double(width) / Double(height) : 1,
+            region: region, patch: patch, armed: armed
         )
-
-        if let region, let patch = PanPatch.sample(from: pixelBuffer, rect: region) {
-            // Three joints, not one: a fingertip grazing the edge of the zone isn't a visit.
-            let zone = region.expanded(by: settings.handZoneMargin)
-            let inZone = hands.filter { HandGeometry.anyHand([$0.joints], in: zone, minimumJoints: 3) }
-            let handInZone = !inZone.isEmpty
-            snapshot.handInZone = handInZone
-            // With two hands over the pan, there's no telling which one let go.
-            let openness = inZone.count == 1 ? inZone[0].openness : nil
-            snapshot.handOpenness = openness
-            let frame = FrameObservation(time: time, handInZone: handInZone, handOpenness: openness, region: patch)
-            if let decision = detector.process(frame) {
-                onDecision?(decision)
-            }
+        recorder.record(time: time, frameWidth: width, frameHeight: height, armed: armed, hands: readings, region: region, patch: patch)
+        if let decision = result.decision {
+            recorder.noteDecision(decision)
+            onDecision?(decision)
         }
+        let detector = watcher.detector
+        var snapshot = AnalyzerSnapshot(
+            frameWidth: width,
+            frameHeight: height,
+            hands: result.seen.map(\.joints),
+            handsCounted: result.handsCounted,
+            handsIgnoredAsStill: result.handsIgnoredAsStill,
+            handInZone: result.handInZone,
+            handOpenness: result.handOpenness,
+            analysisFPS: analysisFPS,
+            noOffer: watcher.noOffer
+        )
         snapshot.phase = detector.phase
         snapshot.dwell = detector.dwell
         snapshot.motion = detector.motion
