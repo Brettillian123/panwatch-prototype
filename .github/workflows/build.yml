@@ -2,7 +2,7 @@ name: Build check
 
 on:
   push:
-    branches: [ci-build]
+    branches: [ci-build, 'ci-*']
   workflow_dispatch:
 
 jobs:
@@ -31,6 +31,9 @@ jobs:
 
       - name: Check the alarm permission text is in the app
         run: plutil -extract NSAlarmKitUsageDescription raw build/Debug-iphoneos/PanWatch.app/Info.plist
+
+      - name: List the app's extensions
+        run: ls -la build/Debug-iphoneos/PanWatch.app/PlugIns 2>/dev/null || echo "no PlugIns folder"
 
       - name: Upload the build log
         if: always()
