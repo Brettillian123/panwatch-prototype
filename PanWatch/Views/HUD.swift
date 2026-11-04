@@ -26,7 +26,7 @@ struct StepCard: View {
         .padding(.horizontal, Theme.gap)
         .padding(.vertical, 12)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Theme.iron, in: RoundedRectangle(cornerRadius: Theme.panelRadius, style: .continuous))
+        .background(Theme.panel, in: RoundedRectangle(cornerRadius: Theme.panelRadius, style: .continuous))
     }
 
     private var eyebrow: some View {
@@ -170,7 +170,7 @@ struct TimerRow: View {
             Button(action: clear) {
                 Text("Clear")
                     .font(Theme.control)
-                    .foregroundStyle(timer.isDone ? Theme.iron : Theme.flour)
+                    .foregroundStyle(Theme.flour)
                     .padding(.horizontal, 14)
                     .frame(minWidth: Theme.target, minHeight: Theme.target)
                     .background(timer.isDone ? Theme.primary : Theme.rule, in: RoundedRectangle(cornerRadius: Theme.buttonRadius, style: .continuous))
@@ -182,7 +182,7 @@ struct TimerRow: View {
             .buttonStyle(.plain)
             .accessibilityLabel("Clear the \(timer.label) timer")
         }
-        .background(Theme.iron, in: RoundedRectangle(cornerRadius: Theme.panelRadius, style: .continuous))
+        .background(Theme.panel, in: RoundedRectangle(cornerRadius: Theme.panelRadius, style: .continuous))
         .overlay(alignment: .leading) {
             if timer.isDone {
                 Rectangle()
@@ -330,7 +330,7 @@ struct SayLine: View {
         }
         .padding(.leading, Theme.gap)
         .frame(maxWidth: .infinity, minHeight: Theme.bigTarget, maxHeight: Theme.bigTarget)
-        .background(Theme.iron, in: RoundedRectangle(cornerRadius: Theme.panelRadius, style: .continuous))
+        .background(Theme.panel, in: RoundedRectangle(cornerRadius: Theme.panelRadius, style: .continuous))
     }
 
     @ViewBuilder private var content: some View {

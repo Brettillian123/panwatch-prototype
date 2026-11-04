@@ -55,7 +55,7 @@ struct SuggestionCard: View {
             }
         }
         .padding(24)
-        .background(Theme.iron, in: RoundedRectangle(cornerRadius: Theme.panelRadius, style: .continuous))
+        .background(Theme.panel, in: RoundedRectangle(cornerRadius: Theme.panelRadius, style: .continuous))
         .onAppear {
             withAnimation(.linear(duration: Self.timeout)) { left = 0 }
         }
