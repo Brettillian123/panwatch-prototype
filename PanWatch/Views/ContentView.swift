@@ -1,54 +1,45 @@
 import AVKit
 import SwiftUI
 
-/// The cook screen: camera picture filling the screen, step card top left, timers top
-/// right, controls along the bottom, and the timer offer front and center. Drawing the
-/// pan box clears it to the picture; nothing else ever hides the recipe.
+/// The cook screen: the camera picture fills the screen, the step panel sits top left,
+/// timers top right, the bar and the Say line along the bottom, and the timer offer in
+/// the middle. Panels are opaque Iron and the picture shows between them. Drawing the pan
+/// box clears it to the picture, the strip and two buttons; nothing else hides the recipe.
 struct ContentView: View {
     let session: CookSession
+    @State private var showingSettings = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         ZStack {
             if session.cameraOn {
                 CameraStage(session: session)
                     .ignoresSafeArea()
+                if session.suggestion != nil {
+                    // The picture dims to 60% behind the offer.
+                    Theme.iron.opacity(0.4)
+                        .ignoresSafeArea()
+                        .allowsHitTesting(false)
+                        .transition(.opacity)
+                }
             }
 
-            if session.isMarkingPan {
-                // The whole picture is free to draw on: one line at the top, two buttons below.
-                VStack(spacing: 12) {
-                    MarkPanBanner(session: session)
-                    Spacer(minLength: 0)
-                    DrawPanBar(session: session)
-                }
-                .padding(16)
-                .transition(.opacity)
-            } else {
-                HStack(alignment: .top, spacing: 0) {
-                    VStack(spacing: 12) {
-                        HStack(alignment: .top, spacing: 12) {
-                            StepCard(session: session)
-                            Spacer(minLength: 12)
-                            TimerStack(session: session)
-                                // Timers keep their width; the step text wraps and shrinks instead.
-                                .fixedSize(horizontal: true, vertical: false)
-                        }
-                        Spacer(minLength: 0)
-                        if session.needsPan {
-                            PanNeededStrip(session: session)
-                        }
-                        ControlBar(session: session)
+            HStack(alignment: .top, spacing: Theme.gap) {
+                VStack(spacing: Theme.tight) {
+                    if session.isMarkingPan {
+                        drawing
+                    } else {
+                        cooking
                     }
-                    .padding(16)
-
-                    if session.showDebug {
-                        DebugPanel(session: session)
-                            .frame(width: 330)
-                            .transition(.move(edge: .trailing))
-                    }
+                    SayLine(session: session)
                 }
-                .transition(.opacity)
+                if session.showDebug && !session.isMarkingPan {
+                    DebugPanel(session: session)
+                        .frame(width: 330)
+                        .transition(reduceMotion ? AnyTransition.opacity : .move(edge: .trailing))
+                }
             }
+            .padding(.top, Theme.gap)
 
             if let offer = session.suggestion {
                 SuggestionCard(
@@ -57,7 +48,10 @@ struct ContentView: View {
                     dismiss: { session.dismissSuggestion() },
                     touched: { session.noteTouch() }
                 )
-                .transition(.scale(scale: 0.9).combined(with: .opacity))
+                .id(offer.id)
+                // Centered over everything but the Say line, which keeps showing what to say.
+                .padding(.bottom, Theme.bigTarget + Theme.tight)
+                .transition(reduceMotion ? AnyTransition.opacity : .scale(scale: 0.96).combined(with: .opacity))
             }
 
             if session.isChoosingRecipe {
@@ -65,15 +59,21 @@ struct ContentView: View {
                     .transition(.opacity)
             }
 
+            if showingSettings && !session.isChoosingRecipe {
+                InterimSettings(session: session, close: { showingSettings = false })
+                    .transition(.opacity)
+            }
+
             if session.cameraOn {
                 CameraStatusOverlay(status: session.cameraStatus)
             }
         }
-        .background(Color.black)
-        .animation(.snappy, value: session.suggestion?.id)
-        .animation(.snappy, value: session.showDebug)
-        .animation(.snappy, value: session.isChoosingRecipe)
-        .animation(.snappy, value: session.isMarkingPan)
+        .background(Theme.iron)
+        .animation(Theme.entrance, value: session.suggestion?.id)
+        .animation(Theme.motion, value: session.showDebug)
+        .animation(Theme.motion, value: session.isChoosingRecipe)
+        .animation(Theme.motion, value: session.isMarkingPan)
+        .animation(Theme.motion, value: showingSettings)
         .statusBarHidden()
         .persistentSystemOverlays(.hidden)
         .preferredColorScheme(.dark)
@@ -88,5 +88,34 @@ struct ContentView: View {
                 session.hardwareButtonPressed()
             }
         }
+    }
+
+    /// Pan needed or not, the recipe stays: step panel left, timers right, bar below.
+    private var cooking: some View {
+        VStack(spacing: Theme.gap) {
+            HStack(alignment: .top, spacing: Theme.gap) {
+                StepCard(session: session)
+                    .frame(maxWidth: 560, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                // Timers keep their width; the step text wraps, then scales, instead.
+                TimerStack(session: session)
+                    .fixedSize(horizontal: true, vertical: false)
+            }
+            .frame(maxHeight: .infinity, alignment: .top)
+            ControlBar(session: session, openSettings: { showingSettings = true })
+        }
+        .transition(.opacity)
+    }
+
+    /// Drawing: the picture, one strip top left, Cancel and Start watching. Timers keep
+    /// running and still speak; their rows come back when drawing ends.
+    private var drawing: some View {
+        VStack(alignment: .leading, spacing: Theme.gap) {
+            DrawingStrip(session: session)
+            Spacer(minLength: 0)
+            DrawPanBar(session: session)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .transition(.opacity)
     }
 }
