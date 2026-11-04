@@ -141,7 +141,21 @@ During the demo:
 - Keep the phone fairly upright and still. If it reads as turned, it asks you to mark the
   pan again.
 
-## What's new for the pitch
+## What's new for the Nov 4 preview
+
+- **Six recipes.** A menu at launch (and the **Recipes** button) offers Garlic Butter Pasta,
+  Rice, Hard-Boiled Eggs, Steamed Broccoli, Oatmeal and Pan-Seared Chicken. Each has its
+  amounts, an ingredient list ("ingredients" reads it aloud), and a timer the camera offers.
+- **Timers ring as real alarms.** On iOS 26 and later, every timer also sets an AlarmKit
+  alarm, so it rings on the Lock Screen, through silent mode and with the app closed. The app
+  asks to allow alarms at launch. Cancelling a timer (the ✕, or "cancel the timer") cancels
+  its alarm. Running timers come back on screen if the app is closed and reopened.
+- **Cook stats** in the detection panel: screen touches, voice commands, button presses and
+  offers accepted, for the "three touches or fewer" gate.
+- **Accuracy scoring** in the code (`Core/DetectionScore.swift`): precision, recall, F1 and
+  false alarms per hour against labeled clips, for the F1 0.70 gate.
+
+## What was new for the pitch
 
 - **Hands-free voice.** The app listens the whole time (the mic button turns it off) and
   acts on short phrases once you pause: "next", "go back", "repeat", "start the timer",
