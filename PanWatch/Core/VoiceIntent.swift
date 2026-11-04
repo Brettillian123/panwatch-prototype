@@ -64,6 +64,115 @@ enum VoiceIntent: String, CaseIterable, Sendable {
     }
 }
 
+/// The commands for moving around the app, which the model can answer with beside
+/// `VoiceIntent`'s, for phrasings the keywords miss, like "let's see what else I can make".
+/// Commands that carry a number or a name ("step three", "use Samantha") stay keyword-only.
+enum ScreenIntent: String, CaseIterable, Sendable {
+    case whereAmI
+    case startOver
+    case clearDone
+    case showRecipes
+    case drawPan
+    case cameraOff
+    case cameraOn
+    case switchCamera
+    case showVoices
+    case nextVoice
+    case useThisVoice
+    case useMyVoice
+    case quiet
+    case talk
+    case stopListening
+    case help
+    case settings
+    case details
+    case done
+
+    /// The keyword command this stands for.
+    var command: VoiceCommand {
+        switch self {
+        case .whereAmI: .whereAmI
+        case .startOver: .startOver
+        case .clearDone: .clearDone
+        case .showRecipes: .showRecipes
+        case .drawPan: .drawPan
+        case .cameraOff: .camera(on: false)
+        case .cameraOn: .camera(on: true)
+        case .switchCamera: .switchCamera(toFront: nil)
+        case .showVoices: .showVoices
+        case .nextVoice: .nextVoice
+        case .useThisVoice: .useVoice(.highlighted)
+        case .useMyVoice: .useVoice(.mine)
+        case .quiet: .quiet
+        case .talk: .talk
+        case .stopListening: .stopListening
+        case .help: .help
+        case .settings: .settings
+        case .details: .details(show: nil)
+        case .done: .done
+        }
+    }
+
+    /// What it means, for the model's list of commands.
+    var meaning: String {
+        switch self {
+        case .whereAmI: "say which recipe and step the cook is on"
+        case .startOver: "go back to the first step of the recipe"
+        case .clearDone: "clear a timer that has finished ringing"
+        case .showRecipes: "show the list of recipes to choose a different dish"
+        case .drawPan: "draw the box around the pan again"
+        case .cameraOff: "turn the camera off"
+        case .cameraOn: "turn the camera on"
+        case .switchCamera: "switch between the front and back camera"
+        case .showVoices: "show the voices the app can speak in"
+        case .nextVoice: "play the next voice in the voice list"
+        case .useThisVoice: "choose the voice that was just played"
+        case .useMyVoice: "speak in the cook's own Personal Voice"
+        case .quiet: "stop speaking aloud"
+        case .talk: "speak aloud again"
+        case .stopListening: "stop listening to the microphone for two minutes"
+        case .help: "say what the cook can say"
+        case .settings: "open the settings"
+        case .details: "show or hide the details panel"
+        case .done: "close the menu that is open and go back to cooking"
+        }
+    }
+}
+
+/// One answer from the model: one of `VoiceIntent`'s, or one of `ScreenIntent`'s.
+enum HeardIntent: Equatable, Sendable {
+    case voice(VoiceIntent)
+    case screen(ScreenIntent)
+
+    static let none = HeardIntent.voice(.none)
+
+    /// The name the model answered with.
+    var rawValue: String {
+        switch self {
+        case .voice(let intent): intent.rawValue
+        case .screen(let intent): intent.rawValue
+        }
+    }
+
+    /// The keyword command this stands for; nil for `none`.
+    var command: VoiceCommand? {
+        switch self {
+        case .voice(let intent): intent.command
+        case .screen(let intent): intent.command
+        }
+    }
+
+    /// Every name the model can answer with, `VoiceIntent`'s first.
+    static let all: [HeardIntent] = VoiceIntent.allCases.map(HeardIntent.voice) + ScreenIntent.allCases.map(HeardIntent.screen)
+
+    var meaning: String {
+        switch self {
+        case .voice(let intent): intent.meaning
+        case .screen(let intent): intent.meaning
+        }
+    }
+}
+
 /// What the app is showing when the cook speaks, written out for the model so it can
 /// tell "what's next?" from talk about dinner.
 struct IntentContext: Equatable, Sendable {
@@ -80,7 +189,7 @@ struct IntentContext: Equatable, Sendable {
 
     /// Fixed for the whole cook, so it can be loaded once and kept warm.
     static let instructions: String = {
-        let commands = VoiceIntent.allCases.map { "- \($0.rawValue): \($0.meaning)" }
+        let commands = HeardIntent.all.map { "- \($0.rawValue): \($0.meaning)" }
         return """
         You listen for a cook using a step-by-step cooking app, with their hands busy at the stove. \
         Each prompt is one thing the microphone heard, with what the app is showing.

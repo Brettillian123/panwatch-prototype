@@ -14,7 +14,7 @@ final class IntentReader {
     /// One answer, for acting on and for the debug panel.
     struct Reading {
         /// `none` after a timeout or an error, so only an answer in time can act.
-        let intent: VoiceIntent
+        let intent: HeardIntent
         let milliseconds: Int
         /// Why the answer is `none` without the model saying so: "timed out" or the error.
         let problem: String?
@@ -62,7 +62,7 @@ final class IntentReader {
     /// ones never pile up in the model's context, and the next one is warmed straight after.
     func read(_ heard: String, context: IntentContext) async -> Reading {
         let start = ContinuousClock.now
-        var intent = VoiceIntent.none
+        var intent = HeardIntent.none
         var problem: String? = "model unavailable"
         #if canImport(FoundationModels)
         if #available(iOS 26, *), isAvailable {
@@ -81,22 +81,22 @@ final class IntentReader {
     /// The model's answer, or `none` with the reason once `timeLimit` passes. Whichever
     /// comes first wins, without waiting for a slow answer to notice it was cancelled.
     @available(iOS 26, *)
-    private static func ask(_ session: LanguageModelSession, prompt: String) async -> (VoiceIntent, String?) {
-        let (results, finish) = AsyncStream.makeStream(of: (VoiceIntent, String?).self)
+    private static func ask(_ session: LanguageModelSession, prompt: String) async -> (HeardIntent, String?) {
+        let (results, finish) = AsyncStream.makeStream(of: (HeardIntent, String?).self)
         let answer = Task {
             do {
                 let response = try await session.respond(to: prompt, generating: ModelIntent.self)
                 finish.yield((response.content.intent, nil))
             } catch {
-                finish.yield((VoiceIntent.none, "error: \(error.localizedDescription)"))
+                finish.yield((HeardIntent.none, "error: \(error.localizedDescription)"))
             }
         }
         let clock = Task {
             try? await Task.sleep(for: Self.timeLimit)
-            finish.yield((VoiceIntent.none, "timed out"))
+            finish.yield((HeardIntent.none, "timed out"))
         }
         var first = results.makeAsyncIterator()
-        let result = await first.next() ?? (VoiceIntent.none, "timed out")
+        let result = await first.next() ?? (HeardIntent.none, "timed out")
         answer.cancel()
         clock.cancel()
         finish.finish()
@@ -107,7 +107,7 @@ final class IntentReader {
 
 #if canImport(FoundationModels)
 /// What the model answers with: one of the app's commands, or none. The case names are
-/// what the model reads, and match `VoiceIntent`.
+/// what the model reads, and match `VoiceIntent` and `ScreenIntent`.
 @available(iOS 26, *)
 @Generable(description: "The command the cook is asking the app for, or none if they are not speaking to the app")
 enum ModelIntent {
@@ -121,21 +121,59 @@ enum ModelIntent {
     case startWatching
     case ingredients
     case cancelTimer
+    case whereAmI
+    case startOver
+    case clearDone
+    case showRecipes
+    case drawPan
+    case cameraOff
+    case cameraOn
+    case switchCamera
+    case showVoices
+    case nextVoice
+    case useThisVoice
+    case useMyVoice
+    case quiet
+    case talk
+    case stopListening
+    case help
+    case settings
+    case details
+    case done
     case none
 
-    var intent: VoiceIntent {
+    var intent: HeardIntent {
         switch self {
-        case .next: .next
-        case .back: .back
-        case .repeatStep: .repeatStep
-        case .yes: .yes
-        case .no: .no
-        case .startTimer: .startTimer
-        case .timeLeft: .timeLeft
-        case .startWatching: .startWatching
-        case .ingredients: .ingredients
-        case .cancelTimer: .cancelTimer
-        case .none: VoiceIntent.none
+        case .next: .voice(.next)
+        case .back: .voice(.back)
+        case .repeatStep: .voice(.repeatStep)
+        case .yes: .voice(.yes)
+        case .no: .voice(.no)
+        case .startTimer: .voice(.startTimer)
+        case .timeLeft: .voice(.timeLeft)
+        case .startWatching: .voice(.startWatching)
+        case .ingredients: .voice(.ingredients)
+        case .cancelTimer: .voice(.cancelTimer)
+        case .whereAmI: .screen(.whereAmI)
+        case .startOver: .screen(.startOver)
+        case .clearDone: .screen(.clearDone)
+        case .showRecipes: .screen(.showRecipes)
+        case .drawPan: .screen(.drawPan)
+        case .cameraOff: .screen(.cameraOff)
+        case .cameraOn: .screen(.cameraOn)
+        case .switchCamera: .screen(.switchCamera)
+        case .showVoices: .screen(.showVoices)
+        case .nextVoice: .screen(.nextVoice)
+        case .useThisVoice: .screen(.useThisVoice)
+        case .useMyVoice: .screen(.useMyVoice)
+        case .quiet: .screen(.quiet)
+        case .talk: .screen(.talk)
+        case .stopListening: .screen(.stopListening)
+        case .help: .screen(.help)
+        case .settings: .screen(.settings)
+        case .details: .screen(.details)
+        case .done: .screen(.done)
+        case .none: HeardIntent.none
         }
     }
 }

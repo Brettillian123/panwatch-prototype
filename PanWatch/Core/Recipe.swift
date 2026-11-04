@@ -31,6 +31,13 @@ struct RecipeStep: Identifiable, Equatable, Sendable {
     let watch: AdditionWatch?
     /// Nil for steps the cook moves to whenever they're ready.
     var cue: StepCue? = nil
+    /// The full wording read aloud; the screen shows `instruction`. Nil when they match.
+    var spoken: String? = nil
+}
+
+extension RecipeStep {
+    /// What the app reads aloud: the full wording when the screen shows a shortened one.
+    var spokenText: String { spoken ?? instruction }
 }
 
 struct Recipe: Sendable {
@@ -177,7 +184,12 @@ extension Recipe {
     static let panSearedChicken = Recipe(
         title: "Pan-Seared Chicken",
         steps: [
-            RecipeStep(id: 1, instruction: "Season 2 boneless chicken breasts with 1/2 teaspoon of salt and 1/4 teaspoon of pepper.", watch: nil),
+            RecipeStep(
+                id: 1,
+                instruction: "Season 2 chicken breasts with 1/2 teaspoon salt, 1/4 teaspoon pepper.",
+                watch: nil,
+                spoken: "Season 2 boneless chicken breasts with 1/2 teaspoon of salt and 1/4 teaspoon of pepper."
+            ),
             RecipeStep(id: 2, instruction: "Heat 1 tablespoon of oil in a pan over medium-high heat.", watch: nil),
             RecipeStep(
                 id: 3,
@@ -187,9 +199,10 @@ extension Recipe {
             ),
             RecipeStep(
                 id: 4,
-                instruction: "Flip the chicken and cook about 6 more minutes, until a thermometer reads 165 °F in the thickest part.",
+                instruction: "Flip and cook 6 more minutes, until a thermometer reads 165 °F.",
                 watch: nil,
-                cue: StepCue(timerLabel: "Chicken", secondsLeft: 0)
+                cue: StepCue(timerLabel: "Chicken", secondsLeft: 0),
+                spoken: "Flip the chicken and cook about 6 more minutes, until a thermometer reads 165 °F in the thickest part."
             ),
             RecipeStep(id: 5, instruction: "Let the chicken rest for 5 minutes before slicing.", watch: nil),
         ],
