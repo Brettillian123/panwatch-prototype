@@ -13,20 +13,22 @@ enum Theme {
     // these on Iron, and Iron on Copper or Chili; Flour on Copper (2.8:1) never happens.
 
     /// Cast iron. Every panel, card, bar, strip and menu; the words on a filled button.
-    static let iron = rgb(0x16140F)
+    static let iron = rgb(0x0F1012)
     /// Main text: step text, digits, labels, button words. 15.6:1 on Iron.
-    static let flour = rgb(0xF2ECDF)
+    static let flour = rgb(0xF5F5F7)
     /// Second text, the draining bar, "Not listening". 7.0:1 on Iron.
-    static let ash = rgb(0xA69F92)
+    static let ash = rgb(0xA1A1A6)
     /// The camera line when it is watching or has seen the pan. Words only, never a fill. 5.7:1.
-    static let herb = rgb(0x6A9C4B)
+    static let herb = rgb(0x30D158)
     /// Done or alert: a finished timer's words and edge rule, a denied permission. Words and
     /// rules only, never a fill, and it never flashes. 5.2:1.
-    static let chili = rgb(0xE85A45)
+    static let chili = rgb(0xFF453A)
     /// The accent, from the pan rim: filled primary buttons, "Heard", the level bar. 5.7:1.
-    static let copper = rgb(0xC47F3A)
+    static let copper = rgb(0x0A84FF)
     /// The one rule between rows, and the lift on a secondary button: Flour at 12%.
     static let rule = flour.opacity(0.12)
+    /// Panels over the camera picture: dark and see-through, so the pan stays visible.
+    static let panel = Color.black.opacity(0.55)
 
     /// The one accent for primary actions (Next step, Start timer, Start watching, Draw a box).
     static let primary = copper
@@ -37,26 +39,26 @@ enum Theme {
     // Three sizes at a ratio of about 1.55, plus one size for the countdown.
 
     /// 18 pt: near-phone detail, never required (the eyebrow, captions).
-    static let detail = Font.system(size: 18, weight: .regular)
+    static let detail = Font.system(size: 15, weight: .regular)
     /// 28 pt: buttons, the camera line, timer labels, menu rows.
-    static let control = Font.system(size: 28, weight: .semibold)
+    static let control = Font.system(size: 17, weight: .semibold)
     /// 44 pt: anything read from a meter away (the Say line's phrase, the offer, "Rice is done").
-    static let reading = Font.system(size: 44, weight: .semibold)
+    static let reading = Font.system(size: 20, weight: .semibold)
     /// 44 pt New York: the step text, read like a book.
-    static let step = Font.system(size: 44, weight: .semibold, design: .serif)
+    static let step = Font.system(size: 26, weight: .semibold)
     /// 64 pt: the countdown, the one number size.
-    static let digits = Font.system(size: 64, weight: .bold).monospacedDigit()
+    static let digits = Font.system(size: 40, weight: .semibold, design: .rounded).monospacedDigit()
     /// 44 pt: the countdown once three timers share the column.
-    static let compactDigits = Font.system(size: 44, weight: .bold).monospacedDigit()
+    static let compactDigits = Font.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit()
 
     // MARK: Geometry
 
     /// Any tap target.
     static let target: CGFloat = 44
     /// A target a messy thumb hits: offer buttons, Clear, Done, the Say line.
-    static let bigTarget: CGFloat = 60
+    static let bigTarget: CGFloat = 50
     /// The bottom bar's buttons.
-    static let barHeight: CGFloat = 64
+    static let barHeight: CGFloat = 52
     /// Inside a text group.
     static let tight: CGFloat = 8
     /// Between targets and between groups.
@@ -66,7 +68,7 @@ enum Theme {
     /// Buttons.
     static let buttonRadius: CGFloat = 12
     /// Panels and cards.
-    static let panelRadius: CGFloat = 20
+    static let panelRadius: CGFloat = 16
 
     // MARK: Motion
 
@@ -89,7 +91,7 @@ extension View {
     func ironPanel(padding: CGFloat = Theme.gap) -> some View {
         self
             .padding(padding)
-            .background(Theme.iron, in: RoundedRectangle(cornerRadius: Theme.panelRadius, style: .continuous))
+            .background(Theme.panel, in: RoundedRectangle(cornerRadius: Theme.panelRadius, style: .continuous))
     }
 }
 
@@ -127,20 +129,20 @@ private struct WordButtonLabel: View {
             .background {
                 ZStack {
                     shape.fill(fill)
-                    if kind == .secondary && isEnabled { shape.fill(Theme.rule) }
+                    if kind == .secondary && isEnabled { shape.fill(Color.white.opacity(0.14)) }
                     if pressed && kind == .primary && isEnabled { shape.fill(Theme.iron.opacity(0.3)) }
-                    if pressed && kind == .secondary { shape.strokeBorder(Theme.copper, lineWidth: 3) }
+                    if pressed && kind == .secondary { shape.fill(Color.white.opacity(0.12)) }
                 }
             }
             .contentShape(shape)
     }
 
     private var fill: Color {
-        kind == .primary && isEnabled ? Theme.primary : Theme.iron
+        kind == .primary && isEnabled ? Theme.primary : Theme.panel
     }
 
     private var foreground: Color {
         guard isEnabled else { return Theme.ash }
-        return kind == .primary ? Theme.iron : Theme.flour
+        return kind == .primary ? .white : Theme.flour
     }
 }

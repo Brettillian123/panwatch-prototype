@@ -185,6 +185,7 @@ final class CookSession {
         refreshListening()
         // Timers that ring with the app closed need their own permission; ask now too.
         await alarms.requestPermission()
+        openPanDrawingIfNeeded()
     }
 
     // MARK: Recipe steps
@@ -225,6 +226,7 @@ final class CookSession {
         refreshArming()
         saveCook()
         say("\(recipe.title). Step 1. \(currentStep.spokenText)")
+        openPanDrawingIfNeeded()
     }
 
     func showRecipes() {
@@ -242,6 +244,15 @@ final class CookSession {
     }
 
     // MARK: Marking the pan
+
+    /// When a pan box is needed on the cook screen, go straight to drawing it, with the last
+    /// saved box already drawn if there is one: the cook confirms it or draws a new one.
+    func openPanDrawingIfNeeded() {
+        guard needsPan, screen == .cook, !isChoosingRecipe else { return }
+        let saved = offeredPan
+        markPan()
+        if let saved { draftRegion = saved }
+    }
 
     /// Clears the screen to the camera picture for drawing the pan box. The button, or
     /// "draw a new box" said at any time, comes here.
@@ -340,6 +351,7 @@ final class CookSession {
             guard let self else { return }
             if self.cameraOn {
                 self.cameraStatus = await self.camera.start(position: self.cameraPosition)
+                self.openPanDrawingIfNeeded()
             } else {
                 await self.camera.stop()
             }

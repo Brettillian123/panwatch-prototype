@@ -26,7 +26,7 @@ struct SetupCheckView: View {
     private func card(title: String, detail: String, running: Bool, tint: Color = .white) -> some View {
         VStack(spacing: 18) {
             Text(title)
-                .font(.system(size: 44, weight: .bold))
+                .font(.system(size: 28, weight: .bold))
                 .foregroundStyle(tint)
                 .multilineTextAlignment(.center)
                 .minimumScaleFactor(0.6)
