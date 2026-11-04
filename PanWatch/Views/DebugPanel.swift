@@ -27,6 +27,13 @@ struct DebugPanel: View {
             MetricRow(name: "State", value: PhaseStyle.label(for: live.phase))
             MetricRow(name: "Hand over pan", value: live.handInZone ? "Yes" : "No")
             MetricRow(name: "Hands seen", value: "\(live.hands.count)")
+            MetricRow(name: "Hands counted", value: "\(live.handsCounted)")
+            MetricRow(name: "Ignored as still", value: "\(live.handsIgnoredAsStill)")
+            if live.learnedWithHand {
+                Text("Learned the pan with a hand in view")
+                    .font(.footnote)
+                    .foregroundStyle(.yellow)
+            }
             MetricRow(name: "Hand time", value: seconds(live.dwell))
             MetricRow(name: "Hand openness", value: live.handOpenness.map { String(format: "%.2f", $0) } ?? "-")
             MetricRow(name: "Hand opened", value: String(format: "%.2f", live.handOpened))

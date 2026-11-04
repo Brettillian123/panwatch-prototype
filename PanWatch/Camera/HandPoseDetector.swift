@@ -10,26 +10,31 @@ final class HandPoseDetector {
         return request
     }()
 
+    /// Joints Vision is less sure of than this are left out. Wood grain yields many faint ones.
+    private static let jointConfidence: Float = 0.4
+
     private static let tipNames: [VNHumanHandPoseObservation.JointName] = [.thumbTip, .indexTip, .middleTip, .ringTip, .littleTip]
 
     /// Each hand found: its confident joints in normalized top-left image coordinates,
-    /// and how open it is.
-    func hands(in pixelBuffer: CVPixelBuffer) -> [TrackedHand] {
+    /// and how open it is. `settings` says how sure Vision must be.
+    func hands(in pixelBuffer: CVPixelBuffer, settings: DetectorSettings) -> [TrackedHand] {
         // Frames arrive already rotated upright, so no orientation correction is needed.
         let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up, options: [:])
         guard (try? handler.perform([request])) != nil, let observations = request.results else { return [] }
         let height = Double(CVPixelBufferGetHeight(pixelBuffer))
         let aspect = height > 0 ? Double(CVPixelBufferGetWidth(pixelBuffer)) / height : 1
         return observations.compactMap { observation -> TrackedHand? in
-            guard let points = try? observation.recognizedPoints(.all) else { return nil }
+            // Wood grain and shiny bags show up as faint hands; real ones score higher.
+            guard Double(observation.confidence) >= settings.handConfidence,
+                  let points = try? observation.recognizedPoints(.all) else { return nil }
             // Vision puts the origin at the bottom-left; the rest of the app uses top-left.
             func confident(_ point: VNRecognizedPoint?) -> NormPoint? {
-                guard let point, point.confidence >= 0.3 else { return nil }
+                guard let point, point.confidence >= Self.jointConfidence else { return nil }
                 return NormPoint(x: Double(point.location.x), y: 1 - Double(point.location.y))
             }
             let joints = points.values.compactMap { confident($0) }
-            // A real hand shows several joints. One or two stray points are usually noise.
-            guard joints.count >= 4 else { return nil }
+            // A real hand shows several joints, wrist included. A few stray points are noise.
+            guard joints.count >= settings.minimumHandJoints, confident(points[.wrist]) != nil else { return nil }
             let openness = HandGeometry.openness(
                 wrist: confident(points[.wrist]),
                 palm: confident(points[.middleMCP]),

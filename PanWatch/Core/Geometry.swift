@@ -79,6 +79,13 @@ enum HandGeometry {
         }
     }
 
+    /// The average of the points, the middle of a hand. The origin when there are none.
+    static func centroid(_ points: [NormPoint]) -> NormPoint {
+        guard !points.isEmpty else { return NormPoint(x: 0, y: 0) }
+        let count = Double(points.count)
+        return NormPoint(x: points.map(\.x).reduce(0, +) / count, y: points.map(\.y).reduce(0, +) / count)
+    }
+
     /// How open a hand is: the average distance from the wrist to the fingertips, in palm
     /// lengths (wrist to the base of the middle finger). About 1 for a fist or a hand
     /// closed around food, about 1.8 for an open hand. `aspect` is the frame's width over

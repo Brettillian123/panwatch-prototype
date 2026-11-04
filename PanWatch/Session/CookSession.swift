@@ -609,8 +609,8 @@ final class CookSession {
 
     // MARK: Saved tuning
 
-    // v3: the defaults changed, so tuning saved by older builds is ignored.
-    private static let settingsKey = "detectorSettings.v3"
+    // v4: hand filter and warm-up settings added, so tuning saved by older builds is ignored.
+    private static let settingsKey = "detectorSettings.v4"
 
     private static func loadSettings() -> DetectorSettings {
         guard let data = UserDefaults.standard.data(forKey: settingsKey),

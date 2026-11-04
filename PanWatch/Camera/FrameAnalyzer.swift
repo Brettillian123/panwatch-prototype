@@ -4,7 +4,12 @@ import AVFoundation
 struct AnalyzerSnapshot: Sendable {
     var frameWidth = 0
     var frameHeight = 0
+    /// Every hand Vision reported, counted or not. Its count is "hands seen".
     var hands: [[NormPoint]] = []
+    /// Hands the filter believes are real.
+    var handsCounted = 0
+    /// Hands seen but ignored because they haven't moved.
+    var handsIgnoredAsStill = 0
     var handInZone = false
     var phase: AdditionDetector.Phase = .disarmed
     var dwell = 0.0
@@ -12,6 +17,8 @@ struct AnalyzerSnapshot: Sendable {
     var liveChange = 0.0
     var handOpenness: Double?
     var handOpened = 0.0
+    /// Warm-up gave up and learned the pan with a hand in view.
+    var learnedWithHand = false
     var analysisFPS = 0.0
 }
 
@@ -30,6 +37,7 @@ final class FrameAnalyzer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     // Only touched on the frame queue.
     private var detector = AdditionDetector()
     private let handDetector = HandPoseDetector()
+    private var handFilter = HandFilter()
     private var detectorRegion: NormRect?
     private var frameCount = 0
     private var lastAnalysisTime: Double?
@@ -71,12 +79,18 @@ final class FrameAnalyzer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
         }
         detector.settings = settings
         detector.setArmed(armed && region != nil)
+        handFilter.settings = settings
 
-        let hands = handDetector.hands(in: pixelBuffer)
+        let seen = handDetector.hands(in: pixelBuffer, settings: settings)
+        // Only hands that hold steady from frame to frame and move over seconds count.
+        let filtered = handFilter.update(seen.map { HandGeometry.centroid($0.joints) }, at: time)
+        let hands = filtered.counted.map { seen[$0] }
         var snapshot = AnalyzerSnapshot(
             frameWidth: CVPixelBufferGetWidth(pixelBuffer),
             frameHeight: CVPixelBufferGetHeight(pixelBuffer),
-            hands: hands.map(\.joints),
+            hands: seen.map(\.joints),
+            handsCounted: hands.count,
+            handsIgnoredAsStill: filtered.ignoredAsStill,
             analysisFPS: analysisFPS
         )
 
@@ -99,6 +113,7 @@ final class FrameAnalyzer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
         snapshot.motion = detector.motion
         snapshot.liveChange = detector.liveChange
         snapshot.handOpened = detector.handOpened
+        snapshot.learnedWithHand = detector.learnedWithHand
         onSnapshot?(snapshot)
     }
 
