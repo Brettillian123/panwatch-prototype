@@ -7,13 +7,13 @@ protocol SpeechSource: AnyObject {
     /// where the voice supports one), handing each chunk to `buffer` in `format`, then
     /// calling `done` once: true when all the audio was made, false when it failed.
     /// Both may be called from any thread. `cancel()` stops a text part way; after it,
-    /// nothing more is called for that text.
-    func synthesize(
+    /// nothing more is called for that text. Both methods are called on the main actor.
+    @MainActor func synthesize(
         _ text: String, voice: String?, format: AVAudioFormat,
         buffer: @escaping @Sendable (AVAudioPCMBuffer) -> Void,
         done: @escaping @Sendable (Bool) -> Void
     )
-    func cancel()
+    @MainActor func cancel()
 }
 
 /// Reads prompts aloud in the voice the cook picked, or the most natural English voice on
@@ -214,7 +214,7 @@ final class AppleSpeechSource: SpeechSource, @unchecked Sendable {
     /// Bumped for every text, so buffers from a cancelled one are dropped.
     private var generation = 0
 
-    func synthesize(
+    @MainActor func synthesize(
         _ text: String, voice: String?, format: AVAudioFormat,
         buffer: @escaping @Sendable (AVAudioPCMBuffer) -> Void,
         done: @escaping @Sendable (Bool) -> Void
@@ -244,7 +244,7 @@ final class AppleSpeechSource: SpeechSource, @unchecked Sendable {
         }
     }
 
-    func cancel() {
+    @MainActor func cancel() {
         lock.withLock { generation += 1 }
         if synthesizer.isSpeaking { synthesizer.stopSpeaking(at: .immediate) }
     }
