@@ -6,8 +6,9 @@ import AlarmKit
 
 /// Rings a cooking timer as a real alarm when it ends: on the Lock Screen, through silent
 /// mode, and with the app closed. It uses AlarmKit on iOS 26 and later; on earlier
-/// versions it does nothing and the in-app timer is all there is. The alarm is a plain
-/// alert at the end time, so no widget extension is needed; the countdown shows in the app.
+/// versions it does nothing and the in-app timer is all there is. The alarm is a countdown,
+/// so until it rings the system shows the time left on the Lock Screen and in the Dynamic
+/// Island, drawn by the PanWatchTimer widget extension.
 @MainActor
 final class CookAlarms {
     /// The cook allowed alarms. Asked once at launch, next to the microphone.
@@ -42,10 +43,6 @@ final class CookAlarms {
 }
 
 #if canImport(AlarmKit)
-/// AlarmKit wants app data attached to each alarm; a cooking timer needs none.
-@available(iOS 26.0, *)
-struct CookAlarmData: AlarmMetadata {}
-
 @available(iOS 26.0, *)
 extension CookAlarms {
     nonisolated private static func authorize() async -> Bool {
@@ -60,17 +57,22 @@ extension CookAlarms {
         }
     }
 
+    /// A countdown for the seconds left until `end`, with no schedule: AlarmKit counts it
+    /// down on the Lock Screen and rings the alert when it reaches zero. There is no pause
+    /// button, because the in-app timer can't pause either.
     nonisolated private static func schedule(id: UUID, label: String, at end: Date) async {
+        let secondsLeft = max(1, end.timeIntervalSinceNow.rounded())
         let stop = AlarmButton(text: "Done", textColor: .white, systemImageName: "checkmark")
         let alert = AlarmPresentation.Alert(title: "\(label) timer is done", stopButton: stop)
+        let countdown = AlarmPresentation.Countdown(title: "\(label)")
         let attributes = AlarmAttributes<CookAlarmData>(
-            presentation: AlarmPresentation(alert: alert),
-            metadata: CookAlarmData(),
+            presentation: AlarmPresentation(alert: alert, countdown: countdown),
+            metadata: CookAlarmData(label: label),
             tintColor: .orange
         )
         let configuration = AlarmManager.AlarmConfiguration<CookAlarmData>(
-            countdownDuration: nil,
-            schedule: .fixed(end),
+            countdownDuration: Alarm.CountdownDuration(preAlert: secondsLeft, postAlert: nil),
+            schedule: nil,
             attributes: attributes,
             stopIntent: nil,
             secondaryIntent: nil,

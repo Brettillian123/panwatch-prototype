@@ -6,8 +6,37 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D0CAFE00000000000000001B /* PanWatchTimer.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D0CAFE000000000000000010 /* PanWatchTimer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D0CAFE00000000000000001C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0CAFE000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0CAFE000000000000000013;
+			remoteInfo = PanWatchTimer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D0CAFE00000000000000001A /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D0CAFE00000000000000001B /* PanWatchTimer.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D0CAFE000000000000000004 /* PanWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PanWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0CAFE000000000000000010 /* PanWatchTimer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PanWatchTimer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +45,27 @@
 			path = PanWatch;
 			sourceTree = "<group>";
 		};
+		D0CAFE000000000000000011 /* PanWatchTimer */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = PanWatchTimer;
+			sourceTree = "<group>";
+		};
+		D0CAFE000000000000000012 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D0CAFE000000000000000008 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0CAFE000000000000000015 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				D0CAFE000000000000000005 /* PanWatch */,
+				D0CAFE000000000000000011 /* PanWatchTimer */,
+				D0CAFE000000000000000012 /* Shared */,
 				D0CAFE000000000000000003 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				D0CAFE000000000000000004 /* PanWatch.app */,
+				D0CAFE000000000000000010 /* PanWatchTimer.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,13 +104,16 @@
 				D0CAFE000000000000000007 /* Sources */,
 				D0CAFE000000000000000008 /* Frameworks */,
 				D0CAFE000000000000000009 /* Resources */,
+				D0CAFE00000000000000001A /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D0CAFE00000000000000001D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				D0CAFE000000000000000005 /* PanWatch */,
+				D0CAFE000000000000000012 /* Shared */,
 			);
 			name = PanWatch;
 			packageProductDependencies = (
@@ -69,6 +121,29 @@
 			productName = PanWatch;
 			productReference = D0CAFE000000000000000004 /* PanWatch.app */;
 			productType = "com.apple.product-type.application";
+		};
+		D0CAFE000000000000000013 /* PanWatchTimer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0CAFE000000000000000017 /* Build configuration list for PBXNativeTarget "PanWatchTimer" */;
+			buildPhases = (
+				D0CAFE000000000000000014 /* Sources */,
+				D0CAFE000000000000000015 /* Frameworks */,
+				D0CAFE000000000000000016 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D0CAFE000000000000000011 /* PanWatchTimer */,
+				D0CAFE000000000000000012 /* Shared */,
+			);
+			name = PanWatchTimer;
+			packageProductDependencies = (
+			);
+			productName = PanWatchTimer;
+			productReference = D0CAFE000000000000000010 /* PanWatchTimer.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -82,6 +157,9 @@
 				TargetAttributes = {
 					D0CAFE000000000000000006 = {
 						CreatedOnToolsVersion = 16.0;
+					};
+					D0CAFE000000000000000013 = {
+						CreatedOnToolsVersion = 26.0;
 					};
 				};
 			};
@@ -100,12 +178,20 @@
 			projectRoot = "";
 			targets = (
 				D0CAFE000000000000000006 /* PanWatch */,
+				D0CAFE000000000000000013 /* PanWatchTimer */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D0CAFE000000000000000009 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0CAFE000000000000000016 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +208,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D0CAFE000000000000000014 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D0CAFE00000000000000001D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0CAFE000000000000000013 /* PanWatchTimer */;
+			targetProxy = D0CAFE00000000000000001C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D0CAFE00000000000000000B /* Debug */ = {
@@ -230,6 +331,56 @@
 			};
 			name = Release;
 		};
+		D0CAFE000000000000000018 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/PanWatchTimer-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sous Vision";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brettillian123.panwatch.timer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		D0CAFE000000000000000019 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/PanWatchTimer-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sous Vision";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brettillian123.panwatch.timer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -247,6 +398,15 @@
 			buildConfigurations = (
 				D0CAFE00000000000000000E /* Debug */,
 				D0CAFE00000000000000000F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0CAFE000000000000000017 /* Build configuration list for PBXNativeTarget "PanWatchTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0CAFE000000000000000018 /* Debug */,
+				D0CAFE000000000000000019 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
