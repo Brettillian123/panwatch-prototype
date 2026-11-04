@@ -100,6 +100,10 @@ enum VoiceCommand: Equatable, Sendable {
         if screen == .recipes, words.count == 1, let title = dish(word: words[0]) { return .makeRecipe(title) }
         let set = Set(words)
         let phrase = words.joined(separator: " ")
+        // First, so "restart the recipe" restarts rather than opening the recipes. "Restart", "restart the recipe", "start over", "start again", "from the top".
+        if (set.contains("restart") && !set.contains("timer")) || phrase.contains("start over")
+            || phrase.contains("start again") || phrase.contains("begin again")
+            || ["from top", "first step"].contains(phrase) { return .startOver }
 
         // Before the "no" words, because "cancel" and "stop" are among them.
         if let timerAt = words.firstIndex(where: { $0 == "timer" || $0 == "timers" }),
@@ -155,7 +159,6 @@ enum VoiceCommand: Equatable, Sendable {
         if set.contains("recipes") || set.contains("recipe") || phrase == "what can i cook" { return .showRecipes }
         if (set.contains("record") && set.contains("practice")) || phrase == "start recording" { return .recordPractice(true) }
         if ["done", "close", "close it", "close that", "close this", "all done", "i'm done"].contains(phrase) { return .done }
-        if ["start over", "from top", "first step"].contains(phrase) { return .startOver }
         if phrase.hasPrefix("where am i") || ((set.contains("what") || set.contains("which")) && set.contains("step")) {
             return .whereAmI
         }

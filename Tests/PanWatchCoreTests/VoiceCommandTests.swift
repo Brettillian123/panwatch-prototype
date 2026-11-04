@@ -86,4 +86,12 @@ struct VoiceCommandTests {
         #expect(pasta?.watch?.countsRelease == true)
         #expect(garlic?.watch?.countsRelease == false)
     }
+
+    @Test func restartingTheRecipe() {
+        for text in ["restart", "restart the recipe", "restart recipe", "start over", "start over please",
+                     "start again", "let's start over", "from the top", "begin again"] {
+            #expect(VoiceCommand.parse(text) == .startOver, "\(text)")
+        }
+        #expect(VoiceCommand.parse("restart the timer") != .startOver)
+    }
 }
