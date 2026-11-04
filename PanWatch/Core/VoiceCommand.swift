@@ -90,11 +90,14 @@ enum VoiceCommand: Equatable, Sendable {
         allWords(in: text).filter { !fillerWords.contains($0) }
     }
 
-    static func parse(_ text: String) -> VoiceCommand? {
+    /// What `text` asks for on `screen`. The screens only differ on the recipe menu, where
+    /// one word of a single dish, like "rice" or "eggs", picks it.
+    static func parse(_ text: String, screen: AppScreen = .cook) -> VoiceCommand? {
         let spoken = allWords(in: text)
         // Filler is dropped before counting, so "okay, next step please" is still short.
         let words = spoken.filter { !fillerWords.contains($0) }
         guard !words.isEmpty, words.count <= maximumWords else { return nil }
+        if screen == .recipes, words.count == 1, let title = dish(word: words[0]) { return .makeRecipe(title) }
         let set = Set(words)
         let phrase = words.joined(separator: " ")
 
@@ -246,6 +249,15 @@ enum VoiceCommand: Equatable, Sendable {
               best.matched + (choosing ? 1 : 0) >= 2, best.other <= 1,
               scored.filter({ $0.matched == best.matched }).count == 1 else { return nil }
         return best.title
+    }
+
+    /// The one dish whose title has `word` in it: "rice", "eggs", "oatmeal", "chicken",
+    /// "broccoli", "pasta". Only the recipe menu listens for a single word, because
+    /// anywhere else "the pasta looks good" is talk.
+    static func dish(word: String, titles: [String] = Recipe.all.map(\.title)) -> String? {
+        let said = stem(word)
+        let having = titles.filter { allWords(in: $0).map(stem).contains(said) }
+        return having.count == 1 ? having[0] : nil
     }
 
     /// "Eggs" and "egg" are the same dish.

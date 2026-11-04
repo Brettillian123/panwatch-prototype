@@ -384,6 +384,8 @@ struct SayLine: View {
     /// Phrases that work right now, in the order they're most useful. Only commands the
     /// grammar understands today; never empty.
     private var phrases: [String] {
+        // A menu has its own few phrases.
+        if session.screen != .cook { return session.sayPhrases }
         if session.suggestion != nil { return ["yes", "not now"] }
         if session.isMarkingPan {
             return session.draftRegion == nil ? ["cancel"] : ["start watching", "cancel"]
@@ -500,94 +502,6 @@ struct CameraStatusOverlay: View {
         }
         .frame(maxWidth: 520, alignment: .leading)
         .ironPanel(padding: 24)
-    }
-}
-
-// MARK: - Settings, for now
-
-/// The old icon row as worded rows: stands in for the Settings screen `ui-menus` builds,
-/// and goes when that lands. Each row says what it is, how it is now, and what a tap does.
-struct InterimSettings: View {
-    let session: CookSession
-    let close: () -> Void
-    @State private var choosingVoice = false
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: Theme.gap) {
-            Text("Settings")
-                .font(Theme.reading)
-                .foregroundStyle(Theme.flour)
-            ScrollView {
-                VStack(spacing: 0) {
-                    row("Camera", now: session.cameraOn ? "On" : "Off", action: session.cameraOn ? "Turn off" : "Turn on") {
-                        session.setCamera(on: !session.cameraOn)
-                    }
-                    if session.cameraOn {
-                        let front = session.cameraPosition == .front
-                        row("Camera side", now: front ? "Front" : "Back", action: front ? "Use back" : "Use front") {
-                            Task { await session.flipCamera() }
-                        }
-                        row("Pan box", now: session.region == nil ? "None" : "Drawn", say: "draw the pan again", action: "Draw again") {
-                            close()
-                            session.markPan()
-                        }
-                    }
-                    row("Speaks", now: session.voiceOn ? "On" : "Quiet", action: session.voiceOn ? "Go quiet" : "Speak") {
-                        session.voiceOn.toggle()
-                    }
-                    row("Voice", now: nil, action: "Choose") { choosingVoice = true }
-                    row("Listening", now: session.listeningOn ? "On" : "Off", action: session.listeningOn ? "Stop" : "Listen") {
-                        session.toggleListening()
-                    }
-                    row("Details", now: session.showDebug ? "Shown" : "Hidden", action: session.showDebug ? "Hide" : "Show") {
-                        session.showDebug.toggle()
-                        close()
-                    }
-                }
-            }
-            HStack {
-                Spacer()
-                Button("Done", action: close)
-                    .buttonStyle(WordButtonStyle(kind: .primary))
-            }
-        }
-        .padding(.top, Theme.gap)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(Theme.iron)
-        .sheet(isPresented: $choosingVoice) {
-            VoicePicker(session: session)
-        }
-    }
-
-    private func row(_ name: String, now: String?, say phrase: String? = nil, action word: String, perform: @escaping () -> Void) -> some View {
-        VStack(spacing: 0) {
-            HStack(spacing: Theme.gap) {
-                Text(name)
-                    .font(Theme.control)
-                    .foregroundStyle(Theme.flour)
-                if let now {
-                    Text(now)
-                        .font(Theme.control)
-                        .foregroundStyle(Theme.ash)
-                }
-                Spacer(minLength: Theme.gap)
-                if let phrase {
-                    Text("Say \u{201C}\(phrase)\u{201D}")
-                        .font(Theme.detail)
-                        .foregroundStyle(Theme.ash)
-                }
-                Button(word) {
-                    session.noteTouch()
-                    perform()
-                }
-                .buttonStyle(WordButtonStyle(height: Theme.target))
-                .accessibilityLabel("\(name): \(word)")
-            }
-            .frame(minHeight: Theme.bigTarget)
-            Rectangle()
-                .fill(Theme.rule)
-                .frame(height: 1)
-        }
     }
 }
 

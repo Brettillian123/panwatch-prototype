@@ -155,6 +155,9 @@ final class CookSession {
         listener.intentContext = { [weak self] in
             self?.intentContext
         }
+        listener.screen = { [weak self] in
+            self?.screen ?? .cook
+        }
         cameraOn = UserDefaults.standard.object(forKey: Self.cameraKey) as? Bool ?? true
         if cameraOn { offeredPan = savedPan() }
         let resumed = resumeCook(timers: restoreTimers())
@@ -208,6 +211,7 @@ final class CookSession {
     /// waiting on them belonged to the old recipe, so those are dropped.
     func choose(_ recipe: Recipe) {
         self.recipe = recipe
+        cookUnderWay = true
         screen = .cook
         removeScheduled(scheduledSteps)
         finishedSteps = []
@@ -489,6 +493,8 @@ final class CookSession {
     private(set) var screen: AppScreen = .recipes
     /// True while the recipe menu is up: at launch, and when the cook asks for it.
     var isChoosingRecipe: Bool { screen == .recipes }
+    /// A dish has been chosen (or a saved cook resumed), so the recipe menu can mark it.
+    private(set) var cookUnderWay = false
     /// The screen the help overlay was opened from, whose commands it lists first.
     private(set) var helpFrom: AppScreen = .cook
     @ObservationIgnored private var helpClose: Task<Void, Never>?
@@ -510,7 +516,7 @@ final class CookSession {
             showRecipes()
             return
         case .voices:
-            voiceOptions = Speaker.options()
+            refreshVoices()
             if highlightedVoiceID == nil || !voiceOptions.contains(where: { $0.id == highlightedVoiceID }) {
                 highlightedVoiceID = voiceID ?? voiceOptions.first?.id
             }
@@ -528,12 +534,29 @@ final class CookSession {
         refreshArming()
     }
 
-    /// "Done", "close" or the Done button: back to the cook screen from any menu.
+    /// "Done", "close" or the Done button: back to the cook screen from any menu. Help
+    /// goes back to the screen it was opened from, so it can be asked for from a menu.
     func closeMenu() {
         helpClose?.cancel()
         if screen == .voices { stopSample() }
-        screen = .cook
+        screen = screen == .help ? helpFrom : .cook
         refreshArming()
+    }
+
+    /// "What can I say" or its row in Settings: the help screen, reading the first four
+    /// phrases that work where the cook asked.
+    func showHelp() {
+        open(.help)
+        say("You can say " + helpPhrases.prefix(4).joined(separator: ", ") + ".")
+    }
+
+    /// The phrases that work on the screen help was opened from, which it shows first.
+    var helpPhrases: [String] {
+        AppScreen.sayPhrases(
+            screen: helpFrom, drawing: isMarkingPan, offer: suggestion != nil, timerDone: timers.contains(where: \.isDone),
+            needsPan: needsPan, canStartTimer: canStartStepTimer, cameraOn: cameraOn,
+            voiceName: voiceOptions.first { $0.id == highlightedVoiceID }?.name ?? "Samantha"
+        )
     }
 
     // MARK: Voices by voice
@@ -543,6 +566,13 @@ final class CookSession {
     /// The row "next voice" and "use this one" point at.
     private(set) var highlightedVoiceID: String?
 
+    /// Reads the phone's voices in the voice menu's order, so "next voice" walks down the
+    /// rows as drawn: the cook's own, then the best (premium and enhanced), then the rest.
+    func refreshVoices() {
+        let all = Speaker.options()
+        voiceOptions = all.filter(\.isPersonal) + all.filter { !$0.isPersonal }
+    }
+
     /// A tap on a row in the voice menu.
     func highlightVoice(_ id: String) {
         highlightedVoiceID = id
@@ -550,7 +580,7 @@ final class CookSession {
 
     /// "Next voice": the row below the highlighted one, played.
     func nextVoice() {
-        if voiceOptions.isEmpty { voiceOptions = Speaker.options() }
+        if voiceOptions.isEmpty { refreshVoices() }
         guard !voiceOptions.isEmpty else { return }
         let index = voiceOptions.firstIndex { $0.id == highlightedVoiceID } ?? -1
         let next = voiceOptions[(index + 1) % voiceOptions.count]
@@ -568,7 +598,7 @@ final class CookSession {
 
     /// The English voice called `name` (as heard, lowercased), the best of that name first.
     private func voice(named name: String) -> VoiceOption? {
-        if voiceOptions.isEmpty { voiceOptions = Speaker.options() }
+        if voiceOptions.isEmpty { refreshVoices() }
         return voiceOptions.first { $0.name.lowercased() == name }
             ?? voiceOptions.first { $0.name.lowercased().hasPrefix(name) || name.hasPrefix($0.name.lowercased()) }
     }
@@ -582,7 +612,7 @@ final class CookSession {
         Task { [weak self] in
             _ = await Speaker.requestPersonalVoice()
             guard let self else { return }
-            self.voiceOptions = Speaker.options()
+            self.refreshVoices()
             if let mine = self.voiceOptions.first(where: \.isPersonal) {
                 self.useVoice(mine)
             } else {
@@ -834,13 +864,7 @@ final class CookSession {
             say("Not listening for 2 minutes.")
             pauseListening()
         case .help:
-            open(.help)
-            let phrases = AppScreen.sayPhrases(
-                screen: helpFrom, drawing: isMarkingPan, offer: suggestion != nil,
-                timerDone: timers.contains(where: \.isDone), needsPan: needsPan,
-                canStartTimer: canStartStepTimer, cameraOn: cameraOn
-            ).prefix(4)
-            say("You can say " + phrases.joined(separator: ", ") + ".")
+            showHelp()
         case .settings:
             open(.settings)
             say("Settings.")
@@ -1159,6 +1183,7 @@ final class CookSession {
         self.recipe = recipe
         stepIndex = cook.stepIndex
         finishedSteps = cook.finishedSteps
+        cookUnderWay = true
         screen = .cook
         let resumed = StepCallOuts.resumed(from: saved, in: recipe, at: stepIndex, now: Date())
         if let step = resumed.catchUp {
