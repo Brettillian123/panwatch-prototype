@@ -1,8 +1,11 @@
 import Foundation
 @testable import PanWatchCore
 
-enum Surface: String, Sendable { case wood, granite, white, glossy }
-enum PotKind: String, Sendable { case steel, dark, light }
+enum Surface: String, Sendable {
+    case wood, granite, white, glossy
+    case butcherBlock = "butcher block", blackQuartz = "black quartz", patternTile = "pattern tile"
+}
+enum PotKind: String, Sendable { case steel, dark, light, copper, enamel, nonstick }
 enum Vessel: String, Sendable { case stockPot = "stock pot", skillet }
 
 /// How the kitchen is lit. The app locks exposure and white balance while it watches, so
@@ -23,6 +26,10 @@ struct Lighting: Sendable {
     var bandRoll = 0.0
     /// How much the cook's body darkens what it shades.
     var shadowDepth = 0.3
+    /// Afternoon sun through a window: a soft shadow that drifts across the box, as a fraction.
+    var sunShadow = 0.0
+    /// The whole picture brightening and dimming from frame to frame (a bulb on a dimmer).
+    var flicker = 0.0
 }
 
 struct Environment: Sendable {
@@ -110,6 +117,21 @@ struct CounterView: Sendable {
         )
     }
 
+    /// Another pot size or place in the box, or the camera a little higher or lower: the rim
+    /// row, the pot's sides and the stovetop as fractions of the box.
+    init(vessel: Vessel, rim: Double, left: Double, right: Double, floor: Double = 1) {
+        let size = PanPatch.size(for: Self.region, frameWidth: Self.frameWidth, frameHeight: Self.frameHeight)
+        width = size.width
+        height = size.height
+        self.vessel = vessel
+        rimRow = min(height - 3, max(5, Int((Double(height) * rim).rounded())))
+        potLeft = max(2, Int((Double(width) * left).rounded()))
+        potRight = min(width - 2, max(potLeft + 10, Int((Double(width) * right).rounded())))
+        floorRow = floor >= 1 ? height : min(height, max(rimRow + 3, Int((Double(height) * floor).rounded())))
+    }
+
+    /// The middle of the pot, across the frame.
+    var potCenterX: Double { Self.region.x + Double(potLeft + potRight) / 2 / Double(width) * Self.region.width }
     /// The rim's height in the frame.
     var rimY: Double { Self.region.y + Double(rimRow) / Double(height) * Self.region.height }
     /// Patch pixels per frame height.
@@ -136,6 +158,17 @@ struct SceneState {
     var walkerColumn: Double? = nil
     /// Droplets thrown up by something going in, 0-1.
     var splash = 0.0
+    /// A phone screen lighting up beside the stove, 0-1.
+    var glow = 0.0
+    /// Boil-over foam standing above the rim, in patch rows.
+    var foam = 0.0
+    /// Food pieces resting high enough to show over the rim, like chicken in a low pan.
+    var pile = 0
+    /// Pieces in the air on their way in, 0-1.
+    var falling = 0.0
+    var food = Color3(y: 205, cb: 98, cr: 145)
+    /// A second pot on the back burner, showing over the front one's rim.
+    var backPot = false
 }
 
 struct Color3: Sendable {
@@ -147,7 +180,7 @@ struct Color3: Sendable {
     static let steel = Color3(y: 175, cb: 129, cr: 127)
 }
 
-enum Prop: Sendable { case none, bag, box, cup, spoon, tongs, board, knife, lid }
+enum Prop: Sendable { case none, bag, box, cup, spoon, tongs, board, knife, lid, towel }
 
 /// A cook's hand as it should be painted into the patch this frame.
 struct PaintedHand {
@@ -158,6 +191,9 @@ struct PaintedHand {
     var openness: Double
     var sleeve: Color3
     var prop: Prop
+    var skin = Color3.skin
+    var longSleeve = false
+    var mitt = false
 }
 
 /// Paints the pan box frame by frame: backdrop, pot, contents, steam, hands, then light and noise.
@@ -205,6 +241,19 @@ struct SceneRenderer {
                     let grout = c % 16 == 0 || r % 12 == 0
                     let highlight = 110 * exp(-pow(x - 20 - 0.3 * y, 2) / 18)
                     plane.append(Color3(y: (grout ? 150 : 70) + highlight + 2 * random.gaussian(), cb: 134, cr: 124))
+                case .butcherBlock:
+                    let strip = c / 5, tone = [0.0, 18, -14][strip % 3]
+                    let grain = 4 * sin(y * 0.8 + Double(strip) * 2)
+                    plane.append(Color3(y: 140 + tone + grain + 4 * random.gaussian(), cb: 104 + 2 * random.gaussian(), cr: 152 + 0.2 * tone))
+                case .blackQuartz:
+                    let fleck = random.unit() > 0.94
+                    plane.append(Color3(y: fleck ? 150 : 22 + 3 * random.gaussian(), cb: 128, cr: 128))
+                case .patternTile:
+                    let motif = (c + r) % 10 < 2 || (c - r + 120) % 10 < 2
+                    let grout = c % 10 == 0 || r % 10 == 0
+                    plane.append(Color3(
+                        y: grout ? 200 : (motif ? 75 : 190) + 2 * random.gaussian(), cb: motif && !grout ? 150 : 126, cr: motif && !grout ? 112 : 130
+                    ))
                 }
             }
         }
@@ -254,6 +303,9 @@ struct SceneRenderer {
                     let cover = min(1, max(0, 9 - abs(x - walker)))
                     p = blend(p, Color3(y: 60 + 6 * sin(Double(r) * 0.9), cb: 140, cr: 122), cover)
                 }
+                if s.backPot, r >= view.rimRow - 7, r < view.rimRow, x >= (left + right) / 2 - 4, x < right + 10 {
+                    p = Color3(y: r == view.rimRow - 7 ? 195 : 115 + 20 * sin(x * 0.5), cb: 128, cr: 128)
+                }
                 if r >= view.floorRow {
                     p = Color3(y: c % 6 == 0 ? 62 : 32, cb: 128, cr: 128)
                 }
@@ -268,6 +320,7 @@ struct SceneRenderer {
         if s.lidSeated { paintLid(&plane, left: left, right: right) }
         paintSpaghetti(&plane, share: s.spaghetti, shift: Int(s.potShift.rounded()))
         paintSplash(&plane, level: s.splash, left: left, right: right)
+        paintFood(&plane, state: s, left: left, right: right, time: time)
         paintSteam(&plane, level: s.steam, left: left, right: right)
         for hand in hands { paint(hand, on: &plane, left: left, right: right) }
         return expose(plane, state: s, frame: frame)
@@ -317,6 +370,18 @@ struct SceneRenderer {
             if rim == 1 { return Color3(y: 190, cb: 122, cr: 134) }
             let edge = (x - left - width / 2) / (width / 2)
             return Color3(y: 205 - 25 * edge * edge, cb: 120, cr: 136)
+        case .copper:
+            if rim == 0 { return Color3(y: 205, cb: 104, cr: 162) }
+            if rim == 1 { return Color3(y: 140, cb: 110, cr: 158) }
+            let band = left + 0.3 * width + 2 * sin(0.3 * time)
+            let y = 115 + 65 * exp(-pow(x - band, 2) / 8) - 40 * s.cookNear * exp(-pow(x - s.cookColumn, 2) / 60)
+            return Color3(y: y, cb: 106, cr: 164)
+        case .enamel:
+            if rim <= 1 { return Color3(y: rim == 0 ? 75 : 60, cb: 128, cr: 128) }
+            return Color3(y: 92 + 70 * exp(-pow(x - left - 0.25 * width, 2) / 6), cb: 110, cr: 178)
+        case .nonstick:
+            if rim == 0 { return Color3(y: 125, cb: 128, cr: 128) }
+            return Color3(y: 26 + 16 * exp(-pow(x - left - 0.6 * width, 2) / 12), cb: 129, cr: 127)
         }
     }
 
@@ -397,6 +462,37 @@ struct SceneRenderer {
         }
     }
 
+    /// Pieces flying in, pieces resting above a low rim, and boil-over foam.
+    private mutating func paintFood(_ plane: inout [Color3], state s: SceneState, left: Double, right: Double, time: Double) {
+        let w = view.width, span = right - left
+        if s.falling > 0 {
+            for _ in 0..<Int(s.falling * 6 + random.unit()) {
+                let r = view.rimRow - 1 - Int(random.range(0, 12)), c = Int(random.range(left + 3, right - 3))
+                guard r >= 0, c >= 0, c < w else { continue }
+                plane[r * w + c] = blend(plane[r * w + c], s.food, 0.7)
+            }
+        }
+        for piece in 0..<min(4, s.pile) {
+            let middle = left + (0.25 + 0.17 * Double(piece)) * span, half = 0.09 * span
+            for k in 1...3 {
+                let r = view.rimRow - k, reach = half * (1 - pow(Double(k - 1) / 3.2, 2))
+                guard r >= 0 else { continue }
+                for c in max(0, Int(middle - reach))..<min(w, Int(middle + reach) + 1) {
+                    plane[r * w + c] = Color3(y: s.food.y - 12 * Double(k) + 6 * sin(Double(c)), cb: s.food.cb, cr: s.food.cr)
+                }
+            }
+        }
+        if s.foam > 0.5 {
+            for k in 1...max(1, Int(s.foam.rounded())) {
+                let r = view.rimRow - k
+                guard r >= 0 else { continue }
+                for c in max(0, Int(left) + 1)..<min(w, Int(right)) where sin(Double(c) * 0.9 + time * 3) > Double(k) / s.foam - 1.2 {
+                    plane[r * w + c] = blend(plane[r * w + c], Color3(y: 232, cb: 126, cr: 130), 0.85)
+                }
+            }
+        }
+    }
+
     /// An arm from the shoulder, a hand, and whatever it holds. The pot's near wall hides
     /// anything that dips below the rim.
     private func paint(_ hand: PaintedHand, on plane: inout [Color3], left: Double, right: Double) {
@@ -418,11 +514,14 @@ struct SceneRenderer {
             }
             colors.append(color)
         }
-        segment(hand.shoulder, elbow, radius: 6, hand.sleeve)
-        segment(elbow, wrist, radius: 5, Color3.skin)
+        // Small hands (a child's) are thinner too; adult hands keep the suite's widths.
+        let scale = hand.length < 21 ? max(0.5, hand.length / 25) : 1
+        segment(hand.shoulder, elbow, radius: 6 * scale, hand.sleeve)
+        segment(elbow, wrist, radius: 5 * scale, hand.longSleeve ? hand.sleeve : hand.skin)
         let open = min(1, max(0, (hand.openness - 1) / 0.8))
         let reach = hand.length * (0.30 + 0.25 * open)
-        segment(wrist, (c: wrist.c + dc * reach * 2, r: wrist.r + dr * reach * 2), radius: 4.5 + 2 * open, Color3.skin)
+        let palm = hand.mitt ? Color3(y: 196, cb: 120, cr: 142) : hand.skin
+        segment(wrist, (c: wrist.c + dc * reach * 2, r: wrist.r + dr * reach * 2), radius: (hand.mitt ? 6.5 : 4.5 * scale) + 2 * open, palm)
         switch hand.prop {
         case .none: break
         case .bag: segment((hc, hr), (hc - 6, hr + 13), radius: 4, Color3(y: 190, cb: 105, cr: 140))
@@ -433,6 +532,7 @@ struct SceneRenderer {
             segment((hc, hr), (hc - 1.5, hr + 16), radius: 0.6, Color3.steel)
             segment((hc, hr), (hc + 1.5, hr + 16), radius: 0.6, Color3.steel)
         case .board: segment((hc, hr + 2), (hc - 18, hr + 6), radius: 2, Color3(y: 165, cb: 110, cr: 148))
+        case .towel: segment((hc - 5, hr + 2), (hc + 5, hr + 4), radius: 3, Color3(y: 215, cb: 135, cr: 120))
         case .knife: segment((hc, hr), (hc - 8, hr + 3), radius: 0.6, Color3.steel)
         case .lid:
             segment((hc - 16, hr + 7), (hc + 16, hr + 7), radius: 2, Color3.steel)
@@ -463,11 +563,19 @@ struct SceneRenderer {
             if light.banding > 0 {
                 gain *= 1 + light.banding * sin(2 * .pi * (r * Double(view.height) / light.bandPeriod + light.bandRoll * Double(frame)))
             }
+            let column = Double(index % view.width)
+            if light.sunShadow > 0 {
+                let edge = (Double(frame) * 0.2).truncatingRemainder(dividingBy: Double(view.width) + 40) - 20
+                gain *= 1 - light.sunShadow * exp(-pow(column - edge - 0.3 * r * Double(view.height), 2) / 60)
+            }
+            if light.flicker > 0 { gain *= 1 + light.flicker * sin(Double(frame) * 2.3) }
+            let glow = s.glow > 0 ? s.glow * exp(-pow(column - 6, 2) / 300) : 0
+            gain *= 1 + 0.4 * glow
             let p = plane[index]
             let y = p.y * gain + light.noise * random.gaussian()
             // Clipped highlights lose their color.
             let washed = min(1, max(0, (y - 235) / 40))
-            let cbValue = 128 + (p.cb - 128 + light.cbShift - 6 * s.hoodLight) * (1 - washed) + light.chromaNoise * random.gaussian()
+            let cbValue = 128 + (p.cb - 128 + light.cbShift - 6 * s.hoodLight + 12 * glow) * (1 - washed) + light.chromaNoise * random.gaussian()
             let crValue = 128 + (p.cr - 128 + light.crShift + 5 * s.hoodLight) * (1 - washed) + light.chromaNoise * random.gaussian()
             luma[index] = UInt8(min(255, max(0, y.rounded())))
             cb[index] = UInt8(min(255, max(0, cbValue.rounded())))

@@ -96,6 +96,11 @@ struct HandTrack: Sendable {
     /// from the camera look shorter. 1 is a hand seen face on.
     var foreshortening = 0.7
     var sleeve = Color3(y: 60, cb: 145, cr: 118)
+    var skin = Color3.skin
+    /// A sleeve down to the wrist, so no forearm skin shows.
+    var longSleeve = false
+    /// An oven mitt instead of a bare hand.
+    var mitt = false
 
     init(_ source: Source = .cook, keys: [HandKey], base: HandKey) {
         self.source = source
@@ -212,7 +217,8 @@ struct HandTrack: Sendable {
         guard source == .cook, let s = state(at: t) else { return nil }
         return PaintedHand(
             center: view.patch(s.point), shoulder: view.patch(shoulder),
-            length: size * view.pixelsPerFrameHeight, openness: s.openness, sleeve: sleeve, prop: holds(at: t)
+            length: size * view.pixelsPerFrameHeight, openness: s.openness, sleeve: sleeve, prop: holds(at: t),
+            skin: skin, longSleeve: longSleeve, mitt: mitt
         )
     }
 }
@@ -221,6 +227,13 @@ struct HandTrack: Sendable {
 struct VisionHand: Sendable {
     var confidence: Double
     var joints: [Joint: NormPoint]
+
+    /// The hand as the app reads it from Vision: every joint Vision is sure of, sure enough to use.
+    var reading: HandReading {
+        HandReading(confidence: confidence, joints: Joint.allCases.compactMap { joint in
+            joints[joint].map { HandReading.Joint(name: HandReading.JointName(rawValue: UInt8(joint.rawValue))!, point: $0, confidence: 0.8) }
+        })
+    }
 
     /// The joints in a fixed order, so sums come out the same on every run.
     var orderedJoints: [NormPoint] { Joint.allCases.compactMap { joints[$0] } }

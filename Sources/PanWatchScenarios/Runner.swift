@@ -12,21 +12,26 @@ struct SyntheticFrame {
 struct ScenarioFrames: Sequence, IteratorProtocol {
     static let rate = 15.0
 
-    let run: Run
     let script: Script
     let view: CounterView
     let count: Int
+    private let environment: Environment
     private var renderer: SceneRenderer
     private var random: SeededRandom
     private var index = 0
 
     init(run: Run) {
-        self.run = run
-        script = run.script()
-        view = CounterView(vessel: run.vessel)
-        count = Int((run.duration * Self.rate).rounded())
-        renderer = SceneRenderer(view: view, environment: run.environment, seed: run.name)
-        random = SeededRandom(name: run.name + "/vision")
+        self.init(name: run.name, script: run.script(), view: CounterView(vessel: run.vessel), environment: run.environment, duration: run.duration)
+    }
+
+    /// Any scripted situation: the name seeds the picture and what Vision sees.
+    init(name: String, script: Script, view: CounterView, environment: Environment, duration: Double) {
+        self.script = script
+        self.view = view
+        self.environment = environment
+        count = Int((duration * Self.rate).rounded())
+        renderer = SceneRenderer(view: view, environment: environment, seed: name)
+        random = SeededRandom(name: name + "/vision")
     }
 
     mutating func next() -> SyntheticFrame? {
@@ -35,7 +40,7 @@ struct ScenarioFrames: Sequence, IteratorProtocol {
         var vision: [VisionHand] = []
         var painted: [PaintedHand] = []
         for track in script.hands {
-            if let seen = track.observe(at: t, in: run.environment, random: &random) { vision.append(seen) }
+            if let seen = track.observe(at: t, in: environment, random: &random) { vision.append(seen) }
             if let paint = track.painted(at: t, in: view) { painted.append(paint) }
         }
         let patch = renderer.render(script.scene(t), hands: painted, frame: index)
@@ -67,18 +72,6 @@ struct FramePipeline {
             region: region, patch: frame.patch, armed: true
         )
         return last.decision
-    }
-}
-
-extension VisionHand {
-    /// The hand as the app records it. The generator reports only the joints Vision is sure
-    /// of, so each carries full confidence.
-    var reading: HandReading {
-        HandReading(confidence: confidence, joints: Joint.allCases.compactMap { joint in
-            joints[joint].map {
-                HandReading.Joint(name: HandReading.JointName(rawValue: UInt8(joint.rawValue))!, point: $0, confidence: 1)
-            }
-        })
     }
 }
 
