@@ -44,4 +44,33 @@ struct RecipeLibraryTests {
         let cues = Recipe.hardBoiledEggs.steps.compactMap(\.cue)
         #expect(cues.map(\.secondsLeft) == [120, 0])
     }
+
+    @Test func everyInstructionFitsLargeType() {
+        for recipe in Recipe.all {
+            for step in recipe.steps {
+                #expect(step.instruction.count <= 70, "\(recipe.title) step \(step.id)")
+            }
+        }
+    }
+
+    @Test func trimmedStepsKeepEveryNumberFromTheSpokenText() {
+        func numbers(_ text: String) -> [String] {
+            text.split(whereSeparator: { !$0.isNumber }).map(String.init)
+        }
+        for recipe in Recipe.all {
+            for step in recipe.steps {
+                guard let spoken = step.spoken else { continue }
+                let shown = Set(numbers(step.instruction))
+                for number in numbers(spoken) {
+                    #expect(shown.contains(number), "\(recipe.title) step \(step.id): \(number)")
+                }
+            }
+        }
+    }
+
+    @Test func everyRecipePassesTheChecks() {
+        for recipe in Recipe.all {
+            #expect(recipe.problems().isEmpty, "\(recipe.title)")
+        }
+    }
 }
