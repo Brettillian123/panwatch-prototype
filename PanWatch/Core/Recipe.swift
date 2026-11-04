@@ -35,6 +35,11 @@ struct RecipeStep: Identifiable, Equatable, Sendable {
     var spoken: String? = nil
 }
 
+extension RecipeStep {
+    /// What the app reads aloud: the full wording when the screen shows a shortened one.
+    var spokenText: String { spoken ?? instruction }
+}
+
 struct Recipe: Sendable {
     let title: String
     let steps: [RecipeStep]

@@ -150,7 +150,7 @@ final class CookSession {
         if cameraOn { offeredPan = savedPan() }
         let resumed = resumeCook(timers: restoreTimers())
         if resumed {
-            welcome = "Welcome back. Step \(stepIndex + 1). \(currentStep.instruction)"
+            welcome = "Welcome back. Step \(stepIndex + 1). \(currentStep.spokenText)"
                 + (offeredPan != nil ? " \(Self.samePlacePrompt)" : "")
         }
     }
@@ -190,7 +190,7 @@ final class CookSession {
         suggestion = nil
         refreshArming()
         saveCook()
-        say(text ?? "Step \(index + 1). \(currentStep.instruction)")
+        say(text ?? "Step \(index + 1). \(currentStep.spokenText)")
     }
 
     // MARK: Recipes
@@ -207,7 +207,7 @@ final class CookSession {
         stepIndex = 0
         refreshArming()
         saveCook()
-        say("\(recipe.title). Step 1. \(currentStep.instruction)")
+        say("\(recipe.title). Step 1. \(currentStep.spokenText)")
     }
 
     func showRecipes() {
@@ -659,7 +659,7 @@ final class CookSession {
             if let suggestion {
                 say(offerText(suggestion.watch))
             } else {
-                say("Step \(stepIndex + 1). \(currentStep.instruction)")
+                say("Step \(stepIndex + 1). \(currentStep.spokenText)")
             }
         case .yes:
             if suggestion != nil {
@@ -731,17 +731,17 @@ final class CookSession {
             say(camera.analyzer.recorder.mark() ? "Marked." : "Practice recording is off.")
         case .goToStep(let number):
             if number - 1 == stepIndex {
-                say("Step \(number). \(currentStep.instruction)")
+                say("Step \(number). \(currentStep.spokenText)")
             } else if recipe.steps.indices.contains(number - 1) {
                 go(to: number - 1)
             } else {
                 say("This recipe has \(recipe.steps.count) steps.")
             }
         case .whereAmI:
-            say("\(recipe.title), step \(stepIndex + 1) of \(recipe.steps.count). \(currentStep.instruction)")
+            say("\(recipe.title), step \(stepIndex + 1) of \(recipe.steps.count). \(currentStep.spokenText)")
         case .startOver:
             if stepIndex == 0 {
-                say("Step 1. \(currentStep.instruction)")
+                say("Step 1. \(currentStep.spokenText)")
             } else {
                 question = .startOver
                 say("Start over from step 1?")
@@ -756,7 +756,7 @@ final class CookSession {
             } else if dish.title == recipe.title && stepIndex > 0 {
                 // Back from the menu to the dish already under way, where it was.
                 closeMenu()
-                say("\(dish.title). Step \(stepIndex + 1). \(currentStep.instruction)")
+                say("\(dish.title). Step \(stepIndex + 1). \(currentStep.spokenText)")
             } else {
                 choose(dish)
             }
@@ -971,7 +971,7 @@ final class CookSession {
         } else if index == stepIndex, !isLastStep {
             // The camera just confirmed this step happened, so the recipe moves on.
             stepIndex += 1
-            say("\(label) timer started. Next, \(Self.lowercasingFirst(currentStep.instruction))")
+            say("\(label) timer started. Next, \(Self.lowercasingFirst(currentStep.spokenText))")
         } else {
             say("\(label) timer started.")
         }
@@ -1080,7 +1080,7 @@ final class CookSession {
         let atEnd = scheduledSteps.filter { $0.timerID == id && $0.atTimerEnd }
         removeScheduled(atEnd)
         if let step = atEnd.map(\.stepIndex).max(), step > stepIndex {
-            go(to: step, saying: "\(label) timer is done. Step \(step + 1). \(recipe.steps[step].instruction)")
+            go(to: step, saying: "\(label) timer is done. Step \(step + 1). \(recipe.steps[step].spokenText)")
         } else {
             say("\(label) timer is done.")
         }
