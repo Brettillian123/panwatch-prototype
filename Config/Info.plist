@@ -4,5 +4,7 @@
 <dict>
 	<key>NSAlarmKitUsageDescription</key>
 	<string>Sous Vision rings your cooking timers as alarms, even when the phone is locked or the app is closed.</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
 </dict>
 </plist>
