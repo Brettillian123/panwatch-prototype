@@ -35,6 +35,8 @@ final class FrameAnalyzer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     private var renderer: AVSampleBufferVideoRenderer?
     private var snapshotHandler: (@Sendable (AnalyzerSnapshot) -> Void)?
     private var decisionHandler: (@Sendable (DetectorDecision) -> Void)?
+    /// Setup check: while a check runs, every analyzed frame goes to the calibrator.
+    private var calibrationTap: (@Sendable (SetupCalibration.Frame) -> Void)?
 
     /// Writes practice recordings while the debug panel's switch is on. Thread-safe.
     let recorder = PracticeRecorder()
@@ -63,6 +65,8 @@ final class FrameAnalyzer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     /// Only armed during recipe steps that add something, and only once the pan is marked.
     func setArmed(_ armed: Bool) { lock.withLock { self.armed = armed } }
     func attach(renderer: AVSampleBufferVideoRenderer) { lock.withLock { self.renderer = renderer } }
+    /// Setup check: hands the calibrator its readings; nil stops.
+    func setCalibrationTap(_ tap: (@Sendable (SetupCalibration.Frame) -> Void)?) { lock.withLock { calibrationTap = tap } }
 
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         let (region, armed, settings, renderer, onSnapshot, onDecision) = lock.withLock {
@@ -80,6 +84,8 @@ final class FrameAnalyzer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
         let height = CVPixelBufferGetHeight(pixelBuffer)
         let readings = handDetector.readings(in: pixelBuffer)
         let patch = region.flatMap { PanPatch.sample(from: pixelBuffer, rect: $0) }
+        // Setup check: the calibrator's readings, only while a check runs.
+        if let tap = lock.withLock({ calibrationTap }) { tap(SetupCalibration.Frame(time: time, patch: patch, hands: readings)) }
         // Which hands count, whether one is over the pan, and the verdict: shared with the
         // practice replay, so a recording is judged the way this frame is.
         watcher.settings = settings

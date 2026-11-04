@@ -56,7 +56,8 @@ final class CameraController: @unchecked Sendable {
             guard let device = self.input?.device, (try? device.lockForConfiguration()) != nil else { return }
             defer { device.unlockForConfiguration() }
             if locked {
-                if device.isExposureModeSupported(.locked) { device.exposureMode = .locked }
+                // Setup check: exposure matched to the mains against LED flicker (FlickerLock.swift).
+                FlickerLock.lockExposure(device)
                 if device.isWhiteBalanceModeSupported(.locked) { device.whiteBalanceMode = .locked }
                 if device.isFocusModeSupported(.locked) { device.focusMode = .locked }
             } else {

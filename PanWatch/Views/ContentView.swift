@@ -69,6 +69,7 @@ struct ContentView: View {
                 CameraStatusOverlay(status: session.cameraStatus)
             }
         }
+        .overlay { SetupCheckView(check: session.setupCheck) } // Setup check
         .background(Color.black)
         .animation(.snappy, value: session.suggestion?.id)
         .animation(.snappy, value: session.showDebug)
