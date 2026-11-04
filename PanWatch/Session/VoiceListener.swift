@@ -42,6 +42,8 @@ final class VoiceListener {
     /// Whether the app is still talking, so a "finished talking" that never came can't
     /// hold listening for good.
     var isAppSpeaking: (() -> Bool)?
+    /// The screen showing, since the recipe menu also takes one word of a dish's name.
+    var screen: (() -> AppScreen)?
     /// Called whenever `report` changes.
     var onReport: ((VoiceReport) -> Void)?
     private(set) var report = VoiceReport() {
@@ -219,7 +221,7 @@ final class VoiceListener {
         endRequest()
         utterances += 1
         // Keywords first: a clear short command acts at once, with no model to wait for.
-        let command = VoiceCommand.parse(text)
+        let command = VoiceCommand.parse(text, screen: screen?() ?? .cook)
         if !text.isEmpty {
             report.heard = text
             report.outcome = Self.outcome(of: text, command: command)

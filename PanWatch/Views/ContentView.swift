@@ -5,12 +5,59 @@ import SwiftUI
 /// timers top right, the bar and the Say line along the bottom, and the timer offer in
 /// the middle. Panels are opaque Iron and the picture shows between them. Drawing the pan
 /// box clears it to the picture, the strip and two buttons; nothing else hides the recipe.
+/// A menu (recipes, settings, voices, help) fills the screen over it, chosen by
+/// `CookSession.screen`, which the bar's buttons and the voice commands both set.
 struct ContentView: View {
     let session: CookSession
-    @State private var showingSettings = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
+        ZStack {
+            cookScreen
+                .accessibilityHidden(session.screen != .cook)
+                .allowsHitTesting(session.screen == .cook)
+
+            switch session.screen {
+            case .cook:
+                EmptyView()
+            case .recipes:
+                RecipePicker(session: session)
+                    .transition(.opacity)
+            case .settings:
+                SettingsScreen(session: session)
+                    .transition(.opacity)
+            case .voices:
+                VoicePicker(session: session)
+                    .transition(.opacity)
+            case .help:
+                HelpOverlay(session: session)
+                    .transition(.opacity)
+            }
+        }
+        .background(Theme.iron)
+        .animation(Theme.entrance, value: session.suggestion?.id)
+        .animation(Theme.motion, value: session.showDebug)
+        .animation(Theme.motion, value: session.screen)
+        .animation(Theme.motion, value: session.isMarkingPan)
+        .statusBarHidden()
+        .persistentSystemOverlays(.hidden)
+        .preferredColorScheme(.dark)
+        .task { await session.start() }
+        .onAppear { UIApplication.shared.isIdleTimerDisabled = true }
+        .onDisappear { UIApplication.shared.isIdleTimerDisabled = false }
+        .onChange(of: session.settings) { session.applySettings() }
+        // The volume buttons and Camera Control act as a physical "yes" / "next",
+        // which works while the camera is running. Wet hands never need the screen.
+        .onCameraCaptureEvent { event in
+            if event.phase == .ended {
+                session.hardwareButtonPressed()
+            }
+        }
+    }
+
+    /// The picture, the step panel, timers, the bar, the Say line and the offer. It stays
+    /// under a menu so the camera keeps its picture.
+    private var cookScreen: some View {
         ZStack {
             if session.cameraOn {
                 CameraStage(session: session)
@@ -54,38 +101,8 @@ struct ContentView: View {
                 .transition(reduceMotion ? AnyTransition.opacity : .scale(scale: 0.96).combined(with: .opacity))
             }
 
-            if session.isChoosingRecipe {
-                RecipePicker(session: session)
-                    .transition(.opacity)
-            }
-
-            if showingSettings && !session.isChoosingRecipe {
-                InterimSettings(session: session, close: { showingSettings = false })
-                    .transition(.opacity)
-            }
-
             if session.cameraOn {
                 CameraStatusOverlay(status: session.cameraStatus)
-            }
-        }
-        .background(Theme.iron)
-        .animation(Theme.entrance, value: session.suggestion?.id)
-        .animation(Theme.motion, value: session.showDebug)
-        .animation(Theme.motion, value: session.isChoosingRecipe)
-        .animation(Theme.motion, value: session.isMarkingPan)
-        .animation(Theme.motion, value: showingSettings)
-        .statusBarHidden()
-        .persistentSystemOverlays(.hidden)
-        .preferredColorScheme(.dark)
-        .task { await session.start() }
-        .onAppear { UIApplication.shared.isIdleTimerDisabled = true }
-        .onDisappear { UIApplication.shared.isIdleTimerDisabled = false }
-        .onChange(of: session.settings) { session.applySettings() }
-        // The volume buttons and Camera Control act as a physical "yes" / "next",
-        // which works while the camera is running. Wet hands never need the screen.
-        .onCameraCaptureEvent { event in
-            if event.phase == .ended {
-                session.hardwareButtonPressed()
             }
         }
     }
@@ -102,7 +119,7 @@ struct ContentView: View {
                     .fixedSize(horizontal: true, vertical: false)
             }
             .frame(maxHeight: .infinity, alignment: .top)
-            ControlBar(session: session, openSettings: { showingSettings = true })
+            ControlBar(session: session, openSettings: { session.open(.settings) })
         }
         .transition(.opacity)
     }
@@ -117,5 +134,62 @@ struct ContentView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .transition(.opacity)
+    }
+}
+
+// MARK: - Menus
+
+/// A full-screen menu over the cook screen: a 44 pt title, its rows, and along the bottom
+/// the same Say line as the cook screen with a worded Done beside it, bottom right. Done
+/// and "done" are the one way out.
+struct MenuScreen<Content: View>: View {
+    let session: CookSession
+    let title: String
+    @ViewBuilder let content: Content
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: Theme.gap) {
+            Text(title)
+                .font(Theme.reading)
+                .foregroundStyle(Theme.flour)
+                .accessibilityAddTraits(.isHeader)
+            content
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            HStack(spacing: Theme.gap) {
+                SayLine(session: session)
+                Button("Done") {
+                    session.noteTouch()
+                    session.closeMenu()
+                }
+                .buttonStyle(WordButtonStyle())
+            }
+        }
+        .padding(.top, Theme.gap)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .background(Theme.iron)
+    }
+}
+
+/// The 1 px rule between list rows: Flour at 12%, never a box.
+struct RowRule: View {
+    var body: some View {
+        Rectangle()
+            .fill(Theme.rule)
+            .frame(height: 1)
+            .accessibilityHidden(true)
+    }
+}
+
+/// A whole list row as one target: pressed lifts it with the rule color, like a secondary
+/// button, so a tap shows where it landed.
+struct RowButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.horizontal, Theme.tight)
+            .background(
+                configuration.isPressed ? Theme.rule : Color.clear,
+                in: RoundedRectangle(cornerRadius: Theme.buttonRadius, style: .continuous)
+            )
+            .contentShape(Rectangle())
     }
 }
