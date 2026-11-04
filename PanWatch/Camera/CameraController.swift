@@ -41,6 +41,13 @@ final class CameraController: @unchecked Sendable {
         }
     }
 
+    /// Stops the camera, for cooking without it. `start` runs it again.
+    func stop() async {
+        await onSessionQueue {
+            if self.session.isRunning { self.session.stopRunning() }
+        }
+    }
+
     /// Freezes exposure, white balance, and focus, so the picture of the pan only changes
     /// when the pan does. Auto exposure drifting as the cook moves is the biggest source
     /// of false alarms, and this removes it at the camera. Unlocking hands control back to auto.

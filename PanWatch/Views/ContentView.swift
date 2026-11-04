@@ -2,22 +2,30 @@ import AVKit
 import SwiftUI
 
 /// The cook screen: camera picture filling the screen, step card top left, timers top
-/// right, controls along the bottom, and the timer offer front and center.
+/// right, controls along the bottom, and the timer offer front and center. Drawing the
+/// pan box clears it to the picture; nothing else ever hides the recipe.
 struct ContentView: View {
     let session: CookSession
 
     var body: some View {
         ZStack {
-            CameraStage(session: session)
-                .ignoresSafeArea()
+            if session.cameraOn {
+                CameraStage(session: session)
+                    .ignoresSafeArea()
+            }
 
-            HStack(alignment: .top, spacing: 0) {
+            if session.isMarkingPan {
+                // The whole picture is free to draw on: one line at the top, two buttons below.
                 VStack(spacing: 12) {
-                    if session.isMarkingPan {
-                        // Top-left corner, away from the pan in the middle of the picture.
-                        MarkPanBanner(session: session)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    } else {
+                    MarkPanBanner(session: session)
+                    Spacer(minLength: 0)
+                    DrawPanBar(session: session)
+                }
+                .padding(16)
+                .transition(.opacity)
+            } else {
+                HStack(alignment: .top, spacing: 0) {
+                    VStack(spacing: 12) {
                         HStack(alignment: .top, spacing: 12) {
                             StepCard(session: session)
                             Spacer(minLength: 12)
@@ -25,17 +33,21 @@ struct ContentView: View {
                                 // Timers keep their width; the step text wraps and shrinks instead.
                                 .fixedSize(horizontal: true, vertical: false)
                         }
+                        Spacer(minLength: 0)
+                        if session.needsPan {
+                            PanNeededStrip(session: session)
+                        }
+                        ControlBar(session: session)
                     }
-                    Spacer(minLength: 0)
-                    ControlBar(session: session)
-                }
-                .padding(16)
+                    .padding(16)
 
-                if session.showDebug {
-                    DebugPanel(session: session)
-                        .frame(width: 330)
-                        .transition(.move(edge: .trailing))
+                    if session.showDebug {
+                        DebugPanel(session: session)
+                            .frame(width: 330)
+                            .transition(.move(edge: .trailing))
+                    }
                 }
+                .transition(.opacity)
             }
 
             if let offer = session.suggestion {
@@ -53,12 +65,15 @@ struct ContentView: View {
                     .transition(.opacity)
             }
 
-            CameraStatusOverlay(status: session.cameraStatus)
+            if session.cameraOn {
+                CameraStatusOverlay(status: session.cameraStatus)
+            }
         }
         .background(Color.black)
         .animation(.snappy, value: session.suggestion?.id)
         .animation(.snappy, value: session.showDebug)
         .animation(.snappy, value: session.isChoosingRecipe)
+        .animation(.snappy, value: session.isMarkingPan)
         .statusBarHidden()
         .persistentSystemOverlays(.hidden)
         .preferredColorScheme(.dark)

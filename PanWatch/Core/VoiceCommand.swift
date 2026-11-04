@@ -22,6 +22,8 @@ enum VoiceCommand: Equatable, Sendable {
     case ingredients
     /// "Cancel the timer": removes the newest running timer.
     case cancelTimer
+    /// "Draw a new box", "redraw": clears the screen to draw the pan box, at any time.
+    case drawPan
 
     /// Longer utterances are conversation, not commands.
     static let maximumWords = 5
@@ -52,6 +54,9 @@ enum VoiceCommand: Equatable, Sendable {
         if phrase.contains("time left") || phrase.contains("how long") || phrase.contains("how much time")
             || phrase.contains("how much longer") { return .timeLeft }
         if set.contains("ingredients") || set.contains("ingredient") { return .ingredients }
+        // Before "again", so "draw the pan again" draws rather than repeating the step.
+        if set.contains("draw") || set.contains("redraw") || (set.contains("new") && set.contains("box"))
+            || (set.contains("mark") && (set.contains("pan") || set.contains("box"))) { return .drawPan }
         if set.contains("repeat") || set.contains("again") { return .repeatStep }
         if set.contains("back") || set.contains("previous") { return .back }
         if set.contains("next") || set.contains("continue") { return .next }

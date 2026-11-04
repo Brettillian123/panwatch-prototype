@@ -52,8 +52,11 @@ struct WatchStatusChip: View {
         if session.finishedSteps.contains(session.stepIndex) {
             return ("checkmark.circle.fill", "The \(watch.ingredient) is in", .green)
         }
+        if !session.cameraOn {
+            return ("video.slash", "Camera off: say \u{201C}start the timer\u{201D} when it's in", .orange)
+        }
         if session.isMarkingPan || session.region == nil {
-            return ("viewfinder", "Mark the pan to start watching", .orange)
+            return ("viewfinder", "Draw the pan box to start watching", .orange)
         }
         if session.suggestion != nil {
             return ("timer", "Waiting for your answer", .cyan)
@@ -140,77 +143,58 @@ struct ControlBar: View {
     @State private var choosingVoice = false
 
     var body: some View {
-        // With the debug panel open there isn't room for the titles, so the buttons
-        // fall back to their icons. VoiceOver still reads the titles.
+        // Every button carries its word where there's room. Narrower, the settings on the
+        // right fall back to icons first, then the recipe buttons. VoiceOver still reads
+        // the titles.
         ViewThatFits(in: .horizontal) {
-            buttons
-            buttons.labelStyle(.iconOnly)
+            buttons(settingTitles: true)
+            buttons(settingTitles: false)
+            buttons(settingTitles: false).labelStyle(.iconOnly)
         }
         .sheet(isPresented: $choosingVoice) {
             VoicePicker(session: session)
         }
     }
 
-    private var buttons: some View {
+    private func buttons(settingTitles: Bool) -> some View {
         HStack(spacing: 10) {
-            if session.isMarkingPan {
-                if session.region != nil {
-                    Button { session.cancelMarking() } label: {
-                        Label("Cancel", systemImage: "xmark")
-                    }
-                }
-                Button { session.confirmPan() } label: {
-                    Label("Start watching", systemImage: "eye")
+            Button { session.noteTouch(); session.previousStep() } label: {
+                Label("Back", systemImage: "chevron.left")
+            }
+            .disabled(session.stepIndex == 0)
+
+            Button { session.noteTouch(); session.nextStep() } label: {
+                Label("Next step", systemImage: "chevron.right")
+            }
+            .disabled(session.isLastStep)
+
+            if !session.cameraOn && session.canStartStepTimer {
+                // Without the camera nothing offers the timer, so it's a button too.
+                Button { session.noteTouch(); session.startStepTimer() } label: {
+                    Label("Start timer", systemImage: "timer")
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.green)
-                .disabled(session.draftRegion == nil)
-            } else {
-                Button { session.noteTouch(); session.previousStep() } label: {
-                    Label("Back", systemImage: "chevron.left")
-                }
-                .disabled(session.stepIndex == 0)
+            }
 
-                Button { session.noteTouch(); session.nextStep() } label: {
-                    Label("Next step", systemImage: "chevron.right")
-                }
-                .disabled(session.isLastStep)
-
+            // While the pan box is needed, the strip above has this button.
+            if session.cameraOn && !session.needsPan {
                 Button { session.noteTouch(); session.markPan() } label: {
-                    Label("Mark pan", systemImage: "viewfinder")
+                    Label("Draw pan box", systemImage: "viewfinder")
                 }
+            }
 
-                Button { session.showRecipes() } label: {
-                    Label("Recipes", systemImage: "list.bullet")
-                }
+            Button { session.showRecipes() } label: {
+                Label("Recipes", systemImage: "list.bullet")
             }
 
             Spacer(minLength: 8)
 
-            Button { session.noteTouch(); session.toggleListening() } label: {
-                Image(systemName: session.listeningOn ? "mic.fill" : "mic.slash.fill")
+            if settingTitles {
+                settings
+            } else {
+                settings.labelStyle(.iconOnly)
             }
-            .accessibilityLabel(session.listeningOn ? "Stop listening for commands" : "Listen for commands")
-
-            Button { session.noteTouch(); session.voiceOn.toggle() } label: {
-                Image(systemName: session.voiceOn ? "speaker.wave.2.fill" : "speaker.slash.fill")
-            }
-            .accessibilityLabel(session.voiceOn ? "Mute voice" : "Unmute voice")
-
-            Button { choosingVoice = true } label: {
-                Image(systemName: "person.wave.2.fill")
-            }
-            .accessibilityLabel("Choose voice")
-
-            Button { session.noteTouch(); Task { await session.flipCamera() } } label: {
-                Image(systemName: "arrow.triangle.2.circlepath.camera")
-            }
-            .accessibilityLabel("Switch camera")
-
-            Button { session.showDebug.toggle() } label: {
-                Image(systemName: "waveform.path.ecg")
-            }
-            .accessibilityLabel(session.showDebug ? "Hide detection details" : "Show detection details")
         }
         .buttonStyle(.bordered)
         .controlSize(.large)
@@ -218,35 +202,120 @@ struct ControlBar: View {
         .padding(10)
         .background(.black.opacity(0.6), in: Capsule())
     }
+
+    @ViewBuilder private var settings: some View {
+        Button { session.noteTouch(); session.toggleListening() } label: {
+            Label(session.listeningOn ? "Mic on" : "Mic off", systemImage: session.listeningOn ? "mic.fill" : "mic.slash.fill")
+        }
+        .accessibilityLabel(session.listeningOn ? "Stop listening for commands" : "Listen for commands")
+
+        Button { session.noteTouch(); session.voiceOn.toggle() } label: {
+            Label(session.voiceOn ? "Sound on" : "Muted", systemImage: session.voiceOn ? "speaker.wave.2.fill" : "speaker.slash.fill")
+        }
+        .accessibilityLabel(session.voiceOn ? "Mute voice" : "Unmute voice")
+
+        Button { choosingVoice = true } label: {
+            Label("Voice", systemImage: "person.wave.2.fill")
+        }
+        .accessibilityLabel("Choose voice")
+
+        if session.cameraOn {
+            Button { session.noteTouch(); Task { await session.flipCamera() } } label: {
+                Label("Flip camera", systemImage: "arrow.triangle.2.circlepath.camera")
+            }
+            .accessibilityLabel("Switch camera")
+        }
+
+        Button { session.showDebug.toggle() } label: {
+            Label("Details", systemImage: "waveform.path.ecg")
+        }
+        .accessibilityLabel(session.showDebug ? "Hide detection details" : "Show detection details")
+    }
 }
 
-/// Instructions while the cook draws the pan box. Kept small and in the top-left corner
-/// so the pan, which sits in the middle of the picture, stays visible and touchable.
-/// The Cancel and Start watching buttons live in the control bar at the bottom.
+/// Asks for the pan box on the cook screen, without hiding the recipe or the timers:
+/// the last box to keep, or a new one to draw.
+struct PanNeededStrip: View {
+    let session: CookSession
+
+    var body: some View {
+        let offering = session.offeredPan != nil
+        HStack(spacing: 14) {
+            Image(systemName: "viewfinder")
+                .font(.title2.weight(.semibold))
+                .foregroundStyle(.orange)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(offering ? "Is the pot in the same place?" : "Draw a box around the pan")
+                    .font(.headline)
+                if offering {
+                    Text("Say yes if the phone hasn't moved, or draw it again.")
+                        .font(.subheadline)
+                        .foregroundStyle(.white.opacity(0.8))
+                }
+            }
+            .lineLimit(1)
+            .minimumScaleFactor(0.8)
+            Spacer(minLength: 8)
+            if offering {
+                Button { session.reuseLastPan() } label: {
+                    Label("Yes", systemImage: "checkmark")
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.green)
+            }
+            Button { session.markPan() } label: {
+                Label(offering ? "Draw again" : "Draw pan box", systemImage: "hand.draw")
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(.orange)
+        }
+        .controlSize(.large)
+        .foregroundStyle(.white)
+        .padding(.leading, 18)
+        .padding(.trailing, 10)
+        .padding(.vertical, 10)
+        .background(.black.opacity(0.72), in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+    }
+}
+
+/// The one line shown while drawing the pan box, over a screen cleared to the picture.
+/// It doesn't take touches, so the box can be drawn right under it.
 struct MarkPanBanner: View {
     let session: CookSession
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(session.draftRegion == nil ? "Draw a box around the pan" : "Box drawn. Start watching?")
-                .font(.title2.weight(.bold))
-            Text(hint)
-                .font(.subheadline)
-                .foregroundStyle(.white.opacity(0.8))
-        }
-        .foregroundStyle(.white)
-        .padding(16)
-        .frame(maxWidth: 380, alignment: .leading)
-        .background(.black.opacity(0.75), in: RoundedRectangle(cornerRadius: 22, style: .continuous))
-        .accessibilityElement(children: .combine)
+        Label(session.draftRegion == nil ? "Draw a box around the pan" : "Keep the phone still from here", systemImage: "hand.draw")
+            .font(.title3.weight(.semibold))
+            .foregroundStyle(.white)
+            .padding(.horizontal, 18)
+            .padding(.vertical, 10)
+            .background(.black.opacity(0.72), in: Capsule())
+            .allowsHitTesting(false)
     }
+}
 
-    private var hint: String {
-        if let reason = session.markingReason { return reason }
-        if session.draftRegion == nil {
-            return "Tap the pan for a quick box, or drag to draw one."
+/// Cancel and Start watching, the only buttons while drawing the pan box.
+struct DrawPanBar: View {
+    let session: CookSession
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Button { session.cancelMarking() } label: {
+                Label("Cancel", systemImage: "xmark")
+            }
+            .buttonStyle(.bordered)
+            .tint(.white)
+
+            Button { session.confirmPan() } label: {
+                Label("Start watching", systemImage: "eye")
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(.green)
+            .disabled(session.draftRegion == nil)
         }
-        return "Drag again to redraw it. Keep the phone still from now on: exposure and white balance lock when watching starts."
+        .controlSize(.large)
+        .padding(10)
+        .background(.black.opacity(0.6), in: Capsule())
     }
 }
 
