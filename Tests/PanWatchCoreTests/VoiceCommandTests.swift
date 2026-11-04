@@ -16,6 +16,15 @@ struct VoiceCommandTests {
         }
     }
 
+    @Test func drawingThePanBoxAgain() {
+        for text in ["Draw a new box", "draw the pan again", "New box", "Redraw", "draw the pan", "mark the pan"] {
+            #expect(VoiceCommand.parse(text) == .drawPan, "\(text)")
+        }
+        // "Again" without drawing still repeats the step.
+        #expect(VoiceCommand.parse("say that again") == .repeatStep)
+        #expect(VoiceCommand.parse("no, draw a new box") == .no)
+    }
+
     @Test func answersToTheOffer() {
         for text in ["Yes", "yeah", "Sure", "OK", "yes please", "start", "do it"] {
             #expect(VoiceCommand.parse(text) == .yes, "\(text)")
