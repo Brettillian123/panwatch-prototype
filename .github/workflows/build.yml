@@ -29,6 +29,9 @@ jobs:
             2>&1 | tee build.log | grep -E "error:|warning:|BUILD (SUCCEEDED|FAILED)" || true
           grep -q "BUILD SUCCEEDED" build.log
 
+      - name: Check the alarm permission text is in the app
+        run: plutil -extract NSAlarmKitUsageDescription raw build/Debug-iphoneos/PanWatch.app/Info.plist
+
       - name: Upload the build log
         if: always()
         uses: actions/upload-artifact@v4
