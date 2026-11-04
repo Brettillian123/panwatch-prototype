@@ -55,7 +55,8 @@ struct PanOverlay: View {
         let box = marking ? session.draftRegion : session.region
         let zone = session.showDebug && !marking ? session.region?.expanded(by: session.settings.handZoneMargin) : nil
         let hands = session.showDebug ? live.hands : []
-        let color = marking ? Color.white : PhaseStyle.color(for: live.phase)
+        // The box being drawn is Copper, like the Start watching button that confirms it.
+        let color = marking ? Theme.copper : PhaseStyle.color(for: live.phase)
         let label = PhaseStyle.label(for: live.phase)
         let rect = imageRect
 
