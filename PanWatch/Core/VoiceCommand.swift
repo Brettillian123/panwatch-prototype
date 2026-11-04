@@ -136,7 +136,8 @@ enum VoiceCommand: Equatable, Sendable {
         if set.contains("ingredients") || set.contains("ingredient") || phrase == "what do i need" { return .ingredients }
         // Setup check: before "again", so "check the setup again" checks.
         if set.contains("setup") || (set.contains("set") && set.contains("up")) { return .checkSetup }
-        if set.contains("skip") { return .skip }
+        // "Skip to step five" goes to that step; "skip" or "skip this step" skips.
+        if set.contains("skip") && !phrase.contains("to step") { return .skip }
         // Before "again", so "draw the pan again" draws rather than repeating the step.
         if set.contains("draw") || set.contains("redraw") || (set.contains("new") && set.contains("box"))
             || (set.contains("mark") && (set.contains("pan") || set.contains("box"))) { return .drawPan }
