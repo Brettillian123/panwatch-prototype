@@ -4,6 +4,7 @@ import SwiftUI
 /// kitchen, and for showing judges how a decision is made.
 struct DebugPanel: View {
     @Bindable var session: CookSession
+    @State private var recordingPractice = false
 
     var body: some View {
         ScrollView {
@@ -11,6 +12,7 @@ struct DebugPanel: View {
                 liveSection
                 voiceSection
                 decisionSection
+                practiceSection
                 statsSection
                 tuningSection
                 historySection
@@ -79,8 +81,14 @@ struct DebugPanel: View {
     private var decisionSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             SectionTitle(text: "Last decision")
+            if let why = session.live.noOffer {
+                MetricRow(name: "Why no offer", value: why.text)
+            }
             if let decision = session.decisions.first {
                 MetricRow(name: "Verdict", value: verdict(decision.outcome))
+                if decision.changeAlone {
+                    MetricRow(name: "Caught by", value: "The change alone, no hand counted")
+                }
                 MetricRow(name: "Pan changed", value: "\(percent(decision.changedFraction)) of \(percent(decision.additionThreshold)) needed")
                 MetricRow(name: "Brightness shift", value: String(format: "%+.0f", decision.medianLumaShift))
                 MetricRow(name: "Hand time", value: seconds(decision.dwell))
@@ -101,6 +109,36 @@ struct DebugPanel: View {
         }
     }
 
+    /// Records practice adds for tuning on a computer. Say "that was it" after each real add.
+    private var practiceSection: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            SectionTitle(text: "Practice recording")
+            Toggle("Record practice", isOn: $recordingPractice)
+                .onChange(of: recordingPractice) { _, on in session.setPracticeRecording(on) }
+            Text("Records hand joints and a small picture of the pan box, 15 times a second. No video and no audio. Say \"that was it\" right after each real add.")
+                .font(.footnote)
+                .foregroundStyle(.white.opacity(0.7))
+            TimelineView(.periodic(from: .now, by: 1)) { _ in
+                let status = session.camera.analyzer.recorder.current
+                VStack(alignment: .leading, spacing: 8) {
+                    if status.file != nil {
+                        MetricRow(name: "Recorded", value: String(format: "%.0f s, %.1f MB", status.seconds, Double(status.bytes) / 1_000_000))
+                        MetricRow(name: "Marks", value: "\(status.markers)")
+                    }
+                    if let file = status.file, !status.isRecording {
+                        ShareLink(item: file) {
+                            Label("Share recording", systemImage: "square.and.arrow.up")
+                        }
+                        .buttonStyle(.bordered)
+                        .tint(.white)
+                    }
+                }
+            }
+        }
+        .font(.subheadline)
+        .onAppear { recordingPractice = session.camera.analyzer.recorder.current.isRecording }
+    }
+
     private var tuningSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             SectionTitle(text: "Tuning")
@@ -113,6 +151,7 @@ struct DebugPanel: View {
             TuningSlider(title: "Hand zone margin", value: $session.settings.handZoneMargin, range: 0...0.6, format: percent)
             Toggle("Require a hand", isOn: $session.settings.requireHand)
             Toggle("Count a hand letting go", isOn: $session.settings.countRelease)
+            Toggle("Count a change you can see", isOn: $session.settings.countVisibleChange)
             Toggle("Ignore lighting changes", isOn: $session.settings.lightingVeto)
             Toggle("Fast timers (seconds)", isOn: $session.fastTimers)
             Button("Reset tuning") { session.resetSettings() }

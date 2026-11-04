@@ -10,38 +10,31 @@ final class HandPoseDetector {
         return request
     }()
 
-    /// Joints Vision is less sure of than this are left out. Wood grain yields many faint ones.
-    private static let jointConfidence: Float = 0.4
+    private static let names: [(VNHumanHandPoseObservation.JointName, HandReading.JointName)] = [
+        (.wrist, .wrist),
+        (.thumbCMC, .thumbCMC), (.thumbMP, .thumbMP), (.thumbIP, .thumbIP), (.thumbTip, .thumbTip),
+        (.indexMCP, .indexMCP), (.indexPIP, .indexPIP), (.indexDIP, .indexDIP), (.indexTip, .indexTip),
+        (.middleMCP, .middleMCP), (.middlePIP, .middlePIP), (.middleDIP, .middleDIP), (.middleTip, .middleTip),
+        (.ringMCP, .ringMCP), (.ringPIP, .ringPIP), (.ringDIP, .ringDIP), (.ringTip, .ringTip),
+        (.littleMCP, .littleMCP), (.littlePIP, .littlePIP), (.littleDIP, .littleDIP), (.littleTip, .littleTip),
+    ]
 
-    private static let tipNames: [VNHumanHandPoseObservation.JointName] = [.thumbTip, .indexTip, .middleTip, .ringTip, .littleTip]
-
-    /// Each hand found: its confident joints in normalized top-left image coordinates,
-    /// and how open it is. `settings` says how sure Vision must be.
-    func hands(in pixelBuffer: CVPixelBuffer, settings: DetectorSettings) -> [TrackedHand] {
+    /// Everything Vision said about each hand it found: its confidence and every joint it
+    /// placed, in normalized top-left image coordinates. Which ones count is decided in
+    /// `HandReading`, so the practice replay can apply the same rules.
+    func readings(in pixelBuffer: CVPixelBuffer) -> [HandReading] {
         // Frames arrive already rotated upright, so no orientation correction is needed.
         let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up, options: [:])
         guard (try? handler.perform([request])) != nil, let observations = request.results else { return [] }
-        let height = Double(CVPixelBufferGetHeight(pixelBuffer))
-        let aspect = height > 0 ? Double(CVPixelBufferGetWidth(pixelBuffer)) / height : 1
-        return observations.compactMap { observation -> TrackedHand? in
-            // Wood grain and shiny bags show up as faint hands; real ones score higher.
-            guard Double(observation.confidence) >= settings.handConfidence,
-                  let points = try? observation.recognizedPoints(.all) else { return nil }
-            // Vision puts the origin at the bottom-left; the rest of the app uses top-left.
-            func confident(_ point: VNRecognizedPoint?) -> NormPoint? {
-                guard let point, point.confidence >= Self.jointConfidence else { return nil }
-                return NormPoint(x: Double(point.location.x), y: 1 - Double(point.location.y))
+        return observations.map { observation in
+            let points = (try? observation.recognizedPoints(.all)) ?? [:]
+            let joints = Self.names.compactMap { vision, name -> HandReading.Joint? in
+                guard let point = points[vision], point.confidence > 0 else { return nil }
+                // Vision puts the origin at the bottom-left; the rest of the app uses top-left.
+                let location = NormPoint(x: Double(point.location.x), y: 1 - Double(point.location.y))
+                return HandReading.Joint(name: name, point: location, confidence: Double(point.confidence))
             }
-            let joints = points.values.compactMap { confident($0) }
-            // A real hand shows several joints, wrist included. A few stray points are noise.
-            guard joints.count >= settings.minimumHandJoints, confident(points[.wrist]) != nil else { return nil }
-            let openness = HandGeometry.openness(
-                wrist: confident(points[.wrist]),
-                palm: confident(points[.middleMCP]),
-                tips: Self.tipNames.compactMap { confident(points[$0]) },
-                aspect: aspect
-            )
-            return TrackedHand(joints: joints, openness: openness)
+            return HandReading(confidence: Double(observation.confidence), joints: joints)
         }
     }
 }

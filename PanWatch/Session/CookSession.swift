@@ -259,23 +259,26 @@ final class CookSession {
             && !finishedSteps.contains(stepIndex)
         camera.analyzer.update(settings: effectiveSettings)
         camera.analyzer.setArmed(armed)
+        camera.analyzer.recorder.setStep(stepIndex, watch: currentStep.watch)
     }
 
-    /// The tuning in force for the current step. Some ingredients, like minced garlic,
-    /// change only a little of the pan, so their step asks for less change.
+    /// The tuning in force for the current step (see `DetectorSettings.applying`).
     private var effectiveSettings: DetectorSettings {
-        var effective = settings
-        if let minimum = currentStep.watch?.minimumChange {
-            effective.additionThreshold = min(effective.additionThreshold, minimum)
-        }
-        // Only ingredients carried in the hand count a hand letting go.
-        effective.countRelease = settings.countRelease && currentStep.watch?.countsRelease == true
-        return effective
+        settings.applying(currentStep.watch)
     }
 
     func applySettings() {
         camera.analyzer.update(settings: effectiveSettings)
+        camera.analyzer.recorder.setTuning(settings)
         Self.save(settings)
+    }
+
+    /// Starts or stops the practice recording, from the debug panel.
+    func setPracticeRecording(_ on: Bool) {
+        let recorder = camera.analyzer.recorder
+        guard on else { return recorder.stop() }
+        let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "?"
+        try? recorder.start(notes: "\(recipe.title), step \(stepIndex + 1), build \(version)", settings: settings)
     }
 
     func resetSettings() {
@@ -438,6 +441,9 @@ final class CookSession {
             } else {
                 say("No timers are running.")
             }
+        case .mark:
+            // Practice: the cook marks each real add for the replay to score against.
+            say(camera.analyzer.recorder.mark() ? "Marked." : "Practice recording is off.")
         }
     }
 
@@ -659,8 +665,8 @@ final class CookSession {
 
     // MARK: Saved tuning
 
-    // v4: hand filter and warm-up settings added, so tuning saved by older builds is ignored.
-    private static let settingsKey = "detectorSettings.v4"
+    // v5: holding-hand and visible-change settings added, so tuning saved by older builds is ignored.
+    private static let settingsKey = "detectorSettings.v5"
 
     private static func loadSettings() -> DetectorSettings {
         guard let data = UserDefaults.standard.data(forKey: settingsKey),

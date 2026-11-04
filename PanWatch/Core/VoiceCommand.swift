@@ -22,6 +22,9 @@ enum VoiceCommand: Equatable, Sendable {
     case ingredients
     /// "Cancel the timer": removes the newest running timer.
     case cancelTimer
+    /// "That was it" or "mark": while practice is being recorded, marks the moment a real
+    /// add happened, so the replay can score against it.
+    case mark
 
     /// Longer utterances are conversation, not commands.
     static let maximumWords = 5
@@ -46,6 +49,8 @@ enum VoiceCommand: Equatable, Sendable {
 
         // Before the "no" words, because "cancel" and "stop" are among them.
         if set.contains("timer") && (set.contains("cancel") || set.contains("stop")) { return .cancelTimer }
+        // Before the "yes" words, so "okay, that was it" marks rather than accepts an offer.
+        if phrase.contains("that was it") || ["mark", "mark it", "mark that"].contains(phrase) { return .mark }
         // A "no" wins, so "no, don't start it" never starts a timer.
         // "Now" is filler, so "not now" is looked for in everything said.
         if spoken.joined(separator: " ").contains("not now") || !set.isDisjoint(with: noWords) { return .no }
