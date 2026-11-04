@@ -9,6 +9,7 @@ struct DebugPanel: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 22) {
                 liveSection
+                voiceSection
                 decisionSection
                 statsSection
                 tuningSection
@@ -41,6 +42,23 @@ struct DebugPanel: View {
             ChangeMeter(value: live.liveChange, threshold: session.settings.additionThreshold)
             MetricRow(name: "Analysis rate", value: String(format: "%.0f fps", live.analysisFPS))
             MetricRow(name: "Phone heat", value: heat(ProcessInfo.processInfo.thermalState))
+        }
+    }
+
+    /// Whether listening can hear right now, and what became of the last thing it heard.
+    private var voiceSection: some View {
+        let voice = session.voiceReport
+        return VStack(alignment: .leading, spacing: 8) {
+            SectionTitle(text: "Voice")
+            MetricRow(name: "Status", value: voice.state.rawValue)
+            MetricRow(name: "Recognition", value: voice.onDevice ? "On phone" : "Apple servers")
+            MetricRow(name: "Heard", value: voice.heard.map { "\"\($0)\"" } ?? "-")
+            MetricRow(name: "Result", value: voice.outcome ?? "-")
+            MetricRow(name: "Restarts", value: "\(voice.restarts)")
+            MetricRow(name: "Errors", value: "\(voice.errors)")
+            if let error = voice.lastError {
+                MetricRow(name: "Last error", value: error)
+            }
         }
     }
 

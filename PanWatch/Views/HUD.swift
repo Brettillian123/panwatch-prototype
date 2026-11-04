@@ -137,6 +137,7 @@ struct TimerStack: View {
 /// the pan.
 struct ControlBar: View {
     let session: CookSession
+    @State private var choosingVoice = false
 
     var body: some View {
         // With the debug panel open there isn't room for the titles, so the buttons
@@ -144,6 +145,9 @@ struct ControlBar: View {
         ViewThatFits(in: .horizontal) {
             buttons
             buttons.labelStyle(.iconOnly)
+        }
+        .sheet(isPresented: $choosingVoice) {
+            VoicePicker(session: session)
         }
     }
 
@@ -192,6 +196,11 @@ struct ControlBar: View {
                 Image(systemName: session.voiceOn ? "speaker.wave.2.fill" : "speaker.slash.fill")
             }
             .accessibilityLabel(session.voiceOn ? "Mute voice" : "Unmute voice")
+
+            Button { choosingVoice = true } label: {
+                Image(systemName: "person.wave.2.fill")
+            }
+            .accessibilityLabel("Choose voice")
 
             Button { session.noteTouch(); Task { await session.flipCamera() } } label: {
                 Image(systemName: "arrow.triangle.2.circlepath.camera")
