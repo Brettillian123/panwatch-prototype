@@ -135,6 +135,9 @@ final class CookSession {
         listener.isAppSpeaking = { [weak self] in
             self?.speaker.isSpeaking ?? false
         }
+        listener.intentContext = { [weak self] in
+            self?.intentContext
+        }
         restoreTimers()
     }
 
@@ -331,6 +334,19 @@ final class CookSession {
         } else {
             listener.stop()
         }
+    }
+
+    /// What the screen shows, for the on-device model that reads what the keywords miss.
+    /// Nil while the recipe menu is up, where nothing is done by voice.
+    private var intentContext: IntentContext? {
+        guard !isChoosingRecipe else { return nil }
+        return IntentContext(
+            step: currentStep.instruction,
+            offer: suggestion.map { offerText($0.watch) },
+            timers: timers.filter { !$0.isDone }.map {
+                IntentContext.RunningTimer(label: $0.label, secondsLeft: Int($0.end.timeIntervalSinceNow.rounded()))
+            }
+        )
     }
 
     private func speakingChanged(_ speaking: Bool) {
