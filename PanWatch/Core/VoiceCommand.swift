@@ -167,7 +167,9 @@ enum VoiceCommand: Equatable, Sendable {
         }
         if set.contains("repeat") || set.contains("again") || (set.contains("read") && set.contains("step")) { return .repeatStep }
         if set.contains("back") || set.contains("previous") { return .back }
-        if set.contains("next") || set.contains("continue") || phrase == "go on" { return .next }
+        // Short, so "next time I'll use less salt" is talk; "okay next step please" still moves on.
+        if phrase.contains("next step") || phrase == "go on"
+            || (words.count <= 3 && (set.contains("next") || set.contains("continue"))) { return .next }
         if set.contains("watching") || set.contains("watch") { return .startWatching }
         // Short, so "turn left at the lights" is talk; "all right" is agreement, not a nudge.
         if words.count <= 3, !set.contains("all") {
