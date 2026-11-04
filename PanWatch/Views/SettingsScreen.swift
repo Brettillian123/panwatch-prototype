@@ -10,6 +10,12 @@ struct SettingsScreen: View {
         MenuScreen(session: session, title: "Settings") {
             ScrollView {
                 Grid(alignment: .leading, horizontalSpacing: Theme.gap, verticalSpacing: 0) {
+                    row("Recipe", now: "\(session.recipe.title), step \(session.stepIndex + 1)", button: "Restart",
+                        say: "start over") {
+                        // Back to the cook screen at step 1, with this recipe's timers cleared.
+                        session.restartRecipe()
+                    }
+                    rule
                     let on = session.cameraOn
                     row("Camera", now: on ? "On" : "Off", button: on ? "Turn off" : "Turn on",
                         say: on ? "turn off the camera" : "turn on the camera") {

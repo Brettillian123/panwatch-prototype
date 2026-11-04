@@ -229,6 +229,15 @@ final class CookSession {
         openPanDrawingIfNeeded()
     }
 
+    /// Starts this recipe again from step 1: running timers and their alarms are cleared, and
+    /// so are the step call-outs waiting on them. Said as "start over", or the Restart button.
+    func restartRecipe() {
+        for timer in timers { removeTimer(timer.id) }
+        timers = []
+        screen = .cook
+        choose(recipe)
+    }
+
     func showRecipes() {
         usage.offerGone() // usage-log
         screen = .recipes
@@ -911,7 +920,7 @@ final class CookSession {
         }
         switch asked {
         case .startOver:
-            choose(recipe)
+            restartRecipe()
         case .cancelTimer(let id):
             guard let timer = timers.first(where: { $0.id == id }) else { return }
             removeTimer(id)
