@@ -47,6 +47,7 @@ struct DebugPanel: View {
             MetricRow(name: "Recognition", value: voice.onDevice ? "On phone" : "Apple servers")
             MetricRow(name: "Heard", value: voice.heard.map { "\"\($0)\"" } ?? "-")
             MetricRow(name: "Result", value: voice.outcome ?? "-")
+            MetricRow(name: "Model", value: voice.model ?? "-")
             MetricRow(name: "Restarts", value: "\(voice.restarts)")
             MetricRow(name: "Errors", value: "\(voice.errors)")
             if let error = voice.lastError {
