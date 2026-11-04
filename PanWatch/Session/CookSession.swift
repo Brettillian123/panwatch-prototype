@@ -109,6 +109,8 @@ final class CookSession {
     var settings: DetectorSettings
 
     let camera = CameraController()
+    /// Setup check: measures this kitchen after the pan box is confirmed and tunes the detector to it.
+    let setupCheck = SetupCheck()
     private let speaker = Speaker()
     private let listener = VoiceListener()
     private let alarms = CookAlarms()
@@ -130,6 +132,13 @@ final class CookSession {
         camera.analyzer.onDecision = { [weak self] decision in
             Task { @MainActor in self?.receive(decision) }
         }
+        // Setup check.
+        setupCheck.connect(
+            camera: camera,
+            settings: { [weak self] in self?.settings ?? DetectorSettings() },
+            speak: { [weak self] text in self?.say(text) },
+            retune: { [weak self] in self?.refreshArming() }
+        )
         camera.onRotationChanged = { [weak self] in
             Task { @MainActor in self?.phoneTurned() }
         }
@@ -246,6 +255,7 @@ final class CookSession {
         camera.setAdjustmentsLocked(true)
         refreshArming()
         savePan(box)
+        setupCheck.panConfirmed(box) // Setup check
     }
 
     /// "Yes" to the last box: watches it again without drawing.
@@ -347,7 +357,7 @@ final class CookSession {
     /// Whether the camera should be judging right now.
     private func refreshArming() {
         let armed = cameraOn && region != nil && !isMarkingPan && !isChoosingRecipe && suggestion == nil && currentStep.watch != nil
-            && !finishedSteps.contains(stepIndex)
+            && !finishedSteps.contains(stepIndex) && !setupCheck.isRunning // Setup check: never judge the hand it asks for
         camera.analyzer.update(settings: effectiveSettings)
         camera.analyzer.setArmed(armed)
         camera.analyzer.recorder.setStep(stepIndex, watch: currentStep.watch)
@@ -355,7 +365,7 @@ final class CookSession {
 
     /// The tuning in force for the current step (see `DetectorSettings.applying`).
     private var effectiveSettings: DetectorSettings {
-        settings.applying(currentStep.watch)
+        setupCheck.tuned(settings).applying(currentStep.watch) // Setup check: this box's tuning
     }
 
     func applySettings() {
@@ -618,6 +628,8 @@ final class CookSession {
         // Picking a recipe is setup and isn't counted.
         if screen != .recipes { stats.noteVoice() }
         showHeard(text)
+        // Setup check: while it runs, "skip", "no" and "next" end it.
+        if setupCheck.isRunning, [.skip, .no, .next].contains(command) { return setupCheck.skip() }
         let asked = question
         question = nil
         if let asked, command == .yes || command == .no {
@@ -634,14 +646,14 @@ final class CookSession {
             case .next where screen == .voices:
                 nextVoice()
                 return
-            case .next, .repeatStep, .goToStep, .startOver, .yes, .no, .startTimer, .startWatching, .nudge, .mark:
+            case .next, .skip, .repeatStep, .goToStep, .startOver, .yes, .no, .startTimer, .startWatching, .nudge, .mark:
                 return
             default:
                 break
             }
         }
         switch command {
-        case .next:
+        case .next, .skip:
             if isMarkingPan {
                 if draftRegion != nil { confirmPanByVoice() }
             } else if isLastStep {
@@ -681,6 +693,8 @@ final class CookSession {
             }
         case .startTimer:
             startStepTimer()
+        case .checkSetup: // Setup check
+            setupCheck.checkAgain(possible: region != nil && !isMarkingPan)
         case .timeLeft:
             sayTimeLeft()
         case .startWatching:
@@ -891,12 +905,12 @@ final class CookSession {
 
     private func confirmPanByVoice() {
         confirmPan()
-        say("Watching the pan.")
+        if !setupCheck.isRunning { say("Watching the pan.") } // Setup check: its prompt speaks instead
     }
 
     private func reuseLastPanByVoice() {
         reuseLastPan()
-        say("Watching the pan.")
+        if !setupCheck.isRunning { say("Watching the pan.") } // Setup check: its prompt speaks instead
     }
 
     private func sayTimeLeft() {

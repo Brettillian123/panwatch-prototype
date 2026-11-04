@@ -73,6 +73,9 @@ enum VoiceCommand: Equatable, Sendable {
     case done
     /// "Record a practice" (true), "stop recording" (false).
     case recordPractice(Bool)
+    // Setup check: "check the setup" runs the setup check again; "skip" ends one that is running.
+    case checkSetup
+    case skip
 
     /// Longer utterances are conversation, not commands.
     static let maximumWords = 6
@@ -131,6 +134,9 @@ enum VoiceCommand: Equatable, Sendable {
             return .setTimer(minutes: minutes)
         }
         if set.contains("ingredients") || set.contains("ingredient") || phrase == "what do i need" { return .ingredients }
+        // Setup check: before "again", so "check the setup again" checks.
+        if set.contains("setup") || (set.contains("set") && set.contains("up")) { return .checkSetup }
+        if set.contains("skip") { return .skip }
         // Before "again", so "draw the pan again" draws rather than repeating the step.
         if set.contains("draw") || set.contains("redraw") || (set.contains("new") && set.contains("box"))
             || (set.contains("mark") && (set.contains("pan") || set.contains("box"))) { return .drawPan }
