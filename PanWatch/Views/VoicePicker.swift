@@ -1,188 +1,190 @@
 import AVFoundation
 import SwiftUI
 
-/// The voice menu: the cook's own Personal Voice, then every English voice on the phone by
-/// quality, each with a sample to play. Big type, because the phone may already be propped
-/// at the back of the stove.
+/// The voice menu, from Settings or "change the voice": the phone's English voices under
+/// plain words (Your voice, Best voices, Other voices), each with Hear it, and the one
+/// speaking now marked Chosen. "Next voice" moves the highlight down a row and plays it,
+/// so a cook can walk the list without touching anything; "use this one" picks it.
 struct VoicePicker: View {
     let session: CookSession
-    @Environment(\.dismiss) private var dismiss
-    /// Nil until the phone's voices have been read.
-    @State private var voices: [VoiceOption]?
-    /// Nil while the phone is still asking the cook.
+    /// Nil while the phone is still asking the cook about their Personal Voice.
     @State private var personalStatus: AVSpeechSynthesizer.PersonalVoiceAuthorizationStatus?
 
-    private static let qualities: [AVSpeechSynthesisVoiceQuality] = [.premium, .enhanced, .default]
-
     var body: some View {
-        NavigationStack {
-            List {
-                Section {
-                    VoiceRow(
-                        name: "Best installed",
-                        detail: Speaker.best.map { "Now \($0.name)" } ?? "System voice",
-                        selected: session.voiceID == nil,
-                        playing: Speaker.best.map { session.sampleVoiceID == $0.identifier } ?? false,
-                        choose: { session.chooseVoice(nil) },
-                        play: Speaker.best.map { best -> () -> Void in { toggleSample(best.identifier) } }
-                    )
-                }
-                personalSection
-                englishSections
-                Section {
-                    note("Get more voices: Settings > Accessibility > Read & Speak > Voices.")
-                }
-            }
-            .navigationTitle("Voice")
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") { dismiss() }
-                        .font(.title3.weight(.semibold))
-                }
-            }
-        }
-        .preferredColorScheme(.dark)
-        .task {
-            voices = Speaker.options()
-            personalStatus = await Speaker.requestPersonalVoice()
-            // Personal Voices only appear in the list once allowed.
-            voices = Speaker.options()
-        }
-        .onReceive(NotificationCenter.default.publisher(for: AVSpeechSynthesizer.availableVoicesDidChangeNotification)) { _ in
-            voices = Speaker.options()
-        }
-        .onDisappear {
-            if session.sampleVoiceID != nil { session.stopSample() }
-        }
-    }
-
-    @ViewBuilder private var personalSection: some View {
-        let mine = (voices ?? []).filter(\.isPersonal)
-        Section("Personal Voice") {
-            switch personalStatus {
-            case nil:
-                HStack(spacing: 12) {
-                    ProgressView()
-                    note("Asking to use your Personal Voice")
-                }
-            case .authorized?:
-                if mine.isEmpty {
-                    note("None on this phone yet. Make one in Settings > Accessibility > Personal Voice.")
-                } else {
-                    ForEach(mine) { row($0, detail: "Your voice") }
-                }
-            case .denied?:
-                note("Not allowed. Turn on Sous Vision in Settings > Accessibility > Personal Voice.")
-            case .unsupported?:
-                note("This phone can't use Personal Voice.")
-            default:
-                Button("Use my Personal Voice") {
-                    Task {
-                        personalStatus = await Speaker.requestPersonalVoice()
-                        voices = Speaker.options()
-                    }
-                }
-                .font(.headline)
-            }
-        }
-    }
-
-    @ViewBuilder private var englishSections: some View {
-        if let voices {
-            let english = voices.filter { !$0.isPersonal }
-            if english.isEmpty {
-                Section("English voices") {
-                    note("No English voices found on this phone.")
-                }
-            } else {
-                ForEach(Self.qualities, id: \.rawValue) { quality in
-                    let group = english.filter { $0.quality == quality }
-                    if !group.isEmpty {
-                        Section(Self.title(of: quality)) {
-                            ForEach(group) { row($0, detail: $0.region) }
+        MenuScreen(session: session, title: "Choose a voice") {
+            ScrollViewReader { scroller in
+                ScrollView {
+                    VStack(alignment: .leading, spacing: Theme.gap * 2) {
+                        group("Your voice") { personalRows }
+                        let others = session.voiceOptions.filter { !$0.isPersonal }
+                        let best = others.filter { $0.quality == .premium || $0.quality == .enhanced }
+                        let rest = others.filter { $0.quality != .premium && $0.quality != .enhanced }
+                        if !best.isEmpty {
+                            group("Best voices") { rows(best) }
+                        }
+                        if !rest.isEmpty {
+                            group("Other voices") { rows(rest) }
+                        }
+                        if others.isEmpty {
+                            group("Other voices") {
+                                Text("None on this phone")
+                                    .font(Theme.control)
+                                    .foregroundStyle(Theme.ash)
+                                    .frame(minHeight: Theme.bigTarget)
+                            }
                         }
                     }
                 }
+                // "Next voice" may walk past the bottom of the screen; keep its row in view.
+                .onChange(of: session.highlightedVoiceID) { _, id in
+                    guard let id else { return }
+                    withAnimation(Theme.motion) { scroller.scrollTo(id, anchor: .center) }
+                }
+            }
+        }
+        .task {
+            personalStatus = await Speaker.requestPersonalVoice()
+            // A Personal Voice only appears once the cook has allowed it.
+            session.refreshVoices()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: AVSpeechSynthesizer.availableVoicesDidChangeNotification)) { _ in
+            session.refreshVoices()
+        }
+    }
+
+    /// The voice speaking now: the one picked, or the best installed when none is.
+    private var chosenID: String? {
+        session.voiceID ?? Speaker.best?.identifier
+    }
+
+    private func group<Rows: View>(_ title: String, @ViewBuilder rows: () -> Rows) -> some View {
+        VStack(alignment: .leading, spacing: Theme.tight) {
+            Text(title)
+                .font(Theme.detail)
+                .foregroundStyle(Theme.ash)
+                .accessibilityAddTraits(.isHeader)
+            VStack(alignment: .leading, spacing: 0) {
+                rows()
             }
         }
     }
 
-    private static func title(of quality: AVSpeechSynthesisVoiceQuality) -> String {
-        switch quality {
-        case .premium: "Premium"
-        case .enhanced: "Enhanced"
-        default: "Default"
+    @ViewBuilder private var personalRows: some View {
+        let mine = session.voiceOptions.filter(\.isPersonal)
+        if !mine.isEmpty {
+            rows(mine)
+        } else {
+            HStack(spacing: Theme.gap) {
+                Text(personalNote)
+                    .font(Theme.control)
+                    .foregroundStyle(Theme.ash)
+                Spacer(minLength: Theme.gap)
+                if personalStatus == .notDetermined {
+                    Button("Use my voice") {
+                        session.noteTouch()
+                        Task {
+                            personalStatus = await Speaker.requestPersonalVoice()
+                            session.refreshVoices()
+                        }
+                    }
+                    .buttonStyle(WordButtonStyle(height: Theme.target))
+                } else if personalStatus == .denied {
+                    Button("Open Settings") {
+                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+                    .buttonStyle(WordButtonStyle(height: Theme.target))
+                }
+            }
+            .frame(minHeight: Theme.bigTarget)
         }
     }
 
-    private func row(_ option: VoiceOption, detail: String) -> some View {
-        VoiceRow(
-            name: option.name,
-            detail: detail,
-            selected: session.voiceID == option.id,
-            playing: session.sampleVoiceID == option.id,
-            choose: { session.chooseVoice(option.id) },
-            play: { toggleSample(option.id) }
-        )
+    /// Every state of the cook's own voice, drawn: asking, none made, not allowed, no support.
+    private var personalNote: String {
+        switch personalStatus {
+        case nil: "Asking for your voice"
+        case .authorized?: "None on this phone"
+        case .denied?: "Not allowed"
+        case .unsupported?: "Not on this phone"
+        default: "Not set up"
+        }
     }
 
-    private func note(_ text: String) -> some View {
-        Text(text)
-            .font(.headline)
-            .foregroundStyle(.secondary)
-    }
-
-    private func toggleSample(_ id: String) {
-        if session.sampleVoiceID == id {
-            session.stopSample()
-        } else {
-            session.playSample(voiceID: id)
+    @ViewBuilder private func rows(_ options: [VoiceOption]) -> some View {
+        ForEach(Array(options.enumerated()), id: \.element.id) { index, option in
+            if index > 0 { RowRule() }
+            VoiceRow(
+                option: option,
+                chosen: chosenID == option.id,
+                highlighted: session.highlightedVoiceID == option.id,
+                playing: session.sampleVoiceID == option.id,
+                use: {
+                    session.noteTouch()
+                    session.useVoice(option)
+                },
+                hear: {
+                    session.noteTouch()
+                    session.highlightVoice(option.id)
+                    if session.sampleVoiceID == option.id {
+                        session.stopSample()
+                    } else {
+                        session.playSample(voiceID: option.id)
+                    }
+                }
+            )
+            .id(option.id)
         }
     }
 }
 
-/// One voice: tap the name to use it, or play a sample first.
+/// One voice: its name and accent, Chosen or a Use button, and Hear it. The row "next
+/// voice" stopped on is lifted with the rule color.
 private struct VoiceRow: View {
-    let name: String
-    let detail: String
-    let selected: Bool
+    let option: VoiceOption
+    let chosen: Bool
+    let highlighted: Bool
     let playing: Bool
-    let choose: () -> Void
-    let play: (() -> Void)?
+    let use: () -> Void
+    let hear: () -> Void
 
     var body: some View {
-        HStack(spacing: 14) {
-            Button(action: choose) {
-                HStack(spacing: 14) {
-                    Image(systemName: "checkmark")
-                        .font(.title2.weight(.bold))
-                        .foregroundStyle(.green)
-                        .opacity(selected ? 1 : 0)
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(name)
-                            .font(.title2.weight(.semibold))
-                        Text(detail)
-                            .font(.headline)
-                            .foregroundStyle(.secondary)
-                    }
-                    Spacer(minLength: 0)
-                }
-                .contentShape(Rectangle())
+        HStack(spacing: Theme.gap) {
+            HStack(alignment: .firstTextBaseline, spacing: Theme.tight) {
+                Text(option.name)
+                    .font(Theme.control)
+                    .foregroundStyle(Theme.flour)
+                Text(option.region)
+                    .font(Theme.detail)
+                    .foregroundStyle(Theme.ash)
             }
-            .buttonStyle(.plain)
-            .accessibilityAddTraits(selected ? .isSelected : [])
-
-            if let play {
-                Button(action: play) {
-                    Label(playing ? "Stop" : "Play", systemImage: playing ? "stop.fill" : "play.fill")
-                        .font(.headline)
-                        .frame(minWidth: 84)
+            Spacer(minLength: Theme.gap)
+            if chosen {
+                Text("Chosen")
+                    .font(Theme.control)
+                    .foregroundStyle(Theme.copper)
+                    .frame(minWidth: 120)
+            } else {
+                Button(action: use) {
+                    Text("Use").frame(minWidth: 84)
                 }
-                .buttonStyle(.bordered)
-                .controlSize(.large)
-                .tint(playing ? Color.orange : Color.accentColor)
+                .buttonStyle(WordButtonStyle(height: Theme.target))
+                .accessibilityLabel("Use \(option.name)")
             }
+            Button(action: hear) {
+                Text(playing ? "Stop" : "Hear it").frame(minWidth: 96)
+            }
+            .buttonStyle(WordButtonStyle(height: Theme.target))
+            .accessibilityLabel(playing ? "Stop \(option.name)" : "Hear \(option.name)")
         }
-        .padding(.vertical, 6)
+        .padding(.horizontal, Theme.tight)
+        .frame(minHeight: Theme.bigTarget)
+        .background(
+            highlighted ? Theme.rule : Color.clear,
+            in: RoundedRectangle(cornerRadius: Theme.buttonRadius, style: .continuous)
+        )
+        .accessibilityElement(children: .contain)
+        .accessibilityAddTraits(chosen ? .isSelected : [])
     }
 }
