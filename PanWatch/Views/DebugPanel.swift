@@ -14,6 +14,7 @@ struct DebugPanel: View {
                 decisionSection
                 practiceSection
                 statsSection
+                usageSection
                 tuningSection
                 historySection
             }
@@ -75,6 +76,29 @@ struct DebugPanel: View {
             MetricRow(name: "Button presses", value: "\(stats.buttonPresses)")
             MetricRow(name: "Offers", value: "\(stats.offersMade) (\(stats.offersAccepted) yes, \(stats.offersDismissed) no)")
             MetricRow(name: "Accepted", value: stats.acceptanceRate.map { percent($0) } ?? "-")
+        }
+    }
+
+    /// Every cook so far, from the usage log kept on this phone. Nothing is sent anywhere;
+    /// sharing the log is up to the cook.
+    private var usageSection: some View {
+        let usage = session.usage.summary
+        return VStack(alignment: .leading, spacing: 8) {
+            SectionTitle(text: "Usage")
+            MetricRow(name: "Cooks", value: "\(usage.cooks) (\(usage.cooksFinished) finished)")
+            MetricRow(name: "Days used", value: "\(usage.daysUsed)")
+            MetricRow(name: "Offers accepted", value: usage.offersAcceptedShare.map { "\(percent($0)) of \(usage.offersMade)" } ?? "-")
+            MetricRow(name: "Likely misses", value: "\(usage.likelyMisses)")
+            MetricRow(name: "Touches per cook", value: usage.touchesPerCook.map { String(format: "%.1f", $0) } ?? "-")
+            MetricRow(name: "Voice understood", value: usage.voiceUnderstoodShare.map { "\(percent($0)) of \(usage.voiceCommands)" } ?? "-")
+            MetricRow(name: "Voice latency", value: usage.medianVoiceMilliseconds.map { String(format: "%.0f ms median", $0) } ?? "-")
+            if let file = session.usage.fileURL, FileManager.default.fileExists(atPath: file.path) {
+                ShareLink(item: file) {
+                    Label("Share usage log", systemImage: "square.and.arrow.up")
+                }
+                .buttonStyle(.bordered)
+                .tint(.white)
+            }
         }
     }
 
