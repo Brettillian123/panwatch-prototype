@@ -146,6 +146,24 @@ struct AdditionDetectorTests {
         #expect(detector.phase == .warmingUp)
     }
 
+    @Test func warmUpGivesUpOnAHandThatNeverLeaves() throws {
+        // A phantom hand in the wood grain must not keep the pan from ever being learned.
+        let settings = DetectorSettings()
+        var detector = AdditionDetector(settings: settings)
+        detector.setArmed(true)
+        var timeline = Timeline()
+        timeline.hold(settings.warmUpGiveUp + 1, hand: true, patch: Pans.arm)
+        var learnedAt: Double?
+        for frame in timeline.frames {
+            _ = detector.process(frame)
+            if learnedAt == nil && detector.phase != .warmingUp { learnedAt = frame.time }
+        }
+        let time = try #require(learnedAt)
+        #expect(time <= settings.warmUpGiveUp + 2 * Timeline.frameInterval)
+        #expect(detector.learnedWithHand)
+        #expect(detector.phase == .handInPan)
+    }
+
     @Test func disarmingMidVisitDropsIt() {
         var detector = AdditionDetector()
         detector.setArmed(true)

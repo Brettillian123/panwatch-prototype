@@ -49,6 +49,31 @@ struct DetectorSettings: Codable, Equatable, Sendable {
     var countRelease = true
     /// How far the hand must open, in palm lengths, to count as letting go.
     var releaseThreshold = 0.35
+    /// Vision's overall confidence (0-1) a hand needs. It finds faint "hands" in wood grain
+    /// and shiny bags; real ones score higher.
+    var handConfidence = 0.5
+    /// Confident joints a hand needs, the wrist among them. A hand holding a bag hides its
+    /// fingers, so asking for more loses real hands.
+    var minimumHandJoints = 6
+    /// A hand within this distance (fraction of the frame) of where one was last frame is
+    /// the same hand.
+    var handMatchDistance = 0.10
+    /// A hand counts once seen in this many of the last `handDebounceFrames` frames, so a
+    /// one-frame flicker in a texture never counts.
+    var handDebounceHits = 2
+    /// See `handDebounceHits`.
+    var handDebounceFrames = 3
+    /// A hand that stays within this distance (fraction of the frame) of one spot for
+    /// `handStillDuration` is texture, not a hand. A hand adding food moves.
+    var handStillDistance = 0.015
+    /// See `handStillDistance`.
+    var handStillDuration = 2.0
+    /// A hand ignored as still counts again once it moves this far (fraction of the frame)
+    /// from where it sat. Well above `handStillDistance` so jitter can't flip it back.
+    var handResumeDistance = 0.04
+    /// Warm-up learns the pan from a frame with a hand in view after this long, so a hand
+    /// that never leaves can't keep the pan from ever being learned.
+    var warmUpGiveUp = 10.0
 
     var changeRule: ChangeRule {
         ChangeRule(lumaThreshold: lumaThreshold, chromaThreshold: chromaThreshold)
@@ -147,6 +172,9 @@ struct AdditionDetector {
     private(set) var liveChange = 0.0
     /// How far the hand has opened during the current or last visit, in palm lengths.
     private(set) var handOpened = 0.0
+    /// Warm-up ran out of patience and learned the pan from a frame with a hand in view,
+    /// so the before-picture may include it.
+    private(set) var learnedWithHand = false
 
     private var isArmed = false
     private var history: [Snapshot] = []
@@ -154,6 +182,8 @@ struct AdditionDetector {
     private var previous: PanPatch?
     private var lastTime: Double?
     private var warmUpStart: Double?
+    /// The stillest frame of the last few seconds of warm-up, for when it gives up.
+    private var stillestWarmUp: (snapshot: Snapshot, motion: Double)?
     private var lastActiveTime = 0.0
     private var settleStart = 0.0
     private var stillSince: Double?
@@ -181,6 +211,8 @@ struct AdditionDetector {
         previous = nil
         lastTime = nil
         warmUpStart = nil
+        stillestWarmUp = nil
+        learnedWithHand = false
         stillSince = nil
         dwell = 0
         motion = 0
@@ -218,8 +250,20 @@ struct AdditionDetector {
             warmUpStart = started
             let impatient = t - started >= Self.warmUpPatience
             if !active && (still || impatient) { remember(frame) }
+            if let best = stillestWarmUp, best.snapshot.time >= t - Self.historyDuration, best.motion <= motion {
+                // Keep the stiller, recent one.
+            } else {
+                stillestWarmUp = (Snapshot(time: t, patch: frame.region), motion)
+            }
             if let first = history.first, let last = history.last,
                last.time - first.time >= settings.warmUpDuration || (impatient && !active) {
+                phase = .watching
+            } else if t - started >= settings.warmUpGiveUp {
+                // A hand that never leaves, real or imagined, would hold warm-up forever.
+                if history.isEmpty, let best = stillestWarmUp {
+                    history = [best.snapshot]
+                    learnedWithHand = true
+                }
                 phase = .watching
             }
 
