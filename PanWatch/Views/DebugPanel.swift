@@ -111,6 +111,7 @@ struct DebugPanel: View {
             TuningSlider(title: "Longer is stirring", value: $session.settings.maximumDwell, range: 2...20, format: seconds)
             TuningSlider(title: "Hand opening needed", value: $session.settings.releaseThreshold, range: 0.1...1.0) { String(format: "%.2f", $0) }
             TuningSlider(title: "Hand zone margin", value: $session.settings.handZoneMargin, range: 0...0.6, format: percent)
+            Toggle("Use the camera", isOn: Binding(get: { session.cameraOn }, set: { session.setCamera(on: $0) }))
             Toggle("Require a hand", isOn: $session.settings.requireHand)
             Toggle("Count a hand letting go", isOn: $session.settings.countRelease)
             Toggle("Ignore lighting changes", isOn: $session.settings.lightingVeto)

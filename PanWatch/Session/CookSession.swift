@@ -62,14 +62,20 @@ final class CookSession {
     /// need the phase don't redraw 15 times a second.
     private(set) var phase: AdditionDetector.Phase = .disarmed
 
+    /// The camera is in use. Off, there's no pan box and nothing is watched; the recipe,
+    /// timers and voice work as before. A setting, saved.
+    private(set) var cameraOn = true
     /// The pan box the camera watches, once confirmed.
     private(set) var region: NormRect?
-    /// True while the cook is drawing the pan box.
-    private(set) var isMarkingPan = true
+    /// True while the cook is drawing the pan box, with the screen cleared to the picture.
+    private(set) var isMarkingPan = false
     /// The box being drawn, before it's confirmed.
     var draftRegion: NormRect?
-    /// Why the cook is being asked to mark the pan again, if it isn't the first time.
-    private(set) var markingReason: String?
+    /// The last confirmed box, offered again after a relaunch, a phone turn or the camera
+    /// coming back on, until the cook says yes or draws a new one.
+    private(set) var offeredPan: NormRect?
+    /// The camera has no pan box. The cook screen asks for one without hiding anything.
+    var needsPan: Bool { cameraOn && region == nil && !isMarkingPan }
 
     private(set) var suggestion: TimerSuggestion?
     private(set) var timers: [CookTimer] = []
@@ -109,6 +115,10 @@ final class CookSession {
     private let listener = VoiceListener()
     private let alarms = CookAlarms()
     @ObservationIgnored private var started = false
+    /// Starting and stopping the camera, one after another.
+    @ObservationIgnored private var cameraWork: Task<Void, Never>?
+    /// Said at launch when a saved cook is picked up again.
+    @ObservationIgnored private var welcome: String?
 
     var currentStep: RecipeStep { recipe.steps[stepIndex] }
     var isLastStep: Bool { stepIndex == recipe.steps.count - 1 }
@@ -138,13 +148,25 @@ final class CookSession {
         listener.intentContext = { [weak self] in
             self?.intentContext
         }
-        restoreTimers()
+        cameraOn = UserDefaults.standard.object(forKey: Self.cameraKey) as? Bool ?? true
+        if cameraOn { offeredPan = savedPan() }
+        let resumed = resumeCook(timers: restoreTimers())
+        if resumed {
+            welcome = "Welcome back. Step \(stepIndex + 1). \(currentStep.instruction)"
+                + (offeredPan != nil ? " \(Self.samePlacePrompt)" : "")
+        }
     }
 
     func start() async {
         guard !started else { return }
         started = true
-        cameraStatus = await camera.start(position: cameraPosition)
+        if let welcome {
+            say(welcome)
+            self.welcome = nil
+        }
+        if cameraOn {
+            cameraStatus = await camera.start(position: cameraPosition)
+        }
         refreshArming()
         // Ask for the microphone at launch, so the prompt never appears mid-cook.
         micReady = await listener.requestPermission()
@@ -169,6 +191,7 @@ final class CookSession {
         stepIndex = index
         suggestion = nil
         refreshArming()
+        saveCook()
         say(text ?? "Step \(index + 1). \(currentStep.instruction)")
     }
 
@@ -185,6 +208,7 @@ final class CookSession {
         stats = CookStats()
         stepIndex = 0
         refreshArming()
+        saveCook()
         say("\(recipe.title). Step 1. \(currentStep.instruction)")
     }
 
@@ -202,10 +226,12 @@ final class CookSession {
 
     // MARK: Marking the pan
 
+    /// Clears the screen to the camera picture for drawing the pan box. The button, or
+    /// "draw a new box" said at any time, comes here.
     func markPan() {
+        guard cameraOn else { return }
         isMarkingPan = true
         draftRegion = region
-        markingReason = nil
         // Let exposure adapt while the cook sets up; it locks again on confirm.
         camera.setAdjustmentsLocked(false)
         refreshArming()
@@ -216,46 +242,113 @@ final class CookSession {
         let box = draft.atLeast(0.08)
         region = box
         draftRegion = nil
+        offeredPan = nil
         isMarkingPan = false
-        markingReason = nil
         camera.analyzer.setRegion(box)
         camera.setAdjustmentsLocked(true)
         refreshArming()
+        savePan(box)
     }
 
+    /// "Yes" to the last box: watches it again without drawing.
+    func reuseLastPan() {
+        guard cameraOn, region == nil, let box = offeredPan else { return }
+        draftRegion = box
+        confirmPan()
+    }
+
+    /// Back to the cook screen. With no box yet, the recipe goes on unwatched and the
+    /// screen keeps asking for one.
     func cancelMarking() {
-        guard region != nil else { return }
         isMarkingPan = false
         draftRegion = nil
-        markingReason = nil
-        camera.setAdjustmentsLocked(true)
+        if region != nil { camera.setAdjustmentsLocked(true) }
         refreshArming()
     }
 
     func flipCamera() async {
+        guard cameraOn else { return }
         cameraPosition = cameraPosition == .front ? .back : .front
         forgetPan()
         cameraStatus = await camera.start(position: cameraPosition)
     }
 
     private func phoneTurned() {
-        guard region != nil else { return }
+        guard cameraOn, region != nil else { return }
         forgetPan()
-        markingReason = "The phone turned, so the pan moved on screen. Mark it again."
+        // Turned back to where it was, the last box still fits; the cook says if it does.
+        say(offeredPan != nil ? Self.samePlacePrompt : "Draw a box around the pan.")
     }
 
+    /// Drops the box and goes back to asking for one, offering the last box drawn on this
+    /// camera. Never forces the cook into drawing.
     private func forgetPan() {
         region = nil
         camera.analyzer.setRegion(nil)
-        markPan()
+        isMarkingPan = false
         draftRegion = nil
+        offeredPan = savedPan()
+        camera.setAdjustmentsLocked(false)
+        refreshArming()
+    }
+
+    static let samePlacePrompt = "Is the pot in the same place? Say yes if the phone hasn't moved, or draw it again."
+
+    // MARK: Camera on or off
+
+    /// Turns the camera on or off, and saves the choice. Off, the camera stops and nothing
+    /// is watched. On, it starts again and asks for the pan box, offering the last one.
+    func setCamera(on: Bool) {
+        guard on != cameraOn else { return }
+        cameraOn = on
+        UserDefaults.standard.set(on, forKey: Self.cameraKey)
+        if on {
+            cameraStatus = .starting
+            offeredPan = savedPan()
+        } else {
+            suggestion = nil
+            isMarkingPan = false
+            draftRegion = nil
+            offeredPan = nil
+            region = nil
+            camera.analyzer.setRegion(nil)
+        }
+        refreshArming()
+        // Each switch waits for the one before, then does whatever the setting is by then.
+        let previous = cameraWork
+        cameraWork = Task { [weak self] in
+            await previous?.value
+            guard let self else { return }
+            if self.cameraOn {
+                self.cameraStatus = await self.camera.start(position: self.cameraPosition)
+            } else {
+                await self.camera.stop()
+            }
+        }
+    }
+
+    private static let cameraKey = "cameraOn.v1"
+    private static let panKey = "lastPan.v1"
+
+    /// The last confirmed box, saved with the camera it was drawn on.
+    private func savePan(_ box: NormRect) {
+        let saved = SavedPan(box: box, backCamera: cameraPosition == .back)
+        UserDefaults.standard.set(try? JSONEncoder().encode(saved), forKey: Self.panKey)
+    }
+
+    /// The last confirmed box, if it was drawn on the camera in use now.
+    private func savedPan() -> NormRect? {
+        guard let data = UserDefaults.standard.data(forKey: Self.panKey),
+              let saved = try? JSONDecoder().decode(SavedPan.self, from: data),
+              saved.backCamera == (cameraPosition == .back) else { return nil }
+        return saved.box
     }
 
     // MARK: Detection
 
     /// Whether the camera should be judging right now.
     private func refreshArming() {
-        let armed = region != nil && !isMarkingPan && !isChoosingRecipe && suggestion == nil && currentStep.watch != nil
+        let armed = cameraOn && region != nil && !isMarkingPan && !isChoosingRecipe && suggestion == nil && currentStep.watch != nil
             && !finishedSteps.contains(stepIndex)
         camera.analyzer.update(settings: effectiveSettings)
         camera.analyzer.setArmed(armed)
@@ -410,25 +503,34 @@ final class CookSession {
                 acceptSuggestion()
             } else if isMarkingPan, draftRegion != nil {
                 confirmPanByVoice()
+            } else if needsPan, offeredPan != nil {
+                reuseLastPanByVoice()
             }
         case .no:
             if suggestion != nil {
                 dismissSuggestion()
                 say("Okay.")
+            } else if isMarkingPan {
+                cancelMarking()
+                say("Okay.")
             }
         case .startTimer:
-            if suggestion != nil {
-                acceptSuggestion()
-            } else if let watch = currentStep.watch, !finishedSteps.contains(stepIndex) {
-                // The camera missed it, or the cook was quicker: start the step's timer anyway.
-                ingredientWentIn(step: stepIndex, watch: watch)
-            } else {
-                say("There's no timer for this step.")
-            }
+            startStepTimer()
         case .timeLeft:
             sayTimeLeft()
         case .startWatching:
-            if isMarkingPan, draftRegion != nil { confirmPanByVoice() }
+            if isMarkingPan, draftRegion != nil {
+                confirmPanByVoice()
+            } else if needsPan, offeredPan != nil {
+                reuseLastPanByVoice()
+            }
+        case .drawPan:
+            if cameraOn {
+                markPan()
+                say("Draw a box around the pan.")
+            } else {
+                say("Turn on the camera first.")
+            }
         case .ingredients:
             sayIngredients()
         case .cancelTimer:
@@ -453,6 +555,11 @@ final class CookSession {
 
     private func confirmPanByVoice() {
         confirmPan()
+        say("Watching the pan.")
+    }
+
+    private func reuseLastPanByVoice() {
+        reuseLastPan()
         say("Watching the pan.")
     }
 
@@ -498,6 +605,23 @@ final class CookSession {
         ingredientWentIn(step: offer.stepIndex, watch: offer.watch)
     }
 
+    /// This step still has a timer to start: something goes in, and it hasn't yet.
+    var canStartStepTimer: Bool {
+        currentStep.watch != nil && !finishedSteps.contains(stepIndex)
+    }
+
+    /// "Start the timer": accepts the offer, or starts the step's timer when the camera
+    /// missed it, the cook was quicker, or the camera is off.
+    func startStepTimer() {
+        if suggestion != nil {
+            acceptSuggestion()
+        } else if let watch = currentStep.watch, canStartStepTimer {
+            ingredientWentIn(step: stepIndex, watch: watch)
+        } else {
+            say("There's no timer for this step.")
+        }
+    }
+
     /// Starts the ingredient's timer, lines up the steps that wait on it, and says what's next.
     private func ingredientWentIn(step index: Int, watch: AdditionWatch) {
         finishedSteps.insert(index)
@@ -516,28 +640,32 @@ final class CookSession {
             say("\(label) timer started.")
         }
         refreshArming()
+        saveCook()
     }
 
     /// Steps cued to this timer are called out when it has that much time left, so the
     /// parts of the dish finish together. Removing the timer cancels them.
     private func scheduleSteps(for timer: CookTimer) {
-        let scale = fastTimers ? 1.0 / 60 : 1.0
-        for (index, step) in recipe.steps.enumerated() where index > stepIndex {
-            guard let cue = step.cue, cue.timerLabel == timer.label else { continue }
-            let atEnd = cue.secondsLeft <= 0
-            let at = atEnd ? timer.end : max(Date(), timer.end.addingTimeInterval(-Double(cue.secondsLeft) * scale))
-            let scheduled = ScheduledStep(stepIndex: index, timerID: timer.id, at: at, atTimerEnd: atEnd)
-            scheduledSteps.append(scheduled)
-            guard !atEnd else { continue }
-            let id = scheduled.id
-            let delay = max(0, at.timeIntervalSinceNow)
-            cueTasks[id] = Task { [weak self] in
-                try? await Task.sleep(for: .seconds(delay))
-                guard !Task.isCancelled else { return }
-                self?.cueArrived(id)
-            }
+        let saved = SavedTimer(id: timer.id, label: timer.label, start: timer.start, end: timer.end)
+        for callOut in StepCallOuts.cued(to: saved, in: recipe, after: stepIndex) {
+            schedule(callOut)
         }
+    }
+
+    private func schedule(_ callOut: StepCallOut) {
+        // A cue longer than the timer is called out right away.
+        let at = callOut.atTimerEnd ? callOut.at : max(Date(), callOut.at)
+        let scheduled = ScheduledStep(stepIndex: callOut.stepIndex, timerID: callOut.timerID, at: at, atTimerEnd: callOut.atTimerEnd)
+        scheduledSteps.append(scheduled)
         scheduledSteps.sort { $0.at < $1.at }
+        guard !callOut.atTimerEnd else { return }
+        let id = scheduled.id
+        let delay = max(0, at.timeIntervalSinceNow)
+        cueTasks[id] = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(delay))
+            guard !Task.isCancelled else { return }
+            self?.cueArrived(id)
+        }
     }
 
     private func cueArrived(_ id: UUID) {
@@ -647,14 +775,50 @@ final class CookSession {
         UserDefaults.standard.set(SavedTimers.encode(running), forKey: Self.timersKey)
     }
 
-    private func restoreTimers() {
-        guard let data = UserDefaults.standard.data(forKey: Self.timersKey) else { return }
-        for saved in SavedTimers.stillRunning(SavedTimers.decode(data), at: Date()) {
+    /// Brings back the running timers, and returns every saved one, finished while the app
+    /// was closed or not, so the step call-outs can be lined up again.
+    private func restoreTimers() -> [SavedTimer] {
+        guard let data = UserDefaults.standard.data(forKey: Self.timersKey) else { return [] }
+        let all = SavedTimers.decode(data)
+        for saved in SavedTimers.stillRunning(all, at: Date()) {
             let timer = CookTimer(id: saved.id, label: saved.label, start: saved.start, end: saved.end)
             timers.append(timer)
             scheduleFinish(timer)
         }
         saveTimers()
+        return all
+    }
+
+    // MARK: Saved cook
+
+    private static let cookKey = "cook.v1"
+
+    /// The recipe, the step and what already went in, saved whenever they change.
+    private func saveCook() {
+        let cook = SavedCook(recipeTitle: recipe.title, stepIndex: stepIndex, finishedSteps: finishedSteps, savedAt: Date())
+        UserDefaults.standard.set(cook.encoded(), forKey: Self.cookKey)
+    }
+
+    /// Picks up a cook saved in the last 6 hours: skips the menu, goes back to its step,
+    /// and lines up the step call-outs again from the saved timers. A step whose moment
+    /// passed while the app was closed is where the cook resumes.
+    private func resumeCook(timers saved: [SavedTimer]) -> Bool {
+        guard let data = UserDefaults.standard.data(forKey: Self.cookKey),
+              let cook = SavedCook.decode(data),
+              let recipe = cook.recipe(in: Recipe.all, at: Date()) else { return false }
+        self.recipe = recipe
+        stepIndex = cook.stepIndex
+        finishedSteps = cook.finishedSteps
+        isChoosingRecipe = false
+        let resumed = StepCallOuts.resumed(from: saved, in: recipe, at: stepIndex, now: Date())
+        if let step = resumed.catchUp {
+            stepIndex = step
+            saveCook()
+        }
+        for callOut in resumed.upcoming {
+            schedule(callOut)
+        }
+        return true
     }
 
     // MARK: Saved tuning
@@ -675,4 +839,11 @@ final class CookSession {
             UserDefaults.standard.set(data, forKey: settingsKey)
         }
     }
+}
+
+/// The last confirmed pan box, kept across launches. A box only fits the camera it was
+/// drawn on.
+private struct SavedPan: Codable {
+    let box: NormRect
+    let backCamera: Bool
 }
