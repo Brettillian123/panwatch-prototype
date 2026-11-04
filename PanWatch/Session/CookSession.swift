@@ -4,7 +4,8 @@ import SwiftUI
 
 /// A timer the cook accepted.
 struct CookTimer: Identifiable, Sendable {
-    let id = UUID()
+    /// Also the id of the timer's system alarm.
+    var id = UUID()
     let label: String
     let start: Date
     let end: Date
@@ -44,7 +45,11 @@ struct DecisionPictures {
 @MainActor
 @Observable
 final class CookSession {
-    let recipe = Recipe.garlicButterPasta
+    private(set) var recipe = Recipe.garlicButterPasta
+    /// True while the recipe menu is up: at launch, and when the cook asks for it.
+    private(set) var isChoosingRecipe = true
+    /// Touches, voice commands and offers in this cook, for the Nov 4 gates.
+    private(set) var stats = CookStats()
     private(set) var stepIndex = 0
 
     private(set) var cameraStatus: CameraStatus = .starting
@@ -96,6 +101,7 @@ final class CookSession {
     let camera = CameraController()
     private let speaker = Speaker()
     private let listener = VoiceListener()
+    private let alarms = CookAlarms()
     @ObservationIgnored private var started = false
 
     var currentStep: RecipeStep { recipe.steps[stepIndex] }
@@ -116,6 +122,7 @@ final class CookSession {
         speaker.onSpeakingChanged = { [weak self] speaking in
             self?.speakingChanged(speaking)
         }
+        restoreTimers()
     }
 
     func start() async {
@@ -126,6 +133,8 @@ final class CookSession {
         // Ask for the microphone at launch, so the prompt never appears mid-cook.
         micReady = await listener.requestPermission()
         refreshListening()
+        // Timers that ring with the app closed need their own permission; ask now too.
+        await alarms.requestPermission()
     }
 
     // MARK: Recipe steps
@@ -145,6 +154,34 @@ final class CookSession {
         suggestion = nil
         refreshArming()
         say(text ?? "Step \(index + 1). \(currentStep.instruction)")
+    }
+
+    // MARK: Recipes
+
+    /// Starts `recipe` from its first step. Running timers keep going, but call-outs
+    /// waiting on them belonged to the old recipe, so those are dropped.
+    func choose(_ recipe: Recipe) {
+        self.recipe = recipe
+        isChoosingRecipe = false
+        removeScheduled(scheduledSteps)
+        finishedSteps = []
+        suggestion = nil
+        stats = CookStats()
+        stepIndex = 0
+        refreshArming()
+        say("\(recipe.title). Step 1. \(currentStep.instruction)")
+    }
+
+    func showRecipes() {
+        isChoosingRecipe = true
+        suggestion = nil
+        refreshArming()
+    }
+
+    /// A tap on the cooking screen. Picking a recipe and marking the pan are setup and
+    /// aren't counted.
+    func noteTouch() {
+        stats.noteTouch()
     }
 
     // MARK: Marking the pan
@@ -202,7 +239,7 @@ final class CookSession {
 
     /// Whether the camera should be judging right now.
     private func refreshArming() {
-        let armed = region != nil && !isMarkingPan && suggestion == nil && currentStep.watch != nil
+        let armed = region != nil && !isMarkingPan && !isChoosingRecipe && suggestion == nil && currentStep.watch != nil
             && !finishedSteps.contains(stepIndex)
         camera.analyzer.update(settings: effectiveSettings)
         camera.analyzer.setArmed(armed)
@@ -256,6 +293,7 @@ final class CookSession {
             before: pictures.before,
             after: pictures.after
         )
+        stats.noteOffer()
         refreshArming()
         // "Yes" or "start the timer" accepts, "no" dismisses; so do the volume buttons.
         say(offerText(watch))
@@ -292,6 +330,9 @@ final class CookSession {
 
     /// Everything the buttons do, by voice, so the cook never has to touch the phone.
     private func handle(_ command: VoiceCommand, heard text: String) {
+        // The recipe menu is picked by touch; nothing should change behind it.
+        guard !isChoosingRecipe else { return }
+        stats.noteVoice()
         showHeard(text)
         switch command {
         case .next:
@@ -338,7 +379,26 @@ final class CookSession {
             sayTimeLeft()
         case .startWatching:
             if isMarkingPan, draftRegion != nil { confirmPanByVoice() }
+        case .ingredients:
+            sayIngredients()
+        case .cancelTimer:
+            if let newest = timers.last(where: { !$0.isDone }) {
+                removeTimer(newest.id)
+                say("\(newest.label) timer cancelled.")
+            } else {
+                say("No timers are running.")
+            }
         }
+    }
+
+    private func sayIngredients() {
+        let items = recipe.ingredients
+        guard let last = items.last else {
+            say("This recipe doesn't list its ingredients.")
+            return
+        }
+        let list = items.count == 1 ? last : items.dropLast().joined(separator: ", ") + ", and " + last
+        say("You'll need \(list).")
     }
 
     private func confirmPanByVoice() {
@@ -384,6 +444,7 @@ final class CookSession {
     func acceptSuggestion() {
         guard let offer = suggestion else { return }
         suggestion = nil
+        stats.noteAccepted()
         ingredientWentIn(step: offer.stepIndex, watch: offer.watch)
     }
 
@@ -448,6 +509,7 @@ final class CookSession {
     func dismissSuggestion() {
         guard suggestion != nil else { return }
         suggestion = nil
+        stats.noteDismissed()
         refreshArming()
     }
 
@@ -455,6 +517,8 @@ final class CookSession {
     /// pan box while marking, otherwise go to the next step. Wet hands never have to
     /// touch the screen.
     func hardwareButtonPressed() {
+        guard !isChoosingRecipe else { return }
+        stats.noteButton()
         if suggestion != nil {
             acceptSuggestion()
         } else if isMarkingPan {
@@ -467,6 +531,8 @@ final class CookSession {
     func removeTimer(_ id: UUID) {
         timers.removeAll { $0.id == id }
         removeScheduled(scheduledSteps.filter { $0.timerID == id })
+        alarms.cancel(id: id)
+        saveTimers()
     }
 
     @discardableResult
@@ -475,16 +541,26 @@ final class CookSession {
         let now = Date()
         let timer = CookTimer(label: label, start: now, end: now.addingTimeInterval(seconds))
         timers.append(timer)
+        scheduleFinish(timer)
+        // The system alarm rings even with the app closed or the phone locked.
+        alarms.schedule(id: timer.id, label: label, at: timer.end)
+        saveTimers()
+        return timer
+    }
+
+    /// The in-app "done" call-out, which also announces any step waiting on the timer.
+    private func scheduleFinish(_ timer: CookTimer) {
+        let delay = max(0, timer.end.timeIntervalSinceNow)
         Task { [weak self] in
-            try? await Task.sleep(for: .seconds(seconds))
+            try? await Task.sleep(for: .seconds(delay))
             self?.finishTimer(timer.id)
         }
-        return timer
     }
 
     private func finishTimer(_ id: UUID) {
         guard let index = timers.firstIndex(where: { $0.id == id }), !timers[index].isDone else { return }
         timers[index].isDone = true
+        saveTimers()
         let label = timers[index].label
         // A step cued for the end of this timer is called out together with it.
         let atEnd = scheduledSteps.filter { $0.timerID == id && $0.atTimerEnd }
@@ -506,6 +582,29 @@ final class CookSession {
 
     private static func lowercasingFirst(_ text: String) -> String {
         text.prefix(1).lowercased() + text.dropFirst()
+    }
+
+    // MARK: Saved timers
+
+    private static let timersKey = "runningTimers.v1"
+
+    /// Running timers are saved so they come back if the app is closed and reopened. iOS
+    /// keeps their alarms, so only the screen and the in-app call-out need restoring.
+    private func saveTimers() {
+        let running = timers.filter { !$0.isDone }.map {
+            SavedTimer(id: $0.id, label: $0.label, start: $0.start, end: $0.end)
+        }
+        UserDefaults.standard.set(SavedTimers.encode(running), forKey: Self.timersKey)
+    }
+
+    private func restoreTimers() {
+        guard let data = UserDefaults.standard.data(forKey: Self.timersKey) else { return }
+        for saved in SavedTimers.stillRunning(SavedTimers.decode(data), at: Date()) {
+            let timer = CookTimer(id: saved.id, label: saved.label, start: saved.start, end: saved.end)
+            timers.append(timer)
+            scheduleFinish(timer)
+        }
+        saveTimers()
     }
 
     // MARK: Saved tuning

@@ -178,6 +178,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Config/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Sous Vision";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Sous Vision watches your pan to notice when an ingredient goes in, so it can offer the right timer. Video is analyzed on this phone and never saved or sent.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Sous Vision listens for a quick yes or no after it offers a timer, so you can answer without touching the phone. Audio is not saved.";
@@ -207,6 +208,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Config/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Sous Vision";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Sous Vision watches your pan to notice when an ingredient goes in, so it can offer the right timer. Video is analyzed on this phone and never saved or sent.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Sous Vision listens for a quick yes or no after it offers a timer, so you can answer without touching the phone. Audio is not saved.";

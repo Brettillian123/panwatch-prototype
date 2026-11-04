@@ -18,6 +18,10 @@ enum VoiceCommand: Equatable, Sendable {
     case timeLeft
     /// "Start watching": confirms the pan box while it's being marked.
     case startWatching
+    /// "Ingredients": reads what the recipe needs.
+    case ingredients
+    /// "Cancel the timer": removes the newest running timer.
+    case cancelTimer
 
     /// Longer utterances are conversation, not commands.
     static let maximumWords = 5
@@ -32,10 +36,13 @@ enum VoiceCommand: Equatable, Sendable {
         let set = Set(words)
         let phrase = words.joined(separator: " ")
 
+        // Before the "no" words, because "cancel" and "stop" are among them.
+        if set.contains("timer") && (set.contains("cancel") || set.contains("stop")) { return .cancelTimer }
         // A "no" wins, so "no, don't start it" never starts a timer.
         if phrase.contains("not now") || !set.isDisjoint(with: noWords) { return .no }
         if phrase.contains("time left") || phrase.contains("how long") || phrase.contains("how much time")
             || phrase.contains("how much longer") { return .timeLeft }
+        if set.contains("ingredients") || set.contains("ingredient") { return .ingredients }
         if set.contains("repeat") || set.contains("again") { return .repeatStep }
         if set.contains("back") || set.contains("previous") { return .back }
         if set.contains("next") || set.contains("continue") { return .next }
