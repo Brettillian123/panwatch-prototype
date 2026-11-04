@@ -106,6 +106,21 @@ struct DetectorSettings: Codable, Equatable, Sendable {
     /// from a low counter angle the cook's body fills the space above the rim, and a bumped
     /// phone moves everything.
     var visibleChangeMaximum = 0.5
+    /// A visit counts only when its hand spent at least `minimumDwell` over the pot's
+    /// opening: inside the pan box and at least this share of the box's width in from its
+    /// left and right edges. Food goes in over the middle. A hand at the box's edges holds a
+    /// handle, shakes the pan or rests on the counter beside it, and a still pattern Vision
+    /// takes for a hand sits wherever it is. Visits whose hand position isn't known are
+    /// judged as before.
+    var openingInset = 0.1
+    /// A brightness change is taken for lighting only when, with smooth shading taken out,
+    /// less than this share of the box changed. A light, or the cook's shadow as they lean
+    /// in and back, brightens or darkens whole areas smoothly; food landing while the light
+    /// changed still changes the box's detail.
+    var lightingStructureLimit = 0.04
+    /// How far around each pixel, in patch pixels, shading is measured for
+    /// `lightingStructureLimit`: about 2.5 cm from a phone on the counter.
+    var shadingRadius = 4
 
     var changeRule: ChangeRule {
         ChangeRule(lumaThreshold: lumaThreshold, chromaThreshold: chromaThreshold)
@@ -137,6 +152,12 @@ struct FrameObservation: Sendable {
     var handOpenness: Double? = nil
     /// The pan region, sampled from this frame.
     var region: PanPatch
+    /// Where the hand over the pan is, relative to the pan box: (0, 0) its top left, (1, 1)
+    /// its bottom right, beyond that in the margin around it. The mean of the hands when
+    /// there are several. Nil when no hand is over the pan or it isn't known.
+    var handPoint: NormPoint? = nil
+    /// How many counted hands are over the pan.
+    var handsInZone = 0
 }
 
 /// The verdict after a hand visited the pan and left.
@@ -241,6 +262,12 @@ struct AdditionDetector {
     private var stirQuietUntil = -Double.infinity
     private var recentOpenness: [Double] = []
     private var leastOpen: Double?
+    /// When the current visit's hand first arrived.
+    private var visitStart = 0.0
+    /// Seconds the current visit's hand spent over the pot's opening (see `openingInset`).
+    private var overOpening = 0.0
+    /// Whether the current visit's hand position was ever known.
+    private var handPlaceKnown = false
     /// Why the latest visit, or the latest change seen without a hand, didn't end in an addition.
     private(set) var lastMiss: NoOffer?
     /// Counts updates to `lastMiss`, so a watcher can tell a new miss from an old one.
@@ -346,18 +373,26 @@ struct AdditionDetector {
                 dwell += dt
                 lastActiveTime = t
                 track(frame.handOpenness)
-                if dwell > settings.maximumDwell { visitIsStirring = true }
+                notePlace(frame, dt)
+                // In dim light Vision drops the hand for frames at a time, so a long stir
+                // reaches `maximumDwell` of counted time late or never; the visit's span from
+                // the hand's arrival, gaps included, says stirring too.
+                if dwell > settings.maximumDwell || t - visitStart > settings.maximumDwell { visitIsStirring = true }
             } else if t - lastActiveTime >= settings.exitHold {
                 if visitIsStirring {
                     return stirred(frame)
-                } else if dwell >= settings.minimumDwell {
-                    phase = .settling
-                    settleStart = t
-                    stillSince = nil
-                } else {
+                } else if dwell < settings.minimumDwell {
                     // A hand passing over on its way somewhere else. Not worth judging.
                     miss(.visitTooShort(dwell))
                     endVisit()
+                } else if handPlaceKnown && overOpening < settings.minimumDwell {
+                    // The hand held a handle, shook the pan or rested beside it: nothing went in.
+                    miss(.handBesidePan)
+                    endVisit()
+                } else {
+                    phase = .settling
+                    settleStart = t
+                    stillSince = nil
                 }
             }
 
@@ -366,6 +401,7 @@ struct AdditionDetector {
                 phase = .handInPan
                 lastActiveTime = t
                 track(frame.handOpenness)
+                notePlace(frame, dt)
                 return nil
             }
             if still {
@@ -474,12 +510,22 @@ struct AdditionDetector {
     }
 
     /// The whole pan got evenly brighter or darker, as when a light switches, rather than
-    /// food landing in part of it.
+    /// food landing in part of it. Brightness alone can't tell food in a bright change from
+    /// the light, so the box's structure must also have stayed: see `lightingStructureLimit`.
     private func looksLikeLighting(_ after: PanPatch, from before: PanPatch) -> Bool {
         let shift = after.medianLumaShift(from: before)
         return settings.lightingVeto && abs(shift) >= settings.lightingShiftThreshold
             && after.fractionShifted(by: shift, within: max(settings.lumaThreshold, abs(shift) / 2), from: before)
                 >= Self.lightingEvenness
+            && after.structureChange(from: before, rule: settings.changeRule, radius: settings.shadingRadius)
+                < settings.lightingStructureLimit
+    }
+
+    /// Adds the frame's time to `overOpening` when the hand is over the pot's opening.
+    private mutating func notePlace(_ frame: FrameObservation, _ dt: Double) {
+        guard let point = frame.handPoint else { return }
+        handPlaceKnown = true
+        if point.x >= settings.openingInset && point.x <= 1 - settings.openingInset { overOpening += dt }
     }
 
     private mutating func remember(_ frame: FrameObservation) {
@@ -494,6 +540,9 @@ struct AdditionDetector {
         frozenBaseline = baseline.patch
         dwell = 0
         lastActiveTime = t
+        visitStart = t
+        overOpening = 0
+        handPlaceKnown = false
         // A hand back right after stirring is still stirring.
         visitIsStirring = t < stirQuietUntil
         resetOpenness()
