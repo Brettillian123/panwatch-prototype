@@ -814,11 +814,11 @@ final class CookSession {
         case .whereAmI:
             say("\(recipe.title), step \(stepIndex + 1) of \(recipe.steps.count). \(currentStep.spokenText)")
         case .startOver:
-            if stepIndex == 0 {
+            if stepIndex == 0 && timers.isEmpty {
                 say("Step 1. \(currentStep.spokenText)")
             } else {
                 question = .startOver
-                say("Start over from step 1?")
+                say("Start the recipe over from step 1?")
             }
         case .showRecipes:
             open(.recipes)
