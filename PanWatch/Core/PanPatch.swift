@@ -179,4 +179,52 @@ struct PanPatch: Equatable, Sendable {
         }
         return Double(near) / Double(pixelCount)
     }
+
+    /// Which pixels changed in structure compared with `other`, or nil if the sizes differ.
+    /// Shading is taken out first: `other`'s brightness is scaled, pixel by pixel, by how
+    /// much brighter or darker the square of `radius` pixels around it got. A light
+    /// switching on, or the cook's shadow moving as they lean in and back, brightens or
+    /// darkens whole areas smoothly and drops out. Food, a splash or a hand changes the
+    /// detail inside the square and stays. Color is compared as in `changedMask`.
+    func structureMask(from other: PanPatch, rule: ChangeRule, radius: Int) -> [Bool]? {
+        guard other.width == width, other.height == height, pixelCount > 0 else { return nil }
+        let mine = boxSums(luma, radius: radius), theirs = boxSums(other.luma, radius: radius)
+        let chromaLimit = Int(rule.chromaThreshold)
+        var mask = [Bool](repeating: false, count: pixelCount)
+        for i in 0..<pixelCount {
+            let gain = min(max((mine[i] + 1) / (theirs[i] + 1), 0.25), 4)
+            let lumaDelta = abs(Double(luma[i]) - gain * Double(other.luma[i]))
+            let chromaDelta = abs(Int(cb[i]) - Int(other.cb[i])) + abs(Int(cr[i]) - Int(other.cr[i]))
+            mask[i] = lumaDelta > rule.lumaThreshold || chromaDelta > chromaLimit
+        }
+        return mask
+    }
+
+    /// Fraction of pixels whose structure changed compared with `other`; 0 if the sizes differ.
+    func structureChange(from other: PanPatch, rule: ChangeRule, radius: Int) -> Double {
+        guard let mask = structureMask(from: other, rule: rule, radius: radius) else { return 0 }
+        return Double(mask.lazy.filter { $0 }.count) / Double(pixelCount)
+    }
+
+    /// Each pixel's sum of `plane` over the square of `radius` around it, clipped at the edges.
+    private func boxSums(_ plane: [UInt8], radius: Int) -> [Double] {
+        var integral = [Double](repeating: 0, count: (width + 1) * (height + 1))
+        for r in 0..<height {
+            var row = 0.0
+            for c in 0..<width {
+                row += Double(plane[r * width + c])
+                integral[(r + 1) * (width + 1) + c + 1] = integral[r * (width + 1) + c + 1] + row
+            }
+        }
+        var sums = [Double](repeating: 0, count: pixelCount)
+        for r in 0..<height {
+            let r0 = max(r - radius, 0), r1 = min(r + radius + 1, height)
+            for c in 0..<width {
+                let c0 = max(c - radius, 0), c1 = min(c + radius + 1, width)
+                sums[r * width + c] = integral[r1 * (width + 1) + c1] - integral[r0 * (width + 1) + c1]
+                    - integral[r1 * (width + 1) + c0] + integral[r0 * (width + 1) + c0]
+            }
+        }
+        return sums
+    }
 }

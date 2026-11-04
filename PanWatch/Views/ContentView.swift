@@ -68,6 +68,7 @@ struct ContentView: View {
                 CameraStatusOverlay(status: session.cameraStatus)
             }
         }
+        .overlay { SetupCheckView(check: session.setupCheck) } // Setup check
         .background(Theme.iron)
         .animation(Theme.entrance, value: session.suggestion?.id)
         .animation(Theme.motion, value: session.showDebug)
