@@ -1,16 +1,45 @@
 import AVFoundation
 
+/// A voice: text in, PCM audio out. The Apple voice below is one; other voices plug in
+/// here and play through the same engine.
+protocol SpeechSource: AnyObject {
+    /// Makes the audio for `text` in `voice` (an `AVSpeechSynthesisVoice` identifier,
+    /// where the voice supports one), handing each chunk to `buffer` in `format`, then
+    /// calling `done` once: true when all the audio was made, false when it failed.
+    /// Both may be called from any thread. `cancel()` stops a text part way; after it,
+    /// nothing more is called for that text.
+    func synthesize(
+        _ text: String, voice: String?, format: AVAudioFormat,
+        buffer: @escaping @Sendable (AVAudioPCMBuffer) -> Void,
+        done: @escaping @Sendable (Bool) -> Void
+    )
+    func cancel()
+}
+
 /// Reads prompts aloud in the voice the cook picked, or the most natural English voice on
-/// the phone, and says when each prompt has finished, so the app can listen for an answer
-/// without hearing itself.
+/// the phone, through the shared audio engine, and says when each prompt has finished.
+/// With voice processing on, the microphone keeps listening while the app talks and the
+/// cook can cut a prompt short by speaking; without it, listening pauses in between.
 @MainActor
 final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
-    private let synthesizer = AVSpeechSynthesizer()
-    private var whenDone: [ObjectIdentifier: () -> Void] = [:]
-    /// Utterances started and not yet finished or cut off.
-    private var unfinished = 0
-    /// Called with true when the app starts talking and false once it has stopped, so
-    /// listening can pause in between.
+    private let audio: AudioIO
+    /// The voice in use. Replaced to switch to another voice.
+    var source: SpeechSource = AppleSpeechSource()
+    /// Speaks straight to the output when the engine can't start: no echo cancellation,
+    /// so listening pauses for it.
+    private let direct = AVSpeechSynthesizer()
+    /// Runs once the current prompt has been spoken in full.
+    private var whenDone: (() -> Void)?
+    /// Bumped for every prompt, so callbacks from a cut-off one are ignored.
+    private var utterance = 0
+    private var playback: Playback?
+    private var stuckGuard: Task<Void, Never>?
+    /// What the app is saying right now, for the self-echo guard. Nil when quiet.
+    private(set) var currentText: String?
+    /// The current prompt plays through the engine with voice processing, so the
+    /// microphone doesn't hear it and listening can go on.
+    private(set) var cancelsEcho = false
+    /// Called with true when the app starts talking and false once it has stopped.
     var onSpeakingChanged: ((Bool) -> Void)?
 
     nonisolated private static let voiceKey = "voiceIdentifier"
@@ -19,7 +48,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         didSet { UserDefaults.standard.set(voiceIdentifier, forKey: Self.voiceKey) }
     }
 
-    var isSpeaking: Bool { synthesizer.isSpeaking }
+    var isSpeaking: Bool { currentText != nil }
 
     /// Premium and enhanced voices sound far more human than the default one. They're
     /// free downloads in Settings > Accessibility > Read & Speak > Voices > English.
@@ -37,56 +66,108 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         identifier.flatMap(AVSpeechSynthesisVoice.init(identifier:)) ?? best
     }
 
-    override init() {
+    init(audio: AudioIO) {
+        self.audio = audio
         super.init()
-        synthesizer.delegate = self
+        direct.delegate = self
     }
 
     /// Speaks `text`, cutting off anything still being said. `then` runs once the text
     /// has been spoken in full, not if it gets cut off. `voice` overrides the picked one,
     /// for playing a sample in the voice menu.
     func say(_ text: String, voice: String? = nil, then: (() -> Void)? = nil) {
-        AudioSessionSetup.configure()
-        if synthesizer.isSpeaking {
-            synthesizer.stopSpeaking(at: .immediate)
-        } else {
-            // Nothing is being said, so a count left over from a missed callback is stale;
-            // left alone, it stopped listening from pausing while the app talks.
-            unfinished = 0
+        cutOff()
+        utterance += 1
+        let id = utterance
+        let chosen = voice ?? voiceIdentifier
+        currentText = text
+        whenDone = then
+        guard audio.start() else {
+            cancelsEcho = false
+            onSpeakingChanged?(true)
+            speakDirectly(text, voice: chosen, id: id)
+            return
         }
-        let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = Self.voice(for: voice ?? voiceIdentifier)
-        if let then {
-            whenDone[ObjectIdentifier(utterance)] = then
+        // Set before the listener is told, since it decides from this whether to pause.
+        cancelsEcho = audio.voiceProcessing
+        onSpeakingChanged?(true)
+        let player = audio.player
+        let playback = Playback { [weak self] ok in
+            Task { @MainActor in self?.playbackEnded(id: id, ok: ok, text: text, voice: chosen) }
         }
-        unfinished += 1
-        if unfinished == 1 { onSpeakingChanged?(true) }
-        synthesizer.speak(utterance)
+        self.playback = playback
+        source.synthesize(text, voice: chosen, format: AudioIO.playbackFormat, buffer: { buffer in
+            player.play(buffer, playback)
+        }, done: { ok in
+            playback.finish(ok: ok)
+        })
+        // A prompt that never reports back (the engine died under it) would leave the app
+        // "speaking" for good; no prompt takes longer than this.
+        let limit = 5.0 + 0.5 * Double(SelfEcho.words(in: text).count)
+        stuckGuard = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(limit))
+            guard let self, !Task.isCancelled, self.utterance == id, self.currentText != nil else { return }
+            self.ended(id: id, finished: false)
+        }
     }
 
     func stop() {
-        synthesizer.stopSpeaking(at: .immediate)
+        cutOff()
     }
 
-    private func ended() {
-        // Once the synthesizer is quiet nothing is left to wait for, even if a callback was missed.
-        unfinished = synthesizer.isSpeaking ? max(0, unfinished - 1) : 0
-        if unfinished == 0 { onSpeakingChanged?(false) }
+    /// Stops the current prompt without finishing it.
+    private func cutOff() {
+        guard currentText != nil else { return }
+        let id = utterance
+        source.cancel()
+        audio.player.stop()
+        if direct.isSpeaking { direct.stopSpeaking(at: .immediate) }
+        ended(id: id, finished: false)
+    }
+
+    private func playbackEnded(id: Int, ok: Bool, text: String, voice: String?) {
+        guard id == utterance, currentText != nil else { return }
+        if ok {
+            ended(id: id, finished: true)
+        } else {
+            // The voice or the engine failed part way: say it the plain way instead.
+            audio.player.stop()
+            speakDirectly(text, voice: voice, id: id)
+        }
+    }
+
+    private func speakDirectly(_ text: String, voice: String?, id: Int) {
+        cancelsEcho = false
+        playback = nil
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = Self.voice(for: voice)
+        direct.speak(utterance)
+    }
+
+    private func ended(id: Int, finished: Bool) {
+        guard id == utterance else { return }
+        stuckGuard?.cancel()
+        stuckGuard = nil
+        playback = nil
+        currentText = nil
+        cancelsEcho = false
+        let then = whenDone
+        whenDone = nil
+        onSpeakingChanged?(false)
+        if finished { then?() }
     }
 
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        let id = ObjectIdentifier(utterance)
         Task { @MainActor in
-            self.ended()
-            self.whenDone.removeValue(forKey: id)?()
+            guard self.currentText == utterance.speechString else { return }
+            self.ended(id: self.utterance, finished: true)
         }
     }
 
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
-        let id = ObjectIdentifier(utterance)
         Task { @MainActor in
-            self.ended()
-            _ = self.whenDone.removeValue(forKey: id)
+            guard self.currentText == utterance.speechString else { return }
+            self.ended(id: self.utterance, finished: false)
         }
     }
 
@@ -121,6 +202,85 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
             AVSpeechSynthesizer.requestPersonalVoiceAuthorization { status in
                 continuation.resume(returning: status)
             }
+        }
+    }
+}
+
+/// Apple's voices, including Personal Voice, rendered to buffers instead of played, so
+/// they go through the engine where voice processing can cancel them from the microphone.
+final class AppleSpeechSource: SpeechSource, @unchecked Sendable {
+    private let synthesizer = AVSpeechSynthesizer()
+    private let lock = NSLock()
+    /// Bumped for every text, so buffers from a cancelled one are dropped.
+    private var generation = 0
+
+    func synthesize(
+        _ text: String, voice: String?, format: AVAudioFormat,
+        buffer: @escaping @Sendable (AVAudioPCMBuffer) -> Void,
+        done: @escaping @Sendable (Bool) -> Void
+    ) {
+        let current: Int = lock.withLock {
+            generation += 1
+            return generation
+        }
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = Speaker.voice(for: voice)
+        let state = Conversion(format: format)
+        synthesizer.write(utterance) { [weak self] audio in
+            guard let self, self.lock.withLock({ self.generation == current }) else { return }
+            guard let pcm = audio as? AVAudioPCMBuffer else { return }
+            if pcm.frameLength == 0 {
+                // An empty buffer marks the end of the text.
+                done(!state.failed)
+                return
+            }
+            guard !state.failed else { return }
+            if let converted = state.convert(pcm) {
+                if converted.frameLength > 0 { buffer(converted) }
+            } else {
+                state.failed = true
+                done(false)
+            }
+        }
+    }
+
+    func cancel() {
+        lock.withLock { generation += 1 }
+        if synthesizer.isSpeaking { synthesizer.stopSpeaking(at: .immediate) }
+    }
+
+    /// Converts the synthesizer's buffers (its own rate and sample type) to the engine's
+    /// format. One converter per text, since a rate change carries state between buffers.
+    private final class Conversion: @unchecked Sendable {
+        let format: AVAudioFormat
+        var converter: AVAudioConverter?
+        var failed = false
+
+        init(format: AVAudioFormat) {
+            self.format = format
+        }
+
+        func convert(_ input: AVAudioPCMBuffer) -> AVAudioPCMBuffer? {
+            if input.format == format { return input }
+            if converter == nil || converter?.inputFormat != input.format {
+                converter = AVAudioConverter(from: input.format, to: format)
+            }
+            guard let converter else { return nil }
+            let ratio = format.sampleRate / input.format.sampleRate
+            let capacity = AVAudioFrameCount((Double(input.frameLength) * ratio).rounded(.up)) + 64
+            guard let output = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: capacity) else { return nil }
+            var given = false
+            var error: NSError?
+            let status = converter.convert(to: output, error: &error) { _, outStatus in
+                if given {
+                    outStatus.pointee = .noDataNow
+                    return nil
+                }
+                given = true
+                outStatus.pointee = .haveData
+                return input
+            }
+            return status == .error ? nil : output
         }
     }
 }

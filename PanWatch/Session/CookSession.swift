@@ -112,8 +112,10 @@ final class CookSession {
     let camera = CameraController()
     /// Setup check: measures this kitchen after the pan box is confirmed and tunes the detector to it.
     let setupCheck = SetupCheck()
-    private let speaker = Speaker()
-    private let listener = VoiceListener()
+    /// One engine for speaking and listening, so the microphone can hear the cook over the app.
+    private let audio = AudioIO()
+    private let speaker: Speaker
+    private let listener: VoiceListener
     private let alarms = CookAlarms()
     @ObservationIgnored private var started = false
     /// Starting and stopping the camera, one after another.
@@ -125,6 +127,8 @@ final class CookSession {
     var isLastStep: Bool { stepIndex == recipe.steps.count - 1 }
 
     init() {
+        speaker = Speaker(audio: audio)
+        listener = VoiceListener(audio: audio)
         settings = Self.loadSettings()
         camera.analyzer.update(settings: effectiveSettings)
         camera.analyzer.onSnapshot = { [weak self] snapshot in
@@ -153,6 +157,13 @@ final class CookSession {
         }
         listener.isAppSpeaking = { [weak self] in
             self?.speaker.isSpeaking ?? false
+        }
+        listener.spokenText = { [weak self] in
+            self?.speaker.currentText
+        }
+        // The cook started talking over a prompt: stop it. It isn't read again unless asked.
+        listener.onBargeIn = { [weak self] in
+            self?.speaker.stop()
         }
         listener.intentContext = { [weak self] in
             self?.intentContext
@@ -487,12 +498,14 @@ final class CookSession {
         )
     }
 
+    /// With voice processing, the microphone doesn't hear the app, so listening goes on
+    /// while it talks and the cook can cut it short. Without it, listening pauses.
     private func speakingChanged(_ speaking: Bool) {
         if speaking {
-            listener.hold()
+            if !speaker.cancelsEcho { listener.hold() }
         } else {
             sampleVoiceID = nil
-            listener.resume()
+            if listener.isHeld { listener.resume() }
         }
     }
 
