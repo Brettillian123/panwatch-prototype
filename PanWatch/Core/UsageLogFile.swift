@@ -20,19 +20,29 @@ struct UsageLogFile: Sendable {
             data.append(try encoder.encode(event))
             data.append(Self.newline)
         }
+        if try add(data) > limit { try trim() }
+    }
+
+    /// Adds `data` to the end of the file, making it if needed, and returns the new size.
+    private func add(_ data: Data) throws -> Int {
         let manager = FileManager.default
-        let size: Int
-        if manager.fileExists(atPath: url.path) {
-            let handle = try FileHandle(forWritingTo: url)
-            defer { try? handle.close() }
-            size = Int(try handle.seekToEnd()) + data.count
-            try handle.write(contentsOf: data)
-        } else {
+        guard manager.fileExists(atPath: url.path) else {
             try manager.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
             try data.write(to: url)
-            size = data.count
+            return data.count
         }
-        if size > limit { try trim() }
+        if #available(macOS 10.15.4, iOS 13.4, *) {
+            let handle = try FileHandle(forWritingTo: url)
+            defer { try? handle.close() }
+            let end = try handle.seekToEnd()
+            try handle.write(contentsOf: data)
+            return Int(end) + data.count
+        }
+        // Only for the package's tests on an old macOS target: rewrite the whole file.
+        var all = try Data(contentsOf: url)
+        all.append(data)
+        try all.write(to: url)
+        return all.count
     }
 
     /// Every event in the file, oldest first. A line that can't be read is skipped.
@@ -58,7 +68,7 @@ struct UsageLogFile: Sendable {
     private static func encoder() -> JSONEncoder {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
-        encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+        encoder.outputFormatting = .sortedKeys
         return encoder
     }
 

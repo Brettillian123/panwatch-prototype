@@ -274,10 +274,9 @@ struct UsageLogTests {
         let file = UsageLogFile(url: temporaryFile())
         defer { try? FileManager.default.removeItem(at: file.url.deletingLastPathComponent()) }
         try file.append([UsageEvent(.touch, at: at(0))])
-        let handle = try FileHandle(forWritingTo: file.url)
-        try handle.seekToEnd()
-        try handle.write(contentsOf: Data("{\"half a line".utf8))
-        try handle.close()
+        var torn = try Data(contentsOf: file.url)
+        torn.append(Data("{\"half a line".utf8))
+        try torn.write(to: file.url)
         try file.append([UsageEvent(.camera(on: true), at: at(1))])
         #expect(file.load().map(\.kind) == [.touch])
     }
