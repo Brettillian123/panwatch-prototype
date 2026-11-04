@@ -93,6 +93,12 @@ final class CookSession {
     /// What was last heard as a command, shown for a moment so the cook knows it landed.
     private(set) var heardText: String?
     @ObservationIgnored private var heardClear: Task<Void, Never>?
+    /// What listening is doing and what it last heard, for the debug panel.
+    private(set) var voiceReport = VoiceReport()
+    /// The voice picked in the voice menu, or nil for the best one installed.
+    private(set) var voiceID: String?
+    /// The voice whose sample is playing in the voice menu.
+    private(set) var sampleVoiceID: String?
     /// Timers count seconds instead of minutes, for rehearsing the demo.
     var fastTimers = false
     /// Detector tuning. Views change it directly; call `applySettings()` afterwards.
@@ -121,6 +127,13 @@ final class CookSession {
         }
         speaker.onSpeakingChanged = { [weak self] speaking in
             self?.speakingChanged(speaking)
+        }
+        voiceID = speaker.voiceIdentifier
+        listener.onReport = { [weak self] report in
+            self?.voiceReport = report
+        }
+        listener.isAppSpeaking = { [weak self] in
+            self?.speaker.isSpeaking ?? false
         }
         restoreTimers()
     }
@@ -324,8 +337,29 @@ final class CookSession {
         if speaking {
             listener.hold()
         } else {
+            sampleVoiceID = nil
             listener.resume()
         }
+    }
+
+    // MARK: Voice menu
+
+    /// Saves the voice for every prompt from now on; nil goes back to the best installed.
+    func chooseVoice(_ id: String?) {
+        voiceID = id
+        speaker.voiceIdentifier = id
+    }
+
+    /// Plays a line in `id`'s voice, even with the voice muted, since the cook asked for it.
+    /// Listening pauses for it like any other prompt.
+    func playSample(voiceID id: String) {
+        sampleVoiceID = id
+        speaker.say("Step two. Add the garlic and stir until it smells toasty.", voice: id)
+    }
+
+    func stopSample() {
+        sampleVoiceID = nil
+        speaker.stop()
     }
 
     /// Everything the buttons do, by voice, so the cook never has to touch the phone.

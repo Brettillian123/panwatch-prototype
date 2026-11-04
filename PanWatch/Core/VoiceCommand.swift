@@ -28,10 +28,18 @@ enum VoiceCommand: Equatable, Sendable {
 
     private static let yesWords: Set<String> = ["yes", "yeah", "yep", "yup", "sure", "okay", "ok"]
     private static let noWords: Set<String> = ["no", "nope", "cancel", "stop"]
+    /// Said around a command without changing it: "um, next step please".
+    private static let fillerWords: Set<String> = ["please", "um", "uh", "hey", "now", "the"]
+
+    /// The words that count toward `maximumWords`: everything said except filler.
+    static func words(in text: String) -> [String] {
+        allWords(in: text).filter { !fillerWords.contains($0) }
+    }
 
     static func parse(_ text: String) -> VoiceCommand? {
-        let lower = text.lowercased()
-        let words = lower.split(whereSeparator: { !$0.isLetter && $0 != "'" }).map(String.init)
+        let spoken = allWords(in: text)
+        // Filler is dropped before counting, so "okay, next step please" is still short.
+        let words = spoken.filter { !fillerWords.contains($0) }
         guard !words.isEmpty, words.count <= maximumWords else { return nil }
         let set = Set(words)
         let phrase = words.joined(separator: " ")
@@ -39,7 +47,8 @@ enum VoiceCommand: Equatable, Sendable {
         // Before the "no" words, because "cancel" and "stop" are among them.
         if set.contains("timer") && (set.contains("cancel") || set.contains("stop")) { return .cancelTimer }
         // A "no" wins, so "no, don't start it" never starts a timer.
-        if phrase.contains("not now") || !set.isDisjoint(with: noWords) { return .no }
+        // "Now" is filler, so "not now" is looked for in everything said.
+        if spoken.joined(separator: " ").contains("not now") || !set.isDisjoint(with: noWords) { return .no }
         if phrase.contains("time left") || phrase.contains("how long") || phrase.contains("how much time")
             || phrase.contains("how much longer") { return .timeLeft }
         if set.contains("ingredients") || set.contains("ingredient") { return .ingredients }
@@ -52,5 +61,9 @@ enum VoiceCommand: Equatable, Sendable {
             return .yes
         }
         return nil
+    }
+
+    private static func allWords(in text: String) -> [String] {
+        text.lowercased().split(whereSeparator: { !$0.isLetter && $0 != "'" }).map(String.init)
     }
 }
