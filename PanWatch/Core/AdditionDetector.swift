@@ -74,9 +74,55 @@ struct DetectorSettings: Codable, Equatable, Sendable {
     /// Warm-up learns the pan from a frame with a hand in view after this long, so a hand
     /// that never leaves can't keep the pan from ever being learned.
     var warmUpGiveUp = 10.0
+    /// Vision's confidence (0-1) a joint needs to be used at all. Wood grain yields many
+    /// faint ones.
+    var jointConfidence = 0.4
+    /// A hand gripping a bag or a handful of pasta hides its fingers and often its wrist.
+    /// A hand Vision is at least this sure of counts with only `holdingHandJoints` joints,
+    /// wrist or not.
+    var holdingHandConfidence = 0.6
+    /// See `holdingHandConfidence`.
+    var holdingHandJoints = 4
+    /// On steps whose ingredient stays in sight (`minimumChange` above zero), count a change
+    /// in the pan box that holds even when no counted hand visited: a pour whose hand
+    /// Vision never trusted.
+    var countVisibleChange = true
+    /// Set per step by `applying(_:)` when the step's ingredient stays in sight. Off unless
+    /// a step asks for it, so other steps never judge a change without a hand.
+    var visibleIngredient = false
+    /// The visible-change path needs this many times `additionThreshold` of the box to change.
+    var visibleChangeFactor = 2.0
+    /// The visible-change path needs the change to hold this long, in seconds, after motion stops.
+    var visibleChangeHold = 1.5
+    /// Frame-to-frame change below this counts as motion having stopped, for the
+    /// visible-change path. Above `stillnessThreshold` because, from a phone propped low on
+    /// the counter, steam rising past the rim never lets the box go fully still.
+    var visibleCalmMotion = 0.08
+    /// Share of the hold's frames in which a pixel must differ from the before-picture to
+    /// count toward a visible change. Steam above the rim changes different pixels each
+    /// frame and drops out; pasta ends sticking up out of the pot stay put.
+    var visibleChangeSteadiness = 0.8
+    /// A steady change over more than this share of the box is the view changing, not food:
+    /// from a low counter angle the cook's body fills the space above the rim, and a bumped
+    /// phone moves everything.
+    var visibleChangeMaximum = 0.5
 
     var changeRule: ChangeRule {
         ChangeRule(lumaThreshold: lumaThreshold, chromaThreshold: chromaThreshold)
+    }
+
+    /// The tuning for one recipe step. Some ingredients, like minced garlic, change only a
+    /// little of the pan, so their step asks for less change. Only ingredients carried in
+    /// the hand count a hand letting go, and only ones that stay in sight count a change
+    /// seen without a hand.
+    func applying(_ watch: AdditionWatch?) -> DetectorSettings {
+        var effective = self
+        if let minimum = watch?.minimumChange {
+            effective.additionThreshold = min(additionThreshold, minimum)
+        }
+        effective.countRelease = countRelease && watch?.countsRelease == true
+        effective.visibleIngredient = countVisibleChange && (watch?.minimumChange ?? 0) > 0
+        return effective
     }
 }
 
@@ -122,6 +168,8 @@ struct DetectorDecision: Identifiable, Sendable {
     let settledCleanly: Bool
     let before: PanPatch
     let after: PanPatch
+    /// True when no counted hand visited and a change that held in the box made the decision.
+    var changeAlone = false
 }
 
 /// Decides whether something was added to the pan, from a stream of per-frame observations.
@@ -193,6 +241,22 @@ struct AdditionDetector {
     private var stirQuietUntil = -Double.infinity
     private var recentOpenness: [Double] = []
     private var leastOpen: Double?
+    /// Why the latest visit, or the latest change seen without a hand, didn't end in an addition.
+    private(set) var lastMiss: NoOffer?
+    /// Counts updates to `lastMiss`, so a watcher can tell a new miss from an old one.
+    private(set) var misses = 0
+
+    // The visible-change path.
+    /// Calm frames from the last moment, for the before-picture once motion starts.
+    private var calmFrames: [Snapshot] = []
+    /// The pan just before motion with no counted hand began.
+    private var sightBaseline: PanPatch?
+    private var sightStart = 0.0
+    private var sightLastMotion = 0.0
+    private var sightCalmSince: Double?
+    /// For each pixel, in how many calm frames since `sightCalmSince` it differed from `sightBaseline`.
+    private var sightCounts: [Int] = []
+    private var sightFrames = 0
 
     init(settings: DetectorSettings = DetectorSettings()) {
         self.settings = settings
@@ -220,6 +284,7 @@ struct AdditionDetector {
         visitIsStirring = false
         stirQuietUntil = -Double.infinity
         resetOpenness()
+        clearSight()
         phase = isArmed ? .warmingUp : .disarmed
     }
 
@@ -268,6 +333,7 @@ struct AdditionDetector {
             }
 
         case .watching:
+            if settings.visibleIngredient, let decision = watchForChange(frame) { return decision }
             if active {
                 beginVisit(at: t)
                 if phase == .handInPan { track(frame.handOpenness) }
@@ -290,6 +356,7 @@ struct AdditionDetector {
                     stillSince = nil
                 } else {
                     // A hand passing over on its way somewhere else. Not worth judging.
+                    miss(.visitTooShort(dwell))
                     endVisit()
                 }
             }
@@ -316,6 +383,103 @@ struct AdditionDetector {
             if still && !active { remember(frame) }
         }
         return nil
+    }
+
+    /// The visible-change path, for steps whose ingredient stays in sight: motion in the
+    /// box with no counted hand, then a change that holds for `visibleChangeHold` once
+    /// motion stops, is judged like a visit. It catches a pour whose hand Vision never
+    /// trusted. Seen from a phone propped low on the counter, the box holds the side of the
+    /// pot and the space just above its rim, so the change must sit on the same pixels the
+    /// whole hold (steam drifts and drops out) and must not fill most of the box (the
+    /// cook's body or a bumped phone).
+    private mutating func watchForChange(_ frame: FrameObservation) -> DetectorDecision? {
+        let t = frame.time
+        let calm = !frame.handInZone && motion < settings.visibleCalmMotion
+        guard let baseline = sightBaseline else {
+            if calm {
+                calmFrames.append(Snapshot(time: t, patch: frame.region))
+                calmFrames.removeAll { $0.time < t - settings.baselineLag - 1 }
+            } else if let oldest = calmFrames.first {
+                // The median of the calm moment before, so steam caught in one frame drops out.
+                let lagged = calmFrames.filter { $0.time <= t - settings.baselineLag }
+                sightBaseline = Self.median((lagged.isEmpty ? [oldest] : lagged).map(\.patch))
+                sightStart = t
+                sightLastMotion = t
+                sightCalmSince = nil
+            }
+            return nil
+        }
+        guard calm else {
+            sightLastMotion = t
+            sightCalmSince = nil
+            return nil
+        }
+        guard let mask = frame.region.changedMask(from: baseline, rule: settings.changeRule) else {
+            clearSight(keeping: frame)
+            return nil
+        }
+        if sightCalmSince == nil || sightCounts.count != mask.count {
+            sightCalmSince = t
+            sightCounts = [Int](repeating: 0, count: mask.count)
+            sightFrames = 0
+        }
+        sightFrames += 1
+        for (index, changed) in mask.enumerated() where changed { sightCounts[index] += 1 }
+        guard let calmSince = sightCalmSince, t - calmSince >= settings.visibleChangeHold else { return nil }
+
+        let needed = settings.visibleChangeFactor * settings.additionThreshold
+        let hits = Double(sightFrames) * settings.visibleChangeSteadiness
+        let steady = Double(sightCounts.filter { Double($0) >= hits }.count) / Double(max(mask.count, 1))
+        let moving = sightLastMotion - sightStart
+        if moving > settings.maximumDwell {
+            // Motion that long without a counted hand is stirring, not a pour.
+            miss(.visitTooLong(moving))
+        } else if steady < needed {
+            miss(.changeTooSmall(changed: steady, needed: needed))
+        } else if steady > settings.visibleChangeMaximum && !looksLikeLighting(frame.region, from: baseline) {
+            miss(.viewChanged(steady))
+        } else {
+            frozenBaseline = baseline
+            dwell = 0
+            resetOpenness()
+            return decide(frame, settledCleanly: true, changeAlone: true)
+        }
+        clearSight(keeping: frame)
+        return nil
+    }
+
+    /// Forgets the visible-change path's progress, keeping `frame` as the latest calm one.
+    private mutating func clearSight(keeping frame: FrameObservation? = nil) {
+        sightBaseline = nil
+        sightCalmSince = nil
+        sightCounts = []
+        sightFrames = 0
+        calmFrames = frame.map { [Snapshot(time: $0.time, patch: $0.region)] } ?? []
+    }
+
+    /// Each pixel's median over `patches`. Ones of another size than the last are left out.
+    private static func median(_ patches: [PanPatch]) -> PanPatch {
+        guard let last = patches.last else { preconditionFailure("median of no pictures") }
+        let same = patches.filter { $0.width == last.width && $0.height == last.height }
+        guard same.count > 2 else { return last }
+        func plane(_ values: KeyPath<PanPatch, [UInt8]>) -> [UInt8] {
+            (0..<last.pixelCount).map { index in same.map { $0[keyPath: values][index] }.sorted()[same.count / 2] }
+        }
+        return PanPatch(width: last.width, height: last.height, luma: plane(\.luma), cb: plane(\.cb), cr: plane(\.cr))
+    }
+
+    private mutating func miss(_ reason: NoOffer) {
+        lastMiss = reason
+        misses += 1
+    }
+
+    /// The whole pan got evenly brighter or darker, as when a light switches, rather than
+    /// food landing in part of it.
+    private func looksLikeLighting(_ after: PanPatch, from before: PanPatch) -> Bool {
+        let shift = after.medianLumaShift(from: before)
+        return settings.lightingVeto && abs(shift) >= settings.lightingShiftThreshold
+            && after.fractionShifted(by: shift, within: max(settings.lumaThreshold, abs(shift) / 2), from: before)
+                >= Self.lightingEvenness
     }
 
     private mutating func remember(_ frame: FrameObservation) {
@@ -383,11 +547,13 @@ struct AdditionDetector {
         )
         stirQuietUntil = frame.time + settings.stirQuiet
         history = [Snapshot(time: frame.time, patch: frame.region)]
+        miss(.visitTooLong(dwell))
+        clearSight(keeping: frame)
         endVisit()
         return decision
     }
 
-    private mutating func decide(_ frame: FrameObservation, settledCleanly: Bool) -> DetectorDecision? {
+    private mutating func decide(_ frame: FrameObservation, settledCleanly: Bool, changeAlone: Bool = false) -> DetectorDecision? {
         guard let before = frozenBaseline else {
             endVisit()
             return nil
@@ -401,14 +567,14 @@ struct AdditionDetector {
         let outcome: DetectorDecision.Outcome
         if released {
             outcome = .addition
-        } else if settings.lightingVeto && abs(shift) >= settings.lightingShiftThreshold
-            && after.fractionShifted(by: shift, within: max(settings.lumaThreshold, abs(shift) / 2), from: before)
-                >= Self.lightingEvenness {
+        } else if looksLikeLighting(after, from: before) {
             outcome = .lightingChange
+            miss(.lightingVeto(shift))
         } else if changed >= settings.additionThreshold {
             outcome = .addition
         } else {
             outcome = .noChange
+            miss(.changeTooSmall(changed: changed, needed: settings.additionThreshold))
         }
 
         decisionCount += 1
@@ -424,13 +590,15 @@ struct AdditionDetector {
             released: released,
             settledCleanly: settledCleanly,
             before: before,
-            after: after
+            after: after,
+            changeAlone: changeAlone
         )
 
         // Whatever happened, the pan as it looks now is the new normal.
         frozenBaseline = nil
         visitIsStirring = false
         history = [Snapshot(time: frame.time, patch: after)]
+        clearSight(keeping: frame)
         if outcome == .addition {
             phase = .cooldown
             cooldownUntil = frame.time + settings.cooldown
