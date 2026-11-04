@@ -109,6 +109,7 @@ struct TimerStack: View {
                     }
                     .font(.system(size: 30, weight: .bold, design: .rounded))
                     Button {
+                        session.noteTouch()
                         session.removeTimer(timer.id)
                     } label: {
                         Image(systemName: "xmark")
@@ -161,34 +162,38 @@ struct ControlBar: View {
                 .tint(.green)
                 .disabled(session.draftRegion == nil)
             } else {
-                Button { session.previousStep() } label: {
+                Button { session.noteTouch(); session.previousStep() } label: {
                     Label("Back", systemImage: "chevron.left")
                 }
                 .disabled(session.stepIndex == 0)
 
-                Button { session.nextStep() } label: {
+                Button { session.noteTouch(); session.nextStep() } label: {
                     Label("Next step", systemImage: "chevron.right")
                 }
                 .disabled(session.isLastStep)
 
-                Button { session.markPan() } label: {
+                Button { session.noteTouch(); session.markPan() } label: {
                     Label("Mark pan", systemImage: "viewfinder")
+                }
+
+                Button { session.showRecipes() } label: {
+                    Label("Recipes", systemImage: "list.bullet")
                 }
             }
 
             Spacer(minLength: 8)
 
-            Button { session.toggleListening() } label: {
+            Button { session.noteTouch(); session.toggleListening() } label: {
                 Image(systemName: session.listeningOn ? "mic.fill" : "mic.slash.fill")
             }
             .accessibilityLabel(session.listeningOn ? "Stop listening for commands" : "Listen for commands")
 
-            Button { session.voiceOn.toggle() } label: {
+            Button { session.noteTouch(); session.voiceOn.toggle() } label: {
                 Image(systemName: session.voiceOn ? "speaker.wave.2.fill" : "speaker.slash.fill")
             }
             .accessibilityLabel(session.voiceOn ? "Mute voice" : "Unmute voice")
 
-            Button { Task { await session.flipCamera() } } label: {
+            Button { session.noteTouch(); Task { await session.flipCamera() } } label: {
                 Image(systemName: "arrow.triangle.2.circlepath.camera")
             }
             .accessibilityLabel("Switch camera")

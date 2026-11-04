@@ -25,6 +25,20 @@ struct VoiceCommandTests {
         }
     }
 
+    @Test func ingredientsAndCancellingATimer() {
+        for text in ["ingredients", "what are the ingredients", "read the ingredients"] {
+            #expect(VoiceCommand.parse(text) == .ingredients, "\(text)")
+        }
+        for text in ["cancel the timer", "stop the timer", "cancel timer"] {
+            #expect(VoiceCommand.parse(text) == .cancelTimer, "\(text)")
+        }
+        // The old answers keep their meaning.
+        for text in ["cancel", "cancel that", "stop", "no", "no ingredients"] {
+            #expect(VoiceCommand.parse(text) == .no, "\(text)")
+        }
+        #expect(VoiceCommand.parse("start the timer") == .startTimer)
+    }
+
     @Test func conversationIsIgnored() {
         for text in [
             "", "hmm", "the pasta looks good", "nothing", "notice",

@@ -36,11 +36,13 @@ struct RecipeStep: Identifiable, Equatable, Sendable {
 struct Recipe: Sendable {
     let title: String
     let steps: [RecipeStep]
+    /// What to gather before starting, read aloud when the cook says "ingredients".
+    var ingredients: [String] = []
 }
 
 extension Recipe {
     /// Lists every recipe the app offers, in menu order.
-    static let all: [Recipe] = [garlicButterPasta]
+    static let all: [Recipe] = [garlicButterPasta, rice, hardBoiledEggs, steamedBroccoli, oatmeal, panSearedChicken]
 
     /// Two watched steps and three unwatched ones, so the demo shows the camera switching
     /// itself on and off as the recipe moves. Once the pasta timer runs, the butter, the
@@ -75,6 +77,122 @@ extension Recipe {
                 watch: nil,
                 cue: StepCue(timerLabel: "Pasta", secondsLeft: 0)
             ),
-        ]
+        ],
+        ingredients: ["1 pound of pasta", "1 tablespoon of salt", "3 tablespoons of butter", "4 cloves of garlic, minced"]
+    )
+
+    /// Rice hides inside the pot from a phone on the counter, so a hand visit counts.
+    static let rice = Recipe(
+        title: "Rice",
+        steps: [
+            RecipeStep(id: 1, instruction: "Rinse 1 cup of long-grain white rice in a strainer.", watch: nil),
+            RecipeStep(id: 2, instruction: "Bring 2 cups of water and 1/2 teaspoon of salt to a boil in a pot.", watch: nil),
+            RecipeStep(
+                id: 3,
+                instruction: "Add the rice, stir once, cover, and turn the heat to low.",
+                watch: AdditionWatch(ingredient: "rice", timerLabel: "Rice", timerMinutes: 18, minimumChange: 0)
+            ),
+            RecipeStep(
+                id: 4,
+                instruction: "Turn off the heat and let the rice rest, covered, for 5 minutes.",
+                watch: nil,
+                cue: StepCue(timerLabel: "Rice", secondsLeft: 0)
+            ),
+            RecipeStep(id: 5, instruction: "Fluff the rice with a fork and serve.", watch: nil),
+        ],
+        ingredients: ["1 cup of long-grain white rice", "2 cups of water", "1/2 teaspoon of salt"]
+    )
+
+    /// The ice bath is called out two minutes early, so it's ready when the eggs are.
+    static let hardBoiledEggs = Recipe(
+        title: "Hard-Boiled Eggs",
+        steps: [
+            RecipeStep(id: 1, instruction: "Bring a large pot of water to a boil.", watch: nil),
+            RecipeStep(
+                id: 2,
+                instruction: "Lower 4 eggs into the boiling water with a spoon.",
+                // Eggs go in on a spoon and sink out of sight, so a hand visit counts.
+                watch: AdditionWatch(ingredient: "eggs", timerLabel: "Eggs", timerMinutes: 12, minimumChange: 0)
+            ),
+            RecipeStep(
+                id: 3,
+                instruction: "Fill a bowl with ice and cold water.",
+                watch: nil,
+                cue: StepCue(timerLabel: "Eggs", secondsLeft: 120)
+            ),
+            RecipeStep(
+                id: 4,
+                instruction: "Move the eggs into the ice water for 5 minutes.",
+                watch: nil,
+                cue: StepCue(timerLabel: "Eggs", secondsLeft: 0)
+            ),
+            RecipeStep(id: 5, instruction: "Peel the eggs and serve.", watch: nil),
+        ],
+        ingredients: ["4 eggs", "a bowl of ice water"]
+    )
+
+    /// Broccoli goes in by the handful and sits above the water, so it counts like pasta.
+    static let steamedBroccoli = Recipe(
+        title: "Steamed Broccoli",
+        steps: [
+            RecipeStep(id: 1, instruction: "Bring 1 inch of water to a boil in a pot with a steamer basket.", watch: nil),
+            RecipeStep(
+                id: 2,
+                instruction: "Add 1 pound of broccoli florets to the basket and cover the pot.",
+                watch: AdditionWatch(ingredient: "broccoli", timerLabel: "Broccoli", timerMinutes: 5, minimumChange: 0.02, countsRelease: true)
+            ),
+            RecipeStep(
+                id: 3,
+                instruction: "Toss the broccoli with 1 tablespoon of butter and a pinch of salt.",
+                watch: nil,
+                cue: StepCue(timerLabel: "Broccoli", secondsLeft: 0)
+            ),
+        ],
+        ingredients: ["1 pound of broccoli florets", "1 tablespoon of butter", "a pinch of salt"]
+    )
+
+    /// Oats are poured in and sink into the water, so a hand visit counts.
+    static let oatmeal = Recipe(
+        title: "Oatmeal",
+        steps: [
+            RecipeStep(id: 1, instruction: "Bring 2 cups of water and a pinch of salt to a boil.", watch: nil),
+            RecipeStep(
+                id: 2,
+                instruction: "Stir in 1 cup of old-fashioned oats and turn the heat to medium-low.",
+                watch: AdditionWatch(ingredient: "oats", timerLabel: "Oatmeal", timerMinutes: 5, minimumChange: 0)
+            ),
+            RecipeStep(
+                id: 3,
+                instruction: "Turn off the heat, cover, and let it sit for 2 minutes.",
+                watch: nil,
+                cue: StepCue(timerLabel: "Oatmeal", secondsLeft: 0)
+            ),
+            RecipeStep(id: 4, instruction: "Top with 1 tablespoon of brown sugar and serve.", watch: nil),
+        ],
+        ingredients: ["1 cup of old-fashioned oats", "2 cups of water", "a pinch of salt", "1 tablespoon of brown sugar"]
+    )
+
+    /// The timer is for the first side only. Doneness comes from a thermometer, never the
+    /// camera: USDA says color is not a safe sign for chicken.
+    static let panSearedChicken = Recipe(
+        title: "Pan-Seared Chicken",
+        steps: [
+            RecipeStep(id: 1, instruction: "Season 2 boneless chicken breasts with 1/2 teaspoon of salt and 1/4 teaspoon of pepper.", watch: nil),
+            RecipeStep(id: 2, instruction: "Heat 1 tablespoon of oil in a pan over medium-high heat.", watch: nil),
+            RecipeStep(
+                id: 3,
+                instruction: "Lay the chicken in the hot pan.",
+                // A hand lets go of each piece, and a low pan shows them from the counter.
+                watch: AdditionWatch(ingredient: "chicken", timerLabel: "Chicken", timerMinutes: 6, minimumChange: 0.02, countsRelease: true)
+            ),
+            RecipeStep(
+                id: 4,
+                instruction: "Flip the chicken and cook about 6 more minutes, until a thermometer reads 165 °F in the thickest part.",
+                watch: nil,
+                cue: StepCue(timerLabel: "Chicken", secondsLeft: 0)
+            ),
+            RecipeStep(id: 5, instruction: "Let the chicken rest for 5 minutes before slicing.", watch: nil),
+        ],
+        ingredients: ["2 boneless chicken breasts", "1/2 teaspoon of salt", "1/4 teaspoon of pepper", "1 tablespoon of oil"]
     )
 }

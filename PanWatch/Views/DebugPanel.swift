@@ -10,6 +10,7 @@ struct DebugPanel: View {
             VStack(alignment: .leading, spacing: 22) {
                 liveSection
                 decisionSection
+                statsSection
                 tuningSection
                 historySection
             }
@@ -33,6 +34,19 @@ struct DebugPanel: View {
             ChangeMeter(value: live.liveChange, threshold: session.settings.additionThreshold)
             MetricRow(name: "Analysis rate", value: String(format: "%.0f fps", live.analysisFPS))
             MetricRow(name: "Phone heat", value: heat(ProcessInfo.processInfo.thermalState))
+        }
+    }
+
+    /// The Nov 4 gates for this cook: screen touches (three or fewer) and accepted offers.
+    private var statsSection: some View {
+        let stats = session.stats
+        return VStack(alignment: .leading, spacing: 8) {
+            SectionTitle(text: "This cook")
+            MetricRow(name: "Screen touches", value: "\(stats.screenTouches)")
+            MetricRow(name: "Voice commands", value: "\(stats.voiceCommands)")
+            MetricRow(name: "Button presses", value: "\(stats.buttonPresses)")
+            MetricRow(name: "Offers", value: "\(stats.offersMade) (\(stats.offersAccepted) yes, \(stats.offersDismissed) no)")
+            MetricRow(name: "Accepted", value: stats.acceptanceRate.map { percent($0) } ?? "-")
         }
     }
 

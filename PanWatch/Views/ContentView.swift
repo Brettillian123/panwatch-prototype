@@ -42,9 +42,15 @@ struct ContentView: View {
                 SuggestionCard(
                     offer: offer,
                     accept: { session.acceptSuggestion() },
-                    dismiss: { session.dismissSuggestion() }
+                    dismiss: { session.dismissSuggestion() },
+                    touched: { session.noteTouch() }
                 )
                 .transition(.scale(scale: 0.9).combined(with: .opacity))
+            }
+
+            if session.isChoosingRecipe {
+                RecipePicker(session: session)
+                    .transition(.opacity)
             }
 
             CameraStatusOverlay(status: session.cameraStatus)
@@ -52,6 +58,7 @@ struct ContentView: View {
         .background(Color.black)
         .animation(.snappy, value: session.suggestion?.id)
         .animation(.snappy, value: session.showDebug)
+        .animation(.snappy, value: session.isChoosingRecipe)
         .statusBarHidden()
         .persistentSystemOverlays(.hidden)
         .preferredColorScheme(.dark)

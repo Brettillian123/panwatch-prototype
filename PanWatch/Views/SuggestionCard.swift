@@ -6,6 +6,8 @@ struct SuggestionCard: View {
     let offer: TimerSuggestion
     let accept: () -> Void
     let dismiss: () -> Void
+    /// Counts a tap on the card's buttons; the card closing by itself isn't a touch.
+    var touched: () -> Void = {}
 
     var body: some View {
         HStack(spacing: 26) {
@@ -27,13 +29,13 @@ struct SuggestionCard: View {
                 Text("Start a \(offer.watch.timerMinutes)-minute \(offer.watch.timerLabel.lowercased()) timer?")
                     .font(.title2)
                 HStack(spacing: 12) {
-                    Button(action: dismiss) {
+                    Button { touched(); dismiss() } label: {
                         Text("Not now")
                             .frame(minWidth: 110)
                     }
                     .buttonStyle(.bordered)
                     .tint(.white)
-                    Button(action: accept) {
+                    Button { touched(); accept() } label: {
                         Label("Start timer", systemImage: "timer")
                             .frame(minWidth: 150)
                     }
