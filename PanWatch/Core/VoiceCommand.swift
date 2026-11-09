@@ -199,10 +199,32 @@ enum VoiceCommand: Equatable, Sendable {
         if first == "try" || first == "hear" {
             return .tryVoice(isPointing || rest.isEmpty ? nil : rest.joined(separator: " "))
         }
+        if first == "use" && !rest.isEmpty, let kind = voiceKind(Array(rest)) {
+            return .useVoice(kind)
+        }
         if first == "use" && !rest.isEmpty {
             return .useVoice(isPointing ? .highlighted : .named(rest.joined(separator: " ")))
         }
         return nil
+    }
+
+    /// "British", "male", "british man", "an english one": an accent, a gender or both,
+    /// and nothing else but "an", "one" or "accent". Nil when another word is said.
+    private static func voiceKind(_ words: [String]) -> VoicePick? {
+        let said = words.filter { !["an", "one", "accent", "voice"].contains($0) }
+        guard !said.isEmpty else { return nil }
+        var accent: VoiceAccent?
+        var gender: VoiceGender?
+        for word in said {
+            if let a = VoiceAccent.heard(word), accent == nil {
+                accent = a
+            } else if let g = VoiceGender.heard(word), gender == nil {
+                gender = g
+            } else {
+                return nil
+            }
+        }
+        return .kind(accent: accent, gender: gender)
     }
 
     private static func allWords(in text: String) -> [String] {
@@ -296,6 +318,8 @@ enum VoicePick: Equatable, Sendable {
     case mine
     /// "Use this one": the row highlighted in the voice menu.
     case highlighted
+    /// "Use the British voice", "use a male voice": the next natural voice of that kind.
+    case kind(accent: VoiceAccent?, gender: VoiceGender?)
 }
 
 extension NormRect {

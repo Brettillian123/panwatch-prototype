@@ -612,7 +612,64 @@ final class CookSession {
     /// rows as drawn: the cook's own, then the best (premium and enhanced), then the rest.
     func refreshVoices() {
         let all = Speaker.options()
-        voiceOptions = all.filter(\.isPersonal) + all.filter { !$0.isPersonal }
+        let natural = VoiceCatalog.menuOrder(blends: speaker.natural.allBlends).map(VoiceOption.init(natural:))
+        voiceOptions = natural + all.filter(\.isPersonal) + all.filter { !$0.isPersonal }
+    }
+
+    // MARK: Natural voices
+
+    /// The Kokoro voices' download and load, for the voice menu.
+    var naturalState: KokoroVoice.State { speaker.natural.state }
+
+    /// Starts the natural voices' download, from the voice menu.
+    func prepareNaturalVoices() {
+        speaker.natural.prepare()
+    }
+
+    /// How fast every voice talks; nil until first read from `Speaker`.
+    private var chosenSpeed: VoiceSpeed?
+    var voiceSpeed: VoiceSpeed { chosenSpeed ?? speaker.speed }
+
+    /// Sets the speed and says a line at it, so the cook hears the change.
+    func setVoiceSpeed(_ speed: VoiceSpeed) {
+        chosenSpeed = speed
+        speaker.speed = speed
+        sampleVoiceID = voiceID
+        speaker.say("\(speed.title). Add the garlic and stir.")
+    }
+
+    /// "Make your own": mixes two voices and plays a line in the mix without saving it.
+    func hearBlend(first: String, second: String, balance: Double) async throws {
+        let id = try await speaker.natural.makeBlend(first: first, second: second, balance: balance, name: nil)
+        playSample(voiceID: id)
+    }
+
+    /// Saves the mix under `name` and uses it from now on.
+    func saveBlend(name: String, first: String, second: String, balance: Double) async throws {
+        let id = try await speaker.natural.makeBlend(first: first, second: second, balance: balance, name: name)
+        refreshVoices()
+        if let option = voiceOptions.first(where: { $0.id == id }) { useVoice(option) }
+    }
+
+    func removeBlend(_ option: VoiceOption) {
+        guard let pack = VoiceCatalog.pack(fromID: option.id) else { return }
+        if voiceID == option.id { chooseVoice(nil) }
+        speaker.natural.removeBlend(pack)
+        refreshVoices()
+    }
+
+    /// "Use the British voice": the next natural voice of that kind after the one in use.
+    private func useVoice(accent: VoiceAccent?, gender: VoiceGender?) {
+        if voiceOptions.isEmpty { refreshVoices() }
+        let list = VoiceCatalog.menuOrder(blends: speaker.natural.allBlends)
+        let current = VoiceCatalog.isNatural(highlightedVoiceID) ? highlightedVoiceID : voiceID
+        guard let next = VoiceCatalog.next(after: current, accent: accent, gender: gender, in: list),
+              let option = voiceOptions.first(where: { $0.id == next.id })
+        else {
+            say("There's no voice like that.")
+            return
+        }
+        useVoice(option)
     }
 
     /// A tap on a row in the voice menu.
@@ -896,6 +953,8 @@ final class CookSession {
                 if let option = voiceOptions.first(where: { $0.id == highlightedVoiceID }) { useVoice(option) }
             case .mine:
                 useMyVoice()
+            case .kind(let accent, let gender):
+                useVoice(accent: accent, gender: gender)
             }
         case .quiet:
             speaker.stop()

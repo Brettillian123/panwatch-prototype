@@ -15,8 +15,10 @@ struct VoicePicker: View {
             ScrollViewReader { scroller in
                 ScrollView {
                     VStack(alignment: .leading, spacing: Theme.gap * 2) {
+                        NaturalVoices(session: session, rows: { rows($0) })
+                        SpeedControl(session: session)
                         group("Your voice") { personalRows }
-                        let others = session.voiceOptions.filter { !$0.isPersonal }
+                        let others = session.voiceOptions.filter { !$0.isPersonal && !$0.isNatural }
                         let best = others.filter { $0.quality == .premium || $0.quality == .enhanced }
                         let rest = others.filter { $0.quality != .premium && $0.quality != .enhanced }
                         if !best.isEmpty {
@@ -57,16 +59,8 @@ struct VoicePicker: View {
         session.voiceID ?? Speaker.best?.identifier
     }
 
-    private func group<Rows: View>(_ title: String, @ViewBuilder rows: () -> Rows) -> some View {
-        VStack(alignment: .leading, spacing: Theme.tight) {
-            Text(title)
-                .font(Theme.detail)
-                .foregroundStyle(Theme.ash)
-                .accessibilityAddTraits(.isHeader)
-            VStack(alignment: .leading, spacing: 0) {
-                rows()
-            }
-        }
+    private func group<Rows: View>(_ title: String, @ViewBuilder rows: @escaping () -> Rows) -> some View {
+        VoiceGroup(title: title, rows: rows)
     }
 
     @ViewBuilder private var personalRows: some View {
@@ -112,7 +106,11 @@ struct VoicePicker: View {
         }
     }
 
-    @ViewBuilder private func rows(_ options: [VoiceOption]) -> some View {
+    private func rows(_ options: [VoiceOption]) -> AnyView {
+        AnyView(rowList(options))
+    }
+
+    @ViewBuilder private func rowList(_ options: [VoiceOption]) -> some View {
         ForEach(Array(options.enumerated()), id: \.element.id) { index, option in
             if index > 0 { RowRule() }
             VoiceRow(
@@ -155,9 +153,10 @@ private struct VoiceRow: View {
                 Text(option.name)
                     .font(Theme.control)
                     .foregroundStyle(Theme.flour)
-                Text(option.region)
+                Text(option.isNatural ? option.detail : option.region)
                     .font(Theme.detail)
                     .foregroundStyle(Theme.ash)
+                    .lineLimit(1)
             }
             Spacer(minLength: Theme.gap)
             if chosen {
