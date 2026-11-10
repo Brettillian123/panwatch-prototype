@@ -24,16 +24,16 @@ jobs:
 
       - name: Build the iPhone app, unsigned
         run: |
-          xcodebuild -project PanWatch.xcodeproj -target PanWatch -sdk iphoneos \
+          xcodebuild -project PanWatch.xcodeproj -scheme PanWatch -sdk iphoneos -destination 'generic/platform=iOS' -derivedDataPath build \
             -configuration Debug CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build \
             2>&1 | tee build.log | grep -E "error:|warning:|BUILD (SUCCEEDED|FAILED)" || true
           grep -q "BUILD SUCCEEDED" build.log
 
       - name: Check the alarm permission text is in the app
-        run: plutil -extract NSAlarmKitUsageDescription raw build/Debug-iphoneos/PanWatch.app/Info.plist
+        run: plutil -extract NSAlarmKitUsageDescription raw build/Build/Products/Debug-iphoneos/PanWatch.app/Info.plist
 
       - name: List the app's extensions
-        run: ls -la build/Debug-iphoneos/PanWatch.app/PlugIns 2>/dev/null || echo "no PlugIns folder"
+        run: ls -la build/Build/Products/Debug-iphoneos/PanWatch.app/PlugIns 2>/dev/null || echo "no PlugIns folder"
 
       - name: Upload the build log
         if: always()
