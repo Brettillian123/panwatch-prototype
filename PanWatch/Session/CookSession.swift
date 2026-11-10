@@ -214,6 +214,7 @@ final class CookSession {
         if cameraOn {
             cameraStatus = await camera.start(position: cameraPosition)
         }
+        AddModel.prewarm() // AI prewarm: load the model before the first add
         refreshArming()
         // Ask for the microphone at launch, so the prompt never appears mid-cook.
         micReady = await listener.requestPermission()
@@ -256,6 +257,7 @@ final class CookSession {
     func choose(_ recipe: Recipe, by source: StepSource = .touch) {
         self.recipe = recipe
         usage.cookStarted(recipe.title) // usage-log
+        AddModel.prewarm() // AI prewarm
         cookUnderWay = true
         screen = .cook
         removeScheduled(scheduledSteps)
@@ -434,6 +436,7 @@ final class CookSession {
         camera.analyzer.setArmed(armed)
         camera.analyzer.recorder.setStep(stepIndex, watch: currentStep.watch)
         camera.analyzer.setStep(stepIndex, instruction: currentStep.spokenText) // AI confirm
+        if currentStep.watch != nil { AddModel.prewarm() } // AI prewarm
     }
 
     /// The tuning in force for the current step (see `DetectorSettings.applying`).
