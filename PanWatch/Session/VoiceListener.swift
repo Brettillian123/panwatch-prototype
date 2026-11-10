@@ -543,7 +543,11 @@ private final class AudioFeed: @unchecked Sendable {
 private final class LevelGate: @unchecked Sendable {
     private let lock = NSLock()
     /// Only voice held this long stops the app; a shorter "mm" is left to its words.
-    private var detector = SpeechDetector(holdSeconds: TurnTaking.bargeInHold)
+    private var detector: SpeechDetector = {
+        var detector = SpeechDetector()
+        detector.holdSeconds = TurnTaking.bargeInHold
+        return detector
+    }()
     var onSpeech: (@Sendable () -> Void)?
 
     func feed(level: Double, at time: Double) {
