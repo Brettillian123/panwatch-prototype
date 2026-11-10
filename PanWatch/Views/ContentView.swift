@@ -5,55 +5,18 @@ import SwiftUI
 /// timers top right, the bar and the Say line along the bottom, and the timer offer in
 /// the middle. Panels are opaque Iron and the picture shows between them. Drawing the pan
 /// box clears it to the picture, the strip and two buttons; nothing else hides the recipe.
-/// A menu (recipes, settings, voices, help) fills the screen over it, chosen by
-/// `CookSession.screen`, which the bar's buttons and the voice commands both set.
+/// The old cook screen, shown by `CookScreen` until the cook piece rebuilds it. The app's
+/// root, its screens and the tab bar are `RootView`.
 struct ContentView: View {
     let session: CookSession
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        ZStack {
-            cookScreen
-                .accessibilityHidden(session.screen != .cook)
-                .allowsHitTesting(session.screen == .cook)
-
-            switch session.screen {
-            case .cook:
-                EmptyView()
-            case .recipes:
-                RecipePicker(session: session)
-                    .transition(.opacity)
-            case .settings:
-                SettingsScreen(session: session)
-                    .transition(.opacity)
-            case .voices:
-                VoicePicker(session: session)
-                    .transition(.opacity)
-            case .help:
-                HelpOverlay(session: session)
-                    .transition(.opacity)
-            }
-        }
-        .overlay { SetupCheckView(check: session.setupCheck) } // Setup check, over every screen
-        .background(Theme.iron)
-        .animation(Theme.entrance, value: session.suggestion?.id)
-        .animation(Theme.motion, value: session.showDebug)
-        .animation(Theme.motion, value: session.screen)
-        .animation(Theme.motion, value: session.isMarkingPan)
-        .statusBarHidden()
-        .persistentSystemOverlays(.hidden)
-        .preferredColorScheme(.dark)
-        .task { await session.start() }
-        .onAppear { UIApplication.shared.isIdleTimerDisabled = true }
-        .onDisappear { UIApplication.shared.isIdleTimerDisabled = false }
-        .onChange(of: session.settings) { session.applySettings() }
-        // The volume buttons and Camera Control act as a physical "yes" / "next",
-        // which works while the camera is running. Wet hands never need the screen.
-        .onCameraCaptureEvent { event in
-            if event.phase == .ended {
-                session.hardwareButtonPressed()
-            }
-        }
+        cookScreen
+            .background(Theme.ground)
+            .animation(Theme.entrance, value: session.suggestion?.id)
+            .animation(Theme.motion, value: session.showDebug)
+            .animation(Theme.motion, value: session.isMarkingPan)
     }
 
     /// The picture, the step panel, timers, the bar, the Say line and the offer. It stays

@@ -10,6 +10,8 @@ struct CookTimer: Identifiable, Sendable {
     let start: Date
     let end: Date
     var isDone = false
+    /// Set only for a screenshot: the countdown shows the time left at this moment and does not tick.
+    var pausedAt: Date? = nil
 }
 
 /// The app's offer after the camera saw something go in.
@@ -612,7 +614,7 @@ final class CookSession {
     /// What fills the screen. Menus are opened by voice or a tap; "done" goes back to cook.
     private(set) var screen: AppScreen = .recipes
     /// True while the recipe menu is up: at launch, and when the cook asks for it.
-    var isChoosingRecipe: Bool { screen == .recipes }
+    var isChoosingRecipe: Bool { screen == .recipes || screen == .recipe }
     /// A dish has been chosen (or a saved cook resumed), so the recipe menu can mark it.
     private(set) var cookUnderWay = false
     /// The screen the help overlay was opened from, whose commands it lists first.
@@ -628,6 +630,32 @@ final class CookSession {
         )
     }
 
+    /// The recipe whose page is open, or was last open; the cook's own recipe until one is looked at.
+    private(set) var viewedRecipe: Recipe?
+
+    /// Opens one recipe's page.
+    func open(recipe: Recipe) {
+        viewedRecipe = recipe
+        open(.recipe)
+    }
+
+    /// A tab in the tab bar: Cook opens cook mode while a cook is under way, else Home.
+    func open(tab: AppTab) {
+        open(AppScreen.opening(tab, cookUnderWay: cookUnderWay))
+    }
+
+    /// "Start cooking" on a recipe's page: starts the recipe being looked at, in cook mode.
+    /// The dish already under way goes back to its step rather than starting over.
+    func startCooking(by source: StepSource = .touch) {
+        let dish = viewedRecipe ?? recipe
+        if cookUnderWay && dish.title == recipe.title {
+            open(.cook)
+            openPanDrawingIfNeeded()
+        } else {
+            choose(dish, by: source)
+        }
+    }
+
     /// Opens a menu over the cook screen, or the cook screen itself. Help closes after 30 s.
     func open(_ next: AppScreen) {
         helpClose?.cancel()
@@ -635,7 +663,10 @@ final class CookSession {
         case .recipes:
             showRecipes()
             return
-        case .voices:
+        case .recipe:
+            if viewedRecipe == nil { viewedRecipe = recipe }
+            suggestion = nil
+        case .voices, .makeVoice:
             refreshVoices()
             if highlightedVoiceID == nil || !voiceOptions.contains(where: { $0.id == highlightedVoiceID }) {
                 highlightedVoiceID = voiceID ?? voiceOptions.first?.id
@@ -647,7 +678,7 @@ final class CookSession {
                 guard !Task.isCancelled, let self, self.screen == .help else { return }
                 self.closeMenu()
             }
-        case .cook, .settings:
+        case .cook, .profile:
             break
         }
         screen = next
@@ -655,11 +686,12 @@ final class CookSession {
     }
 
     /// "Done", "close" or the Done button: back to the cook screen from any menu. Help
-    /// goes back to the screen it was opened from, so it can be asked for from a menu.
+    /// goes back to the screen it was opened from, so it can be asked for from a menu; a
+    /// recipe's page goes back to Home, the make-a-voice sheet to the voices.
     func closeMenu() {
         helpClose?.cancel()
-        if screen == .voices { stopSample() }
-        screen = screen == .help ? helpFrom : .cook
+        if screen == .voices || screen == .makeVoice { stopSample() }
+        screen = AppScreen.closing(screen, helpFrom: helpFrom)
         refreshArming()
     }
 
@@ -1118,6 +1150,12 @@ final class CookSession {
         case .recordPractice(let on):
             setPracticeRecording(on)
             speak(.answer, on ? "Recording practice. Say mark when something goes in." : "Practice recording stopped.")
+        case .startCooking:
+            if screen == .recipe {
+                startCooking(by: .voice)
+            } else {
+                speak(.notUnderstood, "")
+            }
         }
     }
 
@@ -1467,6 +1505,61 @@ final class CookSession {
         }
         return true
     }
+
+    // MARK: Screenshot staging
+
+    #if DEBUG
+    /// `-uiScreen <name>` (DEBUG builds only): opens one screen with fixed sample state for a
+    /// screenshot. Garlic butter pasta; `cook` is step 3 with a pasta timer stopped at 6:42,
+    /// `offer` is step 2 with the 9-minute timer offered. The camera, listening and speaking
+    /// stay off, and `start()` is skipped, so no permission prompt appears. Nothing is saved.
+    /// Returns false for a name it does not know.
+    @discardableResult
+    func stageForScreenshot(_ name: String) -> Bool {
+        let target: AppScreen
+        switch name {
+        case "offer": target = .cook
+        case "settings": target = .profile
+        default:
+            guard let known = AppScreen(rawValue: name) else { return false }
+            target = known
+        }
+        started = true
+        welcome = nil
+        voiceOn = false
+        listeningOn = false
+        cameraOn = false
+        region = nil
+        isMarkingPan = false
+        removeScheduled(scheduledSteps)
+        recipe = .garlicButterPasta
+        viewedRecipe = .garlicButterPasta
+        cookUnderWay = true
+        finishedSteps = []
+        let now = Date()
+        if name == "offer" {
+            stepIndex = 1
+            timers = []
+            if let watch = recipe.steps[1].watch {
+                let patch = PanPatch(width: 1, height: 1, luma: [0], cb: [0], cr: [0])
+                let decision = DetectorDecision(
+                    id: 0, time: 0, outcome: .addition, changedFraction: 0.2, additionThreshold: 0.08,
+                    medianLumaShift: 0, dwell: 1, handOpened: 0, released: false, settledCleanly: true,
+                    before: patch, after: patch
+                )
+                suggestion = TimerSuggestion(stepIndex: 1, watch: watch, decision: decision, before: nil, after: nil)
+            }
+        } else {
+            stepIndex = 2
+            suggestion = nil
+            let left: TimeInterval = 6 * 60 + 42
+            timers = [CookTimer(label: "Pasta", start: now.addingTimeInterval(left - 9 * 60), end: now.addingTimeInterval(left), pausedAt: now)]
+        }
+        helpFrom = .cook
+        screen = target
+        return true
+    }
+    #endif
 
     // MARK: Saved tuning
 

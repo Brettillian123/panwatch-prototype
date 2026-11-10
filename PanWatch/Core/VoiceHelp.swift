@@ -22,7 +22,7 @@ enum HelpGroup: String, CaseIterable, Sendable {
         case .steps: ["next step", "back", "repeat", "step three", "where am I", "ingredients", "start over", "skip"]
         case .timers: ["start the timer", "five minute timer", "how long", "cancel the timer", "cancel the pasta timer", "clear it"]
         case .offer: ["yes", "not now"]
-        case .recipes: ["recipes", "make the rice", "let's do pasta"]
+        case .recipes: ["recipes", "make the rice", "let's do pasta", "start cooking"]
         case .camera: ["mark the pan", "bigger", "smaller", "start watching", "turn off the camera", "use the front camera", "check the setup"]
         case .voice: ["change the voice", "try Samantha", "use Samantha", "next voice", "use my voice", "be quiet", "talk to me", "stop listening"]
         case .menus: ["settings", "show the details", "record a practice", "that was it", "what can I say", "done"]
@@ -33,9 +33,9 @@ enum HelpGroup: String, CaseIterable, Sendable {
     static func ordered(for screen: AppScreen) -> [HelpGroup] {
         let first: [HelpGroup] = switch screen {
         case .cook, .help: []
-        case .recipes: [.recipes]
-        case .settings: [.camera, .voice, .menus]
-        case .voices: [.voice]
+        case .recipes, .recipe: [.recipes]
+        case .profile: [.camera, .voice, .menus]
+        case .voices, .makeVoice: [.voice]
         }
         return first + allCases.filter { !first.contains($0) }
     }
