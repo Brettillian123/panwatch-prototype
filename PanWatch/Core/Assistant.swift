@@ -271,6 +271,14 @@ enum AssistantGate {
         return addressedStarts.contains(first)
     }
 
+    /// Said to the app for more than being short: it opens like a question or a request,
+    /// or follows the app's reply. Short words reach the model in case they are a command
+    /// the keywords missed, but "pass the salt" is the kitchen: for those the app acts or
+    /// answers, and otherwise makes no sound.
+    static func plainlyAddressed(_ text: String, secondsSinceReply: Double?) -> Bool {
+        looksAddressed(text, wordCount: .max, secondsSinceReply: secondsSinceReply)
+    }
+
     private static func isContinuation(_ words: [String]) -> Bool {
         guard let first = words.first else { return false }
         if first == "and" { return true }
@@ -304,7 +312,7 @@ enum AssistantRails {
     private static let doneClaims = [
         "is done", "are done", "it's done", "its done", "they're done", "is ready", "are ready", "it's ready",
         "they're ready", "is cooked", "are cooked", "it's cooked", "cooked through", "fully cooked",
-        "safe to eat", "is finished", "are finished",
+        "safe to eat", "is finished", "are finished", "be done", "be cooked", "looks done", "look done",
     ]
     /// After a claim, these make it a check: "it's ready when the water is clear".
     private static let conditions = ["when", "once", "if", "after", "as soon"]
@@ -332,7 +340,7 @@ enum AssistantRails {
         "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9,
         "ten": 10, "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14, "fifteen": 15, "sixteen": 16,
         "seventeen": 17, "eighteen": 18, "nineteen": 19, "twenty": 20, "thirty": 30, "forty": 40,
-        "forty-five": 45, "fifty": 50, "sixty": 60, "ninety": 90,
+        "forty-five": 45, "fifty": 50, "sixty": 60, "seventy": 70, "eighty": 80, "ninety": 90, "hundred": 100,
     ]
 
     /// The numbers in `text` that are times or temperatures ("8 minutes", "350°F",
@@ -390,7 +398,11 @@ enum AssistantRails {
     }
 
     private static func number(_ token: String) -> Double? {
-        Double(token) ?? wordNumbers[token]
+        if let value = Double(token) ?? wordNumbers[token] { return value }
+        // "twenty-five", "sixty-five".
+        let parts = token.split(separator: "-").map(String.init)
+        guard parts.count == 2, let tens = wordNumbers[parts[0]], let ones = wordNumbers[parts[1]] else { return nil }
+        return tens + ones
     }
 
     // MARK: Length

@@ -571,11 +571,11 @@ final class CookSession {
     /// while it talks and the cook can cut it short. Without it, listening pauses.
     private func speakingChanged(_ speaking: Bool) {
         if speaking {
-            if !speaker.cancelsEcho { listener.hold() }
+            if !speaker.cancelsEcho, !heldForRecording { listener.hold() }
         } else {
             sampleVoiceID = nil
             listener.appStoppedSpeaking()
-            if listener.isHeld { listener.resume() }
+            if listener.isHeld, !heldForRecording { listener.resume() }
         }
     }
 
@@ -700,13 +700,15 @@ final class CookSession {
     @ObservationIgnored private var heldForRecording = false
 
     /// Listening pauses while the cook reads the script, so it isn't taken as a command.
+    /// The pause lasts until the recording screen closes, whatever the app says meanwhile.
     func holdListeningForRecording(_ hold: Bool) {
-        if hold, !listener.isHeld {
-            listener.hold()
+        if hold {
+            listener.hold(untilResumed: true)
             heldForRecording = true
-        } else if !hold, heldForRecording {
+        } else if heldForRecording {
             heldForRecording = false
-            if listener.isHeld { listener.resume() }
+            // Still talking without echo cancelling: the end of that speech resumes it.
+            if listener.isHeld, speaker.cancelsEcho || !speaker.isSpeaking { listener.resume() }
         }
     }
 

@@ -136,9 +136,11 @@ final class VoiceListener {
     }
 
     /// Pauses while the app talks, so it doesn't hear itself.
-    func hold() {
+    /// `untilResumed` is for a recording of the cook's voice: the watchdog, which ends a
+    /// hold left over from speech, leaves this one alone.
+    func hold(untilResumed: Bool = false) {
         held = true
-        heldSince = .now
+        heldSince = untilResumed ? nil : .now
         endRequest()
         updateState()
     }
@@ -295,7 +297,9 @@ final class VoiceListener {
                 noteTurn("\"\(text)\": table, 0 ms")
                 onAssistant?(CookAssistant.Reply(outcome: .answer(line), milliseconds: 0), text)
             case .model:
-                askAssistant(text, context: context)
+                askAssistant(
+                    text, context: context,
+                    addressed: AssistantGate.plainlyAddressed(text, secondsSinceReply: sinceReply))
             case .command, .drop:
                 break
             }
@@ -335,19 +339,35 @@ final class VoiceListener {
     /// Asks the assistant about words the keywords missed, while listening goes on. Its
     /// reply only counts if the cook hasn't said anything since and the recipe, step and
     /// offer are still the ones it was asked about.
-    private func askAssistant(_ text: String, context: AssistantContext) {
+    ///
+    /// Short words that weren't plainly `addressed` to the app ("pass the salt") reach the
+    /// model in case they are a command. For those only a command or a real answer comes
+    /// back: the out-of-scope line and the "not understood" sound would talk over the kitchen.
+    private func askAssistant(_ text: String, context: AssistantContext, addressed: Bool) {
         let utterance = utterances
         report.outcome = "asking the assistant"
         Task { [weak self, assistant] in
-            let reply = await assistant.ask(text, context: context)
+            let asked = await assistant.ask(text, context: context)
             guard let self else { return }
+            let reply = addressed ? asked : Self.quieted(asked)
             let current = utterance == utterances && wanted
             let fits = assistantContext?().map(context.stillApplies) ?? false
-            var line = "\"\(text)\": \(reply.summary), \(reply.milliseconds) ms"
+            var line = "\"\(text)\": \(asked.summary), \(asked.milliseconds) ms"
             if !(current && fits) { line += " (dropped: things moved on)" }
             noteTurn(line)
             if utterance == utterances { report.outcome = "assistant: \(reply.summary)" }
             if current && fits { onAssistant?(reply, text) }
+        }
+    }
+
+    /// `reply` for words not plainly said to the app: a command or an answer as it is,
+    /// anything else as nothing.
+    private static func quieted(_ reply: CookAssistant.Reply) -> CookAssistant.Reply {
+        let silent = CookAssistant.Reply(outcome: .silent, milliseconds: reply.milliseconds)
+        switch reply.outcome {
+        case .action, .silent: return reply
+        case .answer(let line): return line == AssistantRails.outOfScope ? silent : reply
+        case .timedOut, .failed: return silent
         }
     }
 
