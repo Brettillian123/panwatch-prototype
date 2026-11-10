@@ -41,6 +41,10 @@ struct ProfileScreen: View {
                         session.noteTouch()
                         session.showHelp()
                     })
+                    Row(label: "Custom voice", chevron: true, action: {
+                        session.noteTouch()
+                        session.open(.makeVoice)
+                    })
                     Row(label: "About", chevron: true, action: {
                         session.noteTouch()
                         showAbout = true
