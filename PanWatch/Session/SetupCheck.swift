@@ -80,7 +80,7 @@ final class SetupCheck {
     /// "Check the setup". `possible` is false while there's no confirmed box.
     func checkAgain(possible: Bool) {
         guard possible, box != nil else {
-            speak("Draw a box around the pan first.")
+            speak("Draw a box around the pot first.")
             return
         }
         start()

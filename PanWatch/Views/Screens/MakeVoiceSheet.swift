@@ -14,7 +14,7 @@ struct MakeVoiceSheet: View {
             session.noteTouch()
             session.closeMenu()
         }) {
-            SegmentedPicker(options: [(value: Mode.record, title: "Record mine"), (value: Mode.blend, title: "Blend two")],
+            SegmentedPicker(options: [(value: Mode.record, title: "Use my own voice"), (value: Mode.blend, title: "Mix two voices")],
                             selection: $mode)
             switch mode {
             case .blend: BlendTwo(session: session)
@@ -69,7 +69,7 @@ private struct BlendTwo: View {
     var body: some View {
         if !ready {
             SheetBody {
-                Text("Blending uses the natural voices.")
+                Text("To mix voices, get more voices first.")
                     .font(Theme.body).foregroundStyle(Theme.slate)
                 NaturalVoicesDownload(session: session)
             } action: {
@@ -80,8 +80,8 @@ private struct BlendTwo: View {
                 tiles
                 Card {
                     VStack(alignment: .leading, spacing: Theme.space8) {
-                        Text("Blend").font(Theme.bodyStrong).foregroundStyle(Theme.ink)
-                        AppSlider(label: "Blend", value: share, fills: false,
+                        Text("Mix").font(Theme.bodyStrong).foregroundStyle(Theme.ink)
+                        AppSlider(label: "Mix", value: share, fills: false,
                                   lowLabel: shortName(first), highLabel: shortName(second))
                             .accessibilityValue("\(Int((balance * 100).rounded())) percent \(shortName(first))")
                     }
@@ -98,7 +98,7 @@ private struct BlendTwo: View {
                     .frame(minHeight: 48)
                     .background(Theme.fill, in: RoundedRectangle(cornerRadius: Theme.radiusField, style: .continuous))
                     .accessibilityLabel("Name")
-                QuietButton(title: "Play a sample", systemImage: "play.fill") { run(save: false) }
+                QuietButton(title: "Listen", systemImage: "play.fill") { run(save: false) }
                     .disabled(busy || first == second)
                 if let note {
                     Text(note).font(Theme.caption).foregroundStyle(Theme.slate)
@@ -140,7 +140,7 @@ private struct BlendTwo: View {
     /// A voice tile: its play button and its name; tapping the name picks another voice.
     private func tile(selection: Binding<String>, fill: Color, which: String) -> some View {
         HStack(spacing: Theme.space8) {
-            RoundIconButton(systemImage: "play.fill", label: "Play a sample of \(shortName(selection.wrappedValue))") {
+            RoundIconButton(systemImage: "play.fill", label: "Listen to \(shortName(selection.wrappedValue))") {
                 session.noteTouch()
                 session.playSample(voiceID: VoiceCatalog.idPrefix + selection.wrappedValue)
             }
@@ -289,7 +289,7 @@ private struct OwnVoiceManage: View {
                     status
                 }
             }
-            QuietButton(title: playing ? "Stop" : "Play a sample", systemImage: playing ? "stop.fill" : "play.fill") {
+            QuietButton(title: playing ? "Stop" : "Listen", systemImage: playing ? "stop.fill" : "play.fill") {
                 session.noteTouch()
                 if playing { session.stopSample() } else { session.playSample(voiceID: OwnVoice.id) }
             }
@@ -331,16 +331,16 @@ private struct OwnVoiceManage: View {
     @ViewBuilder private var status: some View {
         switch session.ownVoice.state {
         case .idle:
-            Text("Your voice needs a one-time download, about 500 MB.")
+            Text("The first time takes a few minutes and uses Wi-Fi.")
                 .font(Theme.body).foregroundStyle(Theme.ink)
                 .fixedSize(horizontal: false, vertical: true)
-            QuietButton(title: "Download", systemImage: "arrow.down.to.line") {
+            QuietButton(title: "Get started", systemImage: "arrow.down.to.line") {
                 session.noteTouch()
                 session.prepareOwnVoice()
             }
         case .downloading(let share):
             VoiceProgressBar(share: share)
-            Text(share < 0.99 ? "Downloading, \(Int(share * 100))%" : "Getting your voice ready")
+            Text(share < 0.99 ? "Getting ready, \(Int(share * 100))%" : "Getting your voice ready")
                 .font(Theme.caption).foregroundStyle(Theme.slate).monospacedDigit()
         case .making:
             HStack(spacing: Theme.space8) {
@@ -348,7 +348,7 @@ private struct OwnVoiceManage: View {
                 Text("Making your voice").font(Theme.caption).foregroundStyle(Theme.slate)
             }
         case .failed:
-            Text("Your voice isn't ready.").font(Theme.body).foregroundStyle(Theme.ink)
+            Text("Your voice isn't ready. Connect to Wi-Fi and try again.").font(Theme.body).foregroundStyle(Theme.ink)
             QuietButton(title: "Try again", systemImage: "arrow.clockwise") {
                 session.noteTouch()
                 session.prepareOwnVoice()
@@ -394,7 +394,7 @@ private struct OwnVoiceRecording: View {
             Text(OwnVoice.consentLine)
                 .font(Theme.bodyStrong).foregroundStyle(Theme.ink)
                 .fixedSize(horizontal: false, vertical: true)
-            Text("You'll read a short passage aloud for about 15 seconds. Your voice is made on this phone and never uploaded.")
+            Text("You'll read a few lines aloud, about 15 seconds. Your voice is made on this phone and never leaves it.")
                 .font(Theme.body).foregroundStyle(Theme.slate)
                 .fixedSize(horizontal: false, vertical: true)
         } action: {
@@ -430,7 +430,7 @@ private struct OwnVoiceRecording: View {
                 }
             }
             if flow.step == .recorded {
-                QuietButton(title: recorder?.isPlaying == true ? "Stop" : "Play a sample",
+                QuietButton(title: recorder?.isPlaying == true ? "Stop" : "Listen",
                             systemImage: recorder?.isPlaying == true ? "stop.fill" : "play.fill") {
                     session.noteTouch()
                     if recorder?.isPlaying == true { recorder?.stopListening() } else { recorder?.listen() }
@@ -471,7 +471,7 @@ private struct OwnVoiceRecording: View {
         Task {
             guard await VoiceRecorder.requestMicrophone() else {
                 micDenied = true
-                problem = "The microphone isn't allowed."
+                problem = "Allow the microphone in Settings."
                 return
             }
             micDenied = false
@@ -495,7 +495,7 @@ private struct OwnVoiceRecording: View {
         flow.stopRecording(take: take, seconds: seconds)
         if flow.problem == .tooShort {
             recorder?.discard()
-            problem = "That was short. Read the whole passage."
+            problem = "That was short. Read all the lines."
         }
     }
 

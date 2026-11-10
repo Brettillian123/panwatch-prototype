@@ -29,30 +29,30 @@ enum SetupCalibration {
 
         var title: String {
             switch self {
-            case .noPicture: "Pan not seen"
-            case .tooDark: "Too dark"
-            case .tooBright: "Too much glare"
-            case .handNotSeen: "Hand not seen"
-            case .lowContrast: "Pan hard to see"
-            case .handSmall: "Hand looks small"
-            case .restless: "Picture keeps moving"
-            case .flicker: "Lights flicker"
-            case .lookalike: "Something looks like a hand"
+            case .noPicture: "I can't see the pot"
+            case .tooDark: "It's dark"
+            case .tooBright: "There's glare"
+            case .handNotSeen: "I couldn't see your hand"
+            case .lowContrast: "The pot is hard to see"
+            case .handSmall: "The phone is far away"
+            case .restless: "The phone is moving"
+            case .flicker: "Your lights blink on camera"
+            case .lookalike: "Something near the pot looks like a hand"
             }
         }
 
         /// The one thing to do about it.
         var fix: String {
             switch self {
-            case .noPicture: "Point the camera at the pan and draw the box again."
-            case .tooDark: "Turn on the hood light or a lamp."
+            case .noPicture: "Point the phone at the pot and draw the box again."
+            case .tooDark: "Turn on a light near the stove."
             case .tooBright: "Turn the phone away from bright light."
-            case .handNotSeen: "Move the phone closer, add light, or take off the glove."
-            case .lowContrast: "Add light, or draw the box tighter around the pot."
-            case .handSmall: "Move the phone closer to the pot."
-            case .restless: "Set the phone down where it can't move."
-            case .flicker: "The camera is set to allow for it."
-            case .lookalike: "Only hands surer than it will count."
+            case .handNotSeen: "Move the phone closer or add light."
+            case .lowContrast: "Add light, or draw the box closer around the pot."
+            case .handSmall: "Move it closer to the pot."
+            case .restless: "Set it down where it can't move."
+            case .flicker: "Nothing to do, the app allows for it."
+            case .lookalike: "Move it away if you can."
             }
         }
 

@@ -112,7 +112,7 @@ struct VoicesScreen: View {
         let askPersonal = filter == .builtIn && !options.contains(where: \.isPersonal)
         if options.isEmpty && !askPersonal {
             GroupedRows {
-                Row(label: "No voices here", detail: "Pick another filter")
+                Row(label: "No voices here", detail: "Try another filter")
             }
         } else {
             // 12 to the play button, its 44, 12 to the name.
@@ -165,7 +165,7 @@ struct VoicesScreen: View {
 
     private var ownCaption: String {
         switch session.ownVoice.state {
-        case .downloading: "Recorded by you · Downloading"
+        case .downloading: "Recorded by you · Getting ready"
         case .making: "Recorded by you · Being made"
         case .failed: "Recorded by you · Not ready"
         default: "Recorded by you"
@@ -246,9 +246,9 @@ struct VoicesScreen: View {
     /// Every state of the cook's Personal Voice: asking, none made, not allowed, no support.
     private var personalNote: String {
         switch personalStatus {
-        case nil: "Asking about Personal Voice"
+        case nil: "Checking"
         case .authorized?: "None on this phone"
-        case .denied?: "Not allowed"
+        case .denied?: "Allow it in Settings"
         case .unsupported?: "None on this phone"
         default: "Not set up"
         }
@@ -313,7 +313,7 @@ private struct NowPlayingCard: View {
     private var name: String {
         let id = playingID ?? chosenID
         if let id, let option = session.voiceOptions.first(where: { $0.id == id }) { return option.name }
-        return Speaker.voice(for: id)?.name ?? "System voice"
+        return Speaker.voice(for: id)?.name ?? "Phone voice"
     }
 
     var body: some View {
@@ -322,7 +322,7 @@ private struct NowPlayingCard: View {
             HStack(spacing: Theme.space12) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(name).font(Theme.bodyStrong).foregroundStyle(.white)
-                    Text(playing ? "Playing a sample" : "In use").font(Theme.caption).foregroundStyle(Theme.softWhite)
+                    Text(playing ? "Playing" : "In use").font(Theme.caption).foregroundStyle(Theme.softWhite)
                 }
                 Spacer(minLength: Theme.space8)
                 Button {
@@ -341,7 +341,7 @@ private struct NowPlayingCard: View {
                         .contentShape(Circle())
                 }
                 .buttonStyle(.plain)
-                .accessibilityLabel(playing ? "Stop the sample" : "Play a sample of \(name)")
+                .accessibilityLabel(playing ? "Stop" : "Listen to \(name)")
             }
             Waveform(playing: playing)
                 .frame(height: 40)
@@ -417,7 +417,7 @@ private struct VoiceRow: View {
         HStack(spacing: Theme.space12) {
             RoundIconButton(
                 systemImage: playing ? "pause.fill" : "play.fill",
-                label: playing ? "Stop \(option.name)" : "Play a sample of \(option.name)",
+                label: playing ? "Stop \(option.name)" : "Listen to \(option.name)",
                 style: playing ? .beet : .sky,
                 action: hear
             )
@@ -497,10 +497,10 @@ struct NaturalVoicesDownload: View {
         case .idle:
             Card {
                 VStack(alignment: .leading, spacing: Theme.space12) {
-                    Text("Natural voices need a one-time download, about 230 MB, on Wi-Fi.")
+                    Text("More voices to choose from. Uses Wi-Fi, takes a minute or two.")
                         .font(Theme.body).foregroundStyle(Theme.ink)
                         .fixedSize(horizontal: false, vertical: true)
-                    QuietButton(title: "Download", systemImage: "arrow.down.to.line") {
+                    QuietButton(title: "Get voices", systemImage: "arrow.down.to.line") {
                         session.noteTouch()
                         session.prepareNaturalVoices()
                     }
@@ -509,10 +509,10 @@ struct NaturalVoicesDownload: View {
         case .downloading(let share):
             Card {
                 VStack(alignment: .leading, spacing: Theme.space12) {
-                    Text(share < 0.99 ? "Downloading natural voices" : "Getting the voices ready")
+                    Text(share < 0.99 ? "Getting more voices" : "Almost ready")
                         .font(Theme.body).foregroundStyle(Theme.ink)
                     VoiceProgressBar(share: share)
-                    Text("\(Int(share * 100))% · about 230 MB")
+                    Text("\(Int(share * 100))%")
                         .font(Theme.caption).foregroundStyle(Theme.slate).monospacedDigit()
                 }
                 .accessibilityElement(children: .combine)
@@ -520,7 +520,7 @@ struct NaturalVoicesDownload: View {
         case .failed:
             Card {
                 VStack(alignment: .leading, spacing: Theme.space12) {
-                    Text("The download stopped.").font(Theme.body).foregroundStyle(Theme.ink)
+                    Text("Connect to Wi-Fi to get more voices.").font(Theme.body).foregroundStyle(Theme.ink)
                     QuietButton(title: "Try again", systemImage: "arrow.clockwise") {
                         session.noteTouch()
                         session.prepareNaturalVoices()

@@ -298,8 +298,8 @@ enum OwnVoiceError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .silent: "The recording was too quiet to make a voice from."
-        case .format: "The recording couldn't be read."
+        case .silent: "That was too quiet. Record again, closer to the phone."
+        case .format: "Something went wrong. Record again."
         }
     }
 }
