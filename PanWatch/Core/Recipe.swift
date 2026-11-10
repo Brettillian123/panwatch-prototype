@@ -45,6 +45,10 @@ struct Recipe: Sendable {
     let steps: [RecipeStep]
     /// What to gather before starting, read aloud when the cook says "ingredients".
     var ingredients: [String] = []
+    /// Start to plate, in minutes, counting the waits the steps name (boiling, timers, resting).
+    var totalMinutes = 0
+    /// How many people the amounts feed.
+    var serves = 0
 }
 
 extension Recipe {
@@ -98,7 +102,9 @@ extension Recipe {
                 cue: StepCue(timerLabel: "Pasta", secondsLeft: 0)
             ),
         ],
-        ingredients: ["1 pound of pasta", "1 tablespoon of salt", "3 tablespoons of butter", "4 cloves of garlic, minced"]
+        ingredients: ["1 pound of pasta", "1 tablespoon of salt", "3 tablespoons of butter", "4 cloves of garlic, minced"],
+        totalMinutes: 20,
+        serves: 4
     )
 
     /// Rice hides inside the pot from a phone on the counter, so a hand visit counts.
@@ -120,7 +126,9 @@ extension Recipe {
             ),
             RecipeStep(id: 5, instruction: "Fluff the rice with a fork and serve.", watch: nil),
         ],
-        ingredients: ["1 cup of long-grain white rice", "2 cups of water", "1/2 teaspoon of salt"]
+        ingredients: ["1 cup of long-grain white rice", "2 cups of water", "1/2 teaspoon of salt"],
+        totalMinutes: 30,
+        serves: 3
     )
 
     /// The ice bath is called out two minutes early, so it's ready when the eggs are.
@@ -148,7 +156,9 @@ extension Recipe {
             ),
             RecipeStep(id: 5, instruction: "Peel the eggs and serve.", watch: nil),
         ],
-        ingredients: ["4 eggs", "a bowl of ice water"]
+        ingredients: ["4 eggs", "a bowl of ice water"],
+        totalMinutes: 25,
+        serves: 2
     )
 
     /// Broccoli goes in by the handful and sits above the water, so it counts like pasta.
@@ -168,7 +178,9 @@ extension Recipe {
                 cue: StepCue(timerLabel: "Broccoli", secondsLeft: 0)
             ),
         ],
-        ingredients: ["1 pound of broccoli florets", "1 tablespoon of butter", "a pinch of salt"]
+        ingredients: ["1 pound of broccoli florets", "1 tablespoon of butter", "a pinch of salt"],
+        totalMinutes: 10,
+        serves: 4
     )
 
     /// Oats are poured in and sink into the water, so a hand visit counts.
@@ -189,7 +201,9 @@ extension Recipe {
             ),
             RecipeStep(id: 4, instruction: "Top with 1 tablespoon of brown sugar and serve.", watch: nil),
         ],
-        ingredients: ["1 cup of old-fashioned oats", "2 cups of water", "a pinch of salt", "1 tablespoon of brown sugar"]
+        ingredients: ["1 cup of old-fashioned oats", "2 cups of water", "a pinch of salt", "1 tablespoon of brown sugar"],
+        totalMinutes: 10,
+        serves: 2
     )
 
     /// The timer is for the first side only. Doneness comes from a thermometer, never the
@@ -219,6 +233,8 @@ extension Recipe {
             ),
             RecipeStep(id: 5, instruction: "Let the chicken rest for 5 minutes before slicing.", watch: nil),
         ],
-        ingredients: ["2 boneless chicken breasts", "1/2 teaspoon of salt", "1/4 teaspoon of pepper", "1 tablespoon of oil"]
+        ingredients: ["2 boneless chicken breasts", "1/2 teaspoon of salt", "1/4 teaspoon of pepper", "1 tablespoon of oil"],
+        totalMinutes: 25,
+        serves: 2
     )
 }
