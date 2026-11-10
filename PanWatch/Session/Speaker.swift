@@ -75,8 +75,15 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     /// Speaks `text`, cutting off anything still being said. `then` runs once the text
     /// has been spoken in full, not if it gets cut off. `voice` overrides the picked one,
     /// for playing a sample in the voice menu.
-    func say(_ text: String, voice: String? = nil, then: (() -> Void)? = nil) {
+    /// `earcon` plays first, through the same engine, so echo cancellation covers it too;
+    /// with empty `text`, the earcon is all that plays.
+    func say(_ text: String, voice: String? = nil, earcon: Earcon? = nil, then: (() -> Void)? = nil) {
         cutOff()
+        // An earcon can't play without the engine; the words still can.
+        if text.isEmpty, earcon == nil || !audio.start() {
+            then?()
+            return
+        }
         utterance += 1
         let id = utterance
         let chosen = voice ?? voiceIdentifier
@@ -96,11 +103,18 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
             Task { @MainActor in self?.playbackEnded(id: id, ok: ok, text: text, voice: chosen) }
         }
         self.playback = playback
-        source.synthesize(text, voice: chosen, format: AudioIO.playbackFormat, buffer: { buffer in
+        if let earcon, let buffer = Self.buffer(for: earcon) {
             player.play(buffer, playback)
-        }, done: { ok in
-            playback.finish(ok: ok)
-        })
+        }
+        if text.isEmpty {
+            playback.finish()
+        } else {
+            source.synthesize(text, voice: chosen, format: AudioIO.playbackFormat, buffer: { buffer in
+                player.play(buffer, playback)
+            }, done: { ok in
+                playback.finish(ok: ok)
+            })
+        }
         // A prompt that never reports back (the engine died under it) would leave the app
         // "speaking" for good; no prompt takes longer than this.
         let limit = 5.0 + 0.5 * Double(SelfEcho.words(in: text).count)
@@ -115,6 +129,20 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         cutOff()
     }
 
+    /// The earcon's samples in the playback format, made once each.
+    private static var earconBuffers: [Earcon: AVAudioPCMBuffer] = [:]
+    private static func buffer(for earcon: Earcon) -> AVAudioPCMBuffer? {
+        if let made = earconBuffers[earcon] { return made }
+        let format = AudioIO.playbackFormat
+        let samples = earcon.samples(sampleRate: format.sampleRate)
+        guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: AVAudioFrameCount(samples.count)),
+              let channel = buffer.floatChannelData?[0] else { return nil }
+        for (i, sample) in samples.enumerated() { channel[i] = sample }
+        buffer.frameLength = AVAudioFrameCount(samples.count)
+        earconBuffers[earcon] = buffer
+        return buffer
+    }
+
     /// Stops the current prompt without finishing it.
     private func cutOff() {
         guard currentText != nil else { return }
@@ -127,8 +155,8 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
 
     private func playbackEnded(id: Int, ok: Bool, text: String, voice: String?) {
         guard id == utterance, currentText != nil else { return }
-        if ok {
-            ended(id: id, finished: true)
+        if ok || text.isEmpty {
+            ended(id: id, finished: ok)
         } else {
             // The voice or the engine failed part way: say it the plain way instead.
             audio.player.stop()
