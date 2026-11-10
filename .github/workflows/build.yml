@@ -43,3 +43,89 @@ jobs:
         with:
           name: build-log
           path: build.log
+
+  # Runs the app in an iPhone simulator and saves a picture of each screen.
+  # continue-on-error: a failure here never turns the build job (or the run) red.
+  # Keep it until this job has been green three runs in a row, then remove it.
+  # Green runs so far: 0.
+  screens:
+    runs-on: xcode-27
+    continue-on-error: true
+    env:
+      BUNDLE_ID: com.brettillian123.panwatch
+      SCREENS: "recipes recipe cook offer voices makeVoice profile help"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use the newest Xcode on the runner
+        run: |
+          XC=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          sudo xcode-select -s "$XC"
+          xcodebuild -version
+          echo "JOB_START=$(date +%s)" >> "$GITHUB_ENV"
+
+      - name: Pick and boot an iPhone simulator
+        run: |
+          xcrun simctl list devices available | grep -i iphone || true
+          LINE=$(xcrun simctl list devices available | grep -E "iPhone 17 Pro \(" | head -1)
+          [ -z "$LINE" ] && LINE=$(xcrun simctl list devices available | grep -E "iPhone [0-9]+ Pro \(" | sort -V | tail -1)
+          [ -z "$LINE" ] && LINE=$(xcrun simctl list devices available | grep -E "iPhone" | tail -1)
+          UDID=$(echo "$LINE" | grep -oE "[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}")
+          echo "Simulator: $LINE"
+          [ -n "$UDID" ]
+          echo "UDID=$UDID" >> "$GITHUB_ENV"
+          xcrun simctl boot "$UDID" || true
+          xcrun simctl bootstatus "$UDID" -b
+          echo "Rotate/orientation commands in simctl:"
+          xcrun simctl help 2>&1 | grep -i -E "orient|rotat" || echo "none"
+
+      - name: Build the app for the simulator
+        run: |
+          xcodebuild -project PanWatch.xcodeproj -scheme PanWatch -sdk iphonesimulator -destination "id=$UDID" -derivedDataPath build-sim \
+            -configuration Debug CODE_SIGNING_ALLOWED=NO build \
+            > sim-build.log 2>&1 || true
+          grep -E "error:|BUILD (SUCCEEDED|FAILED)" sim-build.log | tail -20 || true
+          grep -q "BUILD SUCCEEDED" sim-build.log
+
+      - name: Install, fix the status bar, light mode, grant permissions
+        run: |
+          xcrun simctl install "$UDID" build-sim/Build/Products/Debug-iphonesimulator/PanWatch.app
+          xcrun simctl status_bar "$UDID" override --time 9:41 --batteryState charged --batteryLevel 100 --wifiBars 3 --cellularBars 4
+          xcrun simctl ui "$UDID" appearance light
+          for S in camera microphone speech-recognition; do
+            xcrun simctl privacy "$UDID" grant "$S" "$BUNDLE_ID" && echo "granted $S" || echo "could not grant $S"
+          done
+
+      - name: Photograph the screens
+        run: |
+          mkdir -p shots
+          shoot() {  # $1 = file name, rest = launch arguments
+            NAME=$1; shift
+            xcrun simctl terminate "$UDID" "$BUNDLE_ID" 2>/dev/null || true
+            xcrun simctl launch "$UDID" "$BUNDLE_ID" "$@"
+            sleep 4
+            xcrun simctl io "$UDID" screenshot "shots/$NAME.png"
+          }
+          if grep -rq "uiScreen" PanWatch; then
+            for N in $SCREENS; do shoot "$N" -uiScreen "$N"; done
+          else
+            echo "The app has no -uiScreen argument yet; taking the plain launch only."
+            shoot launch
+          fi
+          ls -la shots
+          xcrun simctl spawn "$UDID" log show --last 2m --predicate "process == \"PanWatch\"" --style compact 2>/dev/null | tail -40 || true
+          echo "Screens job took $(( $(date +%s) - JOB_START )) seconds after Xcode selection."
+
+      - name: Upload the screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: shots/
+
+      - name: Upload the simulator build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sim-build-log
+          path: sim-build.log
