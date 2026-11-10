@@ -52,6 +52,9 @@ final class VoiceListener {
     var isAppSpeaking: (() -> Bool)?
     /// What the app is saying right now, for the self-echo guard.
     var spokenText: (() -> String?)?
+    /// The app has asked something a "yes" or "okay" answers: a timer offer, a question,
+    /// the pan box. Those words are then the cook's answer, even over the app's voice.
+    var awaitingAnswer: (() -> Bool)?
     /// The cook started talking over the app: stop the app's voice at once.
     var onBargeIn: (() -> Void)?
     /// The screen showing, since the recipe menu also takes one word of a dish's name.
@@ -202,7 +205,7 @@ final class VoiceListener {
                 if spokenDuring == nil { spokenDuring = spoken }
                 // "Mm", "uh huh", "okay" under the app's voice is listening, not a turn.
                 let added = SelfEcho.newWords(in: text, spoken: spoken)
-                if !added.isEmpty, !TurnTaking.isBackchannel(added) { bargeIn(spoken: spoken) }
+                if !added.isEmpty, !isBackchannel(added) { bargeIn(spoken: spoken) }
             }
             if isFinal {
                 utteranceEnded()
@@ -249,6 +252,11 @@ final class VoiceListener {
         }
     }
 
+    /// Listener sounds under the app's voice, unless the app is waiting on a yes or no.
+    private func isBackchannel(_ words: [String]) -> Bool {
+        awaitingAnswer?() != true && TurnTaking.isBackchannel(words)
+    }
+
     /// Acts on what was said, then starts a fresh request for the next utterance.
     private func utteranceEnded() {
         // Whatever recognition heard of the app's own voice is left out.
@@ -260,7 +268,7 @@ final class VoiceListener {
         let speaking = isAppSpeaking?() == true
         // A backchannel under the app's voice, which is still going, didn't stop it and
         // isn't an answer either.
-        let backchannel = heardOverApp && speaking && TurnTaking.isBackchannel(SelfEcho.words(in: text))
+        let backchannel = heardOverApp && speaking && isBackchannel(SelfEcho.words(in: text))
         // Keywords first: a clear short command acts at once, with no model to wait for.
         let command = backchannel ? nil : VoiceCommand.parse(text, screen: screen?() ?? .cook)
         if !text.isEmpty {
