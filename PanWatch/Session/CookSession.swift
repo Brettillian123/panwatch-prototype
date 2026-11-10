@@ -97,6 +97,8 @@ final class CookSession {
     private(set) var micReady = false
     /// What was last heard as a command, shown for a moment so the cook knows it landed.
     private(set) var heardText: String?
+    /// The assistant's reply, shown on the listening line while it is said.
+    private(set) var answerText: String?
     @ObservationIgnored private var heardClear: Task<Void, Never>?
     /// What listening is doing and what it last heard, for the debug panel.
     private(set) var voiceReport = VoiceReport()
@@ -174,6 +176,12 @@ final class CookSession {
         }
         listener.intentContext = { [weak self] in
             self?.intentContext
+        }
+        listener.assistantContext = { [weak self] in
+            self?.assistantContext
+        }
+        listener.onAssistant = { [weak self] reply, text in
+            self?.assistantReplied(reply, heard: text)
         }
         listener.screen = { [weak self] in
             self?.screen ?? .cook
@@ -508,6 +516,55 @@ final class CookSession {
                 IntentContext.RunningTimer(label: $0.label, secondsLeft: Int($0.end.timeIntervalSinceNow.rounded()))
             }
         )
+    }
+
+    /// The recipe and where the cook is, for the assistant: small, rebuilt every turn.
+    private var assistantContext: AssistantContext? {
+        let next = stepIndex + 1 < recipe.steps.count ? recipe.steps[stepIndex + 1].instruction : nil
+        return AssistantContext(
+            recipe: recipe.title,
+            stepNumber: stepIndex + 1,
+            stepCount: recipe.steps.count,
+            step: currentStep.instruction,
+            nextStep: next,
+            ingredients: recipe.ingredients,
+            timers: intentContext?.timers ?? [],
+            offer: suggestion.map { offerText($0.watch) },
+            facts: recipe.steps.flatMap { [$0.instruction, $0.spokenText] }
+                + recipe.steps.compactMap(\.watch).map { "\($0.timerMinutes) minutes" }
+                + recipe.ingredients
+        )
+    }
+
+    /// Acts on the assistant's reply. A tool's action is the command the cook could have
+    /// said and goes through `handle`, so an offer still needs its yes; an answer is spoken
+    /// through the policy's answer path and shown; a late reply only plays the
+    /// "not understood" sound.
+    private func assistantReplied(_ reply: CookAssistant.Reply, heard text: String) {
+        switch reply.outcome {
+        case .action(let action):
+            if case .setTimer(let minutes, let name?) = action {
+                usage.heard(.setTimer(minutes: minutes), text: text) // usage-log
+                if screen != .recipes { stats.noteVoice() }
+                showHeard(text)
+                cookSpokeAt = Date()
+                let label = name.prefix(1).uppercased() + name.dropFirst()
+                startTimer(label: label, minutes: minutes)
+                speak(.confirmation(visible: true), "\(label) timer set for \(Self.spoken(Double(minutes) * 60)).")
+            } else if let command = action.command {
+                handle(command, heard: text)
+            }
+        case .answer(let line):
+            if screen != .recipes { stats.noteVoice() }
+            showHeard(text)
+            cookSpokeAt = Date()
+            showAnswer(line)
+            speak(.answer, line)
+        case .timedOut, .failed:
+            speak(.notUnderstood, "")
+        case .silent:
+            break
+        }
     }
 
     /// With voice processing, the microphone doesn't hear the app, so listening goes on
@@ -1069,6 +1126,18 @@ final class CookSession {
         }
         speak(.answer, text)
     }
+
+    /// Shows the assistant's reply on the listening line for a few seconds.
+    private func showAnswer(_ text: String) {
+        answerText = text
+        answerClear?.cancel()
+        answerClear = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(8))
+            guard !Task.isCancelled else { return }
+            self?.answerText = nil
+        }
+    }
+    @ObservationIgnored private var answerClear: Task<Void, Never>?
 
     private func showHeard(_ text: String) {
         heardText = text

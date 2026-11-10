@@ -58,6 +58,9 @@ struct DebugPanel: View {
             MetricRow(name: "Heard", value: voice.heard.map { "\"\($0)\"" } ?? "-")
             MetricRow(name: "Result", value: voice.outcome ?? "-")
             MetricRow(name: "Model", value: voice.model ?? "-")
+            ForEach(Array(voice.assistantTurns.enumerated()), id: \.offset) { index, turn in
+                MetricRow(name: index == 0 ? "Assistant" : "", value: turn)
+            }
             MetricRow(name: "Restarts", value: "\(voice.restarts)")
             MetricRow(name: "Errors", value: "\(voice.errors)")
             if let error = voice.lastError {

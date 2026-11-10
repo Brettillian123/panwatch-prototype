@@ -68,6 +68,15 @@ final class VoiceListener {
     /// Without it, or without the model on this phone, the keywords are all there is.
     var intentContext: (() -> IntentContext?)?
     private let intentReader = IntentReader()
+    /// The recipe as the assistant sees it. With the on-device model, what the keywords
+    /// miss goes to the assistant instead of `intentReader`.
+    var assistantContext: (() -> AssistantContext?)?
+    /// The assistant's reply, or the food-safety table's, for words the keywords missed;
+    /// only while it still fits: no newer utterance, the same recipe, step and offer.
+    var onAssistant: ((CookAssistant.Reply, String) -> Void)?
+    private let assistant = CookAssistant()
+    /// The last few assistant turns, newest first, for the debug panel.
+    private static let turnsShown = 3
     /// Bumped for every utterance, so a model answer that comes back after the cook said
     /// something else is dropped.
     private var utterances = 0
@@ -104,7 +113,7 @@ final class VoiceListener {
         handler = onCommand
         guard !wanted else { return }
         wanted = true
-        intentReader.prepare()
+        if assistant.isAvailable { assistant.prepare() } else { intentReader.prepare() }
         if !intentReader.isAvailable { report.model = "Off: keywords only" }
         observeAudioSession()
         startWatchdog()
@@ -118,6 +127,7 @@ final class VoiceListener {
         handler = nil
         utterances += 1
         intentReader.release()
+        assistant.release()
         watchdog?.cancel()
         watchdog = nil
         endRequest()
@@ -278,6 +288,17 @@ final class VoiceListener {
         let sinceReply = speaking ? 0 : repliedAt.map { Date.now.timeIntervalSince($0) }
         if let command {
             handler?(command, text)
+        } else if !backchannel, assistant.isAvailable, let context = assistantContext?() {
+            switch AssistantGate.route(text, screen: screen?() ?? .cook, secondsSinceReply: sinceReply) {
+            case .safety(let line):
+                report.outcome = "food safety table"
+                noteTurn("\"\(text)\": table, 0 ms")
+                onAssistant?(CookAssistant.Reply(outcome: .answer(line), milliseconds: 0), text)
+            case .model:
+                askAssistant(text, context: context)
+            case .command, .drop:
+                break
+            }
         } else if !backchannel, VoiceIntent.worthAsking(text),
                   TurnTaking.asksModel(wordCount: VoiceCommand.words(in: text).count, secondsSinceReply: sinceReply),
                   intentReader.isAvailable, let context = intentContext?() {
@@ -309,6 +330,31 @@ final class VoiceListener {
             if utterance == utterances { report.outcome = "model: \(reading.intent.rawValue)" }
             if let command { handler?(command, text) }
         }
+    }
+
+    /// Asks the assistant about words the keywords missed, while listening goes on. Its
+    /// reply only counts if the cook hasn't said anything since and the recipe, step and
+    /// offer are still the ones it was asked about.
+    private func askAssistant(_ text: String, context: AssistantContext) {
+        let utterance = utterances
+        report.outcome = "asking the assistant"
+        Task { [weak self, assistant] in
+            let reply = await assistant.ask(text, context: context)
+            guard let self else { return }
+            let current = utterance == utterances && wanted
+            let fits = assistantContext?().map(context.stillApplies) ?? false
+            var line = "\"\(text)\": \(reply.summary), \(reply.milliseconds) ms"
+            if !(current && fits) { line += " (dropped: things moved on)" }
+            noteTurn(line)
+            if utterance == utterances { report.outcome = "assistant: \(reply.summary)" }
+            if current && fits { onAssistant?(reply, text) }
+        }
+    }
+
+    /// Keeps the newest assistant turns for the debug panel.
+    private func noteTurn(_ line: String) {
+        report.model = line
+        report.assistantTurns = Array(([line] + report.assistantTurns).prefix(Self.turnsShown))
     }
 
     /// "next", "ignored: 9 words" or "no command", for the debug panel.
@@ -519,6 +565,8 @@ struct VoiceReport: Equatable {
     var outcome: String?
     /// The on-device model's last answer: what it heard, the intent and how long it took.
     var model: String?
+    /// The assistant's last few turns, newest first: heard, tool or answer, milliseconds.
+    var assistantTurns: [String] = []
     var restarts = 0
     var errors = 0
     /// Times the cook cut the app short by talking over it.
