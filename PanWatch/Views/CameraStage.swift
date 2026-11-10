@@ -20,7 +20,7 @@ struct CameraStage: View {
                     Color.clear
                         .contentShape(Rectangle())
                         .gesture(drawGesture(in: imageRect))
-                        .accessibilityLabel("Camera picture. Drag a box around the pan.")
+                        .accessibilityLabel("Camera picture. Drag a box around the pot.")
                 }
             }
         }

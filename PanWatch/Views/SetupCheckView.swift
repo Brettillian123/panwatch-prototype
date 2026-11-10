@@ -12,12 +12,12 @@ struct SetupCheckView: View {
         case .idle:
             EmptyView()
         case .still:
-            card(text: "Keep your hands away, checking the light", running: true)
+            card(text: "Keep your hands away for a moment", running: true)
         case .hand:
             card(text: "Now hold one hand over the pot", running: true)
         case .done(let result):
             if result.fix == nil {
-                card(text: "Ready. Detection is set for this kitchen.", running: false)
+                card(text: "All set.", running: false)
             }
         }
     }
