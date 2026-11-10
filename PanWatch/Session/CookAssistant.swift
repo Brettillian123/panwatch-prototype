@@ -97,15 +97,24 @@ final class CookAssistant {
         #if canImport(FoundationModels)
         if #available(iOS 26, *), isAvailable {
             startFreshIfNeeded(for: context)
+            if let busy = conversation as? Conversation, busy.asking {
+                // A session answers one prompt at a time. The cook spoke again before the
+                // last reply came, and that reply will be dropped: this question gets a
+                // session of its own.
+                conversation = nil
+                turns = 0
+            }
             prepare()
             if let current = conversation as? Conversation {
                 turns += 1
                 lastTurn = .now
                 recipe = context.recipe
                 current.inbox.begin(context)
+                current.asking = true
                 let result = await Self.respond(current.session, prompt: context.prompt(heard: heard))
+                current.asking = false
                 outcome = Self.outcome(of: result, inbox: current.inbox, context: context)
-                if result.endsConversation {
+                if result.endsConversation, (conversation as? Conversation) === current {
                     // A late answer or an overflowing context: this session is done.
                     conversation = nil
                     prepare()
@@ -202,6 +211,8 @@ final class CookAssistant {
 private final class Conversation {
     let inbox = ActionInbox()
     let session: LanguageModelSession
+    /// A prompt is with the model and its reply isn't back yet.
+    var asking = false
 
     init() {
         session = LanguageModelSession(

@@ -201,6 +201,37 @@ struct AssistantTests {
         }
     }
 
+    @Test func aTimeOrTemperatureSpelledOutIsReplacedToo() {
+        let context = Self.context()
+        for reply in ["Give it twenty-five minutes.", "Fry at eighty degrees.", "Roast for seventy minutes.",
+                      "Heat the oven to three hundred fifty degrees.", "About thirty-five seconds."] {
+            #expect(AssistantRails.check(reply, context: context) == AssistantRails.unsure, "\(reply)")
+        }
+    }
+
+    @Test func aGuessThatFoodIsDoneIsReplaced() {
+        for reply in ["The chicken should be done by now.", "It looks done to me.", "That will be cooked."] {
+            #expect(AssistantRails.check(reply, context: Self.context()) == FoodSafety.cannotTell, "\(reply)")
+        }
+        let check = "It should be done when the juices run clear."
+        #expect(AssistantRails.check(check, context: Self.context()) == check)
+    }
+
+    @Test func shortWordsToTheRoomAreNotPlainlyAddressed() {
+        // Short enough to reach the model, in case they are a command, but the app only
+        // acts or answers for them: no out-of-scope line, no sound.
+        for text in ["pass the salt", "smells great", "over there"] {
+            #expect(AssistantGate.route(text, secondsSinceReply: nil) == .model, "\(text)")
+            #expect(!AssistantGate.plainlyAddressed(text, secondsSinceReply: nil), "\(text)")
+        }
+        for text in ["what's the weather", "can I use oil", "tell me a joke", "oh, how much salt"] {
+            #expect(AssistantGate.plainlyAddressed(text, secondsSinceReply: nil), "\(text)")
+        }
+        // Inside the follow-up window the cook is still talking to the app.
+        #expect(AssistantGate.plainlyAddressed("the olive kind", secondsSinceReply: 2))
+        #expect(!AssistantGate.plainlyAddressed("the olive kind", secondsSinceReply: 60))
+    }
+
     @Test func numbersWithoutATimeOrTemperatureUnitAreLeftAlone() {
         let reply = "Four tablespoons make a quarter cup."
         #expect(AssistantRails.check(reply, context: Self.context()) == reply)
