@@ -6,8 +6,9 @@ import SwiftUI
 
 /// The phrases that work on the cook screen right now, most useful first. The help sheet
 /// shows them first; menus' Say line shows them too. Only commands the grammar understands.
+@MainActor
 enum CookPhrases {
-    @MainActor static func now(_ session: CookSession) -> [String] {
+    static func now(_ session: CookSession) -> [String] {
         // A menu has its own few phrases.
         if session.screen != .cook && session.screen != .help { return session.sayPhrases }
         if session.suggestion != nil { return ["yes", "not now"] }
