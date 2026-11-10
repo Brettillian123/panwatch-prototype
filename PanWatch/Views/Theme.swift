@@ -1,74 +1,73 @@
 import SwiftUI
 
-/// The look of Sous Vision, from `handoff/design/ui-voice-first.md` section 4.
-///
-/// Sizes are fixed points, not Dynamic Type text styles, on purpose: they are set by the
-/// reading distance (the phone stands at the back of the stove, a meter from the cook) and
-/// already exceed the large accessibility sizes. Every control still carries a word, which
-/// VoiceOver reads, and menus reflow rather than truncate.
+/// The look of Sous Vision, from `handoff/design/editorial-v3/README.md`: one face (the
+/// system font), three sizes, two weights, a light cool ground, beet for the one main action.
+/// This file is the single source; the components in `Views/Kit` read only from it.
 enum Theme {
     // MARK: Color
-    // Five colors from the kitchen and one accent, always opaque: no blur, no glass, so
-    // Reduce Transparency and Increase Contrast change nothing. The only text pairs are
-    // these on Iron, and Iron on Copper or Chili; Flour on Copper (2.8:1) never happens.
 
-    /// Cast iron. Every panel, card, bar, strip and menu; the words on a filled button.
-    static let iron = rgb(0x0F1012)
-    /// Main text: step text, digits, labels, button words. 15.6:1 on Iron.
-    static let flour = rgb(0xF5F5F7)
-    /// Second text, the draining bar, "Not listening". 7.0:1 on Iron.
-    static let ash = rgb(0xA1A1A6)
-    /// The camera line when it is watching or has seen the pan. Words only, never a fill. 5.7:1.
-    static let herb = rgb(0x30D158)
-    /// Done or alert: a finished timer's words and edge rule, a denied permission. Words and
-    /// rules only, never a fill, and it never flashes. 5.2:1.
-    static let chili = rgb(0xFF453A)
-    /// The accent, from the pan rim: filled primary buttons, "Heard", the level bar. 5.7:1.
-    static let copper = rgb(0x0A84FF)
-    /// The one rule between rows, and the lift on a secondary button: Flour at 12%.
-    static let rule = flour.opacity(0.12)
-    /// Panels over the camera picture: dark and see-through, so the pan stays visible.
-    static let panel = Color.black.opacity(0.55)
-
-    /// The one accent for primary actions (Next step, Start timer, Start watching, Draw a box).
-    static let primary = copper
-    /// The one color for done or alert.
-    static let alert = chili
+    /// Cool ground: under every screen, cook mode included.
+    static let ground = rgb(0xF3F5F8)
+    /// Cards, rows, the tab bar, round buttons, chips.
+    static let card = rgb(0xFFFFFF)
+    /// Ink navy: text, and the now-playing card.
+    static let ink = rgb(0x14203A)
+    /// The one main action, and the selected state.
+    static let beet = rgb(0xC2185B)
+    /// The selected tab and chip, the timer offer, the make-a-voice card.
+    static let blush = rgb(0xF6DCE6)
+    /// Info chips, play buttons.
+    static let sky = rgb(0xCFE0F1)
+    /// Second text.
+    static let slate = rgb(0x5A6478)
+    /// The second text color on the ink card: white at 72 %.
+    static let softWhite = Color.white.opacity(0.72)
+    /// Ink at 7 %: the search field, slider tracks, the segmented control, quiet buttons.
+    static let fill = ink.opacity(0.07)
+    /// Ink at 10 %: the one divider.
+    static let divider = ink.opacity(0.10)
 
     // MARK: Type
-    // Three sizes at a ratio of about 1.55, plus one size for the countdown.
+    // Three steps and two weights, the system font only. Digits add `.monospacedDigit()`.
 
-    /// 18 pt: near-phone detail, never required (the eyebrow, captions).
-    static let detail = Font.system(size: 15, weight: .regular)
-    /// 28 pt: buttons, the camera line, timer labels, menu rows.
-    static let control = Font.system(size: 17, weight: .semibold)
-    /// 44 pt: anything read from a meter away (the Say line's phrase, the offer, "Rice is done").
-    static let reading = Font.system(size: 20, weight: .semibold)
-    /// 44 pt New York: the step text, read like a book.
-    static let step = Font.system(size: 26, weight: .semibold)
-    /// 64 pt: the countdown, the one number size.
-    static let digits = Font.system(size: 40, weight: .semibold, design: .rounded).monospacedDigit()
-    /// 44 pt: the countdown once three timers share the column.
-    static let compactDigits = Font.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit()
+    /// 28 semibold: the screen title, a recipe's name, a sheet's title.
+    static let title = Font.system(size: 28, weight: .semibold)
+    /// 17 regular: rows, values, the search placeholder.
+    static let body = Font.system(size: 17, weight: .regular)
+    /// 17 semibold: names, buttons.
+    static let bodyStrong = Font.system(size: 17, weight: .semibold)
+    /// 13 regular: details under a name, chips, tab labels.
+    static let caption = Font.system(size: 13, weight: .regular)
 
-    // MARK: Geometry
+    /// Cook mode, read from across the counter: 34 semibold, the step and the timer digits.
+    static let cookTitle = Font.system(size: 34, weight: .semibold)
+    /// Cook mode 20 regular.
+    static let cookBody = Font.system(size: 20, weight: .regular)
+    /// Cook mode 20 semibold: buttons, the offer's question.
+    static let cookBodyStrong = Font.system(size: 20, weight: .semibold)
+    /// Cook mode 15 regular: "Step 3 of 5", "Pasta timer", the camera chip.
+    static let cookCaption = Font.system(size: 15, weight: .regular)
 
-    /// Any tap target.
-    static let target: CGFloat = 44
-    /// A target a messy thumb hits: offer buttons, Clear, Done, the Say line.
-    static let bigTarget: CGFloat = 50
-    /// The bottom bar's buttons.
-    static let barHeight: CGFloat = 52
-    /// Inside a text group.
-    static let tight: CGFloat = 8
-    /// Between targets and between groups.
-    static let gap: CGFloat = 16
-    /// Thumbnails and the level bar.
-    static let thumbRadius: CGFloat = 4
-    /// Buttons.
-    static let buttonRadius: CGFloat = 12
-    /// Panels and cards.
-    static let panelRadius: CGFloat = 16
+    // MARK: Shape and spacing
+
+    /// Cards, sheets, the camera box.
+    static let radiusCard: CGFloat = 20
+    /// Fields and tiles.
+    static let radiusField: CGFloat = 14
+    /// The side margin of every screen.
+    static let margin: CGFloat = 20
+    /// Inside a card; between groups.
+    static let space16: CGFloat = 16
+    /// Inside a group.
+    static let space12: CGFloat = 12
+    /// Inside a group, tight.
+    static let space8: CGFloat = 8
+    /// Before a section heading.
+    static let space24: CGFloat = 24
+    /// The smallest tap target.
+    static let minTarget: CGFloat = 44
+    /// The widest a non-cook screen's column gets, in landscape.
+    static let columnMax: CGFloat = 520
 
     // MARK: Motion
 
@@ -76,6 +75,35 @@ enum Theme {
     static let motion = Animation.snappy(duration: 0.25)
     /// The offer, the one entrance.
     static let entrance = Animation.snappy(duration: 0.3)
+
+    // MARK: Old names, aliased onto the new tokens so the screens not yet rebuilt read in the new palette
+
+    static let iron = ground // old name, remove when its last screen is rebuilt
+    static let flour = ink // old name, remove when its last screen is rebuilt
+    static let ash = slate // old name, remove when its last screen is rebuilt
+    static let herb = ink // old name, remove when its last screen is rebuilt
+    static let chili = beet // old name, remove when its last screen is rebuilt
+    static let copper = beet // old name, remove when its last screen is rebuilt
+    static let rule = divider // old name, remove when its last screen is rebuilt
+    static let panel = card // old name, remove when its last screen is rebuilt
+    static let primary = beet // old name, remove when its last screen is rebuilt
+    static let alert = beet // old name, remove when its last screen is rebuilt
+
+    static let detail = cookCaption // old name, remove when its last screen is rebuilt
+    static let control = bodyStrong // old name, remove when its last screen is rebuilt
+    static let reading = cookBodyStrong // old name, remove when its last screen is rebuilt
+    static let step = title // old name, remove when its last screen is rebuilt
+    static let digits = cookTitle.monospacedDigit() // old name, remove when its last screen is rebuilt
+    static let compactDigits = title.monospacedDigit() // old name, remove when its last screen is rebuilt
+
+    static let target: CGFloat = minTarget // old name, remove when its last screen is rebuilt
+    static let bigTarget: CGFloat = 50 // old name, remove when its last screen is rebuilt
+    static let barHeight: CGFloat = 52 // old name, remove when its last screen is rebuilt
+    static let tight: CGFloat = space8 // old name, remove when its last screen is rebuilt
+    static let gap: CGFloat = space16 // old name, remove when its last screen is rebuilt
+    static let thumbRadius: CGFloat = 4 // old name, remove when its last screen is rebuilt
+    static let buttonRadius: CGFloat = radiusField // old name, remove when its last screen is rebuilt
+    static let panelRadius: CGFloat = radiusCard // old name, remove when its last screen is rebuilt
 
     private static func rgb(_ hex: UInt32) -> Color {
         Color(
@@ -86,7 +114,32 @@ enum Theme {
     }
 }
 
-/// An opaque Iron panel with the panel radius.
+// MARK: - Shadows: one navy in three steps
+
+extension View {
+    /// Control: 0 1 4, 16 %.
+    func controlShadow() -> some View {
+        shadow(color: Theme.ink.opacity(0.16), radius: 2, x: 0, y: 1)
+    }
+
+    /// Card: 0 6 20, 8 %.
+    func cardShadow() -> some View {
+        shadow(color: Theme.ink.opacity(0.08), radius: 10, x: 0, y: 6)
+    }
+
+    /// Floating: 0 12 32, 20 % (the tab bar, a sheet).
+    func floatingShadow() -> some View {
+        shadow(color: Theme.ink.opacity(0.20), radius: 16, x: 0, y: 12)
+    }
+
+    /// A non-cook screen's content: full width in portrait, a centered column at most 520 wide in landscape.
+    func screenColumn() -> some View {
+        frame(maxWidth: Theme.columnMax)
+            .frame(maxWidth: .infinity)
+    }
+}
+
+/// An opaque card panel with the card radius. Old name, remove when its last screen is rebuilt.
 extension View {
     func ironPanel(padding: CGFloat = Theme.gap) -> some View {
         self
@@ -95,10 +148,8 @@ extension View {
     }
 }
 
-/// The one button: a word at 28 pt on an opaque shape with the button radius.
-/// Primary is Copper with Iron words; secondary is Iron lifted by the rule color, with
-/// Flour words, so it reads both on the picture and on an Iron panel. Pressed darkens a
-/// primary and edges a secondary in Copper; disabled turns the words Ash on plain Iron.
+/// The old screens' button. Primary is beet with white words; secondary is the ink 7 % fill
+/// on a card with ink words. Old name, remove when its last screen is rebuilt.
 struct WordButtonStyle: ButtonStyle {
     enum Kind { case primary, secondary }
 
@@ -117,10 +168,10 @@ private struct WordButtonLabel: View {
     @Environment(\.isEnabled) private var isEnabled
 
     var body: some View {
-        let shape = RoundedRectangle(cornerRadius: Theme.buttonRadius, style: .continuous)
+        let shape = Capsule(style: .continuous)
         let pressed = configuration.isPressed
         configuration.label
-            .font(Theme.control)
+            .font(Theme.bodyStrong)
             .lineLimit(1)
             .minimumScaleFactor(0.7)
             .foregroundStyle(foreground)
@@ -128,21 +179,16 @@ private struct WordButtonLabel: View {
             .frame(minWidth: Theme.bigTarget, minHeight: height)
             .background {
                 ZStack {
-                    shape.fill(fill)
-                    if kind == .secondary && isEnabled { shape.fill(Color.white.opacity(0.14)) }
-                    if pressed && kind == .primary && isEnabled { shape.fill(Theme.iron.opacity(0.3)) }
-                    if pressed && kind == .secondary { shape.fill(Color.white.opacity(0.12)) }
+                    shape.fill(kind == .primary && isEnabled ? Theme.beet : Theme.card)
+                    if kind == .secondary { shape.fill(Theme.fill) }
+                    if pressed { shape.fill(Theme.ink.opacity(0.12)) }
                 }
             }
             .contentShape(shape)
     }
 
-    private var fill: Color {
-        kind == .primary && isEnabled ? Theme.primary : Theme.panel
-    }
-
     private var foreground: Color {
-        guard isEnabled else { return Theme.ash }
-        return kind == .primary ? .white : Theme.flour
+        guard isEnabled else { return Theme.slate }
+        return kind == .primary ? .white : Theme.ink
     }
 }

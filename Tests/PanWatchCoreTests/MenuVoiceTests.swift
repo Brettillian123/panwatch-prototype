@@ -57,7 +57,7 @@ struct MenuVoiceTests {
                      "cancel timer", "draw pan", "mark", "go to step", "where am I", "start over", "set timer",
                      "cancel named timer", "clear done", "show recipes", "make recipe", "nudge", "camera",
                      "switch camera", "show voices", "try voice", "next voice", "use voice", "quiet", "talk",
-                     "stop listening", "help", "settings", "details", "done", "record practice"]
+                     "stop listening", "help", "settings", "details", "done", "record practice", "start cooking"]
         for kind in every {
             #expect(listed.contains(kind), "\(kind)")
         }
@@ -115,6 +115,7 @@ struct MenuVoiceTests {
         case .recordPractice: "record practice"
         case .checkSetup: "check setup"
         case .skip: "skip"
+        case .startCooking: "start cooking"
         }
     }
 }

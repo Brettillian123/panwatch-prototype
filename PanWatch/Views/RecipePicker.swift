@@ -7,7 +7,7 @@ struct RecipePicker: View {
     let session: CookSession
 
     /// Dish names in New York, like the step text: a recipe is read like a book.
-    private static let dishFont = Font.system(size: 28, weight: .semibold, design: .serif)
+    private static let dishFont = Theme.title // one font in the app: the system face
 
     var body: some View {
         MenuScreen(session: session, title: "What are you cooking?") {

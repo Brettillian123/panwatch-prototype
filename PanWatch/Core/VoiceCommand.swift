@@ -76,6 +76,8 @@ enum VoiceCommand: Equatable, Sendable {
     // Setup check: "check the setup" runs the setup check again; "skip" ends one that is running.
     case checkSetup
     case skip
+    /// "Start cooking", "let's cook"; and "start" on a recipe's page. Starts the recipe being looked at.
+    case startCooking
 
     /// Longer utterances are conversation, not commands.
     static let maximumWords = 6
@@ -104,6 +106,11 @@ enum VoiceCommand: Equatable, Sendable {
         if (set.contains("restart") && !set.contains("timer")) || phrase.contains("start over")
             || phrase.contains("start again") || phrase.contains("begin again")
             || ["from top", "first step"].contains(phrase) { return .startOver }
+        // A recipe's page: "start" there starts cooking it rather than answering an offer.
+        if ["start cooking", "let's cook", "lets cook", "let's start cooking", "start cooking it"].contains(phrase)
+            || (screen == .recipe && ["start", "start it", "cook it", "let's start", "let's go"].contains(phrase)) {
+            return .startCooking
+        }
 
         // Before the "no" words, because "cancel" and "stop" are among them.
         if let timerAt = words.firstIndex(where: { $0 == "timer" || $0 == "timers" }),
@@ -349,9 +356,63 @@ extension NormRect {
     }
 }
 
-/// What fills the screen: the cook screen, or a full-screen menu over it.
-enum AppScreen: String, Sendable {
-    case cook, recipes, settings, voices, help
+/// What fills the screen. Home (`recipes`), a recipe's page, cook mode, the voices with
+/// their make-a-voice sheet, the profile and help.
+enum AppScreen: String, Sendable, CaseIterable {
+    /// Home: the recipes.
+    case recipes
+    /// One recipe's page, the one in `CookSession.viewedRecipe`.
+    case recipe
+    /// Cook mode, landscape only.
+    case cook
+    case voices
+    /// The make-a-voice sheet over the voices.
+    case makeVoice
+    /// The profile, which holds what used to be the settings.
+    case profile
+    case help
+
+    /// The old name of `profile`: voice commands, tests and older code that say "settings" open the same screen.
+    static let settings: AppScreen = .profile
+
+    /// The tab this screen belongs to, lit in the tab bar; nil for help.
+    var tab: AppTab? {
+        switch self {
+        case .recipes, .recipe: .recipes
+        case .cook: .cook
+        case .voices, .makeVoice: .voices
+        case .profile: .profile
+        case .help: nil
+        }
+    }
+
+    /// The floating tab bar shows only on the three top-level screens.
+    var showsTabBar: Bool { self == .recipes || self == .voices || self == .profile }
+
+    /// Cook mode is landscape only; every other screen follows the phone.
+    var isLandscapeOnly: Bool { self == .cook }
+
+    /// Where "done", "back" or a close button go from `screen`. Help goes back where it was
+    /// opened; a recipe's page to Home; the make-a-voice sheet to the voices; anything else
+    /// to cook mode, as the menus always have.
+    static func closing(_ screen: AppScreen, helpFrom: AppScreen) -> AppScreen {
+        switch screen {
+        case .help: helpFrom == .help ? .cook : helpFrom
+        case .recipe: .recipes
+        case .makeVoice: .voices
+        case .recipes, .cook, .voices, .profile: .cook
+        }
+    }
+
+    /// The screen a tab opens. Cook opens cook mode while a cook is under way, else Home.
+    static func opening(_ tab: AppTab, cookUnderWay: Bool) -> AppScreen {
+        switch tab {
+        case .recipes: .recipes
+        case .cook: cookUnderWay ? .cook : .recipes
+        case .voices: .voices
+        case .profile: .profile
+        }
+    }
 
     /// The three or four phrases that work right now, for the Say line. A moment on the
     /// cook screen (drawing, an offer, a done timer, no pan box) has its own.
@@ -361,8 +422,10 @@ enum AppScreen: String, Sendable {
     ) -> [String] {
         switch screen {
         case .recipes: return ["make the rice", "let's do pasta", "done"]
-        case .settings: return [cameraOn ? "turn off the camera" : "turn on the camera", "change the voice", "done"]
+        case .recipe: return ["start cooking", "back"]
+        case .profile: return [cameraOn ? "turn off the camera" : "turn on the camera", "change the voice", "done"]
         case .voices: return ["try \(voiceName)", "use \(voiceName)", "next voice", "done"]
+        case .makeVoice: return ["use my voice", "done"]
         case .help: return ["done"]
         case .cook:
             if drawing { return ["bigger", "smaller", "start watching", "cancel"] }
@@ -370,6 +433,30 @@ enum AppScreen: String, Sendable {
             if timerDone { return ["clear it", "next step", "how long"] }
             if needsPan { return ["mark the pan", "next step"] }
             return ["next step", "repeat", canStartTimer ? "start the timer" : "how long", "what can I say"]
+        }
+    }
+}
+
+/// The four tabs of the floating tab bar.
+enum AppTab: String, Sendable, CaseIterable {
+    case recipes, cook, voices, profile
+
+    var title: String {
+        switch self {
+        case .recipes: "Recipes"
+        case .cook: "Cook"
+        case .voices: "Voices"
+        case .profile: "Profile"
+        }
+    }
+
+    /// The SF Symbol's name.
+    var symbol: String {
+        switch self {
+        case .recipes: "fork.knife"
+        case .cook: "frying.pan"
+        case .voices: "waveform"
+        case .profile: "person"
         }
     }
 }
