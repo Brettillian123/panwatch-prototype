@@ -220,3 +220,24 @@ enum VoiceCatalog {
         return out
     }
 }
+
+/// Two words of character per voice, for the caption under its name ("American · Warm, clear").
+extension VoiceCatalog {
+    static let characters: [String: String] = [
+        "af_heart": "Warm, clear",
+        "af_bella": "Bright, friendly",
+        "af_nicole": "Soft, calm",
+        "af_sarah": "Even, steady",
+        "af_kore": "Low, relaxed",
+        "am_michael": "Deep, easygoing",
+        "am_fenrir": "Firm, direct",
+        "bf_emma": "Clear, polite",
+        "bm_george": "Low, measured",
+        "bm_fable": "Lively, expressive",
+    ]
+
+    /// The character of a catalog voice; a mix the cook made is "Blended voice".
+    static func character(pack: String) -> String {
+        characters[pack] ?? "Blended voice"
+    }
+}
