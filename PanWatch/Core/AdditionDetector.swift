@@ -272,6 +272,11 @@ struct AdditionDetector {
     private(set) var lastMiss: NoOffer?
     /// Counts updates to `lastMiss`, so a watcher can tell a new miss from an old one.
     private(set) var misses = 0
+    /// AI confirm: in candidate mode, a visit too short or beside the pan is still judged,
+    /// but only counts when at least this share of the pan changed. Nil keeps today's rules.
+    var shortVisitChange: Double?
+    /// AI confirm: the change the current visit needs, when it was short or beside the pan.
+    private var visitNeedsChange: Double?
 
     // The visible-change path.
     /// Calm frames from the last moment, for the before-picture once motion starts.
@@ -381,15 +386,18 @@ struct AdditionDetector {
             } else if t - lastActiveTime >= settings.exitHold {
                 if visitIsStirring {
                     return stirred(frame)
-                } else if dwell < settings.minimumDwell {
+                } else if dwell < settings.minimumDwell && shortVisitChange == nil {
                     // A hand passing over on its way somewhere else. Not worth judging.
                     miss(.visitTooShort(dwell))
                     endVisit()
-                } else if handPlaceKnown && overOpening < settings.minimumDwell {
+                } else if handPlaceKnown && overOpening < settings.minimumDwell && shortVisitChange == nil {
                     // The hand held a handle, shook the pan or rested beside it: nothing went in.
                     miss(.handBesidePan)
                     endVisit()
                 } else {
+                    // AI confirm: in candidate mode a short or off-centre visit counts only with a change.
+                    let offCentre = dwell < settings.minimumDwell || (handPlaceKnown && overOpening < settings.minimumDwell)
+                    visitNeedsChange = offCentre ? shortVisitChange : nil
                     phase = .settling
                     settleStart = t
                     stillSince = nil
@@ -551,6 +559,7 @@ struct AdditionDetector {
 
     private mutating func endVisit() {
         frozenBaseline = nil
+        visitNeedsChange = nil // AI confirm
         dwell = 0
         visitIsStirring = false
         phase = .watching
@@ -619,7 +628,7 @@ struct AdditionDetector {
         } else if looksLikeLighting(after, from: before) {
             outcome = .lightingChange
             miss(.lightingVeto(shift))
-        } else if changed >= settings.additionThreshold {
+        } else if changed >= max(settings.additionThreshold, visitNeedsChange ?? 0) { // AI confirm: see `shortVisitChange`
             outcome = .addition
         } else {
             outcome = .noChange
@@ -645,6 +654,7 @@ struct AdditionDetector {
 
         // Whatever happened, the pan as it looks now is the new normal.
         frozenBaseline = nil
+        visitNeedsChange = nil // AI confirm
         visitIsStirring = false
         history = [Snapshot(time: frame.time, patch: after)]
         clearSight(keeping: frame)
