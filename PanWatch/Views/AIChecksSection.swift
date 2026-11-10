@@ -7,15 +7,15 @@ struct AIChecksSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("AI CHECK")
-                .font(.caption.weight(.bold))
-                .foregroundStyle(.white.opacity(0.6))
+            Text("AI check")
+                .font(Theme.bodyStrong)
+                .foregroundStyle(Theme.ink)
             Text(AddModel.status)
                 .font(.footnote)
             if checks.isEmpty {
                 Text("No checks yet. On a watched step, the rules' guesses are sent here before any offer.")
                     .font(.footnote)
-                    .foregroundStyle(.white.opacity(0.7))
+                    .foregroundStyle(Theme.slate)
             }
             ForEach(checks) { check in
                 VStack(alignment: .leading, spacing: 4) {
@@ -23,7 +23,7 @@ struct AIChecksSection: View {
                         .font(.footnote.weight(.semibold))
                     Text(details(check))
                         .font(.caption)
-                        .foregroundStyle(.white.opacity(0.7))
+                        .foregroundStyle(Theme.slate)
                     HStack(alignment: .top, spacing: 4) {
                         ForEach(Array(check.thumbnails.enumerated()), id: \.offset) { index, image in
                             Thumbnail(image: image, caption: caption(index, of: check.thumbnails.count), width: 64)
