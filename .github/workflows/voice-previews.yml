@@ -1,0 +1,52 @@
+name: Voice previews
+
+on:
+  push:
+    branches: [ci-voicepreviews]
+
+jobs:
+  previews:
+    runs-on: xcode-27
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use the newest Xcode on the runner
+        run: |
+          XC=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          sudo xcode-select -s "$XC"
+          xcodebuild -version
+          sw_vers
+          sysctl -n machdep.cpu.brand_string || true
+
+      - name: Make one preview per catalogue voice
+        run: |
+          PACKS=$(grep -oE 'NaturalVoice\(pack: "[a-z]{2}_[a-z]+"' PanWatch/Core/VoiceCatalog.swift | grep -oE '[a-z]{2}_[a-z]+' | tr '\n' ' ')
+          LINE=$(grep -oE 'previewLine = "[^"]+"' PanWatch/Core/VoiceCatalog.swift | sed -E 's/previewLine = "(.*)"/\1/')
+          echo "Packs: $PACKS"
+          echo "Line: $LINE"
+          cd Tools/VoicePreviews
+          swift build -c release 2>&1 | tail -5
+          # Runs under bash -eo pipefail, so a failed voice fails the step.
+          .build/release/VoicePreviews "$GITHUB_WORKSPACE/wav" "$LINE" $PACKS 2>&1 | tee "$GITHUB_WORKSPACE/previews.log" | tail -60
+
+      - name: Convert to AAC and check each file
+        run: |
+          mkdir -p previews
+          for W in wav/*.wav; do
+            P=$(basename "$W" .wav)
+            afconvert -f m4af -d aac -b 40000 -c 1 "$W" "previews/$P.m4a"
+            BYTES=$(stat -f %z "previews/$P.m4a")
+            DUR=$(afinfo "previews/$P.m4a" | grep -i "estimated duration" | grep -oE '[0-9.]+' | head -1)
+            echo "$P.m4a $BYTES bytes $DUR s" | tee -a previews/listing.txt
+            [ "$BYTES" -lt 60000 ]
+          done
+          cp previews.log previews/
+
+      - name: Upload the previews
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: voice-previews
+          path: |
+            previews/
+            previews.log
