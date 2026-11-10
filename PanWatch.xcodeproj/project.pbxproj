@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D0CAFE00000000000000001B /* PanWatchTimer.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D0CAFE000000000000000010 /* PanWatchTimer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D0CAFE00000000000000001E /* FluidAudio in Frameworks */ = {isa = PBXBuildFile; productRef = D0CAFE00000000000000001F /* FluidAudio */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0CAFE00000000000000001E /* FluidAudio in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +119,7 @@
 			);
 			name = PanWatch;
 			packageProductDependencies = (
+				D0CAFE00000000000000001F /* FluidAudio */,
 			);
 			productName = PanWatch;
 			productReference = D0CAFE000000000000000004 /* PanWatch.app */;
@@ -172,6 +175,9 @@
 			);
 			mainGroup = D0CAFE000000000000000002;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D0CAFE000000000000000020 /* XCRemoteSwiftPackageReference "FluidAudio" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D0CAFE000000000000000003 /* Products */;
 			projectDirPath = "";
@@ -412,6 +418,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D0CAFE000000000000000020 /* XCRemoteSwiftPackageReference "FluidAudio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FluidInference/FluidAudio.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.18.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D0CAFE00000000000000001F /* FluidAudio */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0CAFE000000000000000020 /* XCRemoteSwiftPackageReference "FluidAudio" */;
+			productName = FluidAudio;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D0CAFE000000000000000001 /* Project object */;
 }

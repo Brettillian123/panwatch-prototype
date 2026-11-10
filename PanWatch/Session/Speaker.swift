@@ -23,8 +23,16 @@ protocol SpeechSource: AnyObject {
 @MainActor
 final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     private let audio: AudioIO
-    /// The voice in use. Replaced to switch to another voice.
+    /// The phone's own voices. Replaced to switch to another voice.
     var source: SpeechSource = AppleSpeechSource()
+    /// The natural (Kokoro) voices, for any voice id `VoiceCatalog` marks as natural.
+    let natural = KokoroVoice()
+
+    nonisolated private static let speedKey = "voiceSpeed"
+    /// How fast every voice talks, kept between launches.
+    var speed: VoiceSpeed = UserDefaults.standard.string(forKey: Speaker.speedKey).flatMap(VoiceSpeed.init(rawValue:)) ?? .normal {
+        didSet { UserDefaults.standard.set(speed.rawValue, forKey: Self.speedKey) }
+    }
     /// Speaks straight to the output when the engine can't start: no echo cancellation,
     /// so listening pauses for it.
     private let direct = AVSpeechSynthesizer()
@@ -70,13 +78,22 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         self.audio = audio
         super.init()
         direct.delegate = self
+        // A natural voice chosen before loads now, so the first prompt can use it.
+        if VoiceCatalog.isNatural(voiceIdentifier) { natural.prepare() }
     }
 
     /// Speaks `text`, cutting off anything still being said. `then` runs once the text
     /// has been spoken in full, not if it gets cut off. `voice` overrides the picked one,
     /// for playing a sample in the voice menu.
-    func say(_ text: String, voice: String? = nil, then: (() -> Void)? = nil) {
+    /// `earcon` plays first, through the same engine, so echo cancellation covers it too;
+    /// with empty `text`, the earcon is all that plays.
+    func say(_ text: String, voice: String? = nil, earcon: Earcon? = nil, then: (() -> Void)? = nil) {
         cutOff()
+        // An earcon can't play without the engine; the words still can.
+        if text.isEmpty, earcon == nil || !audio.start() {
+            then?()
+            return
+        }
         utterance += 1
         let id = utterance
         let chosen = voice ?? voiceIdentifier
@@ -96,14 +113,29 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
             Task { @MainActor in self?.playbackEnded(id: id, ok: ok, text: text, voice: chosen) }
         }
         self.playback = playback
-        source.synthesize(text, voice: chosen, format: AudioIO.playbackFormat, buffer: { buffer in
+        let voiceSource: SpeechSource
+        if VoiceCatalog.isNatural(chosen) {
+            natural.speed = speed
+            voiceSource = natural
+        } else {
+            (source as? AppleSpeechSource)?.rate = AVSpeechUtteranceDefaultSpeechRate * speed.factor
+            voiceSource = source
+        }
+        if let earcon, let buffer = Self.buffer(for: earcon) {
             player.play(buffer, playback)
-        }, done: { ok in
-            playback.finish(ok: ok)
-        })
+        }
+        if text.isEmpty {
+            playback.finish()
+        } else {
+            voiceSource.synthesize(text, voice: chosen, format: AudioIO.playbackFormat, buffer: { buffer in
+                player.play(buffer, playback)
+            }, done: { ok in
+                playback.finish(ok: ok)
+            })
+        }
         // A prompt that never reports back (the engine died under it) would leave the app
         // "speaking" for good; no prompt takes longer than this.
-        let limit = 5.0 + 0.5 * Double(SelfEcho.words(in: text).count)
+        let limit = 5.0 + 0.5 * Double(SelfEcho.words(in: text).count) / Double(speed.factor)
         stuckGuard = Task { [weak self] in
             try? await Task.sleep(for: .seconds(limit))
             guard let self, !Task.isCancelled, self.utterance == id, self.currentText != nil else { return }
@@ -115,11 +147,26 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         cutOff()
     }
 
+    /// The earcon's samples in the playback format, made once each.
+    private static var earconBuffers: [Earcon: AVAudioPCMBuffer] = [:]
+    private static func buffer(for earcon: Earcon) -> AVAudioPCMBuffer? {
+        if let made = earconBuffers[earcon] { return made }
+        let format = AudioIO.playbackFormat
+        let samples = earcon.samples(sampleRate: format.sampleRate)
+        guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: AVAudioFrameCount(samples.count)),
+              let channel = buffer.floatChannelData?[0] else { return nil }
+        for (i, sample) in samples.enumerated() { channel[i] = sample }
+        buffer.frameLength = AVAudioFrameCount(samples.count)
+        earconBuffers[earcon] = buffer
+        return buffer
+    }
+
     /// Stops the current prompt without finishing it.
     private func cutOff() {
         guard currentText != nil else { return }
         let id = utterance
         source.cancel()
+        natural.cancel()
         audio.player.stop()
         if direct.isSpeaking { direct.stopSpeaking(at: .immediate) }
         ended(id: id, finished: false)
@@ -127,8 +174,8 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
 
     private func playbackEnded(id: Int, ok: Bool, text: String, voice: String?) {
         guard id == utterance, currentText != nil else { return }
-        if ok {
-            ended(id: id, finished: true)
+        if ok || text.isEmpty {
+            ended(id: id, finished: ok)
         } else {
             // The voice or the engine failed part way: say it the plain way instead.
             audio.player.stop()
@@ -141,6 +188,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         playback = nil
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = Self.voice(for: voice)
+        utterance.rate = AVSpeechUtteranceDefaultSpeechRate * speed.factor
         direct.speak(utterance)
     }
 
@@ -210,6 +258,8 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
 /// they go through the engine where voice processing can cancel them from the microphone.
 final class AppleSpeechSource: SpeechSource, @unchecked Sendable {
     private let synthesizer = AVSpeechSynthesizer()
+    /// The speaking rate for the next text; `Speaker` sets it from the cook's speed.
+    var rate: Float = AVSpeechUtteranceDefaultSpeechRate
     private let lock = NSLock()
     /// Bumped for every text, so buffers from a cancelled one are dropped.
     private var generation = 0
@@ -225,6 +275,7 @@ final class AppleSpeechSource: SpeechSource, @unchecked Sendable {
         }
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = Speaker.voice(for: voice)
+        utterance.rate = rate
         let state = Conversion(format: format)
         synthesizer.write(utterance) { [weak self] audio in
             guard let self, self.lock.withLock({ self.generation == current }) else { return }
@@ -293,4 +344,28 @@ struct VoiceOption: Identifiable, Equatable {
     /// "United States", "United Kingdom": the accent.
     let region: String
     let isPersonal: Bool
+    /// A Kokoro voice from `VoiceCatalog`, or one of the cook's mixes.
+    var isNatural = false
+    /// One line in plain words under a natural voice's name.
+    var detail = ""
+    var accent: VoiceAccent?
+    var gender: VoiceGender?
+
+    init(
+        id: String, name: String, quality: AVSpeechSynthesisVoiceQuality, region: String, isPersonal: Bool
+    ) {
+        self.id = id
+        self.name = name
+        self.quality = quality
+        self.region = region
+        self.isPersonal = isPersonal
+    }
+
+    init(natural voice: NaturalVoice) {
+        self.init(id: voice.id, name: voice.name, quality: .premium, region: voice.accent.title, isPersonal: false)
+        isNatural = true
+        detail = voice.detail
+        accent = voice.accent
+        gender = voice.gender
+    }
 }
