@@ -272,7 +272,7 @@ enum KokoroVoiceError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .notReady: "Get more voices first, on the Voices tab."
+        case .notReady: "Get more voices first."
         case .badVoice: "Those two can't be mixed. Pick another pair."
         }
     }

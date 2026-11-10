@@ -497,7 +497,7 @@ struct NaturalVoicesDownload: View {
         case .idle:
             Card {
                 VStack(alignment: .leading, spacing: Theme.space12) {
-                    Text("More voices to choose from. Uses Wi-Fi, takes a minute or two.")
+                    Text("Uses Wi-Fi. Takes a minute or two.")
                         .font(Theme.body).foregroundStyle(Theme.ink)
                         .fixedSize(horizontal: false, vertical: true)
                     QuietButton(title: "Get voices", systemImage: "arrow.down.to.line") {

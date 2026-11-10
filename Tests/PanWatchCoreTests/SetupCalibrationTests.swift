@@ -153,7 +153,7 @@ struct SetupCalibrationTests {
         // Under the floor it isn't a usable hand at all.
         let none = SetupCalibration.calibrate(still: still, hand: handFrames(hand(confidence: 0.2, clear: 3)), base: base)
         #expect(none.fix == .handNotSeen)
-        #expect(none.spoken.hasPrefix("I couldn't see your hand."))
+        #expect(none.spoken.hasPrefix("Can't see your hand."))
         #expect(none.tuning.handConfidence == base.handConfidence)
     }
 

@@ -348,7 +348,7 @@ private struct OwnVoiceManage: View {
                 Text("Making your voice").font(Theme.caption).foregroundStyle(Theme.slate)
             }
         case .failed:
-            Text("Your voice isn't ready. Connect to Wi-Fi and try again.").font(Theme.body).foregroundStyle(Theme.ink)
+            Text("Connect to Wi-Fi and try again.").font(Theme.body).foregroundStyle(Theme.ink)
             QuietButton(title: "Try again", systemImage: "arrow.clockwise") {
                 session.noteTouch()
                 session.prepareOwnVoice()
@@ -394,7 +394,7 @@ private struct OwnVoiceRecording: View {
             Text(OwnVoice.consentLine)
                 .font(Theme.bodyStrong).foregroundStyle(Theme.ink)
                 .fixedSize(horizontal: false, vertical: true)
-            Text("You'll read a few lines aloud, about 15 seconds. Your voice is made on this phone and never leaves it.")
+            Text("You'll read a few lines aloud, about 15 seconds. Your voice never leaves this phone.")
                 .font(Theme.body).foregroundStyle(Theme.slate)
                 .fixedSize(horizontal: false, vertical: true)
         } action: {
