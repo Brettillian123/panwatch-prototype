@@ -3,11 +3,13 @@ import SwiftUI
 import UIKit
 
 /// The app's root: the screen `CookSession.screen` names, the floating tab bar on the three
-/// top-level screens, and the setup check over everything. Cook mode stays underneath every
-/// other screen, hidden, so the camera keeps its picture. Each screen is one file in
-/// `Views/Screens`; nothing here needs to change when one is rebuilt.
+/// top-level screens, and the sheets over them. Cook mode stays underneath every other
+/// screen, hidden, so it is there at once on the way back; its camera runs only while it
+/// shows (`CameraGate`). Each screen is one file in `Views/Screens`.
 struct RootView: View {
     let session: CookSession
+    /// The recipe page's dark photo is under the status bar: the clock and battery go white.
+    @State private var photoOnTop = true
 
     private var screen: AppScreen { session.screen }
     /// The screen under the help sheet, or the screen itself. Help opened in cook mode keeps cook mode under it.
@@ -36,6 +38,16 @@ struct RootView: View {
                                 session.open(tab: tab)
                             }
                             .frame(maxWidth: .infinity)
+                            // The list fades into the ground under the bar instead of showing through below it.
+                            .background(alignment: .bottom) {
+                                LinearGradient(
+                                    colors: [Theme.ground.opacity(0), Theme.ground],
+                                    startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 0.4)
+                                )
+                                .padding(.top, -Theme.space24)
+                                .ignoresSafeArea(edges: .bottom)
+                                .allowsHitTesting(false)
+                            }
                         }
                     }
                     .transition(.opacity)
@@ -54,7 +66,8 @@ struct RootView: View {
         .animation(Theme.motion, value: screen)
         .statusBarHidden(base == .cook)
         .persistentSystemOverlays(base == .cook ? .hidden : .automatic)
-        .preferredColorScheme(.light)
+        // Every color is a fixed token, so the scheme only picks the status bar's text color.
+        .preferredColorScheme(base == .recipe && photoOnTop ? .dark : .light)
         .task {
             #if DEBUG
             if ScreenshotStage.requested != nil { return }
@@ -82,7 +95,7 @@ struct RootView: View {
     @ViewBuilder private var page: some View {
         switch base {
         case .recipes: HomeScreen(session: session)
-        case .recipe: RecipeScreen(session: session)
+        case .recipe: RecipeScreen(session: session, photoOnTop: $photoOnTop)
         case .voices, .makeVoice: VoicesScreen(session: session)
         case .profile: ProfileScreen(session: session)
         case .help, .cook: EmptyView() // help is the sheet over `base`

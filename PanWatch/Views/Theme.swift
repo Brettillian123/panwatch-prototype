@@ -76,35 +76,6 @@ enum Theme {
     /// The offer, the one entrance.
     static let entrance = Animation.snappy(duration: 0.3)
 
-    // MARK: Old names, aliased onto the new tokens so the screens not yet rebuilt read in the new palette
-
-    static let iron = ground // old name, remove when its last screen is rebuilt
-    static let flour = ink // old name, remove when its last screen is rebuilt
-    static let ash = slate // old name, remove when its last screen is rebuilt
-    static let herb = ink // old name, remove when its last screen is rebuilt
-    static let chili = beet // old name, remove when its last screen is rebuilt
-    static let copper = beet // old name, remove when its last screen is rebuilt
-    static let rule = divider // old name, remove when its last screen is rebuilt
-    static let panel = card // old name, remove when its last screen is rebuilt
-    static let primary = beet // old name, remove when its last screen is rebuilt
-    static let alert = beet // old name, remove when its last screen is rebuilt
-
-    static let detail = cookCaption // old name, remove when its last screen is rebuilt
-    static let control = bodyStrong // old name, remove when its last screen is rebuilt
-    static let reading = cookBodyStrong // old name, remove when its last screen is rebuilt
-    static let step = title // old name, remove when its last screen is rebuilt
-    static let digits = cookTitle.monospacedDigit() // old name, remove when its last screen is rebuilt
-    static let compactDigits = title.monospacedDigit() // old name, remove when its last screen is rebuilt
-
-    static let target: CGFloat = minTarget // old name, remove when its last screen is rebuilt
-    static let bigTarget: CGFloat = 50 // old name, remove when its last screen is rebuilt
-    static let barHeight: CGFloat = 52 // old name, remove when its last screen is rebuilt
-    static let tight: CGFloat = space8 // old name, remove when its last screen is rebuilt
-    static let gap: CGFloat = space16 // old name, remove when its last screen is rebuilt
-    static let thumbRadius: CGFloat = 4 // old name, remove when its last screen is rebuilt
-    static let buttonRadius: CGFloat = radiusField // old name, remove when its last screen is rebuilt
-    static let panelRadius: CGFloat = radiusCard // old name, remove when its last screen is rebuilt
-
     private static func rgb(_ hex: UInt32) -> Color {
         Color(
             red: Double((hex >> 16) & 0xFF) / 255,
@@ -136,59 +107,5 @@ extension View {
     func screenColumn() -> some View {
         frame(maxWidth: Theme.columnMax)
             .frame(maxWidth: .infinity)
-    }
-}
-
-/// An opaque card panel with the card radius. Old name, remove when its last screen is rebuilt.
-extension View {
-    func ironPanel(padding: CGFloat = Theme.gap) -> some View {
-        self
-            .padding(padding)
-            .background(Theme.panel, in: RoundedRectangle(cornerRadius: Theme.panelRadius, style: .continuous))
-    }
-}
-
-/// The old screens' button. Primary is beet with white words; secondary is the ink 7 % fill
-/// on a card with ink words. Old name, remove when its last screen is rebuilt.
-struct WordButtonStyle: ButtonStyle {
-    enum Kind { case primary, secondary }
-
-    var kind: Kind = .secondary
-    var height: CGFloat = Theme.bigTarget
-
-    func makeBody(configuration: Configuration) -> some View {
-        WordButtonLabel(configuration: configuration, kind: kind, height: height)
-    }
-}
-
-private struct WordButtonLabel: View {
-    let configuration: ButtonStyleConfiguration
-    let kind: WordButtonStyle.Kind
-    let height: CGFloat
-    @Environment(\.isEnabled) private var isEnabled
-
-    var body: some View {
-        let shape = Capsule(style: .continuous)
-        let pressed = configuration.isPressed
-        configuration.label
-            .font(Theme.bodyStrong)
-            .lineLimit(1)
-            .minimumScaleFactor(0.7)
-            .foregroundStyle(foreground)
-            .padding(.horizontal, 18)
-            .frame(minWidth: Theme.bigTarget, minHeight: height)
-            .background {
-                ZStack {
-                    shape.fill(kind == .primary && isEnabled ? Theme.beet : Theme.card)
-                    if kind == .secondary { shape.fill(Theme.fill) }
-                    if pressed { shape.fill(Theme.ink.opacity(0.12)) }
-                }
-            }
-            .contentShape(shape)
-    }
-
-    private var foreground: Color {
-        guard isEnabled else { return Theme.slate }
-        return kind == .primary ? .white : Theme.ink
     }
 }

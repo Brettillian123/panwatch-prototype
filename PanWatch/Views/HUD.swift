@@ -5,7 +5,7 @@ import SwiftUI
 // MARK: - Phrases
 
 /// The phrases that work on the cook screen right now, most useful first. The help sheet
-/// shows them first; menus' Say line shows them too. Only commands the grammar understands.
+/// shows them first. Only commands the grammar understands.
 @MainActor
 enum CookPhrases {
     static func now(_ session: CookSession) -> [String] {
@@ -103,6 +103,15 @@ struct CookChip: View {
     timers.first(where: \.isDone) ?? timers.filter { !$0.isDone }.min { $0.end < $1.end }
 }
 
+/// A timer's countdown. A screenshot's sample timer (`pausedAt`) is plain digits, so the picture holds still.
+@MainActor func countdown(_ timer: CookTimer) -> Text {
+    if let pausedAt = timer.pausedAt {
+        let left = max(0, Int(timer.end.timeIntervalSince(pausedAt).rounded()))
+        return Text(verbatim: "\(left / 60):\(left % 60 < 10 ? "0" : "")\(left % 60)")
+    }
+    return Text(timerInterval: timer.start...timer.end, countsDown: true)
+}
+
 /// The running timer, 72 tall: digits in the cook title size, its name, and a round clear
 /// button (timers have no pause). With two or more, "+1 more" under the name, and a tap
 /// opens the list. Done, the card turns blush with "Pasta timer is done" and Stop.
@@ -134,7 +143,7 @@ struct CookTimerCard: View {
                 .buttonStyle(KitPressStyle(fill: Theme.card, foreground: Theme.ink))
                 .accessibilityLabel("Stop the \(timer.label.lowercased()) timer")
             } else {
-                Text(timerInterval: timer.start...timer.end, pauseTime: timer.pausedAt, countsDown: true)
+                countdown(timer)
                     .font(Theme.cookTitle)
                     .monospacedDigit()
                     .foregroundStyle(Theme.ink)
@@ -186,7 +195,7 @@ struct TimersSheet: View {
                             ForEach(session.timers.sorted { $0.end < $1.end }) { timer in
                                 Row(label: timer.isDone ? "\(timer.label) timer is done" : "\(timer.label) timer", leading: { EmptyView() }) {
                                     if !timer.isDone {
-                                        Text(timerInterval: timer.start...timer.end, pauseTime: timer.pausedAt, countsDown: true)
+                                        countdown(timer)
                                             .font(Theme.body)
                                             .monospacedDigit()
                                             .foregroundStyle(Theme.slate)
@@ -215,77 +224,6 @@ struct TimersSheet: View {
             .scrollIndicators(.hidden)
             .frame(maxHeight: 220)
         }
-    }
-}
-
-// MARK: - Say line (menus)
-
-/// Along the bottom of the old menus: whether the app is listening, what it just heard, and
-/// one phrase that works right now, changing every 4 s. Tapping it turns listening off or
-/// on. Cook mode no longer shows it; its phrases are first in the help sheet.
-struct SayLine: View {
-    let session: CookSession
-
-    var body: some View {
-        Group {
-            if session.listeningOn && !session.micReady && CookPhrases.micDenied {
-                HStack(spacing: Theme.gap) {
-                    Text("Microphone off")
-                        .font(Theme.control)
-                        .foregroundStyle(Theme.ink)
-                    Spacer(minLength: 0)
-                    Button("Open Settings") {
-                        if let url = URL(string: UIApplication.openSettingsURLString) {
-                            UIApplication.shared.open(url)
-                        }
-                    }
-                    .buttonStyle(WordButtonStyle(height: Theme.target))
-                }
-                .padding(.trailing, Theme.tight)
-            } else {
-                Button {
-                    session.noteTouch()
-                    session.toggleListening()
-                } label: {
-                    HStack(spacing: Theme.gap) {
-                        content
-                        Spacer(minLength: 0)
-                    }
-                    .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
-                .accessibilityHint(session.listeningOn ? "Stops listening" : "Starts listening")
-            }
-        }
-        .padding(.leading, Theme.gap)
-        .frame(maxWidth: .infinity, minHeight: Theme.bigTarget, maxHeight: Theme.bigTarget)
-        .background(Theme.card, in: RoundedRectangle(cornerRadius: Theme.radiusCard, style: .continuous))
-    }
-
-    @ViewBuilder private var content: some View {
-        if !session.listeningOn {
-            line("Not listening, tap to listen", Theme.slate)
-        } else if !session.micReady {
-            line("Starting the microphone", Theme.slate)
-        } else if let answer = session.answerText {
-            line(answer, Theme.ink)
-        } else if let heard = session.heardText {
-            line("Heard \u{201C}\(heard)\u{201D}", Theme.ink)
-        } else {
-            let phrases = CookPhrases.now(session)
-            TimelineView(.periodic(from: Date(timeIntervalSinceReferenceDate: 0), by: 4)) { context in
-                let index = Int(context.date.timeIntervalSinceReferenceDate / 4) % max(phrases.count, 1)
-                line(phrases.isEmpty ? "Listening" : "Say \u{201C}\(phrases[index])\u{201D}", Theme.ink)
-            }
-        }
-    }
-
-    private func line(_ text: String, _ color: Color) -> some View {
-        Text(text)
-            .font(Theme.bodyStrong)
-            .foregroundStyle(color)
-            .lineLimit(1)
-            .minimumScaleFactor(0.7)
     }
 }
 

@@ -117,7 +117,8 @@ struct VoicesScreen: View {
                 Row(label: "No voices here", detail: "Pick another filter")
             }
         } else {
-            GroupedRows {
+            // 12 to the play button, its 44, 12 to the name.
+            GroupedRows(dividerLeading: 68) {
                 ForEach(options) { option in
                     VoiceRow(
                         option: option,
@@ -476,7 +477,7 @@ private struct VoiceRow: View {
             .accessibilityValue(chosen ? "In use, \(caption)" : caption)
             .accessibilityAddTraits(chosen ? .isSelected : [])
         }
-        .padding(.leading, Theme.space8)
+        .padding(.leading, Theme.space12)
         .padding(.trailing, Theme.space16)
         .background(highlighted ? Theme.fill : Color.clear)
     }

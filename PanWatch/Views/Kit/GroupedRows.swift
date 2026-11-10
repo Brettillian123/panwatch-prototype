@@ -1,7 +1,10 @@
 import SwiftUI
 
-/// Rows in one white card with inset dividers between them. Pass `Row`s, or any view at least 60 tall.
+/// Rows in one white card with dividers between them, inset 16 from both edges. Rows that
+/// start with a round button pass `dividerLeading` so the divider starts at the words. Pass
+/// `Row`s, or any view at least 60 tall.
 struct GroupedRows<Content: View>: View {
+    var dividerLeading: CGFloat = Theme.space16
     @ViewBuilder let content: Content
 
     var body: some View {
@@ -13,7 +16,8 @@ struct GroupedRows<Content: View>: View {
                         Rectangle()
                             .fill(Theme.divider)
                             .frame(height: 1)
-                            .padding(.leading, Theme.space16)
+                            .padding(.leading, dividerLeading)
+                            .padding(.trailing, Theme.space16)
                             .accessibilityHidden(true)
                     }
                 }

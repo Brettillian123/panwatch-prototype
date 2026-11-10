@@ -5,6 +5,7 @@ import SwiftUI
 struct FloatingTabBar: View {
     let selected: AppTab?
     let choose: (AppTab) -> Void
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     var body: some View {
         HStack(spacing: 4) {
@@ -37,7 +38,8 @@ struct FloatingTabBar: View {
         .background(Theme.card, in: Capsule(style: .continuous))
         .floatingShadow()
         .padding(.horizontal, Theme.margin)
-        .padding(.bottom, Theme.space8)
+        // Portrait: 26 above the screen's bottom edge, just over the home indicator.
+        .padding(.bottom, verticalSizeClass == .compact ? Theme.space8 : -Theme.space8)
         .frame(maxWidth: Theme.columnMax)
     }
 }

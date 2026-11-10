@@ -394,13 +394,14 @@ enum AppScreen: String, Sendable, CaseIterable {
 
     /// Where "done", "back" or a close button go from `screen`. Help goes back where it was
     /// opened; a recipe's page to Home; the make-a-voice sheet to the voices; anything else
-    /// to cook mode, as the menus always have.
-    static func closing(_ screen: AppScreen, helpFrom: AppScreen) -> AppScreen {
+    /// to cook mode, as the menus always have. With no cook under way there is no cook mode
+    /// to go back to, so those go Home instead of opening a dish nobody chose.
+    static func closing(_ screen: AppScreen, helpFrom: AppScreen, cookUnderWay: Bool = true) -> AppScreen {
         switch screen {
         case .help: helpFrom == .help ? .cook : helpFrom
         case .recipe: .recipes
         case .makeVoice: .voices
-        case .recipes, .cook, .voices, .profile: .cook
+        case .recipes, .cook, .voices, .profile: cookUnderWay || screen == .cook ? .cook : .recipes
         }
     }
 

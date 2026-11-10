@@ -1,9 +1,12 @@
 import SwiftUI
 
-/// A screen's title: Title size, ink, top left, with an optional trailing control.
+/// A screen's title: Title size, ink, top left, with an optional trailing control. In
+/// portrait it sits right under the status bar, 60 from the top; a landscape phone has no
+/// status bar, so it keeps 12 from the edge.
 struct ScreenTitle<Trailing: View>: View {
     let text: String
     @ViewBuilder var trailing: Trailing
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     var body: some View {
         HStack(alignment: .center, spacing: Theme.space12) {
@@ -16,7 +19,7 @@ struct ScreenTitle<Trailing: View>: View {
             Spacer(minLength: 0)
             trailing
         }
-        .padding(.top, Theme.space12)
+        .padding(.top, verticalSizeClass == .compact ? Theme.space12 : 0)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

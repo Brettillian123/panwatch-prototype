@@ -721,7 +721,16 @@ final class CookSession {
     func closeMenu() {
         helpClose?.cancel()
         if screen == .voices || screen == .makeVoice { stopSample() }
-        screen = AppScreen.closing(screen, helpFrom: helpFrom)
+        screen = AppScreen.closing(screen, helpFrom: helpFrom, cookUnderWay: cookUnderWay)
+        refreshArming()
+    }
+
+    /// Straight to cook mode from any screen, for a command that acts there: drawing the pan,
+    /// the details panel, naming the dish already under way.
+    private func showCook() {
+        helpClose?.cancel()
+        if screen == .voices || screen == .makeVoice { stopSample() }
+        screen = .cook
         refreshArming()
     }
 
@@ -1036,7 +1045,7 @@ final class CookSession {
                 speak(.answer, "Turn on the camera first.")
                 return
             }
-            if screen != .cook { closeMenu() }
+            if screen != .cook { showCook() }
             markPan()
             // With no box to start from, one is drawn in the middle for the voice to move.
             if draftRegion == nil { draftRegion = .voiceStart }
@@ -1097,7 +1106,7 @@ final class CookSession {
                 speak(.answer, "Already cooking \(dish.title). Step \(stepIndex + 1).")
             } else if dish.title == recipe.title && stepIndex > 0 {
                 // Back from the menu to the dish already under way, where it was.
-                closeMenu()
+                showCook()
                 speak(.recipeChosen(by: .voice), "\(dish.title). Step \(stepIndex + 1). \(currentStep.spokenText)", short: "\(dish.title). Step \(stepIndex + 1).")
             } else {
                 choose(dish, by: .voice)
@@ -1170,7 +1179,7 @@ final class CookSession {
             speak(.confirmation(visible: true), "Settings.")
         case .details(let show):
             showDebug = show ?? !showDebug
-            if showDebug, screen != .cook { closeMenu() }
+            if showDebug, screen != .cook { showCook() }
             speak(.confirmation(visible: true), showDebug ? "Details shown." : "Details hidden.")
         case .done:
             if isMarkingPan {
@@ -1557,14 +1566,15 @@ final class CookSession {
         started = true
         welcome = nil
         voiceOn = false
-        listeningOn = false
+        listeningOn = true // drawn as on; `start()` is skipped, so nothing listens
         cameraOn = false
         region = nil
         isMarkingPan = false
         removeScheduled(scheduledSteps)
         recipe = .garlicButterPasta
         viewedRecipe = .garlicButterPasta
-        cookUnderWay = true
+        // The recipe page is pictured before a cook starts, with "Start cooking".
+        cookUnderWay = name != "recipe"
         finishedSteps = []
         let now = Date()
         if name == "offer" {
