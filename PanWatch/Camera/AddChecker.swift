@@ -228,6 +228,7 @@ final class AddChecker: @unchecked Sendable {
             time: time, handInZone: result.handInZone, handPoint: result.handPoint,
             released: opened >= settings.candidateRules.releaseThreshold
         ) { crop(pixelBuffer, region) }
+        if result.handInZone { gate.noteHand(at: time) }
         let context = "The recipe step says: \(instruction)"
         let step = gate.receive(rules: result.decision, candidate: result.candidate, at: time, context: context)
         var asked: (AddConfirmGate.Check, [CGImage])?
@@ -243,7 +244,10 @@ final class AddChecker: @unchecked Sendable {
         if case let (check, frames)? = asked {
             let images = Frames(images: frames)
             Task.detached(priority: .userInitiated) { [weak self] in
-                let reply = await AddModel.ask(frames: images.images, context: check.context, timeout: 3)
+                // With no frame of a hand there is nothing to judge: the rules decide, as without the model.
+                let reply = images.images.count < 2
+                    ? AddConfirmGate.Reply.failed
+                    : await AddModel.ask(frames: images.images, context: check.context, timeout: 3)
                 self?.answered(check.id, reply)
             }
         }

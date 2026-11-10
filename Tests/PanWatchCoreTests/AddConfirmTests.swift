@@ -117,6 +117,68 @@ struct AddConfirmTests {
         do { let value = gate.receive(rules: nil, candidate: decision(at: 15), at: 15, context: "").ask; #expect(value != nil) }
     }
 
+    private let no = AddVerdict(adding: false, food: "", confidence: 0.9)
+
+    @Test func aNoAboutEarlierFramesNeverDecidesALaterAdd() throws {
+        var gate = checkingGate()
+        // A stir makes a candidate. The hand comes back with the pasta while the model thinks.
+        let first = try need(gate.receive(rules: nil, candidate: decision(.stirring, at: 5).asCandidate, at: 5, context: "").ask)
+        gate.noteHand(at: 5.5)
+        let held = gate.receive(rules: decision(at: 6.5), candidate: nil, at: 6.5, context: "")
+        #expect(held.ask == nil && held.offer == nil)
+        #expect(gate.pending?.joined == 0)
+        // The model says no, rightly, about the stir it was shown.
+        let declined = try need(gate.answer(first.id, .verdict(no)))
+        #expect(declined.offer == nil)
+        // The later add gets a check of its own, and the rules' offer survives a timeout.
+        let second = try need(gate.receive(rules: nil, candidate: nil, at: 6.6, context: "").ask)
+        #expect(second.id != first.id && second.rulesOffered)
+        let outcome = try need(gate.answer(second.id, .timedOut))
+        #expect(outcome.offer?.id == 65)
+    }
+
+    @Test func aRulesOfferFromALaterVisitGetsItsOwnCheck() throws {
+        var gate = checkingGate()
+        let first = try need(gate.receive(rules: nil, candidate: decision(at: 5), at: 5, context: "").ask)
+        _ = gate.answer(first.id, .verdict(no))
+        // The same visit, no hand since the frames: already judged.
+        let same = gate.receive(rules: decision(at: 6), candidate: nil, at: 6, context: "")
+        #expect(same.ask == nil && same.offer == nil)
+        // A hand since the frames were taken: a new add, a new check.
+        gate.noteHand(at: 6.5)
+        let later = gate.receive(rules: decision(at: 7.5), candidate: nil, at: 7.5, context: "")
+        #expect(later.ask?.rulesOffered == true)
+    }
+
+    @Test func anOfferJustMadeAbsorbsALaterVisit() throws {
+        var gate = checkingGate()
+        let first = try need(gate.receive(rules: nil, candidate: decision(at: 5), at: 5, context: "").ask)
+        gate.noteHand(at: 5.5)
+        _ = gate.receive(rules: nil, candidate: decision(at: 6), at: 6, context: "")
+        let outcome = try need(gate.answer(first.id, .verdict(yes)))
+        #expect(outcome.offer != nil)
+        // The stir after the add: no second check, no second offer.
+        gate.noteHand(at: 6.5)
+        let after = gate.receive(rules: nil, candidate: decision(at: 7), at: 7, context: "")
+        #expect(after.ask == nil && after.offer == nil)
+    }
+
+    @Test func aWaitingRulesOfferIsMadeWhenTheModelGoesAway() {
+        var gate = checkingGate()
+        _ = gate.receive(rules: nil, candidate: decision(at: 5), at: 5, context: "")
+        gate.noteHand(at: 5.5)
+        _ = gate.receive(rules: decision(at: 6.5), candidate: nil, at: 6.5, context: "")
+        gate.checking = false
+        let step = gate.receive(rules: nil, candidate: nil, at: 6.6, context: "")
+        #expect(step.offer?.id == 65)
+    }
+
+    @Test func candidateIdsNeverMatchTheRulesIds() {
+        #expect(decision(.stirring, at: 5).asCandidate.id < 0)
+        #expect(decision(at: 5).asCandidate.id < 0)
+        #expect(decision(.stirring, at: 5).asCandidate.outcome == .addition)
+    }
+
     @Test func keyframesKeepArrivalReleaseLeavingAndAfter() {
         var frames = Keyframes<Int>()
         var captures = 0
