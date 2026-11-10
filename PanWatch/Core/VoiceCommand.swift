@@ -165,7 +165,8 @@ enum VoiceCommand: Equatable, Sendable {
         if let stepAt = words.firstIndex(of: "step"), let step = number(in: Array(words[(stepAt + 1)...]), afterCue: true) {
             return .goToStep(step)
         }
-        if set.contains("repeat") || set.contains("again") || (set.contains("read") && set.contains("step")) { return .repeatStep }
+        if set.contains("repeat") || set.contains("again") || (set.contains("read") && set.contains("step"))
+            || ["read it", "read that", "read it out", "read this"].contains(phrase) { return .repeatStep }
         if set.contains("back") || set.contains("previous") { return .back }
         // Short, so "next time I'll use less salt" is talk; "okay next step please" still moves on.
         if phrase.contains("next step") || phrase == "go on"

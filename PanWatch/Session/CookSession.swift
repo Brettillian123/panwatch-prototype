@@ -141,7 +141,7 @@ final class CookSession {
         setupCheck.connect(
             camera: camera,
             settings: { [weak self] in self?.settings ?? DetectorSettings() },
-            speak: { [weak self] text in self?.say(text) },
+            speak: { [weak self] text in self?.speak(.answer, text) },
             retune: { [weak self] in self?.refreshArming() }
         )
         camera.onRotationChanged = { [weak self] in
@@ -163,6 +163,7 @@ final class CookSession {
         }
         // The cook started talking over a prompt: stop it. It isn't read again unless asked.
         listener.onBargeIn = { [weak self] in
+            self?.cookSpokeAt = Date()
             self?.speaker.stop()
         }
         listener.intentContext = { [weak self] in
@@ -184,7 +185,7 @@ final class CookSession {
         guard !started else { return }
         started = true
         if let welcome {
-            say(welcome)
+            speak(.resume, welcome)
             self.welcome = nil
         }
         if cameraOn {
@@ -201,30 +202,35 @@ final class CookSession {
 
     // MARK: Recipe steps
 
-    func nextStep() {
+    func nextStep(by source: StepSource = .touch) {
         guard !isLastStep else { return }
-        go(to: stepIndex + 1)
+        go(to: stepIndex + 1, by: source)
     }
 
-    func previousStep() {
+    func previousStep(by source: StepSource = .touch) {
         guard stepIndex > 0 else { return }
-        go(to: stepIndex - 1)
+        go(to: stepIndex - 1, by: source)
     }
 
-    private func go(to index: Int, saying text: String? = nil) {
+    /// `saying` is a timer's "done" that calls this step out with it.
+    private func go(to index: Int, by source: StepSource, saying text: String? = nil) {
         stepIndex = index
         usage.stepChanged(to: index, of: recipe.steps.count) // usage-log
         suggestion = nil
         refreshArming()
         saveCook()
-        say(text ?? "Step \(index + 1). \(currentStep.spokenText)")
+        if let text {
+            speak(.timerDone, text)
+        } else {
+            speak(.stepChanged(by: source), "Step \(index + 1). \(currentStep.spokenText)")
+        }
     }
 
     // MARK: Recipes
 
     /// Starts `recipe` from its first step. Running timers keep going, but call-outs
     /// waiting on them belonged to the old recipe, so those are dropped.
-    func choose(_ recipe: Recipe) {
+    func choose(_ recipe: Recipe, by source: StepSource = .touch) {
         self.recipe = recipe
         usage.cookStarted(recipe.title) // usage-log
         cookUnderWay = true
@@ -236,17 +242,17 @@ final class CookSession {
         stepIndex = 0
         refreshArming()
         saveCook()
-        say("\(recipe.title). Step 1. \(currentStep.spokenText)")
+        speak(.recipeChosen(by: source), "\(recipe.title). Step 1. \(currentStep.spokenText)", short: "\(recipe.title). Step 1.")
         openPanDrawingIfNeeded()
     }
 
     /// Starts this recipe again from step 1: running timers and their alarms are cleared, and
     /// so are the step call-outs waiting on them. Said as "start over", or the Restart button.
-    func restartRecipe() {
+    func restartRecipe(by source: StepSource = .touch) {
         for timer in timers { removeTimer(timer.id) }
         timers = []
         screen = .cook
-        choose(recipe)
+        choose(recipe, by: source)
     }
 
     func showRecipes() {
@@ -326,7 +332,7 @@ final class CookSession {
         guard cameraOn, region != nil else { return }
         forgetPan()
         // Turned back to where it was, the last box still fits; the cook says if it does.
-        say(offeredPan != nil ? Self.samePlacePrompt : "Draw a box around the pan.")
+        speak(.guidance, offeredPan != nil ? Self.samePlacePrompt : "Draw a box around the pan.")
     }
 
     /// Drops the box and goes back to asking for one, offering the last box drawn on this
@@ -460,7 +466,7 @@ final class CookSession {
         usage.offerMade() // usage-log
         refreshArming()
         // "Yes" or "start the timer" accepts, "no" dismisses; so do the volume buttons.
-        say(offerText(watch))
+        speak(.offer, offerText(watch))
     }
 
     private func offerText(_ watch: AdditionWatch) -> String {
@@ -505,6 +511,7 @@ final class CookSession {
             if !speaker.cancelsEcho { listener.hold() }
         } else {
             sampleVoiceID = nil
+            listener.appStoppedSpeaking()
             if listener.isHeld { listener.resume() }
         }
     }
@@ -589,7 +596,7 @@ final class CookSession {
     /// phrases that work where the cook asked.
     func showHelp() {
         open(.help)
-        say("You can say " + helpPhrases.prefix(4).joined(separator: ", ") + ".")
+        speak(.answer, "You can say " + helpPhrases.prefix(4).joined(separator: ", ") + ".")
     }
 
     /// The phrases that work on the screen help was opened from, which it shows first.
@@ -715,7 +722,7 @@ final class CookSession {
             if let mine = self.voiceOptions.first(where: \.isPersonal) {
                 self.useVoice(mine)
             } else {
-                self.say("There's no Personal Voice on this phone.")
+                self.speak(.answer, "There's no Personal Voice on this phone.")
             }
         }
     }
@@ -739,7 +746,7 @@ final class CookSession {
             self.listeningPausedUntil = nil
             self.listeningOn = true
             self.refreshListening()
-            self.say("Listening again.")
+            self.speak(.confirmation(visible: true), "Listening again.")
         }
     }
 
@@ -758,6 +765,8 @@ final class CookSession {
         // Picking a recipe is setup and isn't counted.
         if screen != .recipes { stats.noteVoice() }
         showHeard(text)
+        // The cook just spoke: for a moment, nothing but the answer to it.
+        cookSpokeAt = Date()
         // Setup check: while it runs, "skip", "no" and "next" end it.
         if setupCheck.isRunning, [.skip, .no, .next].contains(command) { return setupCheck.skip() }
         let asked = question
@@ -771,12 +780,15 @@ final class CookSession {
             switch command {
             case .back, .done:
                 closeMenu()
-                say("Okay.")
+                speak(.confirmation(visible: true), "Okay.")
                 return
             case .next where screen == .voices:
                 nextVoice()
                 return
-            case .next, .skip, .repeatStep, .goToStep, .startOver, .yes, .no, .startTimer, .startWatching, .nudge, .mark:
+            case .next, .skip, .repeatStep, .goToStep, .startOver, .startTimer, .startWatching, .nudge, .mark:
+                speak(.notUnderstood, "")
+                return
+            case .yes, .no:
                 return
             default:
                 break
@@ -787,21 +799,21 @@ final class CookSession {
             if isMarkingPan {
                 if draftRegion != nil { confirmPanByVoice() }
             } else if isLastStep {
-                say("That's the last step.")
+                speak(.answer, "That's the last step.")
             } else {
-                nextStep()
+                nextStep(by: .voice)
             }
         case .back:
             if stepIndex == 0 {
-                say("This is the first step.")
+                speak(.answer, "This is the first step.")
             } else {
-                previousStep()
+                previousStep(by: .voice)
             }
         case .repeatStep:
             if let suggestion {
-                say(offerText(suggestion.watch))
+                speak(.answer, offerText(suggestion.watch))
             } else {
-                say("Step \(stepIndex + 1). \(currentStep.spokenText)")
+                speak(.answer, "Step \(stepIndex + 1). \(currentStep.spokenText)")
             }
         case .yes:
             if suggestion != nil {
@@ -811,15 +823,15 @@ final class CookSession {
             } else if needsPan, offeredPan != nil {
                 reuseLastPanByVoice()
             } else if timers.contains(where: \.isDone) {
-                clearDoneTimers()
+                clearDoneTimers(byVoice: true)
             }
         case .no:
             if suggestion != nil {
                 dismissSuggestion()
-                say("Okay.")
+                speak(.confirmation(visible: true), "Okay.")
             } else if isMarkingPan {
                 cancelMarking()
-                say("Okay.")
+                speak(.confirmation(visible: true), "Okay.")
             }
         case .startTimer:
             startStepTimer()
@@ -835,16 +847,16 @@ final class CookSession {
             }
         case .drawPan:
             guard cameraOn else {
-                say("Turn on the camera first.")
+                speak(.answer, "Turn on the camera first.")
                 return
             }
             if screen != .cook { closeMenu() }
             markPan()
             // With no box to start from, one is drawn in the middle for the voice to move.
             if draftRegion == nil { draftRegion = .voiceStart }
-            say("Is the box around the pan?")
+            speak(.answer, "Is the box around the pan?")
         case .nudge(let nudge):
-            guard isMarkingPan else { return }
+            guard isMarkingPan else { return speak(.notUnderstood, "") }
             draftRegion = (draftRegion ?? .voiceStart).nudged(nudge)
         case .ingredients:
             sayIngredients()
@@ -852,80 +864,80 @@ final class CookSession {
             if let newest = timers.last(where: { !$0.isDone }) {
                 cancelByVoice(newest)
             } else {
-                say("No timers are running.")
+                speak(.answer, "No timers are running.")
             }
         case .cancelNamedTimer(let name):
             let named = timers.filter { VoiceCommand.timer(named: name, matches: $0.label) }
             if let timer = named.last(where: { !$0.isDone }) ?? named.last {
                 cancelByVoice(timer)
             } else {
-                say("There's no \(name) timer.")
+                speak(.answer, "There's no \(name) timer.")
             }
         case .setTimer(let minutes):
             startTimer(label: "\(minutes) minute", minutes: minutes)
-            say("Timer set for \(Self.spoken(Double(minutes) * 60)).")
+            speak(.confirmation(visible: true), "Timer set for \(Self.spoken(Double(minutes) * 60)).")
         case .clearDone:
             if timers.contains(where: \.isDone) {
-                clearDoneTimers()
+                clearDoneTimers(byVoice: true)
             } else {
-                say("No timer is done.")
+                speak(.answer, "No timer is done.")
             }
         case .mark:
             // Practice: the cook marks each real add for the replay to score against.
-            say(camera.analyzer.recorder.mark() ? "Marked." : "Practice recording is off.")
+            if camera.analyzer.recorder.mark() { speak(.confirmation(visible: true), "Marked.") } else { speak(.answer, "Practice recording is off.") }
         case .goToStep(let number):
             if number - 1 == stepIndex {
-                say("Step \(number). \(currentStep.spokenText)")
+                speak(.answer, "Step \(number). \(currentStep.spokenText)")
             } else if recipe.steps.indices.contains(number - 1) {
-                go(to: number - 1)
+                go(to: number - 1, by: .voice)
             } else {
-                say("This recipe has \(recipe.steps.count) steps.")
+                speak(.answer, "This recipe has \(recipe.steps.count) steps.")
             }
         case .whereAmI:
-            say("\(recipe.title), step \(stepIndex + 1) of \(recipe.steps.count). \(currentStep.spokenText)")
+            speak(.answer, "\(recipe.title), step \(stepIndex + 1) of \(recipe.steps.count). \(currentStep.spokenText)")
         case .startOver:
             if stepIndex == 0 && timers.isEmpty {
-                say("Step 1. \(currentStep.spokenText)")
+                speak(.answer, "Step 1. \(currentStep.spokenText)")
             } else {
                 question = .startOver
-                say("Start the recipe over from step 1?")
+                speak(.answer, "Start the recipe over from step 1?")
             }
         case .showRecipes:
             open(.recipes)
-            say("What are you cooking?")
+            speak(.confirmation(visible: true), "What are you cooking?")
         case .makeRecipe(let title):
-            guard let dish = Recipe.all.first(where: { $0.title == title }) else { return }
+            guard let dish = Recipe.all.first(where: { $0.title == title }) else { return speak(.notUnderstood, "") }
             if dish.title == recipe.title && !isChoosingRecipe {
-                say("Already cooking \(dish.title). Step \(stepIndex + 1).")
+                speak(.answer, "Already cooking \(dish.title). Step \(stepIndex + 1).")
             } else if dish.title == recipe.title && stepIndex > 0 {
                 // Back from the menu to the dish already under way, where it was.
                 closeMenu()
-                say("\(dish.title). Step \(stepIndex + 1). \(currentStep.spokenText)")
+                speak(.recipeChosen(by: .voice), "\(dish.title). Step \(stepIndex + 1). \(currentStep.spokenText)", short: "\(dish.title). Step \(stepIndex + 1).")
             } else {
-                choose(dish)
+                choose(dish, by: .voice)
             }
         case .camera(let on):
             if on == cameraOn {
-                say(on ? "The camera is on." : "The camera is off.")
+                speak(.answer, on ? "The camera is on." : "The camera is off.")
             } else {
                 setCamera(on: on)
-                say(on ? "Camera on." : "Camera off.")
+                speak(.confirmation(visible: true), on ? "Camera on." : "Camera off.")
             }
         case .switchCamera(let toFront):
             guard cameraOn else {
-                say("Turn on the camera first.")
+                speak(.answer, "Turn on the camera first.")
                 return
             }
             let front = toFront ?? (cameraPosition != .front)
             if front == (cameraPosition == .front) {
-                say("Already using the \(front ? "front" : "back") camera.")
+                speak(.answer, "Already using the \(front ? "front" : "back") camera.")
             } else {
                 Task { [weak self] in await self?.flipCamera() }
-                say(front ? "Front camera. Draw a box around the pan." : "Back camera. Draw a box around the pan.")
+                speak(.answer, front ? "Front camera. Draw a box around the pan." : "Back camera. Draw a box around the pan.")
             }
         case .showVoices:
             open(.voices)
-            say("Say next voice to hear them.")
+            speak(.answer, "Say next voice to hear them.")
         case .tryVoice(let name):
             if screen != .voices { open(.voices) }
             if let name {
@@ -933,7 +945,7 @@ final class CookSession {
                     highlightedVoiceID = option.id
                     playSample(voiceID: option.id)
                 } else {
-                    say("There's no voice called \(name).")
+                    speak(.answer, "There's no voice called \(name).")
                 }
             } else if let id = highlightedVoiceID {
                 playSample(voiceID: id)
@@ -947,7 +959,7 @@ final class CookSession {
                 if let option = voice(named: name) {
                     useVoice(option)
                 } else {
-                    say("There's no voice called \(name).")
+                    speak(.answer, "There's no voice called \(name).")
                 }
             case .highlighted:
                 if let option = voiceOptions.first(where: { $0.id == highlightedVoiceID }) { useVoice(option) }
@@ -961,42 +973,42 @@ final class CookSession {
             voiceOn = false
         case .talk:
             voiceOn = true
-            say("Talking again.")
+            speak(.confirmation(visible: false), "Talking again.")
         case .stopListening:
-            say("Not listening for 2 minutes.")
+            speak(.confirmation(visible: false), "Not listening for 2 minutes.")
             pauseListening()
         case .help:
             showHelp()
         case .settings:
             open(.settings)
-            say("Settings.")
+            speak(.confirmation(visible: true), "Settings.")
         case .details(let show):
             showDebug = show ?? !showDebug
             if showDebug, screen != .cook { closeMenu() }
-            say(showDebug ? "Details shown." : "Details hidden.")
+            speak(.confirmation(visible: true), showDebug ? "Details shown." : "Details hidden.")
         case .done:
             if isMarkingPan {
                 cancelMarking()
-                say("Okay.")
+                speak(.confirmation(visible: true), "Okay.")
             }
         case .recordPractice(let on):
             setPracticeRecording(on)
-            say(on ? "Recording practice. Say mark when something goes in." : "Practice recording stopped.")
+            speak(.answer, on ? "Recording practice. Say mark when something goes in." : "Practice recording stopped.")
         }
     }
 
     private func answer(_ asked: Question, yes: Bool) {
         guard yes else {
-            say("Okay.")
+            speak(.confirmation(visible: true), "Okay.")
             return
         }
         switch asked {
         case .startOver:
-            restartRecipe()
+            restartRecipe(by: .voice)
         case .cancelTimer(let id):
             guard let timer = timers.first(where: { $0.id == id }) else { return }
             removeTimer(id)
-            say("\(timer.label) timer cancelled.")
+            speak(.confirmation(visible: true), "\(timer.label) timer cancelled.")
         }
     }
 
@@ -1005,51 +1017,51 @@ final class CookSession {
         let left = timer.end.timeIntervalSinceNow
         if !timer.isDone && left > 60 {
             question = .cancelTimer(timer.id)
-            say("Cancel the \(timer.label) timer, \(Self.spoken(left)) left?")
+            speak(.answer, "Cancel the \(timer.label) timer, \(Self.spoken(left)) left?")
         } else {
             removeTimer(timer.id)
-            say("\(timer.label) timer cancelled.")
+            speak(.confirmation(visible: true), "\(timer.label) timer cancelled.")
         }
     }
 
     /// "Clear it", "got it", the Clear button on a done row: done timers go.
-    func clearDoneTimers() {
+    func clearDoneTimers(byVoice: Bool = false) {
         let done = timers.filter(\.isDone)
         for timer in done { removeTimer(timer.id) }
-        if !done.isEmpty { say("Cleared.") }
+        if !done.isEmpty, byVoice { speak(.confirmation(visible: true), "Cleared.") }
     }
 
     private func sayIngredients() {
         let items = recipe.ingredients
         guard let last = items.last else {
-            say("This recipe doesn't list its ingredients.")
+            speak(.answer, "This recipe doesn't list its ingredients.")
             return
         }
         let list = items.count == 1 ? last : items.dropLast().joined(separator: ", ") + ", and " + last
-        say("You'll need \(list).")
+        speak(.answer, "You'll need \(list).")
     }
 
     private func confirmPanByVoice() {
         confirmPan()
-        if !setupCheck.isRunning { say("Watching the pan.") } // Setup check: its prompt speaks instead
+        if !setupCheck.isRunning { speak(.confirmation(visible: true), "Watching the pan.") } // Setup check: its prompt speaks instead
     }
 
     private func reuseLastPanByVoice() {
         reuseLastPan()
-        if !setupCheck.isRunning { say("Watching the pan.") } // Setup check: its prompt speaks instead
+        if !setupCheck.isRunning { speak(.confirmation(visible: true), "Watching the pan.") } // Setup check: its prompt speaks instead
     }
 
     private func sayTimeLeft() {
         let running = timers.filter { !$0.isDone }
         guard !running.isEmpty else {
-            say("No timers are running.")
+            speak(.answer, "No timers are running.")
             return
         }
         var text = running.map { "\($0.label), \(Self.spoken($0.end.timeIntervalSinceNow)) left." }.joined(separator: " ")
         if let next = nextScheduledStep {
             text += " Next step in \(Self.spoken(next.at.timeIntervalSinceNow))."
         }
-        say(text)
+        speak(.answer, text)
     }
 
     private func showHeard(_ text: String) {
@@ -1096,7 +1108,7 @@ final class CookSession {
             usage.likelyMiss(step: stepIndex, watching: cameraOn && region != nil) // usage-log
             ingredientWentIn(step: stepIndex, watch: watch)
         } else {
-            say("There's no timer for this step.")
+            speak(.answer, "There's no timer for this step.")
         }
     }
 
@@ -1109,14 +1121,14 @@ final class CookSession {
         let nextIsTimed = scheduledSteps.contains { $0.stepIndex == stepIndex + 1 }
         if index == stepIndex, !isLastStep, nextIsTimed {
             // The next step depends on this timer, so the recipe waits and calls it out.
-            say("\(label) timer started. I'll tell you when it's time for the next step.")
+            speak(.confirmation(visible: true), "\(label) timer started. I'll tell you when it's time for the next step.")
         } else if index == stepIndex, !isLastStep {
             // The camera just confirmed this step happened, so the recipe moves on.
             stepIndex += 1
             usage.stepChanged(to: stepIndex, of: recipe.steps.count) // usage-log
-            say("\(label) timer started. Next, \(Self.lowercasingFirst(currentStep.spokenText))")
+            speak(.confirmation(visible: true), "\(label) timer started. Next, \(Self.lowercasingFirst(currentStep.spokenText))")
         } else {
-            say("\(label) timer started.")
+            speak(.confirmation(visible: true), "\(label) timer started.")
         }
         refreshArming()
         saveCook()
@@ -1152,7 +1164,7 @@ final class CookSession {
         removeScheduled([scheduled])
         if scheduled.stepIndex > stepIndex {
             usage.callOut() // usage-log
-            go(to: scheduled.stepIndex)
+            go(to: scheduled.stepIndex, by: .timerCallOut)
         }
     }
 
@@ -1184,7 +1196,7 @@ final class CookSession {
         } else if isMarkingPan {
             if draftRegion != nil { confirmPan() }
         } else {
-            nextStep()
+            nextStep(by: .button)
         }
     }
 
@@ -1229,17 +1241,30 @@ final class CookSession {
         removeScheduled(atEnd)
         if let step = atEnd.map(\.stepIndex).max(), step > stepIndex {
             usage.callOut() // usage-log
-            go(to: step, saying: "\(label) timer is done. Step \(step + 1). \(recipe.steps[step].spokenText)")
+            go(to: step, by: .timerCallOut, saying: "\(label) timer is done. Step \(step + 1). \(recipe.steps[step].spokenText)")
         } else {
-            say("\(label) timer is done.")
+            speak(.timerDone, "\(label) timer is done.")
         }
     }
 
-    private func say(_ text: String, then: (() -> Void)? = nil) {
-        if voiceOn {
-            speaker.say(text, then: then)
-        } else {
-            then?()
+    /// When the cook last spoke to the app or cut it off: for a moment after, only the
+    /// answer to what they said is spoken.
+    @ObservationIgnored private var cookSpokeAt: Date?
+
+    /// Every line the app might say goes through the speech policy, which decides between
+    /// words, a short sound, or nothing.
+    private func speak(_ moment: SpeechMoment, _ text: String, short: String? = nil) {
+        let state = SpeechState(
+            now: Date().timeIntervalSinceReferenceDate,
+            interruptedAt: cookSpokeAt?.timeIntervalSinceReferenceDate,
+            isSpeaking: speaker.isSpeaking
+        )
+        guard voiceOn else { return }
+        switch SpeechPolicy.act(moment, text: text, short: short, state: state) {
+        case .silent: return
+        case .earcon(let earcon): speaker.say("", earcon: earcon)
+        case .speak(let line): speaker.say(line)
+        case .earconThenSpeak(let earcon, let line): speaker.say(line, earcon: earcon)
         }
     }
 

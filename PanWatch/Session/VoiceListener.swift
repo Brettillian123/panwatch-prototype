@@ -36,6 +36,8 @@ final class VoiceListener {
     var isHeld: Bool { held }
     /// What the app was saying when this utterance began, so its own words are left out.
     private var spokenDuring: String?
+    /// When the app last finished saying something, for the follow-up window.
+    private var repliedAt: Date?
     private var heldSince: Date?
     /// When a recognition request was last running, for the watchdog.
     private var lastActive = Date.now
@@ -67,8 +69,11 @@ final class VoiceListener {
     /// something else is dropped.
     private var utterances = 0
 
-    /// How long a pause ends an utterance.
-    private static let pauseLength = 0.8
+    /// The app finished a line: words the keywords miss still reach the model for a few
+    /// seconds, so a follow-up needs no command words.
+    func appStoppedSpeaking() {
+        repliedAt = .now
+    }
     /// Recognition requests are limited to about a minute, so each is replaced sooner.
     private static let requestLifetime = 50.0
     /// With no recognition request for this long, the watchdog starts one.
@@ -195,16 +200,21 @@ final class VoiceListener {
                 // judged, and any the app isn't saying are the cook's, which cuts it short.
                 let spoken = spokenText?()
                 if spokenDuring == nil { spokenDuring = spoken }
-                if !SelfEcho.newWords(in: text, spoken: spoken).isEmpty { bargeIn(spoken: spoken) }
+                // "Mm", "uh huh", "okay" under the app's voice is listening, not a turn.
+                let added = SelfEcho.newWords(in: text, spoken: spoken)
+                if !added.isEmpty, !TurnTaking.isBackchannel(added) { bargeIn(spoken: spoken) }
             }
             if isFinal {
                 utteranceEnded()
                 return
             }
-            // Judge the utterance once the cook stops talking.
+            // Judge the utterance once the cook stops talking: soon after a whole command,
+            // later after one that trails off.
+            let heard = spokenDuring.map { SelfEcho.strip(text, spoken: $0) } ?? text
+            let pause = TurnTaking.pause(after: heard, screen: screen?() ?? .cook)
             pauseTimer?.cancel()
             pauseTimer = Task { [weak self] in
-                try? await Task.sleep(for: .seconds(Self.pauseLength))
+                try? await Task.sleep(for: .seconds(pause))
                 guard let self, !Task.isCancelled, self.generation == current else { return }
                 self.utteranceEnded()
             }
@@ -242,19 +252,27 @@ final class VoiceListener {
     /// Acts on what was said, then starts a fresh request for the next utterance.
     private func utteranceEnded() {
         // Whatever recognition heard of the app's own voice is left out.
+        let heardOverApp = spokenDuring != nil
         let text = spokenDuring.map { SelfEcho.strip(transcript, spoken: $0) } ?? transcript
         spokenDuring = nil
         endRequest()
         utterances += 1
+        let speaking = isAppSpeaking?() == true
+        // A backchannel under the app's voice, which is still going, didn't stop it and
+        // isn't an answer either.
+        let backchannel = heardOverApp && speaking && TurnTaking.isBackchannel(SelfEcho.words(in: text))
         // Keywords first: a clear short command acts at once, with no model to wait for.
-        let command = VoiceCommand.parse(text, screen: screen?() ?? .cook)
+        let command = backchannel ? nil : VoiceCommand.parse(text, screen: screen?() ?? .cook)
         if !text.isEmpty {
             report.heard = text
-            report.outcome = Self.outcome(of: text, command: command)
+            report.outcome = backchannel ? "backchannel" : Self.outcome(of: text, command: command)
         }
+        let sinceReply = speaking ? 0 : repliedAt.map { Date.now.timeIntervalSince($0) }
         if let command {
             handler?(command, text)
-        } else if VoiceIntent.worthAsking(text), intentReader.isAvailable, let context = intentContext?() {
+        } else if !backchannel, VoiceIntent.worthAsking(text),
+                  TurnTaking.asksModel(wordCount: VoiceCommand.words(in: text).count, secondsSinceReply: sinceReply),
+                  intentReader.isAvailable, let context = intentContext?() {
             readIntent(text, context: context)
         }
         // The command may have made the app talk, which holds listening until it's done.
@@ -524,7 +542,12 @@ private final class AudioFeed: @unchecked Sendable {
 /// Runs the speech detector on the audio thread and says once when speech starts.
 private final class LevelGate: @unchecked Sendable {
     private let lock = NSLock()
-    private var detector = SpeechDetector()
+    /// Only voice held this long stops the app; a shorter "mm" is left to its words.
+    private var detector: SpeechDetector = {
+        var detector = SpeechDetector()
+        detector.holdSeconds = TurnTaking.bargeInHold
+        return detector
+    }()
     var onSpeech: (@Sendable () -> Void)?
 
     func feed(level: Double, at time: Double) {
