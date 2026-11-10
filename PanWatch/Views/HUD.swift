@@ -79,7 +79,7 @@ struct CookChip: View {
         #endif
         if session.isSpeaking { return ("speaker.wave.2", "Speaking") }
         if let heard = session.heardText { return ("checkmark", "Heard \u{201C}\(heard)\u{201D}") }
-        if session.needsPan { return ("viewfinder", "No pot marked") }
+        if session.needsPan { return ("viewfinder", "Tap to outline the pot") }
         if micDenied { return ("mic.slash", "Microphone off") }
         if session.listeningOn && session.micReady { return ("mic", "Listening") }
         if session.cameraOn && session.region != nil { return ("eye", "Watching") }
@@ -247,7 +247,7 @@ struct CameraStatusOverlay: View {
             }
         case .denied:
             card {
-                Text("Camera not allowed. Video is never saved or sent.").foregroundStyle(Theme.ink)
+                Text("Allow the camera in Settings. Video is never saved or sent.").foregroundStyle(Theme.ink)
                 QuietButton(title: "Open Settings") {
                     if let url = URL(string: UIApplication.openSettingsURLString) {
                         UIApplication.shared.open(url)

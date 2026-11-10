@@ -92,6 +92,9 @@ final class CookSession {
     @ObservationIgnored private var cueTasks: [UUID: Task<Void, Never>] = [:]
 
     var showDebug = false
+    /// Profile shows its Advanced page. Kept here, not in the view, so the make-a-voice
+    /// sheet opened from Advanced closes back onto it; the Profile tab starts over.
+    var profileAdvanced = false
     var voiceOn = true
     /// Spoken commands are on. The microphone button turns them off, say while presenting.
     private(set) var listeningOn = true
@@ -363,7 +366,7 @@ final class CookSession {
         guard cameraOn, CameraGate.turnDropsPan(cameraLive: cameraLive, screen: screen, helpFrom: helpFrom, hasPan: region != nil) else { return }
         forgetPan()
         // Turned back to where it was, the last box still fits; the cook says if it does.
-        speak(.guidance, offeredPan != nil ? Self.samePlacePrompt : "Draw a box around the pan.")
+        speak(.guidance, offeredPan != nil ? Self.samePlacePrompt : "Draw a box around the pot.")
     }
 
     /// Drops the box and goes back to asking for one, offering the last box drawn on this
@@ -673,6 +676,7 @@ final class CookSession {
 
     /// A tab in the tab bar: Cook opens cook mode while a cook is under way, else Home.
     func open(tab: AppTab) {
+        profileAdvanced = false
         open(AppScreen.opening(tab, cookUnderWay: cookUnderWay))
     }
 
@@ -920,7 +924,7 @@ final class CookSession {
             if let mine = self.voiceOptions.first(where: \.isPersonal) {
                 self.useVoice(mine)
             } else {
-                self.speak(.answer, "There's no voice of yours yet. Record one under Custom voice in Profile.")
+                self.speak(.answer, "There's no voice of yours yet. Make one in Profile, under Advanced.")
             }
         }
     }
@@ -1052,7 +1056,7 @@ final class CookSession {
             markPan()
             // With no box to start from, one is drawn in the middle for the voice to move.
             if draftRegion == nil { draftRegion = .voiceStart }
-            speak(.answer, "Is the box around the pan?")
+            speak(.answer, "Is the box around the pot?")
         case .nudge(let nudge):
             guard isMarkingPan else { return speak(.notUnderstood, "") }
             draftRegion = (draftRegion ?? .voiceStart).nudged(nudge)
@@ -1131,7 +1135,7 @@ final class CookSession {
                 speak(.answer, "Already using the \(front ? "front" : "back") camera.")
             } else {
                 Task { [weak self] in await self?.flipCamera() }
-                speak(.answer, front ? "Front camera. Draw a box around the pan." : "Back camera. Draw a box around the pan.")
+                speak(.answer, front ? "Front camera. Draw a box around the pot." : "Back camera. Draw a box around the pot.")
             }
         case .showVoices:
             open(.voices)
@@ -1247,12 +1251,12 @@ final class CookSession {
 
     private func confirmPanByVoice() {
         confirmPan()
-        if !setupCheck.isRunning { speak(.confirmation(visible: true), "Watching the pan.") } // Setup check: its prompt speaks instead
+        if !setupCheck.isRunning { speak(.confirmation(visible: true), "Watching the pot.") } // Setup check: its prompt speaks instead
     }
 
     private func reuseLastPanByVoice() {
         reuseLastPan()
-        if !setupCheck.isRunning { speak(.confirmation(visible: true), "Watching the pan.") } // Setup check: its prompt speaks instead
+        if !setupCheck.isRunning { speak(.confirmation(visible: true), "Watching the pot.") } // Setup check: its prompt speaks instead
     }
 
     private func sayTimeLeft() {

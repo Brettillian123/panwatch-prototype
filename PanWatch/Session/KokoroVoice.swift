@@ -272,8 +272,8 @@ enum KokoroVoiceError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .notReady: "Natural voices aren't ready yet."
-        case .badVoice: "Those two voices can't be mixed."
+        case .notReady: "Get more voices first."
+        case .badVoice: "Those two can't be mixed. Pick another pair."
         }
     }
 }

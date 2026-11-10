@@ -87,7 +87,7 @@ final class CameraController: @unchecked Sendable {
     /// Runs on `sessionQueue`.
     private func configure(position: AVCaptureDevice.Position) -> CameraStatus {
         guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: position) else {
-            return .failed("This iPhone has no \(position == .front ? "front" : "back") camera available.")
+            return .failed("This iPhone has no \(position == .front ? "front" : "back") camera.")
         }
         let newInput: AVCaptureDeviceInput
         do {
@@ -106,7 +106,7 @@ final class CameraController: @unchecked Sendable {
         guard session.canAddInput(newInput) else {
             if let input, session.canAddInput(input) { session.addInput(input) }
             session.commitConfiguration()
-            return .failed("The camera is in use by something else.")
+            return .failed("Another app is using the camera.")
         }
         session.addInput(newInput)
         input = newInput
@@ -124,7 +124,7 @@ final class CameraController: @unchecked Sendable {
             if session.canAddOutput(output) { session.addOutput(output) }
         }
         session.commitConfiguration()
-        guard session.outputs.contains(output) else { return .failed("The camera's frames can't be read.") }
+        guard session.outputs.contains(output) else { return .failed("Close the app and open it again.") }
 
         disableVideoHDR(on: device)
         if let connection = output.connection(with: .video) {

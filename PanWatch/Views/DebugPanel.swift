@@ -9,6 +9,7 @@ struct DebugPanel: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Theme.space12) {
+                Text("For testing.").font(Theme.caption).foregroundStyle(Theme.slate)
                 Card { liveSection }
                 Card { voiceSection }
                 Card { decisionSection }

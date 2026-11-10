@@ -100,7 +100,7 @@ struct CookScreen: View {
                 session.noteTouch()
                 session.open(.help)
             }
-            RoundIconButton(systemImage: "xmark", label: "Leave cook mode", style: .quiet, action: close)
+            RoundIconButton(systemImage: "xmark", label: "Leave the recipe", style: .quiet, action: close)
         }
         .frame(height: 44)
     }
@@ -241,7 +241,7 @@ struct CookScreen: View {
                     .transition(.opacity)
             }
             if confirmLeave {
-                BottomSheet(title: "Leave cook mode?", close: { confirmLeave = false }) {
+                BottomSheet(title: "Leave the recipe?", close: { confirmLeave = false }) {
                     Text("Your timers keep running, and the recipe stays where you left it.")
                         .font(Theme.cookCaption)
                         .foregroundStyle(Theme.slate)

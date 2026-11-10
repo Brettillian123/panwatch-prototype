@@ -12,51 +12,14 @@ struct ProfileScreen: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Theme.space16) {
-                ScreenTitle("Profile")
-                stats
-                GroupedRows {
-                    cameraRow
-                    cameraSideRow
-                    panRow
-                }
-                GroupedRows {
-                    talkRow
-                    listeningRow
-                }
-                GroupedRows {
-                    Row(label: "Voice", value: voiceName, chevron: true, action: {
-                        session.noteTouch()
-                        session.open(.voices)
-                    })
-                    speedRow
-                }
-                GroupedRows {
-                    if session.cookUnderWay {
-                        Row(label: "Restart recipe", detail: "\(session.recipe.title), step \(session.stepIndex + 1)", action: {
-                            session.noteTouch()
-                            confirmRestart = true
-                        })
-                    }
-                    Row(label: "What can I say", chevron: true, action: {
-                        session.noteTouch()
-                        session.showHelp()
-                    })
-                    Row(label: "Custom voice", chevron: true, action: {
-                        session.noteTouch()
-                        session.open(.makeVoice)
-                    })
-                    Row(label: "About", chevron: true, action: {
-                        session.noteTouch()
-                        showAbout = true
-                    })
-                    detailsRow
-                }
+                if session.profileAdvanced { advanced } else { main }
             }
             .padding(.horizontal, Theme.margin)
             .padding(.bottom, Theme.space24)
             .screenColumn()
         }
         .scrollIndicators(.hidden)
+        .animation(Theme.motion, value: session.profileAdvanced)
         .confirmationDialog("Restart \(session.recipe.title)?", isPresented: $confirmRestart, titleVisibility: .visible) {
             // Back to the cook screen at step 1, with this recipe's timers cleared.
             Button("Restart", role: .destructive) { session.restartRecipe() }
@@ -66,6 +29,67 @@ struct ProfileScreen: View {
         }
         .sheet(isPresented: $showAbout) {
             AboutSheet(close: { showAbout = false })
+        }
+    }
+
+    /// Only what an ordinary cook changes; the rest waits under Advanced.
+    @ViewBuilder private var main: some View {
+        ScreenTitle("Profile")
+        stats
+        GroupedRows {
+            cameraRow
+            panRow
+        }
+        GroupedRows {
+            talkRow
+            listeningRow
+        }
+        GroupedRows {
+            Row(label: "Voice", value: voiceName, chevron: true, action: {
+                session.noteTouch()
+                session.open(.voices)
+            })
+            speedRow
+        }
+        GroupedRows {
+            if session.cookUnderWay {
+                Row(label: "Restart recipe", detail: "\(session.recipe.title), step \(session.stepIndex + 1)", action: {
+                    session.noteTouch()
+                    confirmRestart = true
+                })
+            }
+            Row(label: "What can I say", chevron: true, action: {
+                session.noteTouch()
+                session.showHelp()
+            })
+        }
+        GroupedRows {
+            Row(label: "Advanced", chevron: true, action: {
+                session.noteTouch()
+                session.profileAdvanced = true
+            })
+        }
+    }
+
+    /// The Advanced page, pushed over Profile: a custom voice, which camera, the tester's
+    /// details panel, and About.
+    @ViewBuilder private var advanced: some View {
+        RoundIconButton(systemImage: "chevron.left", label: "Back", size: .small, style: .quiet) {
+            session.noteTouch()
+            session.profileAdvanced = false
+        }
+        ScreenTitle("Advanced")
+        GroupedRows {
+            Row(label: "Custom voice", chevron: true, action: {
+                session.noteTouch()
+                session.open(.makeVoice)
+            })
+            cameraSideRow
+            detailsRow
+            Row(label: "About", chevron: true, action: {
+                session.noteTouch()
+                showAbout = true
+            })
         }
     }
 
@@ -102,18 +126,20 @@ struct ProfileScreen: View {
 
     private var cameraSideRow: some View {
         let on = session.cameraOn
-        return Row(label: "Camera side", value: session.cameraPosition == .front ? "Front" : "Back", action: {
-            session.noteTouch()
-            Task { await session.flipCamera() }
-        })
+        return ToggleRow(label: "Use the back camera", detail: nil, isOn: Binding(
+            get: { session.cameraPosition == .back },
+            set: { back in
+                session.noteTouch()
+                if back != (session.cameraPosition == .back) { Task { await session.flipCamera() } }
+            }
+        ))
         .disabled(!on)
         .opacity(on ? 1 : 0.45)
-        .accessibilityHint(session.cameraPosition == .front ? "Uses the back camera" : "Uses the front camera")
     }
 
     private var panRow: some View {
         let on = session.cameraOn
-        return Row(label: "Pan", value: session.region != nil ? "Marked" : "Not marked", chevron: true, action: {
+        return Row(label: "Pot outline", value: session.region != nil ? "Redraw" : "Draw", chevron: true, action: {
             session.noteTouch()
             // Drawing happens on the cook screen, cleared to the picture.
             session.open(.cook)
@@ -121,31 +147,23 @@ struct ProfileScreen: View {
         })
         .disabled(!on)
         .opacity(on ? 1 : 0.45)
-        .accessibilityHint("Draws the pan again")
+        .accessibilityHint("Draws a box around the pot")
     }
 
     // MARK: Talk and listening
 
     private var talkRow: some View {
-        VStack(alignment: .leading, spacing: Theme.space8) {
-            SegmentedPicker(options: [(value: true, title: "Talk"), (value: false, title: "Quiet")], selection: Binding(
-                get: { session.voiceOn },
-                set: { on in
-                    session.noteTouch()
-                    session.voiceOn = on
-                }
-            ))
-            Text("Talk reads steps and offers aloud. Quiet only shows them.")
-                .font(Theme.caption).foregroundStyle(Theme.slate)
-                .fixedSize(horizontal: false, vertical: true)
-        }
-        .padding(.horizontal, Theme.space16)
-        .padding(.vertical, Theme.space12)
-        .frame(minHeight: 60)
+        ToggleRow(label: "Read steps aloud", detail: nil, isOn: Binding(
+            get: { session.voiceOn },
+            set: { on in
+                session.noteTouch()
+                session.voiceOn = on
+            }
+        ))
     }
 
     private var listeningRow: some View {
-        ToggleRow(label: "Listening", detail: "Off pauses it for 2 minutes", isOn: Binding(
+        ToggleRow(label: "Voice control", detail: nil, isOn: Binding(
             get: { session.listeningOn },
             set: { on in
                 session.noteTouch()
@@ -162,7 +180,7 @@ struct ProfileScreen: View {
         if let id = session.voiceID, let option = session.voiceOptions.first(where: { $0.id == id }) {
             return option.name
         }
-        return Speaker.voice(for: session.voiceID)?.name ?? "System"
+        return Speaker.voice(for: session.voiceID)?.name ?? "Phone voice"
     }
 
     private var speedRow: some View {
