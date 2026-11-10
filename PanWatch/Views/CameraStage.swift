@@ -1,14 +1,19 @@
 import SwiftUI
 
-/// The camera picture with the pan box, hand joints, and the drawing gesture on top.
+/// The camera picture with the pan box, hand joints, and the drawing gesture on top. In the
+/// cook screen's box the picture fills it (`fill`, clipped by the box); while drawing it fits,
+/// so every part of the picture can take a box.
 struct CameraStage: View {
     let session: CookSession
+    var fill = false
 
     var body: some View {
         GeometryReader { proxy in
-            let imageRect = aspectFitRect(content: session.frameSize, in: proxy.size)
+            let imageRect = fill
+                ? aspectFillRect(content: session.frameSize, in: proxy.size)
+                : aspectFitRect(content: session.frameSize, in: proxy.size)
             ZStack {
-                CameraPreview(analyzer: session.camera.analyzer)
+                CameraPreview(analyzer: session.camera.analyzer, fill: fill)
                 PanOverlay(session: session, imageRect: imageRect)
                     .allowsHitTesting(false)
                 if session.isMarkingPan {
@@ -55,9 +60,9 @@ struct PanOverlay: View {
         let box = marking ? session.draftRegion : session.region
         let zone = session.showDebug && !marking ? session.region?.expanded(by: session.settings.handZoneMargin) : nil
         let hands = session.showDebug ? live.hands : []
-        // The box being drawn is Copper, like the Start watching button that confirms it.
-        let color = marking ? Theme.copper : PhaseStyle.color(for: live.phase)
-        let label = PhaseStyle.label(for: live.phase)
+        // The box being drawn is beet, like the Done button that confirms it. The outline is
+        // the only mark on the picture; its state words are in the debug panel.
+        let color = marking ? Theme.beet : PhaseStyle.color(for: live.phase)
         let rect = imageRect
 
         Canvas { context, _ in
@@ -73,15 +78,8 @@ struct PanOverlay: View {
                 context.stroke(
                     Path(roundedRect: boxRect, cornerRadius: 14),
                     with: .color(color),
-                    style: StrokeStyle(lineWidth: 4, dash: marking ? [12, 8] : [])
+                    style: StrokeStyle(lineWidth: marking ? 4 : 3, dash: marking ? [12, 8] : [])
                 )
-                if !marking {
-                    let y = boxRect.minY > 36 ? boxRect.minY - 18 : boxRect.minY + 18
-                    context.draw(
-                        Text(label).font(.title3.weight(.bold)).foregroundStyle(color),
-                        at: CGPoint(x: boxRect.midX, y: y)
-                    )
-                }
             }
             for hand in hands {
                 for joint in hand {
@@ -101,6 +99,20 @@ struct PanOverlay: View {
 func aspectFitRect(content: CGSize, in container: CGSize) -> CGRect {
     guard content.width > 0, content.height > 0 else { return CGRect(origin: .zero, size: container) }
     let scale = min(container.width / content.width, container.height / content.height)
+    let size = CGSize(width: content.width * scale, height: content.height * scale)
+    return CGRect(
+        x: (container.width - size.width) / 2,
+        y: (container.height - size.height) / 2,
+        width: size.width,
+        height: size.height
+    )
+}
+
+/// Where a picture of `content` size lands when scaled to fill `container` (it may run past
+/// the edges), matching the preview's `.resizeAspectFill`.
+func aspectFillRect(content: CGSize, in container: CGSize) -> CGRect {
+    guard content.width > 0, content.height > 0 else { return CGRect(origin: .zero, size: container) }
+    let scale = max(container.width / content.width, container.height / content.height)
     let size = CGSize(width: content.width * scale, height: content.height * scale)
     return CGRect(
         x: (container.width - size.width) / 2,

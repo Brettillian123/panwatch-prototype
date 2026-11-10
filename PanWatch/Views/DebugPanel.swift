@@ -8,21 +8,24 @@ struct DebugPanel: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 22) {
-                liveSection
-                voiceSection
-                decisionSection
-                AIChecksSection(checks: session.aiChecks) // AI confirm
-                practiceSection
-                statsSection
-                usageSection
-                tuningSection
-                historySection
+            VStack(alignment: .leading, spacing: Theme.space12) {
+                Card { liveSection }
+                Card { voiceSection }
+                Card { decisionSection }
+                Card { AIChecksSection(checks: session.aiChecks) } // AI confirm
+                Card { practiceSection }
+                Card { statsSection }
+                Card { usageSection }
+                Card { tuningSection }
+                Card { historySection }
             }
-            .padding(16)
+            .padding(.horizontal, Theme.space12)
+            .padding(.bottom, Theme.space12)
         }
-        .foregroundStyle(.white)
-        .background(.black.opacity(0.82))
+        .scrollIndicators(.hidden)
+        .foregroundStyle(Theme.ink)
+        .tint(Theme.beet)
+        .background(Theme.ground)
     }
 
     private var liveSection: some View {
@@ -37,7 +40,7 @@ struct DebugPanel: View {
             if live.learnedWithHand {
                 Text("Learned the pan with a hand in view")
                     .font(.footnote)
-                    .foregroundStyle(.yellow)
+                    .foregroundStyle(Theme.beet)
             }
             MetricRow(name: "Hand time", value: seconds(live.dwell))
             MetricRow(name: "Hand openness", value: live.handOpenness.map { String(format: "%.2f", $0) } ?? "-")
@@ -101,7 +104,7 @@ struct DebugPanel: View {
                     Label("Share usage log", systemImage: "square.and.arrow.up")
                 }
                 .buttonStyle(.bordered)
-                .tint(.white)
+                .tint(Theme.beet)
             }
         }
     }
@@ -132,7 +135,7 @@ struct DebugPanel: View {
             } else {
                 Text("Nothing judged yet. On a watched step, reach over the pan, drop something in, and pull your hand away.")
                     .font(.footnote)
-                    .foregroundStyle(.white.opacity(0.7))
+                    .foregroundStyle(Theme.slate)
             }
         }
     }
@@ -145,7 +148,7 @@ struct DebugPanel: View {
                 .onChange(of: recordingPractice) { _, on in session.setPracticeRecording(on) }
             Text("Records hand joints and a small picture of the pan box, 15 times a second. No video and no audio. Say \"that was it\" right after each real add.")
                 .font(.footnote)
-                .foregroundStyle(.white.opacity(0.7))
+                .foregroundStyle(Theme.slate)
             TimelineView(.periodic(from: .now, by: 1)) { _ in
                 let status = session.camera.analyzer.recorder.current
                 VStack(alignment: .leading, spacing: 8) {
@@ -158,7 +161,7 @@ struct DebugPanel: View {
                             Label("Share recording", systemImage: "square.and.arrow.up")
                         }
                         .buttonStyle(.bordered)
-                        .tint(.white)
+                        .tint(Theme.beet)
                     }
                 }
             }
@@ -185,7 +188,7 @@ struct DebugPanel: View {
             Toggle("Fast timers (seconds)", isOn: $session.fastTimers)
             Button("Reset tuning") { session.resetSettings() }
                 .buttonStyle(.bordered)
-                .tint(.white)
+                .tint(Theme.beet)
         }
         .font(.subheadline)
     }
@@ -196,7 +199,7 @@ struct DebugPanel: View {
             if session.decisions.isEmpty {
                 Text("None yet.")
                     .font(.footnote)
-                    .foregroundStyle(.white.opacity(0.7))
+                    .foregroundStyle(Theme.slate)
             }
             ForEach(session.decisions) { decision in
                 HStack(spacing: 8) {
@@ -209,7 +212,7 @@ struct DebugPanel: View {
                         .monospacedDigit()
                     Text(seconds(decision.dwell))
                         .monospacedDigit()
-                        .foregroundStyle(.white.opacity(0.6))
+                        .foregroundStyle(Theme.slate)
                 }
                 .font(.footnote)
             }
@@ -227,10 +230,10 @@ struct DebugPanel: View {
 
     private func color(_ outcome: DetectorDecision.Outcome) -> Color {
         switch outcome {
-        case .addition: .green
-        case .noChange: .gray
-        case .lightingChange: .orange
-        case .stirring: .gray
+        case .addition: Theme.beet
+        case .noChange: Theme.divider
+        case .lightingChange: Theme.sky
+        case .stirring: Theme.divider
         }
     }
 
@@ -257,9 +260,9 @@ private struct SectionTitle: View {
     let text: String
 
     var body: some View {
-        Text(text.uppercased())
-            .font(.caption.weight(.bold))
-            .foregroundStyle(.white.opacity(0.6))
+        Text(text)
+            .font(Theme.bodyStrong)
+            .foregroundStyle(Theme.slate)
     }
 }
 
@@ -270,7 +273,7 @@ private struct MetricRow: View {
     var body: some View {
         HStack {
             Text(name)
-                .foregroundStyle(.white.opacity(0.75))
+                .foregroundStyle(Theme.slate)
             Spacer()
             Text(value)
                 .monospacedDigit()
@@ -289,7 +292,7 @@ private struct ChangeMeter: View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
                 Text("Pan vs. before")
-                    .foregroundStyle(.white.opacity(0.75))
+                    .foregroundStyle(Theme.slate)
                 Spacer()
                 Text(percent(value))
                     .monospacedDigit()
@@ -298,12 +301,12 @@ private struct ChangeMeter: View {
             GeometryReader { proxy in
                 ZStack(alignment: .leading) {
                     Capsule()
-                        .fill(.white.opacity(0.15))
+                        .fill(Theme.fill)
                     Capsule()
-                        .fill(value >= threshold ? Color.green : Color.white.opacity(0.7))
+                        .fill(value >= threshold ? Theme.beet : Theme.slate)
                         .frame(width: proxy.size.width * min(1, value / scale))
                     Rectangle()
-                        .fill(.orange)
+                        .fill(Theme.ink)
                         .frame(width: 2)
                         .offset(x: proxy.size.width * min(1, threshold / scale) - 1)
                 }
@@ -331,7 +334,7 @@ private struct TuningSlider: View {
                     .monospacedDigit()
             }
             Slider(value: $value, in: range)
-                .tint(.green)
+                .tint(Theme.beet)
         }
     }
 }

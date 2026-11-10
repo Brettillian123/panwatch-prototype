@@ -1,3 +1,4 @@
+import AVKit
 import SwiftUI
 import UIKit
 
@@ -9,23 +10,28 @@ struct RootView: View {
     let session: CookSession
 
     private var screen: AppScreen { session.screen }
+    /// The screen under the help sheet, or the screen itself. Help opened in cook mode keeps cook mode under it.
+    private var base: AppScreen {
+        guard screen == .help else { return screen }
+        return session.helpFrom == .help ? .cook : session.helpFrom
+    }
 
     var body: some View {
         ZStack {
             Theme.ground.ignoresSafeArea()
 
             CookScreen(session: session)
-                .opacity(screen == .cook ? 1 : 0)
+                .opacity(base == .cook ? 1 : 0)
                 .accessibilityHidden(screen != .cook)
                 .allowsHitTesting(screen == .cook)
 
-            if screen != .cook {
+            if base != .cook {
                 page
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                     .background(Theme.ground)
                     .safeAreaInset(edge: .bottom, spacing: 0) {
-                        if screen.showsTabBar {
-                            FloatingTabBar(selected: screen.tab) { tab in
+                        if base.showsTabBar {
+                            FloatingTabBar(selected: base.tab) { tab in
                                 session.noteTouch()
                                 session.open(tab: tab)
                             }
@@ -39,11 +45,15 @@ struct RootView: View {
                 MakeVoiceSheet(session: session)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             }
+
+            if screen == .help {
+                HelpOverlay(session: session)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
         }
-        .overlay { SetupCheckView(check: session.setupCheck) } // Setup check, over every screen
         .animation(Theme.motion, value: screen)
-        .statusBarHidden(screen == .cook)
-        .persistentSystemOverlays(screen == .cook ? .hidden : .automatic)
+        .statusBarHidden(base == .cook)
+        .persistentSystemOverlays(base == .cook ? .hidden : .automatic)
         .preferredColorScheme(.light)
         .task {
             #if DEBUG
@@ -53,10 +63,10 @@ struct RootView: View {
         }
         .onAppear {
             UIApplication.shared.isIdleTimerDisabled = true
-            OrientationLock.apply(landscapeOnly: screen.isLandscapeOnly)
+            OrientationLock.apply(landscapeOnly: base.isLandscapeOnly)
         }
         .onDisappear { UIApplication.shared.isIdleTimerDisabled = false }
-        .onChange(of: screen.isLandscapeOnly) { _, landscapeOnly in
+        .onChange(of: base.isLandscapeOnly) { _, landscapeOnly in
             OrientationLock.apply(landscapeOnly: landscapeOnly)
         }
         .onChange(of: session.settings) { session.applySettings() }
@@ -70,13 +80,12 @@ struct RootView: View {
     }
 
     @ViewBuilder private var page: some View {
-        switch screen {
+        switch base {
         case .recipes: HomeScreen(session: session)
         case .recipe: RecipeScreen(session: session)
         case .voices, .makeVoice: VoicesScreen(session: session)
         case .profile: ProfileScreen(session: session)
-        case .help: HelpOverlay(session: session).padding(.horizontal, Theme.margin).screenColumn()
-        case .cook: EmptyView()
+        case .help, .cook: EmptyView() // help is the sheet over `base`
         }
     }
 }
