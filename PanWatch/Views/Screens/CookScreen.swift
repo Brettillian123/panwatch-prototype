@@ -354,7 +354,7 @@ struct CookCameraBox: View {
                     },
                     including: drawing ? .subviews : .all
                 )
-                .accessibilityAddTraits(drawing ? [] : .isButton)
+                .accessibilityAddTraits(drawing ? AccessibilityTraits() : .isButton)
                 .accessibilityHint(drawing ? "" : "Draws the box around the pot")
         }
     }
