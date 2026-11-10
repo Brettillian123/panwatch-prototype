@@ -649,6 +649,8 @@ final class CookSession {
     private(set) var cookUnderWay = false
     /// The screen the help overlay was opened from, whose commands it lists first.
     private(set) var helpFrom: AppScreen = .cook
+    /// The screen the make-a-voice sheet was opened from and sits over: Profile or the voices.
+    private(set) var makeVoiceFrom: AppScreen = .voices
     @ObservationIgnored private var helpClose: Task<Void, Never>?
 
     /// The three or four phrases that work right now, for the Say line.
@@ -697,6 +699,7 @@ final class CookSession {
             if viewedRecipe == nil { viewedRecipe = recipe }
             suggestion = nil
         case .voices, .makeVoice:
+            if next == .makeVoice, screen != .makeVoice { makeVoiceFrom = AppScreen.makeVoiceOrigin(screen) }
             refreshVoices()
             if highlightedVoiceID == nil || !voiceOptions.contains(where: { $0.id == highlightedVoiceID }) {
                 highlightedVoiceID = voiceID ?? voiceOptions.first?.id
@@ -717,11 +720,11 @@ final class CookSession {
 
     /// "Done", "close" or the Done button: back to the cook screen from any menu. Help
     /// goes back to the screen it was opened from, so it can be asked for from a menu; a
-    /// recipe's page goes back to Home, the make-a-voice sheet to the voices.
+    /// recipe's page goes back to Home, the make-a-voice sheet to where it was opened.
     func closeMenu() {
         helpClose?.cancel()
         if screen == .voices || screen == .makeVoice { stopSample() }
-        screen = AppScreen.closing(screen, helpFrom: helpFrom, cookUnderWay: cookUnderWay)
+        screen = AppScreen.closing(screen, helpFrom: helpFrom, makeVoiceFrom: makeVoiceFrom, cookUnderWay: cookUnderWay)
         refreshArming()
     }
 
@@ -917,7 +920,7 @@ final class CookSession {
             if let mine = self.voiceOptions.first(where: \.isPersonal) {
                 self.useVoice(mine)
             } else {
-                self.speak(.answer, "There's no voice of yours yet. Record one in the voice menu.")
+                self.speak(.answer, "There's no voice of yours yet. Record one under Custom voice in Profile.")
             }
         }
     }

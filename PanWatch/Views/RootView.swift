@@ -96,7 +96,10 @@ struct RootView: View {
         switch base {
         case .recipes: HomeScreen(session: session)
         case .recipe: RecipeScreen(session: session, photoOnTop: $photoOnTop)
-        case .voices, .makeVoice: VoicesScreen(session: session)
+        case .voices: VoicesScreen(session: session)
+        case .makeVoice:
+            // The sheet sits over the screen it was opened from.
+            if session.makeVoiceFrom == .profile { ProfileScreen(session: session) } else { VoicesScreen(session: session) }
         case .profile: ProfileScreen(session: session)
         case .help, .cook: EmptyView() // help is the sheet over `base`
         }

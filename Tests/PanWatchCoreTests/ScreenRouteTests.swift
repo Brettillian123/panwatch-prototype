@@ -17,6 +17,19 @@ struct ScreenRouteTests {
         #expect(AppScreen.closing(.makeVoice, helpFrom: .cook) == .voices)
     }
 
+    @Test func theMakeAVoiceSheetGoesBackToProfileWhenOpenedThere() {
+        #expect(AppScreen.makeVoiceOrigin(.profile) == .profile)
+        #expect(AppScreen.closing(.makeVoice, helpFrom: .cook, makeVoiceFrom: .profile) == .profile)
+        #expect(AppScreen.closing(.makeVoice, helpFrom: .cook, makeVoiceFrom: .profile, cookUnderWay: false) == .profile)
+    }
+
+    @Test func theMakeAVoiceSheetOpenedAnywhereElseGoesBackToTheVoices() {
+        for from in AppScreen.allCases where from != .profile {
+            #expect(AppScreen.makeVoiceOrigin(from) == .voices, "\(from)")
+            #expect(AppScreen.closing(.makeVoice, helpFrom: .cook, makeVoiceFrom: from) == .voices, "\(from)")
+        }
+    }
+
     @Test func closingHelpGoesWhereItWasOpened() {
         #expect(AppScreen.closing(.help, helpFrom: .recipe) == .recipe)
         #expect(AppScreen.closing(.help, helpFrom: .profile) == .profile)

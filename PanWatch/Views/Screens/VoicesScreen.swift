@@ -1,8 +1,8 @@
 import AVFoundation
 import SwiftUI
 
-/// The voices: what is speaking now, the voices filtered by accent, and the card that opens
-/// the make-a-voice sheet. A tap on a row's body uses that voice; its play button only
+/// The voices: what is speaking now and the voices filtered by accent. Making a voice is
+/// out of the way, in Profile's "Custom voice". A tap on a row's body uses that voice; its play button only
 /// plays a sample. "Next voice" moves the highlight down a row and plays it, so a cook can
 /// walk the list hands-free; "use this one" picks it.
 struct VoicesScreen: View {
@@ -25,8 +25,6 @@ struct VoicesScreen: View {
                         NaturalVoicesDownload(session: session)
                     }
                     list
-                    makeVoiceCard
-                        .padding(.top, Theme.space8)
                 }
                 .padding(.horizontal, Theme.margin)
                 .padding(.bottom, Theme.space24)
@@ -268,43 +266,6 @@ struct VoicesScreen: View {
         }
         .buttonStyle(KitPressStyle(fill: Theme.fill, foreground: Theme.ink))
         .accessibilityLabel(title == "Allow" ? "Allow Personal Voice" : "Open Settings")
-    }
-
-    // MARK: Make a voice
-
-    private var makeVoiceCard: some View {
-        Button {
-            session.noteTouch()
-            session.open(.makeVoice)
-        } label: {
-            HStack(spacing: Theme.space12) {
-                Image(systemName: "slider.horizontal.3")
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundStyle(Theme.ink)
-                    .frame(width: 52, height: 52)
-                    .background(Theme.card, in: Circle())
-                    .accessibilityHidden(true)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Make your own voice").font(Theme.bodyStrong).foregroundStyle(Theme.ink)
-                    Text("Blend two, or record yours").font(Theme.caption).foregroundStyle(Theme.slate)
-                }
-                Spacer(minLength: Theme.space8)
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundStyle(Theme.ink)
-                    .accessibilityHidden(true)
-            }
-            .padding(Theme.space12)
-            .padding(.trailing, Theme.space8)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Theme.blush, in: RoundedRectangle(cornerRadius: Theme.radiusCard, style: .continuous))
-            .contentShape(RoundedRectangle(cornerRadius: Theme.radiusCard, style: .continuous))
-        }
-        .buttonStyle(.plain)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("Make your own voice")
-        .accessibilityHint("Blend two, or record yours")
-        .accessibilityAddTraits(.isButton)
     }
 }
 
