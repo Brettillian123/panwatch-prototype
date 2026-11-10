@@ -99,6 +99,8 @@ final class CookSession {
     private(set) var micReady = false
     /// What was last heard as a command, shown for a moment so the cook knows it landed.
     private(set) var heardText: String?
+    /// The app is talking: the cook screen's chip reads "Speaking".
+    private(set) var isSpeaking = false
     /// The assistant's reply, shown on the listening line while it is said.
     private(set) var answerText: String?
     @ObservationIgnored private var heardClear: Task<Void, Never>?
@@ -124,6 +126,9 @@ final class CookSession {
     @ObservationIgnored private var started = false
     /// Starting and stopping the camera, one after another.
     @ObservationIgnored private var cameraWork: Task<Void, Never>?
+    /// What `syncCamera` last asked of the camera, and whether it is running for cook mode now.
+    @ObservationIgnored private var cameraWanted = false
+    @ObservationIgnored private var cameraLive = false
     /// Said at launch when a saved cook is picked up again.
     @ObservationIgnored private var welcome: String?
 
@@ -211,11 +216,10 @@ final class CookSession {
             speak(.resume, welcome)
             self.welcome = nil
         }
-        if cameraOn {
-            cameraStatus = await camera.start(position: cameraPosition)
-        }
         AddModel.prewarm() // AI prewarm: load the model before the first add
+        // The camera runs only in cook mode (`syncCamera`); wait for it so its prompt comes first.
         refreshArming()
+        await cameraWork?.value
         // Ask for the microphone at launch, so the prompt never appears mid-cook.
         micReady = await listener.requestPermission()
         refreshListening()
@@ -350,11 +354,13 @@ final class CookSession {
         guard cameraOn else { return }
         cameraPosition = cameraPosition == .front ? .back : .front
         forgetPan()
+        // Off cook mode the camera is stopped; it starts with the new side on the way back.
+        guard cameraLive else { return }
         cameraStatus = await camera.start(position: cameraPosition)
     }
 
     private func phoneTurned() {
-        guard cameraOn, region != nil else { return }
+        guard cameraOn, CameraGate.turnDropsPan(cameraLive: cameraLive, screen: screen, helpFrom: helpFrom, hasPan: region != nil) else { return }
         forgetPan()
         // Turned back to where it was, the last box still fits; the cook says if it does.
         speak(.guidance, offeredPan != nil ? Self.samePlacePrompt : "Draw a box around the pan.")
@@ -394,16 +400,32 @@ final class CookSession {
             region = nil
             camera.analyzer.setRegion(nil)
         }
-        refreshArming()
-        // Each switch waits for the one before, then does whatever the setting is by then.
+        refreshArming() // starts or stops the camera (`syncCamera`)
+    }
+
+    /// The camera runs only while cook mode shows (`CameraGate`). Leaving it stops the camera
+    /// and pauses detection; timers keep running, and the pan box is kept, so coming back
+    /// starts the camera and judges with the same box, without drawing again.
+    private func syncCamera() {
+        guard started else { return }
+        let want = CameraGate.cameraRuns(screen: screen, helpFrom: helpFrom, cameraOn: cameraOn)
+        guard want != cameraWanted else { return }
+        cameraWanted = want
+        // Each switch waits for the one before, then does whatever is wanted by then.
         let previous = cameraWork
         cameraWork = Task { [weak self] in
             await previous?.value
             guard let self else { return }
-            if self.cameraOn {
+            if self.cameraWanted {
+                guard !self.cameraLive else { return }
+                self.cameraStatus = .starting
                 self.cameraStatus = await self.camera.start(position: self.cameraPosition)
+                self.cameraLive = self.cameraStatus == .running
+                // The box kept from before: exposure locks on it again, as on confirming it.
+                if self.region != nil, !self.isMarkingPan { self.camera.setAdjustmentsLocked(true) }
                 self.openPanDrawingIfNeeded()
-            } else {
+            } else if self.cameraLive || !self.cameraOn {
+                self.cameraLive = false
                 await self.camera.stop()
             }
         }
@@ -430,8 +452,12 @@ final class CookSession {
 
     /// Whether the camera should be judging right now.
     private func refreshArming() {
-        let armed = cameraOn && region != nil && !isMarkingPan && !isChoosingRecipe && suggestion == nil && currentStep.watch != nil
-            && !finishedSteps.contains(stepIndex) && !setupCheck.isRunning // Setup check: never judge the hand it asks for
+        let armed = CameraGate.armed(
+            screen: screen, helpFrom: helpFrom, cameraOn: cameraOn, hasPan: region != nil, drawing: isMarkingPan,
+            offer: suggestion != nil, watchedStep: currentStep.watch != nil, stepFinished: finishedSteps.contains(stepIndex),
+            setupRunning: setupCheck.isRunning // Setup check: never judge the hand it asks for
+        )
+        syncCamera()
         camera.analyzer.update(settings: effectiveSettings)
         camera.analyzer.setArmed(armed)
         camera.analyzer.recorder.setStep(stepIndex, watch: currentStep.watch)
@@ -583,6 +609,7 @@ final class CookSession {
     /// With voice processing, the microphone doesn't hear the app, so listening goes on
     /// while it talks and the cook can cut it short. Without it, listening pauses.
     private func speakingChanged(_ speaking: Bool) {
+        isSpeaking = speaking
         if speaking {
             if !speaker.cancelsEcho, !heldForRecording { listener.hold() }
         } else {
@@ -1245,7 +1272,7 @@ final class CookSession {
         heardText = text
         heardClear?.cancel()
         heardClear = Task { [weak self] in
-            try? await Task.sleep(for: .seconds(3))
+            try? await Task.sleep(for: .seconds(2))
             guard !Task.isCancelled else { return }
             self?.heardText = nil
         }
