@@ -102,20 +102,40 @@ enum VoiceSpeed: String, CaseIterable, Codable, Sendable {
 enum VoiceCatalog {
     static let idPrefix = "kokoro:"
 
-    /// Kokoro's best-graded American and British voices (hexgrad/Kokoro-82M VOICES.md),
-    /// best first within each accent and gender. The default is the first.
+    /// Every English Kokoro voice FluidAudio's v3 store can fetch (the `voices/` folder of
+    /// FluidInference/kokoro-82m-coreml at its pinned base revision) graded C or better in
+    /// hexgrad/Kokoro-82M VOICES.md, best graded first. The default is the first.
     static let voices: [NaturalVoice] = [
+        // A and A-
         NaturalVoice(pack: "af_heart", name: "Hannah", accent: .american, gender: .female, detail: "Warm and clear"),
         NaturalVoice(pack: "af_bella", name: "Bella", accent: .american, gender: .female, detail: "Bright and friendly"),
+        // B-
         NaturalVoice(pack: "af_nicole", name: "Nicole", accent: .american, gender: .female, detail: "Soft and calm, close to a whisper"),
-        NaturalVoice(pack: "af_sarah", name: "Sarah", accent: .american, gender: .female, detail: "Even and steady"),
-        NaturalVoice(pack: "af_kore", name: "Kora", accent: .american, gender: .female, detail: "Low and relaxed"),
-        NaturalVoice(pack: "am_michael", name: "Michael", accent: .american, gender: .male, detail: "Deep and easygoing"),
-        NaturalVoice(pack: "am_fenrir", name: "Finn", accent: .american, gender: .male, detail: "Firm and direct"),
         NaturalVoice(pack: "bf_emma", name: "Emma", accent: .british, gender: .female, detail: "Clear and polite"),
-        NaturalVoice(pack: "bm_george", name: "George", accent: .british, gender: .male, detail: "Older, low and measured"),
+        // C+
+        NaturalVoice(pack: "af_aoede", name: "Maya", accent: .american, gender: .female, detail: "Light and airy"),
+        NaturalVoice(pack: "af_kore", name: "Kora", accent: .american, gender: .female, detail: "Low and relaxed"),
+        NaturalVoice(pack: "af_sarah", name: "Sarah", accent: .american, gender: .female, detail: "Even and steady"),
+        NaturalVoice(pack: "am_fenrir", name: "Finn", accent: .american, gender: .male, detail: "Firm and direct"),
+        NaturalVoice(pack: "am_michael", name: "Michael", accent: .american, gender: .male, detail: "Deep and easygoing"),
+        NaturalVoice(pack: "am_puck", name: "Theo", accent: .american, gender: .male, detail: "Upbeat and playful"),
+        // C
+        NaturalVoice(pack: "af_alloy", name: "Claire", accent: .american, gender: .female, detail: "Crisp and even"),
+        NaturalVoice(pack: "af_nova", name: "Nora", accent: .american, gender: .female, detail: "Smooth and modern"),
+        NaturalVoice(pack: "bf_isabella", name: "Isla", accent: .british, gender: .female, detail: "Gentle and warm"),
         NaturalVoice(pack: "bm_fable", name: "Felix", accent: .british, gender: .male, detail: "Lively storyteller"),
+        NaturalVoice(pack: "bm_george", name: "George", accent: .british, gender: .male, detail: "Older, low and measured"),
     ]
+
+    /// The one line every bundled preview says.
+    static let previewLine = "Add the pasta, and I'll keep time for you."
+
+    /// The recorded preview shipped in the app for a catalogue voice, under
+    /// PanWatch/Resources/VoicePreviews (the pack, since a voice id's colon can't be in a
+    /// file name); nil for a mix or anything else, which is spoken live instead.
+    static func previewFile(pack: String) -> String? {
+        voice(pack: pack) == nil ? nil : "\(pack).m4a"
+    }
 
     /// Kokoro's own default voice is the even mix of Bella and Sarah (model card).
     static let bellaAndSarah = VoiceBlend(
@@ -153,11 +173,9 @@ enum VoiceCatalog {
         return String(lead.prefix(3)) + "mix\(number)"
     }
 
-    /// The voices in menu order: American then British, female then male, as listed,
-    /// then the cook's own mixes.
+    /// The voices in menu order: the catalogue, best graded first, then the cook's mixes.
     static func menuOrder(blends: [VoiceBlend]) -> [NaturalVoice] {
-        let fixed = VoiceAccent.allCases.flatMap { accent in voices.filter { $0.accent == accent } }
-        return fixed + blends.map(\.voice)
+        voices + blends.map(\.voice)
     }
 
     /// The next voice after `current` with this accent and gender (either may be nil),
@@ -229,9 +247,14 @@ extension VoiceCatalog {
         "af_nicole": "Soft, calm",
         "af_sarah": "Even, steady",
         "af_kore": "Low, relaxed",
+        "af_aoede": "Light, airy",
+        "af_alloy": "Crisp, even",
+        "af_nova": "Smooth, modern",
         "am_michael": "Deep, easygoing",
         "am_fenrir": "Firm, direct",
+        "am_puck": "Upbeat, playful",
         "bf_emma": "Clear, polite",
+        "bf_isabella": "Gentle, warm",
         "bm_george": "Low, measured",
         "bm_fable": "Lively, expressive",
     ]

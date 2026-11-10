@@ -2,8 +2,9 @@ import AVFoundation
 import SwiftUI
 
 /// The voices: what is speaking now and the voices filtered by accent. Making a voice is
-/// out of the way, in Profile's "Custom voice". A tap on a row's body uses that voice; its play button only
-/// plays a sample. "Next voice" moves the highlight down a row and plays it, so a cook can
+/// out of the way, in Profile's "Custom voice". A tap on a row's body uses that voice at once;
+/// its play button plays the voice's recorded preview, which is in the app, so it needs nothing
+/// fetched. "Next voice" moves the highlight down a row and plays it, so a cook can
 /// walk the list hands-free; "use this one" picks it.
 struct VoicesScreen: View {
     let session: CookSession
@@ -21,10 +22,13 @@ struct VoicesScreen: View {
                     ScreenTitle("Voices")
                     NowPlayingCard(session: session)
                     chips
-                    if showsNatural, session.naturalState != .ready {
-                        NaturalVoicesDownload(session: session)
-                    }
                     list
+                    if let problem = session.voiceFetch.choice.problem {
+                        Text(problem.caption)
+                            .font(Theme.caption).foregroundStyle(Theme.slate)
+                            .padding(.horizontal, Theme.space16)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                 }
                 .padding(.horizontal, Theme.margin)
                 .padding(.bottom, Theme.space24)
@@ -69,12 +73,16 @@ struct VoicesScreen: View {
 
     private var fixedPacks: Set<String> { Set(VoiceCatalog.voices.map(\.pack)) }
 
-    /// "All", the accents that have voices, "Built in" for Apple's, "Yours" once the cook has one.
+    /// "All", the accents that have voices, "Women" and "Men" (the row scrolls sideways
+    /// rather than wrap), "Built in" for Apple's, "Yours" once the cook has one.
     private var filters: [VoiceFilter] {
         let options = session.voiceOptions
         var out: [VoiceFilter] = [.all]
         for accent in VoiceAccent.allCases where options.contains(where: { $0.isNatural && $0.accent == accent }) {
             out.append(.accent(accent))
+        }
+        for gender in VoiceGender.allCases where options.contains(where: { $0.isNatural && $0.gender == gender }) {
+            out.append(.gender(gender))
         }
         if options.contains(where: { !$0.isNatural && !$0.isOwn }) { out.append(.builtIn) }
         if options.contains(where: { VoiceFilter.yours.contains($0, catalog: fixedPacks) }) { out.append(.yours) }
@@ -100,12 +108,10 @@ struct VoicesScreen: View {
         session.voiceOptions.filter { filter.contains($0, catalog: fixedPacks) }
     }
 
-    private var showsNatural: Bool { shown.contains(where: \.isNatural) }
-
     // MARK: List
 
-    /// The voice speaking now: the one picked, or the best installed when none is.
-    private var chosenID: String? { session.voiceID ?? Speaker.best?.identifier }
+    /// The voice picked: the one speaking, or one still arriving (it shows a ring).
+    private var chosenID: String? { session.markedVoiceID }
 
     @ViewBuilder private var list: some View {
         let options = shown
@@ -157,7 +163,6 @@ struct VoicesScreen: View {
         if option.isPersonal { return "Personal Voice" }
         if option.isNatural, let pack = VoiceCatalog.pack(fromID: option.id) {
             let accent = option.accent?.title ?? "American"
-            if case .downloading = session.naturalState { return "\(accent) · Downloading" }
             return "\(accent) · \(VoiceCatalog.character(pack: pack))"
         }
         return "\(option.region) · Built in"
@@ -172,21 +177,19 @@ struct VoicesScreen: View {
         }
     }
 
+    /// The check on the voice in use; a small ring in its place while a picked voice
+    /// arrives. Other rows carry nothing.
     private func mark(_ option: VoiceOption) -> VoiceMark {
-        if chosenID == option.id { return .chosen }
-        if option.isNatural {
-            switch session.naturalState {
-            case .ready: return .none
-            case .downloading(let share): return .progress(share)
-            case .idle, .failed: return .download
-            }
+        if session.voiceFetch.choice.isPending(option.id) {
+            if case .downloading(let share) = session.naturalState { return .progress(share) }
+            return .progress(0)
         }
+        if chosenID == option.id { return .chosen }
         if option.isOwn {
             switch session.ownVoice.state {
-            case .ready: return .none
             case .downloading(let share): return .progress(share)
             case .making: return .working
-            case .idle, .failed: return .download
+            case .ready, .idle, .failed: return .none
             }
         }
         return .none
@@ -274,6 +277,7 @@ struct VoicesScreen: View {
 enum VoiceFilter: Hashable {
     case all
     case accent(VoiceAccent)
+    case gender(VoiceGender)
     case builtIn
     case yours
 
@@ -281,6 +285,7 @@ enum VoiceFilter: Hashable {
         switch self {
         case .all: "All"
         case .accent(let accent): accent.title
+        case .gender(let gender): gender == .female ? "Women" : "Men"
         case .builtIn: "Built in"
         case .yours: "Yours"
         }
@@ -291,6 +296,7 @@ enum VoiceFilter: Hashable {
         switch self {
         case .all: true
         case .accent(let accent): option.isNatural && option.accent == accent
+        case .gender(let gender): option.isNatural && option.gender == gender
         case .builtIn: !option.isNatural && !option.isOwn
         case .yours:
             option.isOwn || option.isPersonal
@@ -308,7 +314,7 @@ private struct NowPlayingCard: View {
     let session: CookSession
 
     private var playingID: String? { session.sampleVoiceID }
-    private var chosenID: String? { session.voiceID ?? Speaker.best?.identifier }
+    private var chosenID: String? { session.markedVoiceID }
 
     private var name: String {
         let id = playingID ?? chosenID
@@ -322,7 +328,7 @@ private struct NowPlayingCard: View {
             HStack(spacing: Theme.space12) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(name).font(Theme.bodyStrong).foregroundStyle(.white)
-                    Text(playing ? "Playing" : "In use").font(Theme.caption).foregroundStyle(Theme.softWhite)
+                    Text(playing ? "Listening" : "In use").font(Theme.caption).foregroundStyle(Theme.softWhite)
                 }
                 Spacer(minLength: Theme.space8)
                 Button {
@@ -397,7 +403,7 @@ private struct Waveform: View {
 // MARK: - Row
 
 enum VoiceMark: Equatable {
-    case none, chosen, download, working
+    case none, chosen, working
     case progress(Double)
 }
 
@@ -458,11 +464,6 @@ private struct StateMark: View {
                     .foregroundStyle(.white)
                     .frame(width: 28, height: 28)
                     .background(Theme.beet, in: Circle())
-            case .download:
-                Image(systemName: "arrow.down.to.line")
-                    .font(.system(size: 17, weight: .semibold))
-                    .foregroundStyle(Theme.slate)
-                    .frame(width: 28, height: 28)
             case .working:
                 ProgressView()
                     .tint(Theme.beet)
@@ -483,50 +484,52 @@ private struct StateMark: View {
     }
 }
 
-// MARK: - Download
+// MARK: - Arriving
 
-/// The natural voices' one-time download, in a card: not started, under way, stopped.
-/// Nothing once ready. The make-a-voice sheet shows it too, since blending needs them.
-struct NaturalVoicesDownload: View {
+/// The mixer's wait while the natural voices arrive by themselves: a bar while they come,
+/// one line saying what to do when they can't. Nothing once ready.
+struct NaturalVoicesProgress: View {
     let session: CookSession
 
     var body: some View {
         switch session.naturalState {
         case .ready:
             EmptyView()
-        case .idle:
+        case .idle, .downloading:
             Card {
                 VStack(alignment: .leading, spacing: Theme.space12) {
-                    Text("Uses Wi-Fi. Takes a minute or two.")
-                        .font(Theme.body).foregroundStyle(Theme.ink)
-                        .fixedSize(horizontal: false, vertical: true)
-                    QuietButton(title: "Get voices", systemImage: "arrow.down.to.line") {
-                        session.noteTouch()
-                        session.prepareNaturalVoices()
-                    }
-                }
-            }
-        case .downloading(let share):
-            Card {
-                VStack(alignment: .leading, spacing: Theme.space12) {
-                    Text(share < 0.99 ? "Getting more voices" : "Almost ready")
-                        .font(Theme.body).foregroundStyle(Theme.ink)
-                    VoiceProgressBar(share: share)
-                    Text("\(Int(share * 100))%")
-                        .font(Theme.caption).foregroundStyle(Theme.slate).monospacedDigit()
+                    Text("Almost ready").font(Theme.body).foregroundStyle(Theme.ink)
+                    VoiceProgressBar(share: progress)
                 }
                 .accessibilityElement(children: .combine)
             }
-        case .failed:
+        case .failed(let problem):
             Card {
-                VStack(alignment: .leading, spacing: Theme.space12) {
-                    Text("Connect to Wi-Fi to get more voices.").font(Theme.body).foregroundStyle(Theme.ink)
-                    QuietButton(title: "Try again", systemImage: "arrow.clockwise") {
-                        session.noteTouch()
-                        session.prepareNaturalVoices()
-                    }
-                }
+                Text(problem == .noSpace ? "Free up some space to mix voices." : "Connect to Wi-Fi to mix voices.")
+                    .font(Theme.body).foregroundStyle(Theme.ink)
+                    .fixedSize(horizontal: false, vertical: true)
             }
+        }
+    }
+
+    private var progress: Double {
+        if case .downloading(let share) = session.naturalState { return share }
+        return 0
+    }
+}
+
+/// The one sheet about the fetch, only when a voice is picked on cellular: wait for Wi-Fi
+/// (first) or go ahead.
+struct NotOnWiFiSheet: View {
+    let fetch: VoiceFetcher
+
+    var body: some View {
+        BottomSheet(title: "You're not on Wi-Fi", close: { fetch.waitForWiFi() }) {
+            Text("Getting voices uses a lot of data.")
+                .font(Theme.body).foregroundStyle(Theme.slate)
+                .fixedSize(horizontal: false, vertical: true)
+            PrimaryButton(title: "Wait for Wi-Fi") { fetch.waitForWiFi() }
+            QuietButton(title: "Get them now") { fetch.getNow() }
         }
     }
 }
