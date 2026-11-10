@@ -1,10 +1,11 @@
 import SwiftUI
 
-/// The make-a-voice sheet over the voices: blend two voices, or record your own. `RootView`
-/// draws it over `VoicesScreen` while the screen is `.makeVoice`; closing goes back to the voices.
+/// The make-a-voice sheet: record your own voice, or blend two. Opened from Profile's
+/// "Custom voice"; `RootView` draws it over the screen it was opened from while the screen
+/// is `.makeVoice`, and closing goes back there. Recording comes first, the simpler path.
 struct MakeVoiceSheet: View {
     let session: CookSession
-    @State private var mode: Mode = .blend
+    @State private var mode: Mode = .record
 
     enum Mode: Hashable { case blend, record }
 
@@ -13,7 +14,7 @@ struct MakeVoiceSheet: View {
             session.noteTouch()
             session.closeMenu()
         }) {
-            SegmentedPicker(options: [(value: Mode.blend, title: "Blend two"), (value: Mode.record, title: "Record mine")],
+            SegmentedPicker(options: [(value: Mode.record, title: "Record mine"), (value: Mode.blend, title: "Blend two")],
                             selection: $mode)
             switch mode {
             case .blend: BlendTwo(session: session)

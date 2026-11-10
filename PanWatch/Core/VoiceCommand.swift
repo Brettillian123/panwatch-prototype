@@ -366,7 +366,7 @@ enum AppScreen: String, Sendable, CaseIterable {
     /// Cook mode, landscape only.
     case cook
     case voices
-    /// The make-a-voice sheet over the voices.
+    /// The make-a-voice sheet, over the screen it was opened from (Profile, or the voices).
     case makeVoice
     /// The profile, which holds what used to be the settings.
     case profile
@@ -392,15 +392,23 @@ enum AppScreen: String, Sendable, CaseIterable {
     /// Cook mode is landscape only; every other screen follows the phone.
     var isLandscapeOnly: Bool { self == .cook }
 
+    /// The screen the make-a-voice sheet sits over and goes back to, opened from `screen`:
+    /// Profile's "Custom voice" row keeps Profile under it; anywhere else, the voices.
+    static func makeVoiceOrigin(_ screen: AppScreen) -> AppScreen {
+        screen == .profile ? .profile : .voices
+    }
+
     /// Where "done", "back" or a close button go from `screen`. Help goes back where it was
-    /// opened; a recipe's page to Home; the make-a-voice sheet to the voices; anything else
+    /// opened; a recipe's page to Home; the make-a-voice sheet to where it was opened
+    /// (`makeVoiceFrom`, the voices unless Profile); anything else
     /// to cook mode, as the menus always have. With no cook under way there is no cook mode
     /// to go back to, so those go Home instead of opening a dish nobody chose.
-    static func closing(_ screen: AppScreen, helpFrom: AppScreen, cookUnderWay: Bool = true) -> AppScreen {
+    static func closing(_ screen: AppScreen, helpFrom: AppScreen, makeVoiceFrom: AppScreen = .voices,
+                        cookUnderWay: Bool = true) -> AppScreen {
         switch screen {
         case .help: helpFrom == .help ? .cook : helpFrom
         case .recipe: .recipes
-        case .makeVoice: .voices
+        case .makeVoice: makeVoiceOrigin(makeVoiceFrom)
         case .recipes, .cook, .voices, .profile: cookUnderWay || screen == .cook ? .cook : .recipes
         }
     }
