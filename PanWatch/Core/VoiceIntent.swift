@@ -127,7 +127,7 @@ enum ScreenIntent: String, CaseIterable, Sendable {
         case .showVoices: "show the voices the app can speak in"
         case .nextVoice: "play the next voice in the voice list"
         case .useThisVoice: "choose the voice that was just played"
-        case .useMyVoice: "speak in the cook's own Personal Voice"
+        case .useMyVoice: "speak in the cook's own recorded voice, or their Personal Voice"
         case .quiet: "stop speaking aloud"
         case .talk: "speak aloud again"
         case .stopListening: "stop listening to the microphone for two minutes"

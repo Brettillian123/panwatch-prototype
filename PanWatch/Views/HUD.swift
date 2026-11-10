@@ -348,6 +348,13 @@ struct SayLine: View {
                 .foregroundStyle(Theme.ash)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
+        } else if let answer = session.answerText {
+            level(Theme.copper)
+            Text(answer)
+                .font(Theme.reading)
+                .foregroundStyle(Theme.copper)
+                .lineLimit(2)
+                .minimumScaleFactor(0.5)
         } else if let heard = session.heardText {
             level(Theme.copper)
             Text("Heard \u{201C}\(heard)\u{201D}")

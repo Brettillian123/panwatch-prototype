@@ -315,7 +315,7 @@ enum BoxNudge: String, CaseIterable, Sendable {
 /// Which voice "use ..." means.
 enum VoicePick: Equatable, Sendable {
     case named(String)
-    /// "Use my voice": the cook's Personal Voice.
+    /// "Use my voice": the cook's recorded voice, then their Personal Voice.
     case mine
     /// "Use this one": the row highlighted in the voice menu.
     case highlighted

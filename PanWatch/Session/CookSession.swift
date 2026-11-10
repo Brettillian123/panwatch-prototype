@@ -97,6 +97,8 @@ final class CookSession {
     private(set) var micReady = false
     /// What was last heard as a command, shown for a moment so the cook knows it landed.
     private(set) var heardText: String?
+    /// The assistant's reply, shown on the listening line while it is said.
+    private(set) var answerText: String?
     @ObservationIgnored private var heardClear: Task<Void, Never>?
     /// What listening is doing and what it last heard, for the debug panel.
     private(set) var voiceReport = VoiceReport()
@@ -174,6 +176,12 @@ final class CookSession {
         }
         listener.intentContext = { [weak self] in
             self?.intentContext
+        }
+        listener.assistantContext = { [weak self] in
+            self?.assistantContext
+        }
+        listener.onAssistant = { [weak self] reply, text in
+            self?.assistantReplied(reply, heard: text)
         }
         listener.screen = { [weak self] in
             self?.screen ?? .cook
@@ -510,6 +518,55 @@ final class CookSession {
         )
     }
 
+    /// The recipe and where the cook is, for the assistant: small, rebuilt every turn.
+    private var assistantContext: AssistantContext? {
+        let next = stepIndex + 1 < recipe.steps.count ? recipe.steps[stepIndex + 1].instruction : nil
+        return AssistantContext(
+            recipe: recipe.title,
+            stepNumber: stepIndex + 1,
+            stepCount: recipe.steps.count,
+            step: currentStep.instruction,
+            nextStep: next,
+            ingredients: recipe.ingredients,
+            timers: intentContext?.timers ?? [],
+            offer: suggestion.map { offerText($0.watch) },
+            facts: recipe.steps.flatMap { [$0.instruction, $0.spokenText] }
+                + recipe.steps.compactMap(\.watch).map { "\($0.timerMinutes) minutes" }
+                + recipe.ingredients
+        )
+    }
+
+    /// Acts on the assistant's reply. A tool's action is the command the cook could have
+    /// said and goes through `handle`, so an offer still needs its yes; an answer is spoken
+    /// through the policy's answer path and shown; a late reply only plays the
+    /// "not understood" sound.
+    private func assistantReplied(_ reply: CookAssistant.Reply, heard text: String) {
+        switch reply.outcome {
+        case .action(let action):
+            if case .setTimer(let minutes, let name?) = action {
+                usage.heard(.setTimer(minutes: minutes), text: text) // usage-log
+                if screen != .recipes { stats.noteVoice() }
+                showHeard(text)
+                cookSpokeAt = Date()
+                let label = name.prefix(1).uppercased() + name.dropFirst()
+                startTimer(label: label, minutes: minutes)
+                speak(.confirmation(visible: true), "\(label) timer set for \(Self.spoken(Double(minutes) * 60)).")
+            } else if let command = action.command {
+                handle(command, heard: text)
+            }
+        case .answer(let line):
+            if screen != .recipes { stats.noteVoice() }
+            showHeard(text)
+            cookSpokeAt = Date()
+            showAnswer(line)
+            speak(.answer, line)
+        case .timedOut, .failed:
+            speak(.notUnderstood, "")
+        case .silent:
+            break
+        }
+    }
+
     /// With voice processing, the microphone doesn't hear the app, so listening goes on
     /// while it talks and the cook can cut it short. Without it, listening pauses.
     private func speakingChanged(_ speaking: Bool) {
@@ -626,7 +683,54 @@ final class CookSession {
     func refreshVoices() {
         let all = Speaker.options()
         let natural = VoiceCatalog.menuOrder(blends: speaker.natural.allBlends).map(VoiceOption.init(natural:))
-        voiceOptions = natural + all.filter(\.isPersonal) + all.filter { !$0.isPersonal }
+        let own = speaker.own.saved.map { [VoiceOption(own: $0)] } ?? []
+        voiceOptions = natural + own + all.filter(\.isPersonal) + all.filter { !$0.isPersonal }
+    }
+
+    // MARK: The cook's own voice
+
+    /// The recorded voice: what's saved and how its model is coming along.
+    var ownVoice: OwnVoiceSource { speaker.own }
+
+    /// A recorder on the shared engine, for the recording flow.
+    func makeVoiceRecorder() -> VoiceRecorder {
+        VoiceRecorder(audio: audio)
+    }
+
+    @ObservationIgnored private var heldForRecording = false
+
+    /// Listening pauses while the cook reads the script, so it isn't taken as a command.
+    func holdListeningForRecording(_ hold: Bool) {
+        if hold, !listener.isHeld {
+            listener.hold()
+            heldForRecording = true
+        } else if !hold, heldForRecording {
+            heldForRecording = false
+            if listener.isHeld { listener.resume() }
+        }
+    }
+
+    /// Keeps a take from the recording flow as the cook's voice and starts making it.
+    func keepOwnVoice(samples: [Float], name: String) throws {
+        try speaker.own.keep(samples: samples, name: name)
+        refreshVoices()
+    }
+
+    func renameOwnVoice(_ name: String) {
+        speaker.own.rename(name)
+        refreshVoices()
+    }
+
+    /// Removes the recording and the voice made from it; the voice picked before speaks.
+    func deleteOwnVoice() {
+        if OwnVoice.isOwn(voiceID) { chooseVoice(speaker.ownFallback) }
+        speaker.own.delete()
+        refreshVoices()
+    }
+
+    /// Starts the model download for the recorded voice, from the voice menu.
+    func prepareOwnVoice() {
+        speaker.own.prepare()
     }
 
     // MARK: Natural voices
@@ -705,7 +809,7 @@ final class CookSession {
         chooseVoice(option.id)
         highlightedVoiceID = option.id
         sampleVoiceID = option.id
-        speaker.say("Hi, I'm \(option.name).", voice: option.id)
+        speaker.say(option.isOwn ? "This is your voice." : "Hi, I'm \(option.name).", voice: option.id)
     }
 
     /// The English voice called `name` (as heard, lowercased), the best of that name first.
@@ -715,9 +819,13 @@ final class CookSession {
             ?? voiceOptions.first { $0.name.lowercased().hasPrefix(name) || name.hasPrefix($0.name.lowercased()) }
     }
 
-    /// "Use my voice": the cook's Personal Voice, asking for it first if needed.
+    /// "Use my voice": the cook's recorded voice, then their Personal Voice, asking for
+    /// that first if needed.
     private func useMyVoice() {
-        if let mine = Speaker.options().first(where: \.isPersonal) {
+        if voiceOptions.isEmpty { refreshVoices() }
+        let personal = Speaker.options().first(where: \.isPersonal)
+        if let id = OwnVoice.mine(recorded: speaker.own.saved != nil, personalID: personal?.id),
+           let mine = voiceOptions.first(where: { $0.id == id }) ?? personal {
             useVoice(mine)
             return
         }
@@ -728,7 +836,7 @@ final class CookSession {
             if let mine = self.voiceOptions.first(where: \.isPersonal) {
                 self.useVoice(mine)
             } else {
-                self.speak(.answer, "There's no Personal Voice on this phone.")
+                self.speak(.answer, "There's no voice of yours yet. Record one in the voice menu.")
             }
         }
     }
@@ -1069,6 +1177,18 @@ final class CookSession {
         }
         speak(.answer, text)
     }
+
+    /// Shows the assistant's reply on the listening line for a few seconds.
+    private func showAnswer(_ text: String) {
+        answerText = text
+        answerClear?.cancel()
+        answerClear = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(8))
+            guard !Task.isCancelled else { return }
+            self?.answerText = nil
+        }
+    }
+    @ObservationIgnored private var answerClear: Task<Void, Never>?
 
     private func showHeard(_ text: String) {
         heardText = text
