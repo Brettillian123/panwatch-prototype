@@ -51,6 +51,19 @@ extension Recipe {
     /// Lists every recipe the app offers, in menu order.
     static let all: [Recipe] = [garlicButterPasta, rice, hardBoiledEggs, steamedBroccoli, oatmeal, panSearedChicken]
 
+    /// The title in lowercase words joined by hyphens: "Hard-Boiled Eggs" is "hard-boiled-eggs".
+    var slug: String {
+        title.lowercased()
+            .split(whereSeparator: { !$0.isLetter && !$0.isNumber })
+            .joined(separator: "-")
+    }
+
+    /// The name of the dish's photo in the asset catalog, "dish-<slug>".
+    var photoName: String { "dish-" + slug }
+
+    /// Where the recipe sits in `all`, for alternating tile colors; 0 for one not listed.
+    var menuIndex: Int { Recipe.all.firstIndex(where: { $0.title == title }) ?? 0 }
+
     /// Two watched steps and three unwatched ones, so the demo shows the camera switching
     /// itself on and off as the recipe moves. Once the pasta timer runs, the butter, the
     /// garlic and the draining are each called out at the right moment.
