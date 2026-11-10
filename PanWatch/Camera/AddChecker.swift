@@ -1,6 +1,7 @@
 import CoreImage
 import CoreVideo
 import Foundation
+import UIKit
 #if compiler(>=6.4) && canImport(FoundationModels)
 import FoundationModels
 #endif
@@ -55,10 +56,45 @@ enum AddModel {
         return false
     }
 
-    /// For the debug panel.
+    /// For the debug panel: whether the check runs, then whether the model is loaded.
     static var status: String {
         if !isBuilt { return "Off: this build has no AI check (needs Xcode 27)" }
-        return isAvailable ? "On: Apple's on-device model confirms each add" : "Off: needs iOS 27 and Apple Intelligence ready"
+        let available = isAvailable
+        let check = available ? "On: Apple's on-device model confirms each add" : "Off: needs iOS 27 and Apple Intelligence ready"
+        return check + "\n" + warmer.status(available: available)
+    }
+
+    /// Loads the model and the check's instructions before the first add, so a cold model
+    /// never eats the check's 3 seconds. Safe to call often: it does nothing while the model
+    /// is loading or loaded, never blocks the caller, and does nothing without iOS 27 and
+    /// Apple's model ready. Call when a cook opens and when a step that watches for an add starts.
+    static func prewarm() {
+        #if compiler(>=6.4) && canImport(FoundationModels)
+        if #available(iOS 27.0, *) {
+            guard isAvailable else { return }
+            warmer.observeAppState()
+            guard warmer.request() else { return }
+            warmNext()
+        }
+        #endif
+    }
+
+    /// Holds the warm session and the warm state for the add check.
+    private static let warmer = AddModelWarmer()
+
+    /// The app went to the background: let the model go; the system may unload it anyway.
+    fileprivate static func wentToBackground() {
+        warmer.dropped()
+    }
+
+    /// The app is back: load the model again if a cook had asked for it.
+    fileprivate static func cameBack() {
+        #if compiler(>=6.4) && canImport(FoundationModels)
+        if #available(iOS 27.0, *) {
+            guard isAvailable, warmer.returned() else { return }
+            warmNext()
+        }
+        #endif
     }
 
     /// Asks the model about `frames`, giving up after `timeout` seconds.
@@ -81,7 +117,9 @@ enum AddModel {
         #if compiler(>=6.4) && canImport(FoundationModels)
         if #available(iOS 27.0, *) {
             do {
-                return .verdict(try await verify(frames.images, context))
+                let verdict = try await verify(frames.images, context)
+                warmer.answered()
+                return .verdict(verdict)
             } catch {
                 return .failed
             }
@@ -89,6 +127,68 @@ enum AddModel {
         #endif
         return .failed
     }
+}
+
+/// The warm session the next check takes, and whether the model is loaded. Thread-safe:
+/// checks run on background tasks; the app-state notifications arrive on the main thread.
+private final class AddModelWarmer: @unchecked Sendable {
+    private let lock = NSLock()
+    private var warmth = ModelWarmth()
+    /// A `LanguageModelSession`, made and prewarmed ahead. Typed `Any` because the type
+    /// only exists on iOS 26 and later.
+    private var session: Any?
+    private var observers: [NSObjectProtocol] = []
+
+    func request() -> Bool { lock.withLock { warmth.request() } }
+    func returned() -> Bool { lock.withLock { warmth.returned() } }
+    func answered() { lock.withLock { warmth.answered() } }
+    func status(available: Bool) -> String { lock.withLock { warmth.status(available: available) } }
+
+    func dropped() {
+        lock.withLock {
+            warmth.dropped()
+            session = nil
+        }
+    }
+
+    /// The warm session, once: each check gets a fresh transcript.
+    func take() -> Any? {
+        lock.withLock {
+            defer { session = nil }
+            return session
+        }
+    }
+
+    /// Keeps `made` for the next check unless one is already waiting.
+    func store(_ made: Any) {
+        lock.withLock {
+            if session == nil { session = made }
+        }
+    }
+
+    /// Watches the app going to and from the background, once.
+    func observeAppState() {
+        lock.withLock {
+            guard observers.isEmpty else { return }
+            let center = NotificationCenter.default
+            observers = [
+                center.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: nil) { _ in
+                    AddModel.wentToBackground()
+                },
+                center.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: nil) { _ in
+                    AddModel.cameBack()
+                },
+            ]
+        }
+    }
+
+    #if compiler(>=6.4) && canImport(FoundationModels)
+    /// The warm session if there is one, or a new one.
+    @available(iOS 27.0, *)
+    func takeSession(instructions: String) -> LanguageModelSession {
+        take() as? LanguageModelSession ?? LanguageModelSession(instructions: instructions)
+    }
+    #endif
 }
 
 /// Crops handed to a background task.
@@ -142,7 +242,10 @@ extension AddModel {
 
     /// One structured question about the frames, on the on-device model. Nothing leaves the phone.
     static func verify(_ frames: [CGImage], _ context: String) async throws -> AddVerdict {
-        let session = LanguageModelSession(instructions: instructions)
+        // A fresh session per check (no earlier frames in its transcript), made and warmed
+        // ahead; the next one is warmed as soon as this one is taken.
+        let session = warmer.takeSession(instructions: instructions)
+        warmNext()
         let response = try await session.respond(generating: AddAnswer.self) {
             context
             "The frames, in order:"
@@ -153,6 +256,16 @@ extension AddModel {
         }
         let answer = response.content
         return AddVerdict(adding: answer.handAddingFood, food: answer.food, confidence: Double(answer.confidence) / 100)
+    }
+
+    /// Makes the next check's session with the check's instructions and loads it, off the
+    /// caller's thread. `prewarm(promptPrefix:)` returns at once and loads in the background.
+    static func warmNext() {
+        Task.detached(priority: .utility) {
+            let session = LanguageModelSession(instructions: instructions)
+            session.prewarm()
+            warmer.store(session)
+        }
     }
 }
 #endif
