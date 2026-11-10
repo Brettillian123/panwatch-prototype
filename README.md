@@ -186,3 +186,5 @@ PanWatch/
 Tests/        Unit tests for Core
 Package.swift Builds Core and its tests with `swift test`
 ```
+
+Photo credits and licences: see [CREDITS.md](CREDITS.md).
