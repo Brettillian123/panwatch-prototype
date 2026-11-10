@@ -196,12 +196,21 @@ struct AddConfirmGate {
     /// The latest ended check, so a rules offer just after it joins it.
     private var ended: (check: Check, fellBack: Bool, offered: Bool)?
     private var checks = 0
+    /// When a hand was last over the pot. A check's frames can't show a visit after they were taken.
+    private var lastHand = -Double.infinity
+    /// A proposal from a visit the pending check's frames can't show. Asked once that check
+    /// ends without an offer, so an answer about earlier frames never decides a later add.
+    private var waiting: (decision: DetectorDecision, rulesOffered: Bool)?
+
+    /// A hand is over the pot on this frame.
+    mutating func noteHand(at time: Double) { lastHand = time }
 
     /// The recipe step changed: a pending check's answer is no longer wanted.
     mutating func setStep(_ newStep: Int) -> Outcome? {
         guard newStep != step else { return nil }
         step = newStep
         ended = nil
+        waiting = nil
         guard let check = pending else { return nil }
         pending = nil
         return Outcome(check: check, resolution: .stale, verdict: nil, offer: nil)
@@ -210,31 +219,51 @@ struct AddConfirmGate {
     /// Feeds one frame's decisions: today's rules' (any outcome) and the looser rules' candidate.
     mutating func receive(rules: DetectorDecision?, candidate: DetectorDecision?, at time: Double, context: String) -> Step {
         let rulesOffer = rules?.outcome == .addition ? rules : nil
-        guard checking else { return Step(offer: rulesOffer) }
+        guard checking else {
+            // The check went away: a rules offer still waiting is made, as the rules alone would.
+            let held = waiting?.rulesOffered == true ? waiting?.decision : nil
+            waiting = nil
+            return Step(offer: rulesOffer ?? held)
+        }
         var result = Step(ended: tick(at: time))
         if let offer = result.ended?.offer { result.offer = offer }
-        guard let proposed = rulesOffer ?? candidate else { return result }
+        let proposed = rulesOffer ?? candidate
 
         if var check = pending {
-            // Two candidates close together make one check.
-            check.joined += 1
-            if let rulesOffer {
-                check.rulesOffered = true
-                check.decision = rulesOffer
+            guard let proposed else { return result }
+            if lastHand > check.time {
+                // A hand came back after this check's frames were taken: a different add.
+                waiting = (rulesOffer ?? waiting?.decision ?? proposed, rulesOffer != nil || waiting?.rulesOffered == true)
+            } else {
+                // Two candidates close together make one check.
+                check.joined += 1
+                if let rulesOffer {
+                    check.rulesOffered = true
+                    check.decision = rulesOffer
+                }
+                pending = check
             }
-            pending = check
-        } else if let last = ended, time - last.check.time <= settings.joinWindow {
+            return result
+        }
+        if waiting == nil, let last = ended, time - last.check.time <= settings.joinWindow,
+           last.offered || lastHand <= last.check.time {
             // Part of an add already judged. If the model never answered, today's rules decide.
             if let rulesOffer, last.fellBack, !last.offered {
                 ended?.offered = true
                 result.offer = rulesOffer
             }
-        } else {
-            checks += 1
-            let check = Check(id: checks, step: step, time: time, context: context, decision: proposed, rulesOffered: rulesOffer != nil)
-            pending = check
-            result.ask = check
+            return result
         }
+        var next = waiting
+        waiting = nil
+        if let proposed {
+            next = (rulesOffer ?? next?.decision ?? proposed, rulesOffer != nil || next?.rulesOffered == true)
+        }
+        guard let next else { return result }
+        checks += 1
+        let check = Check(id: checks, step: step, time: time, context: context, decision: next.decision, rulesOffered: next.rulesOffered)
+        pending = check
+        result.ask = check
         return result
     }
 
@@ -271,6 +300,8 @@ struct AddConfirmGate {
         case .declined, .unsure, .stale: offer = nil
         }
         pending = nil
+        // An offer was just made: a second one this close would be the same add twice.
+        if offer != nil { waiting = nil }
         ended = (check, resolution.fellBack, offer != nil)
         return Outcome(check: check, resolution: resolution, verdict: verdict, offer: offer)
     }
@@ -281,9 +312,9 @@ extension DetectorDecision {
     /// be taken for stirring may have started with an add (pour, then stir), so it is asked
     /// about too; an offer always carries the `addition` outcome.
     var asCandidate: DetectorDecision {
-        guard outcome != .addition else { return self }
+        // Below zero, so it never shares an id with one of today's rules' decisions in a list.
         return DetectorDecision(
-            id: id, time: time, outcome: .addition, changedFraction: changedFraction, additionThreshold: additionThreshold,
+            id: -(id + 1), time: time, outcome: .addition, changedFraction: changedFraction, additionThreshold: additionThreshold,
             medianLumaShift: medianLumaShift, dwell: dwell, handOpened: handOpened, released: released,
             settledCleanly: settledCleanly, before: before, after: after, changeAlone: changeAlone
         )

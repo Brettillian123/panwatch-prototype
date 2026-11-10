@@ -45,6 +45,7 @@ struct CheckedRun {
                 region: CounterView.region, patch: frame.patch, armed: true
             )
             if seen.candidate != nil || seen.decision?.outcome == .addition { result.proposals.append(frame.time - event) }
+            if seen.handInZone { gate.noteHand(at: frame.time) }
             let step = gate.receive(rules: seen.decision, candidate: seen.candidate, at: frame.time, context: run.step.rawValue)
             if step.offer != nil { result.offers.append(frame.time - event) }
             if let check = step.ask {
