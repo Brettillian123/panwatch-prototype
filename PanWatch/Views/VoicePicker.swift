@@ -17,8 +17,12 @@ struct VoicePicker: View {
                     VStack(alignment: .leading, spacing: Theme.gap * 2) {
                         NaturalVoices(session: session, rows: { rows($0) })
                         SpeedControl(session: session)
-                        group("Your voice") { personalRows }
-                        let others = session.voiceOptions.filter { !$0.isPersonal && !$0.isNatural }
+                        group("Your voice") {
+                            OwnVoiceRows(session: session, chosenID: chosenID)
+                            RowRule()
+                            personalRows
+                        }
+                        let others = session.voiceOptions.filter { !$0.isPersonal && !$0.isNatural && !$0.isOwn }
                         let best = others.filter { $0.quality == .premium || $0.quality == .enhanced }
                         let rest = others.filter { $0.quality != .premium && $0.quality != .enhanced }
                         if !best.isEmpty {
@@ -74,7 +78,7 @@ struct VoicePicker: View {
                     .foregroundStyle(Theme.ash)
                 Spacer(minLength: Theme.gap)
                 if personalStatus == .notDetermined {
-                    Button("Use my voice") {
+                    Button("Use Personal Voice") {
                         session.noteTouch()
                         Task {
                             personalStatus = await Speaker.requestPersonalVoice()
@@ -98,11 +102,11 @@ struct VoicePicker: View {
     /// Every state of the cook's own voice, drawn: asking, none made, not allowed, no support.
     private var personalNote: String {
         switch personalStatus {
-        case nil: "Asking for your voice"
-        case .authorized?: "None on this phone"
-        case .denied?: "Not allowed"
-        case .unsupported?: "Not on this phone"
-        default: "Not set up"
+        case nil: "Asking about Personal Voice"
+        case .authorized?: "No Personal Voice on this phone"
+        case .denied?: "Personal Voice not allowed"
+        case .unsupported?: "No Personal Voice on this phone"
+        default: "Personal Voice not set up"
         }
     }
 

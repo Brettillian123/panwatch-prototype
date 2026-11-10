@@ -27,6 +27,8 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     var source: SpeechSource = AppleSpeechSource()
     /// The natural (Kokoro) voices, for any voice id `VoiceCatalog` marks as natural.
     let natural = KokoroVoice()
+    /// The cook's own recorded voice (Pocket TTS), for `OwnVoice.id`.
+    let own = OwnVoiceSource()
 
     nonisolated private static let speedKey = "voiceSpeed"
     /// How fast every voice talks, kept between launches.
@@ -53,7 +55,19 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     nonisolated private static let voiceKey = "voiceIdentifier"
     /// The voice picked in the voice menu, kept between launches. Nil uses `best`.
     var voiceIdentifier: String? = UserDefaults.standard.string(forKey: Speaker.voiceKey) {
-        didSet { UserDefaults.standard.set(voiceIdentifier, forKey: Self.voiceKey) }
+        didSet {
+            UserDefaults.standard.set(voiceIdentifier, forKey: Self.voiceKey)
+            if OwnVoice.isOwn(voiceIdentifier) {
+                ownFallback = OwnVoice.fallback(previous: oldValue, current: ownFallback)
+                own.prepare()
+            }
+        }
+    }
+
+    nonisolated private static let ownFallbackKey = "ownVoiceFallback"
+    /// The voice picked before the cook's own; it speaks while that one loads or if it fails.
+    private(set) var ownFallback: String? = UserDefaults.standard.string(forKey: Speaker.ownFallbackKey) {
+        didSet { UserDefaults.standard.set(ownFallback, forKey: Self.ownFallbackKey) }
     }
 
     var isSpeaking: Bool { currentText != nil }
@@ -80,6 +94,30 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         direct.delegate = self
         // A natural voice chosen before loads now, so the first prompt can use it.
         if VoiceCatalog.isNatural(voiceIdentifier) { natural.prepare() }
+        if OwnVoice.isOwn(voiceIdentifier) {
+            own.prepare()
+            if VoiceCatalog.isNatural(ownFallback) { natural.prepare() }
+        }
+        own.fallback = { [weak self] text, format, buffer, done in
+            guard let self else { return done(false) }
+            self.speakInstead(text, format: format, buffer: buffer, done: done)
+        }
+    }
+
+    /// The cook's own voice isn't ready or failed: the voice picked before it says `text`.
+    private func speakInstead(
+        _ text: String, format: AVAudioFormat,
+        buffer: @escaping @Sendable (AVAudioPCMBuffer) -> Void,
+        done: @escaping @Sendable (Bool) -> Void
+    ) {
+        let id = ownFallback
+        if VoiceCatalog.isNatural(id) {
+            natural.speed = speed
+            natural.synthesize(text, voice: id, format: format, buffer: buffer, done: done)
+        } else {
+            (source as? AppleSpeechSource)?.rate = AVSpeechUtteranceDefaultSpeechRate * speed.factor
+            source.synthesize(text, voice: id, format: format, buffer: buffer, done: done)
+        }
     }
 
     /// Speaks `text`, cutting off anything still being said. `then` runs once the text
@@ -114,7 +152,9 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         }
         self.playback = playback
         let voiceSource: SpeechSource
-        if VoiceCatalog.isNatural(chosen) {
+        if OwnVoice.isOwn(chosen) {
+            voiceSource = own
+        } else if VoiceCatalog.isNatural(chosen) {
             natural.speed = speed
             voiceSource = natural
         } else {
@@ -167,6 +207,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         let id = utterance
         source.cancel()
         natural.cancel()
+        own.cancel()
         audio.player.stop()
         if direct.isSpeaking { direct.stopSpeaking(at: .immediate) }
         ended(id: id, finished: false)
@@ -187,7 +228,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         cancelsEcho = false
         playback = nil
         let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = Self.voice(for: voice)
+        utterance.voice = Self.voice(for: OwnVoice.isOwn(voice) ? ownFallback : voice)
         utterance.rate = AVSpeechUtteranceDefaultSpeechRate * speed.factor
         direct.speak(utterance)
     }
@@ -350,6 +391,8 @@ struct VoiceOption: Identifiable, Equatable {
     var detail = ""
     var accent: VoiceAccent?
     var gender: VoiceGender?
+    /// The cook's own recorded voice.
+    var isOwn = false
 
     init(
         id: String, name: String, quality: AVSpeechSynthesisVoiceQuality, region: String, isPersonal: Bool
@@ -367,5 +410,10 @@ struct VoiceOption: Identifiable, Equatable {
         detail = voice.detail
         accent = voice.accent
         gender = voice.gender
+    }
+
+    init(own voice: SavedOwnVoice) {
+        self.init(id: OwnVoice.id, name: voice.name, quality: .premium, region: "Recorded by you", isPersonal: false)
+        isOwn = true
     }
 }

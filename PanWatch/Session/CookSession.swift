@@ -620,7 +620,54 @@ final class CookSession {
     func refreshVoices() {
         let all = Speaker.options()
         let natural = VoiceCatalog.menuOrder(blends: speaker.natural.allBlends).map(VoiceOption.init(natural:))
-        voiceOptions = natural + all.filter(\.isPersonal) + all.filter { !$0.isPersonal }
+        let own = speaker.own.saved.map { [VoiceOption(own: $0)] } ?? []
+        voiceOptions = natural + own + all.filter(\.isPersonal) + all.filter { !$0.isPersonal }
+    }
+
+    // MARK: The cook's own voice
+
+    /// The recorded voice: what's saved and how its model is coming along.
+    var ownVoice: OwnVoiceSource { speaker.own }
+
+    /// A recorder on the shared engine, for the recording flow.
+    func makeVoiceRecorder() -> VoiceRecorder {
+        VoiceRecorder(audio: audio)
+    }
+
+    @ObservationIgnored private var heldForRecording = false
+
+    /// Listening pauses while the cook reads the script, so it isn't taken as a command.
+    func holdListeningForRecording(_ hold: Bool) {
+        if hold, !listener.isHeld {
+            listener.hold()
+            heldForRecording = true
+        } else if !hold, heldForRecording {
+            heldForRecording = false
+            if listener.isHeld { listener.resume() }
+        }
+    }
+
+    /// Keeps a take from the recording flow as the cook's voice and starts making it.
+    func keepOwnVoice(samples: [Float], name: String) throws {
+        try speaker.own.keep(samples: samples, name: name)
+        refreshVoices()
+    }
+
+    func renameOwnVoice(_ name: String) {
+        speaker.own.rename(name)
+        refreshVoices()
+    }
+
+    /// Removes the recording and the voice made from it; the voice picked before speaks.
+    func deleteOwnVoice() {
+        if OwnVoice.isOwn(voiceID) { chooseVoice(speaker.ownFallback) }
+        speaker.own.delete()
+        refreshVoices()
+    }
+
+    /// Starts the model download for the recorded voice, from the voice menu.
+    func prepareOwnVoice() {
+        speaker.own.prepare()
     }
 
     // MARK: Natural voices
@@ -699,7 +746,7 @@ final class CookSession {
         chooseVoice(option.id)
         highlightedVoiceID = option.id
         sampleVoiceID = option.id
-        speaker.say("Hi, I'm \(option.name).", voice: option.id)
+        speaker.say(option.isOwn ? "This is your voice." : "Hi, I'm \(option.name).", voice: option.id)
     }
 
     /// The English voice called `name` (as heard, lowercased), the best of that name first.
@@ -709,9 +756,13 @@ final class CookSession {
             ?? voiceOptions.first { $0.name.lowercased().hasPrefix(name) || name.hasPrefix($0.name.lowercased()) }
     }
 
-    /// "Use my voice": the cook's Personal Voice, asking for it first if needed.
+    /// "Use my voice": the cook's recorded voice, then their Personal Voice, asking for
+    /// that first if needed.
     private func useMyVoice() {
-        if let mine = Speaker.options().first(where: \.isPersonal) {
+        if voiceOptions.isEmpty { refreshVoices() }
+        let personal = Speaker.options().first(where: \.isPersonal)
+        if let id = OwnVoice.mine(recorded: speaker.own.saved != nil, personalID: personal?.id),
+           let mine = voiceOptions.first(where: { $0.id == id }) ?? personal {
             useVoice(mine)
             return
         }
@@ -722,7 +773,7 @@ final class CookSession {
             if let mine = self.voiceOptions.first(where: \.isPersonal) {
                 self.useVoice(mine)
             } else {
-                self.speak(.answer, "There's no Personal Voice on this phone.")
+                self.speak(.answer, "There's no voice of yours yet. Record one in the voice menu.")
             }
         }
     }

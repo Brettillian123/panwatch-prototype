@@ -5,6 +5,7 @@ import SwiftUI
 /// it is now, the phrase that changes it, and a word button that does the same.
 struct SettingsScreen: View {
     let session: CookSession
+    @State private var showCredits = false
 
     var body: some View {
         MenuScreen(session: session, title: "Settings") {
@@ -67,6 +68,13 @@ struct SettingsScreen: View {
                     row("What can I say", now: nil, button: "Open", say: "help") {
                         session.showHelp()
                     }
+                    rule
+                    row("Credits", now: nil, button: showCredits ? "Hide" : "Show", say: nil) {
+                        showCredits.toggle()
+                    }
+                }
+                if showCredits {
+                    credits
                 }
             }
         }
@@ -74,7 +82,30 @@ struct SettingsScreen: View {
 
     /// The name of the voice that speaks now: the one chosen, or the best on the phone.
     private var voiceName: String {
-        Speaker.voice(for: session.voiceID)?.name ?? "System"
+        if let id = session.voiceID, let option = session.voiceOptions.first(where: { $0.id == id }) {
+            return option.name
+        }
+        return Speaker.voice(for: session.voiceID)?.name ?? "System"
+    }
+
+    /// The voice models' and libraries' notices.
+    private var credits: some View {
+        VStack(alignment: .leading, spacing: Theme.gap) {
+            ForEach(Credits.notices) { notice in
+                VStack(alignment: .leading, spacing: Theme.tight) {
+                    Text(notice.title)
+                        .font(Theme.control)
+                        .foregroundStyle(Theme.flour)
+                    Text(notice.text)
+                        .font(Theme.detail)
+                        .foregroundStyle(Theme.ash)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .textSelection(.enabled)
+                }
+            }
+        }
+        .padding(.vertical, Theme.gap)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var rule: some View {
