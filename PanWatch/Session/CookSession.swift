@@ -161,6 +161,12 @@ final class CookSession {
         listener.spokenText = { [weak self] in
             self?.speaker.currentText
         }
+        // A "yes" or "okay" over the app's own question is the answer to it.
+        listener.awaitingAnswer = { [weak self] in
+            guard let self else { return false }
+            return self.suggestion != nil || self.question != nil || self.isMarkingPan
+                || (self.needsPan && self.offeredPan != nil)
+        }
         // The cook started talking over a prompt: stop it. It isn't read again unless asked.
         listener.onBargeIn = { [weak self] in
             self?.cookSpokeAt = Date()
@@ -673,7 +679,7 @@ final class CookSession {
         guard let next = VoiceCatalog.next(after: current, accent: accent, gender: gender, in: list),
               let option = voiceOptions.first(where: { $0.id == next.id })
         else {
-            say("There's no voice like that.")
+            speak(.answer, "There's no voice like that.")
             return
         }
         useVoice(option)
