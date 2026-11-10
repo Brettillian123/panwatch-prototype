@@ -37,6 +37,14 @@ jobs:
       - name: List the app's extensions
         run: ls -la build/Build/Products/Debug-iphoneos/PanWatch.app/PlugIns 2>/dev/null || echo "no PlugIns folder"
 
+      - name: Check the voice previews are inside the app
+        run: |
+          WANT=$(ls PanWatch/Resources/VoicePreviews/*.m4a | wc -l | tr -d ' ')
+          HAVE=$(find build/Build/Products/Debug-iphoneos/PanWatch.app -name "*.m4a" | wc -l | tr -d ' ')
+          echo "voice previews: $HAVE in the app, $WANT in the repo"
+          find build/Build/Products/Debug-iphoneos/PanWatch.app -name "*.m4a" | head -3
+          test "$HAVE" -ge "$WANT" && test "$WANT" -gt 0
+
       - name: Upload the build log
         if: always()
         uses: actions/upload-artifact@v4
