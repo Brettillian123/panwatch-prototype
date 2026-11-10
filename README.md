@@ -36,16 +36,15 @@ You need an Xcode version at least as new as your iPhone's iOS (iOS 27 needs Xco
    components. If it asks which platforms to download, iOS is the one you need.
 2. **Sign in:** Xcode > Settings > Apple Accounts (just "Accounts" in older Xcode) > `+`
    at the bottom left > sign in with your Apple ID. A free Apple ID works.
-3. **Get the code.** Simplest: in Safari, sign in to github.com, open
-   `Brettillian123/panwatch-prototype`, click the green **Code** button > **Download ZIP**.
-   Safari unzips it into Downloads as `panwatch-prototype-main` (double-click the .zip if
-   it didn't). Open **PanWatch.xcodeproj** inside it (not Package.swift).
+3. **Get the code.** The repo is public, so no GitHub sign-in is needed. In Safari, open
+   `github.com/Brettillian123/panwatch-prototype`, click the green **Code** button >
+   **Download ZIP**. Safari unzips it into Downloads as `panwatch-prototype-main`
+   (double-click the .zip if it didn't). Open **PanWatch.xcodeproj** inside it (not
+   Package.swift).
 
-   Or clone it: Xcode > Settings > Source Control > Add Account > GitHub. Xcode asks for
-   a token. On github.com go to Settings > Developer settings > Personal access tokens >
-   Tokens (classic) > Generate new token, tick **repo**, generate, and paste it into
-   Xcode. Then Integrate > Clone (or "Clone Git Repository" on the welcome window), pick
-   `panwatch-prototype`, choose a folder, and open **PanWatch.xcodeproj** if asked.
+   Or clone it: in Xcode, Integrate > Clone (or "Clone Git Repository" on the welcome
+   window), paste `https://github.com/Brettillian123/panwatch-prototype.git`, choose a
+   folder, and open **PanWatch.xcodeproj** if asked.
 4. **Set signing:** click the blue PanWatch project at the top of the left sidebar, then
    the PanWatch target > Signing & Capabilities. If there is a **Set Up Signing** button,
    click it, pick your name (Personal Team) as the Team, and click Set Up. Otherwise pick
