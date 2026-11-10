@@ -12,6 +12,7 @@ struct DebugPanel: View {
                 liveSection
                 voiceSection
                 decisionSection
+                AIChecksSection(checks: session.aiChecks) // AI confirm
                 practiceSection
                 statsSection
                 usageSection
