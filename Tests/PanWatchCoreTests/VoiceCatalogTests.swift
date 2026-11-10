@@ -2,14 +2,15 @@ import Testing
 @testable import PanWatchCore
 
 struct VoiceCatalogTests {
-    @Test func tenVoicesPlusTheMix() {
-        #expect(VoiceCatalog.voices.count == 10)
+    @Test func fifteenVoicesBestGradedFirstPlusTheMix() {
+        #expect(VoiceCatalog.voices.count == 15)
         let packs = VoiceCatalog.voices.map(\.pack)
         #expect(packs == [
-            "af_heart", "af_bella", "af_nicole", "af_sarah", "af_kore",
-            "am_michael", "am_fenrir", "bf_emma", "bm_george", "bm_fable",
+            "af_heart", "af_bella", "af_nicole", "bf_emma",
+            "af_aoede", "af_kore", "af_sarah", "am_fenrir", "am_michael", "am_puck",
+            "af_alloy", "af_nova", "bf_isabella", "bm_fable", "bm_george",
         ])
-        #expect(Set(VoiceCatalog.voices.map(\.name)).count == 10)
+        #expect(Set(VoiceCatalog.voices.map(\.name)).count == 15)
         #expect(VoiceCatalog.defaultVoice.pack == "af_heart")
         let mix = VoiceCatalog.bellaAndSarah
         #expect(VoiceCatalog.isValidPack(mix.pack))
@@ -40,12 +41,11 @@ struct VoiceCatalogTests {
         #expect(VoiceCatalog.pack(fromID: "kokoro:af_Heart") == nil)
     }
 
-    @Test func menuOrderGroupsByAccent() {
+    @Test func menuOrderIsBestGradedFirstThenMixes() {
         let blend = VoiceBlend(name: "Sunday", first: "bm_george", second: "af_bella", balance: 0.7, pack: "bm_mix1")
         let list = VoiceCatalog.menuOrder(blends: [blend])
-        #expect(list.count == 11)
-        #expect(list.prefix(7).allSatisfy { $0.accent == .american })
-        #expect(list[7..<10].allSatisfy { $0.accent == .british })
+        #expect(list.count == 16)
+        #expect(Array(list.prefix(15)) == VoiceCatalog.voices)
         #expect(list.last?.name == "Sunday")
         #expect(list.last?.accent == .british && list.last?.gender == .male)
     }
@@ -54,10 +54,10 @@ struct VoiceCatalogTests {
         let list = VoiceCatalog.menuOrder(blends: [])
         let british = VoiceCatalog.next(after: nil, accent: .british, gender: nil, in: list)
         #expect(british?.pack == "bf_emma")
-        #expect(VoiceCatalog.next(after: british?.id, accent: .british, gender: nil, in: list)?.pack == "bm_george")
-        #expect(VoiceCatalog.next(after: "kokoro:bm_fable", accent: .british, gender: nil, in: list)?.pack == "bf_emma")
-        #expect(VoiceCatalog.next(after: "kokoro:af_heart", accent: nil, gender: .male, in: list)?.pack == "am_michael")
-        #expect(VoiceCatalog.next(after: "kokoro:am_michael", accent: .american, gender: .male, in: list)?.pack == "am_fenrir")
+        #expect(VoiceCatalog.next(after: british?.id, accent: .british, gender: nil, in: list)?.pack == "bf_isabella")
+        #expect(VoiceCatalog.next(after: "kokoro:bm_george", accent: .british, gender: nil, in: list)?.pack == "bf_emma")
+        #expect(VoiceCatalog.next(after: "kokoro:af_heart", accent: nil, gender: .male, in: list)?.pack == "am_fenrir")
+        #expect(VoiceCatalog.next(after: "kokoro:am_michael", accent: .american, gender: .male, in: list)?.pack == "am_puck")
         #expect(VoiceCatalog.next(after: nil, accent: .british, gender: .female, in: []) == nil)
     }
 

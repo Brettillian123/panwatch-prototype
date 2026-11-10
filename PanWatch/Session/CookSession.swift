@@ -124,6 +124,9 @@ final class CookSession {
     /// One engine for speaking and listening, so the microphone can hear the cook over the app.
     private let audio = AudioIO()
     private let speaker: Speaker
+    /// Gets the natural voices onto the phone on its own, and keeps a voice picked before
+    /// it has arrived.
+    let voiceFetch: VoiceFetcher
     private let listener: VoiceListener
     private let alarms = CookAlarms()
     @ObservationIgnored private var started = false
@@ -143,6 +146,7 @@ final class CookSession {
 
     init() {
         speaker = Speaker(audio: audio)
+        voiceFetch = VoiceFetcher(natural: speaker.natural, settled: speaker.voiceIdentifier)
         listener = VoiceListener(audio: audio)
         settings = Self.loadSettings()
         camera.analyzer.update(settings: effectiveSettings)
@@ -170,6 +174,11 @@ final class CookSession {
             self?.speakingChanged(speaking)
         }
         voiceID = speaker.voiceIdentifier
+        // A voice picked before it arrived takes over by itself, from the next line on.
+        voiceFetch.onSettled = { [weak self] id in
+            self?.voiceID = id
+            self?.speaker.voiceIdentifier = id
+        }
         listener.onReport = { [weak self] report in
             self?.voiceReport = report
             self?.usage.listened(report) // usage-log
@@ -220,6 +229,7 @@ final class CookSession {
             self.welcome = nil
         }
         AddModel.prewarm() // AI prewarm: load the model before the first add
+        voiceFetch.begin()
         // The camera runs only in cook mode (`syncCamera`); wait for it so its prompt comes first.
         refreshArming()
         await cameraWork?.value
@@ -624,17 +634,29 @@ final class CookSession {
 
     // MARK: Voice menu
 
-    /// Saves the voice for every prompt from now on; nil goes back to the best installed.
+    /// Makes `id` the app's voice from now on; nil goes back to the best installed. A
+    /// natural voice not on the phone yet is kept and takes over once it arrives; until
+    /// then the voice before it keeps speaking. A line being read aloud finishes as it is.
     func chooseVoice(_ id: String?) {
-        voiceID = id
-        speaker.voiceIdentifier = id
+        let speaking = voiceFetch.choose(id)
+        voiceID = speaking
+        speaker.voiceIdentifier = speaking
     }
 
-    /// Plays a line in `id`'s voice, even with the voice muted, since the cook asked for it.
+    /// The voice whose row has the check (or the ring while it arrives).
+    var markedVoiceID: String? { voiceFetch.choice.marked ?? Speaker.best?.identifier }
+
+    /// Plays `id`'s preview, even with the voice muted, since the cook asked for it: the
+    /// recording bundled with the app for a catalogue voice, so it needs nothing fetched;
+    /// a line spoken live for a mix, the cook's own voice or a built-in one.
     /// Listening pauses for it like any other prompt.
     func playSample(voiceID id: String) {
         sampleVoiceID = id
-        speaker.say("Step two. Add the garlic and stir until it smells toasty.", voice: id)
+        if let clip = VoicePreview.url(for: id) {
+            speaker.say(VoiceCatalog.previewLine, voice: id, clip: clip)
+        } else {
+            speaker.say("Step two. Add the garlic and stir until it smells toasty.", voice: id)
+        }
     }
 
     func stopSample() {
@@ -823,12 +845,18 @@ final class CookSession {
 
     // MARK: Natural voices
 
-    /// The Kokoro voices' download and load, for the voice menu.
+    /// The Kokoro voices' fetch and load, for the voice menu.
     var naturalState: KokoroVoice.State { speaker.natural.state }
 
-    /// Starts the natural voices' download, from the voice menu.
+    /// The mixer needs the voices: asks for them as a pick would (Wi-Fi: now; cellular:
+    /// the one sheet; offline: when a connection returns).
     func prepareNaturalVoices() {
-        speaker.natural.prepare()
+        if speaker.natural.isReady || speaker.natural.isLoading { return }
+        if KokoroVoice.isOnPhone {
+            speaker.natural.prepare()
+        } else {
+            voiceFetch.fetchForMixing()
+        }
     }
 
     /// How fast every voice talks; nil until first read from `Speaker`.
@@ -892,10 +920,19 @@ final class CookSession {
         playSample(voiceID: next.id)
     }
 
-    /// "Use Samantha": chooses the voice and says hello in it.
+    /// A tap on a row, or "use Samantha": chooses the voice at once and says hello in it.
+    /// A natural voice still arriving plays its recorded preview instead, so the cook hears
+    /// the voice they picked, not the stand-in. While a step is being read aloud nothing
+    /// cuts in: the new voice reads the next line.
     func useVoice(_ option: VoiceOption) {
+        let readingStep = speaker.isSpeaking && sampleVoiceID == nil
         chooseVoice(option.id)
         highlightedVoiceID = option.id
+        guard !readingStep else { return }
+        if voiceID != option.id, VoicePreview.url(for: option.id) != nil {
+            playSample(voiceID: option.id)
+            return
+        }
         sampleVoiceID = option.id
         speaker.say(option.isOwn ? "This is your voice." : "Hi, I'm \(option.name).", voice: option.id)
     }

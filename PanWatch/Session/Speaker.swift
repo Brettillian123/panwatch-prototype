@@ -29,6 +29,8 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     let natural = KokoroVoice()
     /// The cook's own recorded voice (Pocket TTS), for `OwnVoice.id`.
     let own = OwnVoiceSource()
+    /// The bundled voice previews.
+    private let clips = ClipSource()
 
     nonisolated private static let speedKey = "voiceSpeed"
     /// How fast every voice talks, kept between launches.
@@ -92,11 +94,9 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         self.audio = audio
         super.init()
         direct.delegate = self
-        // A natural voice chosen before loads now, so the first prompt can use it.
-        if VoiceCatalog.isNatural(voiceIdentifier) { natural.prepare() }
+        // The natural voices load in the background once launch has settled (VoiceFetcher).
         if OwnVoice.isOwn(voiceIdentifier) {
             own.prepare()
-            if VoiceCatalog.isNatural(ownFallback) { natural.prepare() }
         }
         own.fallback = { [weak self] text, format, buffer, done in
             guard let self else { return done(false) }
@@ -125,7 +125,8 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     /// for playing a sample in the voice menu.
     /// `earcon` plays first, through the same engine, so echo cancellation covers it too;
     /// with empty `text`, the earcon is all that plays.
-    func say(_ text: String, voice: String? = nil, earcon: Earcon? = nil, then: (() -> Void)? = nil) {
+    /// `clip`: a bundled recording that says `text`, played instead of making the audio.
+    func say(_ text: String, voice: String? = nil, clip: URL? = nil, earcon: Earcon? = nil, then: (() -> Void)? = nil) {
         cutOff()
         // An earcon can't play without the engine; the words still can.
         if text.isEmpty, earcon == nil || !audio.start() {
@@ -152,7 +153,10 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         }
         self.playback = playback
         let voiceSource: SpeechSource
-        if OwnVoice.isOwn(chosen) {
+        if let clip {
+            clips.clip = clip
+            voiceSource = clips
+        } else if OwnVoice.isOwn(chosen) {
             voiceSource = own
         } else if VoiceCatalog.isNatural(chosen) {
             natural.speed = speed
