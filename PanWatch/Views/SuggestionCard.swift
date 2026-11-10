@@ -1,9 +1,10 @@
 import SwiftUI
 
-/// "Looks like the pasta went in. Start the 9-minute pasta timer?" A detection is always
-/// an offer, never an action: a false alarm costs one tap, and a miss costs nothing.
-/// An opaque Iron card, no border and no glow; the bar under the buttons drains over the
-/// 20 seconds before the offer goes away by itself.
+/// "Looks like the pasta went in. Start a 9-minute timer?" A detection is always an offer,
+/// never an action: a false alarm costs one tap, and a miss costs nothing. Blush, radius 20,
+/// 164 tall, in place of the timer card and the buttons. A thin beet line along the bottom
+/// edge drains over the 20 seconds before the offer goes away by itself. The before and
+/// after pictures are in the debug panel.
 struct SuggestionCard: View {
     let offer: TimerSuggestion
     let accept: () -> Void
@@ -17,45 +18,45 @@ struct SuggestionCard: View {
     @State private var left: CGFloat = 1
 
     var body: some View {
-        HStack(alignment: .top, spacing: 24) {
-            if let before = offer.before, let after = offer.after {
-                VStack(alignment: .leading, spacing: Theme.tight) {
-                    HStack(alignment: .top, spacing: Theme.tight) {
-                        Thumbnail(image: before, caption: "Before", width: 120)
-                        Thumbnail(image: after, caption: "After", width: 120)
-                    }
-                    Text("\(Int((offer.decision.changedFraction * 100).rounded()))% of the pan changed")
-                        .font(Theme.detail)
-                        .foregroundStyle(Theme.ash)
+        let shape = RoundedRectangle(cornerRadius: Theme.radiusCard, style: .continuous)
+        VStack(alignment: .leading, spacing: 4) {
+            Text("Looks like the \(offer.watch.ingredient) went in.")
+                .font(Theme.cookCaption)
+                .foregroundStyle(Theme.slate)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+            Text("Start a \(offer.watch.timerMinutes)-minute timer?")
+                .font(Theme.cookBodyStrong)
+                .foregroundStyle(Theme.ink)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+            Spacer(minLength: Theme.space8)
+            HStack(spacing: Theme.space12) {
+                Button { touched(); dismiss() } label: {
+                    Text("Not now")
+                        .font(Theme.cookBodyStrong)
+                        .lineLimit(1)
+                        .frame(maxWidth: .infinity, minHeight: 68)
                 }
-                .accessibilityHidden(true)
-            }
-            VStack(alignment: .leading, spacing: Theme.tight) {
-                Text("Looks like the \(offer.watch.ingredient) went in")
-                    .font(Theme.reading)
-                    .foregroundStyle(Theme.flour)
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.7)
-                Text("Start the \(offer.watch.timerMinutes)-minute \(offer.watch.timerLabel.lowercased()) timer?")
-                    .font(Theme.control)
-                    .foregroundStyle(Theme.flour)
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.85)
-                HStack(spacing: Theme.gap) {
-                    Button("Not now") { touched(); dismiss() }
-                        .buttonStyle(WordButtonStyle())
-                    Button { touched(); accept() } label: {
-                        Label("Start timer", systemImage: "timer")
-                    }
-                    .buttonStyle(WordButtonStyle(kind: .primary))
-                }
-                .padding(.top, Theme.tight)
-                drainingBar
-                    .padding(.top, Theme.tight)
+                .buttonStyle(KitPressStyle(fill: Theme.card, foreground: Theme.ink))
+                .accessibilityLabel("Not now")
+                PrimaryButton(title: "Start timer", size: .cook) { touched(); accept() }
             }
         }
-        .padding(24)
-        .background(Theme.panel, in: RoundedRectangle(cornerRadius: Theme.panelRadius, style: .continuous))
+        .padding(.horizontal, 20)
+        .padding(.vertical, 18)
+        .frame(maxWidth: .infinity, minHeight: 164, maxHeight: 164, alignment: .topLeading)
+        .background(Theme.blush, in: shape)
+        .overlay(alignment: .bottomLeading) {
+            GeometryReader { proxy in
+                Rectangle()
+                    .fill(Theme.beet)
+                    .frame(width: proxy.size.width * left, height: 3)
+                    .frame(maxHeight: .infinity, alignment: .bottom)
+            }
+            .accessibilityHidden(true)
+        }
+        .clipShape(shape)
         .onAppear {
             withAnimation(.linear(duration: Self.timeout)) { left = 0 }
         }
@@ -67,23 +68,9 @@ struct SuggestionCard: View {
             } catch {}
         }
     }
-
-    /// Ash on the rule color, emptying from the left.
-    private var drainingBar: some View {
-        GeometryReader { proxy in
-            ZStack(alignment: .trailing) {
-                Rectangle().fill(Theme.rule)
-                Rectangle()
-                    .fill(Theme.ash)
-                    .frame(width: proxy.size.width * left)
-            }
-        }
-        .frame(height: 4)
-        .accessibilityHidden(true)
-    }
 }
 
-/// A small picture of the pan with a caption.
+/// A small picture of the pan with a caption, in the debug panel.
 struct Thumbnail: View {
     let image: CGImage
     let caption: String
@@ -96,10 +83,10 @@ struct Thumbnail: View {
                 .interpolation(.medium)
                 .aspectRatio(contentMode: .fit)
                 .frame(width: width)
-                .clipShape(RoundedRectangle(cornerRadius: Theme.thumbRadius, style: .continuous))
+                .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
             Text(caption)
-                .font(Theme.detail)
-                .foregroundStyle(Theme.ash)
+                .font(Theme.caption)
+                .foregroundStyle(Theme.slate)
         }
     }
 }

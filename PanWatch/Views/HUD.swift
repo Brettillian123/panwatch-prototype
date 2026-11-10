@@ -2,308 +2,237 @@ import AVFoundation
 import Speech
 import SwiftUI
 
-// MARK: - Step panel
+// MARK: - Phrases
 
-/// The step being done, top left, on one opaque Iron panel: where the cook is (18 pt,
-/// near-phone detail), the step at 44 pt New York, and what the camera is doing in words.
-struct StepCard: View {
-    let session: CookSession
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            eyebrow
-            Text(session.currentStep.instruction)
-                .font(Theme.step)
-                .foregroundStyle(Theme.flour)
-                .lineLimit(3)
-                // 44 pt is the size. A step too long for three lines in this column scales
-                // down rather than push the bar off the screen.
-                .minimumScaleFactor(0.6)
-                .accessibilityAddTraits(.isHeader)
-            CameraLine(session: session)
-                .padding(.top, Theme.tight)
+/// The phrases that work on the cook screen right now, most useful first. The help sheet
+/// shows them first; menus' Say line shows them too. Only commands the grammar understands.
+@MainActor
+enum CookPhrases {
+    static func now(_ session: CookSession) -> [String] {
+        // A menu has its own few phrases.
+        if session.screen != .cook && session.screen != .help { return session.sayPhrases }
+        if session.suggestion != nil { return ["yes", "not now"] }
+        if session.isMarkingPan {
+            return session.draftRegion == nil ? ["cancel"] : ["start watching", "cancel"]
         }
-        .padding(.horizontal, Theme.gap)
-        .padding(.vertical, 12)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Theme.panel, in: RoundedRectangle(cornerRadius: Theme.panelRadius, style: .continuous))
-    }
-
-    private var eyebrow: some View {
-        HStack(spacing: Theme.tight) {
-            Text("\(session.recipe.title) · step \(session.stepIndex + 1) of \(session.recipe.steps.count)")
-            if let next = session.nextScheduledStep {
-                Text("· next step in \(Text(next.at, style: .timer))")
-                    .monospacedDigit()
-                    .foregroundStyle(Theme.flour)
-            }
-        }
-        .font(Theme.detail)
-        .foregroundStyle(Theme.ash)
-        .lineLimit(1)
-        .minimumScaleFactor(0.8)
-    }
-}
-
-/// What the camera is doing, in words, under the step. When the pan box is needed it
-/// becomes the button that asks for one, and the recipe stays where it is.
-struct CameraLine: View {
-    let session: CookSession
-
-    var body: some View {
+        var list: [String] = []
         if session.needsPan {
-            PanNeededLine(session: session)
-        } else {
-            let status = self.status
-            Label {
-                Text(status.text)
-            } icon: {
-                Image(systemName: status.symbol)
-            }
-            .font(Theme.control)
-            .foregroundStyle(status.color)
-            .lineLimit(2)
-            .minimumScaleFactor(0.8)
-            .fixedSize(horizontal: false, vertical: true)
+            list += session.offeredPan != nil ? ["yes", "draw the pan again"] : ["mark the pan"]
         }
+        if !session.isLastStep { list.append("next step") }
+        if session.canStartStepTimer { list.append("start the timer") }
+        if session.timers.contains(where: { !$0.isDone }) { list.append("how long") }
+        if session.timers.contains(where: \.isDone) { list.append("clear it") }
+        if session.stepIndex > 0 { list.append("back") }
+        list += ["repeat", "ingredients"]
+        if session.cameraOn && !session.needsPan { list.append("draw the pan again") }
+        return list
     }
 
-    private var status: (symbol: String, text: String, color: Color) {
-        guard let watch = session.currentStep.watch else {
-            return session.cameraOn
-                ? ("eye.slash", "Not needed this step", Theme.ash)
-                : ("video.slash", "Camera off", Theme.ash)
-        }
-        if session.finishedSteps.contains(session.stepIndex) {
-            return ("checkmark.circle.fill", "\(watch.ingredient.firstCapitalized) is in", Theme.herb)
-        }
-        if !session.cameraOn {
-            return ("video.slash", "Camera off: say \u{201C}start the timer\u{201D} when it\u{2019}s in", Theme.ash)
-        }
-        if session.suggestion != nil {
-            return ("timer", "Waiting for your answer", Theme.flour)
-        }
-        switch session.phase {
-        case .watching:
-            return ("eye", "Watching for the \(watch.ingredient)", Theme.herb)
-        case .cooldown:
-            return (PhaseStyle.symbol(for: .cooldown), PhaseStyle.label(for: .cooldown), Theme.herb)
-        case .disarmed:
-            return (PhaseStyle.symbol(for: .disarmed), PhaseStyle.label(for: .disarmed), Theme.ash)
-        default:
-            return (PhaseStyle.symbol(for: session.phase), PhaseStyle.label(for: session.phase), Theme.flour)
-        }
+    /// Whether the microphone or speech recognition was refused.
+    static var micDenied: Bool {
+        let speech = SFSpeechRecognizer.authorizationStatus()
+        return AVAudioApplication.shared.recordPermission == .denied || speech == .denied || speech == .restricted
     }
 }
 
-/// Pan needed: a filled Copper button where the camera line was. With a box saved from
-/// last time, the cook can keep it without drawing.
-struct PanNeededLine: View {
+// MARK: - The chip
+
+/// The one thing drawn over the camera picture: white, full round, 32 tall, an 18 glyph
+/// and a caption. One state at a time. Tapping it turns listening off or on, or, with
+/// the microphone refused, opens Settings.
+struct CookChip: View {
     let session: CookSession
+    var staged: String? = nil
 
     var body: some View {
-        HStack(spacing: Theme.gap) {
-            if session.offeredPan != nil {
-                Button { session.reuseLastPan() } label: {
-                    Label("Pan hasn\u{2019}t moved", systemImage: "checkmark")
-                }
-                .buttonStyle(WordButtonStyle(kind: .primary))
-                Button("Draw again") { session.markPan() }
-                    .buttonStyle(WordButtonStyle())
-            } else {
-                Button { session.markPan() } label: {
-                    Label("Draw a box around the pan", systemImage: "viewfinder")
-                }
-                .buttonStyle(WordButtonStyle(kind: .primary))
+        let state = self.state
+        Button(action: tap) {
+            HStack(spacing: 6) {
+                Image(systemName: state.symbol)
+                    .font(.system(size: 15, weight: .regular))
+                    .frame(width: 18, height: 18)
+                    .accessibilityHidden(true)
+                Text(state.text)
+                    .font(Theme.cookCaption)
+                    .lineLimit(1)
             }
+            .foregroundStyle(Theme.slate)
+            .padding(.horizontal, Theme.space12)
+            .frame(height: 32)
+            .background(Theme.card, in: Capsule(style: .continuous))
+            .controlShadow()
+            .frame(minHeight: Theme.minTarget)
+            .contentShape(Rectangle())
         }
-        .fixedSize(horizontal: false, vertical: true)
+        .buttonStyle(.plain)
+        .accessibilityLabel(state.text)
+        .accessibilityHint(micDenied ? "Opens Settings" : session.listeningOn ? "Stops listening" : "Starts listening")
+        .animation(Theme.motion, value: state.text)
+    }
+
+    private var micDenied: Bool { session.listeningOn && !session.micReady && CookPhrases.micDenied }
+
+    private var state: (symbol: String, text: String) {
+        #if DEBUG
+        if let staged { return staged == "cook" ? ("mic", "Listening") : ("eye", "Watching") }
+        #endif
+        if session.isSpeaking { return ("speaker.wave.2", "Speaking") }
+        if let heard = session.heardText { return ("checkmark", "Heard \u{201C}\(heard)\u{201D}") }
+        if session.needsPan { return ("viewfinder", "No pot marked") }
+        if micDenied { return ("mic.slash", "Microphone off") }
+        if session.listeningOn && session.micReady { return ("mic", "Listening") }
+        if session.cameraOn && session.region != nil { return ("eye", "Watching") }
+        return ("mic.slash", "Not listening")
+    }
+
+    private func tap() {
+        session.noteTouch()
+        if micDenied {
+            if let url = URL(string: UIApplication.openSettingsURLString) { UIApplication.shared.open(url) }
+        } else {
+            session.toggleListening()
+        }
     }
 }
 
 // MARK: - Timers
 
-/// Running and finished timers in the right column, newest on top. One timer gets the
-/// 64 pt countdown under its label; from two, each row is label and 44 pt digits on one
-/// line, because two 64 pt rows don't fit above the bar in landscape. No timers, nothing.
-struct TimerStack: View {
+/// The timer in the card: a done one first, else the one ending soonest.
+@MainActor func featuredTimer(_ timers: [CookTimer]) -> CookTimer? {
+    timers.first(where: \.isDone) ?? timers.filter { !$0.isDone }.min { $0.end < $1.end }
+}
+
+/// The running timer, 72 tall: digits in the cook title size, its name, and a round clear
+/// button (timers have no pause). With two or more, "+1 more" under the name, and a tap
+/// opens the list. Done, the card turns blush with "Pasta timer is done" and Stop.
+struct CookTimerCard: View {
     let session: CookSession
+    let timer: CookTimer
+    let openAll: () -> Void
 
     var body: some View {
-        let compact = session.timers.count > 1
-        VStack(alignment: .trailing, spacing: Theme.gap) {
-            ForEach(Array(session.timers.reversed())) { timer in
-                TimerRow(timer: timer, compact: compact) {
+        let others = session.timers.count - 1
+        HStack(spacing: 14) {
+            if timer.isDone {
+                Text("\(timer.label) timer is done")
+                    .font(Theme.cookBodyStrong)
+                    .foregroundStyle(Theme.ink)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+                if others > 0 { more(others) }
+                Spacer(minLength: Theme.space8)
+                Button {
+                    session.noteTouch()
+                    session.removeTimer(timer.id)
+                } label: {
+                    Text("Stop")
+                        .font(Theme.cookBodyStrong)
+                        .padding(.horizontal, 24)
+                        .frame(minHeight: 52)
+                }
+                .buttonStyle(KitPressStyle(fill: Theme.card, foreground: Theme.ink))
+                .accessibilityLabel("Stop the \(timer.label.lowercased()) timer")
+            } else {
+                Text(timerInterval: timer.start...timer.end, pauseTime: timer.pausedAt, countsDown: true)
+                    .font(Theme.cookTitle)
+                    .monospacedDigit()
+                    .foregroundStyle(Theme.ink)
+                    .lineLimit(1)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("\(timer.label) timer")
+                    if others > 0 { Text("+\(others) more") }
+                }
+                .font(Theme.cookCaption)
+                .foregroundStyle(Theme.slate)
+                .lineLimit(1)
+                Spacer(minLength: Theme.space8)
+                RoundIconButton(systemImage: "xmark", label: "Clear the \(timer.label.lowercased()) timer", size: .large, style: .quiet) {
                     session.noteTouch()
                     session.removeTimer(timer.id)
                 }
             }
         }
-    }
-}
-
-/// One timer: label, countdown and a worded Clear. Done, the digits become "Pasta is
-/// done" in Chili with a Chili rule down the left edge; the panel stays Iron.
-struct TimerRow: View {
-    let timer: CookTimer
-    let compact: Bool
-    let clear: () -> Void
-
-    var body: some View {
-        HStack(spacing: Theme.tight) {
-            Group {
-                if compact {
-                    HStack(alignment: .firstTextBaseline, spacing: Theme.gap) {
-                        if !timer.isDone { label }
-                        countdown(font: Theme.compactDigits)
-                    }
-                } else {
-                    VStack(alignment: .leading, spacing: 0) {
-                        if !timer.isDone { label }
-                        countdown(font: timer.isDone ? Theme.reading : Theme.digits)
-                    }
-                    .padding(.vertical, Theme.tight)
-                }
-            }
-            .padding(.leading, Theme.gap)
-            Spacer(minLength: 0)
-            Button(action: clear) {
-                Text("Clear")
-                    .font(Theme.control)
-                    .foregroundStyle(Theme.flour)
-                    .padding(.horizontal, 14)
-                    .frame(minWidth: Theme.target, minHeight: Theme.target)
-                    .background(timer.isDone ? Theme.primary : Theme.rule, in: RoundedRectangle(cornerRadius: Theme.buttonRadius, style: .continuous))
-                    // The word is 44 tall; the touch area is 60 (C1), and 8 in from the
-                    // panel edge keeps the corners concentric (20 - 8 = 12).
-                    .padding(Theme.tight)
-                    .contentShape(Rectangle())
-            }
-            .buttonStyle(.plain)
-            .accessibilityLabel("Clear the \(timer.label) timer")
-        }
-        .background(Theme.panel, in: RoundedRectangle(cornerRadius: Theme.panelRadius, style: .continuous))
-        .overlay(alignment: .leading) {
-            if timer.isDone {
-                Rectangle()
-                    .fill(Theme.alert)
-                    .frame(width: 4)
-                    .padding(.vertical, Theme.panelRadius)
-            }
-        }
+        .padding(.leading, 20)
+        .padding(.trailing, 10)
+        .frame(maxWidth: .infinity, minHeight: 72, maxHeight: 72, alignment: .leading)
+        .background(timer.isDone ? Theme.blush : Theme.card, in: RoundedRectangle(cornerRadius: Theme.radiusCard, style: .continuous))
+        .cardShadow()
+        .contentShape(RoundedRectangle(cornerRadius: Theme.radiusCard, style: .continuous))
+        .onTapGesture { if others > 0 { openAll() } }
         .accessibilityElement(children: .contain)
+        .accessibilityAction(named: "All timers") { openAll() }
     }
 
-    private var label: some View {
-        Text(timer.label)
-            .font(Theme.control)
-            .foregroundStyle(Theme.flour)
-            .lineLimit(1)
-    }
-
-    @ViewBuilder private func countdown(font: Font) -> some View {
-        if timer.isDone {
-            Text("\(timer.label) is done")
-                .font(compact ? Theme.reading : font)
-                .foregroundStyle(Theme.alert)
-                .lineLimit(1)
-        } else {
-            Text(timerInterval: timer.start...timer.end, pauseTime: timer.pausedAt, countsDown: true)
-                .font(font)
-                .foregroundStyle(Theme.flour)
-                .lineLimit(1)
-        }
+    private func more(_ count: Int) -> some View {
+        Text("+\(count) more")
+            .font(Theme.cookCaption)
+            .foregroundStyle(Theme.slate)
     }
 }
 
-// MARK: - Bottom bar
-
-/// Five word buttons, 64 pt tall and 16 apart: Back, Next step, Timer, Recipes, Settings.
-/// Next step is the one primary action. Narrower (the details panel open), Recipes and
-/// Settings, then Timer, move into More; words never turn into glyphs.
-struct ControlBar: View {
+/// Every timer with its control, opened from the timer card when two or more run. This
+/// step's timer can be started here too.
+struct TimersSheet: View {
     let session: CookSession
-    let openSettings: () -> Void
+    let close: () -> Void
 
     var body: some View {
-        ViewThatFits(in: .horizontal) {
-            bar(menuFrom: .nothing)
-            bar(menuFrom: .recipes)
-            bar(menuFrom: .timer)
-        }
-    }
-
-    private enum MenuFrom { case nothing, recipes, timer }
-
-    private func bar(menuFrom: MenuFrom) -> some View {
-        HStack(spacing: Theme.gap) {
-            Button { session.noteTouch(); session.previousStep() } label: {
-                Text("Back").frame(maxWidth: .infinity)
-            }
-            .buttonStyle(WordButtonStyle(height: Theme.barHeight))
-            .disabled(session.stepIndex == 0)
-            .accessibilityLabel("Previous step")
-
-            Button { session.noteTouch(); session.nextStep() } label: {
-                Text("Next step").frame(maxWidth: .infinity)
-            }
-            .buttonStyle(WordButtonStyle(kind: .primary, height: Theme.barHeight))
-            .disabled(session.isLastStep)
-
-            if menuFrom != .timer {
-                Button("Timer", action: startTimer)
-                    .buttonStyle(WordButtonStyle(height: Theme.barHeight))
-                    .disabled(!canTime)
-                    .accessibilityLabel("Start this step's timer")
-            }
-
-            if menuFrom == .nothing {
-                Button("Recipes") { session.showRecipes() }
-                    .buttonStyle(WordButtonStyle(height: Theme.barHeight))
-                Button("Settings", action: openSettings)
-                    .buttonStyle(WordButtonStyle(height: Theme.barHeight))
-            } else {
-                Menu {
-                    if menuFrom == .timer {
-                        Button("Start the timer", action: startTimer).disabled(!canTime)
+        BottomSheet(title: "Timers", close: close) {
+            ScrollView {
+                VStack(alignment: .leading, spacing: Theme.space16) {
+                    if !session.timers.isEmpty {
+                        GroupedRows {
+                            ForEach(session.timers.sorted { $0.end < $1.end }) { timer in
+                                Row(label: timer.isDone ? "\(timer.label) timer is done" : "\(timer.label) timer", leading: { EmptyView() }) {
+                                    if !timer.isDone {
+                                        Text(timerInterval: timer.start...timer.end, pauseTime: timer.pausedAt, countsDown: true)
+                                            .font(Theme.body)
+                                            .monospacedDigit()
+                                            .foregroundStyle(Theme.slate)
+                                    }
+                                    RoundIconButton(
+                                        systemImage: "xmark",
+                                        label: timer.isDone ? "Stop the \(timer.label.lowercased()) timer" : "Clear the \(timer.label.lowercased()) timer",
+                                        style: .quiet
+                                    ) {
+                                        session.noteTouch()
+                                        session.removeTimer(timer.id)
+                                        if session.timers.isEmpty { close() }
+                                    }
+                                }
+                            }
+                        }
                     }
-                    Button("Recipes") { session.showRecipes() }
-                    Button("Settings", action: openSettings)
-                } label: {
-                    Text("More")
+                    if session.canStartStepTimer, let watch = session.currentStep.watch {
+                        QuietButton(title: "Start the \(watch.timerMinutes)-minute timer", systemImage: "timer") {
+                            session.noteTouch()
+                            session.startStepTimer()
+                        }
+                    }
                 }
-                .menuStyle(.button)
-                .buttonStyle(WordButtonStyle(height: Theme.barHeight))
             }
+            .scrollIndicators(.hidden)
+            .frame(maxHeight: 220)
         }
-    }
-
-    /// "Timer" starts this step's timer, or accepts the offer when one is up.
-    private var canTime: Bool { session.suggestion != nil || session.canStartStepTimer }
-
-    private func startTimer() {
-        session.noteTouch()
-        session.startStepTimer()
     }
 }
 
-// MARK: - Say line
+// MARK: - Say line (menus)
 
-/// Along the bottom of every state: whether the app is listening, what it just heard, and
-/// one phrase that works right now at 44 pt, changing every 4 s. Tapping it turns
-/// listening off or on.
+/// Along the bottom of the old menus: whether the app is listening, what it just heard, and
+/// one phrase that works right now, changing every 4 s. Tapping it turns listening off or
+/// on. Cook mode no longer shows it; its phrases are first in the help sheet.
 struct SayLine: View {
     let session: CookSession
 
     var body: some View {
         Group {
-            if session.listeningOn && !session.micReady && micDenied {
-                // Denied: the line says so in Chili and offers the way to fix it.
+            if session.listeningOn && !session.micReady && CookPhrases.micDenied {
                 HStack(spacing: Theme.gap) {
-                    level(Theme.alert)
                     Text("Microphone off")
                         .font(Theme.control)
-                        .foregroundStyle(Theme.alert)
+                        .foregroundStyle(Theme.ink)
                     Spacer(minLength: 0)
                     Button("Open Settings") {
                         if let url = URL(string: UIApplication.openSettingsURLString) {
@@ -330,135 +259,40 @@ struct SayLine: View {
         }
         .padding(.leading, Theme.gap)
         .frame(maxWidth: .infinity, minHeight: Theme.bigTarget, maxHeight: Theme.bigTarget)
-        .background(Theme.panel, in: RoundedRectangle(cornerRadius: Theme.panelRadius, style: .continuous))
+        .background(Theme.card, in: RoundedRectangle(cornerRadius: Theme.radiusCard, style: .continuous))
     }
 
     @ViewBuilder private var content: some View {
         if !session.listeningOn {
-            level(Theme.ash)
-            Text("Not listening · tap to listen")
-                .font(Theme.control)
-                .foregroundStyle(Theme.ash)
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
+            line("Not listening, tap to listen", Theme.slate)
         } else if !session.micReady {
-            level(Theme.ash)
-            Text("Starting the microphone")
-                .font(Theme.control)
-                .foregroundStyle(Theme.ash)
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
+            line("Starting the microphone", Theme.slate)
         } else if let answer = session.answerText {
-            level(Theme.copper)
-            Text(answer)
-                .font(Theme.reading)
-                .foregroundStyle(Theme.copper)
-                .lineLimit(2)
-                .minimumScaleFactor(0.5)
+            line(answer, Theme.ink)
         } else if let heard = session.heardText {
-            level(Theme.copper)
-            Text("Heard \u{201C}\(heard)\u{201D}")
-                .font(Theme.reading)
-                .foregroundStyle(Theme.copper)
-                .lineLimit(1)
-                .minimumScaleFactor(0.5)
+            line("Heard \u{201C}\(heard)\u{201D}", Theme.ink)
         } else {
-            // No microphone level is published yet, so the bar is a steady Copper mark
-            // for "listening" rather than a pulse that would pretend to be one.
-            level(Theme.copper)
-            Text("Listening")
-                .font(Theme.detail)
-                .foregroundStyle(Theme.ash)
-            let phrases = self.phrases
+            let phrases = CookPhrases.now(session)
             TimelineView(.periodic(from: Date(timeIntervalSinceReferenceDate: 0), by: 4)) { context in
-                let index = Int(context.date.timeIntervalSinceReferenceDate / 4) % phrases.count
-                Text("Say \u{201C}\(phrases[index])\u{201D}")
-                    .font(Theme.reading)
-                    .foregroundStyle(Theme.flour)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
+                let index = Int(context.date.timeIntervalSinceReferenceDate / 4) % max(phrases.count, 1)
+                line(phrases.isEmpty ? "Listening" : "Say \u{201C}\(phrases[index])\u{201D}", Theme.ink)
             }
         }
     }
 
-    private func level(_ color: Color) -> some View {
-        RoundedRectangle(cornerRadius: Theme.thumbRadius, style: .continuous)
-            .fill(color)
-            .frame(width: 4, height: 36)
-            .accessibilityHidden(true)
-    }
-
-    /// Phrases that work right now, in the order they're most useful. Only commands the
-    /// grammar understands today; never empty.
-    private var phrases: [String] {
-        // A menu has its own few phrases.
-        if session.screen != .cook { return session.sayPhrases }
-        if session.suggestion != nil { return ["yes", "not now"] }
-        if session.isMarkingPan {
-            return session.draftRegion == nil ? ["cancel"] : ["start watching", "cancel"]
-        }
-        var list: [String] = []
-        if session.needsPan {
-            list += session.offeredPan != nil ? ["yes", "draw the pan again"] : ["mark the pan"]
-        }
-        if !session.isLastStep { list.append("next step") }
-        if session.canStartStepTimer { list.append("start the timer") }
-        if session.timers.contains(where: { !$0.isDone }) { list.append("how long") }
-        if session.stepIndex > 0 { list.append("back") }
-        list += ["repeat", "ingredients"]
-        if session.cameraOn && !session.needsPan { list.append("draw the pan again") }
-        return list
-    }
-
-    private var micDenied: Bool {
-        let speech = SFSpeechRecognizer.authorizationStatus()
-        return AVAudioApplication.shared.recordPermission == .denied || speech == .denied || speech == .restricted
-    }
-}
-
-// MARK: - Drawing the pan box
-
-/// The one strip while drawing, top left over a screen cleared to the picture. It takes no
-/// touches, so the box can be drawn right under it.
-struct DrawingStrip: View {
-    let session: CookSession
-
-    var body: some View {
-        let drawn = session.draftRegion != nil
-        VStack(alignment: .leading, spacing: 4) {
-            Text(drawn ? "Keep the phone still" : "Draw a box around the pan")
-                .font(Theme.control)
-                .foregroundStyle(Theme.flour)
-            Text(drawn ? "Drag again to redraw it" : "Tap the pan or drag a box")
-                .font(Theme.detail)
-                .foregroundStyle(Theme.ash)
-        }
-        .ironPanel()
-        .allowsHitTesting(false)
-    }
-}
-
-/// Cancel and Start watching, the only buttons while drawing. Start watching waits for a box.
-struct DrawPanBar: View {
-    let session: CookSession
-
-    var body: some View {
-        HStack(spacing: Theme.gap) {
-            Button("Cancel") { session.cancelMarking() }
-                .buttonStyle(WordButtonStyle(height: Theme.barHeight))
-            Button { session.confirmPan() } label: {
-                Label("Start watching", systemImage: "eye")
-            }
-            .buttonStyle(WordButtonStyle(kind: .primary, height: Theme.barHeight))
-            .disabled(session.draftRegion == nil)
-            Spacer(minLength: 0)
-        }
+    private func line(_ text: String, _ color: Color) -> some View {
+        Text(text)
+            .font(Theme.bodyStrong)
+            .foregroundStyle(color)
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
     }
 }
 
 // MARK: - Camera status
 
-/// Starting, denied and failed, each drawn: the picture's place is never just black.
+/// Starting, denied and failed, as a small card at the bottom of the camera box: the box's
+/// place is never just black.
 struct CameraStatusOverlay: View {
     let status: CameraStatus
 
@@ -467,52 +301,36 @@ struct CameraStatusOverlay: View {
         case .running:
             EmptyView()
         case .starting:
-            HStack(spacing: Theme.gap) {
-                ProgressView()
-                    .controlSize(.large)
-                    .tint(Theme.flour)
-                Text("Starting the camera")
-                    .font(Theme.control)
-                    .foregroundStyle(Theme.flour)
+            card {
+                HStack(spacing: Theme.space8) {
+                    ProgressView().tint(Theme.slate)
+                    Text("Starting the camera").foregroundStyle(Theme.slate)
+                }
             }
-            .ironPanel()
         case .denied:
-            message(
-                symbol: "video.slash",
-                title: "Camera not allowed",
-                detail: "Sous Vision watches the pan on this phone. Video is never saved or sent.",
-                showsSettings: true
-            )
-        case .failed(let reason):
-            message(symbol: "exclamationmark.triangle", title: "The camera couldn\u{2019}t start", detail: reason, showsSettings: false)
-        }
-    }
-
-    private func message(symbol: String, title: String, detail: String, showsSettings: Bool) -> some View {
-        VStack(alignment: .leading, spacing: Theme.tight) {
-            Label(title, systemImage: symbol)
-                .font(Theme.control)
-                .foregroundStyle(Theme.alert)
-            Text(detail)
-                .font(Theme.detail)
-                .foregroundStyle(Theme.ash)
-                .fixedSize(horizontal: false, vertical: true)
-            if showsSettings {
-                Button("Open Settings") {
+            card {
+                Text("Camera not allowed. Video is never saved or sent.").foregroundStyle(Theme.ink)
+                QuietButton(title: "Open Settings") {
                     if let url = URL(string: UIApplication.openSettingsURLString) {
                         UIApplication.shared.open(url)
                     }
                 }
-                .buttonStyle(WordButtonStyle(kind: .primary))
-                .padding(.top, Theme.tight)
+            }
+        case .failed(let reason):
+            card {
+                Text("The camera couldn\u{2019}t start").foregroundStyle(Theme.ink)
+                Text(reason).foregroundStyle(Theme.slate).lineLimit(3)
             }
         }
-        .frame(maxWidth: 520, alignment: .leading)
-        .ironPanel(padding: 24)
     }
-}
 
-private extension String {
-    /// "pasta" to "Pasta", leaving the rest alone.
-    var firstCapitalized: String { prefix(1).uppercased() + dropFirst() }
+    private func card<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
+        VStack(alignment: .leading, spacing: Theme.space8) { content() }
+            .font(Theme.cookCaption)
+            .padding(Theme.space12)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Theme.card, in: RoundedRectangle(cornerRadius: Theme.radiusField, style: .continuous))
+            .padding(10)
+            .frame(maxHeight: .infinity, alignment: .bottom)
+    }
 }

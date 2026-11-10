@@ -109,4 +109,14 @@ struct VoiceCatalogTests {
         #expect(VoiceCommand.parse("use this one") == .useVoice(.highlighted))
         #expect(VoiceCommand.parse("next voice") == .nextVoice)
     }
+
+    @Test func everyVoiceHasATwoWordCharacter() {
+        for voice in VoiceCatalog.voices {
+            let words = VoiceCatalog.character(pack: voice.pack).split(separator: " ")
+            #expect(VoiceCatalog.characters[voice.pack] != nil, "\(voice.name) has no character")
+            #expect(words.count == 2, "\(voice.name)")
+        }
+        #expect(VoiceCatalog.characters.count == VoiceCatalog.voices.count)
+        #expect(VoiceCatalog.character(pack: VoiceCatalog.bellaAndSarah.pack) == "Blended voice")
+    }
 }
