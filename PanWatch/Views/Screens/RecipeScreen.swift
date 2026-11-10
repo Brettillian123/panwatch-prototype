@@ -12,7 +12,10 @@ struct RecipeScreen: View {
     @State private var part = Part.ingredients
     @State private var favorites = Favorites.load()
 
-    private static let heroHeight: CGFloat = 330
+    /// True while the dark photo is under the status bar, so the root shows the clock in white.
+    @Binding var photoOnTop: Bool
+
+    private static let heroHeight: CGFloat = 345
 
     private var recipe: Recipe { session.viewedRecipe ?? session.recipe }
 
@@ -28,6 +31,11 @@ struct RecipeScreen: View {
             }
         }
         .scrollIndicators(.hidden)
+        .onScrollGeometryChange(for: Bool.self) { geometry in
+            geometry.contentOffset.y + geometry.contentInsets.top < Self.heroHeight - 60
+        } action: { _, onTop in
+            photoOnTop = onTop
+        }
         .ignoresSafeArea(edges: .top)
         .overlay(alignment: .top) { topButtons }
         .safeAreaInset(edge: .bottom, spacing: 0) {
@@ -41,7 +49,10 @@ struct RecipeScreen: View {
         }
         .background(Theme.ground)
         .screenColumn()
-        .onAppear { favorites = Favorites.load() }
+        .onAppear {
+            favorites = Favorites.load()
+            photoOnTop = true
+        }
     }
 
     /// The photo, aspect-filled on ink. Pulled down it grows; scrolled up it moves at half speed.
@@ -127,6 +138,6 @@ struct RecipeScreen: View {
 }
 
 #Preview {
-    RecipeScreen(session: CookSession())
+    RecipeScreen(session: CookSession(), photoOnTop: .constant(true))
         .background(Theme.ground)
 }

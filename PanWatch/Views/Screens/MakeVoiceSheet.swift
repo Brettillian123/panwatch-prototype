@@ -56,8 +56,17 @@ private struct BlendTwo: View {
     @State private var busy = false
     @State private var problem: String?
 
+    /// The natural voices are on the phone. A `-uiScreen makeVoice` screenshot shows the
+    /// controls without the download, which the simulator cannot do.
+    private var ready: Bool {
+        #if DEBUG
+        if ScreenshotStage.requested == "makeVoice" { return true }
+        #endif
+        return session.naturalState == .ready
+    }
+
     var body: some View {
-        if session.naturalState != .ready {
+        if !ready {
             SheetBody {
                 Text("Blending uses the natural voices.")
                     .font(Theme.body).foregroundStyle(Theme.slate)

@@ -16,16 +16,20 @@ struct HomeScreen: View {
             VStack(alignment: .leading, spacing: Theme.space24) {
                 VStack(alignment: .leading, spacing: Theme.space16) {
                     ScreenTitle("Recipes")
-                    // The microphone glyph only shows the app listens: dishes are named aloud anywhere on Home.
-                    SearchField(placeholder: "Search recipes", text: $query)
+                        .padding(.bottom, -4)
+                    // Dishes are named aloud anywhere on Home; the microphone shows the app is
+                    // listening, and a tap turns listening off or on, as the chip in cook mode does.
+                    SearchField(placeholder: "Search recipes", text: $query, listening: session.listeningOn) {
+                        session.noteTouch()
+                        session.toggleListening()
+                    }
+                    if !searching { topCard }
                 }
                 .padding(.horizontal, Theme.margin)
 
                 if searching {
                     results
                 } else {
-                    topCard
-                        .padding(.horizontal, Theme.margin)
                     let favored = favorites.recipes()
                     if !favored.isEmpty {
                         shelf("Favorites", favored)
@@ -101,7 +105,7 @@ struct HomeScreen: View {
             if timer.isDone {
                 line = Text("\(step) · \(timer.label) timer done")
             } else {
-                let clock = Text(timerInterval: timer.start...timer.end, pauseTime: timer.pausedAt, countsDown: true)
+                let clock = countdown(timer)
                 line = Text("\(step) · \(timer.label) timer \(clock)")
             }
         } else {

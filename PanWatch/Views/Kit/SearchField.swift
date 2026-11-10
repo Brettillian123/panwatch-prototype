@@ -1,10 +1,12 @@
 import SwiftUI
 
 /// A search box: 48 tall, radius 14, ink 7 %, a magnifier, Body slate placeholder, and a
-/// microphone glyph trailing that runs `onMicrophone` when tapped.
+/// microphone glyph trailing. The glyph shows whether the app is listening and, tapped, runs
+/// `onMicrophone` (turning listening off or on); with no action it is only a picture.
 struct SearchField: View {
     let placeholder: String
     @Binding var text: String
+    var listening = true
     var onMicrophone: (() -> Void)? = nil
 
     var body: some View {
@@ -26,13 +28,22 @@ struct SearchField: View {
                 .buttonStyle(.plain)
                 .accessibilityLabel("Clear search")
             }
-            Button { onMicrophone?() } label: {
+            if let onMicrophone {
+                Button(action: onMicrophone) {
+                    Image(systemName: listening ? "mic" : "mic.slash")
+                        .foregroundStyle(Theme.slate)
+                        .frame(width: Theme.minTarget, height: Theme.minTarget)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(listening ? "Listening" : "Not listening")
+                .accessibilityHint(listening ? "Stops listening" : "Starts listening")
+            } else {
                 Image(systemName: "mic")
                     .foregroundStyle(Theme.slate)
                     .frame(width: Theme.minTarget, height: Theme.minTarget)
+                    .accessibilityHidden(true)
             }
-            .buttonStyle(.plain)
-            .accessibilityLabel("Search by voice")
         }
         .font(Theme.body)
         .padding(.leading, 14)

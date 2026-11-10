@@ -29,6 +29,15 @@ struct ScreenRouteTests {
         }
     }
 
+    @Test func closingAMenuWithNothingCookingGoesHome() {
+        for screen in [AppScreen.recipes, .voices, .profile] {
+            #expect(AppScreen.closing(screen, helpFrom: .cook, cookUnderWay: false) == .recipes, "\(screen)")
+        }
+        #expect(AppScreen.closing(.cook, helpFrom: .cook, cookUnderWay: false) == .cook)
+        #expect(AppScreen.closing(.makeVoice, helpFrom: .cook, cookUnderWay: false) == .voices)
+        #expect(AppScreen.closing(.help, helpFrom: .voices, cookUnderWay: false) == .voices)
+    }
+
     @Test func theTabBarShowsOnlyOnTopLevelScreens() {
         let shown = AppScreen.allCases.filter(\.showsTabBar)
         #expect(Set(shown) == [.recipes, .voices, .profile])
