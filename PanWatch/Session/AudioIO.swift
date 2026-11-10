@@ -24,23 +24,44 @@ final class AudioIO {
     private(set) var voiceProcessing = false
     private var prepared = false
     private var tapInstalled = false
-    private var tapBlock: AVAudioNodeTapBlock?
+    /// The microphone's two takers: listening, and a recording of the cook's own voice.
+    private let taps = MicTaps()
 
     var isRunning: Bool { engine.isRunning }
 
     /// Microphone audio, in the input's format, from the audio thread. Installed once the
     /// engine is prepared (voice processing changes the input format), and again after a reset.
     func installTap(_ block: @escaping AVAudioNodeTapBlock) {
-        tapBlock = block
+        taps.listen = block
         if prepared { addTap() }
     }
 
     func removeTap() {
-        tapBlock = nil
-        if tapInstalled {
-            engine.inputNode.removeTap(onBus: 0)
-            tapInstalled = false
+        taps.listen = nil
+        removeTapIfUnused()
+    }
+
+    /// Microphone audio for a recording of the cook's own voice, beside listening, from the
+    /// audio thread. False when the engine can't start.
+    func startCapture(_ block: @escaping @Sendable (AVAudioPCMBuffer) -> Void) -> Bool {
+        taps.record = block
+        guard start() else {
+            stopCapture()
+            return false
         }
+        addTap()
+        return tapInstalled
+    }
+
+    func stopCapture() {
+        taps.record = nil
+        removeTapIfUnused()
+    }
+
+    private func removeTapIfUnused() {
+        guard tapInstalled, !taps.inUse else { return }
+        engine.inputNode.removeTap(onBus: 0)
+        tapInstalled = false
     }
 
     /// Starts the engine, setting it up first if needed. False when the microphone or the
@@ -99,12 +120,17 @@ final class AudioIO {
     }
 
     private func addTap() {
-        guard !tapInstalled, let tapBlock else { return }
+        guard !tapInstalled, taps.inUse else { return }
         let input = engine.inputNode
         let format = input.outputFormat(forBus: 0)
         guard format.sampleRate > 0, format.channelCount > 0 else { return }
-        input.installTap(onBus: 0, bufferSize: 1024, format: format, block: tapBlock)
+        input.installTap(onBus: 0, bufferSize: 1024, format: format, block: Self.tapBlock(feeding: taps))
         tapInstalled = true
+    }
+
+    /// Made outside the main actor: the tap runs on the audio thread.
+    nonisolated private static func tapBlock(feeding taps: MicTaps) -> AVAudioNodeTapBlock {
+        { buffer, time in taps.deliver(buffer, time) }
     }
 
     /// RMS of a buffer's first channel, full scale 1.0; 0 for a format without floats.
@@ -117,6 +143,31 @@ final class AudioIO {
             sum += s * s
         }
         return (sum / Double(buffer.frameLength)).squareRoot()
+    }
+}
+
+/// Who takes the microphone's audio, read on the audio thread and set on the main one.
+final class MicTaps: @unchecked Sendable {
+    private let lock = NSLock()
+    private var listenBlock: AVAudioNodeTapBlock?
+    private var recordBlock: (@Sendable (AVAudioPCMBuffer) -> Void)?
+
+    var listen: AVAudioNodeTapBlock? {
+        get { lock.withLock { listenBlock } }
+        set { lock.withLock { listenBlock = newValue } }
+    }
+
+    var record: (@Sendable (AVAudioPCMBuffer) -> Void)? {
+        get { lock.withLock { recordBlock } }
+        set { lock.withLock { recordBlock = newValue } }
+    }
+
+    var inUse: Bool { lock.withLock { listenBlock != nil || recordBlock != nil } }
+
+    func deliver(_ buffer: AVAudioPCMBuffer, _ time: AVAudioTime) {
+        let (listen, record) = lock.withLock { (listenBlock, recordBlock) }
+        listen?(buffer, time)
+        record?(buffer)
     }
 }
 
