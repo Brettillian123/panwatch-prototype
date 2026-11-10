@@ -1,36 +1,128 @@
 import SwiftUI
 
-/// One recipe's page, for `session.viewedRecipe`. For now a titled placeholder with the
-/// photo and Start cooking; the Recipe piece rebuilds it here.
+/// One recipe's page, for `session.viewedRecipe`: the photo on ink with a back button and a
+/// heart, then a sheet with the name, three facts, Ingredients or Steps as grouped rows, and
+/// Start cooking held above the home indicator. The photo slides away slower than the list.
+/// By voice, "start cooking" starts it and "back" returns to Home (both in `CookSession`).
 struct RecipeScreen: View {
     let session: CookSession
 
+    private enum Part: Hashable { case ingredients, steps }
+
+    @State private var part = Part.ingredients
+    @State private var favorites = Favorites.load()
+
+    private static let heroHeight: CGFloat = 330
+
     private var recipe: Recipe { session.viewedRecipe ?? session.recipe }
 
+    /// This dish is the one under way, so the button goes back to its step.
+    private var isUnderWay: Bool { session.cookUnderWay && session.recipe.title == recipe.title }
+
     var body: some View {
-        VStack(alignment: .leading, spacing: Theme.space16) {
-            HStack {
-                RoundIconButton(systemImage: "chevron.left", label: "Back") {
-                    session.noteTouch()
-                    session.closeMenu()
-                }
-                Spacer()
+        ScrollView {
+            VStack(spacing: 0) {
+                hero
+                sheet
+                    .padding(.top, -Theme.radiusCard)
             }
-            DishPhoto(recipe: recipe)
-                .frame(height: 220)
-                .clipShape(RoundedRectangle(cornerRadius: Theme.radiusCard, style: .continuous))
-            ScreenTitle(recipe.title)
-            Text("\(recipe.steps.count) steps")
-                .font(Theme.caption)
-                .foregroundStyle(Theme.slate)
-            Spacer(minLength: 0)
-            PrimaryButton(title: "Start cooking", systemImage: "play.fill") {
+        }
+        .scrollIndicators(.hidden)
+        .ignoresSafeArea(edges: .top)
+        .overlay(alignment: .top) { topButtons }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            PrimaryButton(title: isUnderWay ? "Resume cooking" : "Start cooking", systemImage: "play.fill") {
                 session.startCooking()
+            }
+            .padding(.horizontal, Theme.margin)
+            .padding(.top, Theme.space12)
+            .padding(.bottom, Theme.space8)
+            .background(Theme.ground)
+        }
+        .background(Theme.ground)
+        .screenColumn()
+        .onAppear { favorites = Favorites.load() }
+    }
+
+    /// The photo, aspect-filled on ink. Pulled down it grows; scrolled up it moves at half speed.
+    private var hero: some View {
+        DishPhoto(recipe: recipe)
+            .frame(maxWidth: .infinity)
+            .frame(height: Self.heroHeight)
+            .clipped()
+            .background(Theme.ink)
+            .visualEffect { content, proxy in
+                let y = proxy.frame(in: .scrollView).minY
+                return content
+                    .scaleEffect(y > 0 ? 1 + y / Self.heroHeight : 1, anchor: .bottom)
+                    .offset(y: y < 0 ? -y / 2 : 0)
+            }
+            .accessibilityHidden(true)
+    }
+
+    private var topButtons: some View {
+        HStack {
+            RoundIconButton(systemImage: "chevron.left", label: "Back") {
+                session.noteTouch()
+                session.closeMenu()
+            }
+            Spacer()
+            HeartButton(isOn: favorites.contains(recipe), label: "Favorite \(recipe.displayTitle)", size: .medium) {
+                withAnimation(Theme.motion) { favorites.toggle(recipe) }
+                favorites.save()
             }
         }
         .padding(.horizontal, Theme.margin)
-        .padding(.bottom, Theme.margin)
-        .screenColumn()
+        .padding(.top, Theme.space8)
+    }
+
+    private var sheet: some View {
+        VStack(alignment: .leading, spacing: Theme.space16) {
+            Text(recipe.displayTitle)
+                .font(Theme.title)
+                .foregroundStyle(Theme.ink)
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityAddTraits(.isHeader)
+            HStack(spacing: Theme.space8) {
+                InfoChip(text: "\(recipe.totalMinutes) min", systemImage: "clock")
+                InfoChip(text: "Serves \(recipe.serves)", systemImage: "person.2")
+                InfoChip(text: "\(recipe.steps.count) steps", systemImage: "list.bullet")
+            }
+            SegmentedPicker(
+                options: [(value: Part.ingredients, title: "Ingredients"), (value: Part.steps, title: "Steps")],
+                selection: $part
+            )
+            .padding(.top, Theme.space8)
+            switch part {
+            case .ingredients:
+                GroupedRows {
+                    ForEach(Array(recipe.ingredientLines.enumerated()), id: \.offset) { _, line in
+                        Row(label: line.name, value: line.amount.isEmpty ? nil : line.amount)
+                    }
+                }
+            case .steps:
+                GroupedRows {
+                    ForEach(Array(recipe.steps.enumerated()), id: \.offset) { index, step in
+                        Row(label: step.instruction) {
+                            Text("\(index + 1)")
+                                .font(Theme.bodyStrong)
+                                .monospacedDigit()
+                                .foregroundStyle(Theme.ink)
+                                .frame(width: 24, alignment: .leading)
+                                .accessibilityLabel("Step \(index + 1)")
+                        }
+                    }
+                }
+            }
+        }
+        .padding(.horizontal, Theme.margin)
+        .padding(.top, Theme.space24)
+        .padding(.bottom, Theme.space24)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            Theme.ground,
+            in: UnevenRoundedRectangle(topLeadingRadius: Theme.radiusCard, topTrailingRadius: Theme.radiusCard, style: .continuous)
+        )
     }
 }
 
