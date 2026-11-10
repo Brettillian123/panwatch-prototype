@@ -3,10 +3,11 @@ import FluidAudio
 import Observation
 
 /// The natural voices: Kokoro-82M on the phone through FluidAudio's Core ML runtime
-/// (github.com/FluidInference/FluidAudio, Apache 2.0). The model downloads from Hugging
-/// Face the first time a natural voice is heard or chosen, into Application Support, and
-/// is compiled for this phone once. Until it's ready, and whenever it fails, the phone's
-/// own voice speaks instead, so a prompt is never lost.
+/// (github.com/FluidInference/FluidAudio, Apache 2.0). `VoiceFetcher` starts the fetch from
+/// Hugging Face on its own (Wi-Fi only unless the cook says otherwise), into Application
+/// Support, and it is compiled for this phone once. Hearing a voice never waits for it: the
+/// previews are bundled. Until it's ready, and whenever it fails, the phone's own voice
+/// speaks instead, so a prompt is never lost.
 @MainActor @Observable
 final class KokoroVoice: SpeechSource {
     enum State: Equatable {
@@ -15,11 +16,17 @@ final class KokoroVoice: SpeechSource {
         /// Downloading and compiling; the share done so far, from 0 to 1.
         case downloading(Double)
         case ready
-        /// The last try failed; the next natural prompt tries again.
-        case failed(String)
+        /// The last try failed; `VoiceFetcher` tries again when the network returns.
+        case failed(VoiceChoice.Problem)
     }
 
-    private(set) var state: State = .idle
+    private(set) var state: State = .idle {
+        didSet { if state != oldValue { onStateChange?(state) } }
+    }
+    /// Told of every change of `state`, for `VoiceFetcher`.
+    @ObservationIgnored var onStateChange: ((State) -> Void)?
+    /// The catalogue packs on the phone and loaded; a mix the cook made counts once loaded.
+    @ObservationIgnored private(set) var packsHere: Set<String> = []
     /// The cook's mixes, saved between launches.
     private(set) var blends: [VoiceBlend] = KokoroVoice.loadBlends()
 
@@ -48,13 +55,41 @@ final class KokoroVoice: SpeechSource {
 
     var isReady: Bool { state == .ready }
 
-    /// Starts the download and load if they aren't done or under way.
+    var isLoading: Bool { loading != nil }
+
+    /// Written once everything has arrived and loaded.
+    nonisolated private static var marker: URL { directory.appendingPathComponent("fetched") }
+
+    /// Everything is on the phone already, so loading needs no network.
+    nonisolated static var isOnPhone: Bool {
+        FileManager.default.fileExists(atPath: marker.path) || (try? voicesFolder()) != nil
+    }
+
+    /// `pack` can speak this instant.
+    func hasPack(_ pack: String) -> Bool {
+        state == .ready && (packsHere.contains(pack) || VoiceCatalog.voice(pack: pack) == nil)
+    }
+
+    /// Starts the fetch and load if they aren't done or under way. Only `VoiceFetcher`
+    /// calls this when the voices aren't on the phone, since it decides about the network.
     func prepare() {
         guard manager == nil, loading == nil else { return }
         state = .downloading(Self.downloadedShare())
-        loading = Task { [weak self] in
+        loading = Task(priority: .utility) { [weak self] in
             await self?.load()
         }
+    }
+
+    /// Loads from the phone when everything is already here; never fetches.
+    func prepareIfOnPhone() {
+        if Self.isOnPhone { prepare() }
+    }
+
+    /// A catalogue voice whose pack didn't come down with the rest: fetched now.
+    func fetchPack(_ pack: String) async throws {
+        guard let store else { throw KokoroVoiceError.notReady }
+        _ = try await store.voicePack(pack)
+        packsHere.insert(pack)
     }
 
     private func load() async {
@@ -76,19 +111,37 @@ final class KokoroVoice: SpeechSource {
             }
             defer { watch.cancel() }
             try await manager.initialize()
-            // The other voices now, so Hear it starts at once; one that fails to come
-            // down is fetched again when it's first used.
+            // Every catalogue voice now, so a tap uses it at once; one that fails to come
+            // down is fetched when it's chosen.
+            var here: Set<String> = []
             for voice in VoiceCatalog.voices {
-                _ = try? await store.voicePack(voice.pack)
+                if (try? await store.voicePack(voice.pack)) != nil { here.insert(voice.pack) }
             }
             try? await rebuildBlends(store: store)
+            // One short line, thrown away, so the first real line isn't late.
+            _ = try? await manager.synthesizeDetailed(text: "Ready.", voice: VoiceCatalog.defaultVoice.pack, speed: 1)
+            FileManager.default.createFile(atPath: Self.marker.path, contents: Data())
             self.store = store
             self.manager = manager
+            packsHere = here
+            loading = nil
             state = .ready
+            return
         } catch {
-            state = .failed(error.localizedDescription)
+            loading = nil
+            state = .failed(Self.problem(error))
         }
-        loading = nil
+    }
+
+    /// A full phone, or (anything else) the network.
+    nonisolated static func problem(_ error: Error) -> VoiceChoice.Problem {
+        var next: NSError? = error as NSError
+        while let current = next {
+            if VoiceFetchRule.problem(domain: current.domain, code: current.code) == .noSpace { return .noSpace }
+            next = current.userInfo[NSUnderlyingErrorKey] as? NSError
+        }
+        let text = String(describing: error).lowercased()
+        return text.contains("no space") || text.contains("disk full") ? .noSpace : .offline
     }
 
     /// The share of `expectedBytes` on disk, short of 1 until loading has finished.
@@ -113,8 +166,8 @@ final class KokoroVoice: SpeechSource {
         let current = generation.next()
         speaking?.cancel()
         guard let pack = VoiceCatalog.pack(fromID: voice), let manager, state == .ready else {
-            // Downloading, failed, or not a natural voice: the phone's voice says it.
-            prepare()
+            // Still arriving, failed, or not a natural voice: the phone's voice says it.
+            prepareIfOnPhone()
             fallback.rate = AVSpeechUtteranceDefaultSpeechRate * speed.factor
             fallback.synthesize(text, voice: nil, format: format, buffer: buffer, done: done)
             return
@@ -272,7 +325,7 @@ enum KokoroVoiceError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .notReady: "Get more voices first."
+        case .notReady: "The voices are almost ready. Try again in a moment."
         case .badVoice: "Those two can't be mixed. Pick another pair."
         }
     }

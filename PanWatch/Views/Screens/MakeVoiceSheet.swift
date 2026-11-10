@@ -69,9 +69,8 @@ private struct BlendTwo: View {
     var body: some View {
         if !ready {
             SheetBody {
-                Text("To mix voices, get more voices first.")
-                    .font(Theme.body).foregroundStyle(Theme.slate)
-                NaturalVoicesDownload(session: session)
+                NaturalVoicesProgress(session: session)
+                    .task { session.prepareNaturalVoices() }
             } action: {
                 EmptyView()
             }

@@ -58,6 +58,12 @@ struct RootView: View {
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             }
 
+            // The one place the voices' fetch is ever mentioned: a voice picked on cellular.
+            if session.voiceFetch.askingMetered {
+                NotOnWiFiSheet(fetch: session.voiceFetch)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
+
             if screen == .help {
                 HelpOverlay(session: session)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
