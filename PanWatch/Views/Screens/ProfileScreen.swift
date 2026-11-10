@@ -1,3 +1,4 @@
+import AVFoundation
 import SwiftUI
 
 /// The profile, which holds what used to be the settings: the cook's numbers when there
@@ -123,17 +124,14 @@ struct ProfileScreen: View {
 
     private var talkRow: some View {
         VStack(alignment: .leading, spacing: Theme.space8) {
-            HStack(spacing: Theme.space16) {
-                Text("Talk").font(Theme.body).foregroundStyle(Theme.ink)
-                SegmentedPicker(options: [(value: true, title: "Talk"), (value: false, title: "Quiet")], selection: Binding(
-                    get: { session.voiceOn },
-                    set: { on in
-                        session.noteTouch()
-                        session.voiceOn = on
-                    }
-                ))
-            }
-            Text("Talk reads steps and offers aloud; Quiet only shows them.")
+            SegmentedPicker(options: [(value: true, title: "Talk"), (value: false, title: "Quiet")], selection: Binding(
+                get: { session.voiceOn },
+                set: { on in
+                    session.noteTouch()
+                    session.voiceOn = on
+                }
+            ))
+            Text("Talk reads steps and offers aloud. Quiet only shows them.")
                 .font(Theme.caption).foregroundStyle(Theme.slate)
                 .fixedSize(horizontal: false, vertical: true)
         }
