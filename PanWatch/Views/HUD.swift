@@ -208,7 +208,7 @@ struct TimerRow: View {
                 .foregroundStyle(Theme.alert)
                 .lineLimit(1)
         } else {
-            Text(timerInterval: timer.start...timer.end, countsDown: true)
+            Text(timerInterval: timer.start...timer.end, pauseTime: timer.pausedAt, countsDown: true)
                 .font(font)
                 .foregroundStyle(Theme.flour)
                 .lineLimit(1)
