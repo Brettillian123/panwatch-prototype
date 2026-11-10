@@ -113,8 +113,10 @@ final class VoiceFetcher {
     }
 
     /// "Wait for Wi-Fi" on the sheet: the choice is kept and the fetch starts on Wi-Fi.
+    /// Until then the row goes back with the caption, not a ring that never ends.
     func waitForWiFi() {
         askingMetered = false
+        choice.failed(.offline)
     }
 
     // MARK: Fetching
@@ -135,7 +137,9 @@ final class VoiceFetcher {
         case .ask:
             if choice.wanted != nil || forMixing { askingMetered = true }
         case .wait:
-            if cookPicked, network == .offline { choice.failed(.offline) }
+            // A voice still wanted (picked now, or before a relaunch) shows the caption
+            // while it waits for Wi-Fi, not a ring that never ends.
+            choice.failed(.offline)
         }
     }
 
@@ -161,7 +165,11 @@ final class VoiceFetcher {
         knowsNetwork = true
         guard settledLaunch, first || changed else { return }
         if network == .wifi, askingMetered { askingMetered = false }
-        if network != .offline, choice.problem == .offline, let id = choice.retry() {
+        // A waiting voice is fetched again by itself, never by asking: the sheet only
+        // follows a tap, so it can't come up over a cook when cellular returns.
+        if choice.problem == .offline,
+           VoiceFetchRule.retriesByItself(network: network, allowedMetered: allowedMetered, packOnly: natural.isReady),
+           let id = choice.retry() {
             save()
             if natural.isReady, let pack = VoiceCatalog.pack(fromID: id) {
                 fetchPack(pack, for: id)
