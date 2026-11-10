@@ -124,6 +124,29 @@ enum VoiceFetchRule {
         }
     }
 
+    /// The connection changed while a picked voice waits after a failed fetch: whether to
+    /// try again by itself. It never asks: the one sheet only ever follows a tap, so a
+    /// phone coming back on cellular keeps waiting for Wi-Fi unless the cook already said
+    /// "Get them now". `packOnly`: the voices are loaded and only this voice's small file
+    /// is missing, which any connection may fetch.
+    static func retriesByItself(network: VoiceNetwork, allowedMetered: Bool, packOnly: Bool) -> Bool {
+        if network == .offline { return false }
+        return packOnly || step(network: network, cookPicked: false, allowedMetered: allowedMetered) == .start
+    }
+
+    /// Whether the voices fully arrived on an earlier run, so loading them needs no network.
+    /// `marker`: the file written after a load that finished. `packFiles`: the file names in
+    /// the voices folder. Builds from before the marker fetched the other catalogue voices
+    /// only after everything else had arrived and loaded, so one of those on the phone
+    /// proves it. The folder alone, or the first voice alone, proves nothing: a fetch cut
+    /// off part way leaves those behind.
+    static func arrivedEarlier(marker: Bool, packFiles: [String]) -> Bool {
+        if marker { return true }
+        let first = VoiceCatalog.defaultVoice.pack
+        let here = Set(packFiles)
+        return VoiceCatalog.voices.contains { $0.pack != first && here.contains("\($0.pack).bin") }
+    }
+
     /// About what the first fetch keeps on the phone, with room to spare for compiling.
     static let neededBytes: Int64 = 400_000_000
 

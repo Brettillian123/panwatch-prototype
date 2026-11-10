@@ -60,9 +60,17 @@ final class KokoroVoice: SpeechSource {
     /// Written once everything has arrived and loaded.
     nonisolated private static var marker: URL { directory.appendingPathComponent("fetched") }
 
-    /// Everything is on the phone already, so loading needs no network.
+    /// Everything is on the phone already, so loading needs no network. A fetch cut off
+    /// part way is not: it goes back through `VoiceFetcher` and its network rule.
     nonisolated static var isOnPhone: Bool {
-        FileManager.default.fileExists(atPath: marker.path) || (try? voicesFolder()) != nil
+        VoiceFetchRule.arrivedEarlier(
+            marker: FileManager.default.fileExists(atPath: marker.path), packFiles: packFiles())
+    }
+
+    /// The file names in the voices folder; empty when there is none yet.
+    nonisolated private static func packFiles() -> [String] {
+        guard let folder = try? voicesFolder() else { return [] }
+        return (try? FileManager.default.contentsOfDirectory(atPath: folder.path)) ?? []
     }
 
     /// `pack` can speak this instant.
@@ -111,21 +119,29 @@ final class KokoroVoice: SpeechSource {
             }
             defer { watch.cancel() }
             try await manager.initialize()
-            // Every catalogue voice now, so a tap uses it at once; one that fails to come
-            // down is fetched when it's chosen.
+            // The catalogue voices already on the phone, which needs no network, so a poor
+            // connection can't hold up a voice that is here.
+            let onDisk = Set(Self.packFiles())
             var here: Set<String> = []
-            for voice in VoiceCatalog.voices {
+            for voice in VoiceCatalog.voices where onDisk.contains("\(voice.pack).bin") {
                 if (try? await store.voicePack(voice.pack)) != nil { here.insert(voice.pack) }
             }
             try? await rebuildBlends(store: store)
             // One short line, thrown away, so the first real line isn't late.
-            _ = try? await manager.synthesizeDetailed(text: "Ready.", voice: VoiceCatalog.defaultVoice.pack, speed: 1)
+            let first = VoiceCatalog.defaultVoice.pack
+            _ = try? await manager.synthesizeDetailed(
+                text: "Ready.", voice: here.contains(first) ? first : here.first ?? first, speed: 1)
             FileManager.default.createFile(atPath: Self.marker.path, contents: Data())
             self.store = store
             self.manager = manager
             packsHere = here
             loading = nil
             state = .ready
+            // The rest of the catalogue now, so a tap uses any of them at once; one that
+            // fails to come down is fetched when it's chosen.
+            for voice in VoiceCatalog.voices where !packsHere.contains(voice.pack) {
+                if (try? await store.voicePack(voice.pack)) != nil { packsHere.insert(voice.pack) }
+            }
             return
         } catch {
             loading = nil

@@ -35,6 +35,10 @@ struct VoicesScreen: View {
                 .screenColumn()
             }
             .scrollIndicators(.hidden)
+            // A preview stops with the screen; a step being read aloud is left alone.
+            .onDisappear {
+                if session.sampleVoiceID != nil { session.stopSample() }
+            }
             // "Next voice" may walk past the bottom of the screen or out of the filter.
             .onChange(of: session.highlightedVoiceID) { _, id in
                 guard let id else { return }
@@ -73,8 +77,9 @@ struct VoicesScreen: View {
 
     private var fixedPacks: Set<String> { Set(VoiceCatalog.voices.map(\.pack)) }
 
-    /// "All", the accents that have voices, "Women" and "Men" (the row scrolls sideways
-    /// rather than wrap), "Built in" for Apple's, "Yours" once the cook has one.
+    /// "All", the accents that have voices, "Women" and "Men": five that fit the width.
+    /// The phone's own voices are under "All". "Yours" joins once the cook has one (the
+    /// row then scrolls sideways rather than wrap).
     private var filters: [VoiceFilter] {
         let options = session.voiceOptions
         var out: [VoiceFilter] = [.all]
@@ -84,7 +89,6 @@ struct VoicesScreen: View {
         for gender in VoiceGender.allCases where options.contains(where: { $0.isNatural && $0.gender == gender }) {
             out.append(.gender(gender))
         }
-        if options.contains(where: { !$0.isNatural && !$0.isOwn }) { out.append(.builtIn) }
         if options.contains(where: { VoiceFilter.yours.contains($0, catalog: fixedPacks) }) { out.append(.yours) }
         return out
     }
@@ -115,7 +119,10 @@ struct VoicesScreen: View {
 
     @ViewBuilder private var list: some View {
         let options = shown
-        let askPersonal = filter == .builtIn && !options.contains(where: \.isPersonal)
+        // Personal Voice, at the end of "All" with the phone's own voices, only while there
+        // is something to tap (allow it, or open Settings).
+        let askPersonal = filter == .all && !options.contains(where: \.isPersonal)
+            && (personalStatus == .notDetermined || personalStatus == .denied)
         if options.isEmpty && !askPersonal {
             GroupedRows {
                 Row(label: "No voices here", detail: "Try another filter")
@@ -278,7 +285,6 @@ enum VoiceFilter: Hashable {
     case all
     case accent(VoiceAccent)
     case gender(VoiceGender)
-    case builtIn
     case yours
 
     var title: String {
@@ -286,7 +292,6 @@ enum VoiceFilter: Hashable {
         case .all: "All"
         case .accent(let accent): accent.title
         case .gender(let gender): gender == .female ? "Women" : "Men"
-        case .builtIn: "Built in"
         case .yours: "Yours"
         }
     }
@@ -297,7 +302,6 @@ enum VoiceFilter: Hashable {
         case .all: true
         case .accent(let accent): option.isNatural && option.accent == accent
         case .gender(let gender): option.isNatural && option.gender == gender
-        case .builtIn: !option.isNatural && !option.isOwn
         case .yours:
             option.isOwn || option.isPersonal
                 || (option.isNatural && option.id != VoiceCatalog.bellaAndSarah.voice.id

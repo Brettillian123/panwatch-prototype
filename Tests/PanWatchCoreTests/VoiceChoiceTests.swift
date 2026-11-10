@@ -139,4 +139,43 @@ struct VoiceChoiceTests {
         #expect(VoiceFetchRule.step(network: .metered, cookPicked: true, allowedMetered: true) == .start)
         #expect(VoiceFetchRule.step(network: .offline, cookPicked: true, allowedMetered: true) == .wait)
     }
+
+    @Test func aReturningConnectionNeverAsks() {
+        // Back on Wi-Fi: the waiting voice is fetched again by itself.
+        #expect(VoiceFetchRule.retriesByItself(network: .wifi, allowedMetered: false, packOnly: false))
+        // Back on cellular: it keeps waiting (no sheet over whatever screen is showing).
+        #expect(!VoiceFetchRule.retriesByItself(network: .metered, allowedMetered: false, packOnly: false))
+        // Unless the cook already said "Get them now" for this pick.
+        #expect(VoiceFetchRule.retriesByItself(network: .metered, allowedMetered: true, packOnly: false))
+        // One voice's small file may come over any connection.
+        #expect(VoiceFetchRule.retriesByItself(network: .metered, allowedMetered: false, packOnly: true))
+        #expect(!VoiceFetchRule.retriesByItself(network: .offline, allowedMetered: true, packOnly: true))
+    }
+
+    @Test func waitingForWiFiGoesQuietlyBackAndKeepsThePick() {
+        var choice = VoiceChoice(settled: samantha)
+        choice.choose(hannah, readyNow: false)
+        choice.failed(.offline) // "Wait for Wi-Fi"
+        #expect(!choice.isPending(hannah))
+        #expect(choice.marked == samantha)
+        #expect(choice.wanted == hannah)
+        let again = choice.retry()
+        #expect(again == hannah)
+    }
+
+    @Test func aFinishedLoadMeansTheVoicesAreOnThePhone() {
+        #expect(VoiceFetchRule.arrivedEarlier(marker: true, packFiles: []))
+    }
+
+    @Test func aFetchCutOffPartWayIsNotOnThePhone() {
+        let first = "\(VoiceCatalog.defaultVoice.pack).bin"
+        #expect(!VoiceFetchRule.arrivedEarlier(marker: false, packFiles: []))
+        #expect(!VoiceFetchRule.arrivedEarlier(marker: false, packFiles: [first]))
+        #expect(!VoiceFetchRule.arrivedEarlier(marker: false, packFiles: ["af_mixbs.bin", "notes.txt"]))
+    }
+
+    @Test func anEarlierBuildsVoicesCountAsOnThePhone() {
+        let other = VoiceCatalog.voices[1].pack
+        #expect(VoiceFetchRule.arrivedEarlier(marker: false, packFiles: ["\(VoiceCatalog.defaultVoice.pack).bin", "\(other).bin"]))
+    }
 }

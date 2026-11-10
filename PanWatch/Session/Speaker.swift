@@ -94,9 +94,13 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         self.audio = audio
         super.init()
         direct.delegate = self
-        // The natural voices load in the background once launch has settled (VoiceFetcher).
+        // A natural voice chosen before and already on the phone loads now, so the first
+        // prompt can use it. Fetching is never started here: that is VoiceFetcher's, once
+        // launch has settled.
+        if VoiceCatalog.isNatural(voiceIdentifier) { natural.prepareIfOnPhone() }
         if OwnVoice.isOwn(voiceIdentifier) {
             own.prepare()
+            if VoiceCatalog.isNatural(ownFallback) { natural.prepareIfOnPhone() }
         }
         own.fallback = { [weak self] text, format, buffer, done in
             guard let self else { return done(false) }
