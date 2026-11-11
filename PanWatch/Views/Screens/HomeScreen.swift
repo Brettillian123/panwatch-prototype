@@ -232,7 +232,7 @@ struct HomeScreen: View {
             }
             .buttonStyle(.plain)
             .accessibilityElement(children: .combine)
-            .accessibilityLabel("\(recipe.displayTitle), \(recipe.totalMinutes) minutes, serves \(recipe.serves)")
+            .accessibilityLabel("\(recipe.displayTitle), \(recipe.spokenTime)" + (recipe.serves.map { ", serves \($0)" } ?? ""))
 
             HeartButton(isOn: favorites.contains(recipe), label: "Favorite \(recipe.displayTitle)") {
                 withAnimation(Theme.motion) { favorites.toggle(recipe) }

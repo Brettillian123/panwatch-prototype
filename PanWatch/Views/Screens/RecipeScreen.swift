@@ -88,8 +88,8 @@ struct RecipeScreen: View {
     }
 
     @ViewBuilder private var facts: some View {
-        InfoChip(text: "\(recipe.totalMinutes) min", systemImage: "clock")
-        InfoChip(text: "Serves \(recipe.serves)", systemImage: "person.2")
+        InfoChip(text: recipe.timeText, systemImage: "clock")
+        if let serves = recipe.serves { InfoChip(text: "Serves \(serves)", systemImage: "person.2") }
         InfoChip(text: "\(recipe.steps.count) steps", systemImage: "list.bullet")
     }
 
