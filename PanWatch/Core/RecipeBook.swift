@@ -134,7 +134,7 @@ enum RecipeBook {
         }
         return .success(Recipe(
             id: file.id, title: file.title, category: category, method: method,
-            source: RecipeSource(name: file.source.name, url: file.source.url ?? ""),
+            source: RecipeSource(name: file.source.name, url: file.source.url ?? "", credit: file.source.credit ?? ""),
             steps: steps, items: file.ingredients.map { Ingredient(name: $0.name, amount: $0.amount) },
             totalMinutes: file.totalMinutes, serves: file.serves
         ))
@@ -152,12 +152,12 @@ enum RecipeBook {
         let category: String
         let method: String
         let source: Source
-        let serves: Int
+        let serves: Int?
         let totalMinutes: Int
         let ingredients: [Item]
         let steps: [Step]
 
-        struct Source: Decodable, Sendable { let name: String; let url: String? }
+        struct Source: Decodable, Sendable { let name: String; let url: String?; let credit: String? }
         struct Item: Decodable, Sendable { let amount: String; let name: String }
         struct Step: Decodable, Sendable {
             let instruction: String

@@ -7,7 +7,7 @@ struct RecipeBrowseTests {
     @Test func everyRecipeHasTimeAndServings() {
         for recipe in Recipe.all {
             #expect(recipe.totalMinutes > 0, "\(recipe.title)")
-            #expect(recipe.serves > 0, "\(recipe.title)")
+            #expect((recipe.serves ?? 0) > 0, "\(recipe.title)")
         }
     }
 

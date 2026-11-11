@@ -60,9 +60,10 @@ extension RecipeBook {
                 continue
             }
             let from = incoming.appendingPathComponent(name)
-            try? fm.copyItem(at: from, to: staging.appendingPathComponent(name))
+            guard let data = fm.contents(atPath: from.path).map(withoutHeld) else { continue }
+            try? data.write(to: staging.appendingPathComponent(name))
             checked.insert(String(name.dropLast(5)))
-            guard let data = fm.contents(atPath: from.path), case .success(let recipe) = decode(data),
+            guard case .success(let recipe) = decode(data),
                   !recipe.source.isOwn, !credits.contains(where: { $0.name == recipe.source.name }) else { continue }
             let credit = RecipeSourceCredit(name: recipe.source.name, credit: "Recipes adapted from \(recipe.source.name).",
                                             url: origin(of: recipe.source.url))
@@ -78,8 +79,9 @@ extension RecipeBook {
         }
 
         do {
+            // The staged copies, so a held recipe's "_held" note never reaches the book.
             for name in names {
-                try fm.copyItem(at: incoming.appendingPathComponent(name), to: book.appendingPathComponent(name))
+                try fm.copyItem(at: staging.appendingPathComponent(name), to: book.appendingPathComponent(name))
             }
             if !result.newSources.isEmpty { try creditData.write(to: book.appendingPathComponent(sourcesFile)) }
             try writePack(sources: book, assets: assets, to: packed)
@@ -90,6 +92,16 @@ extension RecipeBook {
         result.book = load(from: book).recipes
         result.added = result.book.filter { checked.contains($0.id) }
         return result
+    }
+
+    /// The file without a top-level "_held" note; a file without one is returned unchanged,
+    /// byte for byte.
+    static func withoutHeld(_ data: Data) -> Data {
+        guard var object = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+              object.removeValue(forKey: heldKey) != nil,
+              let stripped = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes])
+        else { return data }
+        return stripped + Data("\n".utf8)
     }
 
     /// `sources.json`'s text: one credit per line, keys sorted.

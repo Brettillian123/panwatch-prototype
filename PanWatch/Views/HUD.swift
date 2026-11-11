@@ -107,7 +107,10 @@ struct CookChip: View {
 @MainActor func countdown(_ timer: CookTimer) -> Text {
     if let pausedAt = timer.pausedAt {
         let left = max(0, Int(timer.end.timeIntervalSince(pausedAt).rounded()))
-        return Text(verbatim: "\(left / 60):\(left % 60 < 10 ? "0" : "")\(left % 60)")
+        // Past an hour, hours and minutes like the live countdown: "1:40:00".
+        let two: (Int) -> String = { $0 < 10 ? "0\($0)" : "\($0)" }
+        if left >= 3600 { return Text(verbatim: "\(left / 3600):\(two(left / 60 % 60)):\(two(left % 60))") }
+        return Text(verbatim: "\(left / 60):\(two(left % 60))")
     }
     return Text(timerInterval: timer.start...timer.end, countsDown: true)
 }
@@ -214,7 +217,7 @@ struct TimersSheet: View {
                         }
                     }
                     if session.canStartStepTimer, let watch = session.currentStep.watch {
-                        QuietButton(title: "Start the \(watch.timerMinutes)-minute timer", systemImage: "timer") {
+                        QuietButton(title: "Start the \(Recipe.timerLength(minutes: watch.timerMinutes)) timer", systemImage: "timer") {
                             session.noteTouch()
                             session.startStepTimer()
                         }

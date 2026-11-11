@@ -152,7 +152,7 @@ struct CookScreen: View {
             } else if session.canStartStepTimer,
                       let minutes = session.currentStep.watch?.timerMinutes ?? session.currentStep.timer?.minutes {
                 // No timer yet on a timed step: start it by touch, as the old Timer button did.
-                QuietButton(title: "Start the \(minutes)-minute timer", systemImage: "timer") {
+                QuietButton(title: "Start the \(Recipe.timerLength(minutes: minutes)) timer", systemImage: "timer") {
                     session.noteTouch()
                     session.startStepTimer()
                 }

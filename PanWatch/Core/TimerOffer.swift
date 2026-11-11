@@ -14,14 +14,14 @@ struct TimerOffer: Equatable, Sendable {
 
     /// The small line on the card.
     var caption: String {
-        plain ? "This step takes \(minutes) \(minutes == 1 ? "minute" : "minutes")." : "Looks like the \(ingredient) went in."
+        plain ? "This step takes \(Recipe.spokenTime(minutes: minutes))." : "Looks like the \(ingredient) went in."
     }
 
     /// The question on the card.
-    var question: String { "Start a \(minutes)-minute timer?" }
+    var question: String { "Start a \(Recipe.timerLength(minutes: minutes)) timer?" }
 
     /// What is said aloud: the caption, then the question, with the number spoken plainly.
-    var spoken: String { "\(caption) Start a \(minutes) minute timer?" }
+    var spoken: String { "\(caption) Start a \(Recipe.timerLength(minutes: minutes).replacingOccurrences(of: "-", with: " ")) timer?" }
 
     /// The camera's offer for a watched step.
     static func seen(_ watch: AdditionWatch) -> TimerOffer {

@@ -47,6 +47,8 @@ extension Recipe {
                 }
                 earlierTimers[watch.timerLabel] = watch.timerMinutes * 60
             }
+            // A plain timer starts the same way (on a tap or a "yes"), so a cue may wait on it too.
+            if let timer = step.timer { earlierTimers[timer.label] = timer.minutes * 60 }
         }
         return found
     }
@@ -56,13 +58,19 @@ extension Recipe {
     func authoringProblems() -> [String] {
         var found = problems()
         found += RecipeRules.titleProblems(title)
-        if !(1...12).contains(serves) { found.append("\"serves\" must be 1 to 12; it is \(serves).") }
-        if !(1...240).contains(totalMinutes) { found.append("\"totalMinutes\" must be 1 to 240; it is \(totalMinutes).") }
+        if let serves, !RecipeRules.servesRange.contains(serves) {
+            found.append("\"serves\" must be 1 to \(RecipeRules.servesRange.upperBound), or left out; it is \(serves).")
+        }
+        if !RecipeRules.totalRange.contains(totalMinutes) {
+            found.append("\"totalMinutes\" must be 1 to \(RecipeRules.totalRange.upperBound); it is \(totalMinutes).")
+        }
         let timed = steps.reduce(0) { $0 + ($1.watch?.timerMinutes ?? 0) + ($1.timer?.minutes ?? 0) }
         if totalMinutes < timed {
             found.append("\"totalMinutes\" is \(totalMinutes), less than its timers add up to (\(timed)).")
         }
-        if !(3...12).contains(steps.count) { found.append("A recipe has 3 to 12 steps; this one has \(steps.count).") }
+        if !RecipeRules.stepRange.contains(steps.count) {
+            found.append("A recipe has 3 to \(RecipeRules.stepRange.upperBound) steps; this one has \(steps.count).")
+        }
         if !source.isOwn && !source.url.hasPrefix("https://") {
             found.append("A recipe from elsewhere needs the source's \"url\", starting https://.")
         }
@@ -74,9 +82,10 @@ extension Recipe {
             for text in [step.instruction, step.spoken].compactMap({ $0 }) {
                 found += RecipeRules.wordProblems(text).map { "\(name): \($0)" }
                 // Off the heat too: "let it rest 5 minutes" needs its 5-minute timer.
-                for minutes in RecipeRules.statedMinutes(in: text) where !timerMinutes.contains(minutes) {
+                // A range, "7 to 10 minutes", is covered by a timer on either number.
+                for time in RecipeRules.statedTimes(in: text) where timerMinutes.isDisjoint(with: time.covered) {
                     let wait = RecipeRules.isOffTheHeat(text) ? " (waits off the heat need a timer too)" : ""
-                    found.append("\(name): it says \(minutes) minutes, but no step has a \(minutes)-minute timer\(wait).")
+                    found.append("\(name): it says \(time.minutes) minutes, but no step has a \(time.minutes)-minute timer\(wait).")
                 }
             }
             if let watch = step.watch {
@@ -85,11 +94,15 @@ extension Recipe {
                 } else if !RecipeRules.addsSomething(step.instruction) {
                     found.append("\(name): a \"watch\" belongs on a step that adds something to the pot or pan (Add, Stir in, Lower, Lay...).")
                 }
-                if watch.timerMinutes > 120 { found.append("\(name): a watch timer runs 1 to 120 minutes.") }
+                if watch.timerMinutes > RecipeRules.timerRange.upperBound {
+                    found.append("\(name): a watch timer runs 1 to \(RecipeRules.timerRange.upperBound) minutes.")
+                }
                 found += RecipeRules.wordProblems(watch.ingredient + " " + watch.timerLabel).map { "\(name): \($0)" }
             }
             if let timer = step.timer {
-                if !(1...240).contains(timer.minutes) { found.append("\(name): a timer runs 1 to 240 minutes.") }
+                if !RecipeRules.timerRange.contains(timer.minutes) {
+                    found.append("\(name): a timer runs 1 to \(RecipeRules.timerRange.upperBound) minutes.")
+                }
                 if timer.label.trimmingCharacters(in: .whitespaces).isEmpty { found.append("\(name): the timer needs a label.") }
                 if step.watch != nil { found.append("\(name): a step has a \"watch\" or a \"timer\", not both.") }
             }
@@ -115,15 +128,28 @@ extension Recipe {
 enum RecipeRules {
     static let instructionLimit = 90
     static let titleLimit = 40
+    /// How many it feeds, when the source says: big batches and party trays included.
+    static let servesRange = 1...100
+    /// Steps in a recipe: a long cookbook recipe written one action per step fits.
+    static let stepRange = 3...20
+    /// One timer, watch or plain: up to an eight-hour slow cooker.
+    static let timerRange = 1...480
+    /// Start to plate: up to a day, for overnight rises and chills.
+    static let totalRange = 1...1_440
 
-    /// Words a title keeps lowercase unless they come first: "Chicken with Rice".
-    static let smallWords: Set<String> = ["a", "an", "and", "the", "of", "with", "in", "on", "or", "for", "to", "at", "by"]
+    /// Words a title keeps lowercase unless they come first: "Chicken with Rice", "Dulce de Leche".
+    static let smallWords: Set<String> = [
+        "a", "an", "and", "as", "at", "by", "for", "in", "of", "on", "or", "the", "to", "with",
+        "de", "la", "le", "el", "con", "al", "à", "au", "di", "da",
+    ]
 
-    /// US kitchen units, singular; a plural "s" or "es" is fine too.
+    /// US kitchen units and counts, singular; a plural "s" or "es" is fine too.
     static let units: Set<String> = [
         "cup", "tablespoon", "teaspoon", "pound", "ounce", "fluid ounce", "quart", "pint", "gallon",
         "clove", "pinch", "dash", "can", "jar", "stick", "slice", "piece", "bunch", "head", "sprig",
         "stalk", "ear", "inch", "bowl", "handful", "package", "bag", "box", "leaf", "loaf",
+        "cube", "strip", "wedge", "bottle", "packet", "envelope", "drop", "fillet", "breast", "thigh",
+        "rib", "link", "sheet",
     ]
     /// Words that may sit between the number and the unit: "1 large", "2 heaping tablespoons".
     static let sizes: Set<String> = ["large", "medium", "small", "heaping", "level", "scant", "generous", "big"]
@@ -152,7 +178,16 @@ enum RecipeRules {
         #"\b(is|are|it's|they're|it is|they are)\s+(now\s+)?(done|ready|cooked|safe|perfect)\b"#,
         #"\b(has|have)\s+reached\b"#,
         #"\b(is|are)\s+at\s+\d"#,
+        #"\b(is|are|it's|they're)\s+(now\s+)?\d+\s*(°|degrees)"#,
     ]
+
+    /// A temperature the cook sets: an oven, a pan, oil. "Bake at 350 °F", "Preheat the oven
+    /// to 425 °F", "Heat the oil to 350 °F". The number is captured.
+    static let settingPattern = #"\b(oven|preheat|preheated|bake|roast|broil|heat|fry|griddle|grill|toast|set)\b[^.;]*?\b(to|at)\s+(\d+)\s*(°|degrees)"#
+
+    /// What a thermometer may be told to read beyond the food safety table: oil, water,
+    /// sugar and milk heated to a setting.
+    static let heatedLiquids = ["oil", "water", "sugar", "syrup", "milk", "caramel", "fat", "shortening"]
 
     static func titleProblems(_ title: String) -> [String] {
         var found: [String] = []
@@ -179,14 +214,42 @@ enum RecipeRules {
             found.append("the instruction is \(text.count) characters; at most \(instructionLimit), with the rest in \"spoken\".")
         }
         if !text.hasSuffix(".") { found.append("the instruction ends with a period.") }
-        if matches(#"[.!?;]\s+\S"#, in: text) {
-            found.append("one action per step: the instruction is one sentence; split it or move detail to \"spoken\".")
+        if hasTwoActions(text) {
+            found.append("one action per step: the instruction gives two things to do; split it or move detail to \"spoken\".")
         }
         if matches(#"^(wait|let (it|them) (sit|rest|stand|cool))( for)?( about)? \d+( more)? (minute|minutes|hour|hours)\.?$"#,
                    in: text.lowercased()) {
             found.append("the step is only a wait; give the time as a timer on the step that starts it.")
         }
         return found
+    }
+
+    /// Words that begin a sentence telling the cook to do something: "Stir", "Add", "Bake".
+    /// A sentence starting otherwise ("The edges should be golden.", "It will thicken.")
+    /// only says what to look for.
+    static let actionVerbs: Set<String> = [
+        "add", "bake", "beat", "blend", "boil", "braise", "bring", "broil", "brown", "brush", "chill", "chop",
+        "combine", "cook", "cool", "cover", "crack", "crush", "cut", "dice", "dip", "discard", "divide",
+        "drain", "drizzle", "drop", "dry", "dust", "flip", "fold", "fry", "garnish", "grate", "grease",
+        "grill", "heat", "knead", "ladle", "lay", "layer", "let", "line", "lower", "marinate", "mash", "melt",
+        "microwave", "mince", "mix", "peel", "place", "pour", "preheat", "press", "put", "reduce",
+        "refrigerate", "remove", "rinse", "roast", "roll", "rub", "saute", "sauté", "scatter", "sear",
+        "season", "serve", "set", "shake", "shape", "shred", "simmer", "slice", "spoon", "spread",
+        "sprinkle", "squeeze", "steam", "stir", "strain", "stuff", "taste", "thread", "tip", "top", "toss",
+        "transfer", "trim", "turn", "wash", "whisk", "wipe", "wrap",
+    ]
+
+    /// Two sentences that each tell the cook to do something ("Boil the water. Add the
+    /// salt."). A second sentence that only says what to look for is fine.
+    static func hasTwoActions(_ text: String) -> Bool {
+        let sentences = text.split(whereSeparator: { $0 == "." || $0 == "!" || $0 == "?" || $0 == ";" })
+            .map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
+        guard sentences.count > 1 else { return false }
+        let commands = sentences.filter { sentence in
+            let first = sentence.lowercased().split(separator: " ").first.map(String.init) ?? ""
+            return actionVerbs.contains(first.trimmingCharacters(in: .punctuationCharacters))
+        }
+        return commands.count > 1
     }
 
     /// Banned plain words, brand names, and claims that food is done or at a temperature.
@@ -201,21 +264,60 @@ enum RecipeRules {
             found.append("the app never says food is done, safe or at a temperature; say what to look for.")
         }
         if matches(#"\d\s*°\s*c\b|celsius"#, in: lower) { found.append("temperatures are in °F.") }
-        for degrees in numbers(#"(\d+)\s*(°|degrees)"#, in: lower) {
-            let oven = lower.contains("oven") || lower.contains("preheat")
-            if !oven && !(FoodSafety.temperatures.contains(degrees) && lower.contains("thermometer")) {
-                found.append("\(degrees) °F: a temperature is an oven setting, or a safe temperature from the food safety table checked with a thermometer.")
+        // A temperature is something the cook sets or measures, never a state the app claims.
+        let settings = Set(settingNumbers(in: lower))
+        let measured = lower.contains("thermometer")
+        let liquid = heatedLiquids.contains { matches(#"\b"# + $0 + #"\b"#, in: lower) }
+        for degrees in numbers(#"(\d+)\s*(°|degrees)"#, in: lower) where !settings.contains(degrees) {
+            if !(measured && (FoodSafety.temperatures.contains(degrees) || liquid)) {
+                found.append("\(degrees) °F: a temperature is a setting (\"Bake at 350 °F.\") or what a thermometer should read, a safe temperature from the food safety table.")
             }
         }
         return found
     }
 
-    /// Every number of minutes the text names; hours count as 60 minutes each.
-    static func statedMinutes(in text: String) -> [Int] {
-        let lower = text.lowercased()
-        return numbers(#"(\d+)\s*(more\s+)?(minute|minutes|min)\b"#, in: lower)
-            + numbers(#"(\d+)\s*(more\s+)?(hour|hours)\b"#, in: lower).map { $0 * 60 }
+    /// The temperatures the text sets: "Bake at 350 °F" gives 350.
+    static func settingNumbers(in lower: String) -> [Int] {
+        guard let regex = RegexCache.shared.regex(settingPattern) else { return [] }
+        return regex.matches(in: lower, range: NSRange(lower.startIndex..., in: lower)).compactMap { match in
+            Range(match.range(at: 3), in: lower).flatMap { Int(lower[$0]) }
+        }
     }
+
+    /// A time a step names: the minutes it says (a range's upper number), and the timer
+    /// lengths that cover it (a range's lower number too).
+    struct StatedTime: Equatable, Sendable {
+        let minutes: Int
+        let covered: Set<Int>
+    }
+
+    /// Every time the text names, in minutes; hours count 60 each. "7 to 10 minutes" is one
+    /// time, covered by a 7- or a 10-minute timer. Under a minute needs no timer ("30
+    /// seconds", "1/2 minute"); seconds count only as whole minutes ("120 seconds").
+    static func statedTimes(in text: String) -> [StatedTime] {
+        let lower = text.lowercased()
+        let pattern = #"(?<![\d/])(?:(\d+)\s*(?:to|-|–|or)\s*)?(\d+)(?![\d/])\s*(?:more\s+)?(minutes|minute|min|hours|hour|hr|seconds|second|sec)\b"#
+        guard let regex = RegexCache.shared.regex(pattern) else { return [] }
+        return regex.matches(in: lower, range: NSRange(lower.startIndex..., in: lower)).compactMap { match in
+            let number: (Int) -> Int? = { Range(match.range(at: $0), in: lower).flatMap { Int(lower[$0]) } }
+            guard let upper = number(2), let unitRange = Range(match.range(at: 3), in: lower) else { return nil }
+            let unit = lower[unitRange]
+            let toMinutes: (Int) -> Int?
+            if unit.hasPrefix("h") {
+                toMinutes = { $0 * 60 }
+            } else if unit.hasPrefix("s") {
+                toMinutes = { $0 >= 60 && $0 % 60 == 0 ? $0 / 60 : nil }
+            } else {
+                toMinutes = { $0 }
+            }
+            guard let minutes = toMinutes(upper) else { return nil }
+            let low = number(1).flatMap(toMinutes)
+            return StatedTime(minutes: minutes, covered: Set([minutes] + (low.map { [$0] } ?? [])))
+        }
+    }
+
+    /// Every number of minutes the text names: each time's upper number.
+    static func statedMinutes(in text: String) -> [Int] { statedTimes(in: text).map(\.minutes) }
 
     static func isOffTheHeat(_ text: String) -> Bool {
         let lower = text.lowercased()
@@ -239,6 +341,11 @@ enum RecipeRules {
             return "the amount starts with a number or \"a\": \"\(amount)\"."
         }
         tokens.removeFirst()
+        if first == "a", tokens.first == "few" || tokens.first == "couple" {   // "a few dashes"
+            tokens.removeFirst()
+            if tokens.first == "of" { tokens.removeFirst() }
+            guard !tokens.isEmpty else { return "\"\(amount)\" names no unit." }
+        }
         if let next = tokens.first, isNumber(next), next.contains("/") { tokens.removeFirst() } // "1 1/2"
         if let next = tokens.first, sizes.contains(next) { tokens.removeFirst() }
         if tokens.isEmpty { return isNumber(first) || lower.split(separator: " ").count > 1 ? nil : "\"\(amount)\" names no unit." }
@@ -256,13 +363,21 @@ enum RecipeRules {
     /// Whether a step names the ingredient: its name before any comma, or that name's
     /// last word ("long-grain white rice" is used by "the rice"), plurals forgiven.
     static func isUsed(_ name: String, in steps: String) -> Bool {
-        let core = name.lowercased().split(separator: ",").first.map(String.init)?.trimmingCharacters(in: .whitespaces) ?? ""
+        let core = mainName(name)
         let lower = steps.lowercased()
         if core.isEmpty { return false }
         if lower.contains(core) { return true }
         guard let last = core.split(whereSeparator: { $0 == " " || $0 == "-" }).last.map(String.init) else { return false }
         let stems = [last, last.hasSuffix("es") ? String(last.dropLast(2)) : last, last.hasSuffix("s") ? String(last.dropLast()) : last]
         return stems.contains { $0.count >= 3 && matches(#"\b"# + NSRegularExpression.escapedPattern(for: $0), in: lower) }
+    }
+
+    /// An ingredient's main name: the text before the first comma, any parentheses taken
+    /// out. "tomatoes (canned), drained" is "tomatoes".
+    static func mainName(_ name: String) -> String {
+        let plain = name.lowercased().replacingOccurrences(of: #"\s*\([^)]*\)"#, with: "", options: .regularExpression)
+        let core = plain.split(separator: ",", omittingEmptySubsequences: false).first.map(String.init) ?? ""
+        return core.split(separator: " ").joined(separator: " ")
     }
 
     // MARK: Helpers
@@ -285,7 +400,7 @@ extension RecipeBook {
     /// The fields a file may have, by where they sit. Anything else is a typo.
     static let allowedKeys: [String: Set<String>] = [
         "recipe": ["id", "title", "category", "method", "source", "serves", "totalMinutes", "ingredients", "steps"],
-        "source": ["name", "url"],
+        "source": ["name", "url", "credit"],
         "ingredient": ["amount", "name"],
         "step": ["instruction", "spoken", "watch", "cue", "timer"],
         "watch": ["ingredient", "timerLabel", "timerMinutes", "minimumChange", "countsRelease"],
@@ -326,6 +441,8 @@ extension RecipeBook {
 
     /// Files in the recipe folder that are not recipes.
     static let indexFile = "index.json"
+    /// A converter's top-level note on a held recipe: the checker skips it, adding drops it.
+    static let heldKey = "_held"
     static let sourcesFile = "sources.json"
 
     /// Checks every recipe file in `folder`, or only the slugs in `only`. Titles and ids are
@@ -411,7 +528,8 @@ extension RecipeBook {
                 found.append("unknown field \"\(key)\"\(place); allowed: \(allowed.sorted().joined(separator: ", ")).")
             }
         }
-        check(recipe, as: "recipe", at: "")
+        // "_held" is a converter's note on a recipe held aside; adding drops it.
+        check(recipe.filter { $0.key != heldKey }, as: "recipe", at: "")
         check(recipe["source"], as: "source", at: " in source")
         for (index, item) in ((recipe["ingredients"] as? [Any]) ?? []).enumerated() {
             check(item, as: "ingredient", at: " in ingredient \(index + 1)")
