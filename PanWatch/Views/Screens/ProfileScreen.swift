@@ -234,7 +234,7 @@ private struct ToggleRow: View {
     }
 }
 
-/// The app's version and the voice models' and libraries' notices.
+/// The app's version, the voice models' and libraries' notices, and the recipes' sources.
 private struct AboutSheet: View {
     let close: () -> Void
 
@@ -259,7 +259,7 @@ private struct AboutSheet: View {
                     .padding(.top, Theme.space8)
                     .accessibilityAddTraits(.isHeader)
                 GroupedRows {
-                    ForEach(Credits.notices) { notice in
+                    ForEach(Credits.notices + Credits.recipeNotices()) { notice in
                         VStack(alignment: .leading, spacing: 4) {
                             Text(notice.title).font(Theme.body).foregroundStyle(Theme.ink)
                             Text(notice.text)

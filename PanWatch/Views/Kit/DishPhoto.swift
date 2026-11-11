@@ -1,8 +1,9 @@
 import SwiftUI
 import UIKit
 
-/// A dish's photo: the asset `dish-<slug>` when the app has it, else a plain soft tile,
-/// blush or sky by the recipe's place in the menu, with `fork.knife` in slate. It fills
+/// A dish's photo: the asset `dish-<slug>` when the app has it, else a plain soft tile in
+/// the category's color (blush or sky, alternating by category) with the category's symbol
+/// in slate, so a shelf of dishes still waiting for photos reads as deliberate. It fills
 /// the frame it is given; the caller sets the size and the corner radius.
 struct DishPhoto: View {
     let recipe: Recipe
@@ -17,8 +18,8 @@ struct DishPhoto: View {
                 .accessibilityLabel(recipe.title)
         } else {
             ZStack {
-                (recipe.menuIndex.isMultiple(of: 2) ? Theme.blush : Theme.sky)
-                Image(systemName: "fork.knife")
+                (recipe.category.index.isMultiple(of: 2) ? Theme.blush : Theme.sky)
+                Image(systemName: recipe.category.symbol)
                     .font(.system(size: 28, weight: .regular))
                     .foregroundStyle(Theme.slate)
             }

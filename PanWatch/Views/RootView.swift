@@ -102,6 +102,7 @@ struct RootView: View {
         switch base {
         case .recipes: HomeScreen(session: session)
         case .recipe: RecipeScreen(session: session, photoOnTop: $photoOnTop)
+        case .recipeList: RecipeListScreen(session: session)
         case .voices: VoicesScreen(session: session)
         case .makeVoice:
             // The sheet sits over the screen it was opened from.
@@ -141,7 +142,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
 #if DEBUG
 /// `-uiScreen <name>` on the launch arguments, DEBUG builds only: the screen to stage for a screenshot.
 enum ScreenshotStage {
-    static let names = ["recipes", "recipe", "cook", "offer", "voices", "makeVoice", "profile", "help"]
+    static let names = ["recipes", "recipe", "recipeList", "cook", "offer", "voices", "makeVoice", "profile", "help"]
 
     static var requested: String? {
         let arguments = ProcessInfo.processInfo.arguments
