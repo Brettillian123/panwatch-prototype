@@ -38,7 +38,9 @@ struct MenuVoiceTests {
 
     @Test func aWordInTwoTitlesOrNoneIsNoDish() {
         #expect(VoiceCommand.dish(word: "salad") == nil)
-        #expect(VoiceCommand.dish(word: "rice", titles: ["Rice", "Fried Rice"]) == nil)
+        // An exact title wins; a word two titles share, with neither exact, is no one dish.
+        #expect(VoiceCommand.dish(word: "rice", titles: ["Rice", "Fried Rice"]) == "Rice")
+        #expect(VoiceCommand.dish(word: "rice", titles: ["Rice Pudding", "Fried Rice"]) == nil)
         #expect(VoiceCommand.dish(word: "eggs", titles: ["Rice", "Hard-Boiled Eggs"]) == "Hard-Boiled Eggs")
     }
 
@@ -98,6 +100,8 @@ struct MenuVoiceTests {
         case .clearDone: "clear done"
         case .showRecipes: "show recipes"
         case .makeRecipe: "make recipe"
+        case .askWhichRecipe: "ask which recipe"
+        case .findRecipe: "find recipe"
         case .nudge: "nudge"
         case .camera: "camera"
         case .switchCamera: "switch camera"

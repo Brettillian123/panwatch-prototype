@@ -8,6 +8,20 @@ func pad(_ text: String, _ width: Int) -> String {
     text.count >= width ? String(text.prefix(width)) : text + String(repeating: " ", count: width - text.count)
 }
 
+// The recipe checker: swift run PanWatchScenarios --check-recipes [folder]. One line per
+// problem, starting with the file's name; exits 1 when there are any. The folder defaults
+// to PanWatch/Core/Recipes under the current directory.
+if let flag = CommandLine.arguments.firstIndex(of: "--check-recipes") {
+    let arguments = CommandLine.arguments
+    let path = flag + 1 < arguments.count ? arguments[flag + 1] : "PanWatch/Core/Recipes"
+    let folder = URL(fileURLWithPath: path, isDirectory: true)
+    let lines = RecipeBook.check(folder: folder)
+    lines.forEach { print($0) }
+    let count = RecipeBook.load(from: folder).recipes.count
+    print(lines.isEmpty ? "\(count) recipes, no problems." : "\(lines.count) problems in \(count) recipes.")
+    exit(lines.isEmpty ? 0 : 1)
+}
+
 if let flag = CommandLine.arguments.firstIndex(of: "--explain"), flag + 1 < CommandLine.arguments.count {
     let wanted = CommandLine.arguments[flag + 1]
     for run in Run.suite() where run.name == wanted {

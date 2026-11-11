@@ -7,7 +7,7 @@ import PackageDescription
 let package = Package(
     name: "PanWatchCore",
     targets: [
-        .target(name: "PanWatchCore", path: "PanWatch/Core"),
+        .target(name: "PanWatchCore", path: "PanWatch/Core", resources: [.copy("Recipes")]),
         // Synthetic practice seen from a phone propped low on the counter, shared by the
         // tests and the replay.
         .target(name: "PanWatchSamples", dependencies: ["PanWatchCore"], path: "Tests/PanWatchSamples"),

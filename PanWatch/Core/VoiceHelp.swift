@@ -33,7 +33,7 @@ enum HelpGroup: String, CaseIterable, Sendable {
     static func ordered(for screen: AppScreen) -> [HelpGroup] {
         let first: [HelpGroup] = switch screen {
         case .cook, .help: []
-        case .recipes, .recipe: [.recipes]
+        case .recipes, .recipe, .recipeList: [.recipes]
         case .profile: [.camera, .voice, .menus]
         case .voices, .makeVoice: [.voice]
         }
