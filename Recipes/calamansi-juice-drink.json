@@ -1,0 +1,46 @@
+{
+  "id": "calamansi-juice-drink",
+  "title": "Calamansi Juice Drink",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACalamansi_Juice_Drink"
+  },
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "3-4",
+      "name": "calamansi"
+    },
+    {
+      "amount": "1 cup",
+      "name": "cold water"
+    },
+    {
+      "amount": "1/2 tablespoon",
+      "name": "granulated sugar"
+    },
+    {
+      "amount": "to taste",
+      "name": "ice cubes"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Cut the calamansi in half with a sharp knife."
+    },
+    {
+      "instruction": "Squeeze the juice from the calamansi with your hands."
+    },
+    {
+      "instruction": "Pour the juice into a glass with 1 cup of cold water."
+    },
+    {
+      "instruction": "Stir in 1/2 tablespoon of granulated sugar until it dissolves."
+    },
+    {
+      "instruction": "Add ice cubes if you like."
+    }
+  ]
+}

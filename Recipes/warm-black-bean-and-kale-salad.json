@@ -1,0 +1,121 @@
+{
+  "id": "warm-black-bean-and-kale-salad",
+  "title": "Warm Black Bean and Kale Salad",
+  "category": "Salads",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AWarm_Black_Bean_Salad_with_Kale_and_Tomatoes"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 medium",
+      "name": "yellow onion, diced"
+    },
+    {
+      "amount": "4 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "chile powder"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground cinnamon"
+    },
+    {
+      "amount": "2 cans",
+      "name": "black beans, undrained (15 ounce cans)"
+    },
+    {
+      "amount": "4 cups",
+      "name": "kale, chopped and firmly packed"
+    },
+    {
+      "amount": "1 cup",
+      "name": "fresh tomato, diced"
+    },
+    {
+      "amount": "1",
+      "name": "lemon, juiced"
+    },
+    {
+      "amount": "to taste",
+      "name": "white sesame seeds"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 tablespoons of olive oil in a medium saucepan over medium heat for 2 minutes.",
+      "spoken": "Heat 2 tablespoons of olive oil in a medium saucepan over medium heat for 2 to 3 minutes.",
+      "timer": {
+        "label": "Heat",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Add 1 diced onion, 4 minced garlic cloves and a pinch of salt."
+    },
+    {
+      "instruction": "Cook and stir for 2 minutes, until the onion is tender.",
+      "spoken": "Cook and stir for 2 to 3 minutes, until the onion is tender.",
+      "timer": {
+        "label": "Onion",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Stir in 2 teaspoons chile powder, 1 teaspoon cumin and 1/2 teaspoon cinnamon."
+    },
+    {
+      "instruction": "Add 2 cans of black beans with their liquid."
+    },
+    {
+      "instruction": "Cook for 2 minutes.",
+      "timer": {
+        "label": "Beans",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Mash the beans with the back of a spatula, leaving some whole."
+    },
+    {
+      "instruction": "Lower the heat to low."
+    },
+    {
+      "instruction": "Add 4 cups of chopped kale."
+    },
+    {
+      "instruction": "Cook and stir for 2 minutes, until the kale is tender.",
+      "spoken": "Cook and stir for 2 to 3 minutes, until the kale is tender and the mixture has thickened.",
+      "timer": {
+        "label": "Kale",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Stir in the juice of 1 lemon and 1 cup of diced tomato."
+    },
+    {
+      "instruction": "Taste and add more salt if you like."
+    },
+    {
+      "instruction": "Top with white sesame seeds."
+    }
+  ]
+}

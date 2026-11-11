@@ -1,0 +1,96 @@
+{
+  "id": "egg-casserole",
+  "title": "Egg Casserole",
+  "category": "Eggs and breakfast",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AEgg_Casserole"
+  },
+  "totalMinutes": 560,
+  "ingredients": [
+    {
+      "amount": "8 slices",
+      "name": "bread"
+    },
+    {
+      "amount": "7-8",
+      "name": "eggs"
+    },
+    {
+      "amount": "2 cups",
+      "name": "milk"
+    },
+    {
+      "amount": "1 stick",
+      "name": "butter, melted"
+    },
+    {
+      "amount": "2 cups",
+      "name": "diced ham"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "prepared mustard"
+    },
+    {
+      "amount": "2 cups",
+      "name": "processed cheese, grated"
+    },
+    {
+      "amount": "1 dash",
+      "name": "red pepper"
+    },
+    {
+      "amount": "1 dash",
+      "name": "paprika"
+    },
+    {
+      "amount": "1 dash",
+      "name": "garlic powder"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 8 slices of bread in a greased 9 x 13-inch pan."
+    },
+    {
+      "instruction": "Beat 7 to 8 eggs in a large bowl."
+    },
+    {
+      "instruction": "Mix in 1 stick of melted butter and 2 cups of milk."
+    },
+    {
+      "instruction": "Mix in 1/2 teaspoon of salt and 1 tablespoon of prepared mustard."
+    },
+    {
+      "instruction": "Mix in 1 dash each of red pepper, paprika and garlic powder."
+    },
+    {
+      "instruction": "Pour the mixture over the bread."
+    },
+    {
+      "instruction": "Sprinkle 2 cups of diced ham over the top."
+    },
+    {
+      "instruction": "Top with 2 cups of grated processed cheese."
+    },
+    {
+      "instruction": "Refrigerate overnight."
+    },
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Bake for 1 hour.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 60
+      }
+    }
+  ]
+}

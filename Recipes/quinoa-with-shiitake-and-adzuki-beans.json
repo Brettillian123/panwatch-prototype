@@ -1,0 +1,83 @@
+{
+  "id": "quinoa-with-shiitake-and-adzuki-beans",
+  "title": "Quinoa with Shiitake and Adzuki Beans",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AQuinoa%2C_Shiitake_Mushrooms_and_Adzuki_Beans"
+  },
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "carrots, sliced"
+    },
+    {
+      "amount": "3",
+      "name": "scallions, thinly sliced"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "shiitake mushrooms, sliced"
+    },
+    {
+      "amount": "2 cups",
+      "name": "cooked adzuki beans, drained"
+    },
+    {
+      "amount": "1 cup",
+      "name": "quinoa, washed"
+    },
+    {
+      "amount": "2 cups",
+      "name": "vegetable broth"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1 tablespoon of olive oil in a pot."
+    },
+    {
+      "instruction": "Add 1/2 cup of sliced carrots to the oil."
+    },
+    {
+      "instruction": "Add 3 sliced scallions and 1/4 cup of sliced shiitake mushrooms."
+    },
+    {
+      "instruction": "Sauté the vegetables until tender."
+    },
+    {
+      "instruction": "Add 2 cups of broth, 2 cups of adzuki beans and 1 cup of washed quinoa."
+    },
+    {
+      "instruction": "Bring the pot to a boil."
+    },
+    {
+      "instruction": "Lower the heat and simmer for 20 minutes.",
+      "spoken": "Lower the heat to low and simmer for about 20 minutes, until the liquid is gone.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Add salt and pepper to taste."
+    },
+    {
+      "instruction": "Mix with a fork or wooden spoon."
+    }
+  ]
+}

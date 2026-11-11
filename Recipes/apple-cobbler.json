@@ -1,0 +1,110 @@
+{
+  "id": "apple-cobbler",
+  "title": "Apple Cobbler",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AApple_Cobbler"
+  },
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "6 cups",
+      "name": "baking apples, peeled, cored and sliced"
+    },
+    {
+      "amount": "2/3 cup",
+      "name": "white granulated sugar"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "water, for the apples"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "water, for the cornstarch"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "cornstarch"
+    },
+    {
+      "amount": "1 cup",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "white granulated sugar, for the topping"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "butter"
+    },
+    {
+      "amount": "1",
+      "name": "egg"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "milk"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 400 °F."
+    },
+    {
+      "instruction": "Put 6 cups of sliced baking apples in a large saucepan."
+    },
+    {
+      "instruction": "Add 2/3 cup of sugar and 4 tablespoons of water, and stir."
+    },
+    {
+      "instruction": "Cover and simmer for 5 minutes, until the fruit is tender.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Add 2 tablespoons of water and 1 tablespoon of cornstarch."
+    },
+    {
+      "instruction": "Cook, stirring, until the filling is thick and bubbly."
+    },
+    {
+      "instruction": "In a medium bowl, stir together 1 cup of flour and 2 tablespoons of sugar."
+    },
+    {
+      "instruction": "Stir in 1 1/2 teaspoons of baking powder."
+    },
+    {
+      "instruction": "Cut in 1/4 cup of butter until the mixture looks like large crumbs."
+    },
+    {
+      "instruction": "In a small bowl, stir together 1 egg and 1/4 cup of milk."
+    },
+    {
+      "instruction": "Add it to the flour mixture, just enough to moisten."
+    },
+    {
+      "instruction": "Move the filling to a 2-quart square baking dish."
+    },
+    {
+      "instruction": "Drop the topping in small mounds on the filling with a large spoon."
+    },
+    {
+      "instruction": "Bake in the 400 °F oven for 20 minutes.",
+      "spoken": "Bake in the 400 °F oven for 20 to 25 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    }
+  ]
+}

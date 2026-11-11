@@ -1,0 +1,84 @@
+{
+  "id": "home-fries",
+  "title": "Home Fries",
+  "category": "Snacks and sides",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AHome_Fries"
+  },
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "3 medium",
+      "name": "potatoes, peeled and diced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil or butter"
+    },
+    {
+      "amount": "1/2 small",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "green bell pepper, optional"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "black pepper"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "paprika, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Boil the diced potatoes in salted water for 5 minutes.",
+      "spoken": "Boil the diced potatoes in salted water for 5 minutes, to soften them slightly.",
+      "timer": {
+        "label": "Boil",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Drain the potatoes and let them dry."
+    },
+    {
+      "instruction": "Heat 1 tablespoon of olive oil or butter in a nonstick skillet over medium heat."
+    },
+    {
+      "instruction": "Add 1/2 small chopped onion, and 1/4 cup of green bell pepper if using."
+    },
+    {
+      "instruction": "Sauté until the onion is soft and clear."
+    },
+    {
+      "instruction": "Add the potatoes to the pan in a single layer.",
+      "spoken": "Add the potatoes in a single layer. Let them brown without moving them for 5 to 6 minutes.",
+      "watch": {
+        "ingredient": "potatoes",
+        "timerLabel": "Potatoes",
+        "timerMinutes": 5,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Flip and cook the other sides until golden and crispy.",
+      "cue": {
+        "timerLabel": "Potatoes",
+        "secondsLeft": 0
+      }
+    },
+    {
+      "instruction": "Season with 1/2 teaspoon of salt, 1/4 teaspoon of pepper and 1/4 teaspoon of paprika."
+    }
+  ]
+}

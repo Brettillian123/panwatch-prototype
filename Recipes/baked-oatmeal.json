@@ -1,0 +1,74 @@
+{
+  "id": "baked-oatmeal",
+  "title": "Baked Oatmeal",
+  "category": "Eggs and breakfast",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABaked_Oatmeal"
+  },
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "3 cups",
+      "name": "quick-cooking oats"
+    },
+    {
+      "amount": "1 cup",
+      "name": "brown sugar"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cinnamon"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "butter, melted"
+    },
+    {
+      "amount": "2",
+      "name": "eggs"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Add 3 cups of quick-cooking oats and 1 cup of brown sugar to a bowl."
+    },
+    {
+      "instruction": "Add 2 teaspoons of baking powder, 1 teaspoon of cinnamon and 1 teaspoon of salt."
+    },
+    {
+      "instruction": "Stir in 1 cup of milk and 1/2 cup of melted butter."
+    },
+    {
+      "instruction": "Mix in 2 eggs."
+    },
+    {
+      "instruction": "Pour the mixture into a 9-inch baking pan.",
+      "spoken": "Pour the mixture into a 9-inch baking pan. You can also mix everything carefully in the pan."
+    },
+    {
+      "instruction": "Bake for 40 minutes.",
+      "spoken": "Bake for 40 to 45 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 40
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "id": "glazed-sweet-potatoes",
+  "title": "Glazed Sweet Potatoes",
+  "category": "Vegetables",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AGlazed_Sweet_Potatoes"
+  },
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1/2 cup",
+      "name": "maple-flavored syrup"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "butter or margarine"
+    },
+    {
+      "amount": "1 can",
+      "name": "sweet potatoes, drained (40 ounce can)"
+    },
+    {
+      "amount": "to taste",
+      "name": "pecan halves (optional)"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring 1/2 cup of syrup and 1 tablespoon of butter or margarine to a boil.",
+      "spoken": "Bring 1/2 cup of syrup and 1 tablespoon of butter just to a boil in a large skillet over medium heat."
+    },
+    {
+      "instruction": "Lower the heat and simmer for about 2 minutes.",
+      "timer": {
+        "label": "Syrup",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Add the drained sweet potatoes and cook on low heat for 10 minutes.",
+      "spoken": "Add the drained sweet potatoes and cook on low heat for 10 minutes. Gently turn the sweet potatoes often to glaze them.",
+      "watch": {
+        "ingredient": "sweet potatoes",
+        "timerLabel": "Potatoes",
+        "timerMinutes": 10
+      }
+    },
+    {
+      "instruction": "Top with pecan halves if you like."
+    }
+  ]
+}

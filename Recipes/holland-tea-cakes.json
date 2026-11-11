@@ -1,0 +1,83 @@
+{
+  "id": "holland-tea-cakes",
+  "title": "Holland Tea Cakes",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AHolland_Tea_Cakes"
+  },
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "granulated sugar"
+    },
+    {
+      "amount": "1 stick",
+      "name": "butter, melted"
+    },
+    {
+      "amount": "2",
+      "name": "eggs, separated"
+    },
+    {
+      "amount": "2 cups",
+      "name": "flour"
+    },
+    {
+      "amount": "1-2 teaspoons",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "to taste",
+      "name": "colored sugar or nuts, for topping"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Mix 1 stick of melted butter and 1 cup of sugar until completely combined."
+    },
+    {
+      "instruction": "Separate 2 eggs.",
+      "spoken": "Separate 2 eggs. Keep the whites for later."
+    },
+    {
+      "instruction": "Mix in the egg yolks."
+    },
+    {
+      "instruction": "Mix in 2 cups of flour and 1 teaspoon of cinnamon.",
+      "spoken": "Mix in 2 cups of flour and 1 to 2 teaspoons of cinnamon, to taste. It is best to mix by hand, but a mixer works too."
+    },
+    {
+      "instruction": "Pour the batter into a cookie pan."
+    },
+    {
+      "instruction": "Spread and smooth the batter over the whole pan with your palm.",
+      "spoken": "Use the palm of your hand to spread and smooth the batter over the whole pan. This is the hardest part."
+    },
+    {
+      "instruction": "Brush the leftover egg whites over the batter."
+    },
+    {
+      "instruction": "Scatter colored sugar or nuts evenly over the batter."
+    },
+    {
+      "instruction": "Bake for 20 minutes, until golden brown.",
+      "spoken": "Bake for about 20 minutes, until the cookies are golden brown.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Take the pan out and let the cookies cool slightly."
+    },
+    {
+      "instruction": "Cut them into small 1-inch squares before they get too cool."
+    }
+  ]
+}

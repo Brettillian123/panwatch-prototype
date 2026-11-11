@@ -1,0 +1,80 @@
+{
+  "id": "pastry-cream",
+  "title": "Pastry Cream",
+  "category": "Baking and desserts",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACr%C3%A8me_P%C3%A2tissi%C3%A8re"
+  },
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "white granulated sugar"
+    },
+    {
+      "amount": "5",
+      "name": "egg yolks"
+    },
+    {
+      "amount": "2/3 cup",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "2 cups",
+      "name": "milk"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "butter"
+    },
+    {
+      "amount": "1 1/2 tablespoons",
+      "name": "vanilla extract"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "In a 3-quart bowl, beat 1 cup of sugar into 5 egg yolks with a whisk.",
+      "spoken": "In a 3-quart bowl, beat 1 cup of sugar into 5 egg yolks with a wire whisk, until the mixture is pale yellow and forms a ribbon."
+    },
+    {
+      "instruction": "Beat in 2/3 cup of flour."
+    },
+    {
+      "instruction": "Bring 2 cups of milk to a boil."
+    },
+    {
+      "instruction": "While whisking, pour the hot milk onto the egg mixture in a thin stream.",
+      "spoken": "Keep beating while you pour the hot milk onto the egg yolk mixture in a thin stream."
+    },
+    {
+      "instruction": "Pour the mixture into a saucepan over medium heat, stirring constantly."
+    },
+    {
+      "instruction": "Bring to a boil slowly, stirring well to avoid lumps."
+    },
+    {
+      "instruction": "When it boils, keep stirring for 2 minutes.",
+      "spoken": "When it reaches a boil, stir for 2 to 3 minutes to cook the flour well. Be careful not to burn it on the bottom of the pan.",
+      "timer": {
+        "label": "Stir",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Take the pan off the heat."
+    },
+    {
+      "instruction": "Beat in 1 tablespoon of butter."
+    },
+    {
+      "instruction": "Beat in 1 1/2 tablespoons of vanilla extract."
+    },
+    {
+      "instruction": "Cover the surface with a sheet of parchment paper.",
+      "spoken": "Cover the surface with a sheet of parchment paper to keep a skin from forming, and let it cool. Makes 1 pint."
+    }
+  ]
+}

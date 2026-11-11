@@ -1,0 +1,51 @@
+{
+  "id": "easy-nachos",
+  "title": "Easy Nachos",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AEasy_Nachos"
+  },
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "12 ounces",
+      "name": "tortilla chips"
+    },
+    {
+      "amount": "1 pound",
+      "name": "cheddar cheese, grated"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "canned green chiles, chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "onion, chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 400 °F."
+    },
+    {
+      "instruction": "Lay 12 ounces of tortilla chips on a cookie sheet."
+    },
+    {
+      "instruction": "Toss 1 pound of cheese, 1/3 cup of chiles and 1/2 cup of onion together."
+    },
+    {
+      "instruction": "Sprinkle the cheese mixture over the tortilla chips."
+    },
+    {
+      "instruction": "Bake for 2 minutes, until the cheese melts.",
+      "spoken": "Bake for about 2 minutes, until the cheese has melted.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 2
+      }
+    }
+  ]
+}

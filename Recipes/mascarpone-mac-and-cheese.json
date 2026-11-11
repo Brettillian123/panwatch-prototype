@@ -1,0 +1,82 @@
+{
+  "id": "mascarpone-mac-and-cheese",
+  "title": "Mascarpone Mac and Cheese",
+  "category": "Pasta and grains",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AMascarpone_Mac_%27n_Cheese"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "1/4 cup",
+      "name": "unsalted butter"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "1 cup",
+      "name": "mascarpone cheese"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "sugar"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    },
+    {
+      "amount": "2 cups",
+      "name": "heavy cream"
+    },
+    {
+      "amount": "1 pound",
+      "name": "cooked macaroni pasta"
+    },
+    {
+      "amount": "1 cup",
+      "name": "heavy whipping cream, whipped to soft peaks"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Melt 1/4 cup of butter in a large pan over medium heat."
+    },
+    {
+      "instruction": "Whisk in 1/4 cup of flour and cook until it is a light blond color."
+    },
+    {
+      "instruction": "Add 1 cup of mascarpone, 3 tablespoons of sugar and a pinch of salt."
+    },
+    {
+      "instruction": "Add 2 cups of heavy cream."
+    },
+    {
+      "instruction": "Bring it to a boil and cook until it is reduced by half."
+    },
+    {
+      "instruction": "Take it off the heat and gently fold in the whipped cream."
+    },
+    {
+      "instruction": "Put 1 pound of cooked macaroni pasta in a 9 by 13 inch baking pan."
+    },
+    {
+      "instruction": "Pour the cheese mixture over the macaroni."
+    },
+    {
+      "instruction": "Bake at 350 °F for 25 minutes.",
+      "spoken": "Bake at 350 °F for 25 minutes, until bubbly on top and puffed up.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 25
+      }
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "id": "bread-in-a-bag",
+  "title": "Bread in a Bag",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/bread-bag"
+  },
+  "serves": 12,
+  "totalMinutes": 65,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "all purpose flour, plus extra for kneading"
+    },
+    {
+      "amount": "1 cup",
+      "name": "whole wheat flour"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "rapid rise yeast"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "sugar"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "powdered milk, nonfat"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1 cup",
+      "name": "warm water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 2 cups of all purpose flour and 1 cup of whole wheat flour to a gallon freezer bag."
+    },
+    {
+      "instruction": "Add 1 tablespoon of yeast, 3 tablespoons of sugar and 1 teaspoon of salt."
+    },
+    {
+      "instruction": "Add 3 tablespoons of powdered milk to the bag."
+    },
+    {
+      "instruction": "Squeeze the upper part of the bag to force out air, then seal it."
+    },
+    {
+      "instruction": "Shake and work the bag with your fingers to blend the ingredients."
+    },
+    {
+      "instruction": "Heat 1 cup of water to 120 °F.",
+      "spoken": "Heat 1 cup of water to 120 to 130 °F."
+    },
+    {
+      "instruction": "Add the warm water and 3 tablespoons of vegetable oil to the bag, and reseal it."
+    },
+    {
+      "instruction": "Work the bag with your fingers until the dough is mixed and pulls away from the bag."
+    },
+    {
+      "instruction": "Knead the dough on a floured surface for 5 minutes, until smooth and stretchy.",
+      "spoken": "Knead the dough on a floured surface for 5 minutes, until it is smooth and stretchy. Add flour as needed.",
+      "timer": {
+        "label": "Knead",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Put the dough back in the bag and let it rest for 10 minutes.",
+      "timer": {
+        "label": "Rest",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Shape the dough on a greased baking sheet or in a greased 4 by 8 inch loaf pan."
+    },
+    {
+      "instruction": "Cover with a clean cloth or plastic wrap and let it rise until doubled in size."
+    },
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Bake until golden brown, 25 minutes or more.",
+      "spoken": "Bake until golden brown. This may take anywhere from 25 to 45 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 25
+      }
+    },
+    {
+      "instruction": "Remove the bread from the pan and cool it on a wire rack or clean dish towel."
+    }
+  ]
+}

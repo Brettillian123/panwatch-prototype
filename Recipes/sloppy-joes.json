@@ -1,0 +1,71 @@
+{
+  "id": "sloppy-joes",
+  "title": "Sloppy Joes",
+  "category": "Sandwiches and wraps",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ASloppy_Joes"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "ground beef"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "onion, chopped, optional"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "green bell pepper, chopped, optional"
+    },
+    {
+      "amount": "1 cup",
+      "name": "ketchup"
+    },
+    {
+      "amount": "1 cup",
+      "name": "barbecue sauce"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "chili powder"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 1 pound of ground beef to a skillet over medium heat."
+    },
+    {
+      "instruction": "If you like, add 1/4 cup of chopped onion and 1/4 cup of chopped green bell pepper."
+    },
+    {
+      "instruction": "Cook, stirring, until the beef is browned."
+    },
+    {
+      "instruction": "Drain the liquid from the skillet."
+    },
+    {
+      "instruction": "Return the beef mixture to the skillet, on medium heat."
+    },
+    {
+      "instruction": "Mix in 1 cup of ketchup and 1 cup of barbecue sauce."
+    },
+    {
+      "instruction": "Mix in 1 tablespoon of garlic powder and 1 tablespoon of chili powder."
+    },
+    {
+      "instruction": "Simmer for 20 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 20
+      }
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "id": "zambian-braai-beef-skewers",
+  "title": "Zambian Braai Beef Skewers",
+  "category": "Beef and pork",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABraai_%28Zambian_Barbecue%29"
+  },
+  "totalMinutes": 115,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1",
+      "name": "lemon, juiced"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "paprika"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cayenne pepper"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground coriander"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "2 pounds",
+      "name": "beef, cut into skewer-friendly pieces"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "In a mixing bowl, combine 1 finely chopped onion and 2 cloves of minced garlic."
+    },
+    {
+      "instruction": "Add 2 tablespoons of vegetable oil and the juice of 1 lemon."
+    },
+    {
+      "instruction": "Add 1 teaspoon each of paprika, cayenne pepper, ground cumin and ground coriander."
+    },
+    {
+      "instruction": "Add 1 teaspoon of salt and mix well to make a marinade."
+    },
+    {
+      "instruction": "Add 2 pounds of beef pieces and toss until evenly coated."
+    },
+    {
+      "instruction": "Cover the bowl and refrigerate for 1 hour.",
+      "spoken": "Cover the bowl with plastic wrap or a lid and let the beef marinate in the refrigerator for at least 1 hour, or preferably overnight.",
+      "timer": {
+        "label": "Marinate",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "If using wooden skewers, soak them in water for 30 minutes.",
+      "spoken": "If you are using wooden skewers, soak them in water for about 30 minutes, so they don't burn on the grill.",
+      "timer": {
+        "label": "Soak",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Heat the grill to medium-high."
+    },
+    {
+      "instruction": "Thread the beef onto the skewers, evenly spaced."
+    },
+    {
+      "instruction": "Grill the skewers for 8 minutes, turning occasionally.",
+      "spoken": "Grill the skewers for about 8 to 10 minutes, turning occasionally, until the beef is charred and cooked the way you like it.",
+      "timer": {
+        "label": "Grill",
+        "minutes": 8
+      }
+    },
+    {
+      "instruction": "Take the skewers off the grill and let them rest a few minutes before serving."
+    }
+  ]
+}

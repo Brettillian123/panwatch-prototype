@@ -1,0 +1,54 @@
+{
+  "id": "baked-tortilla-chips",
+  "title": "Baked Tortilla Chips",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/baked-tortilla-chips"
+  },
+  "serves": 6,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "3",
+      "name": "whole wheat flour tortillas, 10 inches across"
+    },
+    {
+      "amount": "3",
+      "name": "sprays of cooking oil spray"
+    },
+    {
+      "amount": "1 dash",
+      "name": "salt, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven or toaster oven to 400 °F."
+    },
+    {
+      "instruction": "Lightly grease a baking sheet with cooking oil spray."
+    },
+    {
+      "instruction": "Cut the 3 tortillas into 8 pieces each, like a pizza."
+    },
+    {
+      "instruction": "Place the tortilla pieces on the baking sheet."
+    },
+    {
+      "instruction": "Spray the tops of the tortilla pieces with cooking oil spray."
+    },
+    {
+      "instruction": "Lightly sprinkle with 1 dash of salt, if you like."
+    },
+    {
+      "instruction": "Bake for 10 minutes, until crisp and light brown.",
+      "spoken": "Bake for 10 minutes, until crisp and light brown. Watch closely so the chips do not burn.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 10
+      }
+    }
+  ]
+}

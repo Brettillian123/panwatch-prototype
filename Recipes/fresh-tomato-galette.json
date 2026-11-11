@@ -1,0 +1,101 @@
+{
+  "id": "fresh-tomato-galette",
+  "title": "Fresh Tomato Galette",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AFresh_Tomato_Galette"
+  },
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "1 sheet",
+      "name": "puff pastry"
+    },
+    {
+      "amount": "5",
+      "name": "tomatoes"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "thyme"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "mustard powder"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "panko or fine dry breadcrumbs"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "freshly-grated Parmesan"
+    },
+    {
+      "amount": "1",
+      "name": "egg, beaten"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "fresh basil leaves, for decorating"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 400 °F."
+    },
+    {
+      "instruction": "Slice 5 tomatoes 1/4 inch thick and set them aside."
+    },
+    {
+      "instruction": "Mix 2 tablespoons of Parmesan, 1 teaspoon of thyme and 1 teaspoon of mustard powder."
+    },
+    {
+      "instruction": "Line a baking tray with parchment paper."
+    },
+    {
+      "instruction": "Lay 1 sheet of puff pastry on the tray."
+    },
+    {
+      "instruction": "Spread 2 tablespoons of breadcrumbs on the pastry, leaving a 1 1/2 inch border bare."
+    },
+    {
+      "instruction": "Sprinkle the cheese mixture evenly on top."
+    },
+    {
+      "instruction": "Arrange the tomato slices in overlapping circles, starting at the center."
+    },
+    {
+      "instruction": "Sprinkle on the last 1 tablespoon each of breadcrumbs and Parmesan."
+    },
+    {
+      "instruction": "Season with a little pepper if you like."
+    },
+    {
+      "instruction": "Carefully fold the leftover dough over the tomatoes."
+    },
+    {
+      "instruction": "Brush the galette with the beaten egg."
+    },
+    {
+      "instruction": "Bake for 30 minutes.",
+      "spoken": "Bake for 30 to 40 minutes, until the dough is golden brown.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Let the galette cool slightly."
+    },
+    {
+      "instruction": "Decorate with fresh basil leaves and serve."
+    }
+  ]
+}

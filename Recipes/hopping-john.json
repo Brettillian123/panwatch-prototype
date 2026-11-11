@@ -1,0 +1,77 @@
+{
+  "id": "hopping-john",
+  "title": "Hopping John with Beans",
+  "category": "Beans and lentils",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AHopping_John_with_Pinto_or_Great_Northern_Beans"
+  },
+  "totalMinutes": 510,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "dried beans"
+    },
+    {
+      "amount": "2 cups",
+      "name": "water"
+    },
+    {
+      "amount": "2 ounces",
+      "name": "salt pork, diced"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "cooked rice"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Wash 1 cup of dried beans well."
+    },
+    {
+      "instruction": "Soak the beans in water overnight."
+    },
+    {
+      "instruction": "In the morning, add 2 cups of water to the beans."
+    },
+    {
+      "instruction": "Simmer the beans until tender."
+    },
+    {
+      "instruction": "Fry 2 ounces of diced salt pork until crisp."
+    },
+    {
+      "instruction": "Take the salt pork out of the fat and add it to the beans."
+    },
+    {
+      "instruction": "Brown 1/4 cup of chopped onion in the salt pork fat."
+    },
+    {
+      "instruction": "Mix the onion, 1 cup of cooked rice and the beans together."
+    },
+    {
+      "instruction": "Add salt and pepper to taste."
+    },
+    {
+      "instruction": "Keep cooking for 10 minutes.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 10
+      }
+    }
+  ]
+}

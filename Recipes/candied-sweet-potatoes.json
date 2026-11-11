@@ -1,0 +1,63 @@
+{
+  "id": "candied-sweet-potatoes",
+  "title": "Candied Sweet Potatoes",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACandied_Sweet_Potatoes"
+  },
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "4 medium",
+      "name": "sweet potatoes, peeled and sliced"
+    },
+    {
+      "amount": "4",
+      "name": "Granny Smith apples, peeled, cored and sliced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "raisins"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "honey"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "apple juice or cider"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "butter, melted"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Put 4 sliced sweet potatoes in a greased 2-quart baking dish."
+    },
+    {
+      "instruction": "Add 4 sliced Granny Smith apples and 1/2 cup of raisins."
+    },
+    {
+      "instruction": "Mix 2 tablespoons of honey, 3 tablespoons of apple juice or cider and the butter.",
+      "spoken": "Mix 2 tablespoons of honey, 3 tablespoons of apple juice or cider and 3 tablespoons of melted butter."
+    },
+    {
+      "instruction": "Pour the mixture over the dish."
+    },
+    {
+      "instruction": "Cover with foil and bake at 350 °F for 30 minutes.",
+      "spoken": "Cover with foil and bake at 350 °F for 30 to 45 minutes, until the sweet potatoes are tender and glazed.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    }
+  ]
+}

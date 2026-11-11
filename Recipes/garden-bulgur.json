@@ -1,0 +1,87 @@
+{
+  "id": "garden-bulgur",
+  "title": "Garden Bulgur",
+  "category": "Pasta and grains",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AGarden_Bulgur"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "margarine"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "celery, chopped"
+    },
+    {
+      "amount": "1 medium",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "mushrooms, fresh and sliced"
+    },
+    {
+      "amount": "1 cup",
+      "name": "bulgur, or cracked wheat"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "dried dillweed"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "dried whole oregano"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "pepper"
+    },
+    {
+      "amount": "2 cups",
+      "name": "chicken or vegetable broth"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Melt 2 tablespoons of margarine in a large skillet."
+    },
+    {
+      "instruction": "Add 1/2 cup of chopped celery, 1 medium chopped onion and 1 cup of sliced mushrooms."
+    },
+    {
+      "instruction": "Stir until the vegetables are tender."
+    },
+    {
+      "instruction": "Add 1 cup of bulgur and cook until golden.",
+      "spoken": "Add 1 cup of bulgur, or cracked wheat, and cook until it turns golden."
+    },
+    {
+      "instruction": "Add 1/4 teaspoon of dried dillweed and 1/4 teaspoon of dried oregano."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of salt and 1/4 teaspoon of pepper."
+    },
+    {
+      "instruction": "Pour in 2 cups of chicken or vegetable broth."
+    },
+    {
+      "instruction": "Cover the skillet and bring to a boil."
+    },
+    {
+      "instruction": "Reduce the heat and simmer for 15 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 15
+      }
+    }
+  ]
+}

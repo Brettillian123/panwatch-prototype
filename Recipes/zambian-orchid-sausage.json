@@ -1,0 +1,115 @@
+{
+  "id": "zambian-orchid-sausage",
+  "title": "Zambian Orchid Sausage",
+  "category": "Snacks and sides",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChikanda_%28Zambian_Orchid_Sausage%29"
+  },
+  "totalMinutes": 235,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "water, for boiling the orchid tubers"
+    },
+    {
+      "amount": "1 cup",
+      "name": "dried and ground wild orchid tubers, also called chikanda roots"
+    },
+    {
+      "amount": "1 cup",
+      "name": "groundnuts, also called peanuts"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "cooked rice"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "water, for mixing with the groundnuts"
+    },
+    {
+      "amount": "1",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1",
+      "name": "hot pepper, chopped, optional for heat"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cayenne pepper"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring 2 cups of water to a boil in a pot."
+    },
+    {
+      "instruction": "Add 1 cup of dried, ground orchid tubers to the boiling water.",
+      "spoken": "Add 1 cup of dried, ground orchid tubers, also called chikanda roots, to the boiling water. Boil for about 30 minutes to soften them.",
+      "watch": {
+        "ingredient": "orchid tubers",
+        "timerLabel": "Tubers",
+        "timerMinutes": 30,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "While the roots boil, toast 1 cup of groundnuts in a dry pan over medium heat."
+    },
+    {
+      "instruction": "Stir until the groundnuts are slightly browned and smell toasty."
+    },
+    {
+      "instruction": "Let the boiled roots and toasted groundnuts cool to room temperature."
+    },
+    {
+      "instruction": "Grind the toasted groundnuts into a fine powder in a blender."
+    },
+    {
+      "instruction": "Add 1/2 cup of water to the groundnuts and blend into a smooth paste."
+    },
+    {
+      "instruction": "In the same blender, blend 1/2 cup of cooked rice into a smooth paste."
+    },
+    {
+      "instruction": "In a large bowl, mix the boiled orchid tubers, groundnut paste and rice paste.",
+      "spoken": "In a large bowl, mix together the boiled orchid tubers, the groundnut paste and the rice paste. Use your hands or a wooden spoon to combine them thoroughly."
+    },
+    {
+      "instruction": "Add 1 chopped onion, 2 cloves of minced garlic and 1 chopped hot pepper, if using."
+    },
+    {
+      "instruction": "Mix in 1 teaspoon of cayenne pepper, 1 teaspoon of ground cumin and salt to taste.",
+      "spoken": "Mix in 1 teaspoon of ground cayenne pepper, 1 teaspoon of ground cumin and salt to taste. Adjust the seasoning to your preference."
+    },
+    {
+      "instruction": "Roll a handful of the mixture into a sausage shape."
+    },
+    {
+      "instruction": "Repeat until all the mixture is used up."
+    },
+    {
+      "instruction": "Let the sausages dry and firm up for 3 hours.",
+      "spoken": "Place the sausages on a clean surface or plate and let them dry and firm up for about 3 to 4 hours.",
+      "timer": {
+        "label": "Dry",
+        "minutes": 180
+      }
+    }
+  ]
+}

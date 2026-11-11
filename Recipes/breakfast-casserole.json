@@ -1,0 +1,93 @@
+{
+  "id": "breakfast-casserole",
+  "title": "Breakfast Casserole",
+  "category": "Eggs and breakfast",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABreakfast_Casserole"
+  },
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "5 small",
+      "name": "sausage links, cooked and finely chopped"
+    },
+    {
+      "amount": "8 slices",
+      "name": "bacon, cooked and crumbled"
+    },
+    {
+      "amount": "1 cup",
+      "name": "ricotta cheese"
+    },
+    {
+      "amount": "4",
+      "name": "eggs, beaten"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "unsalted butter"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "freshly ground black pepper"
+    },
+    {
+      "amount": "2 cups",
+      "name": "finely crumbled cornbread"
+    },
+    {
+      "amount": "1 cup",
+      "name": "shredded Monterey Jack cheese"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "dry breadcrumbs"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 375 °F."
+    },
+    {
+      "instruction": "Combine 5 chopped cooked sausage links and 8 slices of crumbled bacon in a bowl."
+    },
+    {
+      "instruction": "In another bowl, mix 1 cup of ricotta cheese and 4 beaten eggs."
+    },
+    {
+      "instruction": "Add 1/4 cup of unsalted butter, 1/2 teaspoon of salt and 1/2 teaspoon of pepper."
+    },
+    {
+      "instruction": "Mix in 2 cups of finely crumbled cornbread."
+    },
+    {
+      "instruction": "Spread just enough cornbread mixture to cover the bottom of a greased large pan."
+    },
+    {
+      "instruction": "Add just enough of the meat mixture to cover that layer."
+    },
+    {
+      "instruction": "Repeat the layers until all the mixtures are used."
+    },
+    {
+      "instruction": "Combine 1 cup of shredded Monterey Jack cheese and 1/2 cup of dry breadcrumbs."
+    },
+    {
+      "instruction": "Sprinkle the cheese mixture evenly over the layers."
+    },
+    {
+      "instruction": "Bake for 30 minutes, until browned and bubbly on top.",
+      "spoken": "Bake for 30 to 35 minutes, or until the top is browned and bubbly.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    }
+  ]
+}

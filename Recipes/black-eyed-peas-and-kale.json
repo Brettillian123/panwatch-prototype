@@ -1,0 +1,94 @@
+{
+  "id": "black-eyed-peas-and-kale",
+  "title": "Black-Eyed Peas and Kale",
+  "category": "Beans and lentils",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABlack-Eyed_Peas_and_Kale"
+  },
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 medium",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, chopped"
+    },
+    {
+      "amount": "1 can",
+      "name": "diced tomatoes, 15 ounce, undrained"
+    },
+    {
+      "amount": "1 can",
+      "name": "black-eyed peas, 15 ounce, drained"
+    },
+    {
+      "amount": "1/4-1/2 teaspoon",
+      "name": "cayenne pepper"
+    },
+    {
+      "amount": "1",
+      "name": "bay leaf"
+    },
+    {
+      "amount": "1 package",
+      "name": "frozen kale, 10 ounce, thawed"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1 tablespoon of olive oil in a pot over medium heat."
+    },
+    {
+      "instruction": "Add 1 chopped onion and 2 cloves of chopped garlic."
+    },
+    {
+      "instruction": "Sauté for several minutes."
+    },
+    {
+      "instruction": "Add 1 can of diced tomatoes with their juice."
+    },
+    {
+      "instruction": "Add 1 can of drained black-eyed peas."
+    },
+    {
+      "instruction": "Add 1/4 to 1/2 teaspoon of cayenne pepper and 1 bay leaf."
+    },
+    {
+      "instruction": "Cover and simmer for 15 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Add 1 package of thawed frozen kale."
+    },
+    {
+      "instruction": "Simmer uncovered for 5 minutes, until the kale is tender but still green.",
+      "spoken": "Simmer uncovered for 5 to 10 minutes, until the kale is tender but still green.",
+      "timer": {
+        "label": "Kale",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Season with salt and freshly ground black pepper."
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "id": "family-pizza",
+  "title": "Family Pizza",
+  "category": "Sandwiches and wraps",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AFamily_Pizza"
+  },
+  "totalMinutes": 70,
+  "ingredients": [
+    {
+      "amount": "3/4 cup",
+      "name": "warm water"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "granulated sugar"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "active dry yeast"
+    },
+    {
+      "amount": "2 3/4 cups",
+      "name": "flour"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "5 heaping tablespoons",
+      "name": "tomato sauce"
+    },
+    {
+      "amount": "6 slices",
+      "name": "prosciutto cotto"
+    },
+    {
+      "amount": "1",
+      "name": "buffalo mozzarella ball, diced"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "Emmental, grated"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "In a jug, combine 3/4 cup of warm water, 1 teaspoon of sugar and 1 teaspoon of salt."
+    },
+    {
+      "instruction": "Add 1 1/2 teaspoons of active dry yeast and mix well.",
+      "spoken": "Add 1 1/2 teaspoons of active dry yeast and mix well, so the yeast is spread evenly."
+    },
+    {
+      "instruction": "Let the yeast mixture rest for 3 minutes.",
+      "spoken": "Let the mixture rest for 3 to 4 minutes, to wake up the yeast.",
+      "timer": {
+        "label": "Yeast",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Pour 2 3/4 cups of flour into a large bowl."
+    },
+    {
+      "instruction": "Stir the yeast mixture into the flour."
+    },
+    {
+      "instruction": "Knead until the dough is smooth and does not stick to your hands.",
+      "spoken": "Mix, then knead well until the dough is smooth and does not stick to your hands. If it is still too sticky after a few minutes of kneading, knead in a little more flour."
+    },
+    {
+      "instruction": "Add 1 tablespoon of olive oil and knead again until smooth."
+    },
+    {
+      "instruction": "Cover the dough with a damp cloth and let it rest for 20 minutes.",
+      "spoken": "Cover the dough with a damp cloth and let it rest for around 20 minutes.",
+      "timer": {
+        "label": "Dough rest",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Heat the oven to 356 °F."
+    },
+    {
+      "instruction": "Knead the dough briefly again."
+    },
+    {
+      "instruction": "Roll the dough out thin with a rolling pin."
+    },
+    {
+      "instruction": "Move the dough to a baking sheet."
+    },
+    {
+      "instruction": "Spread 5 heaping tablespoons of tomato sauce over the dough."
+    },
+    {
+      "instruction": "Top with 6 slices of prosciutto cotto, close together."
+    },
+    {
+      "instruction": "Scatter 1 diced buffalo mozzarella ball over the ham."
+    },
+    {
+      "instruction": "Scatter 1/3 cup of grated Emmental over the ham."
+    },
+    {
+      "instruction": "Bake at 356 °F for 15 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 15
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "id": "chocolate-sandesh",
+  "title": "Chocolate Sandesh",
+  "category": "Baking and desserts",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChocolate_Sandesh"
+  },
+  "totalMinutes": 70,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "freshly-made low-fat paneer"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "sugar substitute"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "fresh cream"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "cocoa powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "vanilla essence"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mash 1 cup of paneer and 1 tablespoon of sugar substitute together."
+    },
+    {
+      "instruction": "Add 2 tablespoons of fresh cream and 1 tablespoon of cocoa powder."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of vanilla essence and mix well."
+    },
+    {
+      "instruction": "Divide into 8 equal parts and shape them into balls."
+    },
+    {
+      "instruction": "Refrigerate the balls for 1 hour, then serve.",
+      "spoken": "Refrigerate the balls for at least 1 hour, then serve.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 60
+      }
+    }
+  ]
+}

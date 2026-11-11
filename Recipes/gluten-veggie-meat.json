@@ -1,0 +1,117 @@
+{
+  "id": "gluten-veggie-meat",
+  "title": "Gluten Veggie Meat",
+  "category": "Snacks and sides",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AGluten_Veggie_Meat"
+  },
+  "totalMinutes": 95,
+  "ingredients": [
+    {
+      "amount": "22 ounces",
+      "name": "vital wheat gluten flour"
+    },
+    {
+      "amount": "3/4 teaspoon",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "parsley flakes"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "water"
+    },
+    {
+      "amount": "2",
+      "name": "bouillon cubes"
+    },
+    {
+      "amount": "1 cup",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "3/4 teaspoon",
+      "name": "onion powder"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "soy sauce"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "oil"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Combine 22 ounces of gluten flour and 3/4 teaspoon of garlic powder in a large bowl."
+    },
+    {
+      "instruction": "Add 2 tablespoons of parsley flakes and 3/4 cup of water."
+    },
+    {
+      "instruction": "Knead the dough for about 2 minutes.",
+      "timer": {
+        "label": "Knead",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Cover the bowl and set it aside for 10 minutes.",
+      "timer": {
+        "label": "Rest",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Slice the gluten into pieces.",
+      "spoken": "Slice the gluten into pieces. The smaller the pieces, the firmer the final texture."
+    },
+    {
+      "instruction": "Bring a large pot of water to a boil."
+    },
+    {
+      "instruction": "Add 2 bouillon cubes to the boiling water."
+    },
+    {
+      "instruction": "Add the sliced gluten pieces to the seasoned boiling water."
+    },
+    {
+      "instruction": "Lower the heat, cover and simmer for 55 minutes, stirring now and then.",
+      "spoken": "Lower the heat to a gentle simmer, cover with a lid and simmer for 55 minutes, stirring now and then.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 55
+      }
+    },
+    {
+      "instruction": "Drain the gluten pieces and put them in a bowl to cool."
+    },
+    {
+      "instruction": "In a lidded bowl, combine 1 cup flour, 3/4 teaspoon onion powder and 1/4 teaspoon salt."
+    },
+    {
+      "instruction": "Cover the bowl and shake."
+    },
+    {
+      "instruction": "Pour 1/2 cup of soy sauce into another bowl."
+    },
+    {
+      "instruction": "Dip several cooled gluten pieces into the soy sauce."
+    },
+    {
+      "instruction": "Put the pieces in the seasoned flour, cover and shake."
+    },
+    {
+      "instruction": "Fry the pieces in a pan with 3/4 cup of oil until browned."
+    }
+  ]
+}

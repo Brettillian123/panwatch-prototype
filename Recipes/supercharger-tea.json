@@ -1,0 +1,92 @@
+{
+  "id": "supercharger-tea",
+  "title": "Supercharger Tea",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ASupercharger_Tea"
+  },
+  "serves": 6,
+  "totalMinutes": 95,
+  "ingredients": [
+    {
+      "amount": "2 bags",
+      "name": "black tea"
+    },
+    {
+      "amount": "2 bags",
+      "name": "oolong tea"
+    },
+    {
+      "amount": "2 bags",
+      "name": "yerba mate"
+    },
+    {
+      "amount": "5 cups",
+      "name": "just-boiled water"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "sugar or maple syrup, optional"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "milk or fruit juice, optional"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "ice, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 2 bags each of black tea, oolong tea and yerba mate in a French press.",
+      "spoken": "Put 2 bags each of black tea, oolong tea and yerba mate in a French press or coffee pot. Keep the strings tight so the paper weights do not fall in."
+    },
+    {
+      "instruction": "Pour 5 cups of just-boiled water into the French press."
+    },
+    {
+      "instruction": "Put the lid on top, holding the paper weights tightly."
+    },
+    {
+      "instruction": "Let the tea steep for 5 minutes.",
+      "timer": {
+        "label": "Steep",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Slowly push the plunger down onto the bags.",
+      "spoken": "If you are using a French press, slowly push the plunger down onto the bags, again holding the paper weights tightly."
+    },
+    {
+      "instruction": "Take off the lid and scoop out the tea bags."
+    },
+    {
+      "instruction": "Gently squeeze the brew out of the bags, then throw them away."
+    },
+    {
+      "instruction": "Add 2 tablespoons of sugar or maple syrup, if you like."
+    },
+    {
+      "instruction": "Stir the tea thoroughly."
+    },
+    {
+      "instruction": "Let the tea cool to room temperature.",
+      "spoken": "Let the tea cool to room temperature. For quicker cooling, put the open pot in the freezer for 70 minutes.",
+      "timer": {
+        "label": "Freezer",
+        "minutes": 70
+      }
+    },
+    {
+      "instruction": "Serve over 1/2 cup of ice, if you like."
+    },
+    {
+      "instruction": "Stir in 2 tablespoons of milk or fruit juice before serving.",
+      "spoken": "Stir in 2 tablespoons of milk or citrus juice before serving."
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "id": "consomme",
+  "title": "Consommé",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AConsomm%C3%A9"
+  },
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "1 quart",
+      "name": "chicken stock, or veal or beef stock"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "2",
+      "name": "egg whites"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "Madeira, port or cognac"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Skim all the fat off 1 quart of stock."
+    },
+    {
+      "instruction": "Taste the stock and add salt if it needs it.",
+      "spoken": "Taste the stock and add salt if it needs it. If you will serve the consommé cold, add a little extra salt, because a cold dish needs more."
+    },
+    {
+      "instruction": "Beat 1 cup of the stock with 2 egg whites in a large bowl."
+    },
+    {
+      "instruction": "Bring the rest of the stock to a simmer in a saucepan."
+    },
+    {
+      "instruction": "Pour the hot stock into the egg whites in a thin stream, beating all the time."
+    },
+    {
+      "instruction": "Pour the stock back into the saucepan."
+    },
+    {
+      "instruction": "Heat over medium heat, stirring with a wire whisk, until it simmers."
+    },
+    {
+      "instruction": "Stop stirring as soon as the stock simmers."
+    },
+    {
+      "instruction": "Move the pot to the edge of the burner and heat on low for 5 minutes.",
+      "timer": {
+        "label": "Heat",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Turn the pot a quarter turn and heat for 5 minutes.",
+      "timer": {
+        "label": "First turn",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Turn the pot a quarter turn again and heat for 5 minutes.",
+      "timer": {
+        "label": "Second turn",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Turn the pot a quarter turn once more and heat for 5 minutes.",
+      "timer": {
+        "label": "Third turn",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Line a colander with damp cheesecloth and set it over a bowl."
+    },
+    {
+      "instruction": "Carefully ladle the stock and egg whites into the colander.",
+      "spoken": "Carefully ladle the stock and egg whites into the colander. Try to disturb the egg whites as little as possible."
+    },
+    {
+      "instruction": "Let it drain for 5 minutes.",
+      "spoken": "Let it drain for 5 to 6 minutes.",
+      "timer": {
+        "label": "Drain",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Take the colander away."
+    },
+    {
+      "instruction": "Stir 1/3 cup of Madeira, port or cognac into the consommé."
+    },
+    {
+      "instruction": "Season with pepper."
+    }
+  ]
+}

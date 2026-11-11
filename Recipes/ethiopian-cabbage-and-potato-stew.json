@@ -1,0 +1,142 @@
+{
+  "id": "ethiopian-cabbage-and-potato-stew",
+  "title": "Ethiopian Cabbage and Potato Stew",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAtkilt_Wat_%28Ethiopian_Cabbage_and_Potato_Stew%29"
+  },
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "3 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "ginger, grated"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "turmeric"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "paprika"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "cumin"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "coriander"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "cayenne pepper, or to taste"
+    },
+    {
+      "amount": "2 large",
+      "name": "potatoes, peeled and cubed"
+    },
+    {
+      "amount": "2",
+      "name": "carrots, peeled and sliced"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1 medium",
+      "name": "cabbage, finely shredded"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "cilantro, chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 tablespoons of vegetable oil in a large pot over medium heat."
+    },
+    {
+      "instruction": "Add 1 finely chopped onion to the oil."
+    },
+    {
+      "instruction": "Cook until the onion is soft and clear."
+    },
+    {
+      "instruction": "Stir in 3 cloves of minced garlic and 1 tablespoon of grated ginger."
+    },
+    {
+      "instruction": "Cook for 1 minute, until it smells fragrant.",
+      "timer": {
+        "label": "Garlic",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Add 1 teaspoon of turmeric and 1 teaspoon of paprika."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon each of cumin and coriander, and 1/4 teaspoon of cayenne pepper."
+    },
+    {
+      "instruction": "Mix well to coat the onions with the spices."
+    },
+    {
+      "instruction": "Add 2 peeled, cubed potatoes and 2 sliced carrots."
+    },
+    {
+      "instruction": "Stir to coat the vegetables with the spices."
+    },
+    {
+      "instruction": "Pour in 1/4 cup of water and cover the pot."
+    },
+    {
+      "instruction": "Cook for 5 minutes, to soften the potatoes and carrots.",
+      "timer": {
+        "label": "Soften",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Add 1 finely shredded cabbage to the pot."
+    },
+    {
+      "instruction": "Mix everything together and cover the pot."
+    },
+    {
+      "instruction": "Cook for 15 minutes, stirring now and then.",
+      "spoken": "Cook for 15 to 20 minutes, stirring now and then, until the cabbage is tender.",
+      "timer": {
+        "label": "Cabbage",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Taste and season with salt."
+    },
+    {
+      "instruction": "Take the pot off the heat and let the stew rest a few minutes."
+    },
+    {
+      "instruction": "Top with chopped cilantro."
+    }
+  ]
+}

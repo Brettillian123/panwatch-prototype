@@ -1,0 +1,88 @@
+{
+  "id": "danwake",
+  "title": "Danwake",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ADanwake"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1/2 teaspoon",
+      "name": "potash"
+    },
+    {
+      "amount": "2 cups",
+      "name": "wheat flour or guinea corn flour"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "baobab leaf flour, kuka"
+    },
+    {
+      "amount": "1 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "vegetable oil or palm oil"
+    },
+    {
+      "amount": "1/2",
+      "name": "onion, chopped, for garnish"
+    },
+    {
+      "amount": "to taste",
+      "name": "shredded cabbage or yaji, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Dissolve 1/2 teaspoon of potash in a little water in a small bowl."
+    },
+    {
+      "instruction": "Set the potash water aside."
+    },
+    {
+      "instruction": "Mix 2 cups of wheat flour with 2 tablespoons of baobab leaf flour in a bowl."
+    },
+    {
+      "instruction": "Slowly add the potash water to the flour mix."
+    },
+    {
+      "instruction": "Slowly add 1 cup of water, stirring, until the batter is thick and smooth.",
+      "spoken": "Slowly add 1 cup of water while stirring, until the batter is thick and smooth. Adjust the water as needed."
+    },
+    {
+      "instruction": "Bring a large pot of water to a boil."
+    },
+    {
+      "instruction": "Drop small scoops of the batter into the boiling water.",
+      "spoken": "Scoop small portions of the batter with a spoon or your hand and drop them into the boiling water. Let the dumplings cook for 10 to 15 minutes, until they float and feel firm to the touch.",
+      "watch": {
+        "ingredient": "batter",
+        "timerLabel": "Dumplings",
+        "timerMinutes": 10,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Drain the dumplings."
+    },
+    {
+      "instruction": "Drizzle 3 tablespoons of vegetable oil over the dumplings."
+    },
+    {
+      "instruction": "Season with 1/2 teaspoon of salt, or to taste."
+    },
+    {
+      "instruction": "Top with 1/2 an onion, chopped, and shredded cabbage or yaji."
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "id": "german-potato-salad",
+  "title": "German Potato Salad",
+  "category": "Salads",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AGerman_Potato_Salad"
+  },
+  "totalMinutes": 65,
+  "ingredients": [
+    {
+      "amount": "1 3/4 pounds",
+      "name": "red potatoes"
+    },
+    {
+      "amount": "1/4 pound",
+      "name": "bacon, uncooked and chopped"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "wheat flour"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "mayonnaise"
+    },
+    {
+      "amount": "5 tablespoons",
+      "name": "apple cider vinegar"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "Riesling wine"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "beef stock"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "chicken stock"
+    },
+    {
+      "amount": "8 tablespoons",
+      "name": "red onion, chopped"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "green onions, chopped"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "sugar"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "coarse prepared mustard"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Peel and thinly slice 1 3/4 pounds of red potatoes."
+    },
+    {
+      "instruction": "Boil the sliced potatoes for 17 minutes.",
+      "spoken": "Boil the potatoes for about 17 minutes, until they are tender but still somewhat firm.",
+      "timer": {
+        "label": "Potatoes",
+        "minutes": 17
+      }
+    },
+    {
+      "instruction": "Drain the potatoes, set them aside and let them cool."
+    },
+    {
+      "instruction": "Cook 1/4 pound of chopped bacon until crisp."
+    },
+    {
+      "instruction": "Crumble or chop the bacon."
+    },
+    {
+      "instruction": "Mix 1 tablespoon of flour into a small amount of bacon grease.",
+      "spoken": "Keep a small amount of the bacon grease and mix 1 tablespoon of flour into it, breaking up all the clumps."
+    },
+    {
+      "instruction": "Cook the flour mixture briefly without browning it.",
+      "spoken": "Cook the flour mixture briefly. Try to avoid browning it."
+    },
+    {
+      "instruction": "Add the bacon and 4 tablespoons of vegetable oil."
+    },
+    {
+      "instruction": "Add 1 tablespoon of mayonnaise and 5 tablespoons of apple cider vinegar."
+    },
+    {
+      "instruction": "Add 2 tablespoons of Riesling wine and 4 tablespoons each of beef stock and chicken stock."
+    },
+    {
+      "instruction": "Add 8 tablespoons of chopped red onion and 1 tablespoon of chopped green onions."
+    },
+    {
+      "instruction": "Add 1 tablespoon each of sugar and coarse prepared mustard."
+    },
+    {
+      "instruction": "Add 1/4 teaspoon each of salt and pepper, then mix."
+    },
+    {
+      "instruction": "Cook on low heat for 20 minutes, until smooth.",
+      "timer": {
+        "label": "Sauce",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Pour the sauce over the potatoes and stir gently.",
+      "spoken": "Pour the sauce over the potatoes and stir gently. Serve warm, room temperature, or cooled."
+    }
+  ]
+}

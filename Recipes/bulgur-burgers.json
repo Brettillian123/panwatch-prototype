@@ -1,0 +1,118 @@
+{
+  "id": "bulgur-burgers",
+  "title": "Bulgur Burgers",
+  "category": "Pasta and grains",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABulgur_Burgers"
+  },
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "3 cups",
+      "name": "water"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "bulgur"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "scallions, chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "carrots, grated"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "fresh parsley, chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "tahini"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "tomato paste"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "soy sauce"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "Dijon mustard"
+    },
+    {
+      "amount": "1 dash",
+      "name": "ground black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring 3 cups of water to a boil."
+    },
+    {
+      "instruction": "Meanwhile, heat 2 tablespoons of oil in a heavy skillet over medium-high heat."
+    },
+    {
+      "instruction": "Add 2 cloves of garlic and 1 1/2 cups of bulgur to the oil."
+    },
+    {
+      "instruction": "Sauté for 2 minutes, stirring often.",
+      "timer": {
+        "label": "Sauté",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Add the boiling water to the skillet."
+    },
+    {
+      "instruction": "Return to a boil and cover the skillet."
+    },
+    {
+      "instruction": "Lower the heat to low."
+    },
+    {
+      "instruction": "Simmer for 15 minutes, until the water is absorbed.",
+      "spoken": "Simmer for 15 to 20 minutes, until all of the water is absorbed and the bulgur is soft but still chewy.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Stir in 1/2 cup of chopped scallions, 1/2 cup of grated carrots and 1/4 cup of parsley."
+    },
+    {
+      "instruction": "Stir in 1/4 cup of tahini and 2 tablespoons of tomato paste."
+    },
+    {
+      "instruction": "Stir in 2 tablespoons of soy sauce, 1 teaspoon of mustard and 1 dash of pepper."
+    },
+    {
+      "instruction": "With moistened hands, form the mixture into 6 to 8 burgers."
+    },
+    {
+      "instruction": "Cook the burgers in a lightly oiled heavy skillet on medium-low heat for 10 minutes.",
+      "timer": {
+        "label": "Burgers",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Flip the burgers once, when the outside is crunchy."
+    }
+  ]
+}

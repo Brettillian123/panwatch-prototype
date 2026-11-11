@@ -1,0 +1,102 @@
+{
+  "id": "masala-chai-ii",
+  "title": "Masala Chai II",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AMasala_Chai_II"
+  },
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "boiling water"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "heavy cream"
+    },
+    {
+      "amount": "1 bag",
+      "name": "black tea leaves"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "vanilla sugar"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "cocoa powder"
+    },
+    {
+      "amount": "3-4",
+      "name": "cardamom seeds"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "caraway seeds"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "anise seeds"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "ground ginger, optional"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "ground cloves, optional"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "saffron, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "crushed almonds, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Pour 2 cups of boiling water into a serving cup."
+    },
+    {
+      "instruction": "Add 1 bag of black tea leaves and 2 tablespoons of heavy cream."
+    },
+    {
+      "instruction": "Add 2 teaspoons of vanilla sugar and 1/2 teaspoon of cinnamon."
+    },
+    {
+      "instruction": "Add 1 pinch of cocoa powder and 3 or 4 cardamom seeds."
+    },
+    {
+      "instruction": "Add 1 pinch each of caraway seeds and anise seeds."
+    },
+    {
+      "instruction": "If you like, add a pinch each of ground ginger, ground cloves and saffron."
+    },
+    {
+      "instruction": "If you like, add some crushed almonds."
+    },
+    {
+      "instruction": "Steep for 5 minutes.",
+      "spoken": "Steep for about 5 minutes.",
+      "timer": {
+        "label": "Steep",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Stir vigorously to mix in the cocoa and cinnamon."
+    },
+    {
+      "instruction": "If you like it very hot, reheat the cup in the microwave."
+    }
+  ]
+}

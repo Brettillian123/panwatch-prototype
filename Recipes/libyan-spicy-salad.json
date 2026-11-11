@@ -1,0 +1,93 @@
+{
+  "id": "libyan-spicy-salad",
+  "title": "Salata Hara (Libyan Spicy Salad)",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ASalata_Hara_%28Libyan_Spicy_Salad%29"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "2",
+      "name": "red bell peppers, roasted, peeled and finely chopped"
+    },
+    {
+      "amount": "1",
+      "name": "green bell pepper, finely chopped"
+    },
+    {
+      "amount": "1",
+      "name": "hot chile pepper, finely chopped"
+    },
+    {
+      "amount": "1",
+      "name": "tomato, finely chopped"
+    },
+    {
+      "amount": "1 small",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "1 clove",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground cayenne pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "fresh parsley or cilantro, chopped, for garnish"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 2 red bell peppers and 1 green bell pepper in a mixing bowl."
+    },
+    {
+      "instruction": "Add 1 hot chile pepper, 1 tomato, 1 small onion and 1 clove of garlic."
+    },
+    {
+      "instruction": "In a small bowl, whisk 1 tablespoon of lemon juice and 2 tablespoons of olive oil."
+    },
+    {
+      "instruction": "Whisk in 1 teaspoon of cumin, 1/2 teaspoon of cayenne, salt and pepper."
+    },
+    {
+      "instruction": "Pour the dressing over the vegetables and toss well."
+    },
+    {
+      "instruction": "Cover the bowl with plastic wrap and chill for 30 minutes.",
+      "spoken": "Cover the bowl with plastic wrap and chill for at least 30 minutes, so the flavors blend.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Garnish with chopped parsley or cilantro before serving."
+    }
+  ]
+}

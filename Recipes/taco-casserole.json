@@ -1,0 +1,81 @@
+{
+  "id": "taco-casserole",
+  "title": "Taco Casserole",
+  "category": "Beef and pork",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ATaco_Casserole"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "ground beef"
+    },
+    {
+      "amount": "1 packet",
+      "name": "taco seasoning"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "chili powder"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "tomato sauce"
+    },
+    {
+      "amount": "3",
+      "name": "tortillas, torn into bits"
+    },
+    {
+      "amount": "3 cups",
+      "name": "shredded cheese"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 1 pound of ground beef to a skillet over medium heat."
+    },
+    {
+      "instruction": "Cook the beef until it is browned."
+    },
+    {
+      "instruction": "Drain the ground beef."
+    },
+    {
+      "instruction": "Return the beef to the skillet, on medium heat."
+    },
+    {
+      "instruction": "Mix in 1 packet of taco seasoning and 3 tablespoons of chili powder."
+    },
+    {
+      "instruction": "Mix in 3 tablespoons of garlic powder and 8 ounces of tomato sauce."
+    },
+    {
+      "instruction": "Simmer for 5 minutes, stirring now and then.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Heat the oven to 375 °F."
+    },
+    {
+      "instruction": "In a casserole dish, mix the beef, 3 torn tortillas and 3 cups of shredded cheese."
+    },
+    {
+      "instruction": "Bake for 20 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    }
+  ]
+}

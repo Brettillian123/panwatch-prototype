@@ -1,0 +1,93 @@
+{
+  "id": "liberian-butter-rice",
+  "title": "Liberian Butter Rice",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ALiberian_Butter_Rice"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "long-grain rice"
+    },
+    {
+      "amount": "4 cups",
+      "name": "chicken broth, or vegetable broth"
+    },
+    {
+      "amount": "1",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "butter"
+    },
+    {
+      "amount": "1",
+      "name": "bay leaf"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "black pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "fresh parsley or cilantro, chopped, for garnish"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Rinse 2 cups of rice under cold water until the water runs clear."
+    },
+    {
+      "instruction": "Drain the rice and set it aside."
+    },
+    {
+      "instruction": "Melt 2 tablespoons of butter in a large pot over medium heat."
+    },
+    {
+      "instruction": "Add 1 chopped onion and 2 cloves of minced garlic to the pot.",
+      "spoken": "Add 1 chopped onion and 2 cloves of minced garlic to the pot. Cook until the onion is see-through and the garlic smells good."
+    },
+    {
+      "instruction": "Stir in the drained rice to coat it with the butter."
+    },
+    {
+      "instruction": "Pour in 4 cups of chicken broth and add 1 bay leaf."
+    },
+    {
+      "instruction": "Season with salt and black pepper to taste, then stir well."
+    },
+    {
+      "instruction": "Bring it to a boil, then lower the heat to low."
+    },
+    {
+      "instruction": "Cover the pot and simmer for 15 minutes.",
+      "spoken": "Cover the pot and simmer for 15 to 20 minutes, until all the liquid is absorbed and the rice is soft and fluffy.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Take the pot off the heat and let the rice rest a few minutes."
+    },
+    {
+      "instruction": "Fluff the rice with a fork."
+    },
+    {
+      "instruction": "Garnish with chopped parsley or cilantro."
+    }
+  ]
+}

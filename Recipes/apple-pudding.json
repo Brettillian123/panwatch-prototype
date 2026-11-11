@@ -1,0 +1,72 @@
+{
+  "id": "apple-pudding",
+  "title": "Apple Pudding",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AApple_Pudding"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "3/4 cup",
+      "name": "white granulated sugar"
+    },
+    {
+      "amount": "1",
+      "name": "egg"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "flour"
+    },
+    {
+      "amount": "1 1/4 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vanilla"
+    },
+    {
+      "amount": "1 cup",
+      "name": "chopped walnuts or hickory nuts"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "chopped apples"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 325 °F."
+    },
+    {
+      "instruction": "Beat 3/4 cup of sugar and 1 egg until smooth."
+    },
+    {
+      "instruction": "Beat in 1/4 cup of flour and 1 1/4 teaspoons of baking powder."
+    },
+    {
+      "instruction": "Beat in 1 pinch of salt and 1 teaspoon of vanilla."
+    },
+    {
+      "instruction": "Stir in 1 cup of chopped walnuts or hickory nuts and 1/2 cup of chopped apples."
+    },
+    {
+      "instruction": "Pour into a greased Dutch oven or 9 by 9-inch pan."
+    },
+    {
+      "instruction": "Bake at 325 °F for 30 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    }
+  ]
+}

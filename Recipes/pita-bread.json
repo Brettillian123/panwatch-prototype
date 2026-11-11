@@ -1,0 +1,76 @@
+{
+  "id": "pita-bread",
+  "title": "Pita Bread",
+  "category": "Sandwiches and wraps",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3APita"
+  },
+  "serves": 8,
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "instant yeast"
+    },
+    {
+      "amount": "1 cup",
+      "name": "warm water"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "2 cups",
+      "name": "durum wheat flour"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Dissolve 1 tablespoon of instant yeast in 1 cup of warm water in a bowl."
+    },
+    {
+      "instruction": "Add 1 teaspoon of salt and 2 tablespoons of vegetable oil."
+    },
+    {
+      "instruction": "Add 2 cups of durum wheat flour and mix."
+    },
+    {
+      "instruction": "Knead it into a dough."
+    },
+    {
+      "instruction": "Let the dough rise until it is twice its size."
+    },
+    {
+      "instruction": "Divide the dough into 8 pieces and shape them into balls."
+    },
+    {
+      "instruction": "Roll each ball into a flat, round bread, 6 inches across."
+    },
+    {
+      "instruction": "Heat the oven to 435 °F."
+    },
+    {
+      "instruction": "Cover the breads with a cloth and let them rise for 30 minutes.",
+      "spoken": "Cover the breads with a cloth and let them rise in a warm place for about 30 minutes.",
+      "timer": {
+        "label": "Rise",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Bake at 435 °F for 12 minutes.",
+      "spoken": "Bake at 435 °F for about 12 minutes. This makes 8 pitas.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 12
+      }
+    }
+  ]
+}

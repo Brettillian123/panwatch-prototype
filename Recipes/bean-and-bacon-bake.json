@@ -1,0 +1,84 @@
+{
+  "id": "bean-and-bacon-bake",
+  "title": "Bean and Bacon Bake",
+  "category": "Beans and lentils",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABean_and_Bacon_Bake"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1 medium",
+      "name": "potato, about 10 to 12 ounces"
+    },
+    {
+      "amount": "6 strips",
+      "name": "bacon, cooked until crisp"
+    },
+    {
+      "amount": "1 can",
+      "name": "green beans, 28 ounces"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "onion powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "sliced almonds"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Peel and dice 1 medium potato."
+    },
+    {
+      "instruction": "Crumble 6 strips of crisp bacon into small pieces."
+    },
+    {
+      "instruction": "Drain 1 can of green beans, keeping 1/2 cup of the liquid."
+    },
+    {
+      "instruction": "Put the beans, 1/2 cup of bean juice, bacon and potato in a microwave-safe dish."
+    },
+    {
+      "instruction": "Sprinkle 1/2 teaspoon of onion powder and 1/2 teaspoon of salt on top."
+    },
+    {
+      "instruction": "Cover the dish with plastic wrap."
+    },
+    {
+      "instruction": "Microwave for 5 minutes.",
+      "timer": {
+        "label": "Microwave",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Stir the dish."
+    },
+    {
+      "instruction": "Microwave for another 5 minutes.",
+      "timer": {
+        "label": "Microwave again",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Let the dish stand for 5 minutes before adding the almonds.",
+      "timer": {
+        "label": "Stand",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Garnish with 2 tablespoons of sliced almonds."
+    }
+  ]
+}

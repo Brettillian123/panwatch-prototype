@@ -1,0 +1,66 @@
+{
+  "id": "basic-panna-cotta",
+  "title": "Basic Panna Cotta",
+  "category": "Baking and desserts",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3APanna_Cotta_%28Basic%29"
+  },
+  "totalMinutes": 255,
+  "ingredients": [
+    {
+      "amount": "3/4 teaspoon",
+      "name": "powdered gelatin"
+    },
+    {
+      "amount": "2 cups",
+      "name": "heavy cream"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "white granulated sugar"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "vanilla essence, or 1 small vanilla bean"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Soak 3/4 teaspoon of gelatin in 1 tablespoon of the cream for 5 minutes.",
+      "timer": {
+        "label": "Soak",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Pour the rest of the 2 cups of cream into a medium pan."
+    },
+    {
+      "instruction": "Add 1/2 cup of sugar, 1 1/2 teaspoons of vanilla essence and a pinch of salt."
+    },
+    {
+      "instruction": "Heat over medium heat, stirring now and then, until the sugar dissolves.",
+      "spoken": "Heat over medium heat, stirring now and then, until the sugar dissolves and tiny bubbles appear around the edge of the pan."
+    },
+    {
+      "instruction": "Take the pan off the heat and stir in the gelatin until fully mixed."
+    },
+    {
+      "instruction": "Pour the mixture into small ramekins."
+    },
+    {
+      "instruction": "Let them set in the refrigerator for at least 4 hours.",
+      "spoken": "Let them set in the refrigerator for at least 4 hours, or up to overnight.",
+      "timer": {
+        "label": "Set",
+        "minutes": 240
+      }
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "oven-pancakes",
+  "title": "Oven Pancakes",
+  "category": "Eggs and breakfast",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AOven_Pancakes"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "baking soda"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "sugar"
+    },
+    {
+      "amount": "1 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "vanilla"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "apple cider vinegar"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 450 °F."
+    },
+    {
+      "instruction": "Oil an 8 inch oven-safe skillet."
+    },
+    {
+      "instruction": "Mix 1 cup of flour and 2 teaspoons of baking powder in a bowl."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of baking soda, 1/2 teaspoon of salt and 2 tablespoons of sugar."
+    },
+    {
+      "instruction": "Add 1 cup of milk, 2 tablespoons of vegetable oil and 2 teaspoons of vanilla."
+    },
+    {
+      "instruction": "Stir well."
+    },
+    {
+      "instruction": "Stir in 1 tablespoon of apple cider vinegar and mix well."
+    },
+    {
+      "instruction": "Pour the batter into the skillet right away."
+    },
+    {
+      "instruction": "Bake at 450 °F for 18 minutes.",
+      "spoken": "Bake at 450 °F for 18 to 20 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 18
+      }
+    }
+  ]
+}

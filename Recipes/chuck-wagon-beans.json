@@ -1,0 +1,115 @@
+{
+  "id": "chuck-wagon-beans",
+  "title": "Chuck Wagon Beans",
+  "category": "Beans and lentils",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChuck_Wagon_Beans"
+  },
+  "totalMinutes": 70,
+  "ingredients": [
+    {
+      "amount": "1/2 pound",
+      "name": "bacon, cut into bite-sized pieces"
+    },
+    {
+      "amount": "1 pound",
+      "name": "ground chuck"
+    },
+    {
+      "amount": "1 large",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "brown sugar"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "white sugar"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "molasses"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "barbecue sauce"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "mustard"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "pepper"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "chili powder"
+    },
+    {
+      "amount": "32 ounces",
+      "name": "canned pork and beans"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Add 1/2 pound of bacon, in bite-sized pieces, to a large pot."
+    },
+    {
+      "instruction": "Add 1 pound of ground chuck and 1 large chopped onion."
+    },
+    {
+      "instruction": "Brown the bacon, ground chuck and onion."
+    },
+    {
+      "instruction": "Stir in 2 cloves of minced garlic.",
+      "spoken": "Stir in the remaining ingredients in order, one at a time, and mix well after each one. First, 2 cloves of minced garlic."
+    },
+    {
+      "instruction": "Stir in 1/3 cup of brown sugar."
+    },
+    {
+      "instruction": "Stir in 1/3 cup of white sugar."
+    },
+    {
+      "instruction": "Stir in 2 tablespoons of molasses."
+    },
+    {
+      "instruction": "Stir in 1/4 cup of barbecue sauce."
+    },
+    {
+      "instruction": "Stir in 2 tablespoons of mustard."
+    },
+    {
+      "instruction": "Stir in 1 teaspoon of pepper and 2 teaspoons of salt."
+    },
+    {
+      "instruction": "Stir in 1/2 teaspoon of chili powder."
+    },
+    {
+      "instruction": "Stir in 32 ounces of canned pork and beans."
+    },
+    {
+      "instruction": "Bake for 40 minutes, until thickened.",
+      "spoken": "Bake for about 40 minutes, or until thickened.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 40
+      }
+    }
+  ]
+}

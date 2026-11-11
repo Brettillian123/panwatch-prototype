@@ -1,0 +1,84 @@
+{
+  "id": "almond-fudge-brownies",
+  "title": "Almond Fudge Brownies",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAlmond_Fudge_Brownies"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "3/4 cup",
+      "name": "butter or margarine"
+    },
+    {
+      "amount": "1 cup",
+      "name": "white granulated sugar"
+    },
+    {
+      "amount": "1 1/2 tablespoons",
+      "name": "oil"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "2",
+      "name": "eggs"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "almond extract, or 1/2 cup chopped almonds instead"
+    },
+    {
+      "amount": "6 tablespoons",
+      "name": "cocoa powder"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "flour, sifted"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Cream 3/4 cup of butter or margarine with 1 cup of white granulated sugar."
+    },
+    {
+      "instruction": "Beat in 1 1/2 tablespoons of oil and 1/3 cup of milk."
+    },
+    {
+      "instruction": "Blend in 2 eggs, one at a time."
+    },
+    {
+      "instruction": "Mix in 1 teaspoon of vanilla extract and 1/2 teaspoon of almond extract.",
+      "spoken": "Mix in 1 teaspoon of vanilla extract and 1/2 teaspoon of almond extract. You can use 1/2 cup of chopped almonds instead of the almond extract."
+    },
+    {
+      "instruction": "Mix in 6 tablespoons of cocoa powder and 3/4 cup of sifted flour."
+    },
+    {
+      "instruction": "Spread the batter into a greased 10 1/2 by 7-inch cake pan."
+    },
+    {
+      "instruction": "Bake for 28 minutes, until a toothpick comes out with only moist crumbs.",
+      "spoken": "Bake for 28 to 30 minutes. A toothpick pushed into the center should come out with no more than moist crumbs.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 28
+      }
+    },
+    {
+      "instruction": "Let the pan cool completely."
+    }
+  ]
+}

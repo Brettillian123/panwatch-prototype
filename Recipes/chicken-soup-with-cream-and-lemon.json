@@ -1,0 +1,119 @@
+{
+  "id": "chicken-soup-with-cream-and-lemon",
+  "title": "Chicken Soup with Cream and Lemon",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChicken_Soup_with_Cream_and_Lemon"
+  },
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 medium",
+      "name": "onion, finely diced"
+    },
+    {
+      "amount": "4 ribs",
+      "name": "celery, chopped"
+    },
+    {
+      "amount": "1/2 large",
+      "name": "carrot, finely diced"
+    },
+    {
+      "amount": "2 cups",
+      "name": "shredded cooked chicken"
+    },
+    {
+      "amount": "3 cups",
+      "name": "chicken broth"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "lemon juice, freshly squeezed"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "lemon zest, finely grated"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "heavy cream"
+    },
+    {
+      "amount": "12 sprigs",
+      "name": "fresh thyme"
+    },
+    {
+      "amount": "5 sprigs",
+      "name": "fresh rosemary"
+    },
+    {
+      "amount": "3",
+      "name": "bay leaves"
+    },
+    {
+      "amount": "to taste",
+      "name": "kosher salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "freshly ground black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 tablespoons of olive oil in a large pot over medium-low heat."
+    },
+    {
+      "instruction": "Add 1 tablespoon of minced garlic and 1 medium onion, finely diced."
+    },
+    {
+      "instruction": "Add 4 ribs of chopped celery and 1/2 large carrot, finely diced."
+    },
+    {
+      "instruction": "Add a pinch of salt."
+    },
+    {
+      "instruction": "Cook until the onion is soft and clear.",
+      "spoken": "Cook until the onion is soft and clear. Try not to let it brown if you want a lighter-colored soup."
+    },
+    {
+      "instruction": "Add 2 cups of shredded cooked chicken and 3 cups of chicken broth."
+    },
+    {
+      "instruction": "Add 1/4 cup of lemon juice and 2 tablespoons of finely grated lemon zest."
+    },
+    {
+      "instruction": "Add 1/2 cup of heavy cream."
+    },
+    {
+      "instruction": "Add 12 sprigs of thyme, 5 sprigs of rosemary and 3 bay leaves."
+    },
+    {
+      "instruction": "Bring the soup to a boil over medium-high heat."
+    },
+    {
+      "instruction": "Lower the heat, cover, and simmer for 30 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Take out the herbs and bay leaves, if you like."
+    },
+    {
+      "instruction": "Season with kosher salt and pepper to taste."
+    }
+  ]
+}

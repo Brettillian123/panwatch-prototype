@@ -1,0 +1,69 @@
+{
+  "id": "mbulawu-millet-porridge",
+  "title": "Mbulawu Millet Porridge",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AMbulawu_%28Malawian_Fermented_Millet_Porridge%29"
+  },
+  "totalMinutes": 505,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "millet flour"
+    },
+    {
+      "amount": "3 cups",
+      "name": "water"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "vegetable oil"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring 3 cups of water to a boil in a saucepan."
+    },
+    {
+      "instruction": "Slowly add 1 cup of millet flour, stirring all the time.",
+      "spoken": "Slowly add 1 cup of millet flour to the boiling water, stirring all the time so no lumps form."
+    },
+    {
+      "instruction": "Turn the heat to low and simmer for 10 minutes, stirring now and then.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Add a pinch of salt and keep stirring."
+    },
+    {
+      "instruction": "Take the pan off the heat and let the porridge cool to room temperature."
+    },
+    {
+      "instruction": "Cover the porridge with a clean cloth and let it ferment overnight.",
+      "spoken": "Cover the porridge with a clean cloth and leave it to ferment overnight, for at least 8 hours.",
+      "timer": {
+        "label": "Ferment",
+        "minutes": 480
+      }
+    },
+    {
+      "instruction": "The next morning, heat 1 tablespoon of vegetable oil in a separate pan."
+    },
+    {
+      "instruction": "Pour the porridge into the pan and heat it over medium heat, stirring.",
+      "spoken": "Pour the porridge into the pan and heat it over medium heat, stirring all the time, until it is as thick as you like. You can add more water for a thinner porridge."
+    },
+    {
+      "instruction": "Serve warm in a bowl."
+    }
+  ]
+}

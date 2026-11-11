@@ -1,0 +1,84 @@
+{
+  "id": "chadian-salad",
+  "title": "Chadian Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChadian_Salad"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "2",
+      "name": "tomatoes, diced"
+    },
+    {
+      "amount": "1",
+      "name": "cucumber, diced"
+    },
+    {
+      "amount": "1",
+      "name": "red onion, thinly sliced"
+    },
+    {
+      "amount": "1",
+      "name": "bell pepper, diced"
+    },
+    {
+      "amount": "1",
+      "name": "carrot, peeled and grated"
+    },
+    {
+      "amount": "1",
+      "name": "lemon, juiced"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "parsley or mint, chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 2 diced tomatoes and 1 diced cucumber to a mixing bowl."
+    },
+    {
+      "instruction": "Add 1 sliced red onion, 1 diced bell pepper and 1 grated carrot."
+    },
+    {
+      "instruction": "Whisk the juice of 1 lemon with 2 tablespoons of olive oil, salt and pepper."
+    },
+    {
+      "instruction": "Taste the dressing and adjust the seasoning."
+    },
+    {
+      "instruction": "Pour the dressing over the vegetables and gently toss."
+    },
+    {
+      "instruction": "Cover the bowl and chill the salad in the refrigerator for 30 minutes.",
+      "spoken": "Cover the bowl and chill the salad in the refrigerator for at least 30 minutes, so the flavors blend.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Give the salad a final toss and move it to a serving dish."
+    },
+    {
+      "instruction": "If you like, sprinkle chopped parsley or mint on top."
+    }
+  ]
+}

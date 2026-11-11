@@ -1,0 +1,76 @@
+{
+  "id": "corn-and-kelp-chowder",
+  "title": "Corn and Kelp Chowder",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACorn_and_Kelp_Chowder"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "1 quart",
+      "name": "corn kernels, removed from the cob"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "dried sea kelp, or laver"
+    },
+    {
+      "amount": "2 cups",
+      "name": "milk or cream"
+    },
+    {
+      "amount": "2 cups",
+      "name": "water"
+    },
+    {
+      "amount": "1",
+      "name": "bell pepper, green or red, chopped"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "butter"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Melt 1 tablespoon of butter in a pot."
+    },
+    {
+      "instruction": "Add 1/2 cup of dried sea kelp and cook until it begins to dissolve in the butter."
+    },
+    {
+      "instruction": "Add 1 quart of corn kernels and 1 chopped bell pepper."
+    },
+    {
+      "instruction": "Add 2 cups of milk or cream and 2 cups of water."
+    },
+    {
+      "instruction": "Add salt and pepper to taste."
+    },
+    {
+      "instruction": "Turn the heat to low and cover the pot."
+    },
+    {
+      "instruction": "Simmer for 30 minutes.",
+      "spoken": "Simmer for 30 to 40 minutes, until the vegetables are soft.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Take off the cover and cook on low until most of the liquid has cooked away."
+    }
+  ]
+}

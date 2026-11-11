@@ -1,0 +1,95 @@
+{
+  "id": "corn-chowder-i",
+  "title": "Corn Chowder I",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACorn_Chowder_I"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "butter or margarine"
+    },
+    {
+      "amount": "1 cup",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "celery, chopped"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "potatoes, pared and cut in 1/2-inch cubes"
+    },
+    {
+      "amount": "2 cups",
+      "name": "corn, fresh or frozen"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "water"
+    },
+    {
+      "amount": "2",
+      "name": "chicken bouillon cubes"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "thyme"
+    },
+    {
+      "amount": "1 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "1 cup",
+      "name": "light cream"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Melt 2 tablespoons of butter or margarine in a medium saucepan."
+    },
+    {
+      "instruction": "Add 1 cup of chopped onion and 1/2 cup of chopped celery."
+    },
+    {
+      "instruction": "Cook until the onion and celery are tender."
+    },
+    {
+      "instruction": "Add 1 1/2 cups of diced potatoes and 2 cups of corn."
+    },
+    {
+      "instruction": "Add salt and pepper to taste."
+    },
+    {
+      "instruction": "Add 1 1/2 cups of water, 2 chicken bouillon cubes and 1/4 teaspoon of thyme."
+    },
+    {
+      "instruction": "Cover and simmer for 15 minutes.",
+      "spoken": "Cover and simmer for 15 minutes, or until the potatoes and corn are tender.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Add 1 cup of milk and 1 cup of light cream."
+    },
+    {
+      "instruction": "Warm the chowder until it is hot all the way through."
+    }
+  ]
+}

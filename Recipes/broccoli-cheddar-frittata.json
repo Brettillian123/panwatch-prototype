@@ -1,0 +1,116 @@
+{
+  "id": "broccoli-cheddar-frittata",
+  "title": "Broccoli-Cheddar Frittata",
+  "category": "Eggs and breakfast",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/broccoli-cheddar-frittata"
+  },
+  "serves": 6,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "1 package",
+      "name": "frozen chopped broccoli, 10 ounce"
+    },
+    {
+      "amount": "1 small",
+      "name": "carrot, diced, optional"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "water"
+    },
+    {
+      "amount": "8",
+      "name": "eggs"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "milk, nonfat or low-fat"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "prepared mustard"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "seasoned salt"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "pepper"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "reduced-fat cheddar cheese, shredded, 3 ounces"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "green onion, chopped"
+    },
+    {
+      "amount": "to taste",
+      "name": "nonstick cooking spray"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 1 package of frozen broccoli and 1/4 cup of water to a 10 inch nonstick skillet."
+    },
+    {
+      "instruction": "If you like, add 1 small diced carrot."
+    },
+    {
+      "instruction": "Cook over medium heat for 10 minutes, until tender, stirring to break up the broccoli.",
+      "timer": {
+        "label": "Broccoli",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Drain the broccoli mixture well."
+    },
+    {
+      "instruction": "Beat 8 eggs and 1/4 cup of milk in a large bowl."
+    },
+    {
+      "instruction": "Beat in 2 teaspoons of mustard, 1 teaspoon of seasoned salt and 1/8 teaspoon of pepper."
+    },
+    {
+      "instruction": "Add the broccoli mixture and 3/4 cup of shredded cheddar cheese."
+    },
+    {
+      "instruction": "Add 1 tablespoon of chopped green onion and mix well."
+    },
+    {
+      "instruction": "Coat the same skillet with cooking spray."
+    },
+    {
+      "instruction": "Pour the egg mixture into the skillet."
+    },
+    {
+      "instruction": "Heat over medium heat for 8 minutes, until the eggs are almost set.",
+      "spoken": "Heat over medium heat for 8 to 10 minutes, until the eggs are almost set.",
+      "timer": {
+        "label": "Eggs",
+        "minutes": 8
+      }
+    },
+    {
+      "instruction": "Take the skillet off the heat."
+    },
+    {
+      "instruction": "Cover the skillet and let it stand for 8 minutes.",
+      "spoken": "Cover the skillet and let it stand for 8 to 10 minutes, until the eggs are completely set and no liquid egg remains.",
+      "timer": {
+        "label": "Stand",
+        "minutes": 8
+      }
+    },
+    {
+      "instruction": "Cut the frittata into wedges."
+    }
+  ]
+}

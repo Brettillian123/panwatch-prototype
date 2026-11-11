@@ -1,0 +1,92 @@
+{
+  "id": "italian-rice-with-wild-mushrooms",
+  "title": "Italian Rice with Wild Mushrooms",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AItalian_Rice_with_Wild_Mushrooms"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "3 cups",
+      "name": "chicken stock"
+    },
+    {
+      "amount": "3",
+      "name": "shallots, chopped"
+    },
+    {
+      "amount": "5 tablespoons",
+      "name": "extra-virgin olive oil"
+    },
+    {
+      "amount": "2 cups",
+      "name": "risotto rice"
+    },
+    {
+      "amount": "1 cup",
+      "name": "dry white wine"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "Parmesan cheese"
+    },
+    {
+      "amount": "4 ounces",
+      "name": "wild mushrooms, sliced and sautéed"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "truffle oil"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring 3 cups of chicken stock to a simmer.",
+      "spoken": "Bring 3 cups of chicken stock to a simmer. Keep it as hot as you can without boiling. The top should just move a little."
+    },
+    {
+      "instruction": "Sauté 3 chopped shallots in 5 tablespoons of olive oil until soft."
+    },
+    {
+      "instruction": "Add 2 cups of risotto rice and stir for 3 minutes.",
+      "spoken": "Add 2 cups of risotto rice and stir for 3 to 5 minutes, until the rice is coated with oil.",
+      "watch": {
+        "ingredient": "rice",
+        "timerLabel": "Rice",
+        "timerMinutes": 3,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Pour in 1 cup of white wine and 1/2 cup of the hot stock, and keep stirring."
+    },
+    {
+      "instruction": "Keep adding stock as needed and stir for 15 minutes.",
+      "spoken": "Keep adding stock as needed and keep stirring for 15 more minutes. Keep the rice creamy.",
+      "timer": {
+        "label": "Stir",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Take the pot off the heat."
+    },
+    {
+      "instruction": "Add 1/4 cup of Parmesan cheese, 4 ounces of wild mushrooms and 1 teaspoon of truffle oil."
+    },
+    {
+      "instruction": "Season with salt and pepper to taste."
+    }
+  ]
+}

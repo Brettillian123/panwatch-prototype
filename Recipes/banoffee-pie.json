@@ -1,0 +1,90 @@
+{
+  "id": "banoffee-pie",
+  "title": "Banoffee Pie",
+  "category": "Baking and desserts",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABanoffee_Pie"
+  },
+  "totalMinutes": 90,
+  "ingredients": [
+    {
+      "amount": "9 ounces",
+      "name": "gingernut biscuits, or digestive biscuits"
+    },
+    {
+      "amount": "10 ounces",
+      "name": "butter"
+    },
+    {
+      "amount": "1 can",
+      "name": "sweetened condensed milk, 14 ounces"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "superfine sugar"
+    },
+    {
+      "amount": "2/3 cup",
+      "name": "double cream"
+    },
+    {
+      "amount": "2",
+      "name": "bananas"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Crush 9 ounces of gingernut biscuits into crumbs with a rolling pin.",
+      "spoken": "Crush 9 ounces of gingernut biscuits into crumbs with the end of a rolling pin. It is easiest inside a freezer bag, so crumbs don't spill."
+    },
+    {
+      "instruction": "Melt 4 ounces of the butter in a large pan."
+    },
+    {
+      "instruction": "Take the pan off the heat and mix in the biscuit crumbs."
+    },
+    {
+      "instruction": "Press the crumbs into the bottom of an 8 inch loose-bottomed pie tin."
+    },
+    {
+      "instruction": "Put the pie tin in the fridge to chill."
+    },
+    {
+      "instruction": "Put the other 6 ounces of butter and 3/4 cup of sugar in a medium pan."
+    },
+    {
+      "instruction": "Melt over medium heat, stirring, until the sugar just starts to melt."
+    },
+    {
+      "instruction": "Add 1 can of sweetened condensed milk and bring to a boil."
+    },
+    {
+      "instruction": "Stir all the time for 5 minutes to make the caramel.",
+      "timer": {
+        "label": "Caramel",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Slice 2 bananas and arrange them over the crumb base."
+    },
+    {
+      "instruction": "Pour the caramel over the top."
+    },
+    {
+      "instruction": "Chill for at least 1 hour so the caramel firms up.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Before serving, whip 2/3 cup of double cream."
+    },
+    {
+      "instruction": "Spoon the whipped cream over the top."
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "jamaican-chicken-fingers",
+  "title": "Jamaican Chicken Fingers",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AJamaican_Chicken_Fingers_with_Honey-Mustard_Sauce"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "skinless boneless chicken breast"
+    },
+    {
+      "amount": "2",
+      "name": "egg whites"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "honey"
+    },
+    {
+      "amount": "3 cups",
+      "name": "cornflakes, crushed to make 1 1/2 cups"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "jerk seasoning"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "honey-mustard salad dressing"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "grated lime peel"
+    },
+    {
+      "amount": "2",
+      "name": "mangoes, seeded, peeled and sliced"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 450 °F."
+    },
+    {
+      "instruction": "Trim the fat from 1 pound of chicken breast."
+    },
+    {
+      "instruction": "Cut the chicken lengthwise into strips 3/4 inch wide."
+    },
+    {
+      "instruction": "Whisk 2 egg whites and 1 tablespoon of honey in a shallow dish."
+    },
+    {
+      "instruction": "In another dish, combine 1 1/2 cups crushed cornflakes and 1 1/2 teaspoons jerk seasoning."
+    },
+    {
+      "instruction": "Dip the chicken in the egg mixture, then roll it in the cornflake mixture."
+    },
+    {
+      "instruction": "Place the coated pieces in a single layer on an ungreased baking sheet."
+    },
+    {
+      "instruction": "Bake at 450 °F for 11 minutes, until tender and no longer pink.",
+      "spoken": "Bake at 450 °F for 11 to 13 minutes, until the chicken is tender and no longer pink.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 11
+      }
+    },
+    {
+      "instruction": "Stir 1/2 cup of honey-mustard dressing and 1 teaspoon of lime peel together."
+    },
+    {
+      "instruction": "Serve the chicken with 2 sliced mangoes and the dressing mixture."
+    }
+  ]
+}

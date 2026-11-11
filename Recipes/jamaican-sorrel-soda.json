@@ -1,0 +1,61 @@
+{
+  "id": "jamaican-sorrel-soda",
+  "title": "Jamaican Sorrel Soda",
+  "category": "Drinks",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AJamaican_Sorrel_Soda"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "water"
+    },
+    {
+      "amount": "3",
+      "name": "hibiscus tea bags (or 3 teaspoons dried hibiscus)"
+    },
+    {
+      "amount": "6 cubes",
+      "name": "ginger, 1/4 inch each (optional)"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "white sugar"
+    },
+    {
+      "amount": "to taste",
+      "name": "carbonated water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Combine 1 cup of water, 3 hibiscus tea bags and 6 ginger cubes in a pot.",
+      "spoken": "Combine 1 cup of water, 3 hibiscus tea bags or 3 teaspoons of dried hibiscus, and 6 small ginger cubes in a pot."
+    },
+    {
+      "instruction": "Boil the mixture for about 15 minutes.",
+      "timer": {
+        "label": "Boil",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Remove and throw away the hibiscus and ginger."
+    },
+    {
+      "instruction": "Stir 1/2 cup of white sugar into the liquid."
+    },
+    {
+      "instruction": "Simmer until about 5 ounces of syrup are left."
+    },
+    {
+      "instruction": "Take the pot off the heat and let the syrup cool."
+    },
+    {
+      "instruction": "Mix 1 part syrup with 5 parts carbonated water."
+    }
+  ]
+}

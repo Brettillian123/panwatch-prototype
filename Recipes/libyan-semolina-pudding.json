@@ -1,0 +1,87 @@
+{
+  "id": "libyan-semolina-pudding",
+  "title": "Libyan Semolina Pudding",
+  "category": "Baking and desserts",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAsida_bil_Zibda_%28Libyan_Semolina_Pudding%29"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "butter, softened"
+    },
+    {
+      "amount": "2 cups",
+      "name": "semolina"
+    },
+    {
+      "amount": "1 cup",
+      "name": "granulated sugar"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cardamom"
+    },
+    {
+      "amount": "1 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "to taste",
+      "name": "ground cinnamon, for garnish"
+    },
+    {
+      "amount": "to taste",
+      "name": "chopped nuts, for garnish"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Melt 1 cup of butter in a large pot over medium heat."
+    },
+    {
+      "instruction": "Add 2 cups of semolina and stir for 10 minutes.",
+      "spoken": "Add 2 cups of semolina and stir all the time for about 10 minutes, until it turns golden brown and smells nutty.",
+      "watch": {
+        "ingredient": "semolina",
+        "timerLabel": "Semolina",
+        "timerMinutes": 10,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Turn the heat down to low."
+    },
+    {
+      "instruction": "Add 1 cup of sugar and 1 teaspoon of ground cardamom, and mix well."
+    },
+    {
+      "instruction": "Slowly pour in 1 cup of milk, stirring all the time.",
+      "spoken": "Slowly pour in 1 cup of milk. Keep stirring so no lumps form."
+    },
+    {
+      "instruction": "Keep cooking and stirring the mixture for 10 minutes.",
+      "spoken": "Keep cooking and stirring for 10 to 15 minutes, until it thickens and pulls away from the sides of the pot. It should be smooth and creamy.",
+      "timer": {
+        "label": "Thicken",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Take the pot off the heat and let it cool a little."
+    },
+    {
+      "instruction": "Spoon the pudding into bowls or onto a large platter."
+    },
+    {
+      "instruction": "Smooth the top with the back of a spoon."
+    },
+    {
+      "instruction": "Sprinkle ground cinnamon and chopped nuts on top, if you like.",
+      "spoken": "If you like, sprinkle ground cinnamon and chopped nuts on top. Serve it warm or at room temperature."
+    }
+  ]
+}

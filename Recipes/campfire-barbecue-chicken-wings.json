@@ -1,0 +1,92 @@
+{
+  "id": "campfire-barbecue-chicken-wings",
+  "title": "Campfire Barbecue Chicken Wings",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACampfire_Barbecue_Chicken_Wings"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "cayenne pepper"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "black pepper"
+    },
+    {
+      "amount": "24",
+      "name": "chicken wingettes"
+    },
+    {
+      "amount": "1 cup",
+      "name": "tomato paste"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "molasses"
+    },
+    {
+      "amount": "3 drops",
+      "name": "liquid smoke"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "cider vinegar"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "white wine"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 1 tablespoon each of cayenne pepper, salt and black pepper."
+    },
+    {
+      "instruction": "Toss 24 chicken wingettes with the spice mix."
+    },
+    {
+      "instruction": "Put the wingettes in the refrigerator."
+    },
+    {
+      "instruction": "In a microwave-safe bowl, mix 1 cup of tomato paste and 1/4 cup of molasses."
+    },
+    {
+      "instruction": "Add 3 drops of liquid smoke, 2 tablespoons cider vinegar and 2 tablespoons white wine."
+    },
+    {
+      "instruction": "Microwave the sauce until it is warm and well mixed."
+    },
+    {
+      "instruction": "Let the sauce cool."
+    },
+    {
+      "instruction": "Brush the wings on all sides with about 3/4 of the sauce.",
+      "spoken": "Brush the wings on all sides with about three quarters of the sauce. Or put three quarters of the sauce in a zip-top bag with the wings."
+    },
+    {
+      "instruction": "Refrigerate the wings for as long as you can."
+    },
+    {
+      "instruction": "Grill the wings until a thermometer reads 165 °F."
+    },
+    {
+      "instruction": "Move the wings to a plate and cover them."
+    },
+    {
+      "instruction": "Let the wings rest for 5 minutes, then serve with the rest of the sauce.",
+      "timer": {
+        "label": "Rest",
+        "minutes": 5
+      }
+    }
+  ]
+}

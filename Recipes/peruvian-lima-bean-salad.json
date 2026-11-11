@@ -1,0 +1,102 @@
+{
+  "id": "peruvian-lima-bean-salad",
+  "title": "Peruvian Lima Bean Salad",
+  "category": "Salads",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AEnsalada_de_Pallares_%28Peruvian_Lima_Bean_Salad%29"
+  },
+  "totalMinutes": 570,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "large dried lima beans (pallares)"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "1 cup",
+      "name": "olive oil"
+    },
+    {
+      "amount": "2-3 teaspoons",
+      "name": "white vinegar"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "Dijon mustard"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "1",
+      "name": "red onion, finely diced"
+    },
+    {
+      "amount": "2",
+      "name": "tomatoes, seeded and diced"
+    },
+    {
+      "amount": "a few sprigs",
+      "name": "parsley"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Soak the lima beans in water overnight.",
+      "spoken": "Soak the lima beans in water overnight, or at least six hours. Change the water 2 to 3 times."
+    },
+    {
+      "instruction": "Boil the beans in enough water to cover them, with no salt.",
+      "spoken": "Boil the beans without salt in enough water to cover them. Use high heat until the water boils."
+    },
+    {
+      "instruction": "Skim the foam from the water."
+    },
+    {
+      "instruction": "Lower the heat."
+    },
+    {
+      "instruction": "Simmer the beans for about 1 hour.",
+      "spoken": "Simmer the beans for about 1 hour. The time depends on how dry the beans were, so keep going until they are plump and tender.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Take the beans off the heat and drain them when plump and tender.",
+      "spoken": "When the beans are plump and tender, take them off the heat and drain them. You can save the cooking liquid to turn leftovers into a soup."
+    },
+    {
+      "instruction": "Season the beans lightly with salt."
+    },
+    {
+      "instruction": "Mix 1 cup olive oil, 2 to 3 teaspoons white vinegar and 1 tablespoon Dijon mustard."
+    },
+    {
+      "instruction": "Add 1 diced red onion and 2 seeded, diced tomatoes."
+    },
+    {
+      "instruction": "Season the vinaigrette with salt and pepper to taste."
+    },
+    {
+      "instruction": "When the beans are at room temperature, taste the vinaigrette.",
+      "spoken": "Once the beans are at room temperature, taste the vinaigrette and adjust the seasoning. It should taste a bit stronger than you expect."
+    },
+    {
+      "instruction": "Carefully mix the vinaigrette with the beans."
+    },
+    {
+      "instruction": "Mix in a few sprigs of parsley."
+    },
+    {
+      "instruction": "Top with more parsley."
+    }
+  ]
+}

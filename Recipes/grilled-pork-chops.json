@@ -1,0 +1,143 @@
+{
+  "id": "grilled-pork-chops",
+  "title": "Grilled Pork Chops",
+  "category": "Beef and pork",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AGrilled_Pork_Chops"
+  },
+  "totalMinutes": 95,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "salt"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "honey"
+    },
+    {
+      "amount": "2 cups",
+      "name": "apple cider vinegar, heated"
+    },
+    {
+      "amount": "4 sprigs",
+      "name": "fresh rosemary, finely chopped"
+    },
+    {
+      "amount": "10 sprigs",
+      "name": "fresh thyme, finely chopped"
+    },
+    {
+      "amount": "1 1/2 tablespoons",
+      "name": "cayenne pepper"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "2 pounds",
+      "name": "ice"
+    },
+    {
+      "amount": "4",
+      "name": "thick-cut pork rib chops"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "black peppercorns, cracked"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "smoked paprika"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "ancho chile powder"
+    },
+    {
+      "amount": "to taste",
+      "name": "oil, for the grill"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 3/4 cup of honey, 1 cup of salt and 2 cups of heated vinegar in a zip-top bag."
+    },
+    {
+      "instruction": "Add 4 sprigs of chopped rosemary and 10 sprigs of chopped thyme."
+    },
+    {
+      "instruction": "Add 1 1/2 tablespoons of cayenne pepper and 2 tablespoons of minced garlic."
+    },
+    {
+      "instruction": "Add 2 pounds of ice to the bag."
+    },
+    {
+      "instruction": "Shake the bag until the ice is mostly melted and the mix has cooled."
+    },
+    {
+      "instruction": "Put the 4 pork chops in the bag."
+    },
+    {
+      "instruction": "Refrigerate the bag for 1 hour.",
+      "spoken": "Refrigerate the bag for 1 to two hours.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Mix 2 tablespoons peppercorns, 1 tablespoon paprika and 1 tablespoon chile powder."
+    },
+    {
+      "instruction": "Take the pork out of the bag and pat it dry with paper towels."
+    },
+    {
+      "instruction": "Throw away the leftover marinade."
+    },
+    {
+      "instruction": "Rub the pepper mixture on both sides of each chop."
+    },
+    {
+      "instruction": "Quickly oil a high-heat grill with a flame-resistant towel soaked in oil."
+    },
+    {
+      "instruction": "Grill the chops, covered, for 2 minutes.",
+      "timer": {
+        "label": "Grill",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Give the chops a quarter turn and grill for 2 more minutes.",
+      "timer": {
+        "label": "Turn",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Flip the chops and grill for 2 minutes.",
+      "timer": {
+        "label": "Flip",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Give the chops a quarter turn and grill for 2 more minutes.",
+      "timer": {
+        "label": "Finish",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Move the chops to a plate and let them rest, uncovered, for 5 minutes.",
+      "timer": {
+        "label": "Rest",
+        "minutes": 5
+      }
+    }
+  ]
+}

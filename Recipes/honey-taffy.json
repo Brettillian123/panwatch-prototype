@@ -1,0 +1,82 @@
+{
+  "id": "honey-taffy",
+  "title": "Honey Taffy",
+  "category": "Baking and desserts",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AHoney_Taffy"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "white granulated sugar"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "cornstarch"
+    },
+    {
+      "amount": "1 cup",
+      "name": "liquid honey, any variety"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "water"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "butter"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 2 cups of sugar, 1/2 teaspoon of salt and 2 tablespoons of cornstarch in a pan.",
+      "spoken": "In a heavy-bottomed 3 to 4 quart pan, mix 2 cups of sugar, 1/2 teaspoon of salt and 2 tablespoons of cornstarch until even."
+    },
+    {
+      "instruction": "Stir in 1 cup of honey and 3/4 cup of water."
+    },
+    {
+      "instruction": "Set the pan over medium-high heat and stir until the sugar dissolves."
+    },
+    {
+      "instruction": "Keep stirring until the mixture begins to boil."
+    },
+    {
+      "instruction": "Heat the mixture to 270 °F, without stirring."
+    },
+    {
+      "instruction": "Add 2 tablespoons of butter."
+    },
+    {
+      "instruction": "Take the pan off the heat and pour the mixture onto a greased, lipped cookie sheet.",
+      "spoken": "Take the pan off the heat and pour the hot mixture onto a greased, lipped cookie sheet, a greased marble slab, or a silicone mat."
+    },
+    {
+      "instruction": "Let the taffy cool until you can handle it with greased, clean hands."
+    },
+    {
+      "instruction": "Gather the taffy, then stretch, fold and recombine it for 10 minutes.",
+      "spoken": "Gather the taffy and stretch, fold and recombine it for 10 to 15 minutes without stopping, until it lightens in color and gets a satiny shine. It is easier with a friend.",
+      "timer": {
+        "label": "Pull",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Roll the taffy into 1/2 inch ropes."
+    },
+    {
+      "instruction": "Cut the ropes into long pieces with a knife or greased scissors."
+    },
+    {
+      "instruction": "Wrap each piece in a small square of waxed paper and twist the ends."
+    }
+  ]
+}

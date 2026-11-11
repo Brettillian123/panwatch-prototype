@@ -1,0 +1,84 @@
+{
+  "id": "slow-cooker-beef-stew",
+  "title": "Slow Cooker Beef Stew",
+  "category": "Soups",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACrock_Pot_Beef_Stew"
+  },
+  "totalMinutes": 315,
+  "ingredients": [
+    {
+      "amount": "2 pounds",
+      "name": "stew beef, cut into 1-inch cubes"
+    },
+    {
+      "amount": "5",
+      "name": "carrots, cut into 1-inch pieces"
+    },
+    {
+      "amount": "1 large",
+      "name": "onion, cut into chunks"
+    },
+    {
+      "amount": "3 stalks",
+      "name": "celery, sliced"
+    },
+    {
+      "amount": "1 large can",
+      "name": "tomatoes"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "quick-cooking tapioca"
+    },
+    {
+      "amount": "1",
+      "name": "whole clove (or 1/2 teaspoon ground cloves)"
+    },
+    {
+      "amount": "2",
+      "name": "bay leaves"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Trim all the fat from 2 pounds of stew beef."
+    },
+    {
+      "instruction": "Put the beef, 5 carrots and 1 chopped onion in a slow cooker."
+    },
+    {
+      "instruction": "Add 3 sliced celery stalks and 1 large can of tomatoes."
+    },
+    {
+      "instruction": "Add 1/2 cup of quick-cooking tapioca, 1 whole clove and 2 bay leaves."
+    },
+    {
+      "instruction": "Add salt and pepper to taste."
+    },
+    {
+      "instruction": "Mix everything thoroughly."
+    },
+    {
+      "instruction": "Cover and cook on high for 5 hours, or on low for twelve hours.",
+      "spoken": "Cover and cook on high for 5 to six hours, or on low for twelve hours.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 300
+      }
+    },
+    {
+      "instruction": "Remove the bay leaves before serving."
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "id": "ham-sauce",
+  "title": "Ham Sauce",
+  "category": "Sauces and dips",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AHam_Sauce_%28Modern%29"
+  },
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "1 ounce",
+      "name": "butter"
+    },
+    {
+      "amount": "3-4 ounces",
+      "name": "ham or prosciutto, cut into strips"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "tomato purée"
+    },
+    {
+      "amount": "2 cups",
+      "name": "vegetable or meat stock"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Melt 1 ounce of butter in a small saucepan."
+    },
+    {
+      "instruction": "Add 3 to 4 ounces of ham or prosciutto, cut into strips."
+    },
+    {
+      "instruction": "Gently sauté the strips of meat."
+    },
+    {
+      "instruction": "Stir in 1 teaspoon of tomato purée."
+    },
+    {
+      "instruction": "Add 2 cups of vegetable or meat stock."
+    },
+    {
+      "instruction": "Simmer for 5 minutes.",
+      "spoken": "Simmer for about 5 minutes. Serve over rice or toss with pasta.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 5
+      }
+    }
+  ]
+}

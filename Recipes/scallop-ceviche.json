@@ -1,0 +1,86 @@
+{
+  "id": "scallop-ceviche",
+  "title": "Scallop Ceviche",
+  "category": "Fish",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ASan_Francisco_style_Scallop_Ceviche"
+  },
+  "serves": 4,
+  "totalMinutes": 140,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "bay scallops"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "lemon juice, about 3 to 4 lemons"
+    },
+    {
+      "amount": "4",
+      "name": "red bell peppers, roasted, peeled, and seeded"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "balsamic vinegar"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "extra-virgin olive oil"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground cayenne pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "1",
+      "name": "avocado, peeled and sliced"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1 pound of bay scallops and 1/2 cup of lemon juice in a bowl.",
+      "spoken": "Put 1 pound of bay scallops and 1/2 cup of lemon juice in a bowl that is not metal, such as glass or ceramic."
+    },
+    {
+      "instruction": "Add more lemon juice if needed to cover the scallops."
+    },
+    {
+      "instruction": "Cover the bowl and refrigerate for 2 hours, stirring often.",
+      "spoken": "Cover the bowl and refrigerate for 2 hours, stirring often, until the scallops become opaque.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 120
+      }
+    },
+    {
+      "instruction": "Add 4 roasted, peeled and seeded red bell peppers to a blender."
+    },
+    {
+      "instruction": "Add 2 tablespoons each of balsamic vinegar and olive oil."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of cayenne pepper and salt to taste."
+    },
+    {
+      "instruction": "Blend until smooth.",
+      "spoken": "Blend the sauce until it is smooth. A food processor works too."
+    },
+    {
+      "instruction": "Spoon the sauce onto individual plates."
+    },
+    {
+      "instruction": "Drain the scallops and place them on the sauce."
+    },
+    {
+      "instruction": "Top with 1 peeled and sliced avocado.",
+      "spoken": "Top with 1 peeled and sliced avocado. This makes 4 to 6 servings."
+    }
+  ]
+}

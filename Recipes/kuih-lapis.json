@@ -1,0 +1,94 @@
+{
+  "id": "kuih-lapis",
+  "title": "Kuih Lapis",
+  "category": "Baking and desserts",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AKuih_Lapis_%28Malaysian_Layered_Steamed_Confection%29"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "1 cup",
+      "name": "cornstarch"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "granulated white sugar"
+    },
+    {
+      "amount": "4 cups",
+      "name": "medium-thick coconut milk"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "food coloring"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put a baking pan in a steamer over a pot of simmering water."
+    },
+    {
+      "instruction": "Combine 1 cup of flour, 1 cup of cornstarch and 1/2 cup of sugar in a blender."
+    },
+    {
+      "instruction": "Add 4 cups of coconut milk and 1 teaspoon of salt."
+    },
+    {
+      "instruction": "Blend until completely smooth."
+    },
+    {
+      "instruction": "Strain the batter."
+    },
+    {
+      "instruction": "Divide the batter into two bowls."
+    },
+    {
+      "instruction": "Color each bowl a different color with food coloring."
+    },
+    {
+      "instruction": "Pour a thin, even layer of one batter into the pan in the steamer."
+    },
+    {
+      "instruction": "Cover and steam for 3 minutes.",
+      "timer": {
+        "label": "Layer one",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Uncover and pour an equally thin layer of the other batter on top."
+    },
+    {
+      "instruction": "Cover and steam for 3 minutes.",
+      "timer": {
+        "label": "Layer two",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Repeat the layers, alternating colors, steaming 3 minutes each.",
+      "spoken": "Keep repeating the layers, alternating colors and steaming each for 3 minutes, until all the batter is used up.",
+      "timer": {
+        "label": "More layers",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Take the pan out of the steamer and let it cool completely."
+    },
+    {
+      "instruction": "Unmold the kuih from the pan and cut it into pieces."
+    }
+  ]
+}

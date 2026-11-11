@@ -1,0 +1,97 @@
+{
+  "id": "falafel-salad",
+  "title": "Falafel Salad",
+  "category": "Salads",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AFalafel_Salad"
+  },
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "1 1/4 cups",
+      "name": "water"
+    },
+    {
+      "amount": "1 2/3 cups",
+      "name": "falafel mix"
+    },
+    {
+      "amount": "1/2 inch",
+      "name": "vegetable oil, in a pan"
+    },
+    {
+      "amount": "1 head",
+      "name": "red leaf lettuce, chopped"
+    },
+    {
+      "amount": "3",
+      "name": "tomatoes, chopped in bite-size pieces"
+    },
+    {
+      "amount": "1",
+      "name": "cucumber, peeled and sliced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "tahini yogurt sauce"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 375 °F."
+    },
+    {
+      "instruction": "In a large bowl, add 1 1/4 cups of water to 1 2/3 cups of falafel mix."
+    },
+    {
+      "instruction": "Stir well."
+    },
+    {
+      "instruction": "Let the mix stand for 15 minutes before shaping it.",
+      "spoken": "Let the mix stand for 15 minutes, so it takes up the water.",
+      "timer": {
+        "label": "Stand",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Form the mix into 3/4-inch balls."
+    },
+    {
+      "instruction": "Place the balls into mini-cupcake tins or onto a cookie sheet."
+    },
+    {
+      "instruction": "Bake the balls for 12 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 12
+      }
+    },
+    {
+      "instruction": "Heat about 1/2 inch of vegetable oil in a pan to 375 °F."
+    },
+    {
+      "instruction": "Fry the balls in the hot oil for 3 minutes, until brown and crisp.",
+      "spoken": "Fry the balls in the hot oil for about 3 minutes, until they are brown and crisp.",
+      "timer": {
+        "label": "Fry",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Drain the falafel balls and set them aside."
+    },
+    {
+      "instruction": "Put 1 chopped head of red leaf lettuce, 3 tomatoes and 1 cucumber in a bowl."
+    },
+    {
+      "instruction": "Toss the vegetables with the falafel balls."
+    },
+    {
+      "instruction": "Douse the salad with 1/2 cup of tahini yogurt sauce.",
+      "spoken": "Douse the salad with 1/2 cup of tahini yogurt sauce. The falafel may be cold or hot."
+    }
+  ]
+}

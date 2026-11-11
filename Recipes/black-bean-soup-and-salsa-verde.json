@@ -1,0 +1,71 @@
+{
+  "id": "black-bean-soup-and-salsa-verde",
+  "title": "Black Bean Soup and Salsa Verde",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABlack_Bean_Soup_and_Salsa_Verde"
+  },
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "2 cans",
+      "name": "black beans, drained, 31 ounces total"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "low-sodium chicken broth"
+    },
+    {
+      "amount": "1 cup",
+      "name": "Mexican salsa verde, or to taste"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "packed cilantro leaves, plus extra sprigs for garnish, optional"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "tortilla chips, for each portion"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "sour cream, for each portion"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 2 cans of drained black beans to a blender."
+    },
+    {
+      "instruction": "Add 1 1/2 cups of chicken broth and 1 cup of salsa verde."
+    },
+    {
+      "instruction": "Add 1/4 cup of cilantro leaves and 1 teaspoon of ground cumin.",
+      "spoken": "Add 1/4 cup of packed cilantro leaves, if you like, and 1 teaspoon of ground cumin."
+    },
+    {
+      "instruction": "Blend until smooth."
+    },
+    {
+      "instruction": "Pour into a large saucepan and bring to a simmer."
+    },
+    {
+      "instruction": "Simmer, partly covered, for 5 minutes, stirring often.",
+      "spoken": "Simmer, partly covered, for 5 to 7 minutes, stirring often, to blend the flavors.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Top each bowl with 1 tablespoon of tortilla chips and 1 tablespoon of sour cream.",
+      "spoken": "Top each bowl with 1 tablespoon of tortilla chips and 1 tablespoon of sour cream. Add a few cilantro sprigs if you like."
+    }
+  ]
+}

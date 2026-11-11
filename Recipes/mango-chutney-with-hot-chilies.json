@@ -1,0 +1,87 @@
+{
+  "id": "mango-chutney-with-hot-chilies",
+  "title": "Mango Chutney with Hot Chilies",
+  "category": "Sauces and dips",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACorom_Chatni_%28Mango_Chutney_with_Hot_Chillies%29"
+  },
+  "serves": 12,
+  "totalMinutes": 85,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "mango, firm and almost ripe"
+    },
+    {
+      "amount": "1",
+      "name": "red or green chile pepper, seeded and chopped"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cilantro or mint, chopped"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "cayenne pepper"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "2-3 tablespoons",
+      "name": "fresh orange juice"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Lay the mango on its side and cut a slit across its tip."
+    },
+    {
+      "instruction": "Stand the mango on its stem end and slice off one side of the stone.",
+      "spoken": "Hold the mango upright on its stem end. Slice the flesh, with the skin still on, off one side of the stone, as close to the stone as you can."
+    },
+    {
+      "instruction": "Turn the mango around and slice the flesh off the other side."
+    },
+    {
+      "instruction": "Set each half skin-side down and cut a criss-cross pattern in the flesh.",
+      "spoken": "Set each mango half skin-side down. Cut lines through the flesh, down to the skin, in a criss-cross pattern, to make 1/2-inch squares."
+    },
+    {
+      "instruction": "Hold a half with your thumbs on the flesh and fingers under the skin."
+    },
+    {
+      "instruction": "Push the skin inside out with your fingers, so the cubes stand out."
+    },
+    {
+      "instruction": "Cut the cubes off the skin with a sharp knife."
+    },
+    {
+      "instruction": "Put the mango cubes in a small bowl."
+    },
+    {
+      "instruction": "Add 1 chopped red or green chile pepper and 1 teaspoon of chopped cilantro or mint."
+    },
+    {
+      "instruction": "Add 1/8 teaspoon of cayenne pepper and 1 teaspoon of salt."
+    },
+    {
+      "instruction": "Add 2 tablespoons of fresh orange juice.",
+      "spoken": "Add 2 to 3 tablespoons of fresh orange juice, or a mix of orange and lime juice."
+    },
+    {
+      "instruction": "Mix gently with a spoon."
+    },
+    {
+      "instruction": "Chill in the refrigerator for 1 hour. Makes about 12 ounces.",
+      "spoken": "Chill in the refrigerator for 1 to 2 hours before serving. Makes about 12 ounces.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 60
+      }
+    }
+  ]
+}

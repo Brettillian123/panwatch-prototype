@@ -1,0 +1,89 @@
+{
+  "id": "rojak-salad",
+  "title": "Rojak Salad",
+  "category": "Salads",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ARojak_%28Salad_with_Sweet_Chile_Sauce%29"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "brown sugar"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "water"
+    },
+    {
+      "amount": "4 large",
+      "name": "red chiles, seeded and finely chopped"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    },
+    {
+      "amount": "1",
+      "name": "turnip, peeled and sliced very thin"
+    },
+    {
+      "amount": "1",
+      "name": "mango"
+    },
+    {
+      "amount": "2",
+      "name": "sour apples"
+    },
+    {
+      "amount": "1 small",
+      "name": "pineapple"
+    },
+    {
+      "amount": "2 large",
+      "name": "cucumbers"
+    },
+    {
+      "amount": "3",
+      "name": "oranges"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring 1/4 cup of water to a boil in a saucepan."
+    },
+    {
+      "instruction": "Stir in 1 cup of brown sugar until it dissolves."
+    },
+    {
+      "instruction": "Simmer for 10 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Add 4 finely chopped large red chiles and 1 pinch of salt."
+    },
+    {
+      "instruction": "Take the pan off the heat and let the syrup cool."
+    },
+    {
+      "instruction": "Peel and cube or slice 1 mango, 2 sour apples and 1 small pineapple."
+    },
+    {
+      "instruction": "Peel and cube or slice 2 large cucumbers and 3 oranges."
+    },
+    {
+      "instruction": "Peel 1 turnip and slice it very thin."
+    },
+    {
+      "instruction": "Arrange the fruit and vegetables in a bowl."
+    },
+    {
+      "instruction": "Pour the syrup over the top."
+    }
+  ]
+}

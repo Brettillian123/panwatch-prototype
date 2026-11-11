@@ -1,0 +1,129 @@
+{
+  "id": "behari-kabab",
+  "title": "Behari Kabab",
+  "category": "Beef and pork",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABehari_Kabab"
+  },
+  "totalMinutes": 295,
+  "ingredients": [
+    {
+      "amount": "1 teaspoon",
+      "name": "cumin seeds"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "coriander seeds"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "fennel seeds"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "mustard seeds"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "ginger paste"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "garlic paste"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "garam masala"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "paprika"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "chile flakes"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "turmeric"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "yogurt"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "oil"
+    },
+    {
+      "amount": "1 pound",
+      "name": "beef, lamb or mutton, cut into small pieces"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat a small pan over medium heat."
+    },
+    {
+      "instruction": "Add 1 teaspoon each of cumin, coriander, fennel and mustard seeds."
+    },
+    {
+      "instruction": "Dry roast the seeds until they smell fragrant."
+    },
+    {
+      "instruction": "Grind the roasted spices to a powder.",
+      "spoken": "Grind the roasted spices in a spice grinder, or with a mortar and pestle."
+    },
+    {
+      "instruction": "In a small bowl, add 1 tablespoon each of ginger paste and garlic paste."
+    },
+    {
+      "instruction": "Add 1 teaspoon each of garam masala, paprika, chile flakes and turmeric."
+    },
+    {
+      "instruction": "Add 1 teaspoon of salt and 2 tablespoons of yogurt."
+    },
+    {
+      "instruction": "Add 2 tablespoons each of lemon juice and oil, and mix well.",
+      "spoken": "Add the ground spices, 2 tablespoons of lemon juice and 2 tablespoons of oil, and mix well to make the marinade."
+    },
+    {
+      "instruction": "Put 1 pound of beef, lamb or mutton in a large bowl."
+    },
+    {
+      "instruction": "Pour the marinade over the meat and mix well to coat it."
+    },
+    {
+      "instruction": "Cover with plastic wrap and refrigerate for 4 hours.",
+      "spoken": "Cover the bowl with plastic wrap and refrigerate for at least 4 hours, or overnight.",
+      "timer": {
+        "label": "Marinate",
+        "minutes": 240
+      }
+    },
+    {
+      "instruction": "Heat a grill to medium-high."
+    },
+    {
+      "instruction": "Thread the marinated meat onto skewers."
+    },
+    {
+      "instruction": "Grill for 8 minutes, turning occasionally.",
+      "spoken": "Grill for 8 to 10 minutes, turning occasionally, until the meat is browned all over and no longer pink in the middle.",
+      "timer": {
+        "label": "Grill",
+        "minutes": 8
+      }
+    }
+  ]
+}

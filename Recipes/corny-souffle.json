@@ -1,0 +1,68 @@
+{
+  "id": "corny-souffle",
+  "title": "Corny Soufflé",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACorny_Souffl%C3%A9"
+  },
+  "totalMinutes": 80,
+  "ingredients": [
+    {
+      "amount": "1 package",
+      "name": "frozen corn, 16 ounce package"
+    },
+    {
+      "amount": "1 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "3",
+      "name": "eggs"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "white granulated sugar"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "butter, cut into 6 pieces"
+    },
+    {
+      "amount": "to taste",
+      "name": "cooking spray"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 325 °F."
+    },
+    {
+      "instruction": "Put 1 package of frozen corn into a blender."
+    },
+    {
+      "instruction": "Add 1 cup of milk, 3 eggs, 2 tablespoons of sugar and 1/8 teaspoon of salt."
+    },
+    {
+      "instruction": "Blend on medium until everything is mixed thoroughly."
+    },
+    {
+      "instruction": "Pour into a medium baking dish coated with cooking spray."
+    },
+    {
+      "instruction": "Dot the top with 1 tablespoon of butter, cut into 6 pieces."
+    },
+    {
+      "instruction": "Bake for 70 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 70
+      }
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "id": "goat-cheese-cakes",
+  "title": "Goat Cheese Cakes",
+  "category": "Snacks and sides",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AGoat_Cheese_Cakes"
+  },
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "11 ounces",
+      "name": "goat cheese, room temperature"
+    },
+    {
+      "amount": "1 package",
+      "name": "soft herbed cheese, 5.2 ounces, room temperature"
+    },
+    {
+      "amount": "4 ounces",
+      "name": "ricotta cheese, room temperature"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "butter"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "shallot, minced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "chives, minced"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "fresh thyme, minced"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "fresh basil, minced"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "fresh tarragon, minced"
+    },
+    {
+      "amount": "1 cup",
+      "name": "flour, for dredging"
+    },
+    {
+      "amount": "3",
+      "name": "eggs, beaten lightly to make an egg wash"
+    },
+    {
+      "amount": "1 cup",
+      "name": "bread crumbs"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "olive oil"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 11 ounces of goat cheese, 1 package of herbed cheese and 4 ounces of ricotta."
+    },
+    {
+      "instruction": "Set the cheese mixture aside."
+    },
+    {
+      "instruction": "Melt 1 tablespoon of butter in a small pan over medium-low heat."
+    },
+    {
+      "instruction": "Add 1 tablespoon each of minced garlic, shallot and chives."
+    },
+    {
+      "instruction": "Add 2 teaspoons each of minced thyme, basil and tarragon."
+    },
+    {
+      "instruction": "Cook the herbs for 2 minutes, until soft and fragrant.",
+      "timer": {
+        "label": "Herbs",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Fold the herbs into the cheese mixture."
+    },
+    {
+      "instruction": "Cover the bowl and chill it for at least 30 minutes, until firm.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Divide the firm cheese mixture into 8 equal portions."
+    },
+    {
+      "instruction": "Shape each portion into a cake about 3/4 inch thick."
+    },
+    {
+      "instruction": "Coat each cake in 1 cup of flour, then shake off the extra."
+    },
+    {
+      "instruction": "Dip each cake in the beaten eggs, then in 1 cup of bread crumbs on both sides."
+    },
+    {
+      "instruction": "Set the cakes on a wire rack."
+    },
+    {
+      "instruction": "Heat 4 tablespoons of olive oil in a large pan over medium-high heat."
+    },
+    {
+      "instruction": "Add the cheese cakes gently and fry 1 minute on each side.",
+      "spoken": "Gently add the cheese cakes and fry 1 to 2 minutes on each side, until golden.",
+      "watch": {
+        "ingredient": "cheese cakes",
+        "timerLabel": "Fry",
+        "timerMinutes": 1
+      }
+    },
+    {
+      "instruction": "Drain the cheese cakes on a wire rack."
+    }
+  ]
+}

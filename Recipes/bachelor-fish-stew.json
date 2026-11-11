@@ -1,0 +1,62 @@
+{
+  "id": "bachelor-fish-stew",
+  "title": "Bachelor Fish Stew",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABachelor_Fish_Stew"
+  },
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "1 can",
+      "name": "beans, 14 ounce, kidney, black-eyed or chickpeas, in brine"
+    },
+    {
+      "amount": "1 can",
+      "name": "chopped tomatoes, 14 ounce"
+    },
+    {
+      "amount": "1 can",
+      "name": "mackerel fillets in tomato sauce, 4 ounce"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "curry powder, or to taste"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Open the cans of beans, tomatoes and mackerel."
+    },
+    {
+      "instruction": "Drain the liquid from the beans."
+    },
+    {
+      "instruction": "Add the beans, tomatoes and mackerel to a saucepan."
+    },
+    {
+      "instruction": "Add 1 teaspoon of curry powder, and salt and pepper to taste."
+    },
+    {
+      "instruction": "Bring to a boil."
+    },
+    {
+      "instruction": "Cover and simmer for 5 minutes, stirring now and then.",
+      "spoken": "Cover and simmer for 5 to 10 minutes, stirring now and then, until it is hot enough to eat.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 5
+      }
+    }
+  ]
+}

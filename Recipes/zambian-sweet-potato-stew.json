@@ -1,0 +1,110 @@
+{
+  "id": "zambian-sweet-potato-stew",
+  "title": "Zambian Sweet Potato Stew",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChikwanda_%28Zambian_Sweet_Potato_Stew%29"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1",
+      "name": "tomato, diced"
+    },
+    {
+      "amount": "1",
+      "name": "hot pepper, chopped, optional"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cayenne pepper"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground turmeric"
+    },
+    {
+      "amount": "2 large",
+      "name": "sweet potatoes, peeled and diced"
+    },
+    {
+      "amount": "1",
+      "name": "carrot, peeled and sliced"
+    },
+    {
+      "amount": "2 cups",
+      "name": "vegetable broth or water"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 tablespoons of vegetable oil in a large pot over medium heat."
+    },
+    {
+      "instruction": "Add 1 finely chopped onion and 2 cloves of minced garlic to the pot."
+    },
+    {
+      "instruction": "Sauté until the onion is soft and clear."
+    },
+    {
+      "instruction": "Add 1 diced tomato and 1 chopped hot pepper, if using."
+    },
+    {
+      "instruction": "Cook until the tomato is soft and tender."
+    },
+    {
+      "instruction": "Stir in 1 teaspoon each of ground cumin and ground cayenne pepper."
+    },
+    {
+      "instruction": "Stir in 1/2 teaspoon of ground turmeric to coat the vegetables."
+    },
+    {
+      "instruction": "Add 2 large sweet potatoes, peeled and diced, and 1 peeled, sliced carrot."
+    },
+    {
+      "instruction": "Mix well with the spiced vegetables."
+    },
+    {
+      "instruction": "Pour in 2 cups of vegetable broth or water, to mostly cover the vegetables."
+    },
+    {
+      "instruction": "Bring to a gentle simmer and cover the pot with a lid."
+    },
+    {
+      "instruction": "Cook for 20 minutes, stirring now and then, until the vegetables are tender.",
+      "spoken": "Cook for 20 to 25 minutes, stirring now and then, until the sweet potatoes and carrot are tender.",
+      "timer": {
+        "label": "Stew",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Season with salt to taste."
+    },
+    {
+      "instruction": "Take the pot off the heat."
+    }
+  ]
+}

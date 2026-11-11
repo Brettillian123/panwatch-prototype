@@ -1,0 +1,85 @@
+{
+  "id": "cornbread-stuffed-zucchini",
+  "title": "Cornbread Stuffed Zucchini",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACornbread_Stuffed_Zucchini"
+  },
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "4 small",
+      "name": "zucchini, halved lengthwise"
+    },
+    {
+      "amount": "2 cups",
+      "name": "cornbread, crumbled and divided"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "freshly ground black pepper"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "cream cheese"
+    },
+    {
+      "amount": "4",
+      "name": "eggs, separated"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "Monterey Jack cheese, grated"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "cream of tartar"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 400 °F."
+    },
+    {
+      "instruction": "Scoop the seeds from 4 small zucchini, halved lengthwise, with a teaspoon."
+    },
+    {
+      "instruction": "Mix 1 cup of cornbread, 1/2 teaspoon of salt and 1/2 teaspoon of pepper."
+    },
+    {
+      "instruction": "Mix in the yolks from 4 eggs and 1/2 cup of cream cheese."
+    },
+    {
+      "instruction": "Whip the 4 egg whites with 1/8 teaspoon of cream of tartar until stiff."
+    },
+    {
+      "instruction": "Stir 1/4 of the egg whites into the cornbread mixture."
+    },
+    {
+      "instruction": "Gently fold in the rest of the egg whites."
+    },
+    {
+      "instruction": "Fill the scooped part of each zucchini half with the mixture."
+    },
+    {
+      "instruction": "Mix the other 1 cup of cornbread with 1 1/2 cups of Monterey Jack cheese."
+    },
+    {
+      "instruction": "Sprinkle the cornbread and cheese over each zucchini half."
+    },
+    {
+      "instruction": "Bake for 30 minutes, until browned and bubbly on top.",
+      "spoken": "Bake for 30 to 35 minutes, until the top is browned and bubbly.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    }
+  ]
+}

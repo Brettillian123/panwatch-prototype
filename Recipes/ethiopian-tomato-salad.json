@@ -1,0 +1,83 @@
+{
+  "id": "ethiopian-tomato-salad",
+  "title": "Ethiopian Tomato Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ATimatim_Fitfit_%28Ethiopian_Tomato_Salad%29"
+  },
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "4",
+      "name": "ripe tomatoes, diced"
+    },
+    {
+      "amount": "1 small",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "1",
+      "name": "jalapeño pepper, seeded and finely chopped, optional"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "lemon juice, freshly squeezed"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "Dijon mustard"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "honey or sugar, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "fresh cilantro or parsley, chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Combine 4 diced tomatoes and 1 small, finely chopped onion in a bowl."
+    },
+    {
+      "instruction": "Add 1 seeded, finely chopped jalapeño pepper if you want spice."
+    },
+    {
+      "instruction": "In a small bowl, whisk 2 tablespoons of olive oil and 1 tablespoon of lemon juice."
+    },
+    {
+      "instruction": "Whisk in 1 teaspoon of Dijon mustard."
+    },
+    {
+      "instruction": "Whisk in 1 teaspoon of honey or sugar, if using, and a pinch of salt."
+    },
+    {
+      "instruction": "Pour the dressing over the tomato mixture and toss gently."
+    },
+    {
+      "instruction": "Taste, and add more salt, lemon juice or honey if you like."
+    },
+    {
+      "instruction": "Cover the bowl and refrigerate for 30 minutes.",
+      "spoken": "Cover the bowl and refrigerate for at least 30 minutes, so the flavors blend.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Top with chopped fresh cilantro or parsley."
+    }
+  ]
+}

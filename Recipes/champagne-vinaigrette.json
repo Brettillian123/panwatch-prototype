@@ -1,0 +1,64 @@
+{
+  "id": "champagne-vinaigrette",
+  "title": "Champagne Vinaigrette",
+  "category": "Sauces and dips",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChampagne_Vinaigrette"
+  },
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "garlic clove"
+    },
+    {
+      "amount": "1 cup",
+      "name": "champagne vinegar"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "freshly ground black pepper"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "Dijon mustard"
+    },
+    {
+      "amount": "2 cups",
+      "name": "extra virgin olive oil"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Crush 1 garlic clove with the side of a knife blade."
+    },
+    {
+      "instruction": "Put the whole garlic clove in a mixing bowl.",
+      "spoken": "Put the crushed garlic clove in a mixing bowl. Leave it in one piece."
+    },
+    {
+      "instruction": "Add 1 cup of champagne vinegar, 1/2 teaspoon of pepper and 1 pinch of salt.",
+      "spoken": "Add 1 cup of champagne vinegar, 1/2 teaspoon of freshly ground black pepper and 1 pinch of salt. Let it sit for 30 minutes.",
+      "timer": {
+        "label": "Sit",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Remove and throw away the garlic."
+    },
+    {
+      "instruction": "Whisk in 2 teaspoons of Dijon mustard."
+    },
+    {
+      "instruction": "Slowly add 2 cups of extra virgin olive oil, whisking constantly.",
+      "spoken": "Slowly add 2 cups of extra virgin olive oil, whisking constantly, so it blends smoothly into the dressing."
+    }
+  ]
+}

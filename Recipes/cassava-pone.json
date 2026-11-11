@@ -1,0 +1,76 @@
+{
+  "id": "cassava-pone",
+  "title": "Cassava Pone",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACassava_Pone"
+  },
+  "totalMinutes": 75,
+  "ingredients": [
+    {
+      "amount": "3 pounds",
+      "name": "raw cassava, peeled and grated"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground cinnamon"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground nutmeg"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "melted butter or coconut oil"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "brown sugar"
+    },
+    {
+      "amount": "3 cups",
+      "name": "unsweetened evaporated milk or coconut milk"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Add 3 pounds of peeled, grated raw cassava to a large bowl."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon each of ground cinnamon, black pepper and ground nutmeg."
+    },
+    {
+      "instruction": "Add 2 teaspoons of vanilla extract and 4 tablespoons of melted butter or coconut oil."
+    },
+    {
+      "instruction": "Add 3/4 cup of brown sugar and 3 cups of evaporated milk or coconut milk.",
+      "spoken": "Add 3/4 cup of brown sugar and 3 cups of unsweetened evaporated milk or coconut milk."
+    },
+    {
+      "instruction": "Mix everything together well."
+    },
+    {
+      "instruction": "Transfer the mixture to a baking dish."
+    },
+    {
+      "instruction": "Bake for 60 minutes, until firm and golden.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 60
+      }
+    }
+  ]
+}

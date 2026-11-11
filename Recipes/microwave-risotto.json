@@ -1,0 +1,113 @@
+{
+  "id": "microwave-risotto",
+  "title": "Microwave Risotto",
+  "category": "Pasta and grains",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AMicrowave_Risotto"
+  },
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "3 cups",
+      "name": "chicken broth, simmering hot"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 dash",
+      "name": "ground white or black pepper"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "butter"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "yellow onion, minced"
+    },
+    {
+      "amount": "1 cup",
+      "name": "medium grain rice, uncooked"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "warm water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring 3 cups of chicken broth, 1/2 teaspoon of salt and 1 dash of pepper to a low simmer."
+    },
+    {
+      "instruction": "Keep the broth warm until needed."
+    },
+    {
+      "instruction": "Put 2 tablespoons of olive oil and 2 tablespoons of butter in a 10-inch oven-proof dish."
+    },
+    {
+      "instruction": "Microwave the oil and butter for 2 minutes.",
+      "timer": {
+        "label": "Melt",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Add 1/2 cup of minced onion and stir to coat with the oil."
+    },
+    {
+      "instruction": "Microwave for 4 minutes.",
+      "timer": {
+        "label": "Onion",
+        "minutes": 4
+      }
+    },
+    {
+      "instruction": "Add 1 cup of uncooked rice and stir to coat with the oil."
+    },
+    {
+      "instruction": "Microwave for another 4 minutes.",
+      "timer": {
+        "label": "Rice",
+        "minutes": 4
+      }
+    },
+    {
+      "instruction": "Pour the hot broth into the dish and stir well."
+    },
+    {
+      "instruction": "Microwave for 9 minutes.",
+      "timer": {
+        "label": "Broth",
+        "minutes": 9
+      }
+    },
+    {
+      "instruction": "Stir the rice and broth well."
+    },
+    {
+      "instruction": "Microwave for another 9 minutes.",
+      "timer": {
+        "label": "Finish",
+        "minutes": 9
+      }
+    },
+    {
+      "instruction": "For a creamier risotto, add 1/4 cup of warm water and stir well."
+    },
+    {
+      "instruction": "Microwave for another 2 minutes.",
+      "timer": {
+        "label": "Creamy",
+        "minutes": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "italian-rice-pilaf",
+  "title": "Italian Rice Pilaf",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AItalian_Rice_Pilaf"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "unsalted butter"
+    },
+    {
+      "amount": "2 cups",
+      "name": "uncooked white rice"
+    },
+    {
+      "amount": "1 large",
+      "name": "onion, finely diced"
+    },
+    {
+      "amount": "2 1/2 cups",
+      "name": "low-sodium chicken broth"
+    },
+    {
+      "amount": "1 cup",
+      "name": "red wine"
+    },
+    {
+      "amount": "3",
+      "name": "bay leaves"
+    },
+    {
+      "amount": "7 cloves",
+      "name": "garlic, smashed"
+    },
+    {
+      "amount": "10 sprigs",
+      "name": "fresh thyme"
+    },
+    {
+      "amount": "5-6 sprigs",
+      "name": "fresh rosemary"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "freshly-ground black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Melt 2 tablespoons of butter in a large saucepan over medium-high heat."
+    },
+    {
+      "instruction": "Add 2 cups of white rice and 1 large diced onion, and cook until the rice is golden."
+    },
+    {
+      "instruction": "In a bowl, mix 2 1/2 cups of chicken broth, 1 cup of red wine and 3 bay leaves."
+    },
+    {
+      "instruction": "Add 7 smashed garlic cloves, 10 sprigs of thyme and 5 sprigs of rosemary.",
+      "spoken": "Add 7 smashed garlic cloves, 10 sprigs of fresh thyme and 5 to 6 sprigs of fresh rosemary."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of salt and 1/2 teaspoon of black pepper."
+    },
+    {
+      "instruction": "When the rice is golden, take it out of the pot."
+    },
+    {
+      "instruction": "Pour the broth mixture into the pot."
+    },
+    {
+      "instruction": "Bring the pot to a boil."
+    },
+    {
+      "instruction": "Add the rice and cook, stirring now and then, for 30 minutes.",
+      "spoken": "Add the rice back to the pot and cook for 30 minutes, stirring now and then, or until the rice is as tender as you like.",
+      "watch": {
+        "ingredient": "rice",
+        "timerLabel": "Rice",
+        "timerMinutes": 30,
+        "minimumChange": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "id": "gambian-yassa-chicken",
+  "title": "Gambian Yassa Chicken",
+  "category": "Chicken",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AGambian_Yassa_Poulet"
+  },
+  "totalMinutes": 170,
+  "ingredients": [
+    {
+      "amount": "4 large",
+      "name": "onions, thinly sliced"
+    },
+    {
+      "amount": "4 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "grated ginger"
+    },
+    {
+      "amount": "2-3",
+      "name": "lemons, juiced"
+    },
+    {
+      "amount": "3-4 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "Dijon mustard"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "black pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "2 pounds",
+      "name": "chicken pieces, preferably thighs or drumsticks"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "to taste",
+      "name": "fresh parsley or cilantro, chopped, for garnish"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 4 sliced onions, 4 cloves of minced garlic and 2 teaspoons of grated ginger."
+    },
+    {
+      "instruction": "Add the juice of 2 to 3 lemons and 3 to 4 tablespoons of olive oil."
+    },
+    {
+      "instruction": "Add 1 teaspoon each of Dijon mustard and black pepper, and a pinch of salt."
+    },
+    {
+      "instruction": "Mix well to make a marinade."
+    },
+    {
+      "instruction": "Add 2 pounds of chicken pieces to the marinade and coat them evenly.",
+      "spoken": "Add 2 pounds of chicken pieces to the marinade and coat them evenly. Wash your hands after handling raw chicken."
+    },
+    {
+      "instruction": "Cover the bowl and chill it for at least 2 hours.",
+      "spoken": "Cover the bowl and chill it in the refrigerator for at least 2 hours, but overnight is better.",
+      "timer": {
+        "label": "Marinate",
+        "minutes": 120
+      }
+    },
+    {
+      "instruction": "Heat 2 tablespoons of vegetable oil in a large pan over medium-high heat."
+    },
+    {
+      "instruction": "Take the chicken out of the marinade and keep the marinade."
+    },
+    {
+      "instruction": "Place the chicken in the hot pan.",
+      "spoken": "Place the chicken in the hot pan and cook about 5 to 7 minutes, until the first side is browned.",
+      "watch": {
+        "ingredient": "chicken",
+        "timerLabel": "First side",
+        "timerMinutes": 5,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Flip the chicken and brown the other side for 5 minutes.",
+      "spoken": "Flip the chicken and brown the other side for 5 to 7 minutes. Turn it to brown all sides.",
+      "timer": {
+        "label": "Other side",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Lower the heat to medium and add the saved marinade to the pan."
+    },
+    {
+      "instruction": "Cover the pan and simmer for 20 minutes.",
+      "spoken": "Cover the pan and simmer for 20 to 25 minutes, until the chicken is no longer pink in the middle and tender. Turn the chicken and stir the onions now and then, so nothing burns.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Move the chicken to a serving dish."
+    },
+    {
+      "instruction": "Sprinkle chopped parsley or cilantro over the chicken."
+    }
+  ]
+}

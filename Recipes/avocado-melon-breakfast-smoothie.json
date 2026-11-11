@@ -1,0 +1,69 @@
+{
+  "id": "avocado-melon-breakfast-smoothie",
+  "title": "Avocado Melon Breakfast Smoothie",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/avocado-melon-breakfast-smoothie"
+  },
+  "serves": 2,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1 large",
+      "name": "ripe avocado"
+    },
+    {
+      "amount": "1 cup",
+      "name": "honeydew melon chunks"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "lime juice"
+    },
+    {
+      "amount": "1 cup",
+      "name": "fat-free milk"
+    },
+    {
+      "amount": "1 cup",
+      "name": "plain fat-free yogurt"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "100% apple juice or white grape juice"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "honey"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Cut 1 large, ripe avocado in half."
+    },
+    {
+      "instruction": "Remove the pit."
+    },
+    {
+      "instruction": "Scoop the avocado flesh into a blender."
+    },
+    {
+      "instruction": "Add 1 cup of honeydew melon chunks and 1 1/2 teaspoons of lime juice."
+    },
+    {
+      "instruction": "Add 1 cup of fat-free milk and 1 cup of plain fat-free yogurt."
+    },
+    {
+      "instruction": "Add 1/2 cup of apple juice or white grape juice and 1 tablespoon of honey."
+    },
+    {
+      "instruction": "Blend well."
+    },
+    {
+      "instruction": "Pour into glasses and serve cold.",
+      "spoken": "Pour into glasses and serve cold. It keeps well in the refrigerator for a day. If you make it ahead, stir gently before pouring."
+    }
+  ]
+}

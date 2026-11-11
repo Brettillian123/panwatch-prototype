@@ -1,0 +1,105 @@
+{
+  "id": "kale-and-garlic-pasta",
+  "title": "Kale and Garlic Pasta",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AKale_and_Garlic_Pasta"
+  },
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "4 tablespoons",
+      "name": "butter"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 head",
+      "name": "garlic, cloves peeled and sliced thin"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "chile flakes, or to taste"
+    },
+    {
+      "amount": "1-2 bunches",
+      "name": "kale, deboned and cut into bite-sized pieces"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "1 pound",
+      "name": "dry linguine"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "Parmesan cheese, finely grated"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 4 tablespoons of butter and 1/3 cup of olive oil to a large frying pan."
+    },
+    {
+      "instruction": "Heat over medium heat until the butter melts."
+    },
+    {
+      "instruction": "Add the peeled, thinly sliced cloves from 1 head of garlic."
+    },
+    {
+      "instruction": "Add 1 pinch of chile flakes."
+    },
+    {
+      "instruction": "Cook, stirring, until the garlic is soft.",
+      "spoken": "Cook, stirring, until the garlic is soft. If it starts to brown, turn off the heat until it is time to add the kale."
+    },
+    {
+      "instruction": "Add plenty of salt to a large pot of water and bring it to a boil."
+    },
+    {
+      "instruction": "Add 1 to 2 bunches of cut kale to the boiling water.",
+      "spoken": "Add 1 to 2 bunches of kale, with the stems removed and cut into bite-sized pieces, to the boiling water. Cook about 4 minutes, until it turns bright green.",
+      "watch": {
+        "ingredient": "kale",
+        "timerLabel": "Kale",
+        "timerMinutes": 4,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Move the kale to the frying pan with a slotted spoon.",
+      "spoken": "Move the kale to the pan with the garlic using a slotted spoon. Try to leave as much water behind as you can.",
+      "cue": {
+        "timerLabel": "Kale",
+        "secondsLeft": 0
+      }
+    },
+    {
+      "instruction": "Cook the kale and garlic over medium heat, stirring, until the liquid is gone.",
+      "spoken": "Cook the kale and garlic over medium heat, stirring, until most or all of the liquid is gone and the greens are very dark and soft. If they stick to the pan, add a splash of water or olive oil."
+    },
+    {
+      "instruction": "Boil 1 pound of dry linguine in the same salted water until just tender."
+    },
+    {
+      "instruction": "Move the pasta to the hot pan with the greens, using tongs."
+    },
+    {
+      "instruction": "Toss the pasta and greens together.",
+      "spoken": "Toss the pasta and greens together. If the pan is too small, move everything to a large bowl and keep tossing until the pasta is well coated."
+    },
+    {
+      "instruction": "Add 1/2 cup of finely grated Parmesan cheese."
+    },
+    {
+      "instruction": "Keep tossing until the cheese melts and coats the pasta."
+    }
+  ]
+}

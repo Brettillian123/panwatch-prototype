@@ -1,0 +1,66 @@
+{
+  "id": "lower-sugar-flapjacks",
+  "title": "Lower-Sugar Flapjacks",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AFlapjacks_%28Lower-sugar%29"
+  },
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "4 ounces",
+      "name": "butter"
+    },
+    {
+      "amount": "1 ounce",
+      "name": "white granulated sugar"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "golden syrup, warmed"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "rolled oats"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 375 °F."
+    },
+    {
+      "instruction": "Beat 4 ounces of butter and 1 ounce of sugar until creamy."
+    },
+    {
+      "instruction": "Stir in 2 tablespoons of warmed golden syrup."
+    },
+    {
+      "instruction": "Work in 8 ounces of rolled oats and 1/2 teaspoon of salt."
+    },
+    {
+      "instruction": "Grease a 10 by 8-inch baking tray."
+    },
+    {
+      "instruction": "Press the mixture into the baking tray."
+    },
+    {
+      "instruction": "Bake for 30 minutes, until brown.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "When firm, cut it into slices."
+    },
+    {
+      "instruction": "Leave the slices in the tray until cool."
+    }
+  ]
+}

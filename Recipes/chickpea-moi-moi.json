@@ -1,0 +1,89 @@
+{
+  "id": "chickpea-moi-moi",
+  "title": "Chickpea Moi Moi",
+  "category": "Beans and lentils",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChickpea_Moi_Moi"
+  },
+  "totalMinutes": 240,
+  "ingredients": [
+    {
+      "amount": "1 1/2 cups",
+      "name": "dry chickpeas"
+    },
+    {
+      "amount": "1",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "2",
+      "name": "fresh chiles"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "ground crayfish"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "warm water"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "ground nutmeg, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Soak 1 1/2 cups of dry chickpeas for 3 hours.",
+      "timer": {
+        "label": "Soak",
+        "minutes": 180
+      }
+    },
+    {
+      "instruction": "Drain the chickpeas, then peel them."
+    },
+    {
+      "instruction": "Put the peeled chickpeas, 1 chopped onion and 2 fresh chiles in a blender."
+    },
+    {
+      "instruction": "Add 2 tablespoons of ground crayfish and 1/2 cup of warm water."
+    },
+    {
+      "instruction": "Blend to a smooth puree.",
+      "spoken": "Blend to a smooth puree. Work in batches if you need to."
+    },
+    {
+      "instruction": "Move the puree to a bowl."
+    },
+    {
+      "instruction": "Mix in 1/2 teaspoon of salt, 2 teaspoons of vegetable oil and 2 teaspoons of nutmeg."
+    },
+    {
+      "instruction": "Divide the mixture into molds."
+    },
+    {
+      "instruction": "Place the molds in a steamer over boiling water."
+    },
+    {
+      "instruction": "Steam the molds for 40 minutes.",
+      "timer": {
+        "label": "Steam",
+        "minutes": 40
+      }
+    },
+    {
+      "instruction": "Take the molds out of the steamer and unmold."
+    }
+  ]
+}

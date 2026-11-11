@@ -1,0 +1,57 @@
+{
+  "id": "tuna-rice-casserole",
+  "title": "Tuna Rice Casserole",
+  "category": "Fish",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ATuna_Rice_Casserole"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "2 cans",
+      "name": "tuna, 12 ounces"
+    },
+    {
+      "amount": "1 package",
+      "name": "frozen peas, cooked, 10 ounce package"
+    },
+    {
+      "amount": "3 cups",
+      "name": "cooked rice"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1 can",
+      "name": "cheddar cheese soup, 10 ounce can"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 400 °F."
+    },
+    {
+      "instruction": "Mix 2 cans of tuna, 1 package of cooked peas and 3 cups of rice in a large bowl."
+    },
+    {
+      "instruction": "In another large bowl, mix 1 can of cheddar cheese soup and 3/4 cup of water."
+    },
+    {
+      "instruction": "Add the soup mixture to the tuna mixture."
+    },
+    {
+      "instruction": "Place the mixture in a greased casserole dish."
+    },
+    {
+      "instruction": "Bake for 20 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    }
+  ]
+}

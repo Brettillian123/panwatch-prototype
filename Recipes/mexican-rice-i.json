@@ -1,0 +1,76 @@
+{
+  "id": "mexican-rice-i",
+  "title": "Mexican Rice I",
+  "category": "Pasta and grains",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AMexican_Rice_I"
+  },
+  "serves": 5,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "3 tablespoons",
+      "name": "canola oil"
+    },
+    {
+      "amount": "1 cup",
+      "name": "white rice, uncooked and unwashed"
+    },
+    {
+      "amount": "1/2",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1/2",
+      "name": "green pepper, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "tomatoes, chopped (drain them if canned)"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "cumin"
+    },
+    {
+      "amount": "2 cups",
+      "name": "water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 3 tablespoons of canola oil in a pan over medium-high heat."
+    },
+    {
+      "instruction": "Add 1 cup of uncooked white rice to the oil."
+    },
+    {
+      "instruction": "Fry the rice until golden brown, stirring often."
+    },
+    {
+      "instruction": "Add 1/2 chopped onion and 1/2 chopped green pepper."
+    },
+    {
+      "instruction": "Cook until slightly softened."
+    },
+    {
+      "instruction": "Add 1 cup of chopped tomatoes, 1 teaspoon of salt and 1/2 teaspoon of cumin."
+    },
+    {
+      "instruction": "Add 2 cups of water."
+    },
+    {
+      "instruction": "Cover and cook on low heat for 20 minutes.",
+      "timer": {
+        "label": "Rice",
+        "minutes": 20
+      }
+    }
+  ]
+}

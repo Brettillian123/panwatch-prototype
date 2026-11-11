@@ -1,0 +1,79 @@
+{
+  "id": "mozzarella-tuna-melts",
+  "title": "Mozzarella Tuna Melts",
+  "category": "Sandwiches and wraps",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AMozzarella_Tuna_Melts"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1 can",
+      "name": "water-packed tuna, 6 ounces, drained and flaked"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "celery, finely chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "mayonnaise"
+    },
+    {
+      "amount": "4",
+      "name": "hamburger buns, split"
+    },
+    {
+      "amount": "4",
+      "name": "mozzarella cheese slices"
+    },
+    {
+      "amount": "4",
+      "name": "tomato slices"
+    },
+    {
+      "amount": "4 leaves",
+      "name": "lettuce"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Put 1 can (6 ounces) of drained, flaked tuna in a small bowl."
+    },
+    {
+      "instruction": "Add 1/4 cup of finely chopped celery and 1/4 cup of finely chopped onion."
+    },
+    {
+      "instruction": "Mix in 1/4 cup of mayonnaise."
+    },
+    {
+      "instruction": "Spread the tuna mixture on the bottoms of 4 split hamburger buns."
+    },
+    {
+      "instruction": "Top each with a mozzarella cheese slice and a tomato slice."
+    },
+    {
+      "instruction": "Place the buns on an ungreased baking sheet."
+    },
+    {
+      "instruction": "Bake for 12 minutes, until heated through and the cheese melts.",
+      "spoken": "Bake for 12 to 15 minutes, until the sandwiches are heated through and the cheese has melted.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 12
+      }
+    },
+    {
+      "instruction": "Top each with a lettuce leaf and replace the bun tops."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": "crunchy-baked-chicken",
+  "title": "Crunchy Baked Chicken",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACrunchy_Baked_Chicken"
+  },
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "4",
+      "name": "chicken breasts"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "Italian breadcrumbs"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "grated Parmesan cheese"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "butter, melted"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 375 °F."
+    },
+    {
+      "instruction": "Melt 1/4 cup of butter in a shallow bowl."
+    },
+    {
+      "instruction": "Place 4 chicken breasts in the butter and turn to coat."
+    },
+    {
+      "instruction": "Mix 1/2 cup of Italian breadcrumbs and 1/4 cup of grated Parmesan cheese in a bowl."
+    },
+    {
+      "instruction": "Move the chicken from the butter bowl to the breadcrumb bowl."
+    },
+    {
+      "instruction": "Roll the chicken in the breadcrumb mixture until coated."
+    },
+    {
+      "instruction": "Place the chicken in a greased pan."
+    },
+    {
+      "instruction": "Bake for 35 minutes.",
+      "spoken": "Bake for 35 to 40 minutes, until the chicken is no longer pink in the middle.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 35
+      }
+    }
+  ]
+}

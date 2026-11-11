@@ -1,0 +1,61 @@
+{
+  "id": "homemade-five-spice-powder",
+  "title": "Homemade Five-Spice Powder",
+  "category": "Sauces and dips",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AHomemade_Five-Spice_Powder"
+  },
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "2 teaspoons",
+      "name": "Szechuan peppercorns"
+    },
+    {
+      "amount": "8",
+      "name": "star anise pods"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground cloves"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "ground cinnamon"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "ground fennel seeds"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Toast 2 teaspoons of Szechuan peppercorns in a dry pan for 3 minutes.",
+      "spoken": "Toast 2 teaspoons of Szechuan peppercorns in a dry frying pan for about 3 minutes.",
+      "timer": {
+        "label": "Toast",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Grind the peppercorns with 8 star anise pods in a grinder."
+    },
+    {
+      "instruction": "Sift the ground spices to remove any larger bits."
+    },
+    {
+      "instruction": "Mix in 1/2 teaspoon of ground cloves and 1 tablespoon of ground cinnamon."
+    },
+    {
+      "instruction": "Mix in 1 tablespoon of ground fennel seeds."
+    },
+    {
+      "instruction": "Grind the mixture again until it is a very fine powder."
+    },
+    {
+      "instruction": "Use it sparingly, as it is very strong."
+    }
+  ]
+}

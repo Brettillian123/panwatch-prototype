@@ -1,0 +1,65 @@
+{
+  "id": "calzone",
+  "title": "Calzone",
+  "category": "Sandwiches and wraps",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACalzone"
+  },
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "ricotta cheese"
+    },
+    {
+      "amount": "1 cup",
+      "name": "shredded mozzarella cheese"
+    },
+    {
+      "amount": "4 ounces",
+      "name": "any topping, such as ham, bacon, salami, pepperoni, or sausage, optional"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "oregano"
+    },
+    {
+      "amount": "1 package",
+      "name": "store-bought pizza dough"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 400 °F."
+    },
+    {
+      "instruction": "Mix 1 cup of ricotta, 1 cup of mozzarella and 2 teaspoons of oregano in a bowl."
+    },
+    {
+      "instruction": "Mix in 4 ounces of topping, such as ham or pepperoni, if you like.",
+      "spoken": "If you like, mix in 4 ounces of any topping, such as ham, bacon, salami, pepperoni, or sausage."
+    },
+    {
+      "instruction": "Roll the pizza dough between 2 pieces of waxed paper."
+    },
+    {
+      "instruction": "Spoon the cheese mixture into the center of the dough."
+    },
+    {
+      "instruction": "Moisten the edges of the dough slightly."
+    },
+    {
+      "instruction": "Fold the dough over and press the edges with a fork to seal."
+    },
+    {
+      "instruction": "Bake for 10 minutes, until golden brown.",
+      "spoken": "Bake for 10 to 12 minutes, until golden brown.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 10
+      }
+    }
+  ]
+}

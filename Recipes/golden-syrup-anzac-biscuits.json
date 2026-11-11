@@ -1,0 +1,86 @@
+{
+  "id": "golden-syrup-anzac-biscuits",
+  "title": "Golden Syrup Anzac Biscuits",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAnzac_Biscuits_II"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "plain flour, sifted"
+    },
+    {
+      "amount": "1 cup",
+      "name": "rolled oats"
+    },
+    {
+      "amount": "1 cup",
+      "name": "desiccated coconut"
+    },
+    {
+      "amount": "1 cup",
+      "name": "brown sugar"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "butter"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "golden syrup"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "bicarbonate of soda"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "boiling water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "In a bowl, combine 1 cup of sifted plain flour and 1 cup of rolled oats."
+    },
+    {
+      "instruction": "Add 1 cup of desiccated coconut and 1 cup of brown sugar."
+    },
+    {
+      "instruction": "Melt 1/2 cup of butter and 2 tablespoons of golden syrup over low heat."
+    },
+    {
+      "instruction": "Mix 1 teaspoon of bicarbonate of soda with 2 tablespoons of boiling water."
+    },
+    {
+      "instruction": "Add the soda mixture to the melted butter and golden syrup."
+    },
+    {
+      "instruction": "Pour the liquids into the dry ingredients and mix well."
+    },
+    {
+      "instruction": "Spoon walnut-sized dollops onto a greased baking sheet.",
+      "spoken": "Spoon dollops of mixture about the size of a walnut shell onto a greased baking sheet. Leave as much space again between the dollops, so they can spread."
+    },
+    {
+      "instruction": "Bake for 15 minutes.",
+      "spoken": "Bake for 15 to 20 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Cool the biscuits on a wire rack."
+    },
+    {
+      "instruction": "Seal the biscuits in airtight containers."
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "id": "central-texan-pinto-beans",
+  "title": "Central Texan Pinto Beans",
+  "category": "Beans and lentils",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACentral_Texan_Pinto_Beans"
+  },
+  "serves": 10,
+  "totalMinutes": 600,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "dry pinto beans"
+    },
+    {
+      "amount": "8 cups",
+      "name": "water"
+    },
+    {
+      "amount": "5 cups",
+      "name": "water"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "1",
+      "name": "ham bone, or a rough equivalent of salt bacon"
+    },
+    {
+      "amount": "1-2",
+      "name": "bay leaves"
+    },
+    {
+      "amount": "3 fluid ounces",
+      "name": "brewed coffee, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Wash 1 pound of dry pinto beans carefully."
+    },
+    {
+      "instruction": "Soak the beans overnight in 8 cups of water."
+    },
+    {
+      "instruction": "Drain the beans and add 5 cups of water."
+    },
+    {
+      "instruction": "Add 1 tablespoon of salt and 1 teaspoon of ground black pepper."
+    },
+    {
+      "instruction": "Add 1 ham bone, or a rough equivalent of salt bacon."
+    },
+    {
+      "instruction": "Add 1 to 2 bay leaves."
+    },
+    {
+      "instruction": "Add 3 ounces of that day's brewed coffee, if you like."
+    },
+    {
+      "instruction": "Bring the pot to a boil."
+    },
+    {
+      "instruction": "Simmer the beans for 1 hour, until they are tender.",
+      "spoken": "Simmer the beans for at least 1 hour, or until they are tender.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Take out the bay leaves."
+    },
+    {
+      "instruction": "Do not drain the beans before serving.",
+      "spoken": "Do not drain the beans before serving. The liquid is an important part of the dish."
+    },
+    {
+      "instruction": "Serve with a slotted spoon, or ladle into small bowls."
+    }
+  ]
+}

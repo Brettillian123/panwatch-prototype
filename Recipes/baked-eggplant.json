@@ -1,0 +1,140 @@
+{
+  "id": "baked-eggplant",
+  "title": "Baked Eggplant",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABaked_Eggplant"
+  },
+  "serves": 4,
+  "totalMinutes": 70,
+  "ingredients": [
+    {
+      "amount": "2 medium",
+      "name": "eggplants"
+    },
+    {
+      "amount": "1/4 pound",
+      "name": "button mushrooms, sliced"
+    },
+    {
+      "amount": "1/2 pound",
+      "name": "tomatoes, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "onions, chopped"
+    },
+    {
+      "amount": "4 large cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt, or to taste"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "to taste",
+      "name": "black pepper, freshly ground"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "extra virgin olive oil"
+    },
+    {
+      "amount": "2/3 cup",
+      "name": "walnuts"
+    },
+    {
+      "amount": "3 heaping tablespoons",
+      "name": "capers, drained"
+    },
+    {
+      "amount": "1 can",
+      "name": "tomato paste, 6 ounce"
+    },
+    {
+      "amount": "2-3 small",
+      "name": "tomatoes, sliced, for the top"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Cut 2 eggplants in half lengthwise, leaving a 1/4 inch rind."
+    },
+    {
+      "instruction": "Scoop out the eggplant flesh with a curved serrated grapefruit knife."
+    },
+    {
+      "instruction": "Chop the eggplant flesh coarsely."
+    },
+    {
+      "instruction": "Place the chopped eggplant in a large, deep skillet or flat-bottomed wok."
+    },
+    {
+      "instruction": "Rub the inside of the eggplant shells with olive oil."
+    },
+    {
+      "instruction": "Set the shells aside on a baking sheet."
+    },
+    {
+      "instruction": "Add 1/4 pound of sliced mushrooms and 1/2 pound of chopped tomatoes to the skillet."
+    },
+    {
+      "instruction": "Add 1 cup of chopped onions and 4 large cloves of minced garlic."
+    },
+    {
+      "instruction": "Add 1 teaspoon of salt, 1/2 teaspoon of cinnamon, pepper and the rest of the oil."
+    },
+    {
+      "instruction": "Sauté for 5 minutes or more, until soft but still chunky.",
+      "spoken": "Sauté for 5 to 10 minutes, until the vegetables are soft but still chunky.",
+      "timer": {
+        "label": "Sauté",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Broil the shells 3 inches from the heat for 8 minutes or more.",
+      "spoken": "Broil the shells 3 inches from the heat for 8 to 12 minutes, until they are tender when poked with a fork. Be careful not to burn them.",
+      "timer": {
+        "label": "Broil",
+        "minutes": 8
+      }
+    },
+    {
+      "instruction": "Take the shells out from under the broiler and set them aside."
+    },
+    {
+      "instruction": "Coarsely grind 2/3 cup of walnuts."
+    },
+    {
+      "instruction": "Add the walnuts, 3 heaping tablespoons of capers and the tomato paste to the skillet."
+    },
+    {
+      "instruction": "Mix everything well."
+    },
+    {
+      "instruction": "Fill the eggplant shells with the cooked mixture."
+    },
+    {
+      "instruction": "Top with the sliced tomatoes, then sprinkle with salt and pepper."
+    },
+    {
+      "instruction": "Heat the oven to 375 °F."
+    },
+    {
+      "instruction": "Bake uncovered for 25 minutes or more.",
+      "spoken": "Bake uncovered for 25 to 35 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 25
+      }
+    }
+  ]
+}

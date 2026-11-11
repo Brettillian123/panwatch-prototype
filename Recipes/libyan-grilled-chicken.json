@@ -1,0 +1,119 @@
+{
+  "id": "libyan-grilled-chicken",
+  "title": "Libyan Grilled Chicken",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ADajaj_Mashwi_%28Libyan_Grilled_Chicken%29"
+  },
+  "totalMinutes": 165,
+  "ingredients": [
+    {
+      "amount": "4 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "olive oil"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "freshly squeezed lemon juice"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "ground paprika"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground coriander"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground cayenne pepper"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "black pepper"
+    },
+    {
+      "amount": "1",
+      "name": "whole chicken, cut into pieces"
+    },
+    {
+      "amount": "to taste",
+      "name": "fresh parsley or cilantro, chopped, for garnish"
+    },
+    {
+      "amount": "to taste",
+      "name": "lemon wedges, for serving"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 4 cloves of minced garlic, 1/4 cup of olive oil and 2 tablespoons of lemon juice."
+    },
+    {
+      "instruction": "Add 2 teaspoons each of cumin and paprika, and 1 teaspoon of coriander."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of cayenne pepper, 1/2 teaspoon of salt and 1/4 teaspoon of black pepper.",
+      "spoken": "Add 1/2 teaspoon of cayenne pepper, 1/2 teaspoon of salt and 1/4 teaspoon of black pepper. You can adjust the cayenne to how spicy you like it."
+    },
+    {
+      "instruction": "Mix well until the marinade is smooth."
+    },
+    {
+      "instruction": "Place the chicken pieces in the marinade and rub each piece well.",
+      "spoken": "Place the chicken pieces in the marinade and rub them well, so every piece is coated. Wash your hands after handling raw chicken."
+    },
+    {
+      "instruction": "Let the chicken marinate for at least 2 hours.",
+      "spoken": "Let the chicken marinate for at least 2 to four hours, so the flavors soak in.",
+      "timer": {
+        "label": "Marinate",
+        "minutes": 120
+      }
+    },
+    {
+      "instruction": "Heat the grill or a grill pan to medium-high."
+    },
+    {
+      "instruction": "Place the chicken on the grill, skin side down, for 10 minutes.",
+      "spoken": "Place the chicken pieces on the grill, skin side down, and cook for 10 to 15 minutes.",
+      "timer": {
+        "label": "First side",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Flip the pieces and grill 10 more minutes, until no longer pink inside.",
+      "spoken": "Flip the pieces and grill for another 10 to 15 minutes, until the chicken is no longer pink in the middle and nicely charred.",
+      "timer": {
+        "label": "Second side",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Brush any leftover marinade onto the chicken while it grills."
+    },
+    {
+      "instruction": "Take the chicken off the grill and let it rest a few minutes."
+    },
+    {
+      "instruction": "Sprinkle chopped parsley or cilantro over the chicken."
+    },
+    {
+      "instruction": "Serve with lemon wedges."
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "id": "burple-nurples",
+  "title": "Burple Nurples",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABurple_Nurples"
+  },
+  "totalMinutes": 75,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "egg"
+    },
+    {
+      "amount": "1 cup",
+      "name": "granulated sugar"
+    },
+    {
+      "amount": "2 sticks",
+      "name": "butter, melted"
+    },
+    {
+      "amount": "1 cup",
+      "name": "flour"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "ground coriander"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 320 °F."
+    },
+    {
+      "instruction": "Gently crack 1 egg into a bowl."
+    },
+    {
+      "instruction": "Mix in 1 cup of granulated sugar."
+    },
+    {
+      "instruction": "Mix in 2 sticks of melted butter."
+    },
+    {
+      "instruction": "Mix in 1 cup of flour and 1 pinch of ground coriander to make a dough."
+    },
+    {
+      "instruction": "Shape the dough into small balls."
+    },
+    {
+      "instruction": "Place the dough balls on a cookie sheet."
+    },
+    {
+      "instruction": "Bake for 1 hour.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 60
+      }
+    }
+  ]
+}
