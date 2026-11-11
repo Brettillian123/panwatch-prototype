@@ -78,7 +78,7 @@ extension Recipe {
         let timerMinutes = Set(steps.compactMap(\.watch?.timerMinutes) + steps.compactMap(\.timer?.minutes))
         for step in steps {
             let name = "Step \(step.id)"
-            found += RecipeRules.instructionProblems(step.instruction).map { "\(name): \($0)" }
+            found += RecipeRules.instructionProblems(step.instruction, hasTimer: step.timer != nil).map { "\(name): \($0)" }
             for text in [step.instruction, step.spoken].compactMap({ $0 }) {
                 found += RecipeRules.wordProblems(text).map { "\(name): \($0)" }
                 // Off the heat too: "let it rest 5 minutes" needs its 5-minute timer.
@@ -89,7 +89,10 @@ extension Recipe {
                 }
             }
             if let spoken = step.spoken {
-                found += RecipeRules.numberProblems(shown: step.instruction, spoken: spoken).map { "\(name): \($0)" }
+                let earlier = steps.prefix { $0.id < step.id }.map(\.instruction)
+                found += RecipeRules.numberProblems(shown: step.instruction, spoken: spoken, earlier: earlier, amounts: items.map { $0.amount + " " + $0.name },
+                                                       timerMinutes: [step.watch?.timerMinutes, step.timer?.minutes].compactMap { $0 })
+                    .map { "\(name): \($0)" }
             }
             if let watch = step.watch {
                 if !method.cameraCanHelp {
@@ -130,7 +133,7 @@ extension Recipe {
 /// tests can point at them.
 enum RecipeRules {
     static let instructionLimit = 90
-    static let titleLimit = 40
+    static let titleLimit = 48
     /// How many it feeds, when the source says: big batches and party trays included.
     static let servesRange = 1...100
     /// Steps in a recipe: a long cookbook recipe written one action per step fits.
@@ -152,7 +155,8 @@ enum RecipeRules {
         "clove", "pinch", "dash", "can", "jar", "stick", "slice", "piece", "bunch", "head", "sprig",
         "stalk", "ear", "inch", "bowl", "handful", "package", "bag", "box", "leaf", "loaf",
         "cube", "strip", "wedge", "bottle", "packet", "envelope", "drop", "fillet", "breast", "thigh",
-        "rib", "link", "sheet",
+        "rib", "link", "sheet", "square", "block", "scoop", "spray", "splash", "knob", "bulb", "rack",
+        "tin", "carton", "tub", "pouch", "bar", "round",
     ]
     /// Words that may sit between the number and the unit: "1 large", "2 heaping tablespoons".
     static let sizes: Set<String> = ["large", "medium", "small", "heaping", "level", "scant", "generous", "big"]
@@ -178,7 +182,7 @@ enum RecipeRules {
 
     /// Phrases where the app would be saying the food is done, safe or at a temperature.
     static let claims = [
-        #"\b(is|are|it's|they're|it is|they are)\s+(now\s+)?(done|ready|cooked|safe|perfect)\b"#,
+        #"\b(is|are|it's|they're|it is|they are)\s+(now\s+)?(done|ready|cooked|safe|perfect)\b(?!\s+(to|for)\s+(turn|flip|stir|add|fold|roll|shape|cut|slice|fill|move|transfer|drain|the next))"#,
         #"\b(has|have)\s+reached\b"#,
         #"\b(is|are)\s+at\s+\d"#,
         #"\b(is|are|it's|they're)\s+(now\s+)?\d+\s*(°|degrees)"#,
@@ -186,19 +190,25 @@ enum RecipeRules {
 
     /// A temperature the cook sets: an oven, a pan, oil. "Bake at 350 °F", "Preheat the oven
     /// to 425 °F", "Heat the oil to 350 °F". The number is captured.
-    static let settingPattern = #"\b(oven|preheat|preheated|bake|roast|broil|heat|fry|griddle|grill|toast|set)\b[^.;]*?\b(to|at)\s+(\d+)\s*(°|degrees)"#
+    static let settingPattern = #"\b(oven|preheat|preheated|bake|roast|broil|heat|fry|griddle|grill|toast|set|oil|syrup|candy|water|sugar|caramel|milk)\b[^.;]*?\b(to|at|and)\s+(\d+)\s*(°|degrees)"#
     /// The same, with the setting before what it is set on: "in a 350 °F oven", "a 375-degree skillet".
-    static let applianceSettingPattern = #"\b(\d+)\s*-?\s*(?:°\s*f?|degrees?(?:\s*f\b)?)\s+(oven|skillet|pan|griddle|grill|oil|fryer)\b"#
+    static let applianceSettingPattern = #"\b(\d+)\s*-?\s*(?:°\s*f?|degrees?(?:\s*f\b)?)\s+(oven|skillet|pan|griddle|grill|oil|fryer|water|milk|syrup|broth)\b"#
 
     /// What a thermometer may be told to read beyond the food safety table: oil, water,
     /// sugar and milk heated to a setting.
+    /// Foods whose thermometer reading must be a safe one from the food safety table.
+    static let meatWords = ["chicken", "turkey", "poultry", "duck", "pork", "beef", "lamb", "meat", "steak", "fish",
+                            "salmon", "sausage", "burger", "ham", "veal", "shrimp", "cod", "tuna"]
+
     static let heatedLiquids = ["oil", "water", "sugar", "syrup", "milk", "caramel", "fat", "shortening"]
 
     static func titleProblems(_ title: String) -> [String] {
         var found: [String] = []
         if title.count > titleLimit { found.append("The title is over \(titleLimit) characters.") }
         if title.hasSuffix(".") { found.append("The title has no period.") }
-        let words = title.split(separator: " ").map(String.init)
+        // A short English gloss in parentheses keeps its own case: "Risengrød (Rice Porridge)".
+        let name = title.replacingOccurrences(of: #"\s*\([^)]*\)"#, with: "", options: .regularExpression)
+        let words = name.split(separator: " ").map(String.init)
         for (wordIndex, word) in words.enumerated() {
             for (partIndex, part) in word.split(separator: "-").map(String.init).enumerated() {
                 guard let first = part.first, first.isLetter else { continue }
@@ -213,7 +223,9 @@ enum RecipeRules {
         return found
     }
 
-    static func instructionProblems(_ text: String) -> [String] {
+    /// `hasTimer`: the step has its own timer, so a rest or cool after cooking ("Let it cool
+    /// for 10 minutes.") is a step of its own; a bare "Wait 10 minutes." never is.
+    static func instructionProblems(_ text: String, hasTimer: Bool = false) -> [String] {
         var found: [String] = []
         if text.count > instructionLimit {
             found.append("the instruction is \(text.count) characters; at most \(instructionLimit), with the rest in \"spoken\".")
@@ -222,8 +234,9 @@ enum RecipeRules {
         if hasTwoActions(text) {
             found.append("one action per step: the instruction gives two things to do; split it or move detail to \"spoken\".")
         }
-        if matches(#"^(wait|let (it|them) (sit|rest|stand|cool))( for)?( about)? \d+( more)? (minute|minutes|hour|hours)\.?$"#,
-                   in: text.lowercased()) {
+        let lower = text.lowercased()
+        if matches(#"^(wait|let (it|them) (sit|rest|stand|cool))( for)?( about)? \d+( more)? (minute|minutes|hour|hours)\.?$"#, in: lower),
+           !hasTimer || lower.hasPrefix("wait") {
             found.append("the step is only a wait; give the time as a timer on the step that starts it.")
         }
         return found
@@ -271,10 +284,15 @@ enum RecipeRules {
         if matches(#"\d\s*°\s*c\b|celsius"#, in: lower) { found.append("temperatures are in °F.") }
         // A temperature is something the cook sets or measures, never a state the app claims.
         let settings = Set(settingNumbers(in: lower))
+        // Measured: a thermometer, or "until it reaches 185 °F", for any food.
         let measured = lower.contains("thermometer")
+            || matches(#"\b(until|till|when|once)\b[^.;]*\b(reaches|reads|registers|hits)\b"#, in: lower)
         let liquid = heatedLiquids.contains { matches(#"\b"# + $0 + #"\b"#, in: lower) }
         for degrees in numbers(#"(\d+)\s*(°|degrees)"#, in: lower) where !settings.contains(degrees) {
-            if !(measured && (FoodSafety.temperatures.contains(degrees) || liquid)) {
+            // Meat is measured against the food safety table; anything else to any reading.
+            let meat = meatWords.contains { matches(#"\b"# + $0, in: lower) }
+            let safe = FoodSafety.temperatures.contains(degrees)
+            if !((measured || liquid) && (!meat || safe)) {
                 found.append("\(degrees) °F: a temperature is a setting (\"Bake at 350 °F.\") or what a thermometer should read, a safe temperature from the food safety table.")
             }
         }
@@ -313,13 +331,16 @@ enum RecipeRules {
         guard let regex = RegexCache.shared.regex(pattern) else { return [] }
         return regex.matches(in: lower, range: NSRange(lower.startIndex..., in: lower)).compactMap { match in
             let number: (Int) -> Int? = { Range(match.range(at: $0), in: lower).flatMap { Int(lower[$0]) } }
-            guard let upper = number(2), let unitRange = Range(match.range(at: 3), in: lower) else { return nil }
+            guard let upper = number(2), let unitRange = Range(match.range(at: 3), in: lower),
+                  let whole = Range(match.range, in: lower) else { return nil }
+            // "stir every 15 minutes" is an interval, not a time to wait.
+            if lower[..<whole.lowerBound].trimmingCharacters(in: .whitespaces).hasSuffix("every") { return nil }
             let unit = lower[unitRange]
             let toMinutes: (Int) -> Int?
             if unit.hasPrefix("h") {
                 toMinutes = { $0 * 60 }
             } else if unit.hasPrefix("s") {
-                toMinutes = { $0 >= 60 && $0 % 60 == 0 ? $0 / 60 : nil }
+                toMinutes = { $0 > 60 && $0 % 60 == 0 ? $0 / 60 : nil } // up to 60 seconds is short
             } else {
                 toMinutes = { $0 }
             }
@@ -333,33 +354,129 @@ enum RecipeRules {
     static func statedMinutes(in text: String) -> [Int] { statedTimes(in: text).map(\.minutes) }
 
     /// The screen and the spoken text never disagree on a number. Every number the screen
-    /// shows is said too (as digits, or a word up to twenty: "5 minutes" may be "five minutes").
-    /// The spoken text may add what doesn't fit on screen, an amount to measure or a range's
-    /// upper end ("Cook 3 minutes." / "Cook 3 to 4 minutes."), but never a time or a
-    /// temperature the screen leaves out.
-    static func numberProblems(shown: String, spoken: String) -> [String] {
+    /// shows is said too, with the same value: as digits, or words ("5" may be "five", "1/2"
+    /// "half", "1 1/2" "one and a half"). A number only in the spoken text is allowed when it
+    /// is the upper end of a range whose lower end is on screen ("Cook 3 minutes." / "Cook 3
+    /// to 4 minutes."), a temperature or size to measure or look for ("until a thermometer
+    /// reads 165 °F", "a 9-inch pan"), or an amount already shown: in an earlier step
+    /// (`earlier`) or the ingredient list (`amounts`). A time, an oven or pan setting, or a
+    /// new amount only in the spoken text is a failure; so is a number on screen it drops or changes.
+    static func numberProblems(shown: String, spoken: String, earlier: [String] = [], amounts: [String] = [], timerMinutes: [Int] = []) -> [String] {
         var found: [String] = []
-        let shownNumbers = digitRuns(in: shown)
-        let said = Set(digitRuns(in: spoken)).union(wordNumbers(in: spoken))
-        var reported: Set<String> = []
-        for number in shownNumbers where !said.contains(number) && reported.insert(number).inserted {
-            found.append("the screen says \(number) but \"spoken\" doesn't; say every number the screen shows.")
+        let onScreen = quantities(in: shown)
+        let said = quantities(in: spoken)
+        let saidValues = said.flatMap(\.values) + wordValues(in: spoken)
+        let shownValues = onScreen.flatMap(\.values)
+        let has: ([Double], Double) -> Bool = { list, value in list.contains { abs($0 - value) < 0.001 } }
+        var reported: [Double] = []
+        for quantity in onScreen {
+            for (value, text) in zip(quantity.values, quantity.texts) where !has(saidValues, value) && !has(reported, value) {
+                reported.append(value)
+                let unit = quantity.unit.map { " " + $0 } ?? ""
+                let changed = quantity.unit.flatMap { unit in
+                    said.first { Self.sameUnit($0.unit, unit) && !$0.values.contains { has(shownValues, $0) } }
+                }
+                if let changed {
+                    found.append("The screen says \(text)\(unit) but the spoken text says \(changed.texts[0]) \(changed.unit ?? ""); make them match.")
+                } else {
+                    found.append("The screen says \(text)\(unit) but the spoken text leaves it out; say every number the screen shows.")
+                }
+            }
         }
-        let lower = spoken.lowercased()
-        let words = numberWords.keys.sorted { $0.count > $1.count }.joined(separator: "|")
-        let pattern = #"(?<![\d/.])(\d+)(?:\s*(?:to|-|–|or)\s*(?:\d+|"# + words + #"))?\s*(?:more\s+)?((?:minutes|minute|mins|min|hours|hour|hrs|hr|seconds|second|secs|sec|degrees)\b|°)"#
-        guard let regex = RegexCache.shared.regex(pattern) else { return found }
-        let onScreen = Set(shownNumbers)
-        for match in regex.matches(in: lower, range: NSRange(lower.startIndex..., in: lower)) {
-            guard let numberRange = Range(match.range(at: 1), in: lower),
-                  let unitRange = Range(match.range(at: 2), in: lower) else { continue }
-            let number = String(lower[numberRange])
-            guard !onScreen.contains(number) else { continue }
-            let unit = lower[unitRange]
-            let what = unit == "°" || unit == "degrees" ? "\(number) °F" : "\(number) \(unit)"
-            found.append("\"spoken\" says \(what) but the screen doesn't; a time or temperature goes on the screen too (spoken may add only a range's upper end or an amount to measure).")
+        let shownBefore = (earlier + amounts).flatMap { quantities(in: $0).flatMap(\.values) }
+        let settings = settingNumbers(in: spoken.lowercased()).map(Double.init)
+        for quantity in said {
+            let before = found.count
+            for (index, value) in quantity.values.enumerated() where !has(shownValues, value) {
+                // A range's upper end, when its lower end is on screen; a range is reported once.
+                if index == 1, has(shownValues, quantity.values[0]) || found.count > before { continue }
+                let text = quantity.texts[index] + (quantity.unit.map { " " + $0 } ?? "")
+                switch quantity.kind {
+                case .time:
+                    // The step's own timer: the card shows it ("Start a 10-minute timer?").
+                    let unit = quantity.unit ?? ""
+                    let minutes = unit.hasPrefix("h") ? value * 60 : (unit.hasPrefix("s") ? -1 : value)
+                    if has(timerMinutes.map(Double.init), minutes) { continue }
+                    if index == 1, let low = quantity.values.first, has(timerMinutes.map(Double.init), unit.hasPrefix("h") ? low * 60 : low) { continue }
+                    found.append("The spoken text says \(text) but the screen doesn't; a time goes on the screen too.")
+                case .temperature:
+                    if has(settings, value) {
+                        found.append("The spoken text sets \(quantity.texts[index]) °F but the screen doesn't; a setting goes on the screen too.")
+                    }
+                case .size:
+                    continue
+                case .amount:
+                    // A count or a fact ("makes 20 servings") isn't measured; a kitchen amount is.
+                    if quantity.unit != nil, !has(shownBefore, value) {
+                        found.append("The spoken text says \(text) but the screen doesn't, nor an earlier step or the ingredients; put it on the screen.")
+                    }
+                }
+            }
         }
         return found
+    }
+
+    /// A number in a step, with what follows it: "1 1/2 cups", "3 to 4 minutes", "350 °F".
+    struct Quantity: Equatable, Sendable {
+        enum Kind: Sendable { case time, temperature, size, amount }
+        /// One value, or a range's lower and upper ends.
+        let values: [Double]
+        /// The values as written.
+        let texts: [String]
+        /// The word after the number, when there is one: "cups", "minutes", "°F".
+        let unit: String?
+        let kind: Kind
+    }
+
+    private static let numberPattern = #"\d+\s+\d+/\d+|\d+/\d+|\d+(?:\.\d+)?|[½¼¾⅓⅔⅛]"#
+    private static let timeUnits: Set<String> = ["minute", "minutes", "min", "mins", "hour", "hours", "hr", "hrs", "second", "seconds", "sec", "secs"]
+    private static let sizeUnits: Set<String> = ["inch", "inches", "in", "cm", "by", "x", "quart", "quarts"]
+
+    /// Every number written in digits, with its range partner and the word after it.
+    static func quantities(in text: String) -> [Quantity] {
+        let lower = text.lowercased()
+        let sizeWords = sizes.union(["more", "extra", "whole", "additional"]).joined(separator: "|")
+        let pattern = #"(?<![\d/.])("# + numberPattern + #")(?:\s*(?:to|-|–|or)\s*("# + numberPattern + #"))?(?![\d/])\s*-?\s*(?:(?:"# + sizeWords + #")\s+)*(°\s*f?|[a-z]+)?"#
+        guard let regex = RegexCache.shared.regex(pattern) else { return [] }
+        return regex.matches(in: lower, range: NSRange(lower.startIndex..., in: lower)).compactMap { match in
+            let group: (Int) -> String? = { Range(match.range(at: $0), in: lower).map { String(lower[$0]) } }
+            guard let first = group(1), let low = value(of: first) else { return nil }
+            var values = [low], texts = [first]
+            if let second = group(2), let high = value(of: second) { values.append(high); texts.append(second) }
+            let word = group(3)
+            let kind: Quantity.Kind
+            var unit = word
+            if let word, word.hasPrefix("°") || word == "degrees" || word == "degree" {
+                kind = .temperature
+                unit = "°F"
+            } else if let word, timeUnits.contains(word) {
+                kind = .time
+            } else if let word, sizeUnits.contains(word) {
+                kind = .size
+            } else {
+                kind = .amount
+                if let word, !isUnit(word) { unit = nil }
+            }
+            return Quantity(values: values, texts: texts, unit: unit, kind: kind)
+        }
+    }
+
+    /// "1 1/2" is 1.5, "3/4" 0.75, "½" 0.5.
+    static func value(of text: String) -> Double? {
+        let fractions: [String: Double] = ["½": 0.5, "¼": 0.25, "¾": 0.75, "⅓": 1.0 / 3, "⅔": 2.0 / 3, "⅛": 0.125]
+        if let fraction = fractions[text] { return fraction }
+        let parts = text.split(separator: " ")
+        if parts.count == 2, let whole = Double(parts[0]), let rest = value(of: String(parts[1])) { return whole + rest }
+        let halves = text.split(separator: "/")
+        if halves.count == 2, let top = Double(halves[0]), let bottom = Double(halves[1]), bottom > 0 { return top / bottom }
+        return Double(text)
+    }
+
+    /// Two units name the same thing: "cup" and "cups".
+    private static func sameUnit(_ a: String?, _ b: String) -> Bool {
+        guard let a else { return false }
+        let stem: (String) -> String = { $0.hasSuffix("es") && units.contains(String($0.dropLast(2))) ? String($0.dropLast(2)) : ($0.hasSuffix("s") ? String($0.dropLast()) : $0) }
+        return stem(a) == stem(b)
     }
 
     /// Every run of digits: "1 1/2 cups" gives 1, 1, 2.
@@ -370,13 +487,43 @@ enum RecipeRules {
     private static let numberWords: [String: Int] = [
         "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
         "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14, "fifteen": 15, "sixteen": 16, "seventeen": 17,
-        "eighteen": 18, "nineteen": 19, "twenty": 20,
+        "eighteen": 18, "nineteen": 19, "twenty": 20, "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60,
+        "seventy": 70, "eighty": 80, "ninety": 90, "dozen": 12,
     ]
 
-    /// The numbers said as words, as digits: "five minutes" gives 5.
-    private static func wordNumbers(in text: String) -> Set<String> {
-        let words = text.lowercased().split(whereSeparator: { !$0.isLetter })
-        return Set(words.compactMap { numberWords[String($0)].map(String.init) })
+    /// The numbers said as words: "five minutes" gives 5, "forty-five" 45, "one and a half"
+    /// 1.5, "half" 0.5, "three quarters" 0.75, "1 and a half" 1.5.
+    static func wordValues(in text: String) -> [Double] {
+        let words = text.lowercased().split(whereSeparator: { !$0.isLetter && !$0.isNumber && $0 != "/" }).map(String.init)
+        var found: [Double] = []
+        var index = 0
+        let number: (String) -> Double? = { numberWords[$0].map(Double.init) ?? (Double($0)) }
+        while index < words.count {
+            let word = words[index]
+            if var whole = number(word) {
+                // "forty five"
+                if whole >= 20, whole.truncatingRemainder(dividingBy: 10) == 0, index + 1 < words.count,
+                   let ones = numberWords[words[index + 1]], ones < 10 { whole += Double(ones); index += 1 }
+                found.append(whole)
+                if index + 3 < words.count, words[index + 1] == "and", ["a", "one"].contains(words[index + 2]), words[index + 3] == "half" {
+                    found.append(whole + 0.5)
+                }
+                if index + 1 < words.count {
+                    let next = words[index + 1]
+                    if next == "quarters" || next == "quarter" { found.append(whole / 4) }
+                    if next == "thirds" || next == "third" { found.append(whole / 3) }
+                    if next == "halves" { found.append(whole / 2) }
+                }
+            } else if word == "half" {
+                found.append(0.5)
+            } else if word == "quarter" {
+                found.append(0.25)
+            } else if word == "third" {
+                found.append(1.0 / 3)
+            }
+            index += 1
+        }
+        return found
     }
 
     static func isOffTheHeat(_ text: String) -> Bool {
@@ -386,7 +533,11 @@ enum RecipeRules {
 
     static func addsSomething(_ instruction: String) -> Bool {
         let lower = instruction.lowercased()
-        return addingStarts.contains { lower.hasPrefix($0 + " ") }
+        // An adverb may come first: "Gently add", "Slowly pour".
+        var words = lower.split(separator: " ")
+        if let first = words.first, first.hasSuffix("ly"), words.count > 1 { words.removeFirst() }
+        let plain = words.joined(separator: " ")
+        return addingStarts.contains { plain.hasPrefix($0 + " ") }
     }
 
     /// Nil when `amount` is a number, or "a", with an optional size and a US kitchen unit:
@@ -394,9 +545,9 @@ enum RecipeRules {
     static func amountProblem(_ amount: String) -> String? {
         let lower = amount.lowercased().trimmingCharacters(in: .whitespaces)
         if lower.isEmpty { return "it needs an amount, like \"1 cup\" or \"2\"." }
-        if lower == "to taste" { return nil }
+        if lower == "to taste" || lower == "as needed" { return nil }
         var tokens = lower.split(separator: " ").map(String.init)
-        let isNumber: (String) -> Bool = { matches(#"^\d+(/\d+)?(-\d+(/\d+)?)?$"#, in: $0) }
+        let isNumber: (String) -> Bool = { matches(#"^\d+(\.\d+)?(/\d+)?(-\d+(\.\d+)?(/\d+)?)?$"#, in: $0) }
         guard let first = tokens.first, isNumber(first) || first == "a" || first == "an" else {
             return "the amount starts with a number or \"a\": \"\(amount)\"."
         }

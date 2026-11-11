@@ -55,11 +55,11 @@
   "steps": [
     {
       "instruction": "Blend 3 egg yolks and 1 tablespoon of lemon juice in a blender.",
-      "spoken": "Blend the egg yolks and lemon juice in a blender. This is the base of the hollandaise sauce. You can also whisk them in a double boiler on a gentle simmer instead, which helps keep the sauce from curdling."
+      "spoken": "Blend 3 egg yolks and 1 tablespoon of lemon juice in a blender. This is the base of the hollandaise sauce. You can also whisk them in a double boiler on a gentle simmer instead, which helps keep the sauce from curdling."
     },
     {
       "instruction": "Slowly pour in 1/2 cup of melted butter while blending.",
-      "spoken": "Slowly pour in the melted butter while blending. The sauce should thicken and become creamy. If it gets too thick, add a little warm water or lemon juice."
+      "spoken": "Slowly pour in 1/2 cup of melted butter while blending. The sauce should thicken and become creamy. If it gets too thick, add a little warm water or lemon juice."
     },
     {
       "instruction": "Season the sauce with cayenne pepper or hot sauce, to taste."
@@ -69,7 +69,7 @@
     },
     {
       "instruction": "Add 1 tablespoon of white vinegar to the water.",
-      "spoken": "Add the vinegar to the water. It helps the egg whites set."
+      "spoken": "Add 1 tablespoon of white vinegar to the water. It helps the egg whites set."
     },
     {
       "instruction": "Slide 4 eggs gently into the simmering water.",

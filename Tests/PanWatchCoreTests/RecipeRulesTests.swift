@@ -47,7 +47,7 @@ struct RecipeRulesTests {
 
     @Test func everyBundledFilePassesTheChecker() throws {
         // Recipes routed back for the number rule fail only that rule until they are reworded.
-        #expect(RecipeLibraryTests.withoutAwaitedNumberLines(RecipeBook.check(folder: BookPaths.sources)) == [])
+        #expect(RecipeBook.check(folder: BookPaths.sources) == [])
     }
 
     @Test func titleIsInTitleCase() {
@@ -124,7 +124,7 @@ struct RecipeRulesTests {
         expectProblem(soup(steps: steps(replacing: 2, with: step(3, "Turn off the heat; the model is done."))), mentioning: "plain word")
         expectProblem(soup(items: soup().items + [Ingredient(name: "Barilla lentils", amount: "1 cup")]), mentioning: "brand")
         expectProblem(soup(steps: steps(replacing: 2, with: step(3, "The soup is done, so serve it."))), mentioning: "never says food is done")
-        expectProblem(soup(steps: steps(replacing: 2, with: step(3, "Serve when a thermometer reads 150 °F."))), mentioning: "150 °F")
+        expectProblem(soup(steps: steps(replacing: 2, with: step(3, "Cook the chicken until a thermometer reads 150 °F."))), mentioning: "150 °F")
         expectProblem(soup(steps: steps(replacing: 2, with: step(3, "Serve it at 70 °C."))), mentioning: "°F")
         #expect(RecipeRules.wordProblems("Cook until a thermometer reads 165 °F.").isEmpty)
         #expect(RecipeRules.wordProblems("Preheat the oven to 425 °F.").isEmpty)
@@ -247,7 +247,7 @@ struct RecipeRulesTests {
                      "Finish the skewers in a 350 °F oven until a thermometer reads 165 °F."] {
             #expect(RecipeRules.wordProblems(text).isEmpty, "\(text): \(RecipeRules.wordProblems(text))")
         }
-        for text in ["The chicken is now 165 °F.", "It is 400 degrees, so serve it.", "Serve when a thermometer reads 150 °F.",
+        for text in ["The chicken is now 165 °F.", "It is 400 degrees, so serve it.", "Cook the chicken until a thermometer reads 150 °F.",
                      "Cook the chicken to 150 °F.", "The soup is done.", "The 165 °F chicken is ready to serve."] {
             #expect(!RecipeRules.wordProblems(text).isEmpty, "\(text)")
         }

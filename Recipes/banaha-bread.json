@@ -38,7 +38,7 @@
     },
     {
       "instruction": "Add 4 to 6 handfuls of corn shucks to the boiling water.",
-      "spoken": "Boil the corn shucks for about 10 minutes.",
+      "spoken": "Add 4 to 6 handfuls of corn shucks to the boiling water. Boil the corn shucks for about 10 minutes.",
       "watch": {
         "ingredient": "corn shucks",
         "timerLabel": "Shucks",

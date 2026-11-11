@@ -37,7 +37,7 @@
     },
     {
       "amount": "1 can",
-      "name": "mushrooms, with liquid"
+      "name": "mushrooms (10 ounces), with liquid"
     },
     {
       "amount": "1 cup",
@@ -61,7 +61,7 @@
     },
     {
       "instruction": "Stir in 2/3 cup of long grain white rice and 1 can of mushrooms with liquid.",
-      "spoken": "Stir in 2/3 cup of long grain white rice and the 10 ounce can of mushrooms, with their liquid."
+      "spoken": "Stir in 2/3 cup of long grain white rice and 1 can of mushrooms, 10 ounces, with their liquid."
     },
     {
       "instruction": "Stir in 1 cup of frozen peas and carrots and 1 teaspoon of dried thyme and rosemary."

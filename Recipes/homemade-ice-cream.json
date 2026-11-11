@@ -41,7 +41,7 @@
     },
     {
       "instruction": "In a separate bowl, whip 2 cups of heavy cream for 4 minutes.",
-      "spoken": "In a separate bowl, whip the heavy cream for about 4 minutes, until it is thick and stiff peaks form.",
+      "spoken": "In a separate bowl, whip 2 cups of heavy cream for 4 minutes. In a separate bowl, whip the heavy cream for about 4 minutes, until it is thick and stiff peaks form.",
       "timer": {
         "label": "Whip",
         "minutes": 4

@@ -106,7 +106,7 @@ seconds left the garlic, and when the timer ends, the draining.
 | Field | What it is | Rules |
 |---|---|---|
 | `id` | The slug: the title in lowercase words joined by hyphens, `"hard-boiled-eggs"`. Never changes once shipped. The dish photo is the asset `dish-<id>`. | Lowercase letters, digits and single hyphens. The file is named `<id>.json`. Unique in the book. |
-| `title` | The dish's name, in title case: `"Garlic Butter Pasta"`, `"Chicken with Rice"`, `"Hard-Boiled Eggs"`. Screens show it in sentence case ("Garlic butter pasta") on their own. | Every word capitalized, including after a hyphen, except `a an and as at by for in of on or the to with de la le el con al à au di da` after the first word ("Dulce de Leche"). At most 40 characters, no period. Unique in the book. Make the words distinctive: the cook picks a dish by voice from them ("make the lentil soup"). |
+| `title` | The dish's name, in title case: `"Garlic Butter Pasta"`, `"Chicken with Rice"`, `"Hard-Boiled Eggs"`. Screens show it in sentence case ("Garlic butter pasta") on their own. | Every word capitalized, including after a hyphen, except `a an and as at by for in of on or the to with de la le el con al à au di da` after the first word ("Dulce de Leche"). At most 48 characters, no period. A short English gloss in parentheses may follow a foreign name and keeps its own case: `"Risengrød (rice porridge)"`. Unique in the book. Make the words distinctive: the cook picks a dish by voice from them ("make the lentil soup"). |
 | `category` | Its shelf on Home. | Exactly one of: `"Pasta and grains"`, `"Eggs and breakfast"`, `"Vegetables"`, `"Salads"`, `"Chicken"`, `"Beef and pork"`, `"Fish"`, `"Soups"`, `"Beans and lentils"`, `"Sandwiches and wraps"`, `"Snacks and sides"`, `"Sauces and dips"`, `"Baking and desserts"`, `"Drinks"`. |
 | `method` | The main way it's cooked. | One of `"pot"` (boil, simmer, steam on the stove), `"pan"` (sear, fry, sauté on the stove), `"oven"`, `"noHeat"`. Only `pot` and `pan` recipes may use the camera (`watch`); the list's "Stovetop" filter shows those. |
 | `source` | Where the recipe comes from, for the credits on Profile > Advanced > About (never shown on the recipe). | `{ "name": "Sous Vision" }` for the app's own. Otherwise `{ "name": "Serious Eats", "url": "https://..." }`; the url must start `https://`, and the name must have its entry in `sources.json` (below). Optional `"credit"`: the program or author the source credits for this recipe (`"credit": "Healthy Kitchen Program"`), listed once under the source on About, never on the recipe. |
@@ -119,13 +119,14 @@ seconds left the garlic, and when the timer ends, the draining.
 
 `{ "amount": "1 cup", "name": "long-grain white rice" }`
 
-- `amount`: a number (`"4"`, `"1/2"`, `"1 1/2"`, `"2-3"`), `"a"`/`"an"`, or `"a few"`/`"a
+- `amount`: a number (`"4"`, `"1/2"`, `"1 1/2"`, `"2-3"`, `"14.5"`), `"a"`/`"an"`, or `"a few"`/`"a
   couple of"` with a unit, then optionally a size (`large`, `medium`, `small`, `heaping`...),
   then optionally a US kitchen unit or count: cup, tablespoon, teaspoon, pound, ounce, fluid
   ounce, quart, pint, gallon, clove, pinch, dash, cube, can, jar, bottle, packet, envelope,
   package, bag, box, stick, slice, piece, strip, wedge, sheet, drop, bunch, head, sprig, stalk,
-  leaf, loaf, ear, handful, fillet, breast, thigh, rib, link, inch, bowl (plurals fine).
-  `"to taste"` is allowed. No grams, milliliters or Celsius. Words like "minced" go in the
+  leaf, loaf, ear, handful, fillet, breast, thigh, rib, link, inch, bowl, square, block, scoop,
+  spray, splash, knob, bulb, rack, tin, carton, tub, pouch, bar, round (plurals fine).
+  `"to taste"` and `"as needed"` are allowed. No grams, milliliters or Celsius. Words like "minced" go in the
   name, not the amount.
 - `name`: lowercase unless a proper noun; extra detail after a comma (`"garlic, minced"`).
 - It is read aloud as `"1 cup of long-grain white rice"` when the amount ends in a unit, else
@@ -150,7 +151,7 @@ seconds left the garlic, and when the timer ends, the draining.
 
 - Only on a step that adds something to a pot or pan on the stove: the instruction starts with
   Add, Stir in, Lower, Lay, Drop, Put, Pour, Place, Slide, Crack, Tip, Spoon, Scatter,
-  Sprinkle, Toss in, Set or Return.
+  Sprinkle, Toss in, Set or Return, optionally after an adverb ("Gently add", "Slowly pour").
 - `ingredient`: spoken in the offer, "Looks like the pasta went in." Lowercase.
 - `timerLabel`: the timer's name, one or two words, capitalized: "Pasta". Unique in the recipe.
 - `timerMinutes`: whole minutes, 1 to 480. Past 99 the offer says hours: "Start a 6-hour timer?"
@@ -174,23 +175,35 @@ seconds left the garlic, and when the timer ends, the draining.
 1. **Times have timers.** Any cooking time in a step ("simmer 10 minutes", "bake for 25
    minutes", "1 hour") must equal a timer in the recipe (`watch.timerMinutes` or
    `timer.minutes`). A range ("7 to 10 minutes", "6-8 hours") needs a timer on either number;
-   use the lower. Waits off the heat (rest, sit, stand, cool, chill, soak, ice water) need
-   their timer too, on the step that names them. Times under a minute, in seconds or
-   fractions ("30 seconds", "90 seconds", "1 1/2 minutes"), need no timer.
-2. **No step is only a wait.** "Wait 10 minutes." or "Let it rest for 5 minutes." alone is not
-   a step; put the time on the step that starts it.
+   use the lower ("3 to 4 hours" takes a 180-minute timer). Waits off the heat (rest, sit,
+   stand, cool, chill, soak, ice water) need their timer too, on the step that names them.
+   Times of a minute or less, in seconds or fractions ("30 seconds", "60 seconds", "90
+   seconds", "1 1/2 minutes"), need no timer, nor does an interval ("stir every 15 minutes").
+2. **No step is only a wait.** "Wait 10 minutes." alone is not a step; put the time on the
+   step that starts it. A rest or cool after cooking with its own `timer` is a step: "Let it
+   cool in the pan for 10 minutes."
 3. **Plain words.** None of: model, engine, sample, calibrate, exposure, flicker, frame,
    detection, debug, session, AI, MB, GB, ms and the rest of `PlainWords.banned`.
 4. **No brand names.** "hot sauce", not a brand; "slow cooker", not a brand; "plastic wrap".
 5. **The app never says food is done, safe, ready or at a temperature.** Say what to look for:
    "until the onions are soft", "until the edges are golden". Not "the chicken is done".
 6. **Temperatures are °F** (digits, "350 °F" or "350 degrees"), and only as something the
-   cook sets ("Bake at 350 °F.", "Preheat the oven to 425 °F.", "Heat the oil to 350 °F.", "in a 350 °F oven") or
-   measures: "until a thermometer reads 165 °F", a safe temperature from the food safety
-   table (165 °F poultry and leftovers, 160 °F ground meat, 145 °F fish and whole cuts of
-   beef, pork and lamb, rest 3 minutes), or oil, water or sugar heated to a setting. Never
-   that the food is at one ("the chicken is now 165 °F").
-7. **No unknown fields.** A typo like `"spokn"` is reported, not ignored.
+   cook sets ("Bake at 350 °F.", "Preheat the oven to 425 °F.", "Heat the grill to 350 °F.",
+   "Cook the syrup to 270 °F.", "in a 350 °F oven", "110 to 115 °F water", "between 325 and
+   350 °F") or measures, for any food: "until a thermometer reads 165 °F", "until it reaches
+   about 185 °F" (for meat, use the food safety table: 165 °F poultry and leftovers, 160 °F
+   ground meat, 145 °F fish and whole cuts of beef, pork and lamb, rest 3 minutes). Never
+   that the food is at one ("the chicken is now 165 °F"); "ready to flip" is a cue, not a claim.
+7. **The screen and `spoken` agree on every number.** Every number in `instruction` is in
+   `spoken` with the same value, as digits or words ("1/2" or "half", "1 1/2" or "one and a
+   half"). `spoken` may add a number only when it is a range's upper end whose lower end is on
+   screen ("Cook 3 minutes." / "Cook 3 to 4 minutes."), a temperature or size to measure or
+   look for ("until a thermometer reads 165 °F", "a 12-inch circle"), the step's own timer, a
+   count or fact ("makes 20 servings"), or an amount already shown in an earlier step or the
+   ingredients. A time, an oven or pan setting, or a new amount only in `spoken` fails, and so
+   does a number on screen that `spoken` drops or changes: "The screen says 2 cups but the
+   spoken text says 3 cups; make them match."
+8. **No unknown fields.** A typo like `"spokn"` is reported, not ignored.
 
 ## Sources and credits
 

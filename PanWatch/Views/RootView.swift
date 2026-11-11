@@ -142,7 +142,9 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
 #if DEBUG
 /// `-uiScreen <name>` on the launch arguments, DEBUG builds only: the screen to stage for a screenshot.
 enum ScreenshotStage {
-    static let names = ["recipes", "recipe", "recipeList", "cook", "offer", "voices", "makeVoice", "profile", "help"]
+    /// Every name `CookSession.stageForScreenshot` stages. A name missing here launches the app
+    /// normally, so `start()` runs and the speech prompt covers that picture and the next one.
+    static let names = ["recipes", "search", "recipeList", "recipe", "recipeLong", "cook", "offer", "voices", "makeVoice", "profile", "help"]
 
     static var requested: String? {
         let arguments = ProcessInfo.processInfo.arguments

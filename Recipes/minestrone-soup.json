@@ -78,7 +78,7 @@
     },
     {
       "instruction": "Add 1 clove of garlic, 1 1/3 cups of onion and 1 1/2 cups of celery.",
-      "spoken": "Add the garlic, onion and celery. Saute for about 5 minutes.",
+      "spoken": "Add 1 clove of garlic, 1 1/3 cups of onion and 1 1/2 cups of celery. Saute for about 5 minutes.",
       "watch": {
         "ingredient": "onion",
         "timerLabel": "Saute",

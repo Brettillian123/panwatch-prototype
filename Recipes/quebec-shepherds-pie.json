@@ -74,7 +74,7 @@
     },
     {
       "instruction": "Cook 1 1/2 pounds of potatoes in a large pot of salted water for 20 minutes.",
-      "spoken": "Cook the potatoes in a large pot of salted water for 20 to thirty minutes, until they are tender.",
+      "spoken": "Cook 1 1/2 pounds of potatoes in a large pot of salted water for 20 minutes. Cook the potatoes in a large pot of salted water for 20 to thirty minutes, until they are tender.",
       "timer": {
         "label": "Potatoes",
         "minutes": 20

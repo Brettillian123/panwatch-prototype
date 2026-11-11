@@ -64,7 +64,7 @@
     },
     {
       "instruction": "Add 1/2 cup of sliced water chestnuts.",
-      "spoken": "Keep cooking for 1 to two minutes, until the water chestnuts begin to soften.",
+      "spoken": "Add 1/2 cup of sliced water chestnuts. Keep cooking for 1 to two minutes, until the water chestnuts begin to soften.",
       "watch": {
         "ingredient": "water chestnuts",
         "timerLabel": "Chestnuts",
@@ -83,7 +83,7 @@
     },
     {
       "instruction": "Add 2 cups of cooked brown rice.",
-      "spoken": "Keep cooking for 3 to five minutes, until the rice is hot.",
+      "spoken": "Add 2 cups of cooked brown rice. Keep cooking for 3 to five minutes, until the rice is hot.",
       "watch": {
         "ingredient": "rice",
         "timerLabel": "Rice",

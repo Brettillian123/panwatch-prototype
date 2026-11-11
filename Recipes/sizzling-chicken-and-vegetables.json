@@ -63,14 +63,14 @@
   "steps": [
     {
       "instruction": "Mix 3 tablespoons soy sauce, 1/4 cup water, 1 tablespoon each honey and cornstarch.",
-      "spoken": "Mix the soy sauce, water, honey and cornstarch in a small bowl and set it aside."
+      "spoken": "Mix 3 tablespoons soy sauce, 1/4 cup water, 1 tablespoon each honey and cornstarch. Mix the soy sauce, water, honey and cornstarch in a small bowl and set it aside."
     },
     {
       "instruction": "Heat 1 1/2 tablespoons of oil in a wok or large skillet."
     },
     {
       "instruction": "Add 2 cloves of minced garlic.",
-      "spoken": "Add the garlic and sauté about 1 minute, until the garlic is golden.",
+      "spoken": "Add 2 cloves of minced garlic. Add the garlic and sauté about 1 minute, until the garlic is golden.",
       "watch": {
         "ingredient": "garlic",
         "timerLabel": "Garlic",
@@ -80,7 +80,7 @@
     },
     {
       "instruction": "Add 16 ounces of chicken breast cubes.",
-      "spoken": "Add the chicken and cook about 5 to six minutes.",
+      "spoken": "Add 16 ounces of chicken breast cubes. Add the chicken and cook about 5 to six minutes.",
       "watch": {
         "ingredient": "chicken",
         "timerLabel": "Chicken",
@@ -94,19 +94,19 @@
     },
     {
       "instruction": "Add 1 small onion, in wedges, to the center and cook until slightly tender.",
-      "spoken": "Add the onion to the center of the pan and cook until slightly tender, then push it to the side."
+      "spoken": "Add 1 small onion, in wedges, to the center and cook until slightly tender. Add the onion to the center of the pan and cook until slightly tender, then push it to the side."
     },
     {
       "instruction": "Add 3 sliced medium carrots to the center and cook until slightly tender.",
-      "spoken": "Add the carrots to the center of the pan and cook until slightly tender, then push them to the side."
+      "spoken": "Add 3 sliced medium carrots to the center and cook until slightly tender. Add the carrots to the center of the pan and cook until slightly tender, then push them to the side."
     },
     {
       "instruction": "Add 1 1/2 cups of broccoli florets to the center and cook until slightly tender.",
-      "spoken": "Add the broccoli to the center of the pan and cook until slightly tender, then push it to the side."
+      "spoken": "Add 1 1/2 cups of broccoli florets to the center and cook until slightly tender. Add the broccoli to the center of the pan and cook until slightly tender, then push it to the side."
     },
     {
       "instruction": "Add 1 red bell pepper in 1-inch pieces to the center and cook until slightly tender.",
-      "spoken": "Add the bell pepper to the center of the pan and cook until slightly tender, then push it to the side."
+      "spoken": "Add 1 red bell pepper in 1-inch pieces to the center and cook until slightly tender. Add the bell pepper to the center of the pan and cook until slightly tender, then push it to the side."
     },
     {
       "instruction": "Pour the soy sauce mixture into the center and stir until it thickens.",

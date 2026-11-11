@@ -111,7 +111,7 @@
     },
     {
       "instruction": "Add 8 ounces of extra broad egg noodles to the pot.",
-      "spoken": "Add the noodles. Cook about 7 minutes, until the noodles are tender.",
+      "spoken": "Add 8 ounces of extra broad egg noodles to the pot. Cook about 7 minutes, until the noodles are tender.",
       "watch": {
         "ingredient": "noodles",
         "timerLabel": "Noodles",

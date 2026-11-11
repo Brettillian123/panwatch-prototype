@@ -75,7 +75,7 @@
     },
     {
       "instruction": "Reduce the heat to low, cover and cook for 90 minutes.",
-      "spoken": "Reduce the heat to low, cover and cook for about an hour and a half, or until the beans are tender.",
+      "spoken": "Reduce the heat to low, cover and cook for 90 minutes. Reduce the heat to low, cover and cook for about an hour and a half, or until the beans are tender.",
       "timer": {
         "label": "Beans",
         "minutes": 90

@@ -54,7 +54,7 @@
     },
     {
       "instruction": "Peel 2 medium apples and shred them with a grater or food processor.",
-      "spoken": "Peel the apples, then shred them with a grater or food processor. Or chop them finely into thin strips."
+      "spoken": "Peel 2 medium apples and shred them with a grater or food processor. Or chop them finely into thin strips."
     },
     {
       "instruction": "Set aside 1/4 cup of the shredded apples."
@@ -64,7 +64,7 @@
     },
     {
       "instruction": "Add all but 1/4 cup of the apples to the pan.",
-      "spoken": "Add the apples and cook and stir for about 5 minutes, until they soften.",
+      "spoken": "Add all but 1/4 cup of the apples to the pan. Add the apples and cook and stir for about 5 minutes, until they soften.",
       "watch": {
         "ingredient": "apples",
         "timerLabel": "Apples",
@@ -86,7 +86,7 @@
     },
     {
       "instruction": "Ladle into bowls and top each with 1 tablespoon of the saved apples.",
-      "spoken": "Ladle the soup into bowls. Top each with a tablespoon of the apples you set aside. Sprinkle with more pumpkin pie spice if you like."
+      "spoken": "Ladle into bowls and top each with 1 tablespoon of the saved apples. Ladle the soup into bowls. Top each with a tablespoon of the apples you set aside. Sprinkle with more pumpkin pie spice if you like."
     }
   ]
 }

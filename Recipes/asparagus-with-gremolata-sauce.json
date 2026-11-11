@@ -35,7 +35,7 @@
   "steps": [
     {
       "instruction": "Add 2 cups of asparagus to a large pot of boiling water.",
-      "spoken": "Cook the asparagus for about 4 minutes, until it is tender.",
+      "spoken": "Add 2 cups of asparagus to a large pot of boiling water. Cook the asparagus for about 4 minutes, until it is tender.",
       "watch": {
         "ingredient": "asparagus",
         "timerLabel": "Asparagus",
@@ -63,8 +63,8 @@
       "instruction": "Melt 2 tablespoons of margarine in a large skillet over medium-high heat."
     },
     {
-      "instruction": "Add 2 teaspoons of lemon peel and 1 minced garlic clove.",
-      "spoken": "Add the lemon peel and garlic and stir for 30 seconds."
+      "instruction": "Add 2 teaspoons of lemon peel and 1 minced garlic clove, stirring for 30 seconds.",
+      "spoken": "Add 2 teaspoons of lemon peel and 1 minced garlic clove. Add the lemon peel and garlic and stir for 30 seconds."
     },
     {
       "instruction": "Add the asparagus and toss to coat."

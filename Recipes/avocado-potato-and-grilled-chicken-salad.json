@@ -55,7 +55,7 @@
   "steps": [
     {
       "instruction": "Boil 3 medium red potatoes in a medium saucepan for about 20 minutes.",
-      "spoken": "Boil the potatoes for about 20 minutes, until they are just tender.",
+      "spoken": "Boil 3 medium red potatoes in a medium saucepan for about 20 minutes. Boil the potatoes for about 20 minutes, until they are just tender.",
       "timer": {
         "label": "Potatoes",
         "minutes": 20

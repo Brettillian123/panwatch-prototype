@@ -21,7 +21,7 @@
     },
     {
       "amount": "1 can",
-      "name": "reduced-sodium cream of chicken soup"
+      "name": "reduced-sodium cream of chicken soup (10.75 ounces)"
     },
     {
       "amount": "1/2 cup",
@@ -51,7 +51,7 @@
     },
     {
       "instruction": "Stir 1 can of reduced-sodium cream of chicken soup and 1/2 cup of water in the skillet.",
-      "spoken": "Stir the soup and the water together in the skillet. The can is 10.75 ounces."
+      "spoken": "Stir 1 can of reduced-sodium cream of chicken soup and 1/2 cup of water in the skillet. The can is 10.75 ounces."
     },
     {
       "instruction": "Heat the soup mixture until it boils."

@@ -63,7 +63,7 @@
     },
     {
       "instruction": "Cook on low heat for 2 minutes.",
-      "spoken": "Cook on low heat for a couple of minutes.",
+      "spoken": "Cook on low heat for 2 minutes. Cook on low heat for a couple of minutes.",
       "timer": {
         "label": "Cook",
         "minutes": 2
@@ -82,7 +82,7 @@
     },
     {
       "instruction": "Add 1 large sliced onion.",
-      "spoken": "Add the sliced onion and let it cook for 5 minutes.",
+      "spoken": "Add 1 large sliced onion. Add the sliced onion and let it cook for 5 minutes.",
       "watch": {
         "ingredient": "onion",
         "timerLabel": "Onion",
@@ -91,7 +91,7 @@
     },
     {
       "instruction": "Add 1 small parsnip, cut into thin strips.",
-      "spoken": "Add the parsnip and let it sweat, softening in the pot.",
+      "spoken": "Add 1 small parsnip, cut into thin strips. Add the parsnip and let it sweat, softening in the pot.",
       "cue": {
         "timerLabel": "Onion",
         "secondsLeft": 0

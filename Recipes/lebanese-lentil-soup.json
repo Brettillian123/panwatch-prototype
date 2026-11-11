@@ -77,7 +77,7 @@
     },
     {
       "instruction": "Add 4 cups of chopped Swiss chard to the onion.",
-      "spoken": "Add the chopped Swiss chard to the onion in the pan. Saute together for 2 to three minutes, until the chard is wilted.",
+      "spoken": "Add 4 cups of chopped Swiss chard to the onion. Add the chopped Swiss chard to the onion in the pan. Saute together for 2 to three minutes, until the chard is wilted.",
       "watch": {
         "ingredient": "chard",
         "timerLabel": "Chard",
@@ -105,7 +105,7 @@
     },
     {
       "instruction": "Add 1 bunch of chopped cilantro, then stir and cook for 5 minutes.",
-      "spoken": "Add the chopped cilantro. Stir and cook for about 5 minutes.",
+      "spoken": "Add 1 bunch of chopped cilantro, then stir and cook for 5 minutes. Stir and cook for about 5 minutes.",
       "watch": {
         "ingredient": "cilantro",
         "timerLabel": "Cilantro",

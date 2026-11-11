@@ -56,7 +56,7 @@
     },
     {
       "instruction": "Cook 16 ounces of macaroni in boiling water for 7 minutes.",
-      "spoken": "Cook the macaroni for a few minutes less than usual, about 7 to eight minutes.",
+      "spoken": "Cook 16 ounces of macaroni in boiling water for 7 minutes. Cook the macaroni for a few minutes less than usual, about 7 to eight minutes.",
       "timer": {
         "label": "Pasta",
         "minutes": 7
@@ -73,7 +73,7 @@
     },
     {
       "instruction": "Top with 1 1/2 ounces of parmesan cheese and 1 1/2 ounces of bread crumbs.",
-      "spoken": "Top with the parmesan cheese and bread crumbs, for an even coat. Add more mozzarella and parmesan if you like a lot of cheese."
+      "spoken": "Top with 1 1/2 ounces of parmesan cheese and 1 1/2 ounces of bread crumbs. Top with the parmesan cheese and bread crumbs, for an even coat. Add more mozzarella and parmesan if you like a lot of cheese."
     },
     {
       "instruction": "Dot the top evenly with 1 tablespoon of butter."

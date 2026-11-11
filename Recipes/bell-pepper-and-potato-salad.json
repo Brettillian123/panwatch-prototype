@@ -51,7 +51,7 @@
   "steps": [
     {
       "instruction": "Add 6 small quartered red potatoes to a pot of boiling water over high heat.",
-      "spoken": "Cook the potatoes for about 10 minutes, until they are tender.",
+      "spoken": "Add 6 small quartered red potatoes to a pot of boiling water over high heat. Cook the potatoes for about 10 minutes, until they are tender.",
       "watch": {
         "ingredient": "potatoes",
         "timerLabel": "Potatoes",

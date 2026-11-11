@@ -69,7 +69,7 @@
     },
     {
       "instruction": "Stir in 1/8 teaspoon of black pepper and 1/16 teaspoon of salt.",
-      "spoken": "Stir in the pepper and salt. Stir well, then set the sauce aside."
+      "spoken": "Stir in 1/8 teaspoon of black pepper and 1/16 teaspoon of salt. Stir well, then set the sauce aside."
     },
     {
       "instruction": "Remove the pot from the heat."
@@ -78,7 +78,7 @@
       "instruction": "Place the asparagus spears in a serving bowl."
     },
     {
-      "instruction": "Drizzle the lemon sauce evenly over the asparagus.",
+      "instruction": "Drizzle about 1 1/2 teaspoons of lemon sauce over each serving of asparagus.",
       "spoken": "Drizzle the lemon sauce evenly over the asparagus, about 1 1/2 teaspoons for each serving."
     }
   ]
