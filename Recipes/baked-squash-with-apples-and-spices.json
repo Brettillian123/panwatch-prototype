@@ -1,0 +1,60 @@
+{
+  "id": "baked-squash-with-apples-and-spices",
+  "title": "Baked Squash with Apples and Spices",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/baked-squash-apple-spices",
+    "credit": "Adapted from Baked Squash with Apples and Spices, Pumpkin Post and Banana Beat Newsletters, University of Massachusetts Extension, Nutrition Education Program"
+  },
+  "serves": 6,
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "2 1/2 cups",
+      "name": "winter squash, acorn, butternut or Hubbard"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "apples, Macintosh, Granny Smith or Rome"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "nutmeg"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cinnamon"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Wash the squash and apples.",
+      "spoken": "Wash the squash and apples. For extra fiber, keep the peel on the apples."
+    },
+    {
+      "instruction": "Cut 2 1/2 cups of squash and 1 1/2 cups of apples into slices."
+    },
+    {
+      "instruction": "Layer the squash and apples in an 8 by 8 inch pan, ending with apples."
+    },
+    {
+      "instruction": "Sprinkle 1/2 teaspoon of nutmeg and 1 teaspoon of cinnamon over the top layer."
+    },
+    {
+      "instruction": "Cover the pan with foil."
+    },
+    {
+      "instruction": "Bake for 45 minutes, until the squash is tender.",
+      "spoken": "Bake in the preheated oven for 45 to sixty minutes, until the squash is tender.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 45
+      }
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "id": "basic-muffins",
+  "title": "Basic Muffins",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/basic-muffins",
+    "credit": "University of Wisconsin Cooperative Extension Service - Sawyer County and the Lac Courte Oreilles Tribe"
+  },
+  "serves": 12,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "to taste",
+      "name": "cooking spray"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1 cup",
+      "name": "sugar"
+    },
+    {
+      "amount": "1",
+      "name": "egg"
+    },
+    {
+      "amount": "1 1/4 cups",
+      "name": "applesauce, unsweetened"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "baking soda"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 cup",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "1 cup",
+      "name": "whole wheat flour"
+    },
+    {
+      "amount": "to taste",
+      "name": "carrots, raisins or walnuts, optional"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "fat-free milk, only if adding carrots, raisins or walnuts"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Line a muffin tin with paper cups, or grease the bottom with cooking spray."
+    },
+    {
+      "instruction": "Mix 1/4 cup of vegetable oil and 1 cup of sugar with an electric mixer or by hand."
+    },
+    {
+      "instruction": "Add 1 egg and 1 1/4 cups of unsweetened applesauce, mixing well."
+    },
+    {
+      "instruction": "Blend in 1 1/2 teaspoons cinnamon, 1 teaspoon baking soda and 1/4 teaspoon salt."
+    },
+    {
+      "instruction": "Blend in 1 cup of all-purpose flour and 1 cup of whole wheat flour."
+    },
+    {
+      "instruction": "Add carrots, raisins or walnuts and 1/2 cup of milk, if using.",
+      "spoken": "If you like, add carrots, raisins or walnuts. If you add any of these, also add 1/2 cup of fat-free milk and mix."
+    },
+    {
+      "instruction": "Fill the muffin tin cups 2/3 full."
+    },
+    {
+      "instruction": "Bake for 15 minutes.",
+      "spoken": "Bake for 15 to eighteen minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 15
+      }
+    }
+  ]
+}

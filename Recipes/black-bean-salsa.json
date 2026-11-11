@@ -1,0 +1,74 @@
+{
+  "id": "black-bean-salsa",
+  "title": "Black Bean Salsa",
+  "category": "Sauces and dips",
+  "method": "noHeat",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/black-bean-salsa",
+    "credit": "Cornell University Cooperative Extension"
+  },
+  "serves": 26,
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "1 can",
+      "name": "black beans, 15.5 ounces, low-sodium, drained and rinsed"
+    },
+    {
+      "amount": "2 cans",
+      "name": "diced tomatoes, 14.5 ounces each, low-sodium, drained"
+    },
+    {
+      "amount": "1",
+      "name": "green bell pepper, diced"
+    },
+    {
+      "amount": "1",
+      "name": "red bell pepper, diced"
+    },
+    {
+      "amount": "1",
+      "name": "onion, diced"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, diced"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "dried cilantro"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "rice vinegar"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Drain and rinse 1 can of black beans."
+    },
+    {
+      "instruction": "Put the beans and 2 drained cans of diced tomatoes in a large mixing bowl."
+    },
+    {
+      "instruction": "Dice 1 green bell pepper, 1 red bell pepper, 1 onion and 2 cloves of garlic."
+    },
+    {
+      "instruction": "Add the diced vegetables to the mixing bowl."
+    },
+    {
+      "instruction": "Mix 2 teaspoons of cumin, 1 teaspoon of dried cilantro and 3 tablespoons of vinegar."
+    },
+    {
+      "instruction": "Pour the spice mixture over the beans and vegetables."
+    },
+    {
+      "instruction": "Stir well."
+    }
+  ]
+}

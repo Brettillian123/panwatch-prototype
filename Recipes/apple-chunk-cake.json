@@ -1,0 +1,92 @@
+{
+  "id": "apple-chunk-cake",
+  "title": "Apple Chunk Cake",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/apple-chunk-cake",
+    "credit": "Healthy & Delicious: Simple Ways to Low Fat Chinese Cooking, San Francisco Department of Public Health, Chinatown Public Health Center"
+  },
+  "serves": 12,
+  "totalMinutes": 80,
+  "ingredients": [
+    {
+      "amount": "1 1/4 cups",
+      "name": "sugar"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "2 large",
+      "name": "eggs"
+    },
+    {
+      "amount": "2 cups",
+      "name": "flour"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "baking soda"
+    },
+    {
+      "amount": "4 cups",
+      "name": "apples, divided (2 cups chopped into chunks, 2 cups sliced)"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "applesauce, unsweetened"
+    },
+    {
+      "amount": "to taste",
+      "name": "vegetable oil spray"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Mix 1 1/4 cups of sugar, 1/4 cup of oil and 2 eggs in a large bowl."
+    },
+    {
+      "instruction": "Beat the sugar mixture well."
+    },
+    {
+      "instruction": "Combine 2 cups flour and 1 teaspoon each of salt, cinnamon and baking soda in a bowl."
+    },
+    {
+      "instruction": "Add the flour mixture to the egg batter and mix well."
+    },
+    {
+      "instruction": "Stir 2 cups of apple chunks and 1/4 cup of applesauce into the batter."
+    },
+    {
+      "instruction": "Coat an 8 by 8 inch baking pan with vegetable oil spray."
+    },
+    {
+      "instruction": "Pour the batter into the pan."
+    },
+    {
+      "instruction": "Bake for 1 hour.",
+      "spoken": "Bake for about 1 hour.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Place 2 cups of apple slices on top of the cake and serve."
+    }
+  ]
+}

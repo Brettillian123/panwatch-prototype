@@ -1,0 +1,65 @@
+{
+  "id": "browned-rice",
+  "title": "Browned Rice",
+  "category": "Pasta and grains",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABrowned_Rice",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 70,
+  "ingredients": [
+    {
+      "amount": "1/2 stick",
+      "name": "margarine"
+    },
+    {
+      "amount": "1 small",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "uncooked rice"
+    },
+    {
+      "amount": "1 can",
+      "name": "beef consommé"
+    },
+    {
+      "amount": "1/2 can",
+      "name": "water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Sauté 1 small chopped onion in 1/2 stick of margarine over medium heat."
+    },
+    {
+      "instruction": "Mix 1/2 cup of uncooked rice and 1 can of beef consommé in a baking dish."
+    },
+    {
+      "instruction": "Pour the onion and margarine over the rice mixture and mix."
+    },
+    {
+      "instruction": "Cover the dish and bake for 30 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Take the dish out and add 1/2 can of water over the rice mixture."
+    },
+    {
+      "instruction": "Cover the dish and cook for 30 more minutes.",
+      "timer": {
+        "label": "Bake more",
+        "minutes": 30
+      }
+    }
+  ]
+}

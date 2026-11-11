@@ -1,0 +1,69 @@
+{
+  "id": "apricot-lemon-chicken",
+  "title": "Apricot and Lemon Chicken",
+  "category": "Chicken",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/apricot-lemon-chicken",
+    "credit": "Oklahoma Nutrition Information and Education, ONIE Project"
+  },
+  "serves": 4,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "4 medium",
+      "name": "chicken breasts, boneless and skinless"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cumin"
+    },
+    {
+      "amount": "5 tablespoons",
+      "name": "apricot spread, about 1/3 cup"
+    },
+    {
+      "amount": "1",
+      "name": "fresh lemon, juiced"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Rub 1 teaspoon of cumin over the 4 chicken breasts."
+    },
+    {
+      "instruction": "Place the chicken in a skillet over medium-high heat.",
+      "spoken": "Cook the chicken for 6 minutes on this side.",
+      "watch": {
+        "ingredient": "chicken",
+        "timerLabel": "Chicken",
+        "timerMinutes": 6
+      }
+    },
+    {
+      "instruction": "Flip the chicken and cook the other side for 6 minutes.",
+      "spoken": "Flip the chicken and cook the other side for 6 minutes, until no pink is left and a thermometer reads 165 °F in the thickest part.",
+      "timer": {
+        "label": "Second side",
+        "minutes": 6
+      }
+    },
+    {
+      "instruction": "Remove the chicken from the pan and keep it warm."
+    },
+    {
+      "instruction": "Add 5 tablespoons of apricot spread, the lemon juice and 2 tablespoons of water."
+    },
+    {
+      "instruction": "Stir over medium heat until smooth."
+    },
+    {
+      "instruction": "Spoon the sauce over the chicken."
+    }
+  ]
+}

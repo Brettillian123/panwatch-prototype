@@ -1,0 +1,90 @@
+{
+  "id": "baked-pork-chops",
+  "title": "Baked Pork Chops",
+  "category": "Beef and pork",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/baked-pork-chops",
+    "credit": "Heart Healthy Home Cooking: African American Style, US Department of Health and Human Services, National Heart, Lung, and Blood Institute"
+  },
+  "serves": 6,
+  "totalMinutes": 125,
+  "ingredients": [
+    {
+      "amount": "6",
+      "name": "pork chops, lean center-cut, 1/2-inch thick"
+    },
+    {
+      "amount": "1 medium",
+      "name": "onion, thinly sliced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "green pepper, chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "red pepper, chopped"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "black pepper"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Trim the fat from the 6 pork chops."
+    },
+    {
+      "instruction": "Place the chops in a 13x9 inch baking pan."
+    },
+    {
+      "instruction": "Spread 1 medium sliced onion over the chops."
+    },
+    {
+      "instruction": "Spread 1/2 cup of green pepper and 1/2 cup of red pepper on top."
+    },
+    {
+      "instruction": "Sprinkle with 1/8 teaspoon of black pepper and 1/4 teaspoon of salt."
+    },
+    {
+      "instruction": "Refrigerate the pan for 1 hour.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Preheat the oven to 375 °F."
+    },
+    {
+      "instruction": "Cover the pan."
+    },
+    {
+      "instruction": "Cook for 30 minutes.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Uncover the pan and turn the chops over."
+    },
+    {
+      "instruction": "Cover the chops again with the onions and peppers."
+    },
+    {
+      "instruction": "Cook for 15 more minutes, until a thermometer reads 145 °F.",
+      "spoken": "Cook for 15 more minutes, until a thermometer reads 145 °F in the thickest part of a chop.",
+      "timer": {
+        "label": "Finish",
+        "minutes": 15
+      }
+    }
+  ]
+}

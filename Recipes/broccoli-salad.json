@@ -1,0 +1,65 @@
+{
+  "id": "broccoli-salad",
+  "title": "Broccoli Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/broccoli-salad",
+    "credit": "In the Kitchen with Chef Stephanie Green, Arizona Nutrition Network"
+  },
+  "serves": 8,
+  "totalMinutes": 70,
+  "ingredients": [
+    {
+      "amount": "6 cups",
+      "name": "broccoli, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "raisins"
+    },
+    {
+      "amount": "1 medium",
+      "name": "red onion, peeled and diced"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "sugar"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "low-fat mayonnaise"
+    },
+    {
+      "amount": "8 slices",
+      "name": "bacon, cooked and crumbled, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 6 cups of broccoli, 1 cup of raisins and 1 diced red onion in a medium bowl."
+    },
+    {
+      "instruction": "Add 2 tablespoons of sugar, 2 tablespoons of lemon juice and 3/4 cup of mayonnaise."
+    },
+    {
+      "instruction": "Add 8 slices of cooked, crumbled bacon, if you like."
+    },
+    {
+      "instruction": "Mix everything well."
+    },
+    {
+      "instruction": "Chill the salad for 1 hour.",
+      "spoken": "Chill the salad for 1 to two hours.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 60
+      }
+    }
+  ]
+}

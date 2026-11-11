@@ -1,0 +1,91 @@
+{
+  "id": "banana-oatmeal-raisin-cookies",
+  "title": "Banana Oatmeal Raisin Cookies",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/banana-oatmeal-raisin-cookies",
+    "credit": "Pennsylvania Nutrition Education Network"
+  },
+  "serves": 15,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1/3 cup",
+      "name": "margarine"
+    },
+    {
+      "amount": "3",
+      "name": "bananas, ripe"
+    },
+    {
+      "amount": "2 cups",
+      "name": "quick-cooking oats, uncooked"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "fat-free or low-fat milk"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "raisins"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vanilla extract"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Put 1/3 cup of margarine in a small saucepan."
+    },
+    {
+      "instruction": "Melt the margarine on low heat."
+    },
+    {
+      "instruction": "Put 3 ripe bananas, the melted margarine and 2 cups of oats in a mixing bowl."
+    },
+    {
+      "instruction": "Add 1/4 cup of milk, 1/2 cup of raisins and 1 teaspoon of vanilla extract."
+    },
+    {
+      "instruction": "Mix really well."
+    },
+    {
+      "instruction": "Let the mix stand for 5 minutes, until the oats are wet.",
+      "timer": {
+        "label": "Stand",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Lightly grease the cookie sheet."
+    },
+    {
+      "instruction": "Spoon about 1 tablespoon of dough onto the greased sheet for each cookie."
+    },
+    {
+      "instruction": "Bake the cookies for 15 minutes.",
+      "spoken": "Bake the cookies for 15 to twenty minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Let the cookies cool on the cookie sheet for 1 minute.",
+      "spoken": "Let the cookies cool on the cookie sheet for about 1 minute.",
+      "timer": {
+        "label": "Cool",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Move the cookies to wire racks or a towel to cool completely."
+    }
+  ]
+}

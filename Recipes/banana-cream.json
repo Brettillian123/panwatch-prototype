@@ -1,0 +1,74 @@
+{
+  "id": "banana-cream",
+  "title": "Banana Cream",
+  "category": "Baking and desserts",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABanana_Cream_II",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1/2 cup",
+      "name": "cornstarch"
+    },
+    {
+      "amount": "1 quart",
+      "name": "milk"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "caster sugar"
+    },
+    {
+      "amount": "2",
+      "name": "egg yolks, beaten"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "2",
+      "name": "bananas, thinly sliced"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 1/2 cup of cornstarch with a little of the milk to make a smooth paste."
+    },
+    {
+      "instruction": "Put the rest of the 1 quart of milk and 1/4 cup of caster sugar in a pan."
+    },
+    {
+      "instruction": "Bring the milk and sugar to a boil."
+    },
+    {
+      "instruction": "Add the cornstarch paste.",
+      "spoken": "Add the cornstarch paste and boil for about 10 minutes.",
+      "watch": {
+        "ingredient": "cornstarch paste",
+        "timerLabel": "Boil",
+        "timerMinutes": 10,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Let the mixture cool a little."
+    },
+    {
+      "instruction": "Stir in 2 beaten egg yolks until the mixture thickens."
+    },
+    {
+      "instruction": "Stir in 1/2 teaspoon of vanilla extract and 2 thinly sliced bananas."
+    },
+    {
+      "instruction": "When cool, pour the mixture into the prepared mould."
+    },
+    {
+      "instruction": "Chill for a few hours to set."
+    }
+  ]
+}

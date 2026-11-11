@@ -1,0 +1,86 @@
+{
+  "id": "asparagus-with-gremolata-sauce",
+  "title": "Asparagus with Gremolata Sauce",
+  "category": "Vegetables",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/asparagus-gremolata-sauce",
+    "credit": "Eat Smart New York!, Cornell University Cooperative Extension"
+  },
+  "serves": 6,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "asparagus, washed and trimmed"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "margarine, unsalted (or butter)"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "lemon peel, grated"
+    },
+    {
+      "amount": "1 large clove",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "lemon juice, fresh"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 2 cups of asparagus to a large pot of boiling water.",
+      "spoken": "Cook the asparagus for about 4 minutes, until it is tender.",
+      "watch": {
+        "ingredient": "asparagus",
+        "timerLabel": "Asparagus",
+        "timerMinutes": 4,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Drain the asparagus and rinse it with cold water to cool it quickly."
+    },
+    {
+      "instruction": "Drain the asparagus again."
+    },
+    {
+      "instruction": "Pat the asparagus dry."
+    },
+    {
+      "instruction": "Wrap the asparagus in a paper towel, then plastic wrap."
+    },
+    {
+      "instruction": "Refrigerate the asparagus."
+    },
+    {
+      "instruction": "Melt 2 tablespoons of margarine in a large skillet over medium-high heat."
+    },
+    {
+      "instruction": "Add 2 teaspoons of lemon peel and 1 minced garlic clove.",
+      "spoken": "Add the lemon peel and garlic and stir for 30 seconds."
+    },
+    {
+      "instruction": "Add the asparagus and toss to coat."
+    },
+    {
+      "instruction": "Sprinkle 2 tablespoons of lemon juice over the asparagus."
+    },
+    {
+      "instruction": "Sauté for about 3 minutes, until the asparagus is heated through and coated.",
+      "timer": {
+        "label": "Saute",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Transfer the asparagus to a platter."
+    }
+  ]
+}

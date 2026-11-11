@@ -1,0 +1,117 @@
+{
+  "id": "african-cabbage-stew",
+  "title": "African Cabbage Stew",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAfrican_Cabbage_Stew",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "avocado oil"
+    },
+    {
+      "amount": "2 medium",
+      "name": "onions, chopped"
+    },
+    {
+      "amount": "4 medium cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "3 medium",
+      "name": "celery stalks, minced"
+    },
+    {
+      "amount": "1 medium",
+      "name": "cabbage, cut up"
+    },
+    {
+      "amount": "2 medium",
+      "name": "potatoes, cut up"
+    },
+    {
+      "amount": "3 medium",
+      "name": "carrots, chopped"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "dried Italian seasoning"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "onion powder"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "chicken bouillon"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "smoked paprika"
+    },
+    {
+      "amount": "1-2 cups",
+      "name": "water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 tablespoons of avocado oil in a large saucepan over medium heat."
+    },
+    {
+      "instruction": "Add 2 medium chopped onions.",
+      "spoken": "Add the onions and cook until tender, about 2 minutes.",
+      "watch": {
+        "ingredient": "onions",
+        "timerLabel": "Onions",
+        "timerMinutes": 2,
+        "minimumChange": 0.02
+      }
+    },
+    {
+      "instruction": "Stir in 4 medium cloves of minced garlic and 3 minced celery stalks.",
+      "spoken": "Stir in the garlic and celery and cook until fragrant."
+    },
+    {
+      "instruction": "Add 1 medium cabbage, cut up."
+    },
+    {
+      "instruction": "Add 2 medium potatoes and 3 medium carrots, cut up."
+    },
+    {
+      "instruction": "Add 2 teaspoons each of Italian seasoning, onion powder and garlic powder."
+    },
+    {
+      "instruction": "Add 3 tablespoons of chicken bouillon and 1 teaspoon of smoked paprika."
+    },
+    {
+      "instruction": "Add 1 to 2 cups of water."
+    },
+    {
+      "instruction": "Cover the saucepan and bring to a boil."
+    },
+    {
+      "instruction": "Reduce the heat and simmer for 20 minutes.",
+      "spoken": "Reduce the heat and let it simmer for about 20 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Check the seasonings and adjust where necessary."
+    },
+    {
+      "instruction": "Serve warm."
+    }
+  ]
+}

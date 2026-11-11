@@ -1,0 +1,97 @@
+{
+  "id": "korv-stroganoff",
+  "title": "Korv Stroganoff",
+  "category": "Beef and pork",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/korv-stroganoff/",
+    "credit": "based.cooking contributors"
+  },
+  "serves": 4,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "Swedish falukorv sausage"
+    },
+    {
+      "amount": "1",
+      "name": "yellow onion"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "tomato purée"
+    },
+    {
+      "amount": "1 cup",
+      "name": "cream"
+    },
+    {
+      "amount": "7 tablespoons",
+      "name": "milk"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "soy sauce"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "Dijon mustard"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Cut 1 pound of sausage into sticks."
+    },
+    {
+      "instruction": "Dice 1 yellow onion."
+    },
+    {
+      "instruction": "Fry the sausage and onion in 1 tablespoon of olive oil for 10 minutes.",
+      "spoken": "Fry the sausage sticks and diced onion in 1 tablespoon of olive oil for about 10 minutes.",
+      "timer": {
+        "label": "Fry",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Add 4 tablespoons of tomato purée and cook for 1 minute.",
+      "watch": {
+        "ingredient": "tomato purée",
+        "timerLabel": "Purée",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Stir in 1 cup of cream and 7 tablespoons of milk."
+    },
+    {
+      "instruction": "Stir in 1 tablespoon each of soy sauce and Dijon mustard."
+    },
+    {
+      "instruction": "Simmer for at least 5 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Season with plenty of pepper, and salt if you like.",
+      "spoken": "Season with plenty of pepper, and maybe some salt, to taste."
+    }
+  ]
+}

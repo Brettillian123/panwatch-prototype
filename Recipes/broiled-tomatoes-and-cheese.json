@@ -1,0 +1,72 @@
+{
+  "id": "broiled-tomatoes-and-cheese",
+  "title": "Broiled Tomatoes and Cheese",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/broiled-tomatoes-and-cheese",
+    "credit": "Choices: Steps Toward Health, University of Massachusetts Extension, Nutrition Education Program"
+  },
+  "serves": 3,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "3 large",
+      "name": "firm tomatoes"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "low-fat cottage cheese"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "dried basil"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "black pepper"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "bread crumbs"
+    },
+    {
+      "amount": "2",
+      "name": "sprays of cooking spray"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Wash 3 large, firm tomatoes."
+    },
+    {
+      "instruction": "Cut the tomatoes in half."
+    },
+    {
+      "instruction": "Mix 8 ounces cottage cheese, 1/2 teaspoon dried basil and 1/8 teaspoon pepper."
+    },
+    {
+      "instruction": "Spread the cheese mixture on the tomato halves."
+    },
+    {
+      "instruction": "Sprinkle 3 tablespoons of bread crumbs over the tomatoes."
+    },
+    {
+      "instruction": "Spray the tomatoes with 2 sprays of cooking spray."
+    },
+    {
+      "instruction": "Spray a broiler pan with cooking spray."
+    },
+    {
+      "instruction": "Place the tomatoes on the pan."
+    },
+    {
+      "instruction": "Broil for about 10 minutes.",
+      "timer": {
+        "label": "Broil",
+        "minutes": 10
+      }
+    }
+  ]
+}

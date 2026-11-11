@@ -1,0 +1,131 @@
+{
+  "id": "red-lentil-dahl",
+  "title": "Red Lentil Dahl",
+  "category": "Beans and lentils",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/red-lentil-dahl/",
+    "credit": "based.cooking contributor joel-maxuel"
+  },
+  "serves": 6,
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "3 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 medium",
+      "name": "yellow onion"
+    },
+    {
+      "amount": "4 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "fresh ginger, grated"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "yellow curry powder, mild madras"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground cinnamon"
+    },
+    {
+      "amount": "to taste",
+      "name": "dried red chilies or cayenne pepper"
+    },
+    {
+      "amount": "4-5 cups",
+      "name": "water"
+    },
+    {
+      "amount": "5",
+      "name": "plum tomatoes, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "dried red lentils"
+    },
+    {
+      "amount": "1",
+      "name": "lemon, juiced"
+    },
+    {
+      "amount": "1 cup",
+      "name": "fresh cilantro, chopped and lightly packed"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 3 tablespoons of olive oil in a soup pot."
+    },
+    {
+      "instruction": "Add 1 medium yellow onion and saute for 5 minutes.",
+      "watch": {
+        "ingredient": "onion",
+        "timerLabel": "Onion",
+        "timerMinutes": 5
+      }
+    },
+    {
+      "instruction": "Add 4 cloves of garlic and 1 tablespoon of ginger, and saute 5 minutes.",
+      "spoken": "Add 4 cloves of minced garlic and 1 tablespoon of grated ginger, and saute for 5 more minutes.",
+      "watch": {
+        "ingredient": "garlic",
+        "timerLabel": "Garlic",
+        "timerMinutes": 5,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Stir in 2 tablespoons of curry powder and 1 teaspoon of salt."
+    },
+    {
+      "instruction": "Add 1/4 teaspoon of cinnamon and chilies to taste, and saute 5 minutes.",
+      "spoken": "Add 1/4 teaspoon of ground cinnamon and dried red chilies or cayenne pepper to taste, and saute for 5 more minutes.",
+      "timer": {
+        "label": "Spices",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Add 4 cups of water and stir."
+    },
+    {
+      "instruction": "Add 5 chopped plum tomatoes and 1 cup of dried red lentils."
+    },
+    {
+      "instruction": "Bring to a boil, then lower the heat a bit."
+    },
+    {
+      "instruction": "Simmer for 20 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Add the juice of 1 lemon and 1 cup of chopped cilantro."
+    },
+    {
+      "instruction": "Add a little more water if the dahl is too thick."
+    },
+    {
+      "instruction": "Simmer 10 more minutes, until the lentils are fully tender.",
+      "spoken": "Simmer 10 more minutes, until the lentils are fully tender. This may take a while.",
+      "timer": {
+        "label": "Finish",
+        "minutes": 10
+      }
+    }
+  ]
+}

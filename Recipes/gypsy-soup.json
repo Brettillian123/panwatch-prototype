@@ -1,0 +1,132 @@
+{
+  "id": "gypsy-soup",
+  "title": "Gypsy Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/gypsy-soup/",
+    "credit": "based.cooking contributor joel-maxuel"
+  },
+  "serves": 4,
+  "totalMinutes": 70,
+  "ingredients": [
+    {
+      "amount": "3 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "2 cups",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, chopped"
+    },
+    {
+      "amount": "2 cups",
+      "name": "sweet potatoes, peeled and chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "celery, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "fresh tomatoes, chopped"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "sweet peppers, chopped"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "cooked chickpeas"
+    },
+    {
+      "amount": "3 cups",
+      "name": "stock or water"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "paprika"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "turmeric"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "basil"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 dash",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "1 dash",
+      "name": "cayenne"
+    },
+    {
+      "amount": "1",
+      "name": "bay leaf"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "tamari soy sauce"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 3 tablespoons of olive oil in a large pot."
+    },
+    {
+      "instruction": "Add 2 cups of chopped onion and 2 cloves of chopped garlic."
+    },
+    {
+      "instruction": "Add 2 cups of peeled, chopped sweet potatoes and 1/2 cup of chopped celery."
+    },
+    {
+      "instruction": "Sauté for 5 minutes.",
+      "spoken": "Sauté the onion, garlic, sweet potatoes and celery for about 5 minutes.",
+      "timer": {
+        "label": "Sauté",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Add 2 teaspoons of paprika, 1 teaspoon of turmeric and 1 teaspoon of basil."
+    },
+    {
+      "instruction": "Add 1 teaspoon of salt and 1 dash each of cinnamon and cayenne."
+    },
+    {
+      "instruction": "Add 1 bay leaf and 3 cups of stock or water."
+    },
+    {
+      "instruction": "Simmer with the lid on for 15 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Add 1 cup of chopped tomatoes and 3/4 cup of chopped sweet peppers."
+    },
+    {
+      "instruction": "Add 1 1/2 cups of cooked chickpeas and 1 tablespoon of tamari soy sauce."
+    },
+    {
+      "instruction": "Simmer for 10 minutes, until the vegetables are as tender as you like.",
+      "spoken": "Simmer for about 10 minutes, until all the vegetables are as tender as you like them.",
+      "timer": {
+        "label": "Finish",
+        "minutes": 10
+      }
+    }
+  ]
+}

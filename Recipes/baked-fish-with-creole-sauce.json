@@ -1,0 +1,80 @@
+{
+  "id": "baked-fish-with-creole-sauce",
+  "title": "Baked Fish with Creole Sauce",
+  "category": "Fish",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/baked-fish-creole-sauce",
+    "credit": "Eating Smart, Being Active, Colorado State University and University of California at Davis"
+  },
+  "serves": 4,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "fish fillets, fresh or frozen, unbreaded"
+    },
+    {
+      "amount": "1/2 medium",
+      "name": "onion, thinly sliced"
+    },
+    {
+      "amount": "1/2 medium",
+      "name": "green pepper, thinly sliced"
+    },
+    {
+      "amount": "1 can",
+      "name": "tomato sauce, low-sodium, 8 ounces"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "chili powder"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "If the fish is frozen, thaw it in the refrigerator overnight."
+    },
+    {
+      "instruction": "Preheat the oven to 375 °F."
+    },
+    {
+      "instruction": "Arrange 1 pound of fish fillets in a single layer in a baking dish."
+    },
+    {
+      "instruction": "Top the fish with 1/2 medium sliced onion and 1/2 medium sliced green pepper."
+    },
+    {
+      "instruction": "Mix 1 can of tomato sauce and 1 teaspoon of chili powder in a separate bowl."
+    },
+    {
+      "instruction": "Mix in 1/4 teaspoon of salt and 1/8 teaspoon of black pepper."
+    },
+    {
+      "instruction": "Pour the tomato sauce mixture over the fish and vegetables."
+    },
+    {
+      "instruction": "Cover the dish."
+    },
+    {
+      "instruction": "Bake for 20 minutes, until the fish flakes easily with a fork.",
+      "spoken": "Bake for 20 to thirty minutes, until the fish flakes easily with a fork.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Refrigerate any leftovers."
+    }
+  ]
+}

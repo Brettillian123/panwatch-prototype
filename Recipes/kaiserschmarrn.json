@@ -1,0 +1,83 @@
+{
+  "id": "kaiserschmarrn",
+  "title": "Kaiserschmarrn",
+  "category": "Baking and desserts",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/kaiserschmarrn/",
+    "credit": "based.cooking contributor Felix Steiner"
+  },
+  "serves": 3,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "4",
+      "name": "eggs"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "flour"
+    },
+    {
+      "amount": "1 1/4 cups",
+      "name": "milk"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "sugar"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "butter"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "raisins, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Separate 4 eggs into whites and yolks."
+    },
+    {
+      "instruction": "Stir the egg yolks, 1 1/2 cups of flour and 1 1/4 cups of milk in a bowl."
+    },
+    {
+      "instruction": "Add 2 tablespoons of sugar and a pinch of salt, and stir until the clumps are gone."
+    },
+    {
+      "instruction": "Beat the egg whites in a different bowl until stiff peaks form."
+    },
+    {
+      "instruction": "Add the beaten egg whites to the other bowl."
+    },
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Melt 3 tablespoons of butter in a flat pan on high heat."
+    },
+    {
+      "instruction": "Add the batter to the pan and cook it on both sides."
+    },
+    {
+      "instruction": "Put the pan in the oven for 10 minutes, until lightly browned.",
+      "spoken": "Put the pan in the oven for around 10 minutes, until the top is lightly browned.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Cut the dough into bite-sized pieces with a spatula."
+    },
+    {
+      "instruction": "Sprinkle a little sugar and the raisins on top."
+    }
+  ]
+}

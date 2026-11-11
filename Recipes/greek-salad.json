@@ -1,0 +1,105 @@
+{
+  "id": "greek-salad",
+  "title": "Greek Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/greek-salad/",
+    "credit": "based.cooking contributor joel-maxuel"
+  },
+  "serves": 4,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "assorted lettuce, chopped or torn"
+    },
+    {
+      "amount": "4",
+      "name": "tomatoes, cut into wedges or slices"
+    },
+    {
+      "amount": "1",
+      "name": "cucumber, seeded and sliced"
+    },
+    {
+      "amount": "1",
+      "name": "bell pepper, seeded and sliced"
+    },
+    {
+      "amount": "1 small",
+      "name": "onion, sliced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "black olives, pitted and coarsely chopped"
+    },
+    {
+      "amount": "6 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "red wine vinegar"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "fresh garlic, chopped"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "oregano"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "dill weed"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "parsley, chopped"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "fresh lemon juice"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "freshly ground black pepper"
+    },
+    {
+      "amount": "3/5 cup",
+      "name": "feta cheese, crumbled"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 2 cups of lettuce and 4 cut tomatoes in a large bowl."
+    },
+    {
+      "instruction": "Add 1 sliced cucumber, 1 sliced bell pepper and 1 small sliced onion."
+    },
+    {
+      "instruction": "Add 1/2 cup of coarsely chopped black olives."
+    },
+    {
+      "instruction": "In a small bowl, whisk 6 tablespoons of olive oil and 1 teaspoon of red wine vinegar."
+    },
+    {
+      "instruction": "Whisk in 1/2 teaspoon of garlic, 1/2 teaspoon of oregano and 1/2 teaspoon of dill weed."
+    },
+    {
+      "instruction": "Whisk in 1/4 cup of parsley, 2 tablespoons of lemon juice, salt and pepper."
+    },
+    {
+      "instruction": "Drizzle the dressing over the salad."
+    },
+    {
+      "instruction": "Sprinkle 3/5 cup of crumbled feta cheese on top."
+    }
+  ]
+}

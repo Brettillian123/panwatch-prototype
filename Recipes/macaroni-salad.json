@@ -1,0 +1,72 @@
+{
+  "id": "macaroni-salad",
+  "title": "Macaroni Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AMacaroni_Salad",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "serves": 8,
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "1/2 cup",
+      "name": "mayonnaise"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "dry mustard"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "sugar"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "cider vinegar"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "1 pound",
+      "name": "elbow macaroni pasta, cooked, drained and chilled"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "red onion, chopped"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "celery, chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Whisk 1/2 cup of mayonnaise and 1 teaspoon of dry mustard in a small bowl."
+    },
+    {
+      "instruction": "Whisk in 1 teaspoon of sugar and 2 tablespoons of cider vinegar."
+    },
+    {
+      "instruction": "Add salt and pepper to taste."
+    },
+    {
+      "instruction": "Toss 1 pound of pasta, 1/3 cup of red onion and 1/3 cup of celery.",
+      "spoken": "In a large bowl, toss 1 pound of cooked, drained and chilled elbow macaroni with 1/3 cup of chopped red onion and 1/3 cup of chopped celery."
+    },
+    {
+      "instruction": "Pour the dressing over the top and toss to combine."
+    },
+    {
+      "instruction": "Cool the salad before serving."
+    }
+  ]
+}

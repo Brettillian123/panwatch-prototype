@@ -1,0 +1,74 @@
+{
+  "id": "coconut-flour-bread",
+  "title": "Coconut Flour Bread",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/coconut-flour-bread/",
+    "credit": "based.cooking contributor luis-fernando-maschietto-junior"
+  },
+  "serves": 12,
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "3/4 cup",
+      "name": "coconut flour"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "xanthan gum, optional"
+    },
+    {
+      "amount": "6 medium",
+      "name": "eggs"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "coconut oil"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 3/4 cup of coconut flour, 1 teaspoon of baking powder and a pinch of salt.",
+      "spoken": "In a big bowl, mix 3/4 cup of coconut flour, 1 teaspoon of baking powder and a pinch of salt."
+    },
+    {
+      "instruction": "Stir in up to 1/2 teaspoon of xanthan gum, if you like.",
+      "spoken": "If you like, stir in 1/2 teaspoon or less of xanthan gum."
+    },
+    {
+      "instruction": "Add 6 whole medium eggs and 1 tablespoon of coconut oil."
+    },
+    {
+      "instruction": "Mix well with a spoon until the batter gets thick.",
+      "spoken": "Mix well with a spoon until the batter gets thick. You can add extra coconut flour if it feels too liquid."
+    },
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Pour the dough evenly into a loaf pan lined with parchment paper.",
+      "spoken": "Pour the dough evenly into a loaf pan. Line the pan with parchment paper, or coat it with butter."
+    },
+    {
+      "instruction": "Bake for 35 minutes.",
+      "spoken": "Bake for 35 to forty-five minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 35
+      }
+    },
+    {
+      "instruction": "Take the bread out of the oven and let it cool."
+    }
+  ]
+}

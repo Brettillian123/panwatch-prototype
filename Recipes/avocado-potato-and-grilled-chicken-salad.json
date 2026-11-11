@@ -1,0 +1,98 @@
+{
+  "id": "avocado-potato-and-grilled-chicken-salad",
+  "title": "Avocado Potato and Grilled Chicken Salad",
+  "category": "Salads",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/avocado-potato-and-grilled-chicken-salad",
+    "credit": "Produce for Better Health Foundation"
+  },
+  "serves": 4,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "3 medium",
+      "name": "red potatoes"
+    },
+    {
+      "amount": "1",
+      "name": "avocado, fresh and ripe"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "4",
+      "name": "green onions, chopped"
+    },
+    {
+      "amount": "1/2 medium",
+      "name": "red bell pepper, chopped"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "grilled chicken strips, frozen, pre-cooked, thawed and cut into bite-size pieces"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "cider vinegar"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "lemon non-fat yogurt"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Boil 3 medium red potatoes in a medium saucepan for about 20 minutes.",
+      "spoken": "Boil the potatoes for about 20 minutes, until they are just tender.",
+      "timer": {
+        "label": "Potatoes",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Run the potatoes under cold water to cool them."
+    },
+    {
+      "instruction": "Cut the potatoes into chunks."
+    },
+    {
+      "instruction": "Peel the avocado and cut it into chunks."
+    },
+    {
+      "instruction": "Coat the avocado with 1 teaspoon of lemon juice."
+    },
+    {
+      "instruction": "Whisk 1 tablespoon of olive oil and 1 tablespoon of cider vinegar in a small bowl."
+    },
+    {
+      "instruction": "Whisk in 1/2 cup of lemon yogurt and 1 teaspoon of black pepper."
+    },
+    {
+      "instruction": "Place the potatoes and avocado in a large bowl."
+    },
+    {
+      "instruction": "Add 4 chopped green onions and 1/2 medium chopped red bell pepper."
+    },
+    {
+      "instruction": "Add 8 ounces of thawed chicken strips, cut into bite-size pieces."
+    },
+    {
+      "instruction": "Add the dressing."
+    },
+    {
+      "instruction": "Gently toss everything together."
+    }
+  ]
+}

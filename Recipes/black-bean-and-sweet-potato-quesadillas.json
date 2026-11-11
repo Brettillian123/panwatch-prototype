@@ -1,0 +1,104 @@
+{
+  "id": "black-bean-and-sweet-potato-quesadillas",
+  "title": "Black Bean and Sweet Potato Quesadillas",
+  "category": "Beans and lentils",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/black-bean-and-sweet-potato-quesadillas",
+    "credit": "Bronson Wellness Center, Bronson Healthcare - Michigan"
+  },
+  "serves": 4,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "to taste",
+      "name": "nonstick cooking spray"
+    },
+    {
+      "amount": "1 small",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1 clove",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 medium",
+      "name": "sweet potato, cooked and cut into pieces"
+    },
+    {
+      "amount": "1 cup",
+      "name": "black beans, canned, low-sodium"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "paprika"
+    },
+    {
+      "amount": "1/2 large",
+      "name": "jalapeno pepper"
+    },
+    {
+      "amount": "8",
+      "name": "whole wheat tortillas"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "baby spinach"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "reduced-fat cheddar cheese"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Spray a medium pan with nonstick cooking spray."
+    },
+    {
+      "instruction": "Add 1 chopped onion and 1 clove of minced garlic and cook until soft."
+    },
+    {
+      "instruction": "Add 1 cooked sweet potato, 1 cup of black beans and 1/2 jalapeno pepper."
+    },
+    {
+      "instruction": "Add 1 1/2 teaspoons each of ground cumin and paprika."
+    },
+    {
+      "instruction": "Heat the mixture until just warm."
+    },
+    {
+      "instruction": "Spread the mixture over 4 tortillas."
+    },
+    {
+      "instruction": "Top with 1/2 cup of baby spinach and 1/4 cup of cheddar cheese."
+    },
+    {
+      "instruction": "Top each one with a second tortilla."
+    },
+    {
+      "instruction": "Heat a pan on high heat and spray it with nonstick cooking spray."
+    },
+    {
+      "instruction": "Brown 1 quesadilla for 1 minute on one side.",
+      "spoken": "Brown 1 quesadilla for about 1 minute on one side. Then do the same with the other quesadillas, one at a time.",
+      "timer": {
+        "label": "First side",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Flip it and brown 1 minute more, until the cheese is melted.",
+      "spoken": "Flip it and brown it for about 1 more minute, until the inside is warm and the cheese is melted.",
+      "timer": {
+        "label": "Second side",
+        "minutes": 1
+      }
+    }
+  ]
+}

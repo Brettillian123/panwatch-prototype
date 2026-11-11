@@ -1,0 +1,83 @@
+{
+  "id": "basic-waffles",
+  "title": "Basic Waffles",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/basic-waffles/",
+    "credit": "based.cooking contributor logianer"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "5",
+      "name": "eggs"
+    },
+    {
+      "amount": "1 cup",
+      "name": "sugar"
+    },
+    {
+      "amount": "2 packages",
+      "name": "vanilla sugar or other vanilla flavoring"
+    },
+    {
+      "amount": "9 ounces",
+      "name": "butter"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "milk"
+    },
+    {
+      "amount": "4 cups",
+      "name": "flour"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Beat 5 eggs until creamy."
+    },
+    {
+      "instruction": "Gradually add 1 cup of sugar."
+    },
+    {
+      "instruction": "Add 2 packages of vanilla sugar or other vanilla flavoring."
+    },
+    {
+      "instruction": "Mix in 9 ounces of melted butter."
+    },
+    {
+      "instruction": "Add 2 tablespoons of baking powder."
+    },
+    {
+      "instruction": "Alternate adding 1 1/2 cups of milk and 4 cups of flour, stirring constantly.",
+      "spoken": "Add the milk and flour in turns, stirring constantly. The source uses about 1 1/2 to one and three quarter cups of milk."
+    },
+    {
+      "instruction": "Mix on the highest mixer speed until the dough is smooth."
+    },
+    {
+      "instruction": "Let the dough rest for 2 minutes.",
+      "spoken": "Let the dough rest for a couple of minutes.",
+      "timer": {
+        "label": "Rest",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Turn on and preheat your waffle maker."
+    },
+    {
+      "instruction": "Pour the dough into the waffle maker."
+    },
+    {
+      "instruction": "Bake until golden brown."
+    }
+  ]
+}

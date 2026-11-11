@@ -1,0 +1,136 @@
+{
+  "id": "banana-pancakes-with-apple-topping",
+  "title": "Banana Pancakes with Apple Topping",
+  "category": "Eggs and breakfast",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/banana-pancakes-apple-topping",
+    "credit": "Pumpkin Post and Banana Beat Newsletters, University of Massachusetts Extension, Nutrition Education Program"
+  },
+  "serves": 6,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "3",
+      "name": "apples"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "sugar"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "water"
+    },
+    {
+      "amount": "2",
+      "name": "eggs"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "low-fat or fat-free milk"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "honey"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "whole wheat flour"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "2",
+      "name": "bananas"
+    },
+    {
+      "amount": "to taste",
+      "name": "non-stick cooking spray"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Wash 3 apples."
+    },
+    {
+      "instruction": "Core the apples and slice them thinly, with the peel still on."
+    },
+    {
+      "instruction": "Mix the apples with 3 tablespoons sugar, 1 teaspoon cinnamon and 1/4 cup water."
+    },
+    {
+      "instruction": "Add the apple mixture to a skillet.",
+      "spoken": "Add the apple mixture to a skillet and cook for 10 minutes.",
+      "watch": {
+        "ingredient": "apples",
+        "timerLabel": "Apples",
+        "timerMinutes": 10
+      }
+    },
+    {
+      "instruction": "Set the apples aside while you make the pancakes."
+    },
+    {
+      "instruction": "Beat 2 eggs in a large bowl."
+    },
+    {
+      "instruction": "Beat in 1 1/2 cups of milk, 1 tablespoon of honey and 3 tablespoons of oil."
+    },
+    {
+      "instruction": "Add 3/4 cup of whole wheat flour, 3/4 cup of flour and 2 teaspoons of baking powder."
+    },
+    {
+      "instruction": "Slice 2 bananas and add them to the batter."
+    },
+    {
+      "instruction": "Coat a large non-stick pan or griddle with non-stick cooking spray."
+    },
+    {
+      "instruction": "Warm the pan over medium heat for 2 minutes.",
+      "timer": {
+        "label": "Warm",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Spoon 1/4 cup of batter onto the pan for each pancake.",
+      "spoken": "Spoon 1/4 cup of batter onto the pan for each pancake. You can use more or less batter, depending on the size you want."
+    },
+    {
+      "instruction": "Cook until the tops are bubbly and the edges are dry."
+    },
+    {
+      "instruction": "Flip the pancakes and cook 2 minutes, until golden on both sides.",
+      "spoken": "Flip the pancakes and cook for 2 to three minutes, until they are golden on both sides.",
+      "timer": {
+        "label": "Flip",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Put the pancakes on a platter and keep them warm."
+    },
+    {
+      "instruction": "Cook the rest of the batter the same way, using more cooking spray as needed."
+    },
+    {
+      "instruction": "Serve the pancakes topped with the cooked apples."
+    }
+  ]
+}

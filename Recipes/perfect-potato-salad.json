@@ -1,0 +1,102 @@
+{
+  "id": "perfect-potato-salad",
+  "title": "Perfect Potato Salad",
+  "category": "Salads",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/perfect-potato-salad/",
+    "credit": "based.cooking contributor joel-maxuel"
+  },
+  "serves": 8,
+  "totalMinutes": 85,
+  "ingredients": [
+    {
+      "amount": "5",
+      "name": "potatoes, peeled and cut into bite-size chunks"
+    },
+    {
+      "amount": "1 cup",
+      "name": "plain yogurt"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "mayonnaise"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "prepared horseradish"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "4",
+      "name": "radishes, thinly sliced"
+    },
+    {
+      "amount": "2 stalks",
+      "name": "celery, diced"
+    },
+    {
+      "amount": "2 large",
+      "name": "green onions, thinly sliced"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "fresh parsley, chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "fresh dill, chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Place 5 potatoes in a pot and just cover them with water.",
+      "spoken": "Place the 5 peeled potatoes, cut into bite-size chunks, in a pot and just cover them with water."
+    },
+    {
+      "instruction": "Partly cover the pot and bring it to a boil."
+    },
+    {
+      "instruction": "Lower the heat and simmer, partly covered, for 5 minutes.",
+      "spoken": "Simmer, partly covered, for 5 minutes, just until the potatoes are tender. Don't overcook them.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Drain the potatoes well."
+    },
+    {
+      "instruction": "Stir 1 cup of plain yogurt with 1/2 cup of mayonnaise in a large bowl."
+    },
+    {
+      "instruction": "Stir in 1 tablespoon of horseradish, salt and pepper."
+    },
+    {
+      "instruction": "Stir in 4 sliced radishes and 2 stalks of diced celery."
+    },
+    {
+      "instruction": "Stir in 2 sliced green onions, 1/4 cup of parsley and 1/4 cup of dill."
+    },
+    {
+      "instruction": "Add the warm potatoes and stir to combine."
+    },
+    {
+      "instruction": "Chill in the refrigerator for at least 1 hour.",
+      "spoken": "Chill in the refrigerator for at least 1 hour. Then taste and adjust the seasonings if you like.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 60
+      }
+    }
+  ]
+}

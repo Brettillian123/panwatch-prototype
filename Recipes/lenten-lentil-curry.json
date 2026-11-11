@@ -1,0 +1,99 @@
+{
+  "id": "lenten-lentil-curry",
+  "title": "Lenten Lentil Curry",
+  "category": "Beans and lentils",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/lenten-lentil-curry/",
+    "credit": "based.cooking contributor sinan-kurtulmuş"
+  },
+  "serves": 2,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "7 ounces",
+      "name": "green lentils"
+    },
+    {
+      "amount": "4 cups",
+      "name": "water"
+    },
+    {
+      "amount": "1 3/4 ounces",
+      "name": "vermicelli"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "curry powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "paprika"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground sumac"
+    },
+    {
+      "amount": "1 1/2-2 teaspoons",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "2 cups",
+      "name": "boiling water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Rinse 7 ounces of green lentils well and drain them."
+    },
+    {
+      "instruction": "Put the lentils in a pot with 4 cups of water."
+    },
+    {
+      "instruction": "Bring the lentils to a boil."
+    },
+    {
+      "instruction": "Boil gently for 15 minutes.",
+      "spoken": "Boil gently for 15 to twenty minutes.",
+      "timer": {
+        "label": "Boil",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Drain the lentils."
+    },
+    {
+      "instruction": "Add 1 3/4 ounces of vermicelli to the pot."
+    },
+    {
+      "instruction": "Add 1 teaspoon of curry powder and 1/2 teaspoon of paprika."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of cinnamon and 1/2 teaspoon of ground sumac."
+    },
+    {
+      "instruction": "Add 1 1/2 to 2 teaspoons of salt and a little ground black pepper."
+    },
+    {
+      "instruction": "Add 2 cups of boiling water."
+    },
+    {
+      "instruction": "Simmer for 10 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 10
+      }
+    }
+  ]
+}

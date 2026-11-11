@@ -1,0 +1,67 @@
+{
+  "id": "baked-potatoes-primavera",
+  "title": "Baked Potatoes Primavera",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/baked-potatoes-primavera",
+    "credit": "Food and Health Communications, Inc."
+  },
+  "serves": 4,
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "4 medium",
+      "name": "potatoes"
+    },
+    {
+      "amount": "4 cups",
+      "name": "frozen mixed vegetables"
+    },
+    {
+      "amount": "1 cup",
+      "name": "non-fat sour cream"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "dried oregano"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "dried basil"
+    },
+    {
+      "amount": "to taste",
+      "name": "black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Pierce each of the 4 potatoes several times with a fork."
+    },
+    {
+      "instruction": "Microwave one potato on high for 3 minutes, until tender.",
+      "spoken": "Microwave each potato on high for about 3 to four minutes, until tender. Do this for each of the 4 potatoes.",
+      "timer": {
+        "label": "Microwave",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Steam 4 cups of frozen mixed vegetables until hot."
+    },
+    {
+      "instruction": "Mix 1 cup of sour cream, 1/2 teaspoon each of dried oregano and basil, and pepper."
+    },
+    {
+      "instruction": "Split the potatoes down the center."
+    },
+    {
+      "instruction": "Fill the potatoes with the steamed vegetables."
+    },
+    {
+      "instruction": "Top the potatoes with the sour cream and serve hot."
+    }
+  ]
+}

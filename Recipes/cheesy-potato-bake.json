@@ -1,0 +1,110 @@
+{
+  "id": "cheesy-potato-bake",
+  "title": "Cheesy Potato Bake",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/cheesy-potatoe-bake/",
+    "credit": "based.cooking contributor Kyle Johnson and Sabina Mortensen"
+  },
+  "serves": 4,
+  "totalMinutes": 80,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "butter, plus more for the dish"
+    },
+    {
+      "amount": "1 1/3 pounds",
+      "name": "potatoes"
+    },
+    {
+      "amount": "9 ounces",
+      "name": "cheddar cheese"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "flour"
+    },
+    {
+      "amount": "1 1/4 cups",
+      "name": "milk"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "bacon"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Butter a deep baking dish."
+    },
+    {
+      "instruction": "Peel and thinly slice 1 1/3 pounds of potatoes."
+    },
+    {
+      "instruction": "Grate 9 ounces of cheddar cheese."
+    },
+    {
+      "instruction": "Melt 2 tablespoons of butter in a pot."
+    },
+    {
+      "instruction": "Slowly add 2 tablespoons of flour, stirring all the time."
+    },
+    {
+      "instruction": "Cook for 2 minutes, until bubbly.",
+      "spoken": "Cook for 2 minutes, or until it is bubbly.",
+      "timer": {
+        "label": "Bubbly",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Take the pot off the heat."
+    },
+    {
+      "instruction": "Slowly add 1 1/4 cups of milk, stirring all the time."
+    },
+    {
+      "instruction": "Add 3/4 of the cheese to the sauce."
+    },
+    {
+      "instruction": "Add salt and pepper to taste."
+    },
+    {
+      "instruction": "Put a thin layer of potatoes in the baking dish."
+    },
+    {
+      "instruction": "Add a layer of cheese sauce."
+    },
+    {
+      "instruction": "Add a layer of bacon."
+    },
+    {
+      "instruction": "Repeat the layers until there are no more potatoes or sauce."
+    },
+    {
+      "instruction": "Sprinkle the remaining 1/4 of the cheese on top."
+    },
+    {
+      "instruction": "Bake for 45 minutes.",
+      "spoken": "Bake for 45 minutes. If it starts to brown too much, cover it with foil.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 45
+      }
+    }
+  ]
+}

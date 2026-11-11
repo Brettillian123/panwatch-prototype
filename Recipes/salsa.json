@@ -1,0 +1,76 @@
+{
+  "id": "salsa",
+  "title": "Salsa",
+  "category": "Sauces and dips",
+  "method": "noHeat",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/salsa/",
+    "credit": "based.cooking contributor Lars Henrik Bolstad"
+  },
+  "serves": 12,
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "1 1/4 pounds",
+      "name": "tomatoes"
+    },
+    {
+      "amount": "1 can",
+      "name": "canned tomatoes, 14.5 ounces"
+    },
+    {
+      "amount": "1",
+      "name": "green onion"
+    },
+    {
+      "amount": "1",
+      "name": "red onion"
+    },
+    {
+      "amount": "1",
+      "name": "jalapeno pepper"
+    },
+    {
+      "amount": "1 clove",
+      "name": "garlic"
+    },
+    {
+      "amount": "1 handful",
+      "name": "fresh cilantro"
+    },
+    {
+      "amount": "1/2",
+      "name": "lime, juice squeezed, optional"
+    },
+    {
+      "amount": "1",
+      "name": "chili pepper, optional"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground cumin, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 1 1/4 pounds of tomatoes and 1 can of canned tomatoes to a food processor."
+    },
+    {
+      "instruction": "Add 1 green onion, 1 red onion, 1 jalapeno pepper and 1 clove of garlic."
+    },
+    {
+      "instruction": "Add 1 handful of fresh cilantro."
+    },
+    {
+      "instruction": "Add the juice of 1/2 lime, 1 chili pepper and 1/4 teaspoon of cumin, if you like."
+    },
+    {
+      "instruction": "Pulse in short bursts until the salsa is as chunky as you like."
+    },
+    {
+      "instruction": "Refrigerate the salsa until you serve it, for up to 1 week.",
+      "spoken": "Refrigerate the salsa until you serve it. It keeps for up to 1 week. This makes about 14 servings."
+    }
+  ]
+}

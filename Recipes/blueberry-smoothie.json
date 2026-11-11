@@ -1,0 +1,54 @@
+{
+  "id": "blueberry-smoothie",
+  "title": "Blueberry Smoothie",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/blueberry-smoothie/",
+    "credit": "based.cooking contributor riley-ross"
+  },
+  "serves": 1,
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "blueberries"
+    },
+    {
+      "amount": "1 cup",
+      "name": "whole milk"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "whole Greek yogurt"
+    },
+    {
+      "amount": "to taste",
+      "name": "honey, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "oats or granola, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "vanilla, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1 cup of blueberries in a blender."
+    },
+    {
+      "instruction": "Add 1 cup of whole milk and 1/2 cup of whole Greek yogurt."
+    },
+    {
+      "instruction": "Add a dab of honey, a drop or two of vanilla and some oats or granola if you like."
+    },
+    {
+      "instruction": "Blend for about 10 seconds.",
+      "spoken": "Blend for about 10 seconds. This makes 1 to 2 servings."
+    }
+  ]
+}

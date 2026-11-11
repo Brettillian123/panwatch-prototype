@@ -1,0 +1,127 @@
+{
+  "id": "crab-cakes",
+  "title": "Crab Cakes",
+  "category": "Fish",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACrab_Cakes",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "crabmeat or imitation crabmeat"
+    },
+    {
+      "amount": "1 cup",
+      "name": "Italian-style breadcrumbs"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "mayonnaise"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground mustard"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "Worcestershire sauce"
+    },
+    {
+      "amount": "1",
+      "name": "egg"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "1 cup",
+      "name": "mayonnaise, for the sauce"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "Worcestershire sauce, for the sauce"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "capers, chopped"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1",
+      "name": "lemon, juiced"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "lemon zest"
+    },
+    {
+      "amount": "3 cups",
+      "name": "vegetable oil"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 1 pound of crabmeat and 1 cup of breadcrumbs to a medium bowl."
+    },
+    {
+      "instruction": "Add 1/4 cup mayonnaise, 1 teaspoon ground mustard and 1 teaspoon Worcestershire sauce."
+    },
+    {
+      "instruction": "Add 1 egg and salt and pepper to taste, then mix well."
+    },
+    {
+      "instruction": "Mix 1 cup mayonnaise, 2 teaspoons Worcestershire sauce and 2 teaspoons capers.",
+      "spoken": "In a separate bowl, mix 1 cup of mayonnaise, 2 teaspoons of Worcestershire sauce and 2 teaspoons of chopped capers. This is the sauce."
+    },
+    {
+      "instruction": "Mix in 1 teaspoon garlic, the juice of 1 lemon and 1/2 teaspoon lemon zest."
+    },
+    {
+      "instruction": "Shape the crab cake mix into 3-inch patties, about 2 per serving.",
+      "spoken": "Shape the crab cake mix into 3-inch patties, about 2 per serving, or smaller for appetizers."
+    },
+    {
+      "instruction": "Heat 3 cups of vegetable oil in a skillet."
+    },
+    {
+      "instruction": "Add the crab cakes to the hot oil.",
+      "watch": {
+        "ingredient": "crab cakes",
+        "timerLabel": "Crab cakes",
+        "timerMinutes": 3,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Flip and cook 3 more minutes, until golden brown.",
+      "spoken": "Flip the crab cakes and cook 3 to four more minutes, until golden brown.",
+      "timer": {
+        "label": "Second side",
+        "minutes": 3
+      },
+      "cue": {
+        "timerLabel": "Crab cakes",
+        "secondsLeft": 0
+      }
+    },
+    {
+      "instruction": "Remove the crab cakes and drain them on paper towels."
+    },
+    {
+      "instruction": "Top the crab cakes with the sauce."
+    }
+  ]
+}

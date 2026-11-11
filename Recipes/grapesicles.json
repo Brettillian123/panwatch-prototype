@@ -1,0 +1,39 @@
+{
+  "id": "grapesicles",
+  "title": "Grapesicles",
+  "category": "Snacks and sides",
+  "method": "noHeat",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/grapesicles",
+    "credit": "NHLBI, NIH; Deliciously Healthy Family Meals"
+  },
+  "serves": 4,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "48",
+      "name": "green seedless grapes, rinsed"
+    },
+    {
+      "amount": "48",
+      "name": "red seedless grapes, rinsed"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Thread 6 grapes, alternating green and red, onto each wooden skewer.",
+      "spoken": "Thread 6 grapes onto each 6-inch wooden skewer, alternating the green and red grapes. You will use 48 green and 48 red grapes in all."
+    },
+    {
+      "instruction": "Freeze the skewers for 30 minutes, until frozen.",
+      "timer": {
+        "label": "Freeze",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Serve the grapesicles right away."
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "id": "lenten-chili",
+  "title": "Lenten Chili",
+  "category": "Beans and lentils",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/lenten-chili/",
+    "credit": "based.cooking contributor yorge-z"
+  },
+  "serves": 4,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "1 large",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "3 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "2-3 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 large can",
+      "name": "tomato sauce, 29 ounces"
+    },
+    {
+      "amount": "1 can",
+      "name": "diced tomatoes, 15 ounces"
+    },
+    {
+      "amount": "4 cans",
+      "name": "kidney beans, 15 ounces each"
+    },
+    {
+      "amount": "1/2 can",
+      "name": "sweet corn"
+    },
+    {
+      "amount": "1 cup",
+      "name": "cooked white or brown rice"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cumin"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "smoked paprika"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "onion powder"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "chili powder"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "crushed red pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Chop 1 large onion and mince 3 cloves of garlic."
+    },
+    {
+      "instruction": "Heat 2 to 3 tablespoons of olive oil in a large tall pot over medium-low heat."
+    },
+    {
+      "instruction": "Add the onion and stir constantly for 5 minutes, until it starts to brown.",
+      "spoken": "Add the chopped onion to the pot and stir constantly for 5 to ten minutes, until it begins to brown.",
+      "watch": {
+        "ingredient": "onion",
+        "timerLabel": "Onion",
+        "timerMinutes": 5
+      }
+    },
+    {
+      "instruction": "Add the garlic near the end of the onion's browning, and cook 1 minute.",
+      "spoken": "Add the minced garlic near the end of the onion's browning, and cook for 1 to two minutes.",
+      "watch": {
+        "ingredient": "garlic",
+        "timerLabel": "Garlic",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add the 29-ounce can of tomato sauce and the 15-ounce can of diced tomatoes."
+    },
+    {
+      "instruction": "Add 4 cans of kidney beans, 1/2 can of sweet corn and 1 cup of cooked rice."
+    },
+    {
+      "instruction": "Turn up the heat to medium."
+    },
+    {
+      "instruction": "Add 1 teaspoon each of cumin, smoked paprika, garlic powder and onion powder."
+    },
+    {
+      "instruction": "Add 1 tablespoon each of chili powder and crushed red pepper."
+    },
+    {
+      "instruction": "Taste the chili and adjust the seasoning."
+    },
+    {
+      "instruction": "Cook for 20 minutes, stirring now and then.",
+      "spoken": "Cook for 20 to thirty minutes, stirring now and then.",
+      "timer": {
+        "label": "Chili",
+        "minutes": 20
+      }
+    }
+  ]
+}

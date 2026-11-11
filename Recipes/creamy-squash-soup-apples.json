@@ -1,0 +1,92 @@
+{
+  "id": "creamy-squash-soup-apples",
+  "title": "Creamy Squash Soup with Shredded Apples",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/creamy-squash-soup-shredded-apples",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 4,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "2 boxes",
+      "name": "frozen pureed winter (butternut) squash, 16 ounces each"
+    },
+    {
+      "amount": "2 medium",
+      "name": "apples, such as Golden Delicious or Gala"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "pumpkin pie spice"
+    },
+    {
+      "amount": "2 cans",
+      "name": "fat-free evaporated milk, 12 ounces each"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "ground black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Place the 2 boxes of frozen squash in a microwave-safe dish and cover it loosely."
+    },
+    {
+      "instruction": "Microwave on medium power for 5 minutes.",
+      "spoken": "Microwave on medium power for 5 to ten minutes, until the squash is mostly thawed.",
+      "timer": {
+        "label": "Thaw",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Peel 2 medium apples and shred them with a grater or food processor.",
+      "spoken": "Peel the apples, then shred them with a grater or food processor. Or chop them finely into thin strips."
+    },
+    {
+      "instruction": "Set aside 1/4 cup of the shredded apples."
+    },
+    {
+      "instruction": "Warm 1 tablespoon of olive oil in a 4-quart saucepan over medium heat."
+    },
+    {
+      "instruction": "Add all but 1/4 cup of the apples to the pan.",
+      "spoken": "Add the apples and cook and stir for about 5 minutes, until they soften.",
+      "watch": {
+        "ingredient": "apples",
+        "timerLabel": "Apples",
+        "timerMinutes": 5,
+        "minimumChange": 0.02
+      }
+    },
+    {
+      "instruction": "Stir in the thawed squash and 1/2 teaspoon of pumpkin pie spice."
+    },
+    {
+      "instruction": "Add 2 cans of evaporated milk, about 1/2 cup at a time, stirring after each."
+    },
+    {
+      "instruction": "Season with 1/4 teaspoon of salt and 1/8 teaspoon of pepper."
+    },
+    {
+      "instruction": "Cook and stir over high heat just until the soup is about to boil."
+    },
+    {
+      "instruction": "Ladle into bowls and top each with 1 tablespoon of the saved apples.",
+      "spoken": "Ladle the soup into bowls. Top each with a tablespoon of the apples you set aside. Sprinkle with more pumpkin pie spice if you like."
+    }
+  ]
+}

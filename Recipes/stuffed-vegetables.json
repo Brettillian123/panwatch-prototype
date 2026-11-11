@@ -1,0 +1,84 @@
+{
+  "id": "stuffed-vegetables",
+  "title": "Stuffed Vegetables",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/stuffed-vegetables/",
+    "credit": "based.cooking contributor pestanzul"
+  },
+  "serves": 2,
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "1 medium",
+      "name": "tomato"
+    },
+    {
+      "amount": "1",
+      "name": "sweet pepper"
+    },
+    {
+      "amount": "1",
+      "name": "zucchini"
+    },
+    {
+      "amount": "1",
+      "name": "eggplant, long"
+    },
+    {
+      "amount": "to taste",
+      "name": "parsley, fresh is best, dried is fine"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt, optional"
+    },
+    {
+      "amount": "1-1 1/2 cups",
+      "name": "grated bread"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "grated Parmigiano cheese"
+    },
+    {
+      "amount": "to taste",
+      "name": "extra virgin olive oil"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Cut 1 tomato, 1 sweet pepper, 1 zucchini and 1 eggplant in half lengthwise.",
+      "spoken": "Cut the vegetables in half on the long side. You may remove the seeds and some of the pulp from the tomato and the zucchini, but not too much, or you will get just burnt vegetable skin."
+    },
+    {
+      "instruction": "Place the vegetables on baking paper in a baking tray."
+    },
+    {
+      "instruction": "Sprinkle parsley over the vegetables."
+    },
+    {
+      "instruction": "Sprinkle on a little salt, if you want."
+    },
+    {
+      "instruction": "Cover the vegetables with 1 to 1 1/2 cups of grated bread."
+    },
+    {
+      "instruction": "Sprinkle 1/2 cup of Parmigiano cheese all over the bread."
+    },
+    {
+      "instruction": "Drizzle olive oil over the bread until it is all wet.",
+      "spoken": "Add enough olive oil to wet all the bread. If you don't use enough oil, the grated bread won't stick together and may burn."
+    },
+    {
+      "instruction": "Bake for 45 minutes in the oven preheated to 340 °F.",
+      "spoken": "Bake for about 45 minutes in an oven that has been preheated to 340 °F.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 45
+      }
+    }
+  ]
+}

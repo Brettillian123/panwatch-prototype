@@ -1,0 +1,99 @@
+{
+  "id": "baked-tilapia-with-tomatoes",
+  "title": "Baked Tilapia with Tomatoes",
+  "category": "Fish",
+  "method": "oven",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/baked-tilapia-tomatoes",
+    "credit": "NHLBI, NIH; Delicious Heart Healthy Latino Recipes"
+  },
+  "serves": 4,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "to taste",
+      "name": "cooking spray"
+    },
+    {
+      "amount": "4",
+      "name": "tilapia fillets"
+    },
+    {
+      "amount": "4 medium",
+      "name": "tomatoes, peeled and chopped"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "thyme"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "pitted black olives, diced"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "red pepper flakes"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "red onion, diced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "lime juice"
+    },
+    {
+      "amount": "to taste",
+      "name": "parsley"
+    },
+    {
+      "amount": "to taste",
+      "name": "lemon wedges"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 400 °F."
+    },
+    {
+      "instruction": "Spray a baking dish with cooking spray."
+    },
+    {
+      "instruction": "Arrange 4 tilapia fillets in the dish so they do not overlap.",
+      "spoken": "Arrange 4 tilapia fillets in the baking dish. The dish should be large enough that the fillets do not overlap."
+    },
+    {
+      "instruction": "Mix 4 chopped tomatoes, 2 tablespoons of olive oil and 1 1/2 teaspoons of thyme.",
+      "spoken": "In a bowl, mix 4 chopped tomatoes, 2 tablespoons of olive oil and 1 1/2 teaspoons of thyme."
+    },
+    {
+      "instruction": "Mix in 1/4 cup of diced olives and 1/4 teaspoon of red pepper flakes."
+    },
+    {
+      "instruction": "Mix in 2 cloves of garlic, 1/2 cup of diced red onion and 1 tablespoon of lime juice."
+    },
+    {
+      "instruction": "Spoon the tomato mixture evenly over the fillets."
+    },
+    {
+      "instruction": "Bake uncovered for 15 minutes, until the fish flakes easily with a fork.",
+      "spoken": "Bake uncovered for 15 to twenty minutes, until the fish flakes easily with a fork.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Top with parsley and serve with lemon wedges."
+    }
+  ]
+}

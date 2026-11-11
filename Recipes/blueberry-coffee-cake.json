@@ -1,0 +1,118 @@
+{
+  "id": "blueberry-coffee-cake",
+  "title": "Blueberry Coffee Cake",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/blueberry-coffee-cake",
+    "credit": "California’s Chefs Cook Lean, Adapted from Lo's Blueberry Coffee Cake, California Department of Health Services"
+  },
+  "serves": 8,
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "egg"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "non-fat milk"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "yogurt, non-fat vanilla"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "canola oil"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "lemon peel, grated, yellow only"
+    },
+    {
+      "amount": "2 cups",
+      "name": "flour, all purpose"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "sugar, for the batter"
+    },
+    {
+      "amount": "4 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "blueberries, fresh or frozen unsweetened"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "sugar, for the topping"
+    },
+    {
+      "amount": "1/8 cup",
+      "name": "walnuts, coarsely chopped"
+    },
+    {
+      "amount": "to taste",
+      "name": "nonstick cooking spray"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 400 °F with the rack in the center."
+    },
+    {
+      "instruction": "Whisk 1 egg, 1/2 cup of milk and 1/2 cup of vanilla yogurt in a large bowl."
+    },
+    {
+      "instruction": "Whisk in 3 tablespoons of canola oil and 2 teaspoons of lemon peel."
+    },
+    {
+      "instruction": "Sift 2 cups of flour and 1/2 cup of sugar onto the liquid ingredients."
+    },
+    {
+      "instruction": "Sift 4 teaspoons of baking powder and 1/2 teaspoon of salt onto the liquid."
+    },
+    {
+      "instruction": "Stir very lightly with a fork, just until everything is combined."
+    },
+    {
+      "instruction": "Gently fold in 1 1/2 cups of blueberries."
+    },
+    {
+      "instruction": "Pour the batter into an 8- or 9-inch baking pan coated with nonstick cooking spray."
+    },
+    {
+      "instruction": "Mix 3 tablespoons of sugar, 1/4 teaspoon of cinnamon and 1/8 cup of walnuts."
+    },
+    {
+      "instruction": "Sprinkle the topping evenly over the batter."
+    },
+    {
+      "instruction": "Bake for 30 minutes, until the top is lightly browned.",
+      "spoken": "Bake for 30 to thirty-five minutes, until the top is lightly browned and a wooden toothpick in the center comes out clean.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Cool the cake in the pan on a wire rack for at least 10 minutes.",
+      "timer": {
+        "label": "Cool",
+        "minutes": 10
+      }
+    }
+  ]
+}

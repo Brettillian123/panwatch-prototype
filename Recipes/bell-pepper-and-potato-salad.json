@@ -1,0 +1,88 @@
+{
+  "id": "bell-pepper-and-potato-salad",
+  "title": "Bell Pepper and Potato Salad",
+  "category": "Salads",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/bell-pepper-and-potato-salad",
+    "credit": "California Department of Health Services, California Children’s 5-A-Day Power Play Campaign"
+  },
+  "serves": 6,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "6 small",
+      "name": "red potatoes, quartered"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "Italian dressing, fat-free"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "mustard, spicy brown"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "fresh parsley, chopped"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "garlic salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "green bell pepper, chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "red bell pepper, chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "green onion, sliced"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 6 small quartered red potatoes to a pot of boiling water over high heat.",
+      "spoken": "Cook the potatoes for about 10 minutes, until they are tender.",
+      "watch": {
+        "ingredient": "potatoes",
+        "timerLabel": "Potatoes",
+        "timerMinutes": 10,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Drain the potatoes well and let them cool."
+    },
+    {
+      "instruction": "Place the potatoes in a medium bowl."
+    },
+    {
+      "instruction": "Mix 1/2 cup of Italian dressing and 1 1/2 teaspoons of mustard in a small bowl."
+    },
+    {
+      "instruction": "Mix in 1 tablespoon of parsley, 1/2 teaspoon of garlic salt and 1/4 teaspoon of pepper."
+    },
+    {
+      "instruction": "Pour the mixture over the potatoes and toss well."
+    },
+    {
+      "instruction": "Carefully stir in 1/2 cup each of chopped green and red bell pepper."
+    },
+    {
+      "instruction": "Carefully stir in 1/2 cup of sliced green onion."
+    },
+    {
+      "instruction": "Cover the salad and chill until ready to serve."
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "id": "pineapple-lentil-curry",
+  "title": "Pineapple Lentil Curry",
+  "category": "Beans and lentils",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/pineapple-lentil-curry/",
+    "credit": "based.cooking contributor haywalk"
+  },
+  "serves": 6,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1",
+      "name": "onion, diced"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "curry powder"
+    },
+    {
+      "amount": "1 cup",
+      "name": "dried red lentils, rinsed"
+    },
+    {
+      "amount": "1 can",
+      "name": "diced tomatoes, 14-ounce can"
+    },
+    {
+      "amount": "1 can",
+      "name": "pineapple chunks, drained"
+    },
+    {
+      "amount": "1 can",
+      "name": "coconut milk"
+    },
+    {
+      "amount": "2 cups",
+      "name": "vegetable broth"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1 tablespoon of olive oil in a large pot over medium heat."
+    },
+    {
+      "instruction": "Add 1 diced onion and 2 cloves of minced garlic.",
+      "spoken": "Add 1 diced onion and 2 cloves of minced garlic. Cook for about 5 minutes, until soft.",
+      "watch": {
+        "ingredient": "onion",
+        "timerLabel": "Onion",
+        "timerMinutes": 5,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Stir in 1 tablespoon of curry powder and cook for 1 minute.",
+      "spoken": "Stir in 1 tablespoon of curry powder and cook for about 1 minute, until it smells fragrant.",
+      "watch": {
+        "ingredient": "curry powder",
+        "timerLabel": "Curry",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 1 cup of red lentils, 1 can of diced tomatoes and 1 can of pineapple chunks."
+    },
+    {
+      "instruction": "Add 1 can of coconut milk and 2 cups of vegetable broth, then stir well."
+    },
+    {
+      "instruction": "Bring to a boil."
+    },
+    {
+      "instruction": "Lower the heat, cover and simmer for 25 minutes, stirring now and then.",
+      "spoken": "Lower the heat, cover and simmer for 25 to thirty minutes, stirring now and then, until the lentils are soft.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 25
+      }
+    },
+    {
+      "instruction": "Season with salt and pepper to taste."
+    }
+  ]
+}

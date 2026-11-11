@@ -1,0 +1,48 @@
+{
+  "id": "oat-milk",
+  "title": "Oat Milk",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/oat-milk/",
+    "credit": "based.cooking contributor machocam"
+  },
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "4 1/4 cups",
+      "name": "cold water"
+    },
+    {
+      "amount": "1 cup",
+      "name": "oats"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "peanut butter"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Chill 4 1/4 cups of water in the fridge until it is very cold.",
+      "spoken": "Chill 4 1/4 cups of water in the fridge until it is very cold. You can also add ice to make it colder."
+    },
+    {
+      "instruction": "Put the cold water and 1 cup of oats in a blender."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of salt and 2 teaspoons of peanut butter."
+    },
+    {
+      "instruction": "Blend on high speed for 15 seconds."
+    },
+    {
+      "instruction": "Pour the oat milk through cheesecloth."
+    }
+  ]
+}

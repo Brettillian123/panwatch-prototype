@@ -1,0 +1,60 @@
+{
+  "id": "ambrosia-fruit-salad",
+  "title": "Ambrosia Fruit Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAmbrosia_Fruit_Salad",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 70,
+  "ingredients": [
+    {
+      "amount": "4 cups",
+      "name": "mandarin oranges, drained"
+    },
+    {
+      "amount": "2 cans",
+      "name": "pineapple, drained"
+    },
+    {
+      "amount": "2 cups",
+      "name": "grapes"
+    },
+    {
+      "amount": "3 cups",
+      "name": "whipped cream"
+    },
+    {
+      "amount": "1 cup",
+      "name": "sour cream"
+    },
+    {
+      "amount": "6-8 cups",
+      "name": "miniature marshmallows"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 4 cups mandarin oranges, 2 cans pineapple and 2 cups grapes in a large bowl."
+    },
+    {
+      "instruction": "Fold in 3 cups of whipped cream and 1 cup of sour cream."
+    },
+    {
+      "instruction": "Fold in 6 to 8 cups of miniature marshmallows."
+    },
+    {
+      "instruction": "Chill for 1 hour.",
+      "spoken": "Chill for at least 1 hour.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Stir again before serving."
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "baked-chicken-with-vegetables",
+  "title": "Baked Chicken with Vegetables",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/baked-chicken-vegetables",
+    "credit": "Go With Chicken, University of Wisconsin Cooperative Extension Service, Eau Claire County"
+  },
+  "serves": 6,
+  "totalMinutes": 75,
+  "ingredients": [
+    {
+      "amount": "4 medium",
+      "name": "potatoes, sliced"
+    },
+    {
+      "amount": "6 medium",
+      "name": "carrots, sliced"
+    },
+    {
+      "amount": "1 large",
+      "name": "onion, quartered"
+    },
+    {
+      "amount": "1",
+      "name": "whole chicken, raw, cut into pieces, skin removed"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "thyme"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 400 °F."
+    },
+    {
+      "instruction": "Place 4 sliced potatoes, 6 sliced carrots and 1 quartered onion in a roasting pan."
+    },
+    {
+      "instruction": "Put the pieces of 1 whole chicken on top of the vegetables."
+    },
+    {
+      "instruction": "Mix 1/2 cup of water, 1 teaspoon of thyme and 1/4 teaspoon of ground black pepper."
+    },
+    {
+      "instruction": "Pour the water mixture over the chicken and vegetables."
+    },
+    {
+      "instruction": "Bake for 1 hour, until browned and tender.",
+      "spoken": "Bake for 1 hour or more, until the chicken and vegetables are browned and tender.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Spoon the juices over the chicken once or twice while it bakes."
+    }
+  ]
+}

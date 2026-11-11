@@ -1,0 +1,90 @@
+{
+  "id": "chicken-pasta-casserole",
+  "title": "Chicken Pasta Casserole",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/chicken-pasta-casserole/",
+    "credit": "based.cooking contributor miika-nissi"
+  },
+  "serves": 4,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "24 ounces",
+      "name": "raw chicken breast, diced"
+    },
+    {
+      "amount": "to taste",
+      "name": "oil"
+    },
+    {
+      "amount": "16 ounces",
+      "name": "macaroni"
+    },
+    {
+      "amount": "16 ounces",
+      "name": "diced tomatoes"
+    },
+    {
+      "amount": "9 ounces",
+      "name": "mozzarella cheese, shredded"
+    },
+    {
+      "amount": "1 1/2 ounces",
+      "name": "parmesan cheese, grated"
+    },
+    {
+      "amount": "1 1/2 ounces",
+      "name": "bread crumbs"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "butter"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 400 °F."
+    },
+    {
+      "instruction": "Dice 24 ounces of raw chicken breast."
+    },
+    {
+      "instruction": "Cook the chicken in a pan with oil until no pink is left."
+    },
+    {
+      "instruction": "Cook 16 ounces of macaroni in boiling water for 7 minutes.",
+      "spoken": "Cook the macaroni for a few minutes less than usual, about 7 to eight minutes.",
+      "timer": {
+        "label": "Pasta",
+        "minutes": 7
+      }
+    },
+    {
+      "instruction": "Add the chicken and the pasta to a casserole dish."
+    },
+    {
+      "instruction": "Mix the chicken and pasta together."
+    },
+    {
+      "instruction": "Mix in 16 ounces of diced tomatoes and 9 ounces of shredded mozzarella cheese."
+    },
+    {
+      "instruction": "Top with 1 1/2 ounces of parmesan cheese and 1 1/2 ounces of bread crumbs.",
+      "spoken": "Top with the parmesan cheese and bread crumbs, for an even coat. Add more mozzarella and parmesan if you like a lot of cheese."
+    },
+    {
+      "instruction": "Dot the top evenly with 1 tablespoon of butter."
+    },
+    {
+      "instruction": "Bake for 22 minutes, until the top looks golden.",
+      "spoken": "Bake for 22 to twenty-five minutes, until the top looks golden.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 22
+      }
+    }
+  ]
+}

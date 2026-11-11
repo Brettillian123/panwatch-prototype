@@ -1,0 +1,67 @@
+{
+  "id": "baked-lemon-thyme-halibut",
+  "title": "Baked Lemon Thyme Halibut",
+  "category": "Fish",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABaked_Lemon_Thyme_Halibut",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "serves": 5,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "halibut fillet"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "extra-virgin olive oil"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "fish stock"
+    },
+    {
+      "amount": "4 sprigs",
+      "name": "fresh thyme"
+    },
+    {
+      "amount": "1",
+      "name": "lemon, sliced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 400 °F."
+    },
+    {
+      "instruction": "Place 1 pound of halibut fillet in the center of a baking pan."
+    },
+    {
+      "instruction": "Drizzle the fish with 1 tablespoon of olive oil and 1/4 cup of fish stock."
+    },
+    {
+      "instruction": "Add 4 sprigs of thyme and the slices of 1 lemon on top of the fish."
+    },
+    {
+      "instruction": "Sprinkle the fish with 1 tablespoon of black pepper."
+    },
+    {
+      "instruction": "Cover the pan with parchment paper and foil."
+    },
+    {
+      "instruction": "Bake on a sheet pan for 15 minutes, until the flesh is flaky.",
+      "spoken": "Bake on a sheet pan for 15 to twenty minutes, until the flesh is flaky.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 15
+      }
+    }
+  ]
+}

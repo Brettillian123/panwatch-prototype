@@ -1,0 +1,82 @@
+{
+  "id": "apple-stuffed-squash",
+  "title": "Apple-Stuffed Squash",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/apple-stuffed-squash",
+    "credit": "University of Maryland Cooperative Extension, SNAP-Ed Program"
+  },
+  "serves": 8,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "4",
+      "name": "acorn squashes, washed"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "butter, or margarine"
+    },
+    {
+      "amount": "2",
+      "name": "apples, chopped"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "brown sugar, packed"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "cinnamon"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Cut the 4 squashes into halves."
+    },
+    {
+      "instruction": "Remove the seeds from the squash halves."
+    },
+    {
+      "instruction": "Place the squash halves in a glass dish."
+    },
+    {
+      "instruction": "Cover the dish with plastic wrap."
+    },
+    {
+      "instruction": "Microwave on high for 5 minutes.",
+      "timer": {
+        "label": "Squash",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Melt 1 tablespoon of butter in a separate bowl in the microwave."
+    },
+    {
+      "instruction": "Mix 2 chopped apples into the melted butter."
+    },
+    {
+      "instruction": "Mix in 2 teaspoons of brown sugar and 1/2 teaspoon of cinnamon."
+    },
+    {
+      "instruction": "Microwave the apple mixture for 90 seconds."
+    },
+    {
+      "instruction": "Spoon the apple filling into each squash half."
+    },
+    {
+      "instruction": "Cover the dish."
+    },
+    {
+      "instruction": "Microwave on high for 3 minutes, until the squash and apples are tender.",
+      "spoken": "Microwave on high for 3 to five minutes, until the squash and apples are tender.",
+      "timer": {
+        "label": "Filled squash",
+        "minutes": 3
+      }
+    }
+  ]
+}

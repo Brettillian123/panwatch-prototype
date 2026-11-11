@@ -1,0 +1,86 @@
+{
+  "id": "coconut-crusted-baked-cod",
+  "title": "Coconut Crusted Baked Cod",
+  "category": "Fish",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACoconut_Crusted_Baked_Cod",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "serves": 5,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1/2 cup",
+      "name": "coconut milk"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "reduced-sodium soy sauce"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "sesame oil"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "crushed red pepper flakes"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "ginger, minced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "black pepper"
+    },
+    {
+      "amount": "5",
+      "name": "cod fillets, 15 ounces total"
+    },
+    {
+      "amount": "to taste",
+      "name": "cooking oil"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "mint, chopped"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "coconut flakes, lightly toasted"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Mix 1/2 cup coconut milk, 1 tablespoon soy sauce and 1 tablespoon sesame oil."
+    },
+    {
+      "instruction": "Add 1 tablespoon each of pepper flakes, minced ginger and black pepper."
+    },
+    {
+      "instruction": "Marinate the 5 cod fillets in the mixture for 15 minutes.",
+      "timer": {
+        "label": "Marinate",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Place the fillets on a baking pan greased with cooking oil."
+    },
+    {
+      "instruction": "Bake for 15 minutes, until the fish is flaky.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Top with 1 tablespoon each of toasted coconut flakes and mint."
+    }
+  ]
+}

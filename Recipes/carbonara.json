@@ -1,0 +1,86 @@
+{
+  "id": "carbonara",
+  "title": "Carbonara",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/carbonara/",
+    "credit": "based.cooking contributor Peter Piontek, Ladislao Blanchi"
+  },
+  "serves": 4,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "5",
+      "name": "eggs"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "Pecorino Romano or Parmigiano-Reggiano, grated"
+    },
+    {
+      "amount": "1 dash",
+      "name": "black pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "11 ounces",
+      "name": "spaghetti"
+    },
+    {
+      "amount": "5 ounces",
+      "name": "guanciale or pancetta, cleaned and cubed"
+    },
+    {
+      "amount": "1 dash",
+      "name": "extra virgin olive oil"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Separate 5 eggs and put only the yolks in a bowl."
+    },
+    {
+      "instruction": "Add 1/3 cup of grated Pecorino Romano or Parmigiano-Reggiano to the yolks."
+    },
+    {
+      "instruction": "Add a dash of black pepper, if you like."
+    },
+    {
+      "instruction": "Beat the yolks and cheese with a fork until smooth and liquid."
+    },
+    {
+      "instruction": "Bring a pot of lightly salted water to a boil.",
+      "spoken": "Bring a pot of water to a boil. Use less salt than you would for usual pasta water."
+    },
+    {
+      "instruction": "Cook 11 ounces of spaghetti for one minute less than the package says.",
+      "spoken": "Cook the spaghetti for one minute less than the package says."
+    },
+    {
+      "instruction": "Cut 5 ounces of guanciale or pancetta into cubes."
+    },
+    {
+      "instruction": "Fry the cubes on low to medium heat until the sides are crisp.",
+      "spoken": "Fry the guanciale or pancetta in an iron or nonstick pan on low to medium heat, until the sides are crisp but the insides are still chewy. If you use a different kind of pan, add a dash of extra virgin olive oil first."
+    },
+    {
+      "instruction": "Drain the pasta and add it to the bowl with the eggs.",
+      "spoken": "Drain the pasta and add it to the eggs. If the pasta is too hot it will cook the eggs. If you don't like that, wait for one minute first."
+    },
+    {
+      "instruction": "Stir quickly until the eggs coat the pasta."
+    },
+    {
+      "instruction": "Add the guanciale and as much of the pan fat as you like, and keep stirring.",
+      "spoken": "Add the guanciale or pancetta and as much of the fat left in the pan as you like. Keep stirring."
+    },
+    {
+      "instruction": "Sprinkle with more cheese and black pepper, if you like."
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "id": "asian-grilled-salmon",
+  "title": "Asian Grilled Salmon",
+  "category": "Fish",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAsian_Grilled_Salmon",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 285,
+  "ingredients": [
+    {
+      "amount": "1/3 cup",
+      "name": "soy sauce"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "rice wine vinegar"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "red pepper flakes"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "curry powder"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "ginger, minced"
+    },
+    {
+      "amount": "5 cloves",
+      "name": "garlic, smashed and minced"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "olive oil"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "dark brown sugar"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "freshly ground black pepper"
+    },
+    {
+      "amount": "1 1/2 tablespoons",
+      "name": "curry paste"
+    },
+    {
+      "amount": "4",
+      "name": "wild salmon fillets, 24 ounces total, with skin, pin bones removed"
+    },
+    {
+      "amount": "4 1/2 pounds",
+      "name": "charcoal"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "basil, cut into thin strips"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "fresh cilantro, chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1/3 cup of soy sauce and 3 tablespoons of rice wine vinegar in a blender."
+    },
+    {
+      "instruction": "Add 1 tablespoon red pepper flakes, 2 teaspoons curry powder and 1 tablespoon ginger."
+    },
+    {
+      "instruction": "Add 5 cloves of garlic, 1/4 cup of olive oil and 2 tablespoons of dark brown sugar."
+    },
+    {
+      "instruction": "Add 2 teaspoons of black pepper and 1 1/2 tablespoons of curry paste."
+    },
+    {
+      "instruction": "Blend until smooth."
+    },
+    {
+      "instruction": "Pour the sauce into a plastic bag and add the 4 salmon fillets."
+    },
+    {
+      "instruction": "Toss the salmon to coat it with the sauce."
+    },
+    {
+      "instruction": "Seal the bag, pressing out as much air as you can."
+    },
+    {
+      "instruction": "Refrigerate the bag for 4 hours.",
+      "spoken": "Refrigerate the bag for up to 4 hours.",
+      "timer": {
+        "label": "Marinate",
+        "minutes": 240
+      }
+    },
+    {
+      "instruction": "Heat 4 1/2 pounds of charcoal in a chimney starter."
+    },
+    {
+      "instruction": "Spread the coals evenly on the bottom of the grill and put the grate back."
+    },
+    {
+      "instruction": "Take the salmon out of the marinade and throw the marinade away."
+    },
+    {
+      "instruction": "Let the salmon sit at room temperature until the coals are hot."
+    },
+    {
+      "instruction": "Once the grate is hot, quickly wipe it with a towel."
+    },
+    {
+      "instruction": "Place the salmon skin side up on the hottest part of the grill."
+    },
+    {
+      "instruction": "Cook the salmon for 3 minutes, then flip it.",
+      "spoken": "Cook for 3 to five minutes for medium. Halfway through, turn each fillet a quarter turn to get grill marks.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Cook the other side for 3 minutes.",
+      "spoken": "Cook the other side for 3 to five minutes. Halfway through, turn each fillet a quarter turn to get grill marks.",
+      "timer": {
+        "label": "Cook again",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Put the salmon on a plate and cover it tightly with foil for 5 minutes.",
+      "timer": {
+        "label": "Rest",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Move the salmon to warmed plates."
+    },
+    {
+      "instruction": "Sprinkle on 2 tablespoons of basil and 1/4 cup of chopped cilantro."
+    }
+  ]
+}

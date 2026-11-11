@@ -1,0 +1,118 @@
+{
+  "id": "spinach-rice-casserole",
+  "title": "Spinach-Rice Casserole",
+  "category": "Pasta and grains",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/spinach-rice-casserole/",
+    "credit": "based.cooking contributor joel-maxuel"
+  },
+  "serves": 6,
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "3 tablespoons",
+      "name": "butter"
+    },
+    {
+      "amount": "1 cup",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt, or more to taste"
+    },
+    {
+      "amount": "2 pounds",
+      "name": "raw spinach, chopped"
+    },
+    {
+      "amount": "4 cups",
+      "name": "brown rice, cooked"
+    },
+    {
+      "amount": "4",
+      "name": "eggs, beaten"
+    },
+    {
+      "amount": "1 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "cheddar, grated"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "parsley, chopped"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "tamari"
+    },
+    {
+      "amount": "3 dashes",
+      "name": "nutmeg"
+    },
+    {
+      "amount": "3 dashes",
+      "name": "cayenne"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "sunflower seeds"
+    },
+    {
+      "amount": "3 dashes",
+      "name": "paprika"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Heat 3 tablespoons of butter in a large pan."
+    },
+    {
+      "instruction": "Add 1 cup of onion, 2 cloves of minced garlic and 1/2 teaspoon of salt.",
+      "spoken": "Add the chopped onion, the minced garlic and the salt. Cook until the onions are soft."
+    },
+    {
+      "instruction": "Add 2 pounds of chopped raw spinach and cook for 2 minutes.",
+      "timer": {
+        "label": "Spinach",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Mix in 4 cups of cooked brown rice, 4 beaten eggs and 1 cup of milk."
+    },
+    {
+      "instruction": "Mix in 1 1/2 cups of grated cheddar and 1/4 cup of chopped parsley."
+    },
+    {
+      "instruction": "Mix in 2 tablespoons of tamari and 3 dashes each of nutmeg and cayenne.",
+      "spoken": "Mix in 2 tablespoons of tamari and a few dashes each of nutmeg and cayenne."
+    },
+    {
+      "instruction": "Spread it in a buttered casserole dish."
+    },
+    {
+      "instruction": "Sprinkle 1/4 cup of sunflower seeds and 3 dashes of paprika on top.",
+      "spoken": "Sprinkle 1/4 cup of sunflower seeds and a few dashes of paprika on top."
+    },
+    {
+      "instruction": "Cover the dish and bake for 35 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 35
+      }
+    }
+  ]
+}

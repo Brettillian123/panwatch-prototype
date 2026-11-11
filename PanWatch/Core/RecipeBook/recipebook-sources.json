@@ -1,1 +1,6 @@
-[]
+[
+{"credit":"Recipes adapted from USDA MyPlate Kitchen.","name":"USDA MyPlate Kitchen","url":"https://www.myplate.gov/"},
+{"credit":"Recipes adapted from Wikibooks Cookbook.","name":"Wikibooks Cookbook","url":"https://en.wikibooks.org/"},
+{"credit":"Recipes adapted from NHLBI (NIH).","name":"NHLBI (NIH)","url":"https://www.nhlbi.nih.gov/"},
+{"credit":"Recipes adapted from based.cooking.","name":"based.cooking","url":"https://based.cooking/"}
+]

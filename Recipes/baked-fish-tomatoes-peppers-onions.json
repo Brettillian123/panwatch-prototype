@@ -1,0 +1,66 @@
+{
+  "id": "baked-fish-tomatoes-peppers-onions",
+  "title": "Baked Fish with Tomatoes and Peppers",
+  "category": "Fish",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/baked-fish-tomatoes-peppers-onions",
+    "credit": "Adapted from Spicy Baked Fish, Montana State University Extension Service, Nutrition Education Program"
+  },
+  "serves": 4,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "cod fillets, skinless and thawed, or other white fish"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "green bell pepper, chopped"
+    },
+    {
+      "amount": "1/2 can",
+      "name": "low-sodium tomatoes, about 8 ounces"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "oregano"
+    },
+    {
+      "amount": "to taste",
+      "name": "cooking spray"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Spray a 9 x 13 inch baking dish with cooking spray."
+    },
+    {
+      "instruction": "Cut the 1 pound of cod fillets into four pieces."
+    },
+    {
+      "instruction": "Place the cod pieces in the baking dish."
+    },
+    {
+      "instruction": "Top the cod with 1/4 cup of chopped green pepper and 1/2 can of tomatoes."
+    },
+    {
+      "instruction": "Top with 1/4 cup of chopped onion and 1/4 teaspoon of oregano."
+    },
+    {
+      "instruction": "Bake for about 20 minutes, until the fish flakes easily with a fork.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    }
+  ]
+}

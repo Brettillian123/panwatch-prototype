@@ -1,0 +1,71 @@
+{
+  "id": "2-step-chicken",
+  "title": "2-Step Chicken",
+  "category": "Chicken",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/2-step-chicken",
+    "credit": "Simple Healthy Recipes, Oklahoma Nutrition Information and Education (ONIE Project)"
+  },
+  "serves": 4,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "2",
+      "name": "boneless skinless chicken breasts"
+    },
+    {
+      "amount": "1 can",
+      "name": "reduced-sodium cream of chicken soup"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1 tablespoon of vegetable oil in a skillet over medium-high heat."
+    },
+    {
+      "instruction": "Add 2 boneless, skinless chicken breasts to the skillet.",
+      "watch": {
+        "ingredient": "chicken",
+        "timerLabel": "Chicken",
+        "timerMinutes": 10,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Take the chicken out of the pan and set it aside.",
+      "cue": {
+        "timerLabel": "Chicken",
+        "secondsLeft": 0
+      }
+    },
+    {
+      "instruction": "Stir 1 can of reduced-sodium cream of chicken soup and 1/2 cup of water in the skillet.",
+      "spoken": "Stir the soup and the water together in the skillet. The can is 10.75 ounces."
+    },
+    {
+      "instruction": "Heat the soup mixture until it boils."
+    },
+    {
+      "instruction": "Return the chicken to the skillet."
+    },
+    {
+      "instruction": "Lower the heat and simmer 10 more minutes, until a thermometer reads 165 °F.",
+      "spoken": "Lower the heat to low and simmer for 10 more minutes, or until a thermometer reads 165 °F in the thickest part of the chicken.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 10
+      }
+    }
+  ]
+}

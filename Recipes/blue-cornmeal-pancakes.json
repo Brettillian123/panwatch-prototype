@@ -1,0 +1,93 @@
+{
+  "id": "blue-cornmeal-pancakes",
+  "title": "Blue Cornmeal Pancakes",
+  "category": "Eggs and breakfast",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/blue-cornmeal-pancakes",
+    "credit": "Chickasaw Nation Nutrition Services, Get Fresh Initiative"
+  },
+  "serves": 12,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "3/4 cup",
+      "name": "blue cornmeal"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 cup",
+      "name": "water, boiling"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "margarine, melted"
+    },
+    {
+      "amount": "1",
+      "name": "egg"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "flour"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "to taste",
+      "name": "cooking spray"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 3/4 cup of blue cornmeal and 1/4 teaspoon of salt in a large bowl."
+    },
+    {
+      "instruction": "Stir in 1 cup of boiling water until the ingredients are wet."
+    },
+    {
+      "instruction": "Cover the bowl and let it stand for 3 minutes.",
+      "timer": {
+        "label": "Stand",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "In a separate bowl, mix 1/2 cup milk, 2 tablespoons melted margarine and 1 egg."
+    },
+    {
+      "instruction": "Add the milk mixture to the cornmeal mixture."
+    },
+    {
+      "instruction": "Add 3/4 cup of flour and 2 teaspoons of baking powder."
+    },
+    {
+      "instruction": "Mix until combined."
+    },
+    {
+      "instruction": "Heat a large skillet over medium heat."
+    },
+    {
+      "instruction": "Spray the skillet with cooking spray."
+    },
+    {
+      "instruction": "Spoon 1/4 cup of batter onto the skillet."
+    },
+    {
+      "instruction": "When bubbles appear, flip the pancake."
+    },
+    {
+      "instruction": "Cook the other side until golden brown."
+    }
+  ]
+}

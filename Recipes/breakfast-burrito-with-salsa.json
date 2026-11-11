@@ -1,0 +1,118 @@
+{
+  "id": "breakfast-burrito-with-salsa",
+  "title": "Breakfast Burrito with Salsa",
+  "category": "Eggs and breakfast",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/breakfast-burrito-salsa",
+    "credit": "Food Family Fun, USDA Food and Nutrition Service, Team Nutrition"
+  },
+  "serves": 4,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "4 large",
+      "name": "eggs"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "frozen corn"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "1% milk"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "green pepper, diced"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "onion, minced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "tomatoes, diced"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "mustard"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "to taste",
+      "name": "hot pepper sauce, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "cooking oil"
+    },
+    {
+      "amount": "4",
+      "name": "flour tortillas, 8-inch"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "fresh tomato salsa"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Add 4 eggs, 2 tablespoons of frozen corn and 1 tablespoon of milk to a large bowl."
+    },
+    {
+      "instruction": "Add 2 tablespoons green pepper, 1/4 cup onion and 1 tablespoon tomatoes."
+    },
+    {
+      "instruction": "Add 1 teaspoon mustard, 1/4 teaspoon garlic powder, hot pepper sauce and salt."
+    },
+    {
+      "instruction": "Blend for 1 minute, until the eggs are smooth.",
+      "timer": {
+        "label": "Blend",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Pour the egg mixture into a 9-by-9-inch dish lightly coated with cooking oil."
+    },
+    {
+      "instruction": "Cover the dish with foil."
+    },
+    {
+      "instruction": "Bake for 20 minutes, until the eggs are set and thoroughly cooked.",
+      "spoken": "Bake for 20 to twenty-five minutes, until the eggs are set and thoroughly cooked.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Wrap the tortillas in plastic."
+    },
+    {
+      "instruction": "Microwave the wrapped tortillas for 20 seconds, until warm.",
+      "spoken": "Microwave the wrapped tortillas for 20 seconds, until warm. Be careful when unwrapping them. The steam can be hot."
+    },
+    {
+      "instruction": "Cut the baked egg mixture into 4 equal pieces."
+    },
+    {
+      "instruction": "Roll 1 piece of cooked egg in each tortilla."
+    },
+    {
+      "instruction": "Top each burrito with 2 tablespoons of salsa."
+    }
+  ]
+}

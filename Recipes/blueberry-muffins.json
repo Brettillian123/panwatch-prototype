@@ -1,0 +1,95 @@
+{
+  "id": "blueberry-muffins",
+  "title": "Blueberry Muffins",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/blueberry-muffins/",
+    "credit": "based.cooking contributor Marcus Howser"
+  },
+  "serves": 12,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "1 cup",
+      "name": "granulated sugar"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "unsalted butter, melted"
+    },
+    {
+      "amount": "1 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "2 large",
+      "name": "eggs"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "fresh blueberries"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 375 °F."
+    },
+    {
+      "instruction": "Line a muffin tin with paper liners, or just grease the tin."
+    },
+    {
+      "instruction": "Mix 2 cups of flour and 1 cup of sugar in a large bowl."
+    },
+    {
+      "instruction": "Mix in 1 tablespoon of baking powder and 1/2 teaspoon of salt."
+    },
+    {
+      "instruction": "In another bowl, whisk 1/2 cup of melted butter and 1 cup of milk."
+    },
+    {
+      "instruction": "Whisk in 2 large eggs and 1 teaspoon of vanilla extract."
+    },
+    {
+      "instruction": "Pour the wet mixture into the dry and stir until just combined.",
+      "spoken": "Pour the wet mixture into the dry mixture and stir until just combined. Do not overmix."
+    },
+    {
+      "instruction": "Gently fold in 1 1/2 cups of fresh blueberries."
+    },
+    {
+      "instruction": "Spoon the batter into the tin, filling each cup about 3/4 full."
+    },
+    {
+      "instruction": "Bake for 20 minutes, until a toothpick in a muffin comes out clean.",
+      "spoken": "Bake for 20 to twenty-five minutes, until a toothpick inserted in the center of a muffin comes out clean.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Take the muffins out and let them cool in the tin for a few minutes."
+    },
+    {
+      "instruction": "Move the muffins to a wire rack to cool completely before serving."
+    }
+  ]
+}

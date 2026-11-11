@@ -1,0 +1,107 @@
+{
+  "id": "new-orleans-red-beans",
+  "title": "New Orleans Red Beans",
+  "category": "Beans and lentils",
+  "method": "pot",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/new-orleans-red-beans",
+    "credit": "NHLBI, NIH; Stay Young At Heart"
+  },
+  "serves": 8,
+  "totalMinutes": 150,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "dry red beans"
+    },
+    {
+      "amount": "8 cups",
+      "name": "water, 2 quarts"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "celery, chopped"
+    },
+    {
+      "amount": "4",
+      "name": "bay leaves"
+    },
+    {
+      "amount": "1 cup",
+      "name": "green pepper, chopped"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "garlic, chopped"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "parsley, chopped"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "dried thyme, crushed"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "hot cooked brown rice, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Pick through 1 pound of beans, remove any bad ones and rinse thoroughly."
+    },
+    {
+      "instruction": "Put the beans and 8 cups of water in a large pot."
+    },
+    {
+      "instruction": "Add 1 1/2 cups of chopped onion, 1 cup of chopped celery and 4 bay leaves."
+    },
+    {
+      "instruction": "Bring the pot to a boil."
+    },
+    {
+      "instruction": "Reduce the heat to low, cover and cook for 90 minutes.",
+      "spoken": "Reduce the heat to low, cover and cook for about an hour and a half, or until the beans are tender.",
+      "timer": {
+        "label": "Beans",
+        "minutes": 90
+      }
+    },
+    {
+      "instruction": "Stir the beans and mash some against the side of the pot with a spoon."
+    },
+    {
+      "instruction": "Add 1 cup of green pepper, 3 tablespoons of garlic and 3 tablespoons of parsley."
+    },
+    {
+      "instruction": "Add 2 teaspoons of thyme, 1 teaspoon of salt and 1 teaspoon of black pepper."
+    },
+    {
+      "instruction": "Cook uncovered over low heat for 30 minutes, until creamy.",
+      "timer": {
+        "label": "Creamy",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Remove the bay leaves."
+    },
+    {
+      "instruction": "Serve with hot cooked brown rice, if you like."
+    }
+  ]
+}

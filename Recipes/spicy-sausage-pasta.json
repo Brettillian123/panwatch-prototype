@@ -1,0 +1,102 @@
+{
+  "id": "spicy-sausage-pasta",
+  "title": "Spicy Sausage Pasta",
+  "category": "Pasta and grains",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/spicy-sausage-pasta/",
+    "credit": "based.cooking contributor tom-cotter"
+  },
+  "serves": 4,
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "2",
+      "name": "red onions, chopped"
+    },
+    {
+      "amount": "to taste",
+      "name": "olive oil"
+    },
+    {
+      "amount": "6",
+      "name": "spicy Italian sausages"
+    },
+    {
+      "amount": "1 sprig",
+      "name": "rosemary, needles finely chopped"
+    },
+    {
+      "amount": "1",
+      "name": "red chili, deseeded and diced"
+    },
+    {
+      "amount": "1 cup",
+      "name": "red wine"
+    },
+    {
+      "amount": "2 cans",
+      "name": "chopped plum tomatoes, 14 ounces each"
+    },
+    {
+      "amount": "10 ounces",
+      "name": "pasta, preferably penne"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "parmesan"
+    },
+    {
+      "amount": "1 1/4 cups",
+      "name": "heavy cream"
+    },
+    {
+      "amount": "to taste",
+      "name": "seasoning"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Fry 2 chopped red onions in a splash of olive oil in a deep frying pan."
+    },
+    {
+      "instruction": "Add the meat from 6 spicy Italian sausages, casings removed."
+    },
+    {
+      "instruction": "Add 1 sprig of chopped rosemary needles and 1 diced, deseeded red chili."
+    },
+    {
+      "instruction": "Turn up the heat and break up the sausage meat with a wooden spoon."
+    },
+    {
+      "instruction": "Once the meat has browned, pour in 1 cup of red wine."
+    },
+    {
+      "instruction": "Cook until the wine has reduced by half."
+    },
+    {
+      "instruction": "Add 2 cans of chopped plum tomatoes."
+    },
+    {
+      "instruction": "Cook the sauce uncovered for 30 minutes, until it has reduced.",
+      "spoken": "Cook the sauce uncovered for about 30 minutes, until it has reduced.",
+      "timer": {
+        "label": "Sauce",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Cook 10 ounces of pasta as the package says."
+    },
+    {
+      "instruction": "Grate 1/2 cup of parmesan into a bowl."
+    },
+    {
+      "instruction": "Drain the pasta and stir it into the sauce."
+    },
+    {
+      "instruction": "Stir in the parmesan, 1 1/4 cups of heavy cream and seasoning to taste."
+    }
+  ]
+}

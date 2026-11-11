@@ -1,0 +1,87 @@
+{
+  "id": "barley-pilaf",
+  "title": "Barley Pilaf",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/barley-pilaf",
+    "credit": "Montana State University Extension Service"
+  },
+  "serves": 8,
+  "totalMinutes": 70,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "vegetable oil, or cooking oil of choice"
+    },
+    {
+      "amount": "1 cup",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "celery, chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "green or red bell pepper, chopped, optional"
+    },
+    {
+      "amount": "1 cup",
+      "name": "mushrooms, sliced (or 4 ounce can mushrooms, drained)"
+    },
+    {
+      "amount": "1 cup",
+      "name": "pearl barley, uncooked"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "low-sodium bouillon, vegetable, beef or chicken"
+    },
+    {
+      "amount": "2 1/2 cups",
+      "name": "water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Place a medium pan over medium heat."
+    },
+    {
+      "instruction": "Add 1 tablespoon of vegetable oil, 1 cup of chopped onion and 1/2 cup of celery."
+    },
+    {
+      "instruction": "Cook, stirring often, until the onion is soft."
+    },
+    {
+      "instruction": "Add 1/2 cup of chopped bell pepper, if you are using it."
+    },
+    {
+      "instruction": "Add 1 cup of sliced mushrooms and 1 cup of pearl barley."
+    },
+    {
+      "instruction": "Stir everything well."
+    },
+    {
+      "instruction": "Add 2 1/2 cups of water and 1 teaspoon of bouillon."
+    },
+    {
+      "instruction": "Stir to dissolve the bouillon."
+    },
+    {
+      "instruction": "Bring the pan to a boil."
+    },
+    {
+      "instruction": "Lower the heat and cover the pan."
+    },
+    {
+      "instruction": "Cook for 50 minutes, until the barley is tender and the liquid is absorbed.",
+      "spoken": "Cook for 50 to sixty minutes, until the barley is tender and the liquid is absorbed.",
+      "timer": {
+        "label": "Barley",
+        "minutes": 50
+      }
+    }
+  ]
+}

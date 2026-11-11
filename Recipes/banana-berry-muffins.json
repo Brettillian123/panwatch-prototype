@@ -1,0 +1,115 @@
+{
+  "id": "banana-berry-muffins",
+  "title": "Banana Berry Muffins",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/banana-berry-muffins",
+    "credit": "A Harvest of Recipes with USDA Foods, USDA Food Distribution Program on Indian Reservations, Adapted from a recipe submitted by Alicson Scott, Chickasaw Nation, Get Fresh! Nutrition Education Program"
+  },
+  "serves": 12,
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "to taste",
+      "name": "nonstick cooking spray"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "applesauce"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "sugar"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "dried egg mix, or 1 egg"
+    },
+    {
+      "amount": "2",
+      "name": "ripe bananas, mashed"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "water"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "whole wheat flour"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "quick cooking oats"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "baking soda"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "blueberries or strawberries, fresh or frozen"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Spray a 12-cup muffin pan with nonstick cooking spray."
+    },
+    {
+      "instruction": "Mix 1/4 cup of applesauce, 1/4 cup of sugar and 2 tablespoons of dried egg mix.",
+      "spoken": "Mix 1/4 cup of applesauce, 1/4 cup of sugar and 2 tablespoons of dried egg mix, or 1 egg, in a medium bowl."
+    },
+    {
+      "instruction": "Mix in 2 mashed ripe bananas and 2 tablespoons of water until well mixed."
+    },
+    {
+      "instruction": "Mix 1/4 cup of all-purpose flour and 1/4 cup of whole wheat flour in a large bowl."
+    },
+    {
+      "instruction": "Mix in 1/4 cup of quick cooking oats."
+    },
+    {
+      "instruction": "Mix in 1/2 teaspoon each of baking powder and baking soda and 1/4 teaspoon of salt."
+    },
+    {
+      "instruction": "Add the applesauce mixture to the dry ingredients and mix just until moist."
+    },
+    {
+      "instruction": "Gently add 1/4 cup of blueberries or strawberries to the mixture."
+    },
+    {
+      "instruction": "Fill each muffin cup about 3/4 full of batter."
+    },
+    {
+      "instruction": "Bake for 25 minutes, until lightly brown.",
+      "spoken": "Bake for 25 to thirty minutes, until the muffins are lightly brown.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 25
+      }
+    },
+    {
+      "instruction": "Cool the muffins for 10 minutes, then remove them from the pan.",
+      "timer": {
+        "label": "Cool",
+        "minutes": 10
+      }
+    }
+  ]
+}

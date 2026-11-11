@@ -1,0 +1,131 @@
+{
+  "id": "black-bean-soup",
+  "title": "Black Bean Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/black-bean-soup-0"
+  },
+  "serves": 5,
+  "totalMinutes": 210,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1",
+      "name": "Spanish onion"
+    },
+    {
+      "amount": "2",
+      "name": "carrots, diced"
+    },
+    {
+      "amount": "2",
+      "name": "celery stalks, diced"
+    },
+    {
+      "amount": "4 cloves",
+      "name": "garlic, peeled and minced"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "dried basil"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "dried oregano"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "chili powder, or more to taste"
+    },
+    {
+      "amount": "3 cans",
+      "name": "low-sodium black beans, 15.5 ounces each, drained and rinsed in cold water (or 6 cups cooked dried black beans)"
+    },
+    {
+      "amount": "8 cups",
+      "name": "water"
+    },
+    {
+      "amount": "1 piece",
+      "name": "low sodium chicken bouillon cube"
+    },
+    {
+      "amount": "1",
+      "name": "lime, juiced"
+    },
+    {
+      "amount": "5 tablespoons",
+      "name": "plain low-fat yogurt, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 tablespoons of vegetable oil in a large soup pot over medium heat."
+    },
+    {
+      "instruction": "Add 1 Spanish onion, 2 diced carrots and 2 diced celery stalks."
+    },
+    {
+      "instruction": "Add 4 minced garlic cloves and 1 teaspoon each of dried basil and oregano."
+    },
+    {
+      "instruction": "Add 2 teaspoons of chili powder."
+    },
+    {
+      "instruction": "Cook for about 10 minutes, until the onion is soft.",
+      "timer": {
+        "label": "Vegetables",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Add 3 cans of black beans and 8 cups of water."
+    },
+    {
+      "instruction": "Add 1 low sodium chicken bouillon cube."
+    },
+    {
+      "instruction": "Raise the heat to high and bring to a boil."
+    },
+    {
+      "instruction": "Turn the heat down to low and cook for 2 1/2 hours.",
+      "spoken": "Cook until the beans are very tender and the mixture is the same color throughout.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 150
+      }
+    },
+    {
+      "instruction": "If you want a pureed soup, set the soup aside to cool for about 20 minutes.",
+      "timer": {
+        "label": "Cool",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Put 2 cups of soup in a blender and put the lid on halfway.",
+      "spoken": "Put 2 cups of soup in a blender and put the lid on halfway. This lets the soup expand and the steam escape."
+    },
+    {
+      "instruction": "Blend until smooth."
+    },
+    {
+      "instruction": "Transfer the blended soup to a large container."
+    },
+    {
+      "instruction": "Repeat with the rest of the soup."
+    },
+    {
+      "instruction": "Just before serving, squeeze the juice of 1/4 lime on each serving."
+    },
+    {
+      "instruction": "Top each serving with 1 tablespoon of yogurt.",
+      "spoken": "Top each serving with 1 tablespoon of yogurt. Serve right away, or cover and refrigerate for up to five days."
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "id": "asparagus-soup",
+  "title": "Asparagus Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAsparagus_Soup",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "12",
+      "name": "thick asparagus spears"
+    },
+    {
+      "amount": "2 cups",
+      "name": "water"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "unsalted butter"
+    },
+    {
+      "amount": "1",
+      "name": "medium shallot, chopped"
+    },
+    {
+      "amount": "1/4-1 cup",
+      "name": "whipping or light cream"
+    },
+    {
+      "amount": "to taste",
+      "name": "freshly ground black pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "cayenne pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Snap the tough ends off 12 asparagus spears."
+    },
+    {
+      "instruction": "Bring 2 cups of water to a boil in a medium saucepan."
+    },
+    {
+      "instruction": "Salt the water lightly."
+    },
+    {
+      "instruction": "Add the asparagus spears.",
+      "spoken": "Add the asparagus spears and cook at a lively simmer for 10 minutes.",
+      "watch": {
+        "ingredient": "asparagus",
+        "timerLabel": "Asparagus",
+        "timerMinutes": 10,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Lift the spears out with tongs and set them aside.",
+      "spoken": "Lift the spears out with tongs and set them aside. Keep the cooking water."
+    },
+    {
+      "instruction": "Heat 3 tablespoons of butter in a large saucepan."
+    },
+    {
+      "instruction": "Add 1 chopped medium shallot and cook gently until soft but not browned."
+    },
+    {
+      "instruction": "Add the cooked asparagus spears and 1 cup of the cooking water."
+    },
+    {
+      "instruction": "Cook at a lively simmer for 5 minutes.",
+      "spoken": "Bring it to a boil, then cook at a lively simmer for 5 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Take the pan off the heat."
+    },
+    {
+      "instruction": "Strain the soup through a medium sieve into a bowl, keeping the liquid."
+    },
+    {
+      "instruction": "Purée the solids in a food processor with enough of the liquid to be smooth."
+    },
+    {
+      "instruction": "Rub the purée through the sieve back into the saucepan.",
+      "spoken": "Strain the purée through the sieve back into the saucepan, rubbing it through with a flexible scraper or wooden spoon and leaving the fibrous parts in the sieve."
+    },
+    {
+      "instruction": "Throw away what is left in the sieve."
+    },
+    {
+      "instruction": "Add 1/4 to 1 cup of cream and enough of the remaining cooking water."
+    },
+    {
+      "instruction": "Season with salt, black pepper and cayenne pepper to taste."
+    },
+    {
+      "instruction": "Reheat gently over low heat, without letting the soup boil."
+    },
+    {
+      "instruction": "Serve the soup hot, or chill it to serve cold.",
+      "spoken": "Serve hot. To serve chilled, let it cool, then refrigerate it uncovered until thoroughly cold, then cover with plastic wrap. It keeps in the refrigerator for up to 2 days."
+    }
+  ]
+}

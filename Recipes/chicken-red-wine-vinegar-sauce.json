@@ -1,0 +1,106 @@
+{
+  "id": "chicken-red-wine-vinegar-sauce",
+  "title": "Chicken in Red Wine Vinegar Sauce",
+  "category": "Chicken",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/chicken-in-red-wine-vinegar-sauce/",
+    "credit": "based.cooking contributors"
+  },
+  "serves": 6,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "3 tablespoons",
+      "name": "extra-virgin olive oil"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "unsalted butter"
+    },
+    {
+      "amount": "1",
+      "name": "whole chicken, cut into 10 pieces (or use breasts or legs)"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt and pepper"
+    },
+    {
+      "amount": "4",
+      "name": "shallots, finely chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "red wine vinegar"
+    },
+    {
+      "amount": "1 cup",
+      "name": "creme fraiche or heavy cream"
+    },
+    {
+      "amount": "to taste",
+      "name": "parsley, finely chopped, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Rub each piece of chicken with salt and pepper."
+    },
+    {
+      "instruction": "Heat 3 tablespoons of oil and 1 tablespoon of butter in a 12-inch sauté pan.",
+      "spoken": "Heat the oil and melt the butter in a deep-sided, 12-inch sauté pan over medium-high heat. Wait until the oil is hot, but not smoking."
+    },
+    {
+      "instruction": "Lay the chicken pieces in the pan, skin side down.",
+      "spoken": "Use tongs to lay the chicken pieces in the pan, skin side down. Brown both sides for about 12 to fifteen minutes.",
+      "watch": {
+        "ingredient": "chicken",
+        "timerLabel": "Chicken",
+        "timerMinutes": 12,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Brown both sides until the skin is golden brown.",
+      "spoken": "Brown both sides until the skin is golden brown and a thermometer reads 165 °F in the thickest part of the chicken.",
+      "cue": {
+        "timerLabel": "Chicken",
+        "secondsLeft": 0
+      }
+    },
+    {
+      "instruction": "Move the chicken to a platter and cover loosely with aluminum foil."
+    },
+    {
+      "instruction": "Pour out half of the oil from the pan."
+    },
+    {
+      "instruction": "Add 4 chopped shallots and brown them in the oil over medium-high heat."
+    },
+    {
+      "instruction": "Slowly add 1 cup of red wine vinegar."
+    },
+    {
+      "instruction": "Boil until the vinegar is reduced to almost a syrup."
+    },
+    {
+      "instruction": "Add 1 cup of creme fraiche or heavy cream and cook for 5 minutes.",
+      "spoken": "Add the creme fraiche or cream and cook for about 5 minutes, until it is blended and brown.",
+      "watch": {
+        "ingredient": "cream",
+        "timerLabel": "Cream",
+        "timerMinutes": 5,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Return the chicken to the pan to coat and heat it."
+    },
+    {
+      "instruction": "Put the chicken back on the platter and add parsley if you like."
+    }
+  ]
+}

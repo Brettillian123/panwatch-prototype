@@ -1,0 +1,139 @@
+{
+  "id": "banana-oatmeal-lentil-pancakes",
+  "title": "Banana Oatmeal Lentil Pancakes",
+  "category": "Eggs and breakfast",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/banana-oatmeal-pancakes-lentils",
+    "credit": "The Big Book of Lentils Cookbook, Canadian Lentils"
+  },
+  "serves": 5,
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "1/4 cup",
+      "name": "dried red lentils"
+    },
+    {
+      "amount": "1 cup",
+      "name": "old fashioned oats"
+    },
+    {
+      "amount": "1 cup",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "brown sugar, packed"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "baking soda"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "plain yogurt, low-fat"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "milk, low-fat"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "canola oil"
+    },
+    {
+      "amount": "2 large",
+      "name": "eggs"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vanilla"
+    },
+    {
+      "amount": "2",
+      "name": "bananas, mashed, over-ripe"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 1/4 cup of red lentils to a small saucepan of boiling water.",
+      "spoken": "Add 1/4 cup of red lentils to a small saucepan of boiling water. Cook for 15 to twenty minutes, until soft.",
+      "watch": {
+        "ingredient": "lentils",
+        "timerLabel": "Lentils",
+        "timerMinutes": 15,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Drain the lentils well."
+    },
+    {
+      "instruction": "Stir 1 cup of oats, 1 cup of flour and 1/4 cup of brown sugar in a large bowl."
+    },
+    {
+      "instruction": "Stir in 1 teaspoon of cinnamon and 2 teaspoons of baking powder."
+    },
+    {
+      "instruction": "Stir in 1/2 teaspoon of baking soda and 1/4 teaspoon of salt."
+    },
+    {
+      "instruction": "Whisk 3/4 cup of yogurt, 3/4 cup of milk and 1/4 cup of oil in a smaller bowl."
+    },
+    {
+      "instruction": "Whisk 2 large eggs and 1 teaspoon of vanilla into the yogurt mixture."
+    },
+    {
+      "instruction": "Add the yogurt mixture, 2 mashed bananas and the lentils to the dry mix."
+    },
+    {
+      "instruction": "Stir until just combined."
+    },
+    {
+      "instruction": "Preheat the oven to 250 °F to keep the pancakes warm."
+    },
+    {
+      "instruction": "Heat a heavy skillet over medium-high heat."
+    },
+    {
+      "instruction": "Add a drizzle of oil and wipe it around the pan with a paper towel."
+    },
+    {
+      "instruction": "Pour about 1/2 cup of batter into the skillet and spread it with the back of a spoon.",
+      "spoken": "Pour about 1/2 cup of batter into the skillet. If you need to, spread it out with the back of a spoon, because it is thick. Cook for a couple of minutes, until bubbles break through the surface and the bottom is golden.",
+      "watch": {
+        "ingredient": "batter",
+        "timerLabel": "Pancake",
+        "timerMinutes": 2,
+        "minimumChange": 0.02
+      }
+    },
+    {
+      "instruction": "Keep the heat at medium so the bottoms do not burn.",
+      "spoken": "Keep the heat at medium. These take longer to cook through than most pancakes, and you do not want to burn the bottoms."
+    },
+    {
+      "instruction": "Flip the pancake with a thin spatula and cook until golden and springy to the touch."
+    },
+    {
+      "instruction": "Keep the pancakes warm on a rack set on a baking sheet in the oven."
+    },
+    {
+      "instruction": "Cook the rest of the batter the same way to make 10 pancakes."
+    }
+  ]
+}

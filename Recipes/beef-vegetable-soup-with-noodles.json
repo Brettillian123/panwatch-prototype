@@ -1,0 +1,96 @@
+{
+  "id": "beef-vegetable-soup-with-noodles",
+  "title": "Beef and Vegetable Soup with Noodles",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/beef-vegetable-soup",
+    "credit": "Cans Get You Cooking"
+  },
+  "serves": 6,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1 pound",
+      "name": "lean ground beef"
+    },
+    {
+      "amount": "1 medium",
+      "name": "onion, diced"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 can",
+      "name": "low sodium beef broth, 14.5-ounce can"
+    },
+    {
+      "amount": "1 can",
+      "name": "sliced carrots, drained, 14.5-ounce can"
+    },
+    {
+      "amount": "1 can",
+      "name": "no salt added cut green beans, 14.5-ounce can"
+    },
+    {
+      "amount": "1 can",
+      "name": "no salt added stewed tomatoes, 14.5-ounce can"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "dried basil"
+    },
+    {
+      "amount": "1 cup",
+      "name": "cooked egg noodles"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1 tablespoon of vegetable oil in a 4-quart saucepan over medium-high heat."
+    },
+    {
+      "instruction": "Brown 1 pound of lean ground beef in the hot oil, stirring often.",
+      "spoken": "Cook the beef until it is well browned on all sides, stirring often."
+    },
+    {
+      "instruction": "Remove the beef to a bowl with a slotted spoon."
+    },
+    {
+      "instruction": "Add 1 diced onion and 2 minced garlic cloves to the drippings over medium heat."
+    },
+    {
+      "instruction": "Cook until the onion and garlic are tender-crisp."
+    },
+    {
+      "instruction": "Add 1 can of beef broth, 1 can of carrots and 1 can of green beans."
+    },
+    {
+      "instruction": "Add 1 can of stewed tomatoes, 1 teaspoon of dried basil and the browned beef."
+    },
+    {
+      "instruction": "Heat over high heat until the soup boils."
+    },
+    {
+      "instruction": "Reduce the heat to low and cover the pan."
+    },
+    {
+      "instruction": "Simmer for 10 minutes, stirring now and then.",
+      "spoken": "Simmer for 10 to fifteen minutes to blend the flavors, stirring now and then.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Stir in 1 cup of cooked egg noodles."
+    }
+  ]
+}

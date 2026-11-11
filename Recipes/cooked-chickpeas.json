@@ -1,0 +1,65 @@
+{
+  "id": "cooked-chickpeas",
+  "title": "Cooked Chickpeas",
+  "category": "Beans and lentils",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/cooked-chickpeas/",
+    "credit": "based.cooking contributor carl-zimmerman"
+  },
+  "serves": 3,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 can",
+      "name": "chickpeas, drained"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cumin"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "paprika"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cayenne pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt and pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1 tablespoon of olive oil in a pan."
+    },
+    {
+      "instruction": "Add 1 can of drained chickpeas."
+    },
+    {
+      "instruction": "Add 1 teaspoon each of garlic powder, cumin, paprika and cayenne pepper."
+    },
+    {
+      "instruction": "Cook over medium-high heat for 10 minutes.",
+      "spoken": "Cook over medium-high heat for 10 to fifteen minutes.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Add salt and pepper to taste."
+    }
+  ]
+}

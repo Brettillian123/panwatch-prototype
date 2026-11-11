@@ -1,0 +1,77 @@
+{
+  "id": "brunswick-stew",
+  "title": "Brunswick Stew",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/brunswick-stew",
+    "credit": "Healthy Futures, Virginia Cooperative Extension"
+  },
+  "serves": 8,
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1 medium",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "2 cups",
+      "name": "chicken broth, low-sodium"
+    },
+    {
+      "amount": "2 cups",
+      "name": "boneless chicken or turkey, cooked and diced"
+    },
+    {
+      "amount": "2 cups",
+      "name": "tomatoes, low-sodium canned or cooked"
+    },
+    {
+      "amount": "2 cups",
+      "name": "lima beans, cooked or canned low-sodium"
+    },
+    {
+      "amount": "2 cups",
+      "name": "whole kernel corn, canned low-sodium or cooked"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1 tablespoon of vegetable oil in a large pan."
+    },
+    {
+      "instruction": "Add 1 chopped medium onion and cook until tender."
+    },
+    {
+      "instruction": "Add 2 cups of chicken broth."
+    },
+    {
+      "instruction": "Add 2 cups of diced, cooked boneless chicken or turkey."
+    },
+    {
+      "instruction": "Add 2 cups of tomatoes."
+    },
+    {
+      "instruction": "Add 2 cups of lima beans."
+    },
+    {
+      "instruction": "Add 2 cups of whole kernel corn."
+    },
+    {
+      "instruction": "Simmer over medium-low heat for 30 minutes.",
+      "spoken": "Bring the pot to a simmer, then keep it at medium-low heat for 30 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Makes 8 servings of about 1 cup each."
+    }
+  ]
+}

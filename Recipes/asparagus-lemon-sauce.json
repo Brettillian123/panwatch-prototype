@@ -1,0 +1,85 @@
+{
+  "id": "asparagus-lemon-sauce",
+  "title": "Asparagus with Lemon Sauce",
+  "category": "Vegetables",
+  "method": "pot",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/asparagus-lemon-sauce",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 4,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "20 medium",
+      "name": "asparagus spears, rinsed and trimmed"
+    },
+    {
+      "amount": "1",
+      "name": "fresh lemon, rinsed"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "reduced-fat mayonnaise"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "dried parsley"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "1/16 teaspoon",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1 inch of water in a 4-quart pot with a lid."
+    },
+    {
+      "instruction": "Set a steamer basket inside the pot."
+    },
+    {
+      "instruction": "Place 20 medium asparagus spears in the steamer basket."
+    },
+    {
+      "instruction": "Cover the pot and bring to a boil over high heat."
+    },
+    {
+      "instruction": "Reduce to medium heat and cook for 5 minutes.",
+      "spoken": "Reduce the heat to medium and cook for 5 to ten minutes, until the asparagus is easily pierced with a sharp knife. Do not overcook.",
+      "timer": {
+        "label": "Asparagus",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Grate the zest of the lemon into a small bowl."
+    },
+    {
+      "instruction": "Cut the lemon in half and squeeze the juice into the bowl.",
+      "spoken": "Cut the lemon in half and squeeze the juice into the bowl. Press out the extra juice with the back of a spoon and remove any pits."
+    },
+    {
+      "instruction": "Stir in 2 tablespoons of mayonnaise and 1 tablespoon of dried parsley."
+    },
+    {
+      "instruction": "Stir in 1/8 teaspoon of black pepper and 1/16 teaspoon of salt.",
+      "spoken": "Stir in the pepper and salt. Stir well, then set the sauce aside."
+    },
+    {
+      "instruction": "Remove the pot from the heat."
+    },
+    {
+      "instruction": "Place the asparagus spears in a serving bowl."
+    },
+    {
+      "instruction": "Drizzle the lemon sauce evenly over the asparagus.",
+      "spoken": "Drizzle the lemon sauce evenly over the asparagus, about 1 1/2 teaspoons for each serving."
+    }
+  ]
+}

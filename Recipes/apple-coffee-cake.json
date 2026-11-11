@@ -1,0 +1,99 @@
+{
+  "id": "apple-coffee-cake",
+  "title": "Apple Coffee Cake",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/apple-coffee-cake",
+    "credit": "A Healthier You: Based on the Dietary Guidelines for Americans, US Department of Health and Human Services, Office of Disease Prevention and Health Promotion"
+  },
+  "serves": 12,
+  "totalMinutes": 85,
+  "ingredients": [
+    {
+      "amount": "5 cups",
+      "name": "tart apples, cored, peeled and chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "sugar"
+    },
+    {
+      "amount": "1 cup",
+      "name": "raisins"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "pecans, chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "vanilla"
+    },
+    {
+      "amount": "1",
+      "name": "egg, beaten"
+    },
+    {
+      "amount": "2 1/2 cups",
+      "name": "all-purpose flour, sifted"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "baking soda"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "ground cinnamon"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Lightly oil a 13 by 9 by 2 inch pan."
+    },
+    {
+      "instruction": "Mix 5 cups of apples, 1 cup of sugar, 1 cup of raisins and 1/2 cup of pecans.",
+      "spoken": "In a large mixing bowl, combine the apples with the sugar, raisins and pecans. Mix well."
+    },
+    {
+      "instruction": "Let the apple mixture stand for 30 minutes.",
+      "timer": {
+        "label": "Stand",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Stir in 1/4 cup of oil, 2 teaspoons of vanilla and the beaten egg."
+    },
+    {
+      "instruction": "Sift together 2 1/2 cups flour, 1 1/2 teaspoons baking soda and 2 teaspoons cinnamon."
+    },
+    {
+      "instruction": "Stir the flour mixture into the apple mixture, about 1/3 at a time.",
+      "spoken": "Stir the flour mixture into the apple mixture about 1/3 at a time, just enough to moisten the dry ingredients."
+    },
+    {
+      "instruction": "Turn the batter into the pan."
+    },
+    {
+      "instruction": "Bake for 35 minutes.",
+      "spoken": "Bake for 35 to forty minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 35
+      }
+    },
+    {
+      "instruction": "Cool the cake slightly before serving.",
+      "spoken": "Cool the cake slightly before serving. This makes 20 servings."
+    }
+  ]
+}

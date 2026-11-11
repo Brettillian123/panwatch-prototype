@@ -1,0 +1,60 @@
+{
+  "id": "autumn-salad",
+  "title": "Autumn Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/autumn-salad",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 6,
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "Granny Smith apple, rinsed and sliced thinly with the skin on"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "1 bag",
+      "name": "mixed lettuce greens, about 5 cups, rinsed"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "dried cranberries"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "walnuts, chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "unsalted sunflower seeds"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "low-fat raspberry vinaigrette dressing"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Sprinkle 2 tablespoons of lemon juice on the apple slices."
+    },
+    {
+      "instruction": "Mix 1 bag of mixed lettuce greens and 1/2 cup of dried cranberries in a bowl."
+    },
+    {
+      "instruction": "Add the apple, 1/4 cup of chopped walnuts and 1/4 cup of sunflower seeds."
+    },
+    {
+      "instruction": "Toss with 1/3 cup of vinaigrette dressing to lightly cover the salad."
+    },
+    {
+      "instruction": "Serve."
+    }
+  ]
+}

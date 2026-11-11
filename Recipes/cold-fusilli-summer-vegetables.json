@@ -1,0 +1,122 @@
+{
+  "id": "cold-fusilli-summer-vegetables",
+  "title": "Cold Fusilli with Summer Vegetables",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/cold-fusilli-pasta-summer",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 4,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "3 quarts",
+      "name": "water"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "whole-wheat fusilli (spiral) pasta"
+    },
+    {
+      "amount": "2 cups",
+      "name": "cherry tomatoes, rinsed and halved"
+    },
+    {
+      "amount": "1 large",
+      "name": "green bell pepper, rinsed and sliced in pieces 1/4 inch wide by 2 inches long"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "red onion, thinly sliced"
+    },
+    {
+      "amount": "1 medium",
+      "name": "zucchini, rinsed and shredded finely or sliced into small chunks (about 1 cup)"
+    },
+    {
+      "amount": "1 can",
+      "name": "chickpeas, low-sodium, 15 1/2 ounces, drained and rinsed"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "fresh basil, rinsed, dried and cut into thin strips (or 1 teaspoon dried)"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "extra virgin olive oil"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "balsamic vinegar"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "shredded parmesan cheese"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring 3 quarts of water to a boil in a 4-quart saucepan over high heat."
+    },
+    {
+      "instruction": "Add 8 ounces of whole-wheat fusilli to the boiling water.",
+      "spoken": "Add the pasta and cook it for the shortest time on the package, about 8 to nine minutes.",
+      "watch": {
+        "ingredient": "pasta",
+        "timerLabel": "Pasta",
+        "timerMinutes": 8,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Drain the pasta.",
+      "cue": {
+        "timerLabel": "Pasta",
+        "secondsLeft": 0
+      }
+    },
+    {
+      "instruction": "Rinse the pasta under cold running water for 3 minutes.",
+      "timer": {
+        "label": "Rinse",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Place 2 cups of halved cherry tomatoes in a large salad bowl."
+    },
+    {
+      "instruction": "Add 1 sliced green bell pepper and 1/2 cup of sliced red onion."
+    },
+    {
+      "instruction": "Add 1 shredded medium zucchini and 1 can of drained chickpeas."
+    },
+    {
+      "instruction": "Season with 1 tablespoon of basil, 1/4 teaspoon of salt and 1/8 teaspoon of pepper."
+    },
+    {
+      "instruction": "Add the cooled pasta."
+    },
+    {
+      "instruction": "Mix 1 tablespoon of olive oil and 2 tablespoons of balsamic vinegar in a small bowl.",
+      "spoken": "Mix the olive oil and the balsamic vinegar in a small bowl until completely blended."
+    },
+    {
+      "instruction": "Pour the dressing over the salad and mix gently until well coated."
+    },
+    {
+      "instruction": "Divide into 4 portions and top each with 2 tablespoons of shredded parmesan cheese."
+    }
+  ]
+}

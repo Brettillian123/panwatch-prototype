@@ -1,0 +1,93 @@
+{
+  "id": "banana-oat-cookies",
+  "title": "Banana Oat Cookies",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/banana-oat-cookies",
+    "credit": "Adapted from University of Minnesota Cooperative Extension Service"
+  },
+  "serves": 8,
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "banana, mashed, overripe"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "yogurt, low-fat plain"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1 cup",
+      "name": "quick oats, not instant"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "raisins, optional"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "sunflower seeds, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "cinnamon, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Wash your hands, then clean the utensils and counter top.",
+      "spoken": "Wash your hands with soap and water. Make sure the utensils and counter top are clean."
+    },
+    {
+      "instruction": "Preheat the oven to 375 °F."
+    },
+    {
+      "instruction": "Mix 1 cup of mashed banana, 1/2 cup of yogurt and 1/4 cup of water."
+    },
+    {
+      "instruction": "Add 1 cup of quick oats and mix well.",
+      "spoken": "Add 1 cup of quick oats, not instant oats, and mix well."
+    },
+    {
+      "instruction": "Add 1/2 cup of raisins or sunflower seeds if you like, and mix well."
+    },
+    {
+      "instruction": "Add cinnamon to taste if you like, and mix well."
+    },
+    {
+      "instruction": "Check that the batter is thick and easy to scoop with a spoon."
+    },
+    {
+      "instruction": "Grease a baking sheet."
+    },
+    {
+      "instruction": "Place 1 tablespoon of dough on the sheet and press it into a flat disk.",
+      "spoken": "Place 1 tablespoon of dough on the sheet and press it lightly into a flat disk. Repeat with the rest of the dough."
+    },
+    {
+      "instruction": "Refrigerate any dough left in the bowl."
+    },
+    {
+      "instruction": "Bake the cookies for 20 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Flip the cookies and bake 15 more minutes to make 25 small crisp cookies.",
+      "spoken": "Flip the cookies and bake them 15 more minutes, until they are crisp. This makes 25 small cookies.",
+      "timer": {
+        "label": "Bake again",
+        "minutes": 15
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "honey-vanilla-ice-cream",
+  "title": "Honey Vanilla Ice Cream",
+  "category": "Baking and desserts",
+  "method": "noHeat",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/honey-vanilla-ice-cream/",
+    "credit": "based.cooking contributor Ruby-Dragon"
+  },
+  "serves": 8,
+  "totalMinutes": 165,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "milk, whole milk recommended"
+    },
+    {
+      "amount": "1 cup",
+      "name": "sugar"
+    },
+    {
+      "amount": "1 pint",
+      "name": "heavy cream"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "honey"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 1 cup of milk and 1 cup of sugar in a medium bowl until the sugar dissolves."
+    },
+    {
+      "instruction": "Mix in 1 pint of heavy cream and 2 tablespoons of vanilla extract."
+    },
+    {
+      "instruction": "Stir in 1/2 cup of honey."
+    },
+    {
+      "instruction": "Chill in the refrigerator for at least 2 hours.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 120
+      }
+    },
+    {
+      "instruction": "Add it to an ice cream maker and run it for 30 minutes.",
+      "timer": {
+        "label": "Churn",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Quickly scoop the ice cream out of the maker into a container.",
+      "spoken": "Quickly scoop the ice cream out of the maker into a container. A silicone spatula helps, because it lets you scrape down the sides."
+    },
+    {
+      "instruction": "Freeze the ice cream overnight.",
+      "spoken": "Freeze the ice cream overnight. A few hours will do in a pinch, but overnight is better."
+    },
+    {
+      "instruction": "Scoop the ice cream out of the container and serve.",
+      "spoken": "Scoop the ice cream out of the container and serve. This makes 8 to ten servings."
+    }
+  ]
+}

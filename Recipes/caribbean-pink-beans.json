@@ -1,0 +1,89 @@
+{
+  "id": "caribbean-pink-beans",
+  "title": "Caribbean Pink Beans",
+  "category": "Beans and lentils",
+  "method": "pot",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/caribbean-pink-beans",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 12,
+  "totalMinutes": 80,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "dried pink beans"
+    },
+    {
+      "amount": "10 cups",
+      "name": "water, for soaking, plus more for cooking"
+    },
+    {
+      "amount": "2 medium",
+      "name": "plantains, finely chopped"
+    },
+    {
+      "amount": "1 large",
+      "name": "tomato, rinsed and finely chopped"
+    },
+    {
+      "amount": "1 small",
+      "name": "red bell pepper, rinsed and finely chopped"
+    },
+    {
+      "amount": "1 medium",
+      "name": "white onion, finely chopped"
+    },
+    {
+      "amount": "1 1/2 tablespoons",
+      "name": "garlic, minced (about 3 cloves)"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Rinse 1 pound of dried pink beans and pick out any rocks or debris.",
+      "spoken": "Rinse the beans and pick through them for rocks and other debris. Throw the debris away."
+    },
+    {
+      "instruction": "Put the beans in a large pot and add 10 cups of water."
+    },
+    {
+      "instruction": "Place the pot in the refrigerator and let the beans soak overnight."
+    },
+    {
+      "instruction": "Drain the soaked beans."
+    },
+    {
+      "instruction": "Put the beans in a large pot with water to cover them by about 1 inch."
+    },
+    {
+      "instruction": "Boil gently with the lid tilted for 1 hour, until the beans are soft.",
+      "spoken": "Boil gently with the lid tilted for about 1 hour, until the beans are soft. If the water drops below the top of the beans, add more water.",
+      "timer": {
+        "label": "Beans",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Add 2 medium plantains and 1 large tomato, finely chopped."
+    },
+    {
+      "instruction": "Add 1 small red bell pepper and 1 medium white onion, finely chopped."
+    },
+    {
+      "instruction": "Add 1 1/2 tablespoons of minced garlic and 1 1/2 teaspoons of salt."
+    },
+    {
+      "instruction": "Cook on low heat until the plantains are soft."
+    },
+    {
+      "instruction": "Serve warm.",
+      "spoken": "Serve warm. This makes 16 servings."
+    }
+  ]
+}

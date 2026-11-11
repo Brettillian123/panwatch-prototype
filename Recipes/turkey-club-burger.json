@@ -1,0 +1,101 @@
+{
+  "id": "turkey-club-burger",
+  "title": "Turkey Club Burger",
+  "category": "Sandwiches and wraps",
+  "method": "oven",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/turkey-club-burger",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 4,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "12 ounces",
+      "name": "99 percent fat-free ground turkey"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "scallions, green onions, rinsed and sliced"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "1 large",
+      "name": "egg"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "light mayonnaise"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "Dijon mustard"
+    },
+    {
+      "amount": "4 ounces",
+      "name": "spinach or arugula, rinsed and dried"
+    },
+    {
+      "amount": "4 ounces",
+      "name": "portabella mushroom, rinsed, grilled or broiled, and sliced, optional"
+    },
+    {
+      "amount": "4",
+      "name": "whole-wheat hamburger buns"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the broiler on high, with the rack 3 inches from the heat.",
+      "spoken": "Preheat the broiler on high, with the rack 3 inches from the heat. Or heat a grill to medium-high."
+    },
+    {
+      "instruction": "Mix 12 ounces of ground turkey, 1/2 cup of scallions, 1/4 teaspoon of pepper and 1 egg."
+    },
+    {
+      "instruction": "Form the mixture into 4 patties, 1/2 to 3/4 inch thick."
+    },
+    {
+      "instruction": "Coat each patty lightly with 1 tablespoon of olive oil in all."
+    },
+    {
+      "instruction": "Broil or grill the burgers for 7 minutes on the first side.",
+      "spoken": "Broil or grill the burgers for 7 to nine minutes on the first side.",
+      "timer": {
+        "label": "First side",
+        "minutes": 7
+      }
+    },
+    {
+      "instruction": "Turn the burgers and cook 7 more minutes, until a thermometer reads 160 °F.",
+      "spoken": "Turn the burgers and cook the second side for 7 to nine minutes, until a thermometer reads 160 °F in the middle of the patty.",
+      "timer": {
+        "label": "Second side",
+        "minutes": 7
+      }
+    },
+    {
+      "instruction": "Mix 2 tablespoons of light mayonnaise and 1 tablespoon of Dijon mustard into a spread."
+    },
+    {
+      "instruction": "Put 3/4 tablespoon of the spread on each bun."
+    },
+    {
+      "instruction": "Add 1 ounce of spinach or arugula to each bun."
+    },
+    {
+      "instruction": "Add several slices of grilled portabella mushroom to each bun if you like."
+    },
+    {
+      "instruction": "Put 1 burger on each bun."
+    }
+  ]
+}

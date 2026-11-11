@@ -1,0 +1,106 @@
+{
+  "id": "spiced-apple-pancakes",
+  "title": "Spiced Apple Pancakes",
+  "category": "Eggs and breakfast",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/spiced-apple-pancakes/",
+    "credit": "based.cooking contributor Elsie Bee"
+  },
+  "serves": 4,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "flour"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "sugar"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "cinnamon, or more to taste"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    },
+    {
+      "amount": "1",
+      "name": "egg"
+    },
+    {
+      "amount": "1 large",
+      "name": "apple, peeled"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "2/3 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "butter"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Combine 1 cup of flour, 1 tablespoon of sugar and 1 tablespoon of cinnamon in a bowl."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of baking powder and 1 pinch of salt."
+    },
+    {
+      "instruction": "Separate 1 egg."
+    },
+    {
+      "instruction": "Add the egg yolk to the dry ingredients."
+    },
+    {
+      "instruction": "Whisk the egg white until foamy."
+    },
+    {
+      "instruction": "Slice 1 large peeled apple into thin strips.",
+      "spoken": "Slice 1 large peeled apple into thin strips. You can also grate the apple."
+    },
+    {
+      "instruction": "Mix in the apple, 1 teaspoon of vanilla extract, the egg white and 2/3 cup of milk.",
+      "spoken": "Mix the dry ingredients, the apple, 1 teaspoon of vanilla extract, the egg white and 2/3 cup of milk into an even batter."
+    },
+    {
+      "instruction": "Melt 1 tablespoon of butter in a large pan over medium-high heat."
+    },
+    {
+      "instruction": "Add about 3 tablespoons of batter for each pancake.",
+      "spoken": "Add about 3 tablespoons of batter for each pancake. Cook for 2 minutes on the first side.",
+      "watch": {
+        "ingredient": "batter",
+        "timerLabel": "First side",
+        "timerMinutes": 2
+      }
+    },
+    {
+      "instruction": "Flip the pancake and cook the other side for 2 minutes.",
+      "timer": {
+        "label": "Second side",
+        "minutes": 2
+      },
+      "cue": {
+        "timerLabel": "First side",
+        "secondsLeft": 0
+      }
+    },
+    {
+      "instruction": "Repeat with the rest of the batter, for 8 pancakes in all."
+    }
+  ]
+}

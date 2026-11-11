@@ -1,0 +1,57 @@
+{
+  "id": "fruit-for-the-day-smoothie",
+  "title": "Fruit for the Day Smoothie",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AFruit_for_the_Day_Smoothie",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "1 can",
+      "name": "mandarin oranges, including the syrup (14 ounces)"
+    },
+    {
+      "amount": "2",
+      "name": "frozen bananas, peeled and sliced"
+    },
+    {
+      "amount": "2 cups",
+      "name": "frozen strawberries"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "milk"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 1 can of mandarin oranges, with the syrup, to a blender."
+    },
+    {
+      "instruction": "Add 2 frozen bananas, peeled and sliced."
+    },
+    {
+      "instruction": "Add 2 cups of frozen strawberries."
+    },
+    {
+      "instruction": "Add 1 1/2 cups of milk."
+    },
+    {
+      "instruction": "Hold down the lid and blend on low speed for 30 seconds."
+    },
+    {
+      "instruction": "Blend on high speed for 1 minute.",
+      "timer": {
+        "label": "Blend",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Pour the smoothie into a glass."
+    }
+  ]
+}

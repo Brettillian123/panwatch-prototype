@@ -1,0 +1,91 @@
+{
+  "id": "basic-quiche",
+  "title": "Basic Quiche",
+  "category": "Eggs and breakfast",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/basic-quiche",
+    "credit": "Pennsylvania Nutrition Education Network"
+  },
+  "serves": 6,
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "9-inch pie crust, baked"
+    },
+    {
+      "amount": "1 cup",
+      "name": "vegetables, chopped, such as broccoli, zucchini or mushrooms"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "cheese, shredded"
+    },
+    {
+      "amount": "3 large",
+      "name": "eggs, beaten"
+    },
+    {
+      "amount": "1 cup",
+      "name": "fat-free milk"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "garlic powder"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 375 °F."
+    },
+    {
+      "instruction": "Shred 1/2 cup of cheese with a grater."
+    },
+    {
+      "instruction": "Put the cheese in a small bowl for now."
+    },
+    {
+      "instruction": "Chop the vegetables until you have 1 cup."
+    },
+    {
+      "instruction": "Cook the chopped vegetables until cooked, but still crisp."
+    },
+    {
+      "instruction": "Put the cooked vegetables and the cheese into the pie crust."
+    },
+    {
+      "instruction": "Mix 3 beaten eggs and 1 cup of fat-free milk in a bowl."
+    },
+    {
+      "instruction": "Mix in 1/2 teaspoon each of salt, ground black pepper and garlic powder."
+    },
+    {
+      "instruction": "Pour the egg mixture over the cheese and vegetables."
+    },
+    {
+      "instruction": "Bake for 30 minutes, until a knife near the center comes out clean.",
+      "spoken": "Bake for 30 to forty minutes, until a knife inserted near the center comes out clean.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Let the quiche cool for 5 minutes before serving.",
+      "timer": {
+        "label": "Cool",
+        "minutes": 5
+      }
+    }
+  ]
+}

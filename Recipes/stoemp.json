@@ -1,0 +1,85 @@
+{
+  "id": "stoemp",
+  "title": "Stoemp",
+  "category": "Snacks and sides",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/stoemp/",
+    "credit": "based.cooking contributor alpo"
+  },
+  "serves": 4,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "3 1/2 ounces",
+      "name": "bacon"
+    },
+    {
+      "amount": "1 pound",
+      "name": "potatoes"
+    },
+    {
+      "amount": "10 ounces",
+      "name": "carrots"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "3 1/2 tablespoons",
+      "name": "butter"
+    },
+    {
+      "amount": "7 tablespoons",
+      "name": "heavy cream"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground nutmeg"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Cut 3 1/2 ounces of bacon into bits."
+    },
+    {
+      "instruction": "Sauté the bacon until it is well browned."
+    },
+    {
+      "instruction": "Peel 1 pound of potatoes and dice them into small chunks."
+    },
+    {
+      "instruction": "Peel and slice 10 ounces of carrots."
+    },
+    {
+      "instruction": "Boil the potatoes and carrots in salted water for 20 minutes.",
+      "spoken": "Boil the potatoes and carrots in salted water for 20 to twenty-five minutes.",
+      "timer": {
+        "label": "Boil",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Drain the potatoes and carrots."
+    },
+    {
+      "instruction": "Mash the potatoes and carrots with a fork.",
+      "spoken": "Mash them with a fork so that the texture stays slightly chunky."
+    },
+    {
+      "instruction": "Mix in the bacon bits and 3 1/2 tablespoons of butter."
+    },
+    {
+      "instruction": "Mix in 7 tablespoons of heavy cream and 1/2 teaspoon of ground nutmeg."
+    },
+    {
+      "instruction": "Season with salt and pepper."
+    }
+  ]
+}

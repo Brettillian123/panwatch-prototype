@@ -1,0 +1,84 @@
+{
+  "id": "zurich-style-meat-saute",
+  "title": "Zurich-Style Meat Sauté",
+  "category": "Beef and pork",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/zurich-sytle-meat-saute/",
+    "credit": "based.cooking contributor elias-pahls"
+  },
+  "serves": 4,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "to taste",
+      "name": "butter"
+    },
+    {
+      "amount": "1 1/3 pounds",
+      "name": "beef, finely sliced"
+    },
+    {
+      "amount": "1",
+      "name": "onion"
+    },
+    {
+      "amount": "9 ounces",
+      "name": "mushrooms, finely sliced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "flour"
+    },
+    {
+      "amount": "7 fluid ounces",
+      "name": "white wine"
+    },
+    {
+      "amount": "7 fluid ounces",
+      "name": "cream"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "parsley, chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat some butter in a large pan over high heat."
+    },
+    {
+      "instruction": "Add 1 1/3 pounds of finely sliced beef."
+    },
+    {
+      "instruction": "Fry the beef until it starts to lose liquid."
+    },
+    {
+      "instruction": "Take the beef out of the pan and set it aside."
+    },
+    {
+      "instruction": "Sauté 1 onion in the pan."
+    },
+    {
+      "instruction": "Add 9 ounces of finely sliced mushrooms and sauté them."
+    },
+    {
+      "instruction": "Stir in 1 tablespoon of flour and mix well.",
+      "spoken": "Stir in 1 tablespoon of flour and mix well. The flour thickens the sauce, so use it carefully."
+    },
+    {
+      "instruction": "Add 7 fluid ounces of white wine and let it boil.",
+      "spoken": "Add 7 fluid ounces of white wine and let it boil for a few minutes."
+    },
+    {
+      "instruction": "Add 7 fluid ounces of cream and boil until the sauce is very creamy."
+    },
+    {
+      "instruction": "Add the beef back and boil until the beef is warm."
+    },
+    {
+      "instruction": "Add 1 tablespoon of chopped parsley and serve."
+    }
+  ]
+}

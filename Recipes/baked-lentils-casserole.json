@@ -1,0 +1,98 @@
+{
+  "id": "baked-lentils-casserole",
+  "title": "Baked Lentils Casserole",
+  "category": "Beans and lentils",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/baked-lentils-casserole",
+    "credit": "Let’s Make Meatless Meals, University of Wisconsin Cooperative Extension Service"
+  },
+  "serves": 5,
+  "totalMinutes": 85,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "lentils, rinsed"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground black pepper, optional"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "garlic powder, optional"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "medium onion, chopped"
+    },
+    {
+      "amount": "1 can",
+      "name": "tomatoes, low-sodium, 14.5 ounces"
+    },
+    {
+      "amount": "2 medium",
+      "name": "carrots, thinly sliced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "cheddar cheese, shredded"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Mix 1 cup of lentils, 3/4 cup of water and 1/2 teaspoon of salt in a bowl."
+    },
+    {
+      "instruction": "Mix in 1/4 teaspoon of black pepper and 1/4 teaspoon of garlic powder."
+    },
+    {
+      "instruction": "Mix in 1/2 cup of chopped onion and 1 can of tomatoes."
+    },
+    {
+      "instruction": "Place the mixture in a 2 quart casserole dish."
+    },
+    {
+      "instruction": "Cover the dish tightly with a lid or foil."
+    },
+    {
+      "instruction": "Bake for 30 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Remove the dish from the oven and stir in 2 thinly sliced carrots."
+    },
+    {
+      "instruction": "Cover the dish and bake for 30 more minutes.",
+      "timer": {
+        "label": "Bake more",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Remove the cover and sprinkle 1/2 cup of shredded cheddar cheese on top."
+    },
+    {
+      "instruction": "Bake uncovered for 5 minutes, until the cheese melts.",
+      "timer": {
+        "label": "Melt",
+        "minutes": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "id": "collard-greens-with-smoked-duck",
+  "title": "Collard Greens with Smoked Duck",
+  "category": "Vegetables",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/collard-greens-with-smoked-duck-and-parnips/",
+    "credit": "based.cooking contributor Jayson"
+  },
+  "serves": 2,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1/2",
+      "name": "smoked duck breast, skin on, chopped"
+    },
+    {
+      "amount": "1-2 tablespoons",
+      "name": "olive oil and/or butter"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground coriander"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "garam masala"
+    },
+    {
+      "amount": "1 large",
+      "name": "onion, sliced"
+    },
+    {
+      "amount": "1 small",
+      "name": "parsnip, cut into thin strips"
+    },
+    {
+      "amount": "1 large bunch",
+      "name": "collard greens, chopped into ribbons"
+    },
+    {
+      "amount": "1/2",
+      "name": "green cabbage, cut into ribbons, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 1/2 smoked duck breast and 1-2 tablespoons olive oil and/or butter to a pot.",
+      "spoken": "Set a large pot with a lid on low heat. Add 1/2 chopped, skin-on smoked duck breast and 1 to two tablespoons of olive oil, butter, or both."
+    },
+    {
+      "instruction": "Cook on low heat for 2 minutes.",
+      "spoken": "Cook on low heat for a couple of minutes.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Add 1 teaspoon ground coriander, 1/2 teaspoon cinnamon and 1/2 teaspoon garam masala."
+    },
+    {
+      "instruction": "Cook the spices for 1 minute.",
+      "spoken": "Cook the spices for 1 or two minutes.",
+      "timer": {
+        "label": "Spices",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Add 1 large sliced onion.",
+      "spoken": "Add the sliced onion and let it cook for 5 minutes.",
+      "watch": {
+        "ingredient": "onion",
+        "timerLabel": "Onion",
+        "timerMinutes": 5
+      }
+    },
+    {
+      "instruction": "Add 1 small parsnip, cut into thin strips.",
+      "spoken": "Add the parsnip and let it sweat, softening in the pot.",
+      "cue": {
+        "timerLabel": "Onion",
+        "secondsLeft": 0
+      }
+    },
+    {
+      "instruction": "Add 1 large bunch of collard greens, cut into ribbons."
+    },
+    {
+      "instruction": "Add 1/2 green cabbage, cut into ribbons, if you are using it."
+    },
+    {
+      "instruction": "Add pepper to taste and 2 tablespoons of water."
+    },
+    {
+      "instruction": "Cover the pot."
+    },
+    {
+      "instruction": "Cook until the greens are wilted and tender to the bite."
+    }
+  ]
+}

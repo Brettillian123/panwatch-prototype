@@ -1,0 +1,69 @@
+{
+  "id": "modern-reuben-sandwich",
+  "title": "Modern Reuben Sandwich",
+  "category": "Sandwiches and wraps",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AModern_Reuben_Sandwich",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "butter, softened"
+    },
+    {
+      "amount": "8 slices",
+      "name": "rye bread"
+    },
+    {
+      "amount": "8 slices",
+      "name": "Swiss cheese"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "Thousand Island dressing"
+    },
+    {
+      "amount": "12 ounces",
+      "name": "thinly sliced corned beef, cooked"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "sauerkraut, well drained"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Lightly spread 2 tablespoons of butter on one side of each of the 8 bread slices."
+    },
+    {
+      "instruction": "Heat a large non-stick skillet over medium heat until hot."
+    },
+    {
+      "instruction": "Place 2 bread slices, butter side down, in the skillet."
+    },
+    {
+      "instruction": "Top each bread slice with 2 slices of Swiss cheese and 1 tablespoon of dressing."
+    },
+    {
+      "instruction": "Top each with 3 ounces of corned beef and a quarter of the sauerkraut."
+    },
+    {
+      "instruction": "Top each with another bread slice, butter side up."
+    },
+    {
+      "instruction": "Cook 4 minutes, turning once, until golden brown and the cheese is melted.",
+      "spoken": "Cook the sandwiches for 4 to six minutes, turning once, until the bread is golden brown and the cheese is melted.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 4
+      }
+    },
+    {
+      "instruction": "Repeat with the remaining bread to make the other sandwiches."
+    }
+  ]
+}

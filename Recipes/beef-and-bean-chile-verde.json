@@ -1,0 +1,94 @@
+{
+  "id": "beef-and-bean-chile-verde",
+  "title": "Beef and Bean Chile Verde",
+  "category": "Beef and pork",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/beef-and-bean-chile-verde",
+    "credit": "Simple Healthy Recipes, Oklahoma Nutrition Information and Education, ONIE Project"
+  },
+  "serves": 6,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "2/3 pound",
+      "name": "90% lean ground beef"
+    },
+    {
+      "amount": "1 large",
+      "name": "bell pepper, chopped"
+    },
+    {
+      "amount": "1 can",
+      "name": "diced tomatoes, low-sodium, 14.5 ounces"
+    },
+    {
+      "amount": "1 large",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "6 cloves",
+      "name": "garlic, chopped"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "chili powder"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "1 3/4 cups",
+      "name": "green salsa, or 16 ounce jar of enchilada sauce"
+    },
+    {
+      "amount": "1 can",
+      "name": "pinto or kidney beans, low-sodium, rinsed and drained, 15 ounces"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Place 2/3 pound of ground beef and 1 chopped bell pepper in a large saucepan."
+    },
+    {
+      "instruction": "Add 1 can of diced tomatoes and 1 chopped onion."
+    },
+    {
+      "instruction": "Cook over medium heat for 8 minutes, stirring often, until the beef is browned.",
+      "spoken": "Cook over medium heat for 8 to ten minutes, stirring often, until the beef is browned.",
+      "timer": {
+        "label": "Brown",
+        "minutes": 8
+      }
+    },
+    {
+      "instruction": "Drain the fat from the pan."
+    },
+    {
+      "instruction": "Add 6 chopped garlic cloves, 1 tablespoon of chili powder and 2 teaspoons of cumin.",
+      "spoken": "Add the garlic, chili powder and cumin. Cook for 15 seconds, until fragrant."
+    },
+    {
+      "instruction": "Stir in 1 3/4 cups of green salsa."
+    },
+    {
+      "instruction": "Bring the pan to a boil."
+    },
+    {
+      "instruction": "Reduce the heat and cover the pan."
+    },
+    {
+      "instruction": "Simmer for 10 minutes, stirring now and then.",
+      "spoken": "Simmer for 10 to fifteen minutes, stirring now and then.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Add 1 can of beans and cook until heated."
+    }
+  ]
+}

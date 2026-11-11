@@ -1,0 +1,121 @@
+{
+  "id": "applesauce-loaf-cake",
+  "title": "Applesauce Loaf Cake",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/applesauce-loaf-cake",
+    "credit": "Food Wise Learn at Home Print Materials, Rutgers University Cooperative Extension"
+  },
+  "serves": 16,
+  "totalMinutes": 85,
+  "ingredients": [
+    {
+      "amount": "1/2 cup",
+      "name": "walnuts, chopped"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "applesauce, unsweetened"
+    },
+    {
+      "amount": "1",
+      "name": "egg"
+    },
+    {
+      "amount": "1 cup",
+      "name": "sugar"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "2 cups",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "baking soda"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground cinnamon"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground nutmeg"
+    },
+    {
+      "amount": "1 cup",
+      "name": "raisins"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Grease two 8x4x2 inch loaf pans."
+    },
+    {
+      "instruction": "Toast 1/2 cup of chopped walnuts in an ungreased skillet on medium-low heat."
+    },
+    {
+      "instruction": "Stir the walnuts for 5 minutes, until brown and nutty.",
+      "spoken": "Stir for 5 to seven minutes, until the walnuts are brown and smell nutty.",
+      "timer": {
+        "label": "Toast",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Set the walnuts aside to cool."
+    },
+    {
+      "instruction": "Mix 1 1/2 cups of applesauce, 1 egg and 1 cup of sugar in a large bowl."
+    },
+    {
+      "instruction": "Mix in 2 tablespoons of vegetable oil and 1 teaspoon of vanilla extract."
+    },
+    {
+      "instruction": "Mix 2 cups of flour and 2 teaspoons of baking soda in a smaller bowl."
+    },
+    {
+      "instruction": "Mix 1/2 teaspoon of cinnamon and 1/2 teaspoon of nutmeg into the flour."
+    },
+    {
+      "instruction": "Pour the flour mixture into the applesauce mixture."
+    },
+    {
+      "instruction": "Stir in 1 cup of raisins and the cooled walnuts."
+    },
+    {
+      "instruction": "Pour half of the batter into each greased pan."
+    },
+    {
+      "instruction": "Bake for 45 minutes.",
+      "spoken": "Bake for 45 to fifty-five minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 45
+      }
+    },
+    {
+      "instruction": "Take the cakes out of the oven and cool them for 10 minutes.",
+      "timer": {
+        "label": "Cool",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Remove the cakes from the pans to finish cooling.",
+      "spoken": "Remove the cakes from the pans to finish cooling. For the best taste, let them cool a few hours before serving."
+    }
+  ]
+}

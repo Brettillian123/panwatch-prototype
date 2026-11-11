@@ -1,0 +1,70 @@
+{
+  "id": "baked-cauliflower-tots",
+  "title": "Baked Cauliflower Tots",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/baked-cauliflower-tots",
+    "credit": "Food Hero, Oregon State University Cooperative Extension Service"
+  },
+  "serves": 3,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "cauliflower rice, grated or finely chopped, about half a medium head"
+    },
+    {
+      "amount": "1",
+      "name": "egg"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "flour"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "cheddar cheese, grated"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 400 °F."
+    },
+    {
+      "instruction": "Lightly grease a baking sheet."
+    },
+    {
+      "instruction": "Mix 2 cups of cauliflower rice, 1 egg and 3 tablespoons of flour in a medium bowl."
+    },
+    {
+      "instruction": "Mix in 1/4 cup of grated cheddar cheese and 1/4 teaspoon of salt."
+    },
+    {
+      "instruction": "Press the mixture into about 15 small balls or logs."
+    },
+    {
+      "instruction": "Put the tots on the baking sheet with space between each one."
+    },
+    {
+      "instruction": "Bake for 20 minutes, until cooked through.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "For extra crispy tots, broil them for 2 more minutes.",
+      "spoken": "For extra crispy tots, broil them for 2 more minutes. Watch closely so they do not burn.",
+      "timer": {
+        "label": "Broil",
+        "minutes": 2
+      }
+    }
+  ]
+}

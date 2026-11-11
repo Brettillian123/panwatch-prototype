@@ -1,0 +1,99 @@
+{
+  "id": "braised-cod-with-leeks",
+  "title": "Braised Cod with Leeks",
+  "category": "Fish",
+  "method": "pan",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/braised-cod-leeks",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 4,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "butter"
+    },
+    {
+      "amount": "2 cups",
+      "name": "leeks, split lengthwise, sliced thin and rinsed well"
+    },
+    {
+      "amount": "3 medium",
+      "name": "carrots, peeled and cut into thin sticks"
+    },
+    {
+      "amount": "4",
+      "name": "red potatoes, sliced into 1/2-inch thick circles"
+    },
+    {
+      "amount": "2 cups",
+      "name": "low-sodium chicken broth"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "fresh parsley, chopped"
+    },
+    {
+      "amount": "12 ounces",
+      "name": "cod fillets, cut into 4 portions"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1 tablespoon of butter in a large pan."
+    },
+    {
+      "instruction": "Add 2 cups of sliced leeks and 3 medium carrots.",
+      "spoken": "Cook gently for 3 to five minutes, stirring often, until the vegetables begin to soften.",
+      "watch": {
+        "ingredient": "leeks",
+        "timerLabel": "Leeks",
+        "timerMinutes": 3
+      }
+    },
+    {
+      "instruction": "Add 4 sliced red potatoes and 2 cups of chicken broth."
+    },
+    {
+      "instruction": "Add 2 tablespoons of parsley, 1/2 teaspoon of salt and 1/4 teaspoon of pepper."
+    },
+    {
+      "instruction": "Bring to a boil over high heat."
+    },
+    {
+      "instruction": "Reduce the heat and simmer gently for 10 minutes.",
+      "spoken": "Reduce the heat and simmer gently for 10 to twelve minutes, until the vegetables are just tender.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Add the 4 cod fillets to the pan.",
+      "watch": {
+        "ingredient": "cod",
+        "timerLabel": "Cod",
+        "timerMinutes": 5,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Cover the pan with a tight-fitting lid and cook over low heat.",
+      "spoken": "Cover with a tight-fitting lid and cook over low heat for 5 minutes, until the fish is white and flakes easily with a fork in the thickest part. A thermometer reads 145 °F there."
+    },
+    {
+      "instruction": "Serve each fillet with 1 1/2 cups of broth and vegetables."
+    }
+  ]
+}

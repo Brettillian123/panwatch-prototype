@@ -1,0 +1,74 @@
+{
+  "id": "roasted-beets-orange-sauce",
+  "title": "Roasted Beets with Orange Sauce",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/roasted-beets-orange-sauce",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 4,
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "1 1/2 pounds",
+      "name": "small beets, leaves trimmed, each peeled and cut into four chunks"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1",
+      "name": "orange, rinsed (for peel and juice)"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "anise seeds, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 450 °F."
+    },
+    {
+      "instruction": "Cover a baking sheet with aluminum foil."
+    },
+    {
+      "instruction": "Toss 1 1/2 pounds of beets with 1 teaspoon of olive oil in a medium bowl.",
+      "spoken": "Toss the beets with the olive oil in a medium bowl until well coated."
+    },
+    {
+      "instruction": "Spread the beets on the baking sheet in a single layer."
+    },
+    {
+      "instruction": "Bake for 30 minutes.",
+      "spoken": "Bake for 30 to forty minutes, until the beets are easily pierced with a sharp knife.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Grate the zest of the orange into a small bowl."
+    },
+    {
+      "instruction": "Cut the orange in half and squeeze the juice into the bowl.",
+      "spoken": "Cut the orange in half and squeeze the juice, about 1/2 cup, into the bowl with the zest. Use a large spoon to press the inside of the orange to get more juice."
+    },
+    {
+      "instruction": "Stir in 1/2 teaspoon of anise seeds if you like.",
+      "spoken": "Stir in the anise seeds if you like. Then set the bowl aside."
+    },
+    {
+      "instruction": "Return the tender beets to the tossing bowl."
+    },
+    {
+      "instruction": "Pour the orange juice mixture over the beets."
+    },
+    {
+      "instruction": "Mix well to coat the beets, then serve."
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "id": "lebanese-lentil-soup",
+  "title": "Lebanese Lentil Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/lebanese-lentil-soup/",
+    "credit": "based.cooking contributors"
+  },
+  "serves": 8,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "3 cups",
+      "name": "red lentils"
+    },
+    {
+      "amount": "12 cups",
+      "name": "water"
+    },
+    {
+      "amount": "1 large",
+      "name": "red onion, diced"
+    },
+    {
+      "amount": "4 cups",
+      "name": "Swiss chard, chopped"
+    },
+    {
+      "amount": "2 small",
+      "name": "Yukon gold potatoes, diced"
+    },
+    {
+      "amount": "1 medium",
+      "name": "zucchini, diced"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "1 bunch",
+      "name": "cilantro, chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "lemon juice, more to taste"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cumin"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 3 cups of red lentils and 12 cups of water in a large pot."
+    },
+    {
+      "instruction": "Set the pot on medium heat and cook the lentils for 8 minutes.",
+      "spoken": "Set the pot on medium heat and bring it to a boil. After the lentils have cooked about 8 minutes, add the onion and chard mixture.",
+      "timer": {
+        "label": "Lentils",
+        "minutes": 8
+      }
+    },
+    {
+      "instruction": "In a pan, saute 1 large diced red onion for 5 minutes, until pink.",
+      "timer": {
+        "label": "Onion",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Add 4 cups of chopped Swiss chard to the onion.",
+      "spoken": "Add the chopped Swiss chard to the onion in the pan. Saute together for 2 to three minutes, until the chard is wilted.",
+      "watch": {
+        "ingredient": "chard",
+        "timerLabel": "Chard",
+        "timerMinutes": 2,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Add the onion and chard mixture to the boiling lentils."
+    },
+    {
+      "instruction": "Add 2 small diced Yukon gold potatoes and 1 medium diced zucchini to the pot."
+    },
+    {
+      "instruction": "Add salt and pepper to taste."
+    },
+    {
+      "instruction": "Lower the heat to medium-low, cover the pot and cook for 12 minutes.",
+      "spoken": "Lower the heat to medium-low, cover the pot and cook for about 12 minutes, until the potatoes and lentils are tender.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 12
+      }
+    },
+    {
+      "instruction": "Add 1 bunch of chopped cilantro, then stir and cook for 5 minutes.",
+      "spoken": "Add the chopped cilantro. Stir and cook for about 5 minutes.",
+      "watch": {
+        "ingredient": "cilantro",
+        "timerLabel": "Cilantro",
+        "timerMinutes": 5,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Stir in 1/4 cup of lemon juice and 1 teaspoon of cumin before serving."
+    }
+  ]
+}

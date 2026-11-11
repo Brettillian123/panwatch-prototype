@@ -1,0 +1,101 @@
+{
+  "id": "fast-fried-rice",
+  "title": "Fast Fried Rice",
+  "category": "Pasta and grains",
+  "method": "pan",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/wiki-fast-rice",
+    "credit": "NHLBI, NIH; Deliciously Healthy Family Meals"
+  },
+  "serves": 4,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "olive or canola oil"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "fresh ginger, minced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "scallions, rinsed and minced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "canned sliced water chestnuts, drained"
+    },
+    {
+      "amount": "2 cups",
+      "name": "cooked mixed vegetables, or 1/2 bag frozen stir-fry vegetable mix"
+    },
+    {
+      "amount": "2 cups",
+      "name": "cooked brown rice"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "low-sodium soy sauce"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "sesame oil"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1 tablespoon of oil in a large pan over medium heat."
+    },
+    {
+      "instruction": "Add 1 tablespoon of garlic, 1 teaspoon of ginger and 1 tablespoon of scallions.",
+      "spoken": "Cook for 1 minute, until fragrant.",
+      "watch": {
+        "ingredient": "garlic",
+        "timerLabel": "Garlic",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 1/2 cup of sliced water chestnuts.",
+      "spoken": "Keep cooking for 1 to two minutes, until the water chestnuts begin to soften.",
+      "watch": {
+        "ingredient": "water chestnuts",
+        "timerLabel": "Chestnuts",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 2 cups of mixed vegetables.",
+      "spoken": "Toss for 2 to three minutes, or up to five minutes for frozen vegetables, until heated through.",
+      "watch": {
+        "ingredient": "vegetables",
+        "timerLabel": "Vegetables",
+        "timerMinutes": 2
+      }
+    },
+    {
+      "instruction": "Add 2 cups of cooked brown rice.",
+      "spoken": "Keep cooking for 3 to five minutes, until the rice is hot.",
+      "watch": {
+        "ingredient": "rice",
+        "timerLabel": "Rice",
+        "timerMinutes": 3,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 1 tablespoon of soy sauce and 1 teaspoon of sesame oil."
+    },
+    {
+      "instruction": "Toss well and serve."
+    }
+  ]
+}

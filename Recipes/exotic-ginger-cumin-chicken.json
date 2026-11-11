@@ -1,0 +1,146 @@
+{
+  "id": "exotic-ginger-cumin-chicken",
+  "title": "Exotic Ginger Cumin Chicken",
+  "category": "Chicken",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/exotic-ginger-cumin-chicken/",
+    "credit": "based.cooking contributor joel-maxuel"
+  },
+  "serves": 8,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "vegetable oil, divided"
+    },
+    {
+      "amount": "2 pounds",
+      "name": "boneless skinless chicken, cut bite-size"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "ginger, minced"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "cayenne pepper"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cumin"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "turmeric"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "chicken stock"
+    },
+    {
+      "amount": "1 can",
+      "name": "stewed tomatoes"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "tomato paste"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "sugar"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "low fat plain yogurt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 teaspoons of oil in a large saucepan over medium heat."
+    },
+    {
+      "instruction": "Add 1 pound of the chicken and cook 3 minutes, until brown.",
+      "spoken": "Add half of the chicken, 1 pound, and cook for 3 minutes, until brown.",
+      "watch": {
+        "ingredient": "chicken",
+        "timerLabel": "Chicken",
+        "timerMinutes": 3,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Take the chicken out of the pan and set it aside."
+    },
+    {
+      "instruction": "Add the other 1 pound of chicken and cook 3 minutes, until brown.",
+      "spoken": "Add the rest of the chicken, 1 pound, and cook for 3 minutes, until brown.",
+      "watch": {
+        "ingredient": "chicken",
+        "timerLabel": "More chicken",
+        "timerMinutes": 3,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Remove the chicken and add the other 1 teaspoon of oil to the pan."
+    },
+    {
+      "instruction": "Add 2 teaspoons of garlic, 1/2 cup of onion and 1 tablespoon of ginger.",
+      "spoken": "Add the garlic, onion and ginger. Lower the heat to medium and stir constantly for 5 minutes, until soft.",
+      "watch": {
+        "ingredient": "onion",
+        "timerLabel": "Onion",
+        "timerMinutes": 5,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Stir in 1/2 teaspoon of cayenne pepper, 1 teaspoon of cumin and 1 teaspoon of turmeric.",
+      "spoken": "Stir in the cayenne, cumin and turmeric. Saute for 1 minute.",
+      "watch": {
+        "ingredient": "spices",
+        "timerLabel": "Spices",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Stir in 1/2 cup of chicken stock and 1 can (19 ounces) of stewed tomatoes."
+    },
+    {
+      "instruction": "Stir in 2 tablespoons of tomato paste and 1 teaspoon of sugar."
+    },
+    {
+      "instruction": "Return the chicken to the pan and bring it to a boil."
+    },
+    {
+      "instruction": "Lower the heat and simmer for 5 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Stir in 3/4 cup of plain yogurt and simmer for 2 minutes.",
+      "spoken": "Stir in 3/4 cup of low fat plain yogurt and simmer for 2 minutes.",
+      "watch": {
+        "ingredient": "yogurt",
+        "timerLabel": "Yogurt",
+        "timerMinutes": 2,
+        "minimumChange": 0
+      }
+    }
+  ]
+}

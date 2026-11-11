@@ -1,0 +1,96 @@
+{
+  "id": "granola",
+  "title": "Granola",
+  "category": "Eggs and breakfast",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/granola/",
+    "credit": "based.cooking contributor hanlex"
+  },
+  "serves": 5,
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "3 cups",
+      "name": "oats"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "maple syrup"
+    },
+    {
+      "amount": "1 cup",
+      "name": "nuts, chopped, such as almonds or pumpkin seeds"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cloves"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cardamom"
+    },
+    {
+      "amount": "1 cup",
+      "name": "dried fruit, such as apricots, unsweetened cranberries or dates"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 315 °F."
+    },
+    {
+      "instruction": "Mix 3 cups of oats, 1/2 cup of olive oil and 1/2 cup of maple syrup in a large bowl."
+    },
+    {
+      "instruction": "Stir in 1 cup of chopped nuts, 1 teaspoon of cloves and 1 teaspoon of cardamom."
+    },
+    {
+      "instruction": "Cover two large baking sheets with parchment paper."
+    },
+    {
+      "instruction": "Spread the mixture thinly and evenly on the sheets and put them in the oven."
+    },
+    {
+      "instruction": "Bake for 15 minutes.",
+      "timer": {
+        "label": "First bake",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Take the sheets out, stir the mixture and swap the sheets' oven places.",
+      "spoken": "Take the sheets out, stir the mixture, and put them back in the oven. Swap their places for even cooking."
+    },
+    {
+      "instruction": "Bake for 15 minutes.",
+      "timer": {
+        "label": "Second bake",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Take the sheets out, stir again and swap the sheets' oven places.",
+      "spoken": "Take the sheets out, stir the mixture, and put them back in the oven. Swap their places for even cooking."
+    },
+    {
+      "instruction": "Bake for 10 minutes.",
+      "timer": {
+        "label": "Final bake",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Take the sheets out and let the granola cool without stirring.",
+      "spoken": "Take the sheets out and do not stir. Leaving it alone helps it form clumps. Let it cool."
+    },
+    {
+      "instruction": "Chop 1 cup of dried fruit coarsely and mix it in."
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "id": "pininyahang-manok",
+  "title": "Pininyahang Manok",
+  "category": "Chicken",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/pininyahang-manok/",
+    "credit": "based.cooking contributor JezCruz"
+  },
+  "serves": 5,
+  "totalMinutes": 65,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "cooking oil"
+    },
+    {
+      "amount": "1",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "3 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 pound",
+      "name": "chicken, cut into serving pieces"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "fish sauce"
+    },
+    {
+      "amount": "1 cup",
+      "name": "pineapple juice"
+    },
+    {
+      "amount": "2",
+      "name": "carrots, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "pineapple chunks"
+    },
+    {
+      "amount": "1 cup",
+      "name": "evaporated milk, optional for a creamy version"
+    },
+    {
+      "amount": "1",
+      "name": "red bell pepper, sliced"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt and pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 tablespoons of cooking oil in a pan."
+    },
+    {
+      "instruction": "Saute 1 chopped onion and 3 cloves of minced garlic until fragrant."
+    },
+    {
+      "instruction": "Add 1 pound of chicken pieces and cook until lightly browned."
+    },
+    {
+      "instruction": "Pour in 2 tablespoons of fish sauce and stir for 1 minute.",
+      "watch": {
+        "ingredient": "fish sauce",
+        "timerLabel": "Fish sauce",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 1 cup of pineapple juice and simmer 15 minutes, until the chicken is tender.",
+      "spoken": "Add 1 cup of pineapple juice and simmer for 15 to twenty minutes, until the chicken is tender.",
+      "watch": {
+        "ingredient": "pineapple juice",
+        "timerLabel": "Simmer",
+        "timerMinutes": 15,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 2 chopped carrots and 1 cup of pineapple chunks."
+    },
+    {
+      "instruction": "Keep cooking until the vegetables soften."
+    },
+    {
+      "instruction": "Pour in 1 cup of evaporated milk to make it creamy, if you like."
+    },
+    {
+      "instruction": "Add 1 sliced red bell pepper."
+    },
+    {
+      "instruction": "Season with salt and pepper to taste."
+    },
+    {
+      "instruction": "Simmer for 3 more minutes, then serve hot.",
+      "spoken": "Simmer for another 3 to five minutes, then serve hot.",
+      "timer": {
+        "label": "Finish",
+        "minutes": 3
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "bell-pepper-nachos",
+  "title": "Bell Pepper Nachos",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/bell-pepper-nachos",
+    "credit": "Food Hero, Oregon State University Cooperative Extension Service"
+  },
+  "serves": 8,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "4",
+      "name": "bell peppers, any color"
+    },
+    {
+      "amount": "1 cup",
+      "name": "salsa"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "seasoning, try a mixture of chili powder, garlic powder, ground cumin and pepper"
+    },
+    {
+      "amount": "1 cup",
+      "name": "cooked chicken, shredded or chopped (or tofu, or a combination)"
+    },
+    {
+      "amount": "1 cup",
+      "name": "beans, canned or cooked, drained, any type"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "cheddar cheese, shredded"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Wash the 4 bell peppers."
+    },
+    {
+      "instruction": "Remove the seeds from the peppers."
+    },
+    {
+      "instruction": "Cut the peppers into bite-sized pieces."
+    },
+    {
+      "instruction": "Arrange the pieces close together in a single layer on a large foil-lined baking sheet."
+    },
+    {
+      "instruction": "Mix 1 cup of salsa and 2 teaspoons of seasoning in a medium bowl."
+    },
+    {
+      "instruction": "Mix in 1 cup of cooked chicken and 1 cup of drained beans.",
+      "spoken": "Mix in 1 cup of cooked chicken, or tofu, or a mix of both, and 1 cup of drained beans."
+    },
+    {
+      "instruction": "Spoon the mixture evenly over the pepper pieces."
+    },
+    {
+      "instruction": "Top with 3/4 cup of shredded cheddar cheese."
+    },
+    {
+      "instruction": "Bake for 15 minutes, until the peppers are heated through and the cheese is melted.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 15
+      }
+    }
+  ]
+}

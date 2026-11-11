@@ -1,0 +1,70 @@
+{
+  "id": "baked-eggs-and-cheese",
+  "title": "Baked Eggs and Cheese",
+  "category": "Eggs and breakfast",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/baked-eggs-cheese",
+    "credit": "Adapted from Sure To Please Baked Eggs and Cheese, Healthy Snacks, University of Wisconsin Cooperative Extension Service"
+  },
+  "serves": 4,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "6",
+      "name": "eggs"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "fat-free milk"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "low-fat cheese, grated"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "oregano"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Put 1 tablespoon of oil in a medium baking dish or small cake pan."
+    },
+    {
+      "instruction": "Heat the dish in the oven for a few minutes."
+    },
+    {
+      "instruction": "Beat 6 eggs in a medium bowl."
+    },
+    {
+      "instruction": "Mix 1/2 cup of milk and 1/2 cup of grated cheese into the eggs."
+    },
+    {
+      "instruction": "Mix 1 teaspoon of garlic powder and 1 1/2 teaspoons of oregano into the eggs."
+    },
+    {
+      "instruction": "Pour the egg mixture into the hot dish."
+    },
+    {
+      "instruction": "Bake for 20 minutes, until the eggs are firm.",
+      "spoken": "Bake for 20 minutes, or until the eggs are firm. Serve right away.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    }
+  ]
+}

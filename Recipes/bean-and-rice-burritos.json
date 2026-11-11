@@ -1,0 +1,81 @@
+{
+  "id": "bean-and-rice-burritos",
+  "title": "Bean and Rice Burritos",
+  "category": "Beans and lentils",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/bean-and-rice-burritos",
+    "credit": "Pennsylvania Nutrition Education Network"
+  },
+  "serves": 8,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1 small",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "2 cups",
+      "name": "cooked kidney beans, low-sodium, drained"
+    },
+    {
+      "amount": "2 cups",
+      "name": "cooked rice"
+    },
+    {
+      "amount": "8",
+      "name": "10-inch flour tortillas"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "cheese, shredded"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "salsa"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 300 °F."
+    },
+    {
+      "instruction": "Peel and chop 1 small onion into small pieces."
+    },
+    {
+      "instruction": "Drain the liquid from 2 cups of cooked kidney beans."
+    },
+    {
+      "instruction": "Mix 2 cups of cooked rice, the onion and the beans in a bowl."
+    },
+    {
+      "instruction": "Put 8 flour tortillas on a flat surface."
+    },
+    {
+      "instruction": "Put 1/2 cup of the rice and bean mix in the middle of each tortilla."
+    },
+    {
+      "instruction": "Fold the sides of each tortilla over the filling."
+    },
+    {
+      "instruction": "Put each burrito in a baking pan."
+    },
+    {
+      "instruction": "Bake the burritos for 15 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Grate 1/2 cup of cheese while the burritos bake."
+    },
+    {
+      "instruction": "Pour 1/2 cup of salsa over the baked burritos."
+    },
+    {
+      "instruction": "Top the burritos with the cheese."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": "indian-chai",
+  "title": "Indian Chai",
+  "category": "Drinks",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AIndian_Chai",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "serves": 1,
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "1/2 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "tea leaves"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "sugar or 1 packet artificial sweetener"
+    },
+    {
+      "amount": "1 dash",
+      "name": "chai masala"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 1/2 cup of water, 1/2 cup of milk and 1 teaspoon of tea leaves to a saucepan."
+    },
+    {
+      "instruction": "Add 2 teaspoons of sugar or 1 packet of artificial sweetener."
+    },
+    {
+      "instruction": "Add 1 dash of chai masala."
+    },
+    {
+      "instruction": "Bring the mixture to a boil."
+    },
+    {
+      "instruction": "Simmer for 1 minute.",
+      "spoken": "Simmer for no more than 1 minute, unless you like a stronger tea taste.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Strain the tea into a cup."
+    }
+  ]
+}

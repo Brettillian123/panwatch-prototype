@@ -1,0 +1,130 @@
+{
+  "id": "chicken-mushroom-fricassee",
+  "title": "Chicken and Mushroom Fricassee",
+  "category": "Chicken",
+  "method": "pan",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/chicken-and-mushroom-fricassee",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 4,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "10 ounces",
+      "name": "white button mushrooms, rinsed and quartered"
+    },
+    {
+      "amount": "1 cup",
+      "name": "leeks, split into quarters, then sliced into small squares and rinsed well"
+    },
+    {
+      "amount": "1 cup",
+      "name": "potatoes, peeled and diced"
+    },
+    {
+      "amount": "1 cup",
+      "name": "celery, rinsed and diced"
+    },
+    {
+      "amount": "1 cup",
+      "name": "pearl onions, raw or frozen"
+    },
+    {
+      "amount": "3 cups",
+      "name": "low-sodium chicken broth"
+    },
+    {
+      "amount": "1 pound",
+      "name": "skinless chicken legs or thighs (4 whole legs, split, or 8 thighs)"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "fresh herbs, such as parsley and chives (2 tablespoons of each), rinsed, dried and minced (or 2 teaspoons dried)"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "cornstarch"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "fat-free sour cream"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Heat 1 tablespoon of olive oil in a heavy roasting or braising pan.",
+      "spoken": "Heat the olive oil in a medium heavy-bottom roasting or braising pan. A large sauté pan with a metal handle will work as well."
+    },
+    {
+      "instruction": "Add 10 ounces of quartered mushrooms to the pan.",
+      "spoken": "Add the mushrooms and cook for 3 to five minutes, until golden brown.",
+      "watch": {
+        "ingredient": "mushrooms",
+        "timerLabel": "Mushrooms",
+        "timerMinutes": 3,
+        "minimumChange": 0.02
+      }
+    },
+    {
+      "instruction": "Add 1 cup each of leeks, potatoes, celery and pearl onions.",
+      "spoken": "Add the leeks, potatoes, celery and pearl onions, 1 cup of each. Keep cooking for 3 to five more minutes, until the vegetables become soft.",
+      "watch": {
+        "ingredient": "vegetables",
+        "timerLabel": "Vegetables",
+        "timerMinutes": 3,
+        "minimumChange": 0.02
+      }
+    },
+    {
+      "instruction": "Add 3 cups of low-sodium chicken broth and bring to a boil."
+    },
+    {
+      "instruction": "Add 1 pound of skinless chicken legs or thighs to the pan."
+    },
+    {
+      "instruction": "Cover the pan and place it in the oven for 20 minutes.",
+      "spoken": "Cover the pan and place it in the oven for about 20 minutes, until the chicken is tender when pierced with a fork and a thermometer reads 165 °F.",
+      "timer": {
+        "label": "Oven",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Remove the chicken from the pan and return the pan to the stovetop."
+    },
+    {
+      "instruction": "Bring the liquid to a boil, then add the herbs and 1 tablespoon of lemon juice."
+    },
+    {
+      "instruction": "Mix 1 tablespoon of cornstarch with 2 tablespoons of sour cream and add it to the pan."
+    },
+    {
+      "instruction": "Bring the pan back to a boil, then remove it from the heat."
+    },
+    {
+      "instruction": "Season with 1/2 teaspoon salt and 1/4 teaspoon pepper, then pour sauce over the chicken.",
+      "spoken": "Season with the salt and pepper. Pour 1 cup of the vegetables and sauce over the chicken."
+    }
+  ]
+}

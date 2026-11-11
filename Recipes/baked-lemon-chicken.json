@@ -1,0 +1,84 @@
+{
+  "id": "baked-lemon-chicken",
+  "title": "Baked Lemon Chicken",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/baked-lemon-chicken",
+    "credit": "Food Family Fun, USDA Food and Nutrition Service, Team Nutrition"
+  },
+  "serves": 5,
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "3 1/2 pounds",
+      "name": "whole chicken, skinned and cut into 10 pieces"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "1 1/2 cloves",
+      "name": "garlic, thinly sliced"
+    },
+    {
+      "amount": "4 teaspoons",
+      "name": "fresh thyme"
+    },
+    {
+      "amount": "3 cups",
+      "name": "onion, thinly sliced"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "chicken broth, low-sodium"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "1",
+      "name": "lemon, sliced into 10 slices, seeds removed"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 400 °F."
+    },
+    {
+      "instruction": "Mix 1/4 teaspoon salt, 1/4 teaspoon pepper, 1 1/2 cloves garlic and 4 teaspoons thyme."
+    },
+    {
+      "instruction": "Lay 3 1/2 pounds of chicken pieces in an 11-by-13-inch baking pan."
+    },
+    {
+      "instruction": "Sprinkle the seasonings over the chicken."
+    },
+    {
+      "instruction": "In a saucepan, combine 3 cups sliced onion, 1 1/2 cups broth and 1/4 cup lemon juice."
+    },
+    {
+      "instruction": "Heat the onion mixture to a boil."
+    },
+    {
+      "instruction": "Pour the hot lemon mixture around the chicken."
+    },
+    {
+      "instruction": "Top each chicken piece with a lemon slice, from 1 lemon cut into 10 slices."
+    },
+    {
+      "instruction": "Bake for 30 minutes, until golden brown and the juices run clear.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    }
+  ]
+}

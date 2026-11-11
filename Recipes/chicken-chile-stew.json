@@ -1,0 +1,91 @@
+{
+  "id": "chicken-chile-stew",
+  "title": "Chicken Chile Stew",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/chicken-chile-stew",
+    "credit": "NHLBI, NIH; Honoring the Gift of Heart Health Manual for American Indians and Native Alaskans"
+  },
+  "serves": 10,
+  "totalMinutes": 125,
+  "ingredients": [
+    {
+      "amount": "to taste",
+      "name": "nonstick cooking spray"
+    },
+    {
+      "amount": "3 pounds",
+      "name": "chicken, boneless, skinless (breast or leg), cubed"
+    },
+    {
+      "amount": "3 stalks",
+      "name": "celery, chopped"
+    },
+    {
+      "amount": "1 medium",
+      "name": "tomato, diced"
+    },
+    {
+      "amount": "7",
+      "name": "green chilies, roasted, peeled, seeded and chopped"
+    },
+    {
+      "amount": "4 cloves",
+      "name": "garlic, peeled and crushed"
+    },
+    {
+      "amount": "to taste",
+      "name": "cold water, for the skillet and to cover the stew"
+    },
+    {
+      "amount": "to taste",
+      "name": "ground black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Spray a heavy iron skillet with cooking spray."
+    },
+    {
+      "instruction": "Heat the skillet over medium heat."
+    },
+    {
+      "instruction": "Brown 3 pounds of cubed chicken in the skillet, in batches.",
+      "spoken": "Brown the chicken cubes in batches, using more cooking spray as needed."
+    },
+    {
+      "instruction": "Place the chicken in a 3- or 4-quart casserole with a cover."
+    },
+    {
+      "instruction": "Add 3 stalks of chopped celery and 1 medium diced tomato to the casserole."
+    },
+    {
+      "instruction": "Add 7 chopped green chilies and 4 cloves of crushed garlic."
+    },
+    {
+      "instruction": "Add some cold water to the skillet on high heat."
+    },
+    {
+      "instruction": "Scrape the hardened juices with a spoon so they dissolve into the water."
+    },
+    {
+      "instruction": "Add the sauce from the skillet to the casserole."
+    },
+    {
+      "instruction": "Add water to barely cover the ingredients."
+    },
+    {
+      "instruction": "Cover the casserole and simmer for 90 minutes.",
+      "spoken": "Cover the casserole and simmer for about an hour and a half, until the stew is thick and the meat is very tender.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 90
+      }
+    },
+    {
+      "instruction": "Add black pepper to taste before serving."
+    }
+  ]
+}

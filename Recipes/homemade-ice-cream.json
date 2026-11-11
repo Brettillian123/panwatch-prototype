@@ -1,0 +1,80 @@
+{
+  "id": "homemade-ice-cream",
+  "title": "Homemade Ice Cream",
+  "category": "Baking and desserts",
+  "method": "noHeat",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/homemade-ice-cream/",
+    "credit": "based.cooking contributor milutinke"
+  },
+  "serves": 6,
+  "totalMinutes": 325,
+  "ingredients": [
+    {
+      "amount": "1 can",
+      "name": "condensed milk"
+    },
+    {
+      "amount": "2 cups",
+      "name": "heavy whipping cream"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "2 handfuls",
+      "name": "blended blueberries, or any mix-in of your choice"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Beat 1 can of condensed milk with a mixer for 2 minutes, until smooth.",
+      "timer": {
+        "label": "Beat",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Set the condensed milk aside."
+    },
+    {
+      "instruction": "In a separate bowl, whip 2 cups of heavy cream for 4 minutes.",
+      "spoken": "In a separate bowl, whip the heavy cream for about 4 minutes, until it is thick and stiff peaks form.",
+      "timer": {
+        "label": "Whip",
+        "minutes": 4
+      }
+    },
+    {
+      "instruction": "Gently fold the condensed milk into the whipped cream."
+    },
+    {
+      "instruction": "Add 1 teaspoon of vanilla extract and 2 handfuls of blended blueberries."
+    },
+    {
+      "instruction": "Mix by hand until just combined."
+    },
+    {
+      "instruction": "Move the mixture to a clean container that holds about 35 ounces."
+    },
+    {
+      "instruction": "Spread it evenly and press lightly to remove air pockets."
+    },
+    {
+      "instruction": "Shake the container gently from side to side to level the top."
+    },
+    {
+      "instruction": "Cover with plastic wrap, then close with a lid."
+    },
+    {
+      "instruction": "Freeze for 5 hours, until firm.",
+      "spoken": "Freeze for 5 to six hours, until firm.",
+      "timer": {
+        "label": "Freeze",
+        "minutes": 300
+      }
+    }
+  ]
+}

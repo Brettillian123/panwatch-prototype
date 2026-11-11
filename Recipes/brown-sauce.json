@@ -1,0 +1,71 @@
+{
+  "id": "brown-sauce",
+  "title": "Brown Sauce",
+  "category": "Sauces and dips",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/brown-sauce/",
+    "credit": "based.cooking contributor Vili Kangas"
+  },
+  "serves": 6,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "5 tablespoons",
+      "name": "butter"
+    },
+    {
+      "amount": "7 tablespoons",
+      "name": "flour"
+    },
+    {
+      "amount": "4 1/4 cups",
+      "name": "bouillon"
+    },
+    {
+      "amount": "to taste",
+      "name": "black pepper, freshly ground"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Chop 1 onion."
+    },
+    {
+      "instruction": "Sauté the chopped onion in a pan until soft."
+    },
+    {
+      "instruction": "Set the onion aside for a while."
+    },
+    {
+      "instruction": "Melt 5 tablespoons of butter in a pan."
+    },
+    {
+      "instruction": "Add 7 tablespoons of flour to the butter."
+    },
+    {
+      "instruction": "Stir the flour over medium heat until the mixture is dark brown.",
+      "spoken": "Cook the flour over medium heat until the mixture is dark brown."
+    },
+    {
+      "instruction": "Whisk in 4 1/4 cups of bouillon a little at a time.",
+      "spoken": "Add the 4 1/4 cups of bouillon in small batches while whisking."
+    },
+    {
+      "instruction": "Let the sauce boil until it thickens.",
+      "spoken": "Let the sauce boil and thicken for a few minutes."
+    },
+    {
+      "instruction": "Add the onion back to the sauce."
+    },
+    {
+      "instruction": "Grind some black pepper into the sauce.",
+      "spoken": "Grind some black pepper into the sauce. You can also add meat of your choice, or use the sauce as it is."
+    }
+  ]
+}

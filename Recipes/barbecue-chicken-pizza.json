@@ -1,0 +1,69 @@
+{
+  "id": "barbecue-chicken-pizza",
+  "title": "Barbecue Chicken Pizza",
+  "category": "Sandwiches and wraps",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/bbq-chicken-pizza",
+    "credit": "Texas Cooperative Extension Expanded Nutrition Program, The Texas A&M University System"
+  },
+  "serves": 12,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "6",
+      "name": "English muffins, whole wheat"
+    },
+    {
+      "amount": "1",
+      "name": "bell pepper, chopped"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "barbecue sauce"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "chicken breast, skinless, cooked, cut up or shredded"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "smoked cheddar cheese, shredded (or regular)"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 450 °F."
+    },
+    {
+      "instruction": "Slice the 6 English muffins in half."
+    },
+    {
+      "instruction": "Place the muffin halves on a large, ungreased cookie sheet."
+    },
+    {
+      "instruction": "Chop 1 bell pepper."
+    },
+    {
+      "instruction": "Spread 3/4 cup of barbecue sauce on the muffins, to within 1/4 inch of the edges."
+    },
+    {
+      "instruction": "Top the muffins with 1 1/2 cups of cooked chicken breast."
+    },
+    {
+      "instruction": "Top with 3/4 cup of shredded cheddar cheese."
+    },
+    {
+      "instruction": "Top with the chopped bell pepper."
+    },
+    {
+      "instruction": "Bake for 7 minutes, until the cheese is melted.",
+      "spoken": "Bake for 7 to twelve minutes, until the cheese is melted.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 7
+      }
+    }
+  ]
+}

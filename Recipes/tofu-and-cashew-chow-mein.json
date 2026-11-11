@@ -1,0 +1,121 @@
+{
+  "id": "tofu-and-cashew-chow-mein",
+  "title": "Tofu and Cashew Chow Mein",
+  "category": "Pasta and grains",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/tofu-and-cashew-chow-mein/",
+    "credit": "based.cooking contributor joel-maxuel"
+  },
+  "serves": 3,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "10 ounces",
+      "name": "precooked thick wheat noodles"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "soy sauce"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "oyster sauce"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "sesame oil"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "water"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "peanut oil, or other suitable frying oil"
+    },
+    {
+      "amount": "1",
+      "name": "carrot, cut into thin sticks"
+    },
+    {
+      "amount": "2 cups",
+      "name": "small broccoli florets"
+    },
+    {
+      "amount": "6 ounces",
+      "name": "firm tofu, cut into cubes"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "ginger, finely grated"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "roasted cashews"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Soak 10 ounces of precooked noodles in hot water for 2 minutes.",
+      "spoken": "Loosen 10 ounces of precooked thick wheat noodles in a bowl of hot water for 2 to three minutes.",
+      "timer": {
+        "label": "Soak",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Drain the noodles and set them aside."
+    },
+    {
+      "instruction": "Mix 3 tablespoons of soy sauce and 2 tablespoons of oyster sauce in a bowl."
+    },
+    {
+      "instruction": "Mix in 2 teaspoons of sesame oil and 2 tablespoons of water."
+    },
+    {
+      "instruction": "Heat 2 tablespoons of peanut oil in a wok or large pan over high heat."
+    },
+    {
+      "instruction": "Add 1 carrot, cut into thin sticks, and 2 cups of broccoli florets.",
+      "spoken": "Add the carrot and the broccoli florets. Stir-fry for 2 minutes.",
+      "watch": {
+        "ingredient": "broccoli",
+        "timerLabel": "Veggies",
+        "timerMinutes": 2,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Add 6 ounces of firm tofu, cut into cubes.",
+      "spoken": "Add the tofu cubes. Stir-fry for 4 minutes.",
+      "watch": {
+        "ingredient": "tofu",
+        "timerLabel": "Tofu",
+        "timerMinutes": 4,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Add 2 cloves of minced garlic and 2 teaspoons of grated ginger.",
+      "spoken": "Add the garlic and the ginger. Stir-fry for 1 minute.",
+      "watch": {
+        "ingredient": "garlic",
+        "timerLabel": "Garlic",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Stir in the noodles, the sauce and 1/2 cup of roasted cashews.",
+      "spoken": "Stir in the noodles, then the sauce and 1/2 cup of roasted cashews. Mix until everything is thoroughly combined and heated through."
+    }
+  ]
+}

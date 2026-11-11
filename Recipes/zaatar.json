@@ -1,0 +1,56 @@
+{
+  "id": "zaatar",
+  "title": "Zaatar",
+  "category": "Sauces and dips",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/zaatar/",
+    "credit": "based.cooking contributor Wael Karram"
+  },
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "sesame seeds"
+    },
+    {
+      "amount": "1 cup",
+      "name": "zaatar leaves, without the stalks, cleaned and dried"
+    },
+    {
+      "amount": "1 cup",
+      "name": "sumac"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "citric acid salt, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Lightly roast 1 cup of sesame seeds in a wide pan until golden brown.",
+      "spoken": "Lightly roast 1 cup of sesame seeds in a wide pan until they turn golden brown. You can skip this step if you like."
+    },
+    {
+      "instruction": "Let the sesame seeds cool down completely."
+    },
+    {
+      "instruction": "Mix 1 cup of zaatar leaves with the sesame seeds."
+    },
+    {
+      "instruction": "Add 1 cup of sumac and 1 teaspoon of salt."
+    },
+    {
+      "instruction": "Adjust the sumac and salt to taste.",
+      "spoken": "Adjust the sumac and salt to taste. You can add citric acid salt for an extra kick if the sumac was not enough."
+    },
+    {
+      "instruction": "Store in an airtight jar or container."
+    }
+  ]
+}

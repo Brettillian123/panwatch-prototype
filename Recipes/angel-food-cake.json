@@ -1,0 +1,70 @@
+{
+  "id": "angel-food-cake",
+  "title": "Angel Food Cake",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/angel-food-cake",
+    "credit": "Ohio State University Cooperative Extension, Sandusky County Family Nutrition Program"
+  },
+  "serves": 12,
+  "totalMinutes": 90,
+  "ingredients": [
+    {
+      "amount": "12 large",
+      "name": "egg whites"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cream of tartar"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "sugar"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 cup",
+      "name": "flour, sifted"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 325 °F."
+    },
+    {
+      "instruction": "Beat 12 large egg whites in a large mixing bowl until foamy."
+    },
+    {
+      "instruction": "Add 1 teaspoon of cream of tartar and beat until stiff, but not dry."
+    },
+    {
+      "instruction": "Gradually beat in 1 1/2 cups of sugar."
+    },
+    {
+      "instruction": "Add 1 teaspoon of vanilla extract and 1/4 teaspoon of salt."
+    },
+    {
+      "instruction": "Gently fold in 1 cup of sifted flour."
+    },
+    {
+      "instruction": "Pour the batter into a 10-inch tube pan."
+    },
+    {
+      "instruction": "Bake for 75 minutes, until the top is nicely browned.",
+      "spoken": "Bake for an hour and fifteen minutes, or until the top is nicely browned.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 75
+      }
+    }
+  ]
+}

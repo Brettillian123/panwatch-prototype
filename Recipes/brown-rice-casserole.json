@@ -1,0 +1,76 @@
+{
+  "id": "brown-rice-casserole",
+  "title": "Brown Rice Casserole",
+  "category": "Pasta and grains",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABrown_Rice_Casserole",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "8 ounces",
+      "name": "processed cheese, cubed"
+    },
+    {
+      "amount": "1 can",
+      "name": "mushrooms, 4 ounces"
+    },
+    {
+      "amount": "1 can",
+      "name": "sweet peas, 15 ounces"
+    },
+    {
+      "amount": "3 cups",
+      "name": "cooked brown rice"
+    },
+    {
+      "amount": "to taste",
+      "name": "cooking spray"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "slivered almonds"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Add 8 ounces of cubed cheese and 1 can of mushrooms to a large bowl."
+    },
+    {
+      "instruction": "Add 1 can of sweet peas and 3 cups of cooked brown rice."
+    },
+    {
+      "instruction": "Mix everything together."
+    },
+    {
+      "instruction": "Coat a 1 1/2-quart baking pan with cooking spray."
+    },
+    {
+      "instruction": "Move the mixture to the baking pan."
+    },
+    {
+      "instruction": "Cover the pan and bake for 20 minutes.",
+      "spoken": "Cover the pan and bake for 20 to twenty-five minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Sprinkle 1/2 cup of slivered almonds on top."
+    },
+    {
+      "instruction": "Bake 5 minutes more.",
+      "timer": {
+        "label": "Bake more",
+        "minutes": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "id": "sweet-potato-and-peanut-soup",
+  "title": "Sweet Potato and Peanut Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AM'batata_(Sweet_Potato_And_Peanut_Soup)"
+  },
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "2 large",
+      "name": "sweet potatoes, peeled and cubed"
+    },
+    {
+      "amount": "4 cups",
+      "name": "vegetable or chicken broth"
+    },
+    {
+      "amount": "1 cup",
+      "name": "unsalted peanuts"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground coriander"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "chile powder, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "1 cup",
+      "name": "coconut milk, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "cilantro or parsley, chopped, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1 tablespoon of vegetable oil in a large pot over medium heat."
+    },
+    {
+      "instruction": "Add 1 chopped onion and 2 cloves of minced garlic.",
+      "spoken": "Add the chopped onion and the minced garlic. Cook until the onion is soft and clear and smells good."
+    },
+    {
+      "instruction": "Add 2 large sweet potatoes, peeled and cubed.",
+      "spoken": "Add the cubed sweet potatoes and stir them with the onion and garlic for a couple of minutes."
+    },
+    {
+      "instruction": "Pour in 4 cups of vegetable or chicken broth.",
+      "spoken": "Pour in 4 cups of broth. The sweet potatoes should be fully covered."
+    },
+    {
+      "instruction": "Bring the pot to a boil."
+    },
+    {
+      "instruction": "Lower the heat and simmer for 15 minutes, until the sweet potatoes are soft.",
+      "spoken": "Lower the heat and simmer for 15 to twenty minutes, until the sweet potatoes are soft and mash easily with a fork.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Toast 1 cup of unsalted peanuts in a dry skillet over medium heat.",
+      "spoken": "Toast 1 cup of unsalted peanuts in a dry skillet over medium heat, until they smell good and are lightly browned."
+    },
+    {
+      "instruction": "Blend the toasted peanuts until smooth, like peanut butter.",
+      "spoken": "Blend the toasted peanuts in a blender or food processor until smooth like peanut butter. Scrape down the sides a few times."
+    },
+    {
+      "instruction": "Take the pot off the heat and let it cool a little."
+    },
+    {
+      "instruction": "Mash the sweet potatoes until smooth and creamy.",
+      "spoken": "Mash the sweet potatoes with a potato masher or the back of a fork until smooth and creamy."
+    },
+    {
+      "instruction": "Put the pot back on low heat."
+    },
+    {
+      "instruction": "Stir in the blended peanuts until the soup is thick and creamy."
+    },
+    {
+      "instruction": "Stir in 1 teaspoon cumin, 1 teaspoon coriander and 1/2 teaspoon chile powder.",
+      "spoken": "Stir in 1 teaspoon of ground cumin, 1 teaspoon of ground coriander and 1/2 teaspoon of chile powder if you like some heat. Stir for a few minutes."
+    },
+    {
+      "instruction": "Stir in salt and pepper to taste."
+    },
+    {
+      "instruction": "Pour in 1 cup of coconut milk, if you like."
+    },
+    {
+      "instruction": "Simmer the soup for 5 minutes, stirring now and then.",
+      "timer": {
+        "label": "Coconut",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Taste and add more salt, pepper or spices if you like."
+    },
+    {
+      "instruction": "Ladle into bowls and top with chopped cilantro or parsley, if you like."
+    }
+  ]
+}

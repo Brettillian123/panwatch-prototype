@@ -1,0 +1,69 @@
+{
+  "id": "flammkuchen",
+  "title": "Flammkuchen",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/flammkuchen/",
+    "credit": "based.cooking contributor bernhard-egger"
+  },
+  "serves": 2,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "14 ounces",
+      "name": "pizza dough"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "sour cream, or creme fraiche"
+    },
+    {
+      "amount": "1",
+      "name": "onion"
+    },
+    {
+      "amount": "5 ounces",
+      "name": "bacon, or mushrooms or other vegetables instead"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt and pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Flatten 14 ounces of pizza dough as thin as you can.",
+      "spoken": "Flatten 14 ounces of pizza dough as thin as you can, about 1/16 inch. Put it between two pieces of parchment paper and press it flat with a bottle. It should fill 2 baking sheets, so you make two large flammkuchen, one per person."
+    },
+    {
+      "instruction": "Put the flat dough on baking trays."
+    },
+    {
+      "instruction": "Preheat the oven to 450 °F.",
+      "spoken": "Preheat the oven to 450 to five hundred °F."
+    },
+    {
+      "instruction": "Spread 2 tablespoons of sour cream over the dough in a very thin layer.",
+      "spoken": "Spread 2 tablespoons of sour cream or creme fraiche evenly over the dough. It should be a very thin layer that just barely covers the dough."
+    },
+    {
+      "instruction": "Cut 1 onion and 5 ounces of bacon into small pieces."
+    },
+    {
+      "instruction": "Spread the onion and bacon evenly over the dough."
+    },
+    {
+      "instruction": "Bake for 10 minutes, until the thin parts turn a bit brown.",
+      "spoken": "Bake for 10 minutes. Take it out when it is getting a bit dark and the thin parts are a bit brown.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Season with salt and pepper."
+    }
+  ]
+}

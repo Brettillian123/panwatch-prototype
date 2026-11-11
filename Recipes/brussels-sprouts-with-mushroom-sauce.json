@@ -1,0 +1,77 @@
+{
+  "id": "brussels-sprouts-with-mushroom-sauce",
+  "title": "Brussels Sprouts with Mushroom Sauce",
+  "category": "Vegetables",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/brussels-sprouts-mushroom-sauce",
+    "credit": "University of Connecticut Family Nutrition Program, Senior Nutrition Awareness Project (SNAP) Newsletters"
+  },
+  "serves": 2,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "Brussels sprouts"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "chicken broth, low-sodium"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "spicy brown mustard"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "dried thyme"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "mushrooms, sliced"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Trim 2 cups of Brussels sprouts and cut them in half."
+    },
+    {
+      "instruction": "Steam the Brussels sprouts until tender.",
+      "spoken": "Steam them for about 6 to ten minutes, until tender. Or microwave on high for three to four minutes.",
+      "timer": {
+        "label": "Steam",
+        "minutes": 6
+      }
+    },
+    {
+      "instruction": "Bring 1/2 cup of chicken broth to a boil in a non-stick pot."
+    },
+    {
+      "instruction": "Mix in 1 teaspoon lemon juice, 1 teaspoon mustard and 1/2 teaspoon dried thyme."
+    },
+    {
+      "instruction": "Add 1/2 cup of sliced mushrooms.",
+      "watch": {
+        "ingredient": "mushrooms",
+        "timerLabel": "Sauce",
+        "timerMinutes": 5,
+        "minimumChange": 0.02
+      }
+    },
+    {
+      "instruction": "Boil until the broth is reduced by half.",
+      "spoken": "Boil about 5 to eight minutes, until the broth has reduced by half."
+    },
+    {
+      "instruction": "Add the cooked Brussels sprouts to the sauce."
+    },
+    {
+      "instruction": "Toss well to coat with the sauce."
+    }
+  ]
+}

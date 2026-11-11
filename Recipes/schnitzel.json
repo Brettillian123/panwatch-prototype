@@ -1,0 +1,109 @@
+{
+  "id": "schnitzel",
+  "title": "Schnitzel",
+  "category": "Beef and pork",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/schnitzel/",
+    "credit": "based.cooking contributor Tobias & Alexandra Grimm"
+  },
+  "serves": 4,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "4",
+      "name": "veal cutlets, about 5 ounces each"
+    },
+    {
+      "amount": "2",
+      "name": "eggs, beaten"
+    },
+    {
+      "amount": "1",
+      "name": "lemon"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "flour"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "bread crumbs"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "paprika"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "7 tablespoons",
+      "name": "butter"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 3/4 cup of flour in a bowl."
+    },
+    {
+      "instruction": "Put 2 beaten eggs in a second bowl."
+    },
+    {
+      "instruction": "Mix 1 1/2 cups of bread crumbs with salt and paprika in a third bowl."
+    },
+    {
+      "instruction": "Wash 4 veal cutlets."
+    },
+    {
+      "instruction": "Gently dry the veal with a paper towel."
+    },
+    {
+      "instruction": "Beat the veal on a board with a tenderizer or rolling pin to 1/4 inch thick.",
+      "spoken": "Beat the veal on a board with a meat tenderizer or a rolling pin until it is about 1/4 inch thick. Beating makes the veal tender."
+    },
+    {
+      "instruction": "Season the veal with salt and pepper on both sides."
+    },
+    {
+      "instruction": "Dip each piece of veal in the flour, then the eggs, then the bread crumbs.",
+      "spoken": "Dip each piece of veal first in the flour, then in the eggs, and last in the bread crumbs."
+    },
+    {
+      "instruction": "Melt 7 tablespoons of butter in a deep pan, not too hot.",
+      "spoken": "Melt 7 tablespoons of butter in a deep pan. Do not let it get too hot. The butter should not turn brown."
+    },
+    {
+      "instruction": "Lay the veal in the pan and fry until golden brown.",
+      "spoken": "Lay the veal in the pan and fry until golden brown, about 3 minutes.",
+      "watch": {
+        "ingredient": "veal",
+        "timerLabel": "Veal",
+        "timerMinutes": 3,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Flip the veal and fry the other side until golden brown.",
+      "spoken": "Flip the veal and fry the other side until golden brown, about 3 minutes.",
+      "timer": {
+        "label": "Other side",
+        "minutes": 3
+      },
+      "cue": {
+        "timerLabel": "Veal",
+        "secondsLeft": 0
+      }
+    },
+    {
+      "instruction": "Serve with a piece of lemon."
+    }
+  ]
+}

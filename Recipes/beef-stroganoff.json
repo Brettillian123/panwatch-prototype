@@ -1,0 +1,116 @@
+{
+  "id": "beef-stroganoff",
+  "title": "Beef Stroganoff",
+  "category": "Beef and pork",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/beef-stroganoff",
+    "credit": "A Healthier You: Based on the Dietary Guidelines for Americans, US Department of Health and Human Services, Office of Disease Prevention and Health Promotion"
+  },
+  "serves": 5,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "lean beef, top round"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "vegetable oil, divided"
+    },
+    {
+      "amount": "3/4 tablespoon",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "1 pound",
+      "name": "mushrooms, sliced"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 dash",
+      "name": "black pepper"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "nutmeg"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "dried basil"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "low-sodium beef broth"
+    },
+    {
+      "amount": "1 cup",
+      "name": "low-fat plain yogurt"
+    },
+    {
+      "amount": "6 cups",
+      "name": "cooked macaroni"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Cut 1 pound of lean beef into 1-inch cubes."
+    },
+    {
+      "instruction": "Heat 1 teaspoon of oil in a non-stick skillet."
+    },
+    {
+      "instruction": "Add 3/4 tablespoon of finely chopped onion.",
+      "spoken": "Add the onion and sauté for 2 minutes.",
+      "watch": {
+        "ingredient": "onion",
+        "timerLabel": "Onion",
+        "timerMinutes": 2,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add the cubed beef.",
+      "spoken": "Add the beef and sauté for 5 more minutes, turning it to brown evenly.",
+      "watch": {
+        "ingredient": "beef",
+        "timerLabel": "Beef",
+        "timerMinutes": 5,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Remove the beef from the pan and keep it hot."
+    },
+    {
+      "instruction": "Add the remaining 1 teaspoon of oil to the pan."
+    },
+    {
+      "instruction": "Sauté 1 pound of sliced mushrooms in the pan."
+    },
+    {
+      "instruction": "Add the beef and onions back to the pan."
+    },
+    {
+      "instruction": "Add 1/4 teaspoon salt, 1 dash black pepper and 1/4 teaspoon nutmeg."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of dried basil."
+    },
+    {
+      "instruction": "Gently stir in 1/4 cup beef broth and 1 cup plain yogurt."
+    },
+    {
+      "instruction": "Heat gently, but do not boil.",
+      "spoken": "Heat the pan gently, but do not let it boil."
+    },
+    {
+      "instruction": "Serve with 6 cups of cooked macaroni."
+    }
+  ]
+}

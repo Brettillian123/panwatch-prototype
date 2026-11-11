@@ -1,0 +1,69 @@
+{
+  "id": "pepper-sauce",
+  "title": "Pepper Sauce",
+  "category": "Sauces and dips",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/pepper-sauce/",
+    "credit": "based.cooking contributor Vili Kangas"
+  },
+  "serves": 4,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "rose pepper, green pepper and black pepper, freshly ground"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "Dijon mustard"
+    },
+    {
+      "amount": "7 tablespoons",
+      "name": "bouillon"
+    },
+    {
+      "amount": "7/8 cup",
+      "name": "cream"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Grind 1 tablespoon of rose pepper, green pepper and black pepper."
+    },
+    {
+      "instruction": "Put the pepper in a pan and roast it for 1 minute, moving it with a spatula.",
+      "watch": {
+        "ingredient": "pepper",
+        "timerLabel": "Pepper",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Stir in 1 teaspoon of Dijon mustard and 7 tablespoons of bouillon."
+    },
+    {
+      "instruction": "Bring the pan to a boil."
+    },
+    {
+      "instruction": "Add 7/8 cup of cream."
+    },
+    {
+      "instruction": "Cook on medium heat for 10 minutes, until the sauce thickens.",
+      "spoken": "Cook on medium heat for 10 to twenty minutes, until the sauce thickens.",
+      "timer": {
+        "label": "Thicken",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Taste the sauce and add salt if needed."
+    }
+  ]
+}

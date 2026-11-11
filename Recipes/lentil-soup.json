@@ -1,0 +1,103 @@
+{
+  "id": "lentil-soup",
+  "title": "Lentil Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/lentil-soup",
+    "credit": "NHLBI, NIH; Delicious Heart Healthy Latino Recipes"
+  },
+  "serves": 11,
+  "totalMinutes": 105,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "2 medium",
+      "name": "carrots, diced"
+    },
+    {
+      "amount": "2 medium",
+      "name": "stalks celery, chopped"
+    },
+    {
+      "amount": "1 small",
+      "name": "yellow onion, chopped"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "dried oregano"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "dried basil"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "2 cups",
+      "name": "dry lentils"
+    },
+    {
+      "amount": "1 can",
+      "name": "crushed tomatoes, 14 1/2 ounces"
+    },
+    {
+      "amount": "2 cups",
+      "name": "vegetable broth"
+    },
+    {
+      "amount": "6 1/2 cups",
+      "name": "water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 tablespoons of olive oil in a large soup pot over medium heat."
+    },
+    {
+      "instruction": "Add 2 diced carrots, 2 chopped celery stalks and 1 chopped onion.",
+      "spoken": "Add 2 diced carrots, 2 chopped celery stalks and 1 small chopped onion. Cook and stir until the onion is tender."
+    },
+    {
+      "instruction": "Stir in 2 cloves of garlic, 1 teaspoon of oregano and 1 teaspoon of basil."
+    },
+    {
+      "instruction": "Stir in 1/2 teaspoon of pepper and cook for 2 minutes.",
+      "timer": {
+        "label": "Spices",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Stir in 2 cups of dry lentils and 1 can of crushed tomatoes."
+    },
+    {
+      "instruction": "Add 2 cups of vegetable broth and 6 1/2 cups of water."
+    },
+    {
+      "instruction": "Cover the pot and bring to a boil."
+    },
+    {
+      "instruction": "Reduce the heat and simmer for 1 hour.",
+      "spoken": "Reduce the heat and simmer for at least 1 hour, until the lentils are tender.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Store leftovers in the refrigerator.",
+      "spoken": "Store leftovers in the refrigerator. Reheat them on the stove or in the microwave."
+    }
+  ]
+}

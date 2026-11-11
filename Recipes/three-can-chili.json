@@ -1,0 +1,54 @@
+{
+  "id": "three-can-chili",
+  "title": "3-Can Chili",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/3-can-chili",
+    "credit": "Eating Smart, Being Active, Colorado State University and University of California at Davis"
+  },
+  "serves": 6,
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "1 can",
+      "name": "low-sodium black beans, undrained"
+    },
+    {
+      "amount": "1 can",
+      "name": "reduced sodium corn, drained"
+    },
+    {
+      "amount": "1 can",
+      "name": "low-sodium crushed tomatoes, undrained"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "chili powder"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Pour 1 can (15.5 ounces) of black beans, with their liquid, into a pan."
+    },
+    {
+      "instruction": "Add 1 can (15.2 ounces) of drained corn to the pan."
+    },
+    {
+      "instruction": "Add 1 can (14.5 ounces) of crushed tomatoes, with their liquid, to the pan."
+    },
+    {
+      "instruction": "Add 1 teaspoon of chili powder, or more to taste."
+    },
+    {
+      "instruction": "Stir everything together."
+    },
+    {
+      "instruction": "Keep stirring over medium heat until the chili is hot all the way through."
+    },
+    {
+      "instruction": "Refrigerate any leftovers."
+    }
+  ]
+}
