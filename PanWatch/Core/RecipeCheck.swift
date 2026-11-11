@@ -184,6 +184,8 @@ enum RecipeRules {
     /// A temperature the cook sets: an oven, a pan, oil. "Bake at 350 °F", "Preheat the oven
     /// to 425 °F", "Heat the oil to 350 °F". The number is captured.
     static let settingPattern = #"\b(oven|preheat|preheated|bake|roast|broil|heat|fry|griddle|grill|toast|set)\b[^.;]*?\b(to|at)\s+(\d+)\s*(°|degrees)"#
+    /// The same, with the setting before what it is set on: "in a 350 °F oven", "a 375-degree skillet".
+    static let applianceSettingPattern = #"\b(\d+)\s*-?\s*(?:°\s*f?|degrees?(?:\s*f\b)?)\s+(oven|skillet|pan|griddle|grill|oil|fryer)\b"#
 
     /// What a thermometer may be told to read beyond the food safety table: oil, water,
     /// sugar and milk heated to a setting.
@@ -278,10 +280,18 @@ enum RecipeRules {
 
     /// The temperatures the text sets: "Bake at 350 °F" gives 350.
     static func settingNumbers(in lower: String) -> [Int] {
-        guard let regex = RegexCache.shared.regex(settingPattern) else { return [] }
-        return regex.matches(in: lower, range: NSRange(lower.startIndex..., in: lower)).compactMap { match in
-            Range(match.range(at: 3), in: lower).flatMap { Int(lower[$0]) }
-        }
+        let range = NSRange(lower.startIndex..., in: lower)
+        let set = RegexCache.shared.regex(settingPattern).map { regex in
+            regex.matches(in: lower, range: range).compactMap { match in
+                Range(match.range(at: 3), in: lower).flatMap { Int(lower[$0]) }
+            }
+        } ?? []
+        let named = RegexCache.shared.regex(applianceSettingPattern).map { regex in
+            regex.matches(in: lower, range: range).compactMap { match in
+                Range(match.range(at: 1), in: lower).flatMap { Int(lower[$0]) }
+            }
+        } ?? []
+        return set + named
     }
 
     /// A time a step names: the minutes it says (a range's upper number), and the timer

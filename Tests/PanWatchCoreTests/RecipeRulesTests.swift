@@ -242,11 +242,12 @@ struct RecipeRulesTests {
     @Test func aTemperatureIsASettingOrAMeasureNeverAClaim() {
         for text in ["Bake at 350 °F for 25 minutes.", "Heat the oven to 400 °F.", "Heat the oil to 350 °F.",
                      "Bake at 400 degrees until golden.", "Preheat the oven to 425 °F.", "Roast at 450 °F.",
-                     "Cook until a thermometer reads 165 °F.", "Heat the oil until a thermometer reads 350 °F."] {
+                     "Cook until a thermometer reads 165 °F.", "Heat the oil until a thermometer reads 350 °F.",
+                     "Finish the skewers in a 350 °F oven until a thermometer reads 165 °F."] {
             #expect(RecipeRules.wordProblems(text).isEmpty, "\(text): \(RecipeRules.wordProblems(text))")
         }
         for text in ["The chicken is now 165 °F.", "It is 400 degrees, so serve it.", "Serve when a thermometer reads 150 °F.",
-                     "Cook the chicken to 150 °F.", "The soup is done."] {
+                     "Cook the chicken to 150 °F.", "The soup is done.", "The 165 °F chicken is ready to serve."] {
             #expect(!RecipeRules.wordProblems(text).isEmpty, "\(text)")
         }
         let bake = soup(method: .oven, steps: [

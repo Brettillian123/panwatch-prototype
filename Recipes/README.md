@@ -138,7 +138,7 @@ seconds left the garlic, and when the timer ends, the draining.
 
 | Field | Required | What it is |
 |---|---|---|
-| `instruction` | yes | What the screen shows. One action, ending with a period, at most 90 characters (three lines in cook mode). A second sentence may say what to look for ("Cook the onions. They should turn soft." is not; "Cook the onions until soft. The edges should be golden." is fine); two sentences that each start with a command are two steps. Keep every number the cook needs (amounts, minutes, °F). |
+| `instruction` | yes | What the screen shows. One action, ending with a period, at most 90 characters (three lines in cook mode). A second sentence may say what to look for ("Cook the onions until soft. The edges should be golden." is fine); two sentences that each start with a command ("Boil the water. Add the salt.") are two steps. Keep every number the cook needs (amounts, minutes, °F). |
 | `spoken` | no | What is read aloud when it should say more than the screen: "Flip the chicken and cook about 6 more minutes, until a thermometer reads 165 °F in the thickest part." Leave it out when the instruction says it all. May be several sentences. |
 | `watch` | no | The camera watches for something going into the pot or pan and offers a timer. Pot and pan recipes only. |
 | `cue` | no | Call this step out on its own when an earlier step's timer has this much left. |
@@ -185,7 +185,7 @@ seconds left the garlic, and when the timer ends, the draining.
 5. **The app never says food is done, safe, ready or at a temperature.** Say what to look for:
    "until the onions are soft", "until the edges are golden". Not "the chicken is done".
 6. **Temperatures are °F** (digits, "350 °F" or "350 degrees"), and only as something the
-   cook sets ("Bake at 350 °F.", "Preheat the oven to 425 °F.", "Heat the oil to 350 °F.") or
+   cook sets ("Bake at 350 °F.", "Preheat the oven to 425 °F.", "Heat the oil to 350 °F.", "in a 350 °F oven") or
    measures: "until a thermometer reads 165 °F", a safe temperature from the food safety
    table (165 °F poultry and leftovers, 160 °F ground meat, 145 °F fish and whole cuts of
    beef, pork and lamb, rest 3 minutes), or oil, water or sugar heated to a setting. Never
