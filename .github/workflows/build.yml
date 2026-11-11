@@ -48,12 +48,16 @@ jobs:
       - name: Check the recipe book is inside the app
         run: |
           APP=build/Build/Products/Debug-iphoneos/PanWatch.app
-          WANT=$(ls PanWatch/Core/Recipes/*.json | wc -l | tr -d ' ')
-          HAVE=$(ls "$APP"/Recipes/*.json 2>/dev/null | wc -l | tr -d ' ')
-          LOOSE=$(ls "$APP"/*.json 2>/dev/null | wc -l | tr -d ' ')
-          INDEXED=$(grep -c '"id":' "$APP"/Recipes/index.json || echo 0)
-          echo "recipe book: $HAVE json files in PanWatch.app/Recipes ($INDEXED in index.json), $WANT in the repo, $LOOSE loose json at the top of the app"
-          test "$HAVE" -eq "$WANT" && test "$INDEXED" -gt 0 && test -f "$APP/Recipes/index.json"
+          SOURCES=$(ls Recipes/*.json | grep -v '/sources.json$' | wc -l | tr -d ' ')
+          INDEXED=$(grep -c '"id":' "$APP/recipebook-index.json" 2>/dev/null || true)
+          WANTPACKED=$(ls PanWatch/Core/RecipeBook/recipebook-*.json | wc -l | tr -d ' ')
+          PACKED=$(find "$APP" -name 'recipebook-*.json' | wc -l | tr -d ' ')
+          TOP=$(ls "$APP"/recipebook-*.json 2>/dev/null | wc -l | tr -d ' ')
+          DUPS=$(find "$APP" -name 'recipebook-*' -exec basename {} \; | sort | uniq -d | wc -l | tr -d ' ')
+          PERRECIPE=$(for f in Recipes/*.json; do b=$(basename "$f"); [ "$b" = sources.json ] || find "$APP" -name "$b"; done | wc -l | tr -d ' ')
+          OLD=$(ls -d "$APP/Recipes" "$APP/RecipeBook" "$APP/index.json" "$APP/sources.json" 2>/dev/null | wc -l | tr -d ' ')
+          echo "recipe book: ${INDEXED:-0} recipes in the packed index, $SOURCES source files in the repo; $PACKED packed files in the app ($TOP at the top, want $WANTPACKED), $PERRECIPE per-recipe json, $DUPS packed names twice, $OLD old book files"
+          test "${INDEXED:-0}" -eq "$SOURCES" && test "$SOURCES" -gt 0 && test "$PACKED" -eq "$WANTPACKED" && test "$TOP" -eq "$WANTPACKED" && test "$PERRECIPE" -eq 0 && test "$DUPS" -eq 0 && test "$OLD" -eq 0
 
       - name: Upload the build log
         if: always()
