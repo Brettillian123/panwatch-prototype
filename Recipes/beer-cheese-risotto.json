@@ -1,0 +1,87 @@
+{
+  "id": "beer-cheese-risotto",
+  "title": "Beer Cheese Risotto",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABeer_Cheese_Risotto",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "1 1/2 cups",
+      "name": "vegetable stock, hot"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1/2 large",
+      "name": "onion, diced"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    },
+    {
+      "amount": "1 cup",
+      "name": "arborio rice, uncooked"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "beer"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "grated Parmesan cheese"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "sharp cheddar cheese, shredded"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1 1/2 cups of vegetable stock until nearly boiling, then keep it hot."
+    },
+    {
+      "instruction": "Heat 1 tablespoon of olive oil in a heavy, medium saucepan."
+    },
+    {
+      "instruction": "Add 1/2 large diced onion and a generous pinch of salt."
+    },
+    {
+      "instruction": "Cook until the onion is soft and transparent."
+    },
+    {
+      "instruction": "Add 1 cup of arborio rice and stir until each grain is coated."
+    },
+    {
+      "instruction": "Add 1/2 cup of beer and heat to a simmer, stirring constantly."
+    },
+    {
+      "instruction": "When the beer is mostly absorbed, add 1/3 to 1/2 cup of hot stock.",
+      "spoken": "When the beer is mostly absorbed, add 1/3 to a half cup of hot stock. Stir constantly while simmering. Repeat for around 20 minutes.",
+      "timer": {
+        "label": "Risotto",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Keep adding hot stock a little at a time until most of it is used up."
+    },
+    {
+      "instruction": "Take the pan off the heat."
+    },
+    {
+      "instruction": "Stir in 1/4 cup of grated Parmesan cheese until it melts."
+    },
+    {
+      "instruction": "Stir in 1/4 cup of shredded sharp cheddar cheese until it melts.",
+      "spoken": "Stir in the cheddar until it melts. For a cheesier risotto, add more cheese."
+    }
+  ]
+}

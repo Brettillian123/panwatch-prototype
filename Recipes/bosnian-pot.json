@@ -1,0 +1,94 @@
+{
+  "id": "bosnian-pot",
+  "title": "Bosnian Pot",
+  "category": "Beef and pork",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/bosnian-pot",
+    "credit": "North Dakota Food and Culture: A Taste of World Cuisine, North Dakota State University Extension Service"
+  },
+  "serves": 10,
+  "totalMinutes": 135,
+  "ingredients": [
+    {
+      "amount": "1 head",
+      "name": "cabbage"
+    },
+    {
+      "amount": "2 1/2 large",
+      "name": "carrots"
+    },
+    {
+      "amount": "3 1/2 large",
+      "name": "fresh tomatoes"
+    },
+    {
+      "amount": "3 1/2 large",
+      "name": "potatoes"
+    },
+    {
+      "amount": "2 medium",
+      "name": "onions"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic"
+    },
+    {
+      "amount": "2",
+      "name": "green peppers"
+    },
+    {
+      "amount": "2 1/4 pounds",
+      "name": "beef stew meat"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt and pepper, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "water, enough to cover"
+    },
+    {
+      "amount": "1/2 tablespoon",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1/2 tablespoon",
+      "name": "vinegar"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Chop 1 head of cabbage, 2 1/2 large carrots and 3 1/2 large tomatoes."
+    },
+    {
+      "instruction": "Chop 3 1/2 large potatoes, 2 medium onions, 2 cloves of garlic and 2 green peppers."
+    },
+    {
+      "instruction": "Put 2 1/4 pounds of beef stew meat in a large pot."
+    },
+    {
+      "instruction": "Add all the chopped vegetables to the pot."
+    },
+    {
+      "instruction": "Add salt and pepper to taste, if you like."
+    },
+    {
+      "instruction": "Add enough water to completely cover the mixture."
+    },
+    {
+      "instruction": "Add 1/2 tablespoon of vegetable oil and 1/2 tablespoon of vinegar."
+    },
+    {
+      "instruction": "Cover and cook on low heat for 2 hours, until everything is well done.",
+      "spoken": "Cook, covered, on low heat for two to three hours, until everything is well done.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 120
+      }
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "applesauce-pancakes",
+  "title": "Applesauce Pancakes",
+  "category": "Eggs and breakfast",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/applesauce-pancakes",
+    "credit": "Tennessee State University Cooperative Extension Service"
+  },
+  "serves": 6,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "applesauce, unsweetened"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "dry milk powder, non-fat instant"
+    },
+    {
+      "amount": "1 cup",
+      "name": "water"
+    },
+    {
+      "amount": "2",
+      "name": "eggs"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "canola oil"
+    },
+    {
+      "amount": "2 cups",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "sugar"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "to taste",
+      "name": "cooking spray"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 1 cup of applesauce, 1/4 cup of dry milk powder and 1 cup of water in a bowl."
+    },
+    {
+      "instruction": "Mix in 2 eggs and 1 tablespoon of canola oil."
+    },
+    {
+      "instruction": "Add 2 cups of flour and 2 tablespoons of sugar."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of cinnamon and 2 teaspoons of baking powder."
+    },
+    {
+      "instruction": "Stir until the mixture has only small lumps."
+    },
+    {
+      "instruction": "Place a large skillet on medium-high heat."
+    },
+    {
+      "instruction": "Spray the skillet with cooking spray."
+    },
+    {
+      "instruction": "Pour 1/2 cup of batter onto the skillet."
+    },
+    {
+      "instruction": "Turn the pancake when bubbles form on top."
+    },
+    {
+      "instruction": "Cook the other side for about 1 minute, until golden brown.",
+      "timer": {
+        "label": "Second side",
+        "minutes": 1
+      }
+    }
+  ]
+}

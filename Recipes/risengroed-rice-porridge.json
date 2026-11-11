@@ -1,0 +1,91 @@
+{
+  "id": "risengroed-rice-porridge",
+  "title": "Risengrød Rice Porridge",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/risengroed/",
+    "credit": "based.cooking contributor Vilhelm Bergsøe"
+  },
+  "serves": 2,
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "1 1/4 cups",
+      "name": "water"
+    },
+    {
+      "amount": "1 cup",
+      "name": "porridge rice"
+    },
+    {
+      "amount": "4 cups",
+      "name": "whole milk"
+    },
+    {
+      "amount": "2 pinches",
+      "name": "salt"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "sugar"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "3 1/2 tablespoons",
+      "name": "butter"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring 1 1/4 cups of water and 1 cup of porridge rice to a boil in a deep pot."
+    },
+    {
+      "instruction": "Boil the rice for 2 minutes, stirring all the time.",
+      "spoken": "Boil the rice at a steady heat for about 2 minutes, stirring all the time.",
+      "timer": {
+        "label": "First boil",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Add 4 cups of whole milk to the pot."
+    },
+    {
+      "instruction": "Bring the pot to a boil."
+    },
+    {
+      "instruction": "Boil on low heat for 10 minutes, stirring all the time.",
+      "spoken": "Boil on low heat for about 10 minutes, still stirring all the time.",
+      "timer": {
+        "label": "Low boil",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Put the lid on the pot."
+    },
+    {
+      "instruction": "Boil for 30 minutes, stirring often.",
+      "spoken": "Boil for about 30 minutes and stir often. If the porridge looks too thin, boil it for another 5 to ten minutes.",
+      "timer": {
+        "label": "Lid on",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Stir in 2 pinches of salt."
+    },
+    {
+      "instruction": "Mix 4 tablespoons of sugar and 2 teaspoons of cinnamon in a bowl."
+    },
+    {
+      "instruction": "Serve warm with cinnamon sugar on top and a bit of butter in the middle.",
+      "spoken": "Serve warm with the cinnamon sugar on top and a bit of butter in the middle. You need 3 1/2 tablespoons of butter in all."
+    }
+  ]
+}

@@ -7,7 +7,8 @@ struct RecipeBrowseTests {
     @Test func everyRecipeHasTimeAndServings() {
         for recipe in Recipe.all {
             #expect(recipe.totalMinutes > 0, "\(recipe.title)")
-            #expect(recipe.serves > 0, "\(recipe.title)")
+            // A serving count is optional (the source may not say); when present it's real.
+            #expect(recipe.serves.map { $0 > 0 } ?? true, "\(recipe.title)")
         }
     }
 
@@ -48,21 +49,22 @@ struct RecipeBrowseTests {
     }
 
     @Test func searchMatchesNameOrIngredient() {
+        let book = DemoBook.recipes
         #expect(Recipe.matching("").count == Recipe.all.count)
-        #expect(Recipe.matching("  ").count == Recipe.all.count)
+        #expect(Recipe.matching("  ", in: book).count == book.count)
         // By name first, then by category: rice is in "Pasta and grains".
-        #expect(Recipe.matching("PASTA").map(\.title) == [Recipe.garlicButterPasta.title, Recipe.rice.title])
-        #expect(Recipe.matching("pasta grains").map(\.title) == [Recipe.garlicButterPasta.title, Recipe.rice.title])
+        #expect(Recipe.matching("PASTA", in: book).map(\.title) == [Recipe.garlicButterPasta.title, Recipe.rice.title])
+        #expect(Recipe.matching("pasta grains", in: book).map(\.title) == [Recipe.garlicButterPasta.title, Recipe.rice.title])
         // Plurals and small typos are forgiven.
         // "Eggs" by name, then oatmeal by its category, "Eggs and breakfast".
-        #expect(Recipe.matching("egg").map(\.title) == [Recipe.hardBoiledEggs.title, Recipe.oatmeal.title])
-        #expect(Recipe.matching("brocoli").map(\.title) == [Recipe.steamedBroccoli.title])
-        #expect(Recipe.matching("chiken").map(\.title) == [Recipe.panSearedChicken.title])
-        #expect(Recipe.matching("breakfast").map(\.title) == [Recipe.hardBoiledEggs.title, Recipe.oatmeal.title])
-        let butter = Recipe.matching("butter").map(\.title)
+        #expect(Recipe.matching("egg", in: book).map(\.title) == [Recipe.hardBoiledEggs.title, Recipe.oatmeal.title])
+        #expect(Recipe.matching("brocoli", in: book).map(\.title) == [Recipe.steamedBroccoli.title])
+        #expect(Recipe.matching("chiken", in: book).map(\.title) == [Recipe.panSearedChicken.title])
+        #expect(Recipe.matching("breakfast", in: book).map(\.title) == [Recipe.hardBoiledEggs.title, Recipe.oatmeal.title])
+        let butter = Recipe.matching("butter", in: book).map(\.title)
         #expect(butter == [Recipe.garlicButterPasta.title, Recipe.steamedBroccoli.title])
-        #expect(Recipe.matching("brown sugar").map(\.title) == [Recipe.oatmeal.title])
-        #expect(Recipe.matching("xyz").isEmpty)
+        #expect(Recipe.matching("brown sugar", in: book).map(\.title) == [Recipe.oatmeal.title])
+        #expect(Recipe.matching("xyz", in: book).isEmpty)
     }
 }
 

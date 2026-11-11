@@ -1,0 +1,85 @@
+{
+  "id": "baked-meatballs",
+  "title": "Baked Meatballs",
+  "category": "Beef and pork",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/baked-meatballs",
+    "credit": "Simple Healthy Recipes, Oklahoma Nutrition Information and Education, ONIE Project"
+  },
+  "serves": 8,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "ground beef, 90% lean (or ground turkey)"
+    },
+    {
+      "amount": "1",
+      "name": "egg"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "dried parsley"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "bread crumbs"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "milk, 1% (or non-fat)"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "onion powder"
+    },
+    {
+      "amount": "to taste",
+      "name": "cooking spray"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 425 °F."
+    },
+    {
+      "instruction": "Mix 1 pound of ground beef, 1 egg and 1/2 teaspoon of dried parsley in a bowl.",
+      "spoken": "Mix 1 pound of ground beef, 1 egg and 1/2 teaspoon of dried parsley in a bowl. You can use ground turkey instead of beef."
+    },
+    {
+      "instruction": "Mix in 1/2 cup of bread crumbs and 1/2 cup of milk."
+    },
+    {
+      "instruction": "Mix in 1/4 teaspoon of black pepper and 1 teaspoon of onion powder."
+    },
+    {
+      "instruction": "Shape the mixture into about 24 meatballs."
+    },
+    {
+      "instruction": "Spray the baking sheets with cooking spray."
+    },
+    {
+      "instruction": "Arrange the meatballs on the baking sheets."
+    },
+    {
+      "instruction": "Bake for 12 minutes.",
+      "spoken": "Bake for 12 to fifteen minutes. Check with a food thermometer. It should read 160 °F for ground beef and 165 °F for ground turkey.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 12
+      }
+    },
+    {
+      "instruction": "Chill any meatballs you are saving right away."
+    },
+    {
+      "instruction": "Package the saved meatballs in meal-sized amounts and freeze them right away."
+    }
+  ]
+}

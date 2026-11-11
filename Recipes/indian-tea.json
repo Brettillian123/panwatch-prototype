@@ -1,0 +1,71 @@
+{
+  "id": "indian-tea",
+  "title": "Indian Tea",
+  "category": "Drinks",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/indian-tea/",
+    "credit": "based.cooking contributor pestanzul"
+  },
+  "serves": 4,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1 inch",
+      "name": "fresh ginger"
+    },
+    {
+      "amount": "10",
+      "name": "cardamom seeds"
+    },
+    {
+      "amount": "4 cups",
+      "name": "water"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "black tea"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "milk"
+    },
+    {
+      "amount": "to taste",
+      "name": "sugar"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Peel 1 inch of fresh ginger and cut it into small pieces."
+    },
+    {
+      "instruction": "Crush the ginger and 10 cardamom seeds."
+    },
+    {
+      "instruction": "Bring 4 cups of water to a boil."
+    },
+    {
+      "instruction": "Turn off the stove."
+    },
+    {
+      "instruction": "Add the crushed ginger and cardamom seeds to the water."
+    },
+    {
+      "instruction": "Add 2 tablespoons of black tea and 1 1/2 cups of milk."
+    },
+    {
+      "instruction": "Cover the pot and let the tea steep for 5 minutes.",
+      "spoken": "Cover the pot and let the tea steep for 5 to ten minutes.",
+      "timer": {
+        "label": "Steep",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Serve with 1 teaspoon of sugar per cup.",
+      "spoken": "Serve with 1 teaspoon of sugar per cup. You may want to strain the tea, or let the bits settle to the bottom of the cups."
+    }
+  ]
+}

@@ -173,7 +173,7 @@ enum SyntheticBook {
     @Test func voiceMatchingIsFastOnFifteenHundred() {
         var match = VoiceCommand.RecipeMatch.none
         let ms = SyntheticBook.milliseconds {
-            match = VoiceCommand.recipeMatch(["make", "lemon", "chicken", "stew"], choosing: true, titles: book.titles)
+            match = VoiceCommand.recipeMatch(["make", "lemon", "chicken", "stew"], choosing: true, in: book.voice)
         }
         print("RecipeScale voice match ms: \(String(format: "%.1f", ms)) for 1500")
         #expect(match == .one("Lemon Chicken Stew"))
@@ -275,7 +275,7 @@ enum SyntheticBook {
         let notices = Credits.recipeNotices(book.entries, sources: sources)
         #expect(notices.map(\.title) == ["Test Kitchen"])
         #expect(notices.first?.text == "Recipes adapted from Test Kitchen.\nhttps://example.com")
-        #expect(Credits.recipeNotices(RecipeIndex.bundled.entries, sources: []).isEmpty)
+        #expect(Credits.recipeNotices(DemoBook.index.entries, sources: []).isEmpty)
     }
 
     // MARK: Cook mode's plain timer

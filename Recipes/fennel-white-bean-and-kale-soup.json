@@ -1,0 +1,115 @@
+{
+  "id": "fennel-white-bean-and-kale-soup",
+  "title": "Fennel White Bean and Kale Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/fennel-beans-and-kale-soup/",
+    "credit": "based.cooking contributor zyansheep"
+  },
+  "serves": 6,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1/2 cup",
+      "name": "olive oil"
+    },
+    {
+      "amount": "2 small",
+      "name": "fennel bulbs, small-diced"
+    },
+    {
+      "amount": "2 small",
+      "name": "yellow onions, small-diced"
+    },
+    {
+      "amount": "4 teaspoons",
+      "name": "fresh rosemary or thyme, minced"
+    },
+    {
+      "amount": "10 cloves",
+      "name": "garlic, minced or pressed"
+    },
+    {
+      "amount": "1/2-1 teaspoon",
+      "name": "red pepper flakes"
+    },
+    {
+      "amount": "10-12 ounces",
+      "name": "kale, or escarole, swiss chard or spinach"
+    },
+    {
+      "amount": "4 cans",
+      "name": "cannellini beans, rinsed"
+    },
+    {
+      "amount": "4 cups",
+      "name": "chicken broth"
+    },
+    {
+      "amount": "to taste",
+      "name": "black pepper"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "6 tablespoons",
+      "name": "parmesan, grated"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1/2 cup of olive oil in a large soup pot over medium heat."
+    },
+    {
+      "instruction": "Add 2 small diced fennel bulbs and 2 small diced yellow onions."
+    },
+    {
+      "instruction": "Stir in 4 teaspoons of minced rosemary for 4 minutes, until tender.",
+      "spoken": "Stir in 4 teaspoons of minced fresh rosemary or thyme. Keep stirring for 4 to six minutes, until the fennel and onions are tender.",
+      "watch": {
+        "ingredient": "rosemary",
+        "timerLabel": "Veggies",
+        "timerMinutes": 4,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 10 cloves of minced garlic and 1/2 to 1 teaspoon of red pepper flakes.",
+      "spoken": "Add the garlic and the red pepper flakes. Cook for 1 minute, until fragrant.",
+      "watch": {
+        "ingredient": "garlic",
+        "timerLabel": "Garlic",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 10 to 12 ounces of kale, a handful at a time.",
+      "spoken": "Add the kale one handful at a time, stirring until the leaves wilt. Escarole, swiss chard or spinach can be used instead."
+    },
+    {
+      "instruction": "Add 4 cans of rinsed cannellini beans, 4 cups of broth and black pepper."
+    },
+    {
+      "instruction": "Bring the soup to a boil, then turn it down to a simmer."
+    },
+    {
+      "instruction": "Simmer for 6 minutes, mashing some beans with a wooden spoon.",
+      "spoken": "Simmer for 6 to eight minutes, mashing some of the beans with a wooden spoon, until the liquid has reduced.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 6
+      }
+    },
+    {
+      "instruction": "Take the pot off the heat and stir in 2 tablespoons of lemon juice."
+    },
+    {
+      "instruction": "Stir in 6 tablespoons of grated parmesan."
+    }
+  ]
+}

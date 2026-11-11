@@ -1,0 +1,42 @@
+{
+  "id": "simple-creamy-pasta-sauce",
+  "title": "Simple Creamy Pasta Sauce",
+  "category": "Sauces and dips",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/simple-pasta-cream-sauce/",
+    "credit": "based.cooking contributor herzeleid02"
+  },
+  "serves": 1,
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "1 teaspoon",
+      "name": "flour"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "cream, 10 percent fat or more"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 1 teaspoon of flour to a saucepan."
+    },
+    {
+      "instruction": "Pour 1/4 cup of cream into the saucepan."
+    },
+    {
+      "instruction": "Stir over high heat.",
+      "spoken": "Stir the sauce and turn the heat up as high as it goes."
+    },
+    {
+      "instruction": "Keep stirring until the sauce thickens.",
+      "spoken": "Keep stirring until the sauce thickens. If it is too thin, add more flour. If it is too thick, like uncooked pancake batter, add more cream."
+    },
+    {
+      "instruction": "Stir the sauce into your cooked pasta."
+    }
+  ]
+}

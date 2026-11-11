@@ -1,0 +1,60 @@
+{
+  "id": "madras-filter-coffee",
+  "title": "Madras Filter Coffee",
+  "category": "Drinks",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AMadras_Filter_Coffee",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "serves": 1,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1/4 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1/2-2 teaspoons",
+      "name": "instant coffee with chicory root"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "to taste",
+      "name": "sugar"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring 1/4 cup of water to a boil."
+    },
+    {
+      "instruction": "Stir in the instant coffee until no lumps remain.",
+      "spoken": "Stir in 1/2 to 2 teaspoons of instant coffee with chicory root. Make sure there are no lumps."
+    },
+    {
+      "instruction": "Bring 3/4 cup of milk to a boil in a saucepan."
+    },
+    {
+      "instruction": "Add the coffee mixture to the milk."
+    },
+    {
+      "instruction": "Stir in sugar to taste."
+    },
+    {
+      "instruction": "Pour the boiling hot coffee into a mug, slowly raising the saucepan as you pour.",
+      "spoken": "While the coffee is still boiling hot, pour it into a mug or a stainless steel tumbler. Slowly raise the saucepan as you pour, so the coffee falls from a height of about 1 to one and a half feet. This makes the coffee froth like espresso. Be careful, it is very hot."
+    },
+    {
+      "instruction": "If you like, spread a few drops of coffee over the froth with a teaspoon.",
+      "spoken": "If you like, dip a teaspoon in the coffee and lightly spread a few drops of it over the froth in the mug."
+    },
+    {
+      "instruction": "Serve piping hot."
+    }
+  ]
+}

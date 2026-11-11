@@ -1,0 +1,70 @@
+{
+  "id": "broccoli-and-corn-bake",
+  "title": "Broccoli and Corn Bake",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/broccoli-and-corn-bake",
+    "credit": "Kentucky Families on the Move, University of Kentucky Cooperative Extension Service"
+  },
+  "serves": 6,
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "1 can",
+      "name": "cream-style corn, 15 ounces, low-sodium"
+    },
+    {
+      "amount": "3 3/4 cups",
+      "name": "broccoli, cooked"
+    },
+    {
+      "amount": "1",
+      "name": "egg, beaten"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "cracker crumbs, crushed"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "6",
+      "name": "saltine crackers, crushed"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "tub margarine, melted"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Grease a 1 1/2 quart casserole dish."
+    },
+    {
+      "instruction": "Put 1 can of cream-style corn and 3 3/4 cups of cooked broccoli in the dish."
+    },
+    {
+      "instruction": "Mix in 1 beaten egg, 1/2 cup of cracker crumbs and 1/4 cup of oil."
+    },
+    {
+      "instruction": "Mix 6 crushed saltine crackers and 1 tablespoon of melted margarine in a small bowl."
+    },
+    {
+      "instruction": "Sprinkle the cracker topping over the corn mixture."
+    },
+    {
+      "instruction": "Bake for 40 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 40
+      }
+    }
+  ]
+}

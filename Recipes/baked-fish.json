@@ -1,0 +1,103 @@
+{
+  "id": "baked-fish",
+  "title": "Baked Fish",
+  "category": "Fish",
+  "method": "oven",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/baked-fish",
+    "credit": "NHLBI, NIH; Heart Healthy Home Cooking African American Style"
+  },
+  "serves": 6,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "2 pounds",
+      "name": "fish fillets"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "buttermilk, fat-free or 1 percent"
+    },
+    {
+      "amount": "2 dashes",
+      "name": "hot sauce"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "fresh garlic, minced"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground white pepper"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "onion powder"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "cornflakes, crumbled, or regular bread crumbs"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1",
+      "name": "fresh lemon, cut in wedges"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 475 °F."
+    },
+    {
+      "instruction": "Drizzle 1 tablespoon of lemon juice on 2 pounds of fish fillets."
+    },
+    {
+      "instruction": "Pat the fish dry."
+    },
+    {
+      "instruction": "Mix 1/4 cup of buttermilk, 2 drops of hot sauce and 1 teaspoon of garlic in a bowl."
+    },
+    {
+      "instruction": "Mix 1/4 teaspoon each of white pepper, salt and onion powder with 1/2 cup of cornflakes."
+    },
+    {
+      "instruction": "Spread the seasoned cornflakes on a plate."
+    },
+    {
+      "instruction": "Let a fillet sit briefly in the buttermilk mixture."
+    },
+    {
+      "instruction": "Coat the fillet on both sides with the seasoned crumbs.",
+      "spoken": "Coat the fillet on both sides with the seasoned crumbs. Let it stand briefly until the coating sticks to each side. Repeat for all the fillets."
+    },
+    {
+      "instruction": "Arrange the fillets in a lightly oiled shallow baking dish.",
+      "spoken": "Arrange the fillets in a shallow baking dish lightly oiled with the vegetable oil."
+    },
+    {
+      "instruction": "Bake for 20 minutes on the middle rack without turning.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Cut the fish into 6 pieces."
+    },
+    {
+      "instruction": "Serve with fresh lemon wedges."
+    }
+  ]
+}

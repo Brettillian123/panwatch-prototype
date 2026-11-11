@@ -1,0 +1,86 @@
+{
+  "id": "baked-tofu",
+  "title": "Baked Tofu",
+  "category": "Beans and lentils",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/baked-tofu",
+    "credit": "Montana State University Extension Service"
+  },
+  "serves": 4,
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "1 package",
+      "name": "firm tofu, 14 ounces, water packed"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "soy sauce, reduced-sodium"
+    },
+    {
+      "amount": "1 clove",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "fresh ginger, minced"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vegetable oil"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Line a rimmed baking sheet with foil."
+    },
+    {
+      "instruction": "Drain the water from the tofu."
+    },
+    {
+      "instruction": "Wrap the tofu in paper towels for 5 minutes.",
+      "timer": {
+        "label": "Drain",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Mix 2 tablespoons of soy sauce and 1 clove of minced garlic in a small bowl."
+    },
+    {
+      "instruction": "Mix in 1 teaspoon of minced ginger and 1 teaspoon of oil."
+    },
+    {
+      "instruction": "Cut the tofu into slices 1/2 inch thick."
+    },
+    {
+      "instruction": "Place the tofu slices on the foil-lined baking sheet."
+    },
+    {
+      "instruction": "Pour the soy sauce mixture over the tofu."
+    },
+    {
+      "instruction": "Gently turn the slices over to coat both sides with the sauce.",
+      "spoken": "Use a spatula or pancake turner to gently turn the slices over, so both sides are coated with the sauce."
+    },
+    {
+      "instruction": "Bake the tofu for 15 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Turn the slices over and bake 15 more minutes, until light golden brown and firm.",
+      "timer": {
+        "label": "Bake again",
+        "minutes": 15
+      }
+    }
+  ]
+}

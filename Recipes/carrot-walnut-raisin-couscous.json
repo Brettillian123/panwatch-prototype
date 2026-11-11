@@ -1,0 +1,87 @@
+{
+  "id": "carrot-walnut-raisin-couscous",
+  "title": "Carrot Walnut Raisin Couscous",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/couscous-carrots-walnuts-and",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 4,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "couscous, whole-wheat if you like"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "walnuts, coarsely chopped"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "black pepper"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "pumpkin pie spice or cinnamon"
+    },
+    {
+      "amount": "1 1/3 cups",
+      "name": "water"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "raisins"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "carrots, rinsed, peeled, shredded or thinly sliced and cut in half"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1 cup of couscous and 1 teaspoon of olive oil in a 4-quart saucepan."
+    },
+    {
+      "instruction": "Add 2 tablespoons of walnuts, 1/4 teaspoon of salt and 1/8 teaspoon of pepper."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of pumpkin pie spice or cinnamon."
+    },
+    {
+      "instruction": "Cook and stir over medium heat just until the couscous begins to brown."
+    },
+    {
+      "instruction": "Slowly add 1 1/3 cups of water."
+    },
+    {
+      "instruction": "Add 2 tablespoons of raisins and 1/2 cup of carrots."
+    },
+    {
+      "instruction": "Cover the pan and bring to a boil over high heat."
+    },
+    {
+      "instruction": "Remove the pan from the heat and let it stand for 10 minutes.",
+      "timer": {
+        "label": "Stand",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Fluff the couscous with a fork."
+    },
+    {
+      "instruction": "Serve right away."
+    }
+  ]
+}

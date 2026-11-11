@@ -1,0 +1,92 @@
+{
+  "id": "turmeric-flatbread",
+  "title": "Turmeric Flatbread",
+  "category": "Snacks and sides",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/turmeric-flatbread/",
+    "credit": "based.cooking contributor joel-maxuel"
+  },
+  "serves": 4,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "wheat flour, white or whole"
+    },
+    {
+      "amount": "1/2 tablespoon",
+      "name": "ground turmeric"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "kosher salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "water"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 1 cup of wheat flour with 1/2 tablespoon of ground turmeric."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of kosher salt and 1/4 teaspoon of baking powder."
+    },
+    {
+      "instruction": "Stir in 1/3 cup of water and 2 tablespoons of olive oil."
+    },
+    {
+      "instruction": "Knead the dough until smooth, about 1 minute.",
+      "spoken": "Knead the dough for 1 to two minutes, until it is smooth.",
+      "timer": {
+        "label": "Knead",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Cover the dough and set it aside for 15 minutes.",
+      "timer": {
+        "label": "Cover",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Cut the dough into 4 pieces."
+    },
+    {
+      "instruction": "Flatten each piece into a 6-inch round."
+    },
+    {
+      "instruction": "Heat an oiled skillet over medium-high heat."
+    },
+    {
+      "instruction": "Lay 1 round in the hot skillet.",
+      "spoken": "Lay 1 round in the hot skillet. Cook about 2 minutes, until it is browned, then flip it. Cook the rest one at a time.",
+      "watch": {
+        "ingredient": "flatbread",
+        "timerLabel": "Flatbread",
+        "timerMinutes": 2,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Flip the flatbread when it is browned.",
+      "cue": {
+        "timerLabel": "Flatbread",
+        "secondsLeft": 0
+      }
+    }
+  ]
+}

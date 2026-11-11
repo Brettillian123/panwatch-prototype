@@ -1,0 +1,78 @@
+{
+  "id": "black-bean-quesadillas",
+  "title": "Black Bean Quesadillas",
+  "category": "Beans and lentils",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/black-bean-quesadillas",
+    "credit": "The Best of La Cocina GOYA: Healthy, Tasty, Affordable Latin Cooking/ Lo Mejor de la Cocina GOYA: Cocina Latina Saludable, Rica y Económica, GOYA Foods"
+  },
+  "serves": 8,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "3/4 cup",
+      "name": "chunky salsa"
+    },
+    {
+      "amount": "1 can",
+      "name": "low-sodium black beans, drained and rinsed (15.5 ounces)"
+    },
+    {
+      "amount": "2 cups",
+      "name": "reduced-fat Colby and Monterey Jack cheese, shredded"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "fresh cilantro, finely chopped"
+    },
+    {
+      "amount": "4",
+      "name": "flour tortillas, 8 inch"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "extra virgin olive oil"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Drain the liquid from 3/4 cup of salsa through a strainer and discard it."
+    },
+    {
+      "instruction": "Put the drained salsa in a medium bowl."
+    },
+    {
+      "instruction": "Mix in 1 can of black beans, 2 cups of cheese and 2 tablespoons of cilantro."
+    },
+    {
+      "instruction": "Divide the mixture over half of each tortilla, about 1/2 cup each."
+    },
+    {
+      "instruction": "Fold the tortillas in half."
+    },
+    {
+      "instruction": "Heat a large griddle or skillet over medium-high heat."
+    },
+    {
+      "instruction": "Brush the griddle with 1/2 teaspoon of olive oil."
+    },
+    {
+      "instruction": "Place the filled tortillas on the griddle.",
+      "watch": {
+        "ingredient": "filled tortillas",
+        "timerLabel": "Quesadillas",
+        "timerMinutes": 5,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Cook, flipping once, until golden brown and crisp and the cheese melts."
+    },
+    {
+      "instruction": "Cut the quesadillas into wedges."
+    }
+  ]
+}

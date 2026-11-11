@@ -1,0 +1,92 @@
+{
+  "id": "creme-brulee",
+  "title": "Crème Brûlée",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/creme-brulee/",
+    "credit": "based.cooking contributor jan-kremer"
+  },
+  "serves": 4,
+  "totalMinutes": 225,
+  "ingredients": [
+    {
+      "amount": "1 2/3 cups",
+      "name": "heavy cream"
+    },
+    {
+      "amount": "5 fluid ounces",
+      "name": "whole milk"
+    },
+    {
+      "amount": "5",
+      "name": "egg yolks"
+    },
+    {
+      "amount": "7 tablespoons",
+      "name": "sugar, preferably brown"
+    },
+    {
+      "amount": "1",
+      "name": "vanilla bean, seeds scraped"
+    },
+    {
+      "amount": "to taste",
+      "name": "lemon peel, rubbed"
+    },
+    {
+      "amount": "4-6 teaspoons",
+      "name": "sugar, for the tops"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 1 2/3 cups of cream, 5 fluid ounces of milk and 5 egg yolks in a bowl."
+    },
+    {
+      "instruction": "Add 7 tablespoons of sugar, the vanilla bean and the rubbed lemon peel."
+    },
+    {
+      "instruction": "Let the mix rest for 30 minutes.",
+      "spoken": "Let the mix rest for at least 30 minutes. You can also let it rest overnight.",
+      "timer": {
+        "label": "Rest",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Pour the mix into 4 to six ovenproof ramekins."
+    },
+    {
+      "instruction": "Preheat the oven to 300 °F with a roasting pan on the middle rack."
+    },
+    {
+      "instruction": "Set the ramekins in the pan and fill the pan with boiling water."
+    },
+    {
+      "instruction": "Let the custard cook for 55 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 55
+      }
+    },
+    {
+      "instruction": "Cool the ramekins to room temperature."
+    },
+    {
+      "instruction": "Chill the ramekins in the fridge for at least 2 hours.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 120
+      }
+    },
+    {
+      "instruction": "Spread 1 teaspoon of sugar over the top of each ramekin."
+    },
+    {
+      "instruction": "Melt the sugar on top with a kitchen torch.",
+      "spoken": "Melt the sugar on top with a kitchen torch. The grill of your oven may work too."
+    }
+  ]
+}

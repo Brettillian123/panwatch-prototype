@@ -1,0 +1,110 @@
+{
+  "id": "savory-potato-salad",
+  "title": "Savory Potato Salad",
+  "category": "Salads",
+  "method": "pot",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/savory-potato-salad",
+    "credit": "NHLBI, NIH; Heart Healthy Home Cooking African American Style"
+  },
+  "serves": 10,
+  "totalMinutes": 105,
+  "ingredients": [
+    {
+      "amount": "6 medium",
+      "name": "potatoes, about 2 pounds"
+    },
+    {
+      "amount": "2 stalks",
+      "name": "celery, finely chopped"
+    },
+    {
+      "amount": "2",
+      "name": "scallions, finely chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "red bell pepper, coarsely chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "green bell pepper, coarsely chopped"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "1",
+      "name": "egg, hard boiled, chopped"
+    },
+    {
+      "amount": "6 tablespoons",
+      "name": "reduced-fat mayonnaise"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "mustard"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "dried dill weed"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Wash 6 medium potatoes and cut them in half."
+    },
+    {
+      "instruction": "Put the potatoes in a saucepan of cold water."
+    },
+    {
+      "instruction": "Cover and cook over medium heat for 25 minutes, until tender.",
+      "spoken": "Cover and cook over medium heat for 25 to thirty minutes, until the potatoes are tender.",
+      "timer": {
+        "label": "Potatoes",
+        "minutes": 25
+      }
+    },
+    {
+      "instruction": "Drain the potatoes and let them cool."
+    },
+    {
+      "instruction": "Dice the cooled potatoes."
+    },
+    {
+      "instruction": "Add 2 chopped celery stalks, 2 chopped scallions and 1 tablespoon of chopped onion."
+    },
+    {
+      "instruction": "Add 1/4 cup each of red bell pepper and green bell pepper, coarsely chopped."
+    },
+    {
+      "instruction": "Add 1 chopped hard-boiled egg and toss."
+    },
+    {
+      "instruction": "In a small bowl, blend 6 tablespoons of mayonnaise and 1 teaspoon of mustard."
+    },
+    {
+      "instruction": "Blend in 1/2 teaspoon of salt, 1/4 teaspoon of pepper and 1/4 teaspoon of dill weed."
+    },
+    {
+      "instruction": "Pour the dressing over the potato mixture and stir gently to coat."
+    },
+    {
+      "instruction": "Chill for at least 1 hour before serving.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 60
+      }
+    }
+  ]
+}

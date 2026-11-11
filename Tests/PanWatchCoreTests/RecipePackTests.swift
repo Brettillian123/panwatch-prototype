@@ -152,11 +152,37 @@ enum BookPaths {
         #expect(result.book.count == before + 2)
         #expect(result.newSources == [RecipeSourceCredit(name: "Test Kitchen", credit: "Recipes adapted from Test Kitchen.", url: "https://test.example/")])
         #expect(RecipeBook.sources(in: book).contains { $0.name == "Test Kitchen" })
-        #expect(RecipeBook.check(folder: book) == [])
+        #expect(RecipeLibraryTests.withoutAwaitedNumberLines(RecipeBook.check(folder: book)) == [])
         #expect(RecipeBook.stalePackedFiles(sources: book, assets: nil, packed: packed) == [])
         #expect(RecipeBook.recipe(id: "brown-rice", in: packed)?.title == "Brown Rice")
         #expect(result.summary.first == "Added 2 recipes; the book has \(before + 2).")
         #expect(result.summary.contains { $0.contains("Pasta and grains") && $0.contains("(+2)") }, "\(result.summary)")
+    }
+
+    @Test func aHeldRecipeGoesInWithoutItsNote() throws {
+        let book = try BookPaths.copyOfBook()
+        let incoming = try BookPaths.temp("held")
+        defer { try? FileManager.default.removeItem(at: book); try? FileManager.default.removeItem(at: incoming) }
+        let packed = book.appendingPathComponent("packed")
+        // A held recipe: its "_held" note, no serving count, and a credit on its source.
+        var object = try #require(JSONSerialization.jsonObject(with: BookPaths.riceFile(id: "wild-rice", title: "Wild Rice")) as? [String: Any])
+        object["_held"] = "serves not given"
+        object.removeValue(forKey: "serves")
+        object["source"] = ["name": "Sous Vision", "credit": "Healthy Kitchen Program"]
+        try JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted, .sortedKeys])
+            .write(to: incoming.appendingPathComponent("wild-rice.json"))
+        #expect(RecipeBook.check(folder: incoming) == [], "the checker skips the note too")
+        let result = RecipeBook.add(from: incoming, book: book, packed: packed, assets: nil)
+        #expect(result.problems == [], "\(result.problems)")
+        let written = String(decoding: try Data(contentsOf: book.appendingPathComponent("wild-rice.json")), as: UTF8.self)
+        #expect(!written.contains("_held"))
+        let added = try #require(RecipeBook.recipe(id: "wild-rice", in: packed))
+        #expect(added.serves == nil)
+        #expect(added.source.credit == "Healthy Kitchen Program")
+        #expect(RecipeBook.stalePackedFiles(sources: book, assets: nil, packed: packed) == [])
+        // A file without the note is copied byte for byte.
+        let plain = try BookPaths.riceFile(id: "red-rice", title: "Red Rice")
+        #expect(RecipeBook.withoutHeld(plain) == plain)
     }
 
     @Test func aBatchWithAnyProblemIsRefusedWhole() throws {

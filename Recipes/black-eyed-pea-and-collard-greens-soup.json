@@ -1,0 +1,107 @@
+{
+  "id": "black-eyed-pea-and-collard-greens-soup",
+  "title": "Black-Eyed Pea and Collard Greens Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/black-eyed-pea-and-collard-greens-soup",
+    "credit": "Eating Smart, Being Active, Colorado State University Extension"
+  },
+  "serves": 6,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "3 cups",
+      "name": "collard greens, stems removed and chopped"
+    },
+    {
+      "amount": "2 cans",
+      "name": "black-eyed peas, 15 ounces each, low-sodium"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1 medium",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "1/4 pound",
+      "name": "deli ham, sliced"
+    },
+    {
+      "amount": "1 can",
+      "name": "low-sodium broth, 14.5 ounces, chicken or vegetable"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "black pepper"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "apple cider vinegar"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Wash the collard greens."
+    },
+    {
+      "instruction": "Drain and rinse the black-eyed peas."
+    },
+    {
+      "instruction": "Place the oil, onion, garlic powder and ham in a large pot over medium heat.",
+      "spoken": "Place 1 tablespoon of oil, the onion, 1/8 teaspoon of garlic powder and 1/4 pound of ham in a large pot with a lid over medium heat. Stir now and then for 3 to five minutes, until the onion is clear.",
+      "watch": {
+        "ingredient": "onion",
+        "timerLabel": "Onion",
+        "timerMinutes": 3,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 3 cups of collard greens and 1 can of broth to the pot."
+    },
+    {
+      "instruction": "Cover the pot and simmer for 20 minutes, until the collard greens are tender.",
+      "spoken": "Cover the pot and simmer for about 20 minutes, until the collard greens are tender.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Mash half of the black-eyed peas with a fork in a small bowl."
+    },
+    {
+      "instruction": "Stir the mashed peas and the whole peas into the soup."
+    },
+    {
+      "instruction": "Simmer the soup for another 5 minutes.",
+      "timer": {
+        "label": "Simmer again",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Taste, then add a little salt and black pepper if you like."
+    },
+    {
+      "instruction": "Stir in 2 teaspoons of apple cider vinegar just before serving."
+    },
+    {
+      "instruction": "Refrigerate leftovers within two hours.",
+      "spoken": "Refrigerate leftovers within two hours. Eat them within 3 to five days."
+    }
+  ]
+}

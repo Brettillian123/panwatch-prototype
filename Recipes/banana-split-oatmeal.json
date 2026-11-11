@@ -1,0 +1,73 @@
+{
+  "id": "banana-split-oatmeal",
+  "title": "Banana Split Oatmeal",
+  "category": "Eggs and breakfast",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/banana-split-oatmeal",
+    "credit": "University of Nebraska Cooperative Extension"
+  },
+  "serves": 1,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1/3 cup",
+      "name": "quick-cooking oatmeal"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1/2",
+      "name": "banana, sliced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "low-fat frozen yogurt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 1/3 cup of oatmeal and 1/8 teaspoon of salt in a microwave-safe cereal bowl."
+    },
+    {
+      "instruction": "Stir in 3/4 cup of water."
+    },
+    {
+      "instruction": "Microwave on high power for 1 minute.",
+      "timer": {
+        "label": "Microwave",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Stir the oatmeal."
+    },
+    {
+      "instruction": "Microwave on high power for 1 more minute.",
+      "timer": {
+        "label": "Microwave again",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Stir the oatmeal again."
+    },
+    {
+      "instruction": "Microwave on high power for 30 more seconds.",
+      "spoken": "Microwave on high power for 30 to sixty more seconds, until the oatmeal is as thick as you like."
+    },
+    {
+      "instruction": "Stir the oatmeal once more."
+    },
+    {
+      "instruction": "Top with 1/2 sliced banana and 1/2 cup of frozen yogurt."
+    }
+  ]
+}

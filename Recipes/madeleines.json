@@ -1,0 +1,77 @@
+{
+  "id": "madeleines",
+  "title": "Madeleines",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AMadeleines",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "4",
+      "name": "eggs"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "white granulated sugar"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1",
+      "name": "lemon, zest grated"
+    },
+    {
+      "amount": "5 tablespoons",
+      "name": "butter, melted"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Beat 4 eggs, 1/2 cup of sugar and 1 pinch of salt until frothy."
+    },
+    {
+      "instruction": "Mix 3/4 cup of flour, 1 teaspoon baking powder and the zest of 1 lemon."
+    },
+    {
+      "instruction": "Fold the flour mixture into the egg mixture."
+    },
+    {
+      "instruction": "Fold in 5 tablespoons of melted butter."
+    },
+    {
+      "instruction": "Divide the dough into greased madeleine molds.",
+      "spoken": "Divide the dough into greased madeleine molds. The dough will rise in the oven to fill the molds."
+    },
+    {
+      "instruction": "Bake for 12 minutes, until the cakes are springy but not browned.",
+      "spoken": "Bake for 12 to fifteen minutes, until the cakes are springy but not browned.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 12
+      }
+    },
+    {
+      "instruction": "Let the madeleines cool."
+    },
+    {
+      "instruction": "Unmold the madeleines."
+    }
+  ]
+}

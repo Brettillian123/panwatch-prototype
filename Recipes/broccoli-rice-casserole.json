@@ -1,0 +1,102 @@
+{
+  "id": "broccoli-rice-casserole",
+  "title": "Broccoli Rice Casserole",
+  "category": "Pasta and grains",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/broccoli-rice-casserole",
+    "credit": "Quick and Healthy Meals: Tips and Tools for Planning Meals for Your Family, Ohio State University Cooperative Extension, Cuyahoga County"
+  },
+  "serves": 12,
+  "totalMinutes": 75,
+  "ingredients": [
+    {
+      "amount": "1 1/2 cups",
+      "name": "rice, uncooked"
+    },
+    {
+      "amount": "3 1/2 cups",
+      "name": "water, divided"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "margarine, or butter"
+    },
+    {
+      "amount": "1 medium",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1 can",
+      "name": "condensed cream of mushroom soup, reduced sodium, 10.75 ounce (or reduced sodium chicken, celery, or cheese soup)"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "milk, 1%"
+    },
+    {
+      "amount": "7 1/2 cups",
+      "name": "frozen broccoli or cauliflower or mixed vegetables, chopped"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "low-fat cheddar cheese, grated"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F and grease a 12x9x2 inch baking pan."
+    },
+    {
+      "instruction": "Mix 1 1/2 cups of rice, salt and 3 cups of water in a saucepan and bring to a boil."
+    },
+    {
+      "instruction": "Cover the saucepan and simmer for 15 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Remove the saucepan from the heat and set it aside for 15 more minutes.",
+      "timer": {
+        "label": "Stand",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Sauté 1 chopped onion in 3 tablespoons of margarine until tender."
+    },
+    {
+      "instruction": "Mix 1 can of soup, 1 1/2 cups of milk and 1/2 cup of water."
+    },
+    {
+      "instruction": "Mix in the onions and the rice."
+    },
+    {
+      "instruction": "Spoon the mixture into the baking pan."
+    },
+    {
+      "instruction": "Thaw and drain 7 1/2 cups of frozen vegetables."
+    },
+    {
+      "instruction": "Spread the vegetables over the rice mixture."
+    },
+    {
+      "instruction": "Spread 8 ounces of grated cheese evenly over the top."
+    },
+    {
+      "instruction": "Bake for 25 minutes, until the cheese is melted and the rice is bubbly.",
+      "spoken": "Bake for 25 to thirty minutes, until the cheese is melted and the rice is bubbly.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 25
+      }
+    }
+  ]
+}

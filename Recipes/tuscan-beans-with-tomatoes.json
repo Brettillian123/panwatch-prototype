@@ -1,0 +1,71 @@
+{
+  "id": "tuscan-beans-with-tomatoes",
+  "title": "Tuscan Beans with Tomatoes and Oregano",
+  "category": "Beans and lentils",
+  "method": "noHeat",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/tuscan-beans-tomatoes-and-oregano",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 4,
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "1 can",
+      "name": "low-sodium chickpeas, 15 1/2 ounces, drained and rinsed"
+    },
+    {
+      "amount": "2 cups",
+      "name": "cherry tomatoes, rinsed and halved"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "balsamic vinegar"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "fresh oregano, minced, or 1 teaspoon dried"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt-free seasoning blend"
+    },
+    {
+      "amount": "4",
+      "name": "romaine lettuce leaves, inner, rinsed and dried"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Combine 1 can of chickpeas and 2 cups of cherry tomatoes in a large salad bowl."
+    },
+    {
+      "instruction": "In a small bowl, mix 1 tablespoon of olive oil and 1 teaspoon of balsamic vinegar."
+    },
+    {
+      "instruction": "Add 2 tablespoons of oregano, 1/8 teaspoon of pepper and 1/2 teaspoon of seasoning blend."
+    },
+    {
+      "instruction": "Whisk until the oil and vinegar no longer separate.",
+      "spoken": "Whisk with a wire whisk until it blends into one thick sauce, and the oil and vinegar no longer separate."
+    },
+    {
+      "instruction": "Pour the dressing over the beans and tomatoes and mix gently to coat."
+    },
+    {
+      "instruction": "Line each of four salad bowls with romaine lettuce leaves, 1 per bowl."
+    },
+    {
+      "instruction": "Top each leaf with one-fourth of the bean mixture and serve."
+    }
+  ]
+}

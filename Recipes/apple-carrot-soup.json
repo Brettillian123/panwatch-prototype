@@ -1,0 +1,73 @@
+{
+  "id": "apple-carrot-soup",
+  "title": "Apple Carrot Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/apple-carrot-soup",
+    "credit": "Healthy & Delicious: Simple Ways to Low Fat Chinese Cooking, San Francisco Department of Public Health, Chinatown Public Health Center"
+  },
+  "serves": 8,
+  "totalMinutes": 210,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "lean pork, cut into chunks"
+    },
+    {
+      "amount": "4 medium",
+      "name": "apples, cored and quartered, with skin"
+    },
+    {
+      "amount": "4 large",
+      "name": "carrots, peeled and cut into chunks"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "dried orange peel, optional"
+    },
+    {
+      "amount": "4 slices",
+      "name": "ginger"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "20 cups",
+      "name": "water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Place 1 pound of lean pork, cut into chunks, in a large pot."
+    },
+    {
+      "instruction": "Add 4 medium apples, cored and quartered, with the skin on."
+    },
+    {
+      "instruction": "Add 4 large carrots, peeled and cut into chunks."
+    },
+    {
+      "instruction": "Add 4 slices of ginger and 1/2 teaspoon of salt."
+    },
+    {
+      "instruction": "Add 1 teaspoon of dried orange peel if you like."
+    },
+    {
+      "instruction": "Pour in 20 cups of water and bring to a boil over high heat."
+    },
+    {
+      "instruction": "Reduce to medium heat and simmer until about 8 cups of liquid are left.",
+      "spoken": "Reduce the heat to medium and simmer until the soup cooks down to about 8 cups of liquid. This takes about three to four hours."
+    },
+    {
+      "instruction": "Skim the fat from the surface of the soup."
+    },
+    {
+      "instruction": "Store leftover soup covered in the refrigerator for up to 3 days."
+    }
+  ]
+}

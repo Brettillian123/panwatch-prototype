@@ -1,0 +1,57 @@
+{
+  "id": "batido-smoothie",
+  "title": "Batido Smoothie",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/batido-smoothie",
+    "credit": "USDA Center for Nutrition Policy and Promotion"
+  },
+  "serves": 4,
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "papaya chunks, fresh or frozen"
+    },
+    {
+      "amount": "2",
+      "name": "bananas, overripe and sliced"
+    },
+    {
+      "amount": "1 cup",
+      "name": "plain low-fat yogurt"
+    },
+    {
+      "amount": "1 cup",
+      "name": "ice cubes"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 2 cups of papaya chunks in the blender."
+    },
+    {
+      "instruction": "Add 2 sliced bananas and 1 cup of yogurt."
+    },
+    {
+      "instruction": "Add 1 cup of ice cubes."
+    },
+    {
+      "instruction": "Put the lid on tightly."
+    },
+    {
+      "instruction": "Blend on a medium setting for 1 minute, until smooth.",
+      "spoken": "Blend on a medium setting for about 1 minute, until the ice is chopped and the mixture is smooth.",
+      "timer": {
+        "label": "Blend",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Serve right away.",
+      "spoken": "Serve right away, or cover and refrigerate for up to four hours."
+    }
+  ]
+}

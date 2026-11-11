@@ -1,0 +1,73 @@
+{
+  "id": "spaghetti-sauce",
+  "title": "Spaghetti Sauce",
+  "category": "Sauces and dips",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/spaghetti-sauce/",
+    "credit": "based.cooking contributor Jimmy B"
+  },
+  "serves": 10,
+  "totalMinutes": 65,
+  "ingredients": [
+    {
+      "amount": "12 cloves",
+      "name": "garlic, peeled and minced"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 can",
+      "name": "tomato paste, 6 ounces"
+    },
+    {
+      "amount": "4 cans",
+      "name": "whole or diced tomatoes, 28 ounces each"
+    },
+    {
+      "amount": "to taste",
+      "name": "red pepper flakes"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "basil"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Peel and mince 12 cloves of garlic."
+    },
+    {
+      "instruction": "Heat 1/2 cup of olive oil in a large pot over low to medium heat."
+    },
+    {
+      "instruction": "Add the garlic and heat until golden and fragrant."
+    },
+    {
+      "instruction": "Add 1 can (6 ounces) of tomato paste and 4 cans (28 ounces each) of tomatoes."
+    },
+    {
+      "instruction": "Add red pepper flakes now, if you like."
+    },
+    {
+      "instruction": "Bring to a simmer."
+    },
+    {
+      "instruction": "Cook uncovered for 45 minutes, stirring occasionally.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 45
+      }
+    },
+    {
+      "instruction": "Add a pinch of salt, the remaining 1/4 cup of olive oil and basil, if using."
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "id": "black-bean-burgers",
+  "title": "Black Bean Burgers",
+  "category": "Beans and lentils",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/black-bean-burgers",
+    "credit": "USDA Center for Nutrition Policy and Promotion"
+  },
+  "serves": 4,
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "1 can",
+      "name": "low-sodium black beans, drained and rinsed (15.5 ounces)"
+    },
+    {
+      "amount": "1 large",
+      "name": "egg"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "cooked brown rice"
+    },
+    {
+      "amount": "2",
+      "name": "scallions, minced"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "fresh cilantro, chopped"
+    },
+    {
+      "amount": "1 clove",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "dried oregano"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "black pepper"
+    },
+    {
+      "amount": "4",
+      "name": "whole-wheat buns"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mash 1 can of drained, rinsed black beans in a bowl with a fork until chunky."
+    },
+    {
+      "instruction": "Add 1 egg and mix well."
+    },
+    {
+      "instruction": "Add 1/2 cup of cooked brown rice, 2 minced scallions and 1 minced garlic clove."
+    },
+    {
+      "instruction": "Add 2 tablespoons of cilantro and 1/4 teaspoon of oregano."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon each of salt and black pepper, and mix until well combined."
+    },
+    {
+      "instruction": "Divide the mixture into 4 portions."
+    },
+    {
+      "instruction": "Shape each portion into a patty 3/4 to 1 inch thick."
+    },
+    {
+      "instruction": "Heat a large skillet on high heat."
+    },
+    {
+      "instruction": "Add 1 teaspoon of vegetable oil to the hot skillet."
+    },
+    {
+      "instruction": "Add the burgers to the skillet.",
+      "spoken": "Cook the burgers 4 to five minutes on this side.",
+      "watch": {
+        "ingredient": "burgers",
+        "timerLabel": "Burgers",
+        "timerMinutes": 4,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Flip and cook 4 more minutes, until browned on both sides.",
+      "spoken": "Flip the burgers and cook 4 to five more minutes, until browned on both sides and hot all the way through.",
+      "timer": {
+        "label": "Second side",
+        "minutes": 4
+      },
+      "cue": {
+        "timerLabel": "Burgers",
+        "secondsLeft": 0
+      }
+    },
+    {
+      "instruction": "Place each burger on a whole-wheat bun."
+    }
+  ]
+}

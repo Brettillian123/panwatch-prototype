@@ -1,0 +1,98 @@
+{
+  "id": "asian-mango-chicken-wraps",
+  "title": "Asian Mango Chicken Wraps",
+  "category": "Sandwiches and wraps",
+  "method": "noHeat",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/asian-mango-chicken-wraps",
+    "credit": "Produce For Better Health Foundation"
+  },
+  "serves": 4,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "2",
+      "name": "ripe mangos, peeled, pitted and diced"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "roasted chicken breast, chopped"
+    },
+    {
+      "amount": "2",
+      "name": "green onions, sliced"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "fresh basil, chopped"
+    },
+    {
+      "amount": "1/2",
+      "name": "red bell pepper, chopped"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "Savoy or Napa cabbage, shredded"
+    },
+    {
+      "amount": "2 medium",
+      "name": "carrots, grated"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "fat-free cream cheese"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "natural creamy peanut butter, unsalted"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "low-sodium soy sauce"
+    },
+    {
+      "amount": "4",
+      "name": "whole-wheat tortillas, 8-inch"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Peel, pit and dice 2 ripe mangos."
+    },
+    {
+      "instruction": "Chop 1 1/2 cups of roasted chicken breast."
+    },
+    {
+      "instruction": "Slice 2 green onions and chop 1/2 red bell pepper."
+    },
+    {
+      "instruction": "Chop 2 tablespoons of basil and grate 2 medium carrots."
+    },
+    {
+      "instruction": "Shred 1 1/2 cups of Savoy or Napa cabbage."
+    },
+    {
+      "instruction": "Place the mango, chicken and vegetables in a mixing bowl and toss until well mixed."
+    },
+    {
+      "instruction": "Whisk 1/3 cup of cream cheese and 3 tablespoons of peanut butter in a small bowl."
+    },
+    {
+      "instruction": "Whisk in 2 teaspoons of soy sauce."
+    },
+    {
+      "instruction": "Lay out 4 tortillas and spread 1/4 of the cream cheese mixture on each."
+    },
+    {
+      "instruction": "Top each tortilla with the mango, vegetable and chicken mix."
+    },
+    {
+      "instruction": "Roll up each tortilla tightly, tucking in the ends, and secure with toothpicks."
+    },
+    {
+      "instruction": "Cut each wrap in half.",
+      "spoken": "Cut each wrap in half. If you are not serving them right away, refrigerate them. They keep well overnight."
+    }
+  ]
+}

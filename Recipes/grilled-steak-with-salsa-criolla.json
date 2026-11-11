@@ -1,0 +1,117 @@
+{
+  "id": "grilled-steak-with-salsa-criolla",
+  "title": "Grilled Steak with Salsa Criolla",
+  "category": "Beef and pork",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/argentinean-grilled-steak-salsa-criolla",
+    "credit": "The Best of La Cocina GOYA: Healthy, Tasty, Affordable Latin Cooking/ Lo Mejor de la Cocina GOYA: Cocina Latina Saludable, Rica y Económica, GOYA Foods"
+  },
+  "serves": 4,
+  "totalMinutes": 95,
+  "ingredients": [
+    {
+      "amount": "1 large",
+      "name": "tomato, cored, seeded and finely chopped"
+    },
+    {
+      "amount": "1/4 small",
+      "name": "red onion, finely chopped"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "fresh parsley, finely chopped"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "extra virgin olive oil"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "red wine vinegar"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "oregano"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "low-sodium adobo seasoning, for the salsa"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "crushed red pepper"
+    },
+    {
+      "amount": "1 pound",
+      "name": "skirt steak"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "low-sodium adobo seasoning, for the steak"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 1 large chopped tomato and 1/4 small chopped red onion in a small bowl."
+    },
+    {
+      "instruction": "Mix in 2 tablespoons of parsley, 2 teaspoons of olive oil and 2 teaspoons of vinegar."
+    },
+    {
+      "instruction": "Mix in 1/2 teaspoon of minced garlic and 1/4 teaspoon of oregano."
+    },
+    {
+      "instruction": "Mix in 1/8 teaspoon of adobo seasoning and 1/8 teaspoon of crushed red pepper."
+    },
+    {
+      "instruction": "Cover the bowl."
+    },
+    {
+      "instruction": "Refrigerate the salsa for at least 1 hour.",
+      "spoken": "Refrigerate the salsa for at least 1 hour, or up to two days.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Heat the grill to medium-high."
+    },
+    {
+      "instruction": "Sprinkle both sides of 1 pound of skirt steak with 1/8 teaspoon of adobo seasoning."
+    },
+    {
+      "instruction": "Place the steak on the hot, greased grill grates."
+    },
+    {
+      "instruction": "Cook the steak for about 6 minutes, flipping once.",
+      "spoken": "Cook, flipping once, until the steak is well browned on both sides and a thermometer reads 145 °F. This takes about 6 minutes for medium-rare.",
+      "timer": {
+        "label": "Grill",
+        "minutes": 6
+      }
+    },
+    {
+      "instruction": "Let the steak rest for 5 minutes.",
+      "timer": {
+        "label": "Rest",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Slice the steak thinly."
+    },
+    {
+      "instruction": "Divide the steak evenly among 4 plates."
+    },
+    {
+      "instruction": "Top the steak with the salsa."
+    }
+  ]
+}

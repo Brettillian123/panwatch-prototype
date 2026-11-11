@@ -1,0 +1,114 @@
+{
+  "id": "avocado-black-bean-taquitos",
+  "title": "Avocado Black Bean Taquitos",
+  "category": "Beans and lentils",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/avocado-black-bean-taquitos",
+    "credit": "Created by Fresh Avocados Love One Today, a member of the MyPlate National Strategic Partnership Program"
+  },
+  "serves": 5,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "ripe avocado, halved, pitted, peeled and mashed"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "canned black beans, rinsed"
+    },
+    {
+      "amount": "1/2 tablespoon",
+      "name": "cumin"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "10",
+      "name": "corn tortillas, 6-inch"
+    },
+    {
+      "amount": "1 cup",
+      "name": "cherry tomatoes, chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "red or yellow bell pepper, seeded and diced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "fresh jalapeño, seeded and minced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "onion, minced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "fresh lime juice"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "cilantro, fresh leaves chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "plain non-fat Greek yogurt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mash 1 peeled, pitted avocado and 1/2 cup of black beans in a bowl with a fork."
+    },
+    {
+      "instruction": "Stir in 1/2 tablespoon of cumin, 1 teaspoon of garlic powder and 1/2 teaspoon of salt."
+    },
+    {
+      "instruction": "Spread about 2 tablespoons of the mixture onto each of 10 corn tortillas."
+    },
+    {
+      "instruction": "Roll each tortilla tightly to make 10 taquitos."
+    },
+    {
+      "instruction": "Heat the air fryer to 400 °F."
+    },
+    {
+      "instruction": "Place the taquitos in the air fryer for 5 minutes.",
+      "timer": {
+        "label": "Air fry",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Flip the taquitos and air fry them for 5 more minutes.",
+      "spoken": "Flip the taquitos and air fry them for 5 more minutes. Some air fryers need only 3 to four minutes per side.",
+      "timer": {
+        "label": "Second side",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Mix 1 cup of chopped cherry tomatoes and 1/2 cup of diced bell pepper in a small bowl."
+    },
+    {
+      "instruction": "Mix in 1 tablespoon of jalapeño, 1 tablespoon of onion and 2 tablespoons of cilantro."
+    },
+    {
+      "instruction": "Mix in 1 tablespoon of lime juice to make fresh pico de gallo."
+    },
+    {
+      "instruction": "Remove the taquitos from the air fryer when they are golden brown and crispy."
+    },
+    {
+      "instruction": "Top the taquitos with the pico de gallo and 1/2 cup of Greek yogurt."
+    }
+  ]
+}

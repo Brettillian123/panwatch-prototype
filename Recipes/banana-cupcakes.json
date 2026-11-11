@@ -1,0 +1,92 @@
+{
+  "id": "banana-cupcakes",
+  "title": "Banana Cupcakes",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/banana-cupcakes",
+    "credit": "Kids a Cookin’, Kansas Family Nutrition Program"
+  },
+  "serves": 12,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1/2 cup",
+      "name": "shortening, solid vegetable"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "sugar"
+    },
+    {
+      "amount": "2 large",
+      "name": "eggs"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "flour"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "baking soda"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 cup",
+      "name": "banana, mashed"
+    },
+    {
+      "amount": "to taste",
+      "name": "cooking spray"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Cream 1/2 cup of shortening and 3/4 cup of sugar in a large bowl with an electric mixer."
+    },
+    {
+      "instruction": "Add 2 large eggs and 1 teaspoon of vanilla extract and mix well."
+    },
+    {
+      "instruction": "Mix 1 1/2 cups of flour and 1 teaspoon of baking powder in a medium bowl."
+    },
+    {
+      "instruction": "Mix in 1/2 teaspoon of baking soda and 1/2 teaspoon of salt."
+    },
+    {
+      "instruction": "Add the flour mixture and 1 cup of mashed banana to the creamed mixture and mix well."
+    },
+    {
+      "instruction": "Line a muffin tin with paper baking cups, or coat it with cooking spray."
+    },
+    {
+      "instruction": "Fill the muffin cups 2/3 full of batter."
+    },
+    {
+      "instruction": "Bake for 20 minutes, until golden brown.",
+      "spoken": "Bake for 20 to twenty-two minutes, until golden brown.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Remove the cupcakes from the tin and place them on a rack to cool."
+    }
+  ]
+}

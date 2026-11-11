@@ -1,0 +1,46 @@
+{
+  "id": "mango-shake",
+  "title": "Mango Shake",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/mango-shake",
+    "credit": "NHLBI, NIH; Delicious Heart Healthy Latino Recipes"
+  },
+  "serves": 4,
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "low-fat milk"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "frozen mango juice, or 1 fresh pitted mango"
+    },
+    {
+      "amount": "1 small",
+      "name": "banana"
+    },
+    {
+      "amount": "2",
+      "name": "ice cubes"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 2 cups of milk and 4 tablespoons of frozen mango juice in a blender.",
+      "spoken": "Put 2 cups of low-fat milk and 4 tablespoons of frozen mango juice in a blender. You can use 1 fresh pitted mango instead of the juice."
+    },
+    {
+      "instruction": "Add 1 small banana and 2 ice cubes."
+    },
+    {
+      "instruction": "Blend until foamy."
+    },
+    {
+      "instruction": "Serve immediately."
+    }
+  ]
+}

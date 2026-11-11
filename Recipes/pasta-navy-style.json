@@ -1,0 +1,106 @@
+{
+  "id": "pasta-navy-style",
+  "title": "Pasta Navy Style",
+  "category": "Pasta and grains",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/pasta-navy-style/",
+    "credit": "based.cooking contributor yaroslav-smirnov"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "to taste",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1/2",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "10-14 ounces",
+      "name": "ground beef"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "2-3 cloves",
+      "name": "garlic"
+    },
+    {
+      "amount": "to taste",
+      "name": "cumin"
+    },
+    {
+      "amount": "to taste",
+      "name": "paprika"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "short pasta, such as fusilli or penne"
+    },
+    {
+      "amount": "3-4",
+      "name": "tomatoes"
+    },
+    {
+      "amount": "1",
+      "name": "carrot"
+    },
+    {
+      "amount": "to taste",
+      "name": "black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat olive oil in a frying pan over medium-high heat."
+    },
+    {
+      "instruction": "Add the chopped onion to the hot pan and wait a couple of minutes.",
+      "timer": {
+        "label": "Onion",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Add 10 to 14 ounces of ground beef and salt, and mix with the onion."
+    },
+    {
+      "instruction": "When the beef is almost cooked, mince 2 to 3 cloves of garlic."
+    },
+    {
+      "instruction": "Add the garlic, cumin and paprika to the pan."
+    },
+    {
+      "instruction": "Cook 8 ounces of pasta in a pot until firm to the bite, while the beef cooks."
+    },
+    {
+      "instruction": "Grate 3 to 4 tomatoes over the pan on a fine grater, so the juice falls in."
+    },
+    {
+      "instruction": "Grate 1 carrot on a medium grater and add it to the pan."
+    },
+    {
+      "instruction": "Add more salt and black pepper to taste, and mix."
+    },
+    {
+      "instruction": "Cook over medium to medium-low heat for 10 minutes.",
+      "spoken": "Cook over medium to medium-low heat for 10 to fifteen minutes, until the tomato juices have almost completely cooked away.",
+      "timer": {
+        "label": "Sauce",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Add the cooked pasta to the pan and cook for a couple of minutes.",
+      "timer": {
+        "label": "Together",
+        "minutes": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": "cheddar-crusted-chicken",
+  "title": "Cheddar-Crusted Chicken",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/cheddar-crusted-chicken/",
+    "credit": "based.cooking contributor joel-maxuel"
+  },
+  "serves": 2,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "2",
+      "name": "chicken breasts"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "mayonnaise"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "panko breadcrumbs"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "cheddar cheese, shredded"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "smoked paprika-garlic blend"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 425 °F."
+    },
+    {
+      "instruction": "Mix 1/4 cup of panko breadcrumbs and 1/4 cup of cheddar cheese in a shallow dish."
+    },
+    {
+      "instruction": "Stir in 1 tablespoon of smoked paprika-garlic blend."
+    },
+    {
+      "instruction": "Pat 2 chicken breasts dry with a paper towel."
+    },
+    {
+      "instruction": "Slice into the side of each breast, leaving 1/2 inch uncut at the far end.",
+      "spoken": "Slice into the thick side of each breast, parallel to the cutting board, and leave 1/2 inch uncut at the far end."
+    },
+    {
+      "instruction": "Open the chicken like a book and season both sides with salt and pepper."
+    },
+    {
+      "instruction": "Coat one side of each breast with 2 tablespoons of mayonnaise."
+    },
+    {
+      "instruction": "Press the coated side into the crumb mixture, one breast at a time."
+    },
+    {
+      "instruction": "Put the chicken on a parchment-lined baking sheet, coated side up."
+    },
+    {
+      "instruction": "Bake on the middle oven rack for 18 minutes.",
+      "spoken": "Bake on the middle oven rack for 18 to twenty minutes, until a thermometer reads 165 °F in the thickest part.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 18
+      }
+    }
+  ]
+}

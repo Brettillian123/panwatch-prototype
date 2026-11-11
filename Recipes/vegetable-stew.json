@@ -1,0 +1,127 @@
+{
+  "id": "vegetable-stew",
+  "title": "Vegetable Stew",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/vegetable-stew",
+    "credit": "NHLBI, NIH; Heart Healthy Home Cooking African American Style"
+  },
+  "serves": 8,
+  "totalMinutes": 65,
+  "ingredients": [
+    {
+      "amount": "3 cups",
+      "name": "water"
+    },
+    {
+      "amount": "1 piece",
+      "name": "low-sodium vegetable bouillon cube"
+    },
+    {
+      "amount": "2 cups",
+      "name": "white potatoes, cut into 2-inch strips"
+    },
+    {
+      "amount": "2 cups",
+      "name": "carrots, sliced"
+    },
+    {
+      "amount": "4 cups",
+      "name": "summer squash, cut into 1-inch squares"
+    },
+    {
+      "amount": "1 cup",
+      "name": "summer squash, cut into 4 large chunks"
+    },
+    {
+      "amount": "1 can",
+      "name": "sweet corn, rinsed and drained (or 2 ears fresh corn)"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "dried thyme"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 stalk",
+      "name": "scallion, chopped"
+    },
+    {
+      "amount": "1/2 small",
+      "name": "hot pepper, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "onion, coarsely chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "diced tomatoes"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring 3 cups of water and 1 bouillon cube to a boil in a large pot."
+    },
+    {
+      "instruction": "Add 2 cups of potato strips and 2 cups of sliced carrots.",
+      "spoken": "Add 2 cups of potatoes cut in 2-inch strips and 2 cups of sliced carrots. Simmer for 5 minutes.",
+      "watch": {
+        "ingredient": "potatoes and carrots",
+        "timerLabel": "Potatoes",
+        "timerMinutes": 5,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Add 4 cups of summer squash squares and 1 cup of squash in 4 large chunks."
+    },
+    {
+      "instruction": "Add 1 can of drained corn and 1 teaspoon of dried thyme."
+    },
+    {
+      "instruction": "Add 2 minced garlic cloves, 1 scallion, 1/2 hot pepper and 1 cup of onion."
+    },
+    {
+      "instruction": "Cook over medium heat for 15 minutes.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Take out the 4 large squash chunks and puree them in a blender."
+    },
+    {
+      "instruction": "Return the puree to the pot and cook for 10 more minutes.",
+      "timer": {
+        "label": "Puree",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Add 1 cup of diced tomatoes.",
+      "spoken": "Add 1 cup of diced tomatoes and cook for another 5 minutes.",
+      "watch": {
+        "ingredient": "tomatoes",
+        "timerLabel": "Tomatoes",
+        "timerMinutes": 5,
+        "minimumChange": 0.02
+      }
+    },
+    {
+      "instruction": "Take the pot off the heat and let it sit for 10 minutes.",
+      "spoken": "Take the pot off the heat and let it sit for 10 minutes, so the stew thickens before serving.",
+      "timer": {
+        "label": "Sit",
+        "minutes": 10
+      }
+    }
+  ]
+}

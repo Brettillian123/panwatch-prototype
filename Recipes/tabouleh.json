@@ -1,0 +1,97 @@
+{
+  "id": "tabouleh",
+  "title": "Tabouleh",
+  "category": "Vegetables",
+  "method": "noHeat",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/tabouleh/",
+    "credit": "based.cooking contributor joel-maxuel"
+  },
+  "serves": 12,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "cracked wheat, also called bulgur"
+    },
+    {
+      "amount": "2 cups",
+      "name": "very hot water, or as directed on the package"
+    },
+    {
+      "amount": "1",
+      "name": "cucumber, chopped"
+    },
+    {
+      "amount": "2 small",
+      "name": "tomatoes, chopped"
+    },
+    {
+      "amount": "1 bunch",
+      "name": "green onions, sliced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "fresh mint, chopped"
+    },
+    {
+      "amount": "2 cups",
+      "name": "fresh parsley, chopped"
+    },
+    {
+      "amount": "1 clove",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "fresh lemon juice"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "pepper"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Soak 2 cups of cracked wheat in 2 cups of very hot water for 30 minutes.",
+      "spoken": "Soak 2 cups of cracked wheat in 2 cups of very hot water, until the water is absorbed. This takes about 30 minutes.",
+      "timer": {
+        "label": "Soak",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Drain any extra water and squeeze the wheat dry."
+    },
+    {
+      "instruction": "Combine the wheat, 1 chopped cucumber and 2 small chopped tomatoes in a bowl."
+    },
+    {
+      "instruction": "Add 1 bunch of sliced green onions and 1/2 cup of chopped mint."
+    },
+    {
+      "instruction": "Add 2 cups of chopped parsley and 1 clove of minced garlic."
+    },
+    {
+      "instruction": "Mix 1/2 cup of lemon juice and 3/4 cup of olive oil in a small bowl."
+    },
+    {
+      "instruction": "Add 1 tablespoon of pepper and 2 teaspoons of salt."
+    },
+    {
+      "instruction": "Stir the dressing into the salad mix."
+    },
+    {
+      "instruction": "Serve chilled or at room temperature."
+    }
+  ]
+}

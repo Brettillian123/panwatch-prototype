@@ -1,0 +1,68 @@
+{
+  "id": "simple-tuna-salad",
+  "title": "Simple Tuna Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/tuna-salad/",
+    "credit": "based.cooking contributor scary90"
+  },
+  "serves": 3,
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "1 can",
+      "name": "white tuna, drained"
+    },
+    {
+      "amount": "6 tablespoons",
+      "name": "mayonnaise"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "sweet pickle relish"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "white vinegar or lemon juice, optional"
+    },
+    {
+      "amount": "1 cup",
+      "name": "shredded cheese, optional"
+    },
+    {
+      "amount": "1",
+      "name": "egg, chopped and hard-boiled, optional"
+    },
+    {
+      "amount": "a pinch",
+      "name": "garlic powder, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1 can (7 ounces) of drained white tuna in a medium bowl."
+    },
+    {
+      "instruction": "Stir in 6 tablespoons of mayonnaise and 1 tablespoon of sweet pickle relish."
+    },
+    {
+      "instruction": "If you like, stir in 2 tablespoons of white vinegar or lemon juice."
+    },
+    {
+      "instruction": "If you like, add 1 cup of shredded cheese and 1 chopped hard-boiled egg."
+    },
+    {
+      "instruction": "If you like, season with a pinch of garlic powder, salt and pepper."
+    }
+  ]
+}

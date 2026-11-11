@@ -1,0 +1,53 @@
+{
+  "id": "summer-breeze-smoothie",
+  "title": "Summer Breeze Smoothie",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/summer-breeze-smoothie",
+    "credit": "NHLBI, NIH; Heart Healthy Home Cooking African American Style"
+  },
+  "serves": 3,
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "nonfat plain yogurt"
+    },
+    {
+      "amount": "6 medium",
+      "name": "strawberries"
+    },
+    {
+      "amount": "1 cup",
+      "name": "pineapple, crushed, canned in juice"
+    },
+    {
+      "amount": "1 medium",
+      "name": "banana"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "4",
+      "name": "ice cubes"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1 cup of yogurt, 6 medium strawberries and 1 medium banana in a blender."
+    },
+    {
+      "instruction": "Add 1 cup of crushed pineapple, 1 teaspoon of vanilla extract and 4 ice cubes."
+    },
+    {
+      "instruction": "Blend until smooth."
+    },
+    {
+      "instruction": "Pour into frosted glasses."
+    }
+  ]
+}

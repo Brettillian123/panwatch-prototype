@@ -1,0 +1,102 @@
+{
+  "id": "pizza-flavored-omelet",
+  "title": "Pizza-Flavored Omelet",
+  "category": "Eggs and breakfast",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3APizza-Flavored_Omelet",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "1/4 cup",
+      "name": "tomato sauce"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "other seasonings"
+    },
+    {
+      "amount": "to taste",
+      "name": "cooking spray"
+    },
+    {
+      "amount": "2",
+      "name": "eggs"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "green bell peppers, chopped"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "mushrooms, chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "mozzarella cheese, shredded"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 1/4 cup of tomato sauce with salt, pepper and other seasonings to taste.",
+      "spoken": "Mix 1/4 cup of tomato sauce with salt, pepper and other seasonings to taste. Let the flavors blend while you prepare the rest."
+    },
+    {
+      "instruction": "Beat 2 eggs well."
+    },
+    {
+      "instruction": "Heat a small skillet sprayed with cooking spray over low heat."
+    },
+    {
+      "instruction": "Pour the beaten eggs into the skillet.",
+      "watch": {
+        "ingredient": "eggs",
+        "timerLabel": "Eggs",
+        "timerMinutes": 3,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Cover the skillet.",
+      "spoken": "Cover the skillet and cook for 3 minutes. The eggs should be almost set."
+    },
+    {
+      "instruction": "Carefully flip the omelet and cook for 1 more minute.",
+      "timer": {
+        "label": "Flipped",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Microwave 2 tablespoons each of mushrooms and peppers for 30 seconds."
+    },
+    {
+      "instruction": "Spread the tomato mixture over the omelet."
+    },
+    {
+      "instruction": "Sprinkle 1/4 cup of mozzarella cheese over the tomato sauce."
+    },
+    {
+      "instruction": "Top the cheese with the hot mushrooms and peppers."
+    },
+    {
+      "instruction": "Cover the skillet and cook for 2 more minutes.",
+      "spoken": "Cover the skillet and cook for 2 more minutes, until the cheese is melted.",
+      "timer": {
+        "label": "Cheese",
+        "minutes": 2
+      }
+    }
+  ]
+}

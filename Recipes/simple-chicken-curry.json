@@ -1,0 +1,121 @@
+{
+  "id": "simple-chicken-curry",
+  "title": "Simple Chicken Curry",
+  "category": "Chicken",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/simple-chicken-curry/",
+    "credit": "based.cooking contributor lsma"
+  },
+  "serves": 3,
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "4 cloves",
+      "name": "garlic"
+    },
+    {
+      "amount": "1 large",
+      "name": "onion"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "butter"
+    },
+    {
+      "amount": "2-3 cups",
+      "name": "chicken broth"
+    },
+    {
+      "amount": "2-3 cups",
+      "name": "crushed or pureed tomatoes"
+    },
+    {
+      "amount": "1 1/2 pounds",
+      "name": "boneless skinless chicken breasts"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "coriander"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cumin"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "turmeric"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground fennel seeds"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "black pepper"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ginger"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "mustard"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground cloves"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mince 4 cloves of garlic."
+    },
+    {
+      "instruction": "Dice 1 large onion."
+    },
+    {
+      "instruction": "Melt 1/4 cup of butter in a pot."
+    },
+    {
+      "instruction": "Add the onion and garlic and sauté.",
+      "spoken": "Add the onion and garlic and sauté until the onion is just beginning to brown."
+    },
+    {
+      "instruction": "Pour in 2 to 3 cups of chicken broth and 2 to 3 cups of crushed tomatoes."
+    },
+    {
+      "instruction": "Raise the heat to high."
+    },
+    {
+      "instruction": "Cut 1 1/2 pounds of chicken breasts into bite-sized cubes."
+    },
+    {
+      "instruction": "Add the chicken to the pot."
+    },
+    {
+      "instruction": "Add 1 1/2 teaspoons of coriander, 1 teaspoon of cumin and 1/2 teaspoon of turmeric."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon each of ground fennel seeds, cinnamon, black pepper and ginger."
+    },
+    {
+      "instruction": "Add 1/4 teaspoon each of mustard and ground cloves."
+    },
+    {
+      "instruction": "Bring the pot to a boil."
+    },
+    {
+      "instruction": "Lower the heat and simmer for 30 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 30
+      }
+    }
+  ]
+}

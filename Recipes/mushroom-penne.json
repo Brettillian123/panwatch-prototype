@@ -1,0 +1,131 @@
+{
+  "id": "mushroom-penne",
+  "title": "Mushroom Penne",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/mushroom-penne",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 4,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "3 quarts",
+      "name": "water"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "penne, whole-wheat"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "white mushrooms, rinsed and sliced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "onion, thinly sliced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "garlic, minced or pressed (about 2 to 3 cloves)"
+    },
+    {
+      "amount": "6 tablespoons",
+      "name": "dry red wine"
+    },
+    {
+      "amount": "1 cup",
+      "name": "low-sodium chicken broth"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "dried thyme"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "shredded parmesan cheese"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring 3 quarts of water to a boil in a 4-quart saucepan over high heat."
+    },
+    {
+      "instruction": "Warm 2 tablespoons of olive oil in a large nonstick pan over medium heat."
+    },
+    {
+      "instruction": "Add 8 ounces of penne to the boiling water.",
+      "spoken": "Add the penne and cook it for the shortest time on the package, about 8 minutes.",
+      "watch": {
+        "ingredient": "penne",
+        "timerLabel": "Penne",
+        "timerMinutes": 8,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Chop 8 ounces of mushrooms into bite-sized pieces."
+    },
+    {
+      "instruction": "Add the mushrooms to the oil and cook for 5 minutes.",
+      "watch": {
+        "ingredient": "mushrooms",
+        "timerLabel": "Mushrooms",
+        "timerMinutes": 5,
+        "minimumChange": 0.02
+      }
+    },
+    {
+      "instruction": "Slice 1/2 cup of onion and mince 1 tablespoon of garlic."
+    },
+    {
+      "instruction": "Add the onion and garlic to the mushrooms.",
+      "spoken": "Add the onion and garlic to the mushrooms. Cook for 3 minutes, stirring now and then.",
+      "watch": {
+        "ingredient": "onion",
+        "timerLabel": "Onion",
+        "timerMinutes": 3,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 6 tablespoons of red wine and stir to loosen the browned bits.",
+      "spoken": "Add the wine. Cook and stir to loosen any browned bits from the pan so they mix into the sauce."
+    },
+    {
+      "instruction": "Stir in 1 cup of broth, 1/4 teaspoon salt, 1/4 teaspoon pepper and 1 teaspoon thyme."
+    },
+    {
+      "instruction": "Drain the penne and stir it into the mushroom mixture.",
+      "cue": {
+        "timerLabel": "Penne",
+        "secondsLeft": 0
+      }
+    },
+    {
+      "instruction": "Keep simmering for 3 minutes, until all the moisture is absorbed.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Divide into 4 portions and top each with 1 tablespoon of parmesan cheese."
+    }
+  ]
+}

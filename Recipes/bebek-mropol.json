@@ -1,0 +1,100 @@
+{
+  "id": "bebek-mropol",
+  "title": "Bebek Mropol",
+  "category": "Chicken",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/bebek-mropol/",
+    "credit": "based.cooking contributor maxime-desmetvds"
+  },
+  "serves": 4,
+  "totalMinutes": 80,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "whole duck, cut into pieces"
+    },
+    {
+      "amount": "2 cans",
+      "name": "coconut milk"
+    },
+    {
+      "amount": "2 stalks",
+      "name": "lemongrass, bruised"
+    },
+    {
+      "amount": "4",
+      "name": "kaffir lime leaves"
+    },
+    {
+      "amount": "4",
+      "name": "bay leaves"
+    },
+    {
+      "amount": "4 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "4",
+      "name": "shallots, minced"
+    },
+    {
+      "amount": "2",
+      "name": "red chilies, sliced"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "salt"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "sugar"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "tamarind paste"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat a large pot over medium-high heat."
+    },
+    {
+      "instruction": "Add 1 duck, cut into pieces, skin side down.",
+      "spoken": "Add the duck pieces to the pot skin side down, so the fat melts out."
+    },
+    {
+      "instruction": "Flip the duck and cook until it is browned on all sides."
+    },
+    {
+      "instruction": "Add 4 minced garlic cloves, 4 minced shallots and 2 sliced red chilies."
+    },
+    {
+      "instruction": "Stir-fry for a few minutes, until fragrant."
+    },
+    {
+      "instruction": "Pour in 2 cans of coconut milk."
+    },
+    {
+      "instruction": "Add 2 bruised lemongrass stalks, 4 kaffir lime leaves and 4 bay leaves."
+    },
+    {
+      "instruction": "Add 2 teaspoons of salt, 1 teaspoon of sugar and 1 teaspoon of tamarind paste."
+    },
+    {
+      "instruction": "Stir everything well to combine."
+    },
+    {
+      "instruction": "Bring the pot to a boil."
+    },
+    {
+      "instruction": "Lower the heat and simmer for 1 hour, until the duck is tender.",
+      "spoken": "Lower the heat and simmer for about 1 hour, until the duck is tender and the sauce has thickened.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 60
+      }
+    }
+  ]
+}

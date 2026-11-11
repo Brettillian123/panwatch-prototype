@@ -116,6 +116,9 @@ struct RecipeSource: Equatable, Sendable {
     let name: String
     /// Empty for the app's own recipes.
     var url: String = ""
+    /// The program or author the source credits for this recipe, shown under the source on
+    /// the About credits; empty when it names none.
+    var credit: String = ""
 
     static let own = RecipeSource(name: "Sous Vision")
     var isOwn: Bool { name == RecipeSource.own.name }
@@ -150,11 +153,11 @@ struct Recipe: BookItem, Equatable, Sendable {
     var items: [Ingredient]
     /// Start to plate, in minutes, counting the waits the steps name (boiling, timers, resting).
     var totalMinutes: Int
-    /// How many people the amounts feed.
-    var serves: Int
+    /// How many people the amounts feed; nil when the source doesn't say.
+    var serves: Int?
 
     init(id: String? = nil, title: String, category: RecipeCategory = .vegetables, method: CookMethod = .pot,
-         source: RecipeSource = .own, steps: [RecipeStep], items: [Ingredient] = [], totalMinutes: Int = 0, serves: Int = 0) {
+         source: RecipeSource = .own, steps: [RecipeStep], items: [Ingredient] = [], totalMinutes: Int = 0, serves: Int? = nil) {
         self.id = id ?? Recipe.slug(of: title)
         self.title = title
         self.category = category
@@ -168,6 +171,30 @@ struct Recipe: BookItem, Equatable, Sendable {
 }
 
 extension Recipe {
+    /// A total time as the screens show it: "25 min", "1 hr 30 min", "8 hr".
+    static func timeText(minutes: Int) -> String {
+        let (hours, rest) = (minutes / 60, minutes % 60)
+        if hours == 0 { return "\(minutes) min" }
+        return rest == 0 ? "\(hours) hr" : "\(hours) hr \(rest) min"
+    }
+
+    /// The same, in words to speak: "25 minutes", "1 hour 30 minutes", "8 hours".
+    static func spokenTime(minutes: Int) -> String {
+        let (hours, rest) = (minutes / 60, minutes % 60)
+        let minuteWords = "\(rest) \(rest == 1 ? "minute" : "minutes")"
+        if hours == 0 { return minutes == 1 ? "1 minute" : "\(minutes) minutes" }
+        let hourWords = "\(hours) \(hours == 1 ? "hour" : "hours")"
+        return rest == 0 ? hourWords : "\(hourWords) \(minuteWords)"
+    }
+
+    /// A timer's length before "timer": "9-minute", "90-minute"; past 99 minutes in hours,
+    /// "6-hour", "1 hour 40 minute".
+    static func timerLength(minutes: Int) -> String {
+        if minutes <= 99 { return "\(minutes)-minute" }
+        let (hours, rest) = (minutes / 60, minutes % 60)
+        return rest == 0 ? "\(hours)-hour" : "\(hours) hour \(rest) minute"
+    }
+
     /// Every bundled recipe parsed in full, in book order. Only the tests and the checker use
     /// it; the app never parses the whole book: titles, lists, search and voice come from
     /// `RecipeIndex.bundled`, and one recipe is read when it is opened (`withID`).

@@ -1,0 +1,98 @@
+{
+  "id": "hawaiian-huli-huli-chicken",
+  "title": "Hawaiian Huli Huli Chicken",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/hawaiian-huli-huli-chicken",
+    "credit": "NHLBI, NIH; Deliciously Healthy Family Meals"
+  },
+  "serves": 4,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "12 ounces",
+      "name": "chicken breast, boneless and skinless, cut into 1-inch cubes"
+    },
+    {
+      "amount": "1 cup",
+      "name": "pineapple, diced"
+    },
+    {
+      "amount": "8",
+      "name": "6-inch wooden skewers"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "ketchup"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "lite soy sauce"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "honey"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "orange juice"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ginger, minced"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat a broiler or grill on medium-high heat."
+    },
+    {
+      "instruction": "Thread 3 chicken breast cubes and 3 pineapple chunks onto each of the 8 skewers."
+    },
+    {
+      "instruction": "Stir 2 tablespoons each of ketchup, lite soy sauce and honey together in a bowl."
+    },
+    {
+      "instruction": "Stir in 2 teaspoons of orange juice, 1 teaspoon of garlic and 1 teaspoon of ginger."
+    },
+    {
+      "instruction": "Divide the sauce between two bowls and set one bowl aside for later."
+    },
+    {
+      "instruction": "Grill the skewers for 3 minutes on one side.",
+      "spoken": "Grill the skewers for 3 to five minutes on one side.",
+      "timer": {
+        "label": "Grill",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Brush the skewers with sauce from the first bowl as they grill.",
+      "spoken": "Brush the chicken and pineapple with sauce from the first bowl about every other minute."
+    },
+    {
+      "instruction": "Flip the skewers and grill them for 3 minutes on the other side.",
+      "spoken": "Flip the skewers and grill them for 3 to five minutes on the other side.",
+      "timer": {
+        "label": "Other side",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Throw away the sauce left in the first bowl."
+    },
+    {
+      "instruction": "Finish the skewers in a 350 °F oven until a thermometer reads 165 °F.",
+      "spoken": "Right away, finish the skewers in a 350 °F oven, until a thermometer reads 165 °F inside the chicken. This keeps the chicken from drying out."
+    },
+    {
+      "instruction": "Coat the skewers with the saved sauce, using a clean brush or spoon."
+    }
+  ]
+}

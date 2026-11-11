@@ -1,0 +1,88 @@
+{
+  "id": "broccoli-strawberry-orzo-salad",
+  "title": "Broccoli Strawberry Orzo Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/broccoli-strawberry-orzo-salad",
+    "credit": "Community Fit!, South Haven Health System"
+  },
+  "serves": 6,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "3/4 cup",
+      "name": "orzo pasta, uncooked"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "apple cider vinegar"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "sugar"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "poppy seeds, optional"
+    },
+    {
+      "amount": "2 cups",
+      "name": "fresh broccoli, chopped"
+    },
+    {
+      "amount": "2 cups",
+      "name": "fresh strawberries, diced"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "sunflower seeds"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Cook 3/4 cup of orzo pasta by the package directions, then drain it."
+    },
+    {
+      "instruction": "Rinse the orzo with cold water."
+    },
+    {
+      "instruction": "Whisk 1 tablespoon of lemon juice and 2 tablespoons of vinegar in a small bowl."
+    },
+    {
+      "instruction": "Whisk in 2 tablespoons of olive oil, 1 teaspoon of sugar and 1 teaspoon of poppy seeds."
+    },
+    {
+      "instruction": "Put the orzo and 2 cups of chopped broccoli in a large bowl."
+    },
+    {
+      "instruction": "Add 2 cups of diced strawberries and 1/4 cup of sunflower seeds."
+    },
+    {
+      "instruction": "Drizzle with the lemon poppy seed dressing and toss to combine."
+    },
+    {
+      "instruction": "Season with salt and pepper."
+    },
+    {
+      "instruction": "Chill in the refrigerator until ready to serve."
+    }
+  ]
+}

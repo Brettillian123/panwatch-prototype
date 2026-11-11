@@ -1,0 +1,118 @@
+{
+  "id": "avocado-veggie-bake",
+  "title": "Avocado Veggie Bake",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/avocado-veggie-bake",
+    "credit": "Created by Fresh Avocados Love One Today, a member of the MyPlate National Strategic Partnership Program"
+  },
+  "serves": 8,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "chili powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 medium head",
+      "name": "cauliflower, cut into 1/2-inch thick slices, then into 2-inch pieces, 8 ounces total"
+    },
+    {
+      "amount": "1 medium",
+      "name": "zucchini, sliced into 1/2-inch thick rounds"
+    },
+    {
+      "amount": "1 cup",
+      "name": "reduced fat shredded Mexican or taco seasoned cheese"
+    },
+    {
+      "amount": "1 can",
+      "name": "black beans, drained and rinsed, about 15 ounces"
+    },
+    {
+      "amount": "1 cup",
+      "name": "corn kernels, canned and drained"
+    },
+    {
+      "amount": "1 cup",
+      "name": "cherry tomatoes, halved lengthwise"
+    },
+    {
+      "amount": "1",
+      "name": "ripe avocado, halved, pitted, peeled and diced"
+    },
+    {
+      "amount": "2",
+      "name": "scallions, sliced on the diagonal, about 1/2 cup"
+    },
+    {
+      "amount": "1",
+      "name": "jalapeño, seeded and sliced"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "cilantro, leaves only"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 425 °F."
+    },
+    {
+      "instruction": "Mix 2 tablespoons of olive oil and 1 tablespoon of chili powder in a bowl."
+    },
+    {
+      "instruction": "Mix in 1 teaspoon of cumin, 1/2 teaspoon of garlic powder and 1/4 teaspoon of salt."
+    },
+    {
+      "instruction": "Brush half of the oil mixture on the bottom of a 15x10 inch baking sheet."
+    },
+    {
+      "instruction": "Arrange 1/2 head of cauliflower pieces and 1 sliced zucchini in one layer on the sheet."
+    },
+    {
+      "instruction": "Brush the remaining oil mixture over the vegetables."
+    },
+    {
+      "instruction": "Roast for 20 minutes, until the vegetables are fork tender.",
+      "timer": {
+        "label": "Roast",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Top with 1 can of black beans, 1 cup of corn kernels and 1 cup of shredded cheese."
+    },
+    {
+      "instruction": "Roast for 5 more minutes, until heated through and the cheese is melted.",
+      "timer": {
+        "label": "Melt",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Top with 1 cup of cherry tomatoes, 1 diced avocado and 2 sliced scallions."
+    },
+    {
+      "instruction": "Top with 1 sliced jalapeño and 2 tablespoons of cilantro."
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "id": "anytime-pizza",
+  "title": "Anytime Pizza",
+  "category": "Sandwiches and wraps",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/anytime-pizza",
+    "credit": "Pumpkin Post and Banana Beat Newsletters, University of Massachusetts Extension, Nutrition Education Program"
+  },
+  "serves": 2,
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "1/4",
+      "name": "mini baguette or Italian bread, about 9 inches long, split lengthwise, or 2 split English muffins"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "pizza sauce"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "part-skim mozzarella or cheddar cheese, shredded"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "green pepper, chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "mushrooms, fresh or canned, sliced"
+    },
+    {
+      "amount": "to taste",
+      "name": "Italian seasoning"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Toast the bread until slightly brown."
+    },
+    {
+      "instruction": "Top the bread with 1/2 cup of pizza sauce."
+    },
+    {
+      "instruction": "Add 1/4 cup of chopped green pepper and 1/4 cup of sliced mushrooms."
+    },
+    {
+      "instruction": "Top with 1/2 cup of shredded cheese."
+    },
+    {
+      "instruction": "Sprinkle with Italian seasoning, if you like."
+    },
+    {
+      "instruction": "Return the bread to a toaster oven, or a regular oven preheated to 350 °F."
+    },
+    {
+      "instruction": "Heat until the cheese melts."
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "avocado-relish",
+  "title": "Avocado Relish",
+  "category": "Sauces and dips",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAvocado_Relish",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "2-3",
+      "name": "avocados"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "to taste",
+      "name": "paprika"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Scoop the flesh out of 2 to 3 avocados, leaving the peel and pit."
+    },
+    {
+      "instruction": "Mash the avocado with 1 teaspoon of lemon juice, paprika and salt to taste."
+    },
+    {
+      "instruction": "Let the relish rest for 5 minutes before serving.",
+      "spoken": "Let the relish rest for 5 to ten minutes before serving.",
+      "timer": {
+        "label": "Rest",
+        "minutes": 5
+      }
+    }
+  ]
+}

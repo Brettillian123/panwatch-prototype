@@ -1,0 +1,88 @@
+{
+  "id": "asian-style-steamed-salmon",
+  "title": "Asian-Style Steamed Salmon",
+  "category": "Fish",
+  "method": "pot",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/asian-style-steamed-salmon",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 4,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "low-sodium chicken broth"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "shiitake mushroom caps, rinsed and sliced (or dried shiitake mushrooms)"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "fresh ginger, minced (or 2 teaspoons ground)"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "scallions, green onions, rinsed and chopped"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "light soy sauce"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "sesame oil, optional"
+    },
+    {
+      "amount": "12 ounces",
+      "name": "salmon fillet, cut into 4 portions (3 ounces each)"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1 cup of low-sodium chicken broth in a large, shallow sauté pan."
+    },
+    {
+      "instruction": "Add 1/2 cup of sliced shiitake mushroom caps and 2 tablespoons of minced ginger."
+    },
+    {
+      "instruction": "Add 1/4 cup of chopped scallions and 1 tablespoon of light soy sauce."
+    },
+    {
+      "instruction": "Add 1 tablespoon of sesame oil if you like."
+    },
+    {
+      "instruction": "Bring the pan to a boil over high heat."
+    },
+    {
+      "instruction": "Lower the heat and simmer for 2 minutes.",
+      "spoken": "Lower the heat and simmer for 2 to three minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Add 4 portions of salmon fillet, 3 ounces each.",
+      "watch": {
+        "ingredient": "salmon",
+        "timerLabel": "Salmon",
+        "timerMinutes": 4,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Cover the pan with a tight-fitting lid."
+    },
+    {
+      "instruction": "Cook gently over low heat until the salmon flakes easily with a fork.",
+      "spoken": "Cook gently over low heat for 4 to five minutes, until the salmon flakes easily with a fork in the thickest part. A thermometer should read at least 145 °F."
+    },
+    {
+      "instruction": "Serve 1 piece of salmon with 1/4 cup of broth."
+    }
+  ]
+}

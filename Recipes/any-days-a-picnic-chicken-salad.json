@@ -1,0 +1,50 @@
+{
+  "id": "any-days-a-picnic-chicken-salad",
+  "title": "Any Day's a Picnic Chicken Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/any-days-picnic-chicken-salad",
+    "credit": "University of Wisconsin Cooperative Extension Service, A Family Living Program"
+  },
+  "serves": 6,
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "2 1/2 cups",
+      "name": "cooked chicken breast, diced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "celery, chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "pickle relish"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "light mayonnaise"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 2 1/2 cups of diced cooked chicken breast in a large bowl."
+    },
+    {
+      "instruction": "Add 1/2 cup of chopped celery and 1/4 cup of chopped onion."
+    },
+    {
+      "instruction": "Stir in 2 tablespoons of pickle relish and 1/2 cup of light mayonnaise."
+    },
+    {
+      "instruction": "Refrigerate until ready to serve.",
+      "spoken": "Refrigerate until ready to serve. Use within 1 to two days. Chicken salad does not freeze well."
+    }
+  ]
+}

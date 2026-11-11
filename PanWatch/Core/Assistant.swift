@@ -80,6 +80,8 @@ enum AssistantAction: Equatable, Sendable {
     case ingredients
     case showRecipes
     case chooseRecipe(String)
+    /// The name fits several dishes ("the chicken"): show them and ask, as when the cook says it.
+    case pickRecipe([String])
     case camera(on: Bool)
     /// Any other control the cook can name: help, voices, quiet, settings, yes, no.
     case app(HeardIntent)
@@ -135,11 +137,19 @@ enum AssistantAction: Equatable, Sendable {
     }
 
     /// The `recipe` tool's call. A dish must be one of the app's recipes.
-    static func recipe(_ action: String, name: String?, titles: [String] = RecipeIndex.bundled.titles) -> AssistantAction? {
+    static func recipe(_ action: String, name: String?, titles: [String]) -> AssistantAction? {
+        recipe(action, name: name, book: VoiceTitles(titles))
+    }
+
+    static func recipe(_ action: String, name: String?, book: VoiceTitles = RecipeIndex.bundled.voice) -> AssistantAction? {
         switch action {
         case "readIngredients": return .ingredients
         case "openRecipes": return .showRecipes
-        case "choose": return name.flatMap { recipeTitle(for: $0, titles: titles) }.map(AssistantAction.chooseRecipe)
+        case "choose":
+            guard let name else { return nil }
+            if let title = recipeTitle(for: name, book: book) { return .chooseRecipe(title) }
+            let several = VoiceCommand.recipeMatches(in: words(of: name), book: book)
+            return several.count > 1 ? .pickRecipe(several) : nil
         case "cameraOn": return .camera(on: true)
         case "cameraOff": return .camera(on: false)
         default: return nil
@@ -153,12 +163,20 @@ enum AssistantAction: Equatable, Sendable {
 
     /// The recipe the model named: the title itself, any two of its words, or the one dish
     /// with that word ("rice", "the chicken").
-    static func recipeTitle(for name: String, titles: [String] = RecipeIndex.bundled.titles) -> String? {
-        if let exact = titles.first(where: { $0.caseInsensitiveCompare(name) == .orderedSame }) { return exact }
-        let words = name.lowercased().split(whereSeparator: { !$0.isLetter && !$0.isNumber && $0 != "'" }).map(String.init)
-        if let title = VoiceCommand.recipeTitle(in: words + ["make"], titles: titles) { return title }
-        let dishes = Set(words.compactMap { VoiceCommand.dish(word: $0, titles: titles) })
+    static func recipeTitle(for name: String, titles: [String]) -> String? {
+        recipeTitle(for: name, book: VoiceTitles(titles))
+    }
+
+    static func recipeTitle(for name: String, book: VoiceTitles = RecipeIndex.bundled.voice) -> String? {
+        if let exact = book.titles.first(where: { $0.caseInsensitiveCompare(name) == .orderedSame }) { return exact }
+        let words = words(of: name)
+        if let title = VoiceCommand.recipeTitle(in: words + ["make"], book: book) { return title }
+        let dishes = Set(words.compactMap { VoiceCommand.dish(word: $0, book: book) })
         return dishes.count == 1 ? dishes.first : nil
+    }
+
+    private static func words(of name: String) -> [String] {
+        name.lowercased().split(whereSeparator: { !$0.isLetter && !$0.isNumber && $0 != "'" }).map(String.init)
     }
 
     /// Why the app can't do this here, said back to the model so it can tell the cook; nil
@@ -196,6 +214,7 @@ enum AssistantAction: Equatable, Sendable {
         case .ingredients: .ingredients
         case .showRecipes: .showRecipes
         case .chooseRecipe(let title): .makeRecipe(title)
+        case .pickRecipe(let titles): .askWhichRecipe(titles)
         case .camera(let on): .camera(on: on)
         case .app(let intent): intent.command
         }

@@ -1,0 +1,85 @@
+{
+  "id": "baked-salmon-dijon",
+  "title": "Baked Salmon Dijon",
+  "category": "Fish",
+  "method": "oven",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/baked-salmon-dijon",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 6,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "fat-free sour cream"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "dried dill"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "scallions, green onions, rinsed and finely chopped"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "Dijon mustard"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "1 1/2 pounds",
+      "name": "salmon fillet, cut into 6 portions, 4 ounces each"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "cooking spray"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 400 °F."
+    },
+    {
+      "instruction": "Whisk 1 cup of sour cream, 2 teaspoons of dill and 3 tablespoons of scallions in a bowl."
+    },
+    {
+      "instruction": "Whisk in 2 tablespoons of Dijon mustard and 2 tablespoons of lemon juice."
+    },
+    {
+      "instruction": "Lightly coat a baking sheet with cooking spray."
+    },
+    {
+      "instruction": "Place 6 portions of salmon fillet, skin side down, on the baking sheet."
+    },
+    {
+      "instruction": "Sprinkle the salmon with 1/2 teaspoon each of garlic powder and pepper."
+    },
+    {
+      "instruction": "Spread the sauce over the salmon."
+    },
+    {
+      "instruction": "Bake for 20 minutes, until a thermometer reads 145 °F in the thickest part.",
+      "spoken": "Bake for about 20 minutes, until each piece is opaque in the center and flakes easily with a fork in the thickest part. A thermometer should read at least 145 °F.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Serve right away."
+    }
+  ]
+}

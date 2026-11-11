@@ -1,0 +1,91 @@
+{
+  "id": "black-beans",
+  "title": "Black Beans",
+  "category": "Beans and lentils",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/black-beans",
+    "credit": "Kids a Cookin’, Kansas Family Nutrition Program and the USDA Food Stamp Nutrition Education Program, Recipe by Lynn Walters and Jane Stacey"
+  },
+  "serves": 4,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "2 cans",
+      "name": "low-sodium black beans, 15.5 ounces each"
+    },
+    {
+      "amount": "1/2 medium",
+      "name": "onion"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt, optional"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "dried oregano"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Drain the juice from 1 can of black beans."
+    },
+    {
+      "instruction": "Mash the drained beans in a bowl until they are no longer whole.",
+      "spoken": "Mash the drained beans with a potato masher until they are no longer whole, then set them aside."
+    },
+    {
+      "instruction": "Chop 1/2 medium onion into 1/4-inch pieces."
+    },
+    {
+      "instruction": "Peel and finely mince 2 cloves of garlic."
+    },
+    {
+      "instruction": "Heat 2 tablespoons of vegetable oil in a medium saucepan over medium-high heat."
+    },
+    {
+      "instruction": "Add the chopped onion.",
+      "spoken": "Add the onion and sauté for 1 to two minutes.",
+      "watch": {
+        "ingredient": "onion",
+        "timerLabel": "Onion",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Stir in the garlic and 1/2 teaspoon of ground cumin.",
+      "spoken": "Stir in the garlic and the cumin, and cook for 30 seconds more."
+    },
+    {
+      "instruction": "Stir in the mashed beans and the second can of beans, with its juice."
+    },
+    {
+      "instruction": "When the beans begin to boil, reduce the heat to low."
+    },
+    {
+      "instruction": "Stir in 1/2 teaspoon of salt, if using, and 1/4 teaspoon of dried oregano."
+    },
+    {
+      "instruction": "Simmer uncovered for 10 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 10
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "zucchini-medley",
+  "title": "Zucchini Medley",
+  "category": "Vegetables",
+  "method": "noHeat",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/zucchini-medley",
+    "credit": "NHLBI, NIH; Honoring the Gift of Heart Health Manual for American Indians and Native Alaskans"
+  },
+  "serves": 4,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "3 cups",
+      "name": "zucchini chunks"
+    },
+    {
+      "amount": "1 small",
+      "name": "yellow onion, sliced"
+    },
+    {
+      "amount": "1 medium",
+      "name": "tomato, diced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "mushrooms, chopped"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "dried basil"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "low-fat cheddar cheese, shredded"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Place 3 cups of zucchini chunks in a microwave-safe 2-quart dish."
+    },
+    {
+      "instruction": "Add 1 small sliced onion and 1 medium diced tomato to the dish."
+    },
+    {
+      "instruction": "Add 1/2 cup of chopped mushrooms and 1/2 teaspoon of dried basil."
+    },
+    {
+      "instruction": "Microwave on high for 7 minutes, until the vegetables are fork tender.",
+      "spoken": "Microwave on high for 7 to ten minutes, or until the vegetables are tender when poked with a fork.",
+      "timer": {
+        "label": "Microwave",
+        "minutes": 7
+      }
+    },
+    {
+      "instruction": "Add 1/2 cup of shredded cheddar cheese."
+    },
+    {
+      "instruction": "Microwave on high for 30 seconds."
+    },
+    {
+      "instruction": "Let the dish stand 2 minutes before serving.",
+      "spoken": "Let the dish stand for 2 to three minutes before serving.",
+      "timer": {
+        "label": "Stand",
+        "minutes": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "id": "vietnamese-fresh-spring-rolls",
+  "title": "Vietnamese Fresh Spring Rolls",
+  "category": "Snacks and sides",
+  "method": "noHeat",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/vietnamese-fresh-spring-rolls-goi",
+    "credit": "NHLBI, NIH; Your Health Is Golden! Heart Health Promotion Activities for Vietnamese Communities"
+  },
+  "serves": 8,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "carrots, cut into long, thin strips"
+    },
+    {
+      "amount": "2 cups",
+      "name": "bean sprouts"
+    },
+    {
+      "amount": "2 cups",
+      "name": "cucumber, seeded and cut into long, thin strips"
+    },
+    {
+      "amount": "1 cup",
+      "name": "scallions, minced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "fresh cilantro, chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "fresh mint, chopped"
+    },
+    {
+      "amount": "8",
+      "name": "rice paper wrappers"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Toss 1 cup of carrot strips and 2 cups of bean sprouts in a large bowl."
+    },
+    {
+      "instruction": "Add 2 cups of cucumber strips and 1 cup of minced scallions."
+    },
+    {
+      "instruction": "Add 1/2 cup of chopped cilantro and 1/4 cup of chopped mint, then toss."
+    },
+    {
+      "instruction": "Soak 1 rice paper wrapper in warm water for 1 minute.",
+      "spoken": "Soak 1 rice paper wrapper in warm water for 1 to two minutes, until it is soft.",
+      "timer": {
+        "label": "Soak",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Shake off the extra water."
+    },
+    {
+      "instruction": "Place some of the vegetable filling off-center on the rice paper."
+    },
+    {
+      "instruction": "Fold it like an egg roll, tucking in the sides to keep the filling inside."
+    },
+    {
+      "instruction": "Repeat with the rest of the filling and wrappers."
+    },
+    {
+      "instruction": "Serve right away, once all the spring rolls are made."
+    }
+  ]
+}

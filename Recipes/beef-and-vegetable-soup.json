@@ -1,0 +1,96 @@
+{
+  "id": "beef-and-vegetable-soup",
+  "title": "Beef and Vegetable Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/beef-and-vegetable-soup",
+    "credit": "A Harvest of Recipes with USDA Foods, USDA Food Distribution Program on Indian Reservations, Adapted from a recipe submitted by Alicson Scott, Chickasaw Nation, Get Fresh! Nutrition Education Program"
+  },
+  "serves": 8,
+  "totalMinutes": 65,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "ground beef"
+    },
+    {
+      "amount": "1 1/2 cans",
+      "name": "low-sodium whole kernel corn, about 23 ounces"
+    },
+    {
+      "amount": "1 can",
+      "name": "low-sodium carrots, about 15 ounces"
+    },
+    {
+      "amount": "1 can",
+      "name": "low-sodium potatoes, sliced, about 15 ounces"
+    },
+    {
+      "amount": "1 can",
+      "name": "low-sodium diced tomatoes, about 15 ounces"
+    },
+    {
+      "amount": "1 small",
+      "name": "onion, diced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "macaroni, dry"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "onion powder"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 1 pound of ground beef to a large pan over medium heat.",
+      "spoken": "Brown the beef for 8 to ten minutes.",
+      "watch": {
+        "ingredient": "ground beef",
+        "timerLabel": "Beef",
+        "timerMinutes": 8
+      }
+    },
+    {
+      "instruction": "Drain the fat off the beef."
+    },
+    {
+      "instruction": "Add 1 1/2 cans of corn and 1 can of carrots to the pot."
+    },
+    {
+      "instruction": "Add 1 can of sliced potatoes and 1 can of diced tomatoes to the pot."
+    },
+    {
+      "instruction": "Add 1 small diced onion to the pot."
+    },
+    {
+      "instruction": "Cook over medium heat for 25 minutes, stirring now and then.",
+      "spoken": "Cook over medium heat for 25 minutes. Stir about every ten minutes.",
+      "timer": {
+        "label": "Vegetables",
+        "minutes": 25
+      }
+    },
+    {
+      "instruction": "Add 1/2 cup of dry macaroni to the pot."
+    },
+    {
+      "instruction": "Add 1 teaspoon of garlic powder and 1 teaspoon of onion powder."
+    },
+    {
+      "instruction": "Cook over medium heat for 20 minutes, stirring now and then.",
+      "spoken": "Cook over medium heat for 20 minutes. Stir about every ten minutes.",
+      "timer": {
+        "label": "Macaroni",
+        "minutes": 20
+      }
+    }
+  ]
+}

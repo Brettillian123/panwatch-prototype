@@ -10,7 +10,7 @@ struct MenuVoiceTests {
             ("the rice please", "Rice"), ("um, pasta", "Garlic Butter Pasta"), ("garlic", "Garlic Butter Pasta"),
         ]
         for (text, title) in picks {
-            #expect(VoiceCommand.parse(text, screen: .recipes) == .makeRecipe(title), "\(text)")
+            #expect(VoiceCommand.parse(text, screen: .recipes, book: DemoBook.voice) == .makeRecipe(title), "\(text)")
         }
     }
 

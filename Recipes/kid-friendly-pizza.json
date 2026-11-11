@@ -1,0 +1,61 @@
+{
+  "id": "kid-friendly-pizza",
+  "title": "Kid-Friendly Pizza",
+  "category": "Sandwiches and wraps",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AKid-Friendly_Pizza",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "serves": 4,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "pre-baked whole-grain pizza shell"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "tomato pasta sauce"
+    },
+    {
+      "amount": "1 cup",
+      "name": "shredded pizza cheese"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "cooked chicken breast, cubed, optional"
+    },
+    {
+      "amount": "1",
+      "name": "red bell pepper, diced"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Spread 1/4 cup of tomato sauce on the pizza shell."
+    },
+    {
+      "instruction": "Top the sauce with half of the shredded cheese."
+    },
+    {
+      "instruction": "Add 1/2 cup of chicken breast and 1 diced red pepper on top in any design.",
+      "spoken": "Add 1/2 cup of cubed cooked chicken and 1 diced red pepper on top, in whatever design you want. Have fun with it."
+    },
+    {
+      "instruction": "Sprinkle the rest of the cheese on top."
+    },
+    {
+      "instruction": "Bake for 10 minutes.",
+      "spoken": "Bake for 10 to twelve minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 10
+      }
+    }
+  ]
+}

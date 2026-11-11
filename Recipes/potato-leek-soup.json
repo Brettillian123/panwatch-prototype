@@ -1,0 +1,91 @@
+{
+  "id": "potato-leek-soup",
+  "title": "Potato Leek Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/potato-leek-soup/",
+    "credit": "based.cooking contributor cactar"
+  },
+  "serves": 2,
+  "totalMinutes": 95,
+  "ingredients": [
+    {
+      "amount": "2 large",
+      "name": "leeks"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "unsalted butter"
+    },
+    {
+      "amount": "11 ounces",
+      "name": "waxy potatoes, peeled and sliced"
+    },
+    {
+      "amount": "1 quart",
+      "name": "chicken or vegetable stock"
+    },
+    {
+      "amount": "1",
+      "name": "bay leaf"
+    },
+    {
+      "amount": "to taste",
+      "name": "white pepper"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground nutmeg, optional"
+    },
+    {
+      "amount": "1/2 tablespoon",
+      "name": "dill weed, optional"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "heavy cream"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Chop the white and light-green parts of 2 large leeks into moderate pieces."
+    },
+    {
+      "instruction": "Throw away the dark-green ends of the leeks."
+    },
+    {
+      "instruction": "Melt 3 tablespoons of butter in a pot over medium-low heat."
+    },
+    {
+      "instruction": "Add the chopped leeks and 11 ounces of sliced potatoes to the pot."
+    },
+    {
+      "instruction": "Stir until the leeks are soft.",
+      "spoken": "Stir until the leeks have sweated down and are soft."
+    },
+    {
+      "instruction": "Add 1 quart of stock, 1 bay leaf and white pepper."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of nutmeg and 1/2 tablespoon of dill weed, if you like."
+    },
+    {
+      "instruction": "Raise the heat to medium-high and simmer until the potatoes are tender."
+    },
+    {
+      "instruction": "Take the pot off the heat and remove the bay leaf."
+    },
+    {
+      "instruction": "Blend the soup with an immersion blender until it is as smooth as you like."
+    },
+    {
+      "instruction": "Stir in 3/4 cup of heavy cream and salt to taste."
+    }
+  ]
+}

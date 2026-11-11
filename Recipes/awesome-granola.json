@@ -1,0 +1,74 @@
+{
+  "id": "awesome-granola",
+  "title": "Awesome Granola",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/awesome-granola",
+    "credit": "Texas AgriLife Extension, Expanded Nutrition Program - Hidalgo County"
+  },
+  "serves": 12,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "3 cups",
+      "name": "oatmeal, uncooked"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "coconut, shredded or flaked"
+    },
+    {
+      "amount": "1 cup",
+      "name": "pecans, chopped (or walnuts or peanuts)"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "honey"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "margarine, liquid"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "2/3 cup",
+      "name": "raisins"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Mix 3 cups of oatmeal, 1/2 cup of coconut and 1 cup of pecans in a large bowl."
+    },
+    {
+      "instruction": "Mix in 1/4 cup of honey, 1/4 cup of liquid margarine and 1 1/2 teaspoons of cinnamon."
+    },
+    {
+      "instruction": "Spread the mixture in a 13x9 inch baking pan."
+    },
+    {
+      "instruction": "Bake for 25 minutes, until golden brown.",
+      "spoken": "Bake for 25 to thirty minutes, until golden brown. Stir every five minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 25
+      }
+    },
+    {
+      "instruction": "Stir in 2/3 cup of raisins."
+    },
+    {
+      "instruction": "Cool the granola thoroughly."
+    },
+    {
+      "instruction": "Store the granola in a tightly covered container."
+    }
+  ]
+}

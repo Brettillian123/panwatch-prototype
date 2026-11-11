@@ -1,0 +1,61 @@
+{
+  "id": "ambrosia",
+  "title": "Ambrosia",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/ambrosia",
+    "credit": "A Holiday Dinner, Cornell Cooperative Extension of Onondaga County"
+  },
+  "serves": 8,
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "1 can",
+      "name": "pineapple chunks in juice, drained"
+    },
+    {
+      "amount": "1 1/3 cups",
+      "name": "canned mandarin oranges, drained"
+    },
+    {
+      "amount": "1 medium",
+      "name": "banana, peeled and sliced"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "seedless grapes"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "miniature marshmallows"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "flaked coconut"
+    },
+    {
+      "amount": "1 cup",
+      "name": "low-fat vanilla yogurt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Drain 1 can (20 ounces) of pineapple chunks and 1 1/3 cups of mandarin oranges.",
+      "spoken": "Drain the pineapple chunks and the mandarin oranges. You can use the juice as a drink."
+    },
+    {
+      "instruction": "Put the pineapple, oranges, 1 sliced banana and 1 1/2 cups of grapes in a bowl."
+    },
+    {
+      "instruction": "Mix in 3/4 cup of miniature marshmallows and 1/3 cup of flaked coconut."
+    },
+    {
+      "instruction": "Fold in 1 cup (8 ounces) of low-fat vanilla yogurt."
+    },
+    {
+      "instruction": "Chill the ambrosia in the refrigerator, then serve."
+    }
+  ]
+}

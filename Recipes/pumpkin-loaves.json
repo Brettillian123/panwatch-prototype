@@ -1,0 +1,104 @@
+{
+  "id": "pumpkin-loaves",
+  "title": "Pumpkin Loaves",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/pumpkin-loaves/",
+    "credit": "based.cooking contributor kylertk"
+  },
+  "serves": 12,
+  "totalMinutes": 95,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "flour"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "baking soda"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cloves"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cinnamon"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground nutmeg"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "grated ginger"
+    },
+    {
+      "amount": "2 cups",
+      "name": "sugar"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "butter"
+    },
+    {
+      "amount": "2",
+      "name": "eggs"
+    },
+    {
+      "amount": "1 can",
+      "name": "pumpkin, 1 pound"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Grease 2 loaf pans or line them with parchment paper."
+    },
+    {
+      "instruction": "Preheat the oven to 325 °F."
+    },
+    {
+      "instruction": "Mix 2 cups of flour, 1/2 teaspoon of salt and 1/2 teaspoon of baking powder.",
+      "spoken": "Mix 2 cups of flour, 1/2 teaspoon of salt and 1/2 teaspoon of baking powder. Sifting them is optional."
+    },
+    {
+      "instruction": "Add 1 teaspoon each of baking soda, cloves, cinnamon and nutmeg."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of grated ginger."
+    },
+    {
+      "instruction": "Beat 2 cups of sugar and 3/4 cup of butter in a large bowl."
+    },
+    {
+      "instruction": "Add 2 eggs to the sugar and butter, one at a time."
+    },
+    {
+      "instruction": "Beat in 1 can of pumpkin."
+    },
+    {
+      "instruction": "Whisk in the flour mixture."
+    },
+    {
+      "instruction": "Pour the batter into the loaf pans."
+    },
+    {
+      "instruction": "Bake for 75 minutes, to make 2 loaves.",
+      "spoken": "Bake for about 75 minutes. This makes 2 loaves.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 75
+      }
+    }
+  ]
+}

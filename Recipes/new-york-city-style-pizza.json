@@ -1,0 +1,126 @@
+{
+  "id": "new-york-city-style-pizza",
+  "title": "New York City-Style Pizza",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ANew_York_City%E2%80%93Style_Pizza",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "1 teaspoon",
+      "name": "active dry yeast"
+    },
+    {
+      "amount": "2/3 cup",
+      "name": "warm water"
+    },
+    {
+      "amount": "2 cups",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 can",
+      "name": "tomato sauce, 10 ounces"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "dried oregano"
+    },
+    {
+      "amount": "1 pound",
+      "name": "shredded mozzarella cheese"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "chopped fresh basil"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "grated Romano cheese"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "red pepper flakes"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Sprinkle 1 teaspoon of yeast over 2/3 cup of warm water in a large bowl.",
+      "spoken": "Sprinkle 1 teaspoon of yeast over the surface of 2/3 cup of warm water in a large bowl. Let it stand for 1 minute.",
+      "timer": {
+        "label": "Yeast",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Stir the yeast and water until the yeast dissolves."
+    },
+    {
+      "instruction": "Mix in 2 cups of flour, 1 teaspoon of salt and 2 tablespoons of olive oil."
+    },
+    {
+      "instruction": "Turn the dough out onto a floured surface once it is too thick to stir."
+    },
+    {
+      "instruction": "Knead the dough for 5 minutes.",
+      "spoken": "Knead the dough for 5 minutes. Knead in a little more flour if the dough is too sticky.",
+      "timer": {
+        "label": "Knead",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Put the dough in an oiled bowl and cover it."
+    },
+    {
+      "instruction": "Set the bowl in a warm place until the dough has doubled in size."
+    },
+    {
+      "instruction": "Preheat the oven to 550 °F, or as hot as your oven will go.",
+      "spoken": "Preheat the oven to 550 °F, or as hot as your oven will go. If you use a pizza stone, preheat it in the oven too, on the lowest shelf."
+    },
+    {
+      "instruction": "Flatten the risen dough on a lightly floured surface."
+    },
+    {
+      "instruction": "Roll or stretch the dough into a 12-inch circle on a baking sheet.",
+      "spoken": "Roll or stretch the dough into a 12-inch circle and put it on a baking sheet. If you use a pizza stone, you can put the pizza on a piece of parchment paper while the stone heats."
+    },
+    {
+      "instruction": "Spread 1 can of tomato sauce evenly over the dough."
+    },
+    {
+      "instruction": "Sprinkle on 1 tablespoon oregano, 1 pound mozzarella and 1/4 cup basil."
+    },
+    {
+      "instruction": "Sprinkle on 1/2 cup of Romano cheese and 1 teaspoon of red pepper flakes."
+    },
+    {
+      "instruction": "Bake the pizza for 12 minutes, until the cheese is melted and bubbly.",
+      "spoken": "Bake for 12 to fifteen minutes, until the cheese is melted and bubbly and the bottom of the crust is browned when you lift the edge a little.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 12
+      }
+    },
+    {
+      "instruction": "Let the pizza cool for 5 minutes before slicing.",
+      "timer": {
+        "label": "Cool",
+        "minutes": 5
+      }
+    }
+  ]
+}

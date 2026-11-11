@@ -1,0 +1,67 @@
+{
+  "id": "damper",
+  "title": "Damper",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/damper/",
+    "credit": "based.cooking contributor walktheearth"
+  },
+  "serves": 12,
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "4 cups",
+      "name": "self-rising flour"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "butter, softened"
+    },
+    {
+      "amount": "1 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 425 °F."
+    },
+    {
+      "instruction": "Grease a baking sheet."
+    },
+    {
+      "instruction": "Mix 4 cups of self-rising flour, 1 tablespoon of soft butter and 1 cup of milk."
+    },
+    {
+      "instruction": "Mix in 1/2 cup of water and 1 teaspoon of salt."
+    },
+    {
+      "instruction": "Knead the bread on a floured surface."
+    },
+    {
+      "instruction": "Put the bread in the oven for 25 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 25
+      }
+    },
+    {
+      "instruction": "Lower the oven to 350 °F and bake 5 more minutes.",
+      "spoken": "Lower the oven to 350 °F and bake for 5 to ten more minutes. This makes 15 servings.",
+      "timer": {
+        "label": "Finish",
+        "minutes": 5
+      }
+    }
+  ]
+}

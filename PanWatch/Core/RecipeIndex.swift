@@ -8,7 +8,7 @@ protocol BookItem {
     var category: RecipeCategory { get }
     var method: CookMethod { get }
     var totalMinutes: Int { get }
-    var serves: Int { get }
+    var serves: Int? { get }
 }
 
 extension BookItem {
@@ -20,8 +20,14 @@ extension BookItem {
         title.prefix(1).uppercased() + title.dropFirst().lowercased()
     }
 
-    /// "20 min · Serves 4".
-    var summary: String { "\(totalMinutes) min · Serves \(serves)" }
+    /// "20 min · Serves 4", or "8 hr" alone when the source gives no serving count.
+    var summary: String { serves.map { "\(timeText) · Serves \($0)" } ?? timeText }
+
+    /// The total time as the screens show it: "25 min", "1 hr 30 min", "8 hr".
+    var timeText: String { Recipe.timeText(minutes: totalMinutes) }
+
+    /// For the voice and VoiceOver: "25 minutes", "1 hour 30 minutes", "8 hours".
+    var spokenTime: String { Recipe.spokenTime(minutes: totalMinutes) }
 
     var isQuick: Bool { totalMinutes <= Recipe.quickMinutes }
 
@@ -37,16 +43,18 @@ struct RecipeEntry: BookItem, Identifiable, Hashable, Codable, Sendable {
     let category: RecipeCategory
     let method: CookMethod
     let totalMinutes: Int
-    let serves: Int
+    let serves: Int?
     /// Ingredient names as written, "garlic, minced".
     let ingredients: [String]
     /// The source's name, "Sous Vision" for the app's own.
     let source: String
+    /// The program or author the source credits, for the About credits; nil when none.
+    var credit: String? = nil
     /// The app has the photo `dish-<id>`; without it the screens draw the plain tile.
     let hasPhoto: Bool
 
     enum CodingKeys: String, CodingKey {
-        case id, title, category, method, totalMinutes = "minutes", serves, ingredients, source, hasPhoto = "photo"
+        case id, title, category, method, totalMinutes = "minutes", serves, ingredients, source, credit, hasPhoto = "photo"
     }
 }
 
@@ -54,7 +62,8 @@ extension RecipeEntry {
     init(_ recipe: Recipe, hasPhoto: Bool) {
         self.init(id: recipe.id, title: recipe.title, category: recipe.category, method: recipe.method,
                   totalMinutes: recipe.totalMinutes, serves: recipe.serves, ingredients: recipe.items.map(\.name),
-                  source: recipe.source.name, hasPhoto: hasPhoto)
+                  source: recipe.source.name,
+                  credit: recipe.source.credit.isEmpty ? nil : recipe.source.credit, hasPhoto: hasPhoto)
     }
 }
 
@@ -64,6 +73,8 @@ final class RecipeIndex: Sendable {
     let entries: [RecipeEntry]
     /// Every title, in book order, for voice.
     let titles: [String]
+    /// The titles' words for matching what the cook says.
+    let voice: VoiceTitles
     private let byID: [String: Int]
     private let byTitle: [String: Int]
     /// Search words per entry, stemmed once: the title's, then the ingredients' and category's.
@@ -76,6 +87,7 @@ final class RecipeIndex: Sendable {
         }
         self.entries = sorted
         titles = sorted.map(\.title)
+        voice = VoiceTitles(titles)
         var byID: [String: Int] = [:]
         var byTitle: [String: Int] = [:]
         for (place, entry) in sorted.enumerated() {

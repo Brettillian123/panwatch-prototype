@@ -1,0 +1,110 @@
+{
+  "id": "red-beans-and-rice",
+  "title": "Red Beans and Rice",
+  "category": "Beans and lentils",
+  "method": "pan",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/red-beans-and-rice",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 4,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 cup",
+      "name": "onion, cut into 1/2-inch pieces"
+    },
+    {
+      "amount": "1 cup",
+      "name": "green bell pepper, diced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "garlic, minced or pressed"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "dried oregano"
+    },
+    {
+      "amount": "1 can",
+      "name": "low-sodium chicken or vegetable broth, 14 1/2 ounces"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "instant brown rice, uncooked"
+    },
+    {
+      "amount": "2 cans",
+      "name": "low-sodium red kidney beans, 15 ounces each"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1 tablespoon of olive oil in a 12-inch pan over medium heat."
+    },
+    {
+      "instruction": "Add 1 cup of onion pieces to the pan.",
+      "spoken": "Cook for 5 minutes, stirring occasionally, until the pieces begin to soften but not brown.",
+      "watch": {
+        "ingredient": "onion",
+        "timerLabel": "Onion",
+        "timerMinutes": 5
+      }
+    },
+    {
+      "instruction": "Dice 1 cup of green bell pepper into 1/4-inch pieces.",
+      "spoken": "Dice 1 cup of green bell pepper into pieces about 1/4 inch in size. Slice it into 1/4-inch strips, hold the strips together, and cut across."
+    },
+    {
+      "instruction": "Add the pepper to the onion and cover the pan.",
+      "spoken": "Add the pepper to the onion and cover the pan. Cook for 5 minutes, stirring occasionally.",
+      "watch": {
+        "ingredient": "pepper",
+        "timerLabel": "Pepper",
+        "timerMinutes": 5
+      }
+    },
+    {
+      "instruction": "Add 1 tablespoon of garlic, 1 1/2 teaspoons of cumin and 1 1/2 teaspoons of oregano.",
+      "spoken": "Cook and stir for 1 minute.",
+      "watch": {
+        "ingredient": "garlic",
+        "timerLabel": "Garlic",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 1 can of broth and 1/2 cup of instant brown rice.",
+      "spoken": "Add 1 can of broth and 1/2 cup of instant brown rice. Stir well, cover the pan, and simmer for 10 minutes.",
+      "watch": {
+        "ingredient": "rice",
+        "timerLabel": "Rice",
+        "timerMinutes": 10,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Drain and rinse 2 cans of kidney beans thoroughly."
+    },
+    {
+      "instruction": "Add the beans to the pan.",
+      "spoken": "Stir well and cover the pan. Simmer for 5 minutes to heat the beans and blend the flavors.",
+      "watch": {
+        "ingredient": "beans",
+        "timerLabel": "Beans",
+        "timerMinutes": 5
+      }
+    }
+  ]
+}

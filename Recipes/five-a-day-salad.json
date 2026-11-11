@@ -1,0 +1,85 @@
+{
+  "id": "five-a-day-salad",
+  "title": "Five-A-Day Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/5-day-salad",
+    "credit": "US Department of Health and Human Services Centers for Disease Control and Prevention (CDC), 5 A Day for Better Health Program"
+  },
+  "serves": 4,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "4 cups",
+      "name": "fresh spinach"
+    },
+    {
+      "amount": "4 cups",
+      "name": "romaine lettuce"
+    },
+    {
+      "amount": "2 cups",
+      "name": "green peppers, chopped (or red, yellow or orange peppers)"
+    },
+    {
+      "amount": "2 cups",
+      "name": "cherry tomatoes"
+    },
+    {
+      "amount": "1 cup",
+      "name": "broccoli, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "cauliflower, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "yellow squash, sliced"
+    },
+    {
+      "amount": "1 cup",
+      "name": "cucumber, sliced"
+    },
+    {
+      "amount": "2 cups",
+      "name": "carrot, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "zucchini, sliced"
+    },
+    {
+      "amount": "to taste",
+      "name": "dressing, nonfat or low-fat"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Wash all of the vegetables."
+    },
+    {
+      "instruction": "Put 4 cups of spinach and 4 cups of romaine lettuce in a large mixing bowl."
+    },
+    {
+      "instruction": "Add 2 cups of chopped green peppers and 2 cups of cherry tomatoes."
+    },
+    {
+      "instruction": "Add 1 cup each of chopped broccoli and chopped cauliflower."
+    },
+    {
+      "instruction": "Add 1 cup each of sliced yellow squash and sliced cucumber."
+    },
+    {
+      "instruction": "Add 2 cups of chopped carrot and 1 cup of sliced zucchini."
+    },
+    {
+      "instruction": "Mix the vegetables together."
+    },
+    {
+      "instruction": "Top with the nonfat or low-fat dressing of your choice."
+    }
+  ]
+}

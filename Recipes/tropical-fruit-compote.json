@@ -1,0 +1,97 @@
+{
+  "id": "tropical-fruit-compote",
+  "title": "Tropical Fruit Compote",
+  "category": "Baking and desserts",
+  "method": "pot",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/tropical-fruit-compote",
+    "credit": "NHLBI, NIH; Stay Young At Heart"
+  },
+  "serves": 8,
+  "totalMinutes": 145,
+  "ingredients": [
+    {
+      "amount": "3/4 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "sugar"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "fresh lemon juice"
+    },
+    {
+      "amount": "1 piece",
+      "name": "lemon peel"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "rum or vanilla extract, optional"
+    },
+    {
+      "amount": "1",
+      "name": "pineapple, cored, peeled and cut into 8 slices"
+    },
+    {
+      "amount": "2",
+      "name": "mangos, peeled, pitted and cut into 8 pieces"
+    },
+    {
+      "amount": "3",
+      "name": "bananas, peeled and cut into 8 diagonal pieces"
+    },
+    {
+      "amount": "to taste",
+      "name": "fresh mint leaves, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 3/4 cup of water and 1/2 cup of sugar in a saucepan."
+    },
+    {
+      "instruction": "Add 2 teaspoons of lemon juice and 1 piece of lemon peel."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of rum or vanilla extract, if you like."
+    },
+    {
+      "instruction": "Bring to a boil, then reduce the heat."
+    },
+    {
+      "instruction": "Add the pineapple, mangos and bananas, and cook on very low heat 5 minutes.",
+      "spoken": "Add the pineapple slices, mango pieces and banana pieces, and cook on very low heat for 5 minutes.",
+      "watch": {
+        "ingredient": "fruit",
+        "timerLabel": "Fruit",
+        "timerMinutes": 5,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Pour the syrup into a cup and set it aside."
+    },
+    {
+      "instruction": "Remove the lemon peel."
+    },
+    {
+      "instruction": "Cool the cooked fruit for 2 hours.",
+      "timer": {
+        "label": "Cool",
+        "minutes": 120
+      }
+    },
+    {
+      "instruction": "Arrange the fruit in a serving dish."
+    },
+    {
+      "instruction": "Pour a few teaspoons of syrup over the fruit."
+    },
+    {
+      "instruction": "Garnish with fresh mint leaves, if you like."
+    }
+  ]
+}

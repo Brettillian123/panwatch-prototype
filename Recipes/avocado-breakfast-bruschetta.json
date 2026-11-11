@@ -1,0 +1,81 @@
+{
+  "id": "avocado-breakfast-bruschetta",
+  "title": "Avocado Breakfast Bruschetta",
+  "category": "Eggs and breakfast",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/avocado-breakfast-bruschetta",
+    "credit": "Produce for Better Health Foundation"
+  },
+  "serves": 4,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "ripe avocado"
+    },
+    {
+      "amount": "2 medium",
+      "name": "tomatoes"
+    },
+    {
+      "amount": "1",
+      "name": "green onion"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "fresh basil, chopped, for the mix"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "fresh basil, chopped, for garnish"
+    },
+    {
+      "amount": "4",
+      "name": "eggs, hard-boiled"
+    },
+    {
+      "amount": "12 slices",
+      "name": "whole-wheat baguette bread"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "ricotta cheese, reduced-fat"
+    },
+    {
+      "amount": "to taste",
+      "name": "cracked black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Dice 1 ripe avocado."
+    },
+    {
+      "instruction": "Dice 2 medium tomatoes and 1 green onion."
+    },
+    {
+      "instruction": "Peel and chop 4 hard-boiled eggs."
+    },
+    {
+      "instruction": "Toss the avocado, tomatoes, onion, eggs and 1/2 cup of basil in a small bowl.",
+      "spoken": "Gently toss the avocado, tomatoes, green onion, eggs and 1/2 cup of basil in a small bowl. Keep 2 tablespoons of basil for garnish."
+    },
+    {
+      "instruction": "Add cracked black pepper to taste."
+    },
+    {
+      "instruction": "Toast the 12 slices of baguette bread."
+    },
+    {
+      "instruction": "Smear the toast with 1/4 cup of ricotta cheese."
+    },
+    {
+      "instruction": "Top the toast with the avocado mix."
+    },
+    {
+      "instruction": "Garnish with 2 tablespoons of chopped basil."
+    }
+  ]
+}

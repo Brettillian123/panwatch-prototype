@@ -99,7 +99,7 @@ struct RecipeFileTests {
     @Test func theBookIsInCategoryThenTitleOrder() {
         let keys = Recipe.all.map { ($0.category.index, $0.title.lowercased()) }
         #expect(zip(keys, keys.dropFirst()).allSatisfy { $0 <= $1 })
-        #expect(Recipe.all.prefix(6).map(\.id) == [
+        #expect(DemoBook.index.entries.map(\.id) == [
             "garlic-butter-pasta", "rice", "hard-boiled-eggs", "oatmeal", "steamed-broccoli", "pan-seared-chicken",
         ])
     }

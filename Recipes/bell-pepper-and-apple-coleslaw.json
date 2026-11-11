@@ -1,0 +1,78 @@
+{
+  "id": "bell-pepper-and-apple-coleslaw",
+  "title": "Bell Pepper and Apple Coleslaw",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/bell-pepper-and-apple-coleslaw",
+    "credit": "Produce for Better Health Foundation"
+  },
+  "serves": 4,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "apple juice"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "cider vinegar"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "Dijon mustard"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 dash",
+      "name": "black pepper"
+    },
+    {
+      "amount": "1 small head",
+      "name": "green or Napa cabbage"
+    },
+    {
+      "amount": "1",
+      "name": "orange or red bell pepper"
+    },
+    {
+      "amount": "1",
+      "name": "Gala or Fuji apple"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "sliced almonds"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Whisk 1 tablespoon of vegetable oil and 1/4 cup of apple juice in a small bowl."
+    },
+    {
+      "instruction": "Whisk in 2 tablespoons of cider vinegar and 2 teaspoons of Dijon mustard."
+    },
+    {
+      "instruction": "Whisk in 1/4 teaspoon of salt and 1 dash of black pepper."
+    },
+    {
+      "instruction": "Shred or thinly slice 1 small head of cabbage."
+    },
+    {
+      "instruction": "Cut 1 apple and 1 bell pepper into small chunks."
+    },
+    {
+      "instruction": "Place the cabbage, apple, pepper and 1/4 cup of sliced almonds in a large bowl."
+    },
+    {
+      "instruction": "Drizzle the dressing over the salad and toss."
+    }
+  ]
+}

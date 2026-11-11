@@ -1,0 +1,96 @@
+{
+  "id": "three-bean-salad",
+  "title": "Three Bean Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/bean-salad/",
+    "credit": "based.cooking contributor joel-maxuel"
+  },
+  "serves": 8,
+  "totalMinutes": 80,
+  "ingredients": [
+    {
+      "amount": "1/3 cup",
+      "name": "salad oil (olive oil, canola or sunflower)"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "cider vinegar"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "pepper"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "sugar"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "celery seed"
+    },
+    {
+      "amount": "1 can",
+      "name": "cut green beans"
+    },
+    {
+      "amount": "1 can",
+      "name": "cut waxed beans"
+    },
+    {
+      "amount": "1 can",
+      "name": "red kidney beans"
+    },
+    {
+      "amount": "1",
+      "name": "carrot, thinly sliced"
+    },
+    {
+      "amount": "1 small",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1",
+      "name": "bell pepper, chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1/3 cup of salad oil and 1/2 cup of cider vinegar in a large salad bowl."
+    },
+    {
+      "instruction": "Add 1 teaspoon of salt, 1/2 teaspoon of pepper and 1/4 cup of sugar."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of celery seed and whisk until blended."
+    },
+    {
+      "instruction": "Empty 1 can each of green beans, waxed beans and kidney beans into a colander."
+    },
+    {
+      "instruction": "Rinse the beans under cold water."
+    },
+    {
+      "instruction": "Thinly slice 1 carrot, and chop 1 small onion and 1 bell pepper."
+    },
+    {
+      "instruction": "Add the carrot, onion and bell pepper to the dressing."
+    },
+    {
+      "instruction": "Add the beans and stir gently."
+    },
+    {
+      "instruction": "Refrigerate for at least 1 hour, stirring now and then.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 60
+      }
+    }
+  ]
+}

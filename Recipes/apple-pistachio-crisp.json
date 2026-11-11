@@ -1,0 +1,82 @@
+{
+  "id": "apple-pistachio-crisp",
+  "title": "Apple Pistachio Crisp",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/apple-pistachio-crisp",
+    "credit": "Produce for Better Health Foundation"
+  },
+  "serves": 4,
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "3",
+      "name": "apples, such as Honeycrisp, cored, unpeeled and cut into 1-inch chunks"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "raisins"
+    },
+    {
+      "amount": "1/2",
+      "name": "lemon, juiced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "old-fashioned oats"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "whole wheat flour"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "brown sugar"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "pistachios, unsalted and chopped"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "margarine or butter, melted"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put the oven rack in the center and preheat to 350 °F."
+    },
+    {
+      "instruction": "Place 3 cut-up apples and 1/2 cup of raisins in an 8-inch square pan."
+    },
+    {
+      "instruction": "Add the juice of 1/2 lemon and toss."
+    },
+    {
+      "instruction": "In a bowl, mix 1/2 cup of oats, 1/4 cup of whole wheat flour and 1 teaspoon of cinnamon."
+    },
+    {
+      "instruction": "Add 3 tablespoons of brown sugar and 1/4 cup of chopped pistachios."
+    },
+    {
+      "instruction": "Add 2 tablespoons of melted butter or margarine and mix until the texture is even."
+    },
+    {
+      "instruction": "Sprinkle the mixture over the apples and raisins."
+    },
+    {
+      "instruction": "Bake uncovered for 45 minutes, until the apples are tender.",
+      "spoken": "Bake uncovered for 45 to fifty minutes, until the apples are tender.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 45
+      }
+    }
+  ]
+}

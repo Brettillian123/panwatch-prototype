@@ -1,0 +1,47 @@
+{
+  "id": "stracciatella-soup",
+  "title": "Stracciatella Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/stracciatella-soup/",
+    "credit": "based.cooking contributor pestanzul"
+  },
+  "serves": 1,
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "2",
+      "name": "eggs"
+    },
+    {
+      "amount": "2 cups",
+      "name": "broth"
+    },
+    {
+      "amount": "to taste",
+      "name": "olive oil, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Beat 2 eggs in a bowl."
+    },
+    {
+      "instruction": "Heat 2 cups of broth in a pot until it boils."
+    },
+    {
+      "instruction": "Pour the eggs into the broth, leaving the pot on the heat."
+    },
+    {
+      "instruction": "Stir with a whisk until the eggs set into strands."
+    },
+    {
+      "instruction": "Pour the broth and eggs into a bowl."
+    },
+    {
+      "instruction": "Drizzle with olive oil, if you like."
+    }
+  ]
+}

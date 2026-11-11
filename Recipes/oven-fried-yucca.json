@@ -1,0 +1,68 @@
+{
+  "id": "oven-fried-yucca",
+  "title": "Oven-Fried Yucca",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/oven-fried-yucca",
+    "credit": "NHLBI, NIH; Delicious Heart Healthy Latino Recipes"
+  },
+  "serves": 6,
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "yucca, peeled and cut into 3-inch sections"
+    },
+    {
+      "amount": "to taste",
+      "name": "cooking spray"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1 pound of yucca in a pot with cold water to cover it by 1 inch."
+    },
+    {
+      "instruction": "Bring the water to a boil."
+    },
+    {
+      "instruction": "Simmer the yucca slowly for 20 minutes, until it is tender.",
+      "spoken": "Simmer the yucca slowly for 20 to thirty minutes, until it is tender.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Lift the yucca out with a slotted spoon onto a cutting board to cool."
+    },
+    {
+      "instruction": "Cut the yucca lengthwise into 3/4-inch wedges, and discard the woody core."
+    },
+    {
+      "instruction": "Spray a baking sheet lightly with cooking spray."
+    },
+    {
+      "instruction": "Spread the wedges in one layer and spray them with cooking spray."
+    },
+    {
+      "instruction": "Cover with foil and bake for 8 minutes.",
+      "timer": {
+        "label": "Covered",
+        "minutes": 8
+      }
+    },
+    {
+      "instruction": "Uncover the yucca and bake 7 more minutes.",
+      "timer": {
+        "label": "Uncovered",
+        "minutes": 7
+      }
+    }
+  ]
+}

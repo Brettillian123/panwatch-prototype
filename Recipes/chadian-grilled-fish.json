@@ -1,0 +1,110 @@
+{
+  "id": "chadian-grilled-fish",
+  "title": "Chadian Grilled Fish",
+  "category": "Fish",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChadian_Gilled_Fish",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground paprika"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground ginger"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground garlic"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground coriander"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "freshly ground black pepper"
+    },
+    {
+      "amount": "2",
+      "name": "whole fresh fish, such as tilapia or catfish, cleaned and scaled"
+    },
+    {
+      "amount": "to taste",
+      "name": "lemon wedges"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the grill to medium-high heat."
+    },
+    {
+      "instruction": "Mix 2 tablespoons of vegetable oil and 1 teaspoon each of paprika and ginger in a bowl."
+    },
+    {
+      "instruction": "Mix in 1 teaspoon each of ground garlic, ground cumin and ground coriander."
+    },
+    {
+      "instruction": "Mix in salt and black pepper to taste, until you have a smooth marinade."
+    },
+    {
+      "instruction": "Pat the 2 fish dry with paper towels and put them on a plate or tray."
+    },
+    {
+      "instruction": "Brush both sides of the fish generously with the marinade."
+    },
+    {
+      "instruction": "Refrigerate the fish for 30 minutes if you like, or skip to grilling.",
+      "spoken": "If you like, refrigerate the fish for 30 minutes so the flavors soak in. This step is optional, so you can go straight to grilling if you are short on time.",
+      "timer": {
+        "label": "Marinate",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Oil the hot grill grates with a folded paper towel soaked in oil, held with tongs."
+    },
+    {
+      "instruction": "Carefully place the fish on the grill and close the lid."
+    },
+    {
+      "instruction": "Cook the fish for 4 minutes with the lid closed.",
+      "spoken": "Cook for about 4 to five minutes per side, depending on the thickness of the fish, until the flesh is opaque and flakes easily with a fork. You can brush the fish with the leftover marinade while it grills.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 4
+      }
+    },
+    {
+      "instruction": "Flip the fish and cook 4 more minutes.",
+      "spoken": "Flip the fish and cook 4 to five more minutes, until the flesh is opaque and flakes easily with a fork.",
+      "timer": {
+        "label": "Cook again",
+        "minutes": 4
+      }
+    },
+    {
+      "instruction": "Take the fish off the grill with tongs or a spatula, without breaking the flesh."
+    },
+    {
+      "instruction": "Serve the fish hot with lemon wedges to squeeze over it."
+    }
+  ]
+}

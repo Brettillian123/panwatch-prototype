@@ -1,0 +1,97 @@
+{
+  "id": "honey-hot-sauce-chicken-thighs",
+  "title": "Honey Hot Sauce Chicken Thighs",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/honey-sriracha-chicken-thighs/",
+    "credit": "based.cooking contributor Kevin Anderson"
+  },
+  "serves": 4,
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "5-6",
+      "name": "chicken thighs, bone-in and skin-on"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "black pepper"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "honey"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "hot sauce"
+    },
+    {
+      "amount": "to taste",
+      "name": "sesame seeds, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Rub 5 to 6 thighs with 1 tablespoon of olive oil, 1/2 teaspoon each of salt and pepper."
+    },
+    {
+      "instruction": "Place the thighs skin-side down in a cold skillet."
+    },
+    {
+      "instruction": "Cook over medium-low heat for 15 minutes without touching them.",
+      "timer": {
+        "label": "Skin side",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Stir 1/3 cup of honey and 2 tablespoons of hot sauce together in a bowl."
+    },
+    {
+      "instruction": "Flip the thighs and cook for 10 more minutes.",
+      "timer": {
+        "label": "Flipped",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Move the thighs to a baking tray and drizzle sauce on both sides.",
+      "spoken": "Move the thighs to a baking tray, or leave them in the skillet if it is cast iron. Drizzle the sauce on both sides to coat them. You do not have to use all of it."
+    },
+    {
+      "instruction": "Bake the thighs for 15 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Check the thickest thigh with a thermometer for 165 °F.",
+      "spoken": "Check the thickest thigh with a thermometer. It should read 165 °F."
+    },
+    {
+      "instruction": "If you like, baste with the leftover sauce and bake 5 more minutes.",
+      "spoken": "If you like, baste the thighs a second time with the leftover sauce, and bake 5 more minutes. You can make more sauce if you need it.",
+      "timer": {
+        "label": "Second bake",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Let the thighs cool a few minutes, then sprinkle with sesame seeds."
+    }
+  ]
+}

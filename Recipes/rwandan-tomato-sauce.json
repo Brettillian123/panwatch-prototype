@@ -1,0 +1,118 @@
+{
+  "id": "rwandan-tomato-sauce",
+  "title": "Rwandan Tomato Sauce",
+  "category": "Sauces and dips",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAkarange_%28Rwandan_Tomato_Sauce%29",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1",
+      "name": "green bell pepper, diced"
+    },
+    {
+      "amount": "1",
+      "name": "red bell pepper, diced"
+    },
+    {
+      "amount": "6 large",
+      "name": "ripe tomatoes, diced"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground paprika"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground coriander"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "1 cup",
+      "name": "water"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 tablespoons of vegetable oil in a large saucepan over medium heat."
+    },
+    {
+      "instruction": "Add 1 finely chopped onion and 2 cloves of minced garlic."
+    },
+    {
+      "instruction": "Sauté until the onion is translucent and fragrant."
+    },
+    {
+      "instruction": "Stir in 1 diced green bell pepper and 1 diced red bell pepper."
+    },
+    {
+      "instruction": "Cook a few minutes, until the peppers begin to soften."
+    },
+    {
+      "instruction": "Add 6 large diced ripe tomatoes."
+    },
+    {
+      "instruction": "Add 1 teaspoon paprika, 1/2 teaspoon cumin and 1/2 teaspoon coriander."
+    },
+    {
+      "instruction": "Add 1/4 teaspoon of ground black pepper."
+    },
+    {
+      "instruction": "Stir well to combine."
+    },
+    {
+      "instruction": "Pour in 1 cup of water."
+    },
+    {
+      "instruction": "Stir in salt to taste.",
+      "spoken": "Stir in salt to taste. Stir again so the spices are evenly spread."
+    },
+    {
+      "instruction": "Bring the mixture to a simmer."
+    },
+    {
+      "instruction": "Reduce the heat to low and cover the saucepan."
+    },
+    {
+      "instruction": "Cook for 15 minutes, until the tomatoes have softened.",
+      "spoken": "Cook for 15 to twenty minutes, until the tomatoes have softened and the flavors have blended.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Taste the sauce and adjust the salt or spices."
+    },
+    {
+      "instruction": "Take the saucepan off the heat."
+    }
+  ]
+}

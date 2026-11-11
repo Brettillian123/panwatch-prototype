@@ -1,0 +1,52 @@
+{
+  "id": "manhattan",
+  "title": "Manhattan",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/manhattan/",
+    "credit": "based.cooking contributor erik-rodabaugh"
+  },
+  "serves": 1,
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "2 fluid ounces",
+      "name": "whiskey, generally rye or bourbon"
+    },
+    {
+      "amount": "to taste",
+      "name": "ice"
+    },
+    {
+      "amount": "1 fluid ounce",
+      "name": "sweet vermouth"
+    },
+    {
+      "amount": "2-3 dashes",
+      "name": "aromatic bitters"
+    },
+    {
+      "amount": "to taste",
+      "name": "cherry or lemon twist, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Pour 2 fluid ounces of whiskey into a mixing glass with ice."
+    },
+    {
+      "instruction": "Add 1 fluid ounce of sweet vermouth and 2 to 3 dashes of bitters."
+    },
+    {
+      "instruction": "Stir the drink in the mixing glass."
+    },
+    {
+      "instruction": "Strain the drink into a coupe glass."
+    },
+    {
+      "instruction": "Garnish with a cherry or lemon twist, if you like."
+    }
+  ]
+}

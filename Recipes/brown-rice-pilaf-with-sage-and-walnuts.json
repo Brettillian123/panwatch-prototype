@@ -1,0 +1,120 @@
+{
+  "id": "brown-rice-pilaf-with-sage-and-walnuts",
+  "title": "Brown Rice Pilaf with Sage and Walnuts",
+  "category": "Pasta and grains",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/brown-rice-pilaf-sage-walnuts-and-dried",
+    "credit": "Diet & Cancer, American Institute for Cancer Research"
+  },
+  "serves": 8,
+  "totalMinutes": 80,
+  "ingredients": [
+    {
+      "amount": "to taste",
+      "name": "cooking spray"
+    },
+    {
+      "amount": "1 medium",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1 medium",
+      "name": "celery stalk, ends trimmed and chopped"
+    },
+    {
+      "amount": "2 cups",
+      "name": "brown rice, uncooked"
+    },
+    {
+      "amount": "2 1/2 cups",
+      "name": "water"
+    },
+    {
+      "amount": "2 cups",
+      "name": "vegetable broth, reduced sodium, fat-free"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "raisins"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "dried apricots, chopped"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "dried sage"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "walnuts, chopped, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "black pepper, optional"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "fresh sage, chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Spray a large skillet with cooking spray."
+    },
+    {
+      "instruction": "Heat the skillet over medium heat."
+    },
+    {
+      "instruction": "Add 1 chopped onion and 1 chopped celery stalk to the skillet.",
+      "spoken": "Add 1 chopped onion and 1 chopped celery stalk to the skillet. Stir for about 5 minutes, until tender.",
+      "watch": {
+        "ingredient": "onion and celery",
+        "timerLabel": "Onion",
+        "timerMinutes": 5,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 2 cups of brown rice and stir for 5 minutes.",
+      "watch": {
+        "ingredient": "rice",
+        "timerLabel": "Rice",
+        "timerMinutes": 5,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 2 1/2 cups of water and 2 cups of vegetable broth."
+    },
+    {
+      "instruction": "Add 1/4 cup of raisins and 1/4 cup of chopped dried apricots."
+    },
+    {
+      "instruction": "Heat the skillet until the liquid boils."
+    },
+    {
+      "instruction": "Reduce the heat to low, cover, and simmer for 50 minutes.",
+      "spoken": "Reduce the heat to low, cover, and simmer for about 50 minutes, until the rice is tender and the liquid is absorbed.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 50
+      }
+    },
+    {
+      "instruction": "Stir in 1 teaspoon of dried sage and 1/4 cup of chopped walnuts, if you like."
+    },
+    {
+      "instruction": "Season with salt and black pepper to taste, if you like."
+    },
+    {
+      "instruction": "Move the pilaf to a serving dish and sprinkle with 2 teaspoons of fresh sage."
+    }
+  ]
+}

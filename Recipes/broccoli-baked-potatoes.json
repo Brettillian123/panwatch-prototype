@@ -1,0 +1,88 @@
+{
+  "id": "broccoli-baked-potatoes",
+  "title": "Broccoli Baked Potatoes",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/broccoli-baked-potatoes",
+    "credit": "University of Maryland Cooperative Extension"
+  },
+  "serves": 6,
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "6 medium",
+      "name": "potatoes"
+    },
+    {
+      "amount": "3",
+      "name": "broccoli stalks"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "1% milk"
+    },
+    {
+      "amount": "1 cup",
+      "name": "low-fat cheddar cheese, shredded"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Scrub 6 medium potatoes."
+    },
+    {
+      "instruction": "Prick the skin of each potato with a fork in several places."
+    },
+    {
+      "instruction": "Bake the potatoes for 30 minutes, until soft.",
+      "spoken": "Bake the potatoes for 30 to sixty minutes, until soft. Larger potatoes take longer.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Peel the stems of 3 broccoli stalks."
+    },
+    {
+      "instruction": "Steam the broccoli just until tender."
+    },
+    {
+      "instruction": "Chop the broccoli into small pieces."
+    },
+    {
+      "instruction": "Cut the baked potatoes in half."
+    },
+    {
+      "instruction": "Scoop the insides of the potatoes into a bowl with the broccoli."
+    },
+    {
+      "instruction": "Add 1/4 cup of milk, 3/4 cup of cheese, salt and pepper."
+    },
+    {
+      "instruction": "Mash together until the mixture is pale green with dark green flecks."
+    },
+    {
+      "instruction": "Put the potato mixture into the potato skins."
+    },
+    {
+      "instruction": "Sprinkle the remaining 1/4 cup of cheese on top."
+    },
+    {
+      "instruction": "Microwave until heated through."
+    }
+  ]
+}

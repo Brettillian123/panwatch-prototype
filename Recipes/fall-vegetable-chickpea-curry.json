@@ -1,0 +1,137 @@
+{
+  "id": "fall-vegetable-chickpea-curry",
+  "title": "Fall Vegetable and Chickpea Curry",
+  "category": "Beans and lentils",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/fall-vegetable-and-chickpea-curry/",
+    "credit": "based.cooking contributor joel-maxuel"
+  },
+  "serves": 4,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "butter"
+    },
+    {
+      "amount": "1",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "Thai red curry paste"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "ginger, minced"
+    },
+    {
+      "amount": "1 large",
+      "name": "sweet potato, peeled and cut into half-inch chunks"
+    },
+    {
+      "amount": "1 small",
+      "name": "zucchini, cut into half-inch chunks"
+    },
+    {
+      "amount": "1",
+      "name": "red pepper, cut into half-inch pieces"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "water"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "1 can",
+      "name": "chickpeas, rinsed and drained (28-ounce can)"
+    },
+    {
+      "amount": "1",
+      "name": "lime"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "wheat flour"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "milk"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "fresh coriander, chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Melt 1 tablespoon of butter in a large nonstick pan over medium-high heat."
+    },
+    {
+      "instruction": "Add 1 chopped onion and stir for 2 minutes.",
+      "watch": {
+        "ingredient": "onion",
+        "timerLabel": "Onion",
+        "timerMinutes": 2,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 2 tablespoons of curry paste and 1 tablespoon of minced ginger.",
+      "spoken": "Add 2 tablespoons of Thai red curry paste and 1 tablespoon of minced ginger. Cook for 1 minute, stirring.",
+      "watch": {
+        "ingredient": "curry paste",
+        "timerLabel": "Paste",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 1 sweet potato, 1 zucchini and 1 red pepper, all in half-inch pieces."
+    },
+    {
+      "instruction": "Add 1/2 cup of water and some salt, then stir."
+    },
+    {
+      "instruction": "Cover and cook for 10 minutes, stirring now and then.",
+      "spoken": "Cover and cook for 10 minutes, stirring now and then, until the vegetables are soft.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Add 1 can of chickpeas, plus the finely grated zest and juice of 1 lime."
+    },
+    {
+      "instruction": "Stir often for 5 minutes, until the liquid has cooked away.",
+      "spoken": "Stir often for 5 minutes, until the vegetables are tender and the liquid has cooked away.",
+      "timer": {
+        "label": "Stir",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Whisk 3 tablespoons of wheat flour into 1 1/2 cups of milk."
+    },
+    {
+      "instruction": "Stir the flour and milk into the pan slowly and bring to a simmer.",
+      "spoken": "Stir the flour and milk into the pan a little at a time, stirring all the time, and bring to a simmer."
+    },
+    {
+      "instruction": "Lower to medium heat and simmer for 5 minutes, stirring now and then.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Stir in 1/2 cup of chopped coriander, and more salt if needed."
+    }
+  ]
+}

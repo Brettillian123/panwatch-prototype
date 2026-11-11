@@ -98,7 +98,7 @@ struct ScreenRouteTests {
 
     @Test func homeStillStartsADishByName() {
         #expect(VoiceCommand.parse("make the rice", screen: .recipes) == .makeRecipe("Rice"))
-        #expect(VoiceCommand.parse("let's do pasta", screen: .recipes) == .makeRecipe("Garlic Butter Pasta"))
+        #expect(VoiceCommand.parse("let's do pasta", screen: .recipes, book: DemoBook.voice) == .makeRecipe("Garlic Butter Pasta"))
     }
 
     @Test func everyNewScreensSayLineWorksThere() {
@@ -112,7 +112,8 @@ struct ScreenRouteTests {
     }
 
     @Test func everyDishHasItsFixedPhotoName() {
-        #expect(Recipe.all.prefix(6).map(\.photoName) == [
+        for id in DemoBook.ids { #expect(RecipeIndex.bundled.entry(id: id)?.hasPhoto == true, "\(id)") }
+        #expect(DemoBook.recipes.map(\.photoName) == [
             "dish-garlic-butter-pasta", "dish-rice", "dish-hard-boiled-eggs",
             "dish-oatmeal", "dish-steamed-broccoli", "dish-pan-seared-chicken",
         ])

@@ -1,0 +1,49 @@
+{
+  "id": "corn-polenta",
+  "title": "Corn Polenta",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/corn-polenta/",
+    "credit": "based.cooking contributor pestanzul"
+  },
+  "serves": 4,
+  "totalMinutes": 70,
+  "ingredients": [
+    {
+      "amount": "18 ounces",
+      "name": "corn flour"
+    },
+    {
+      "amount": "3 quarts",
+      "name": "water"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Pour 18 ounces of corn flour into 3 quarts of cold water."
+    },
+    {
+      "instruction": "Stir with a whisk until no lumps remain."
+    },
+    {
+      "instruction": "Heat until boiling, stirring slowly with a big spoon."
+    },
+    {
+      "instruction": "Cook on low heat for 1 hour, stirring very often.",
+      "spoken": "Cook on low heat for about 1 hour. Stir very often. If it gets too thick, add water.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Season with salt to taste."
+    }
+  ]
+}

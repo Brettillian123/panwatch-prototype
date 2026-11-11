@@ -1,0 +1,140 @@
+{
+  "id": "one-pot-chicken-tetrazzini",
+  "title": "One-Pot Chicken Tetrazzini",
+  "category": "Chicken",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/one-pot-chicken-tetrazzini/",
+    "credit": "based.cooking contributor joel-maxuel"
+  },
+  "serves": 5,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "3 tablespoons",
+      "name": "butter"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "mushrooms, sliced"
+    },
+    {
+      "amount": "1 small",
+      "name": "red pepper, chopped"
+    },
+    {
+      "amount": "1 small",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "1 clove",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "4 cups",
+      "name": "milk"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "Worcestershire sauce"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "extra broad egg noodles"
+    },
+    {
+      "amount": "5 ounces",
+      "name": "garlic and herb soft cheese"
+    },
+    {
+      "amount": "3 cups",
+      "name": "cooked chicken, cut into bite-size pieces"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "frozen peas"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "fresh parsley, chopped"
+    },
+    {
+      "amount": "to taste",
+      "name": "small fresh basil leaves, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "parmesan, grated"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Melt 3 tablespoons of butter in a large saucepan over medium-high heat."
+    },
+    {
+      "instruction": "Add 8 ounces of sliced mushrooms and 1 small chopped red pepper."
+    },
+    {
+      "instruction": "Add 1 small chopped onion and 1 clove of minced garlic."
+    },
+    {
+      "instruction": "Cook, stirring, for 5 minutes, until the vegetables are tender.",
+      "timer": {
+        "label": "Vegetables",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Sprinkle 3 tablespoons of flour over the vegetables and stir."
+    },
+    {
+      "instruction": "Slowly whisk in 4 cups of milk."
+    },
+    {
+      "instruction": "Whisk in 2 tablespoons of Worcestershire sauce, salt and pepper."
+    },
+    {
+      "instruction": "Bring to a boil, stirring now and then."
+    },
+    {
+      "instruction": "Add 8 ounces of extra broad egg noodles to the pot.",
+      "spoken": "Add the noodles. Cook about 7 minutes, until the noodles are tender.",
+      "watch": {
+        "ingredient": "noodles",
+        "timerLabel": "Noodles",
+        "timerMinutes": 7
+      }
+    },
+    {
+      "instruction": "Reduce the heat to a low boil."
+    },
+    {
+      "instruction": "Stir constantly, including around the edges, until the noodles are tender."
+    },
+    {
+      "instruction": "Stir in 5 ounces of garlic and herb soft cheese, in chunks."
+    },
+    {
+      "instruction": "Stir in 3 cups of cooked chicken, 1/2 cup of peas and 1/2 cup of parsley."
+    },
+    {
+      "instruction": "Keep stirring until the chicken is hot and the cheese is melted."
+    },
+    {
+      "instruction": "Sprinkle with grated parmesan and small fresh basil leaves."
+    }
+  ]
+}

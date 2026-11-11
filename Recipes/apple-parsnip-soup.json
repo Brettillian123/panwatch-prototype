@@ -1,0 +1,86 @@
+{
+  "id": "apple-parsnip-soup",
+  "title": "Apple Parsnip Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AApple_Parsnip_Soup",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 80,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "onion"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "2",
+      "name": "apples"
+    },
+    {
+      "amount": "1",
+      "name": "carrot"
+    },
+    {
+      "amount": "1",
+      "name": "parsnip"
+    },
+    {
+      "amount": "4 cups",
+      "name": "water"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "nutmeg"
+    },
+    {
+      "amount": "to taste",
+      "name": "soup mix, optional"
+    },
+    {
+      "amount": "1",
+      "name": "lemon, juiced"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Chop 1 onion."
+    },
+    {
+      "instruction": "Heat 2 tablespoons of olive oil in a pot."
+    },
+    {
+      "instruction": "Sauté the onion in the pot until golden."
+    },
+    {
+      "instruction": "Chop 2 apples, 1 carrot and 1 parsnip."
+    },
+    {
+      "instruction": "Put the chopped apples, carrot and parsnip into the pot."
+    },
+    {
+      "instruction": "Add 4 cups of water and 1 teaspoon of nutmeg."
+    },
+    {
+      "instruction": "Add the soup mix, if using, and the juice of 1 lemon."
+    },
+    {
+      "instruction": "Cook for 1 hour, until the carrots are soft.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Blend the soup in a blender until smooth, with no lumps."
+    },
+    {
+      "instruction": "Serve the soup cold or hot."
+    }
+  ]
+}

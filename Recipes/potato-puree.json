@@ -1,0 +1,61 @@
+{
+  "id": "potato-puree",
+  "title": "Potato Puree",
+  "category": "Vegetables",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/potato-pure/",
+    "credit": "based.cooking contributor pestanzul"
+  },
+  "serves": 4,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "2 pounds",
+      "name": "potatoes"
+    },
+    {
+      "amount": "7/8 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "butter"
+    },
+    {
+      "amount": "to taste",
+      "name": "grated cheese, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Peel 2 pounds of potatoes."
+    },
+    {
+      "instruction": "Cut the potatoes into small pieces.",
+      "spoken": "Cut the potatoes into small pieces. The smaller they are, the faster they cook."
+    },
+    {
+      "instruction": "Put the potatoes in a pot and cover them with water."
+    },
+    {
+      "instruction": "Bring to a boil and cook until the potatoes are soft."
+    },
+    {
+      "instruction": "Drain the potatoes and mash them with a fork."
+    },
+    {
+      "instruction": "Warm 7/8 cup of milk in a pan, but do not let it boil."
+    },
+    {
+      "instruction": "Still on the heat, add 1 tablespoon of butter and the mashed potatoes."
+    },
+    {
+      "instruction": "Add grated cheese, if you like, and stir until smooth."
+    },
+    {
+      "instruction": "Keep stirring on the heat until it is as thick as you like."
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "id": "acorn-squash-with-orange-marmalade",
+  "title": "Acorn Squash with Orange Marmalade",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAcorn_Squash_with_Orange_Marmalade",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "1 medium",
+      "name": "acorn squash, halved lengthwise"
+    },
+    {
+      "amount": "1/4 inch",
+      "name": "water"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "orange marmalade"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "butter or margarine"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 400 °F."
+    },
+    {
+      "instruction": "Remove the seeds and strings from the squash halves."
+    },
+    {
+      "instruction": "Cut a small piece off the outside of each half so it stands level."
+    },
+    {
+      "instruction": "Place the halves in a shallow pan with 1/4 inch of water, insides facing down."
+    },
+    {
+      "instruction": "Bake for 35 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 35
+      }
+    },
+    {
+      "instruction": "Mix 1 tablespoon of marmalade and 1 teaspoon of butter or margarine in a small bowl."
+    },
+    {
+      "instruction": "Take the squash out of the oven and turn the halves over in the pan."
+    },
+    {
+      "instruction": "Sprinkle 1/8 teaspoon of salt lightly over the squash."
+    },
+    {
+      "instruction": "Spread the marmalade mixture on the edges, letting the extra run into the center."
+    },
+    {
+      "instruction": "Put the squash under the broiler for 5 minutes, until lightly browned.",
+      "timer": {
+        "label": "Broil",
+        "minutes": 5
+      }
+    }
+  ]
+}

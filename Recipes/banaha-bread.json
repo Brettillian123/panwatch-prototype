@@ -1,0 +1,88 @@
+{
+  "id": "banaha-bread",
+  "title": "Banaha Bread",
+  "category": "Snacks and sides",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/banaha-bread",
+    "credit": "A Harvest of Recipes with USDA Foods, USDA Food Distribution Program on Indian Reservations, Adapted from a recipe by Trista Winnett, Choctaw Nation"
+  },
+  "serves": 6,
+  "totalMinutes": 65,
+  "ingredients": [
+    {
+      "amount": "6 cups",
+      "name": "water"
+    },
+    {
+      "amount": "4-6 handfuls",
+      "name": "corn shucks"
+    },
+    {
+      "amount": "2 cups",
+      "name": "cornmeal"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "baking soda"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring 6 cups of water to a boil in a large pot over medium to high heat."
+    },
+    {
+      "instruction": "Add 4 to 6 handfuls of corn shucks to the boiling water.",
+      "spoken": "Boil the corn shucks for about 10 minutes.",
+      "watch": {
+        "ingredient": "corn shucks",
+        "timerLabel": "Shucks",
+        "timerMinutes": 10
+      }
+    },
+    {
+      "instruction": "Remove the corn shucks carefully."
+    },
+    {
+      "instruction": "Strip a few shucks into strings."
+    },
+    {
+      "instruction": "Tie two strings together to make longer strings."
+    },
+    {
+      "instruction": "Mix 2 cups of cornmeal, 1 teaspoon of baking soda and 1 teaspoon of salt in a bowl."
+    },
+    {
+      "instruction": "Keep mixing and slowly add a little water, until the mixture is firm enough to handle."
+    },
+    {
+      "instruction": "Form the mixture into 8 oval balls about 3 inches long."
+    },
+    {
+      "instruction": "Wrap the balls in corn shucks."
+    },
+    {
+      "instruction": "Tie the ends closed with the corn shuck strings."
+    },
+    {
+      "instruction": "Gently put the wrapped balls into the large pot of boiling water.",
+      "spoken": "The pot should be about two thirds full of water."
+    },
+    {
+      "instruction": "Cover the pot and cook over medium to high heat for 30 minutes.",
+      "spoken": "Cover the pot with a lid and cook over medium to high heat for 30 to forty-five minutes.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Remove the corn shuck wrapping from each ball."
+    }
+  ]
+}

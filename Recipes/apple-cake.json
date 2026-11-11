@@ -1,0 +1,97 @@
+{
+  "id": "apple-cake",
+  "title": "Apple Cake",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/apple-cake",
+    "credit": "Wellness Ways Resource Book: Taste of the World, University of Illinois Extension Service"
+  },
+  "serves": 12,
+  "totalMinutes": 85,
+  "ingredients": [
+    {
+      "amount": "10 tablespoons",
+      "name": "unsalted butter, 1 full stick plus 2 tablespoons"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "sugar"
+    },
+    {
+      "amount": "3 large",
+      "name": "eggs"
+    },
+    {
+      "amount": "1 3/4 cups",
+      "name": "flour, sifted"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "lemon rind, grated"
+    },
+    {
+      "amount": "2 medium",
+      "name": "apples, peeled, cored and sliced"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "sugar, for the top"
+    },
+    {
+      "amount": "8 tablespoons",
+      "name": "apricot jam, 1/2 cup"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Beat 10 tablespoons of unsalted butter with 3/4 cup of sugar until creamy."
+    },
+    {
+      "instruction": "Add 3 large eggs one at a time, beating until well blended."
+    },
+    {
+      "instruction": "Add 1 3/4 cups flour, 2 teaspoons baking powder and 1 tablespoon lemon rind."
+    },
+    {
+      "instruction": "Beat the batter for 4 minutes.",
+      "timer": {
+        "label": "Beat",
+        "minutes": 4
+      }
+    },
+    {
+      "instruction": "Pour the batter into a greased 9-inch springform pan."
+    },
+    {
+      "instruction": "Arrange 2 sliced medium apples on the batter."
+    },
+    {
+      "instruction": "Sprinkle the apples with 2 teaspoons of sugar."
+    },
+    {
+      "instruction": "Bake for 1 hour at 350 °F in the preheated oven.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Remove the cake from the pan."
+    },
+    {
+      "instruction": "Brush the apples with 8 tablespoons of apricot jam."
+    },
+    {
+      "instruction": "Let the cake cool before serving."
+    }
+  ]
+}

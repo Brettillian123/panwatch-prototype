@@ -1,0 +1,120 @@
+{
+  "id": "curry-sauce",
+  "title": "Curry Sauce",
+  "category": "Sauces and dips",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/curry-sauce/",
+    "credit": "based.cooking contributor Fiddelate"
+  },
+  "serves": 4,
+  "totalMinutes": 80,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "butter"
+    },
+    {
+      "amount": "1",
+      "name": "onion, sliced"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, sliced"
+    },
+    {
+      "amount": "1 inch",
+      "name": "ginger, sliced"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "curry powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "turmeric"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "malt vinegar"
+    },
+    {
+      "amount": "1",
+      "name": "star anise"
+    },
+    {
+      "amount": "1 cup",
+      "name": "chicken stock"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "cornstarch"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "water"
+    },
+    {
+      "amount": "to taste",
+      "name": "lemon juice, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Melt 2 tablespoons of butter in a large saucepan over medium heat."
+    },
+    {
+      "instruction": "Add 1 sliced onion, 2 cloves of sliced garlic and 1 inch of sliced ginger.",
+      "spoken": "Add the sliced onion, the sliced garlic and the sliced ginger. Fry for 15 minutes, until the onion is soft.",
+      "watch": {
+        "ingredient": "onion",
+        "timerLabel": "Onion",
+        "timerMinutes": 15,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 2 tablespoons of curry powder and 1/2 teaspoon of turmeric."
+    },
+    {
+      "instruction": "Add 1 tablespoon of malt vinegar and 1 star anise.",
+      "spoken": "Add the malt vinegar and the star anise. Fry for 1 minute.",
+      "watch": {
+        "ingredient": "star anise",
+        "timerLabel": "Spices",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Pour in 1 cup of chicken stock."
+    },
+    {
+      "instruction": "Simmer for 30 minutes, stirring.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Take out the star anise."
+    },
+    {
+      "instruction": "Add 1 tablespoon of cornstarch and 2 tablespoons of water.",
+      "spoken": "Add the cornstarch and the water. Simmer for 5 minutes, stirring.",
+      "watch": {
+        "ingredient": "cornstarch",
+        "timerLabel": "Thicken",
+        "timerMinutes": 5,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Blend the sauce until smooth."
+    },
+    {
+      "instruction": "If you like, stir in some lemon juice."
+    }
+  ]
+}

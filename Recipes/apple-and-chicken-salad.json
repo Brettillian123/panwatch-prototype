@@ -1,0 +1,75 @@
+{
+  "id": "apple-and-chicken-salad",
+  "title": "Apple and Chicken Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/apple-chicken-salad",
+    "credit": "Produce for Better Health Foundation"
+  },
+  "serves": 4,
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "2",
+      "name": "red apples"
+    },
+    {
+      "amount": "2",
+      "name": "celery stalks, diced"
+    },
+    {
+      "amount": "2",
+      "name": "chicken breasts, skinless, cooked and diced (about 2 cups)"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "plain non-fat Greek yogurt"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "raisins"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "mayonnaise"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "16",
+      "name": "lettuce leaves, Bibb, romaine, or green or red leaf"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Cut 2 red apples in quarters."
+    },
+    {
+      "instruction": "Remove the cores and chop the apples."
+    },
+    {
+      "instruction": "Put the apples, 2 diced celery stalks and 2 diced cooked chicken breasts in a bowl.",
+      "spoken": "Put the apples, 2 diced celery stalks and 2 skinless, cooked, diced chicken breasts in a medium bowl. That is about 2 cups of chicken."
+    },
+    {
+      "instruction": "Add 1/4 cup each of yogurt and mayonnaise and 1/2 cup of raisins."
+    },
+    {
+      "instruction": "Add 1/4 teaspoon of salt and 1/8 teaspoon of black pepper."
+    },
+    {
+      "instruction": "Mix everything in the bowl well."
+    },
+    {
+      "instruction": "Arrange 16 lettuce leaves on plates and top with the salad."
+    }
+  ]
+}

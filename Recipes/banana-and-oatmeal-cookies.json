@@ -1,0 +1,65 @@
+{
+  "id": "banana-and-oatmeal-cookies",
+  "title": "Banana and Oatmeal Cookies",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/banana-oatmeal-cookies/",
+    "credit": "based.cooking contributor Éric G."
+  },
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "2",
+      "name": "ripe bananas"
+    },
+    {
+      "amount": "1 cup",
+      "name": "oatmeal"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "cinnamon, optional"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "honey, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Peel 2 ripe bananas."
+    },
+    {
+      "instruction": "Mash the bananas in a bowl, not too finely."
+    },
+    {
+      "instruction": "Mix in 1 cup of oatmeal."
+    },
+    {
+      "instruction": "Mix in 1 tablespoon of cinnamon and 1 tablespoon of honey, if you like."
+    },
+    {
+      "instruction": "Line an oven tray with parchment paper."
+    },
+    {
+      "instruction": "Form discs of the mix about 3 inches wide on the tray."
+    },
+    {
+      "instruction": "Bake for 20 minutes, until the outside is golden and slightly crispy.",
+      "spoken": "Bake for about 20 minutes, until the outside is golden and slightly crispy. Use the rotating heat setting if your oven has one.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Eat the cookies warm or cold.",
+      "spoken": "Eat the cookies warm or cold. They can be kept a couple of days in a sealed container."
+    }
+  ]
+}

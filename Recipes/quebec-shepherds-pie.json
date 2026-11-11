@@ -1,0 +1,145 @@
+{
+  "id": "quebec-shepherds-pie",
+  "title": "Quebec Style Shepherd's Pie",
+  "category": "Beef and pork",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/pate-chinois/",
+    "credit": "based.cooking contributor julien"
+  },
+  "serves": 6,
+  "totalMinutes": 75,
+  "ingredients": [
+    {
+      "amount": "1 1/2 pounds",
+      "name": "potatoes, peeled and diced"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "butter"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "dried parsley or herbs de Provence"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "nutmeg"
+    },
+    {
+      "amount": "1 pound",
+      "name": "ground beef"
+    },
+    {
+      "amount": "1",
+      "name": "onion, diced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "herbs de Provence"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "Worcestershire sauce"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "soy sauce"
+    },
+    {
+      "amount": "1 small can",
+      "name": "whole kernel corn"
+    },
+    {
+      "amount": "1 small can",
+      "name": "cream style corn"
+    },
+    {
+      "amount": "to taste",
+      "name": "paprika"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 375 °F."
+    },
+    {
+      "instruction": "Cook 1 1/2 pounds of potatoes in a large pot of salted water for 20 minutes.",
+      "spoken": "Cook the potatoes in a large pot of salted water for 20 to thirty minutes, until they are tender.",
+      "timer": {
+        "label": "Potatoes",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Drain the potatoes."
+    },
+    {
+      "instruction": "Add 2 tablespoons of butter and 1/2 cup of milk to the potatoes."
+    },
+    {
+      "instruction": "Add 1 teaspoon of dried parsley or herbs de Provence and a pinch of nutmeg."
+    },
+    {
+      "instruction": "Mash the potatoes with a masher or an electric mixer."
+    },
+    {
+      "instruction": "Brown 1 diced onion in 1 tablespoon of butter in a pan over medium-high heat."
+    },
+    {
+      "instruction": "Add 1 pound of ground beef and cook until golden brown."
+    },
+    {
+      "instruction": "Add 1 tablespoon of herbs de Provence and 1 teaspoon of Worcestershire sauce."
+    },
+    {
+      "instruction": "Add 1 tablespoon of soy sauce and cook for 2 more minutes.",
+      "timer": {
+        "label": "Beef",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Set the beef aside."
+    },
+    {
+      "instruction": "Press the beef into the bottom of a 6 to 8-inch baking dish."
+    },
+    {
+      "instruction": "Cover the beef evenly with 1 small can of whole kernel corn."
+    },
+    {
+      "instruction": "Cover that with 1 small can of cream style corn."
+    },
+    {
+      "instruction": "Finish with a layer of the mashed potatoes."
+    },
+    {
+      "instruction": "Sprinkle paprika on top, to taste."
+    },
+    {
+      "instruction": "Bake for 20 minutes.",
+      "spoken": "Bake for 20 to thirty minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "If you like, finish under the broiler for no more than 2 minutes.",
+      "timer": {
+        "label": "Broil",
+        "minutes": 2
+      }
+    }
+  ]
+}

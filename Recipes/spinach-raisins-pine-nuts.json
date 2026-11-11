@@ -1,0 +1,80 @@
+{
+  "id": "spinach-raisins-pine-nuts",
+  "title": "Spinach with Raisins and Pine Nuts",
+  "category": "Vegetables",
+  "method": "pan",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/baby-spinach-golden-raisins-and",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 4,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "1/4 cup",
+      "name": "pine nuts"
+    },
+    {
+      "amount": "20 ounces",
+      "name": "leaf spinach, rinsed"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "water"
+    },
+    {
+      "amount": "2/3 cup",
+      "name": "golden seedless raisins"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "ground nutmeg"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Cook and stir 1/4 cup of pine nuts in a medium pan over high heat.",
+      "spoken": "Cook and stir the pine nuts until they begin to brown lightly and smell toasted, but not burnt."
+    },
+    {
+      "instruction": "Set the pine nuts aside in another dish."
+    },
+    {
+      "instruction": "Return the pan to medium-high heat and add 1/4 cup of water."
+    },
+    {
+      "instruction": "Add a small handful of spinach as the water begins to boil.",
+      "spoken": "Cook and stir just until the spinach begins to wilt."
+    },
+    {
+      "instruction": "Push the spinach to the side of the pan."
+    },
+    {
+      "instruction": "Add another 1/4 cup of water and another handful of spinach."
+    },
+    {
+      "instruction": "Repeat with the rest of the spinach, adding 2/3 cup of raisins with the last handful.",
+      "spoken": "Keep adding a handful of spinach at a time until all 20 ounces of spinach have gone in. Add the 2/3 cup of raisins with the last handful."
+    },
+    {
+      "instruction": "Sprinkle 1/8 teaspoon each of nutmeg and salt over the spinach."
+    },
+    {
+      "instruction": "Cook and stir until all the spinach is wilted and the raisins are warm."
+    },
+    {
+      "instruction": "Remove the pan from the heat and press out the extra water."
+    },
+    {
+      "instruction": "Place 1 cup of the spinach and raisins in a serving bowl."
+    },
+    {
+      "instruction": "Top it with the pine nuts."
+    }
+  ]
+}

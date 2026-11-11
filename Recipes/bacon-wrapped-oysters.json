@@ -1,0 +1,64 @@
+{
+  "id": "bacon-wrapped-oysters",
+  "title": "Bacon-Wrapped Oysters",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAngels_on_Horseback_%28Bacon-wrapped_Oysters%29",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1/2 cup",
+      "name": "dry white wine"
+    },
+    {
+      "amount": "1 clove",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "12",
+      "name": "shucked oysters"
+    },
+    {
+      "amount": "6 slices",
+      "name": "lean bacon"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 1/2 cup of wine, 1 minced garlic clove, salt and pepper."
+    },
+    {
+      "instruction": "Marinate 12 shucked oysters in the mixture for 10 minutes.",
+      "spoken": "Marinate the oysters in the mixture for 10 to twenty minutes.",
+      "timer": {
+        "label": "Marinate",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Preheat the broiler."
+    },
+    {
+      "instruction": "Cut each of the 6 bacon slices in half."
+    },
+    {
+      "instruction": "Wrap each oyster in a piece of bacon and secure it with a toothpick."
+    },
+    {
+      "instruction": "Broil on both sides until the bacon is crisp.",
+      "spoken": "Broil on both sides until the bacon is crisp. You may also cook them on an outdoor or rangetop grill."
+    }
+  ]
+}

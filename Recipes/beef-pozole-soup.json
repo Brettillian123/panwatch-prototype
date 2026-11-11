@@ -1,0 +1,97 @@
+{
+  "id": "beef-pozole-soup",
+  "title": "Beef Pozole Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/beef-pozole-soup",
+    "credit": "Delicious Heart-Healthy Latino Recipes/ Platillos Latinos Sabrosos y Saludables, US Department of Health and Human Services, National Heart, Lung, and Blood Institute"
+  },
+  "serves": 10,
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "2 pounds",
+      "name": "lean beef, cubed"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 large",
+      "name": "onion"
+    },
+    {
+      "amount": "1 clove",
+      "name": "garlic, finely chopped"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "black pepper"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "cilantro"
+    },
+    {
+      "amount": "1 can",
+      "name": "stewed tomatoes, 15 ounces, low sodium"
+    },
+    {
+      "amount": "2 ounces",
+      "name": "tomato paste, low-sodium"
+    },
+    {
+      "amount": "2 cans",
+      "name": "hominy, 14.5 ounces each"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1 tablespoon of olive oil in a large pot."
+    },
+    {
+      "instruction": "Add 2 pounds of cubed lean beef to the pot."
+    },
+    {
+      "instruction": "Brown the beef cubes."
+    },
+    {
+      "instruction": "Add 1 large onion and 1 finely chopped garlic clove."
+    },
+    {
+      "instruction": "Add 1/4 teaspoon of salt, 1/8 teaspoon of black pepper and 1/4 cup of cilantro."
+    },
+    {
+      "instruction": "Add enough water to cover the beef."
+    },
+    {
+      "instruction": "Cover the pot and cook over low heat until the beef is tender.",
+      "spoken": "Cover the pot and cook over low heat until the beef is tender when poked with a fork."
+    },
+    {
+      "instruction": "Add 1 can of stewed tomatoes and 2 ounces of tomato paste.",
+      "spoken": "Add the tomatoes and tomato paste. Keep cooking for about 20 minutes.",
+      "watch": {
+        "ingredient": "tomatoes",
+        "timerLabel": "Tomatoes",
+        "timerMinutes": 20
+      }
+    },
+    {
+      "instruction": "Add 2 cans of hominy and cook over low heat, stirring now and then.",
+      "spoken": "Add the hominy and keep cooking over low heat for another 15 minutes, stirring now and then. If the soup is too thick, add water.",
+      "watch": {
+        "ingredient": "hominy",
+        "timerLabel": "Hominy",
+        "timerMinutes": 15
+      }
+    }
+  ]
+}

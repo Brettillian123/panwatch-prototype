@@ -1,0 +1,78 @@
+{
+  "id": "pavlova",
+  "title": "Pavlova",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/pavlova/",
+    "credit": "based.cooking contributor u/Idzuna"
+  },
+  "serves": 6,
+  "totalMinutes": 80,
+  "ingredients": [
+    {
+      "amount": "2",
+      "name": "egg whites"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "superfine sugar"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "white vinegar"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cornstarch"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "boiling water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 2 egg whites, 1 1/2 cups of sugar and 1/2 teaspoon of salt in a large bowl."
+    },
+    {
+      "instruction": "Add 1 teaspoon of vinegar, 1 teaspoon of cornstarch and 4 tablespoons of boiling water."
+    },
+    {
+      "instruction": "Beat until the mixture is smooth, stiff and shiny."
+    },
+    {
+      "instruction": "Keep beating for 12 minutes, until soft peaks form.",
+      "spoken": "Keep beating for about 12 minutes, until soft peaks form when you lift the beater.",
+      "timer": {
+        "label": "Beat",
+        "minutes": 12
+      }
+    },
+    {
+      "instruction": "Place the mixture on baking paper on a tray."
+    },
+    {
+      "instruction": "Bake in the middle of the oven at 350 °F for 10 minutes.",
+      "timer": {
+        "label": "First bake",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Lower the oven to 300 °F and bake for 45 minutes.",
+      "timer": {
+        "label": "Second bake",
+        "minutes": 45
+      }
+    },
+    {
+      "instruction": "Turn off the oven and leave the pavlova to cool in the oven."
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "id": "chicken-paprikash",
+  "title": "Chicken Paprikash",
+  "category": "Chicken",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/chicken-paprikash/",
+    "credit": "based.cooking contributor hcm444"
+  },
+  "serves": 8,
+  "totalMinutes": 95,
+  "ingredients": [
+    {
+      "amount": "8",
+      "name": "chicken thighs, bone-in and skin-on"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "2 medium",
+      "name": "onions, chopped"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "powdered garlic"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "tomato paste"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "Hungarian paprika, or regular paprika"
+    },
+    {
+      "amount": "2 cups",
+      "name": "chicken or beef broth"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Pat 8 chicken thighs dry, then season with salt and pepper."
+    },
+    {
+      "instruction": "Heat 2 tablespoons of olive oil in a heavy, deep pan on high heat."
+    },
+    {
+      "instruction": "Lay the thighs skin side down in the pan.",
+      "spoken": "Lay the chicken thighs skin side down in the pan and brown them for 5 minutes.",
+      "watch": {
+        "ingredient": "chicken",
+        "timerLabel": "Chicken",
+        "timerMinutes": 5,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Flip the thighs and brown them for 5 more minutes.",
+      "timer": {
+        "label": "Other side",
+        "minutes": 5
+      },
+      "cue": {
+        "timerLabel": "Chicken",
+        "secondsLeft": 0
+      }
+    },
+    {
+      "instruction": "Move the browned thighs to a plate and set them aside."
+    },
+    {
+      "instruction": "Add 2 medium chopped onions to the pan and cook until golden."
+    },
+    {
+      "instruction": "Add 1 tablespoon of powdered garlic and 3 tablespoons of tomato paste.",
+      "spoken": "Add 1 tablespoon of powdered garlic and 3 tablespoons of tomato paste. Stir for 5 minutes.",
+      "watch": {
+        "ingredient": "tomato paste",
+        "timerLabel": "Paste",
+        "timerMinutes": 5,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 1/4 cup of paprika and stir for 1 minute.",
+      "watch": {
+        "ingredient": "paprika",
+        "timerLabel": "Paprika",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 2 cups of chicken or beef broth and let it heat."
+    },
+    {
+      "instruction": "Lower the heat to medium-low and put the thighs back in the pan."
+    },
+    {
+      "instruction": "Cover the pan and simmer for 45 minutes.",
+      "spoken": "Cover the pan and simmer for 45 to sixty minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 45
+      }
+    },
+    {
+      "instruction": "Check the chicken is tender with a fork, then season to taste.",
+      "spoken": "Check that the chicken is tender with a fork, and that a thermometer reads 165 °F in the thickest part. Then add salt and pepper to taste."
+    }
+  ]
+}

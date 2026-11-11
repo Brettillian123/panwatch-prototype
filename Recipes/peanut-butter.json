@@ -1,0 +1,49 @@
+{
+  "id": "peanut-butter",
+  "title": "Peanut Butter",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/peanut-butter/",
+    "credit": "based.cooking contributor jacob-smith"
+  },
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "raw pre-shelled peanuts"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Spread 1 pound of raw pre-shelled peanuts on a large baking sheet."
+    },
+    {
+      "instruction": "Roast the peanuts in the oven at 350 °F for 10 minutes.",
+      "spoken": "Roast the peanuts in the oven at 350 °F for 10 to twelve minutes.",
+      "timer": {
+        "label": "Roast",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "While the peanuts are hot, wrap a few handfuls in a dish towel."
+    },
+    {
+      "instruction": "Roll the peanuts against each other in the towel to rub off the skins.",
+      "spoken": "Roll the peanuts against each other in the towel for several seconds to rub off the skins. Do this while they are still hot."
+    },
+    {
+      "instruction": "Put the skinned peanuts in a food processor, with salt if you like."
+    },
+    {
+      "instruction": "Chop until the peanut butter is as thick as you like.",
+      "spoken": "Chop the peanuts until the peanut butter is as thick as you like. This may take a few minutes."
+    }
+  ]
+}

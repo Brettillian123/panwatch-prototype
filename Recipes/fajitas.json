@@ -1,0 +1,126 @@
+{
+  "id": "fajitas",
+  "title": "Fajitas",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/fajitas/",
+    "credit": "based.cooking contributor joel-maxuel"
+  },
+  "serves": 4,
+  "totalMinutes": 150,
+  "ingredients": [
+    {
+      "amount": "1/4 cup",
+      "name": "lime juice, plus 1/2 teaspoon"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "olive oil, divided"
+    },
+    {
+      "amount": "4 cloves",
+      "name": "garlic, crushed"
+    },
+    {
+      "amount": "3 teaspoons",
+      "name": "soy sauce, divided"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt, plus a dash for the sauce"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "liquid smoke"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "cayenne pepper"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "black pepper, plus a dash for the sauce"
+    },
+    {
+      "amount": "1 pound",
+      "name": "chicken or skirt steak, bones and skin removed"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "water"
+    },
+    {
+      "amount": "1 large",
+      "name": "Spanish onion, thinly sliced"
+    },
+    {
+      "amount": "1/2",
+      "name": "green bell pepper, thinly sliced"
+    },
+    {
+      "amount": "1/2",
+      "name": "red bell pepper, thinly sliced"
+    },
+    {
+      "amount": "1/2",
+      "name": "yellow bell pepper, thinly sliced"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 1/4 cup of lime juice, 2 tablespoons of oil and 4 cloves of crushed garlic."
+    },
+    {
+      "instruction": "Mix in 2 teaspoons of soy sauce, 1 teaspoon of salt and 1/2 teaspoon of liquid smoke."
+    },
+    {
+      "instruction": "Mix in 1/2 teaspoon of cayenne pepper and 1/4 teaspoon of black pepper."
+    },
+    {
+      "instruction": "Add 1 pound of chicken or skirt steak, cover and refrigerate for 2 hours.",
+      "spoken": "Add the chicken or steak to the marinade, cover and refrigerate for at least 2 hours, or overnight.",
+      "timer": {
+        "label": "Marinate",
+        "minutes": 120
+      }
+    },
+    {
+      "instruction": "Mix 2 tablespoons of water, 1 teaspoon of soy sauce and 1/2 teaspoon of lime juice.",
+      "spoken": "Mix 2 tablespoons of water, the remaining 1 teaspoon of soy sauce and the remaining 1/2 teaspoon of lime juice. Add a dash of salt and a dash of pepper, then set the sauce aside."
+    },
+    {
+      "instruction": "Grill the meat over medium-high heat for 4 minutes on the first side.",
+      "spoken": "Grill the meat over medium-high heat for 4 to five minutes on the first side.",
+      "timer": {
+        "label": "First side",
+        "minutes": 4
+      }
+    },
+    {
+      "instruction": "Flip the meat and grill for 4 minutes on the other side.",
+      "spoken": "Flip the meat and grill 4 to five minutes more, until a thermometer reads 165 °F for chicken or 145 °F for steak.",
+      "timer": {
+        "label": "Second side",
+        "minutes": 4
+      }
+    },
+    {
+      "instruction": "Cut the meat into thin strips and keep it warm."
+    },
+    {
+      "instruction": "Heat the other 1 tablespoon of oil in a large skillet over medium-high heat."
+    },
+    {
+      "instruction": "Add 1 large sliced onion and 1/2 each of green, red and yellow bell pepper.",
+      "spoken": "Add the sliced onion and the sliced green, red and yellow bell peppers. Cook until brown."
+    },
+    {
+      "instruction": "Take the pan off the heat and pour the sauce over the onion and peppers."
+    },
+    {
+      "instruction": "Toss the meat, onion and peppers together."
+    }
+  ]
+}

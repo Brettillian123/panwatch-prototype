@@ -1,0 +1,86 @@
+{
+  "id": "oatmeal-pancakes",
+  "title": "Oatmeal Pancakes",
+  "category": "Eggs and breakfast",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/oatmeal-pancakes/",
+    "credit": "based.cooking contributor wpnwbn"
+  },
+  "serves": 8,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "2",
+      "name": "eggs"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "sugar"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "honey"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "milk, or water instead"
+    },
+    {
+      "amount": "1 cup",
+      "name": "oat flour"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "baking powder"
+    },
+    {
+      "amount": "to taste",
+      "name": "raspberry jam, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 2 eggs, 3 tablespoons of sugar, 1 tablespoon of honey and 4 tablespoons of milk.",
+      "spoken": "Mix 2 eggs, 3 tablespoons of sugar, 1 tablespoon of honey and 4 tablespoons of milk. You can use water instead of milk."
+    },
+    {
+      "instruction": "In another bowl, mix 1 cup of oat flour and 1 teaspoon of baking powder."
+    },
+    {
+      "instruction": "Combine the two mixtures, then let the batter rest for 15 minutes.",
+      "timer": {
+        "label": "Rest",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Preheat a pan over low heat for 5 minutes.",
+      "timer": {
+        "label": "Preheat",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Pour batter into the pan to make one pancake.",
+      "spoken": "Pour batter into the pan to make one pancake. Cook for 1 to 1 and a half minutes, until bubbles come up.",
+      "watch": {
+        "ingredient": "batter",
+        "timerLabel": "First side",
+        "timerMinutes": 1
+      }
+    },
+    {
+      "instruction": "Flip the pancake and cook for 1 more minute.",
+      "spoken": "Flip the pancake once you see bubbles, and cook for another 45 seconds to 1 minute.",
+      "timer": {
+        "label": "Second side",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Top the pancakes with raspberry jam, if you like."
+    }
+  ]
+}

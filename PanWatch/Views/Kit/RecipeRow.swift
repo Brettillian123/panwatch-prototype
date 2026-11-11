@@ -35,7 +35,7 @@ struct RecipeRow: View {
         }
         .buttonStyle(.plain)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(entry.displayTitle), \(entry.totalMinutes) minutes, serves \(entry.serves)")
+        .accessibilityLabel("\(entry.displayTitle), \(entry.spokenTime)" + (entry.serves.map { ", serves \($0)" } ?? ""))
     }
 }
 

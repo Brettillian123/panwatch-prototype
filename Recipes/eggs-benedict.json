@@ -1,0 +1,108 @@
+{
+  "id": "eggs-benedict",
+  "title": "Eggs Benedict",
+  "category": "Eggs and breakfast",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/eggs-benedict/",
+    "credit": "based.cooking contributor Enzo Stever"
+  },
+  "serves": 2,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "3",
+      "name": "egg yolks"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "unsalted butter, melted"
+    },
+    {
+      "amount": "to taste",
+      "name": "cayenne pepper or hot sauce, optional"
+    },
+    {
+      "amount": "4",
+      "name": "eggs"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "white vinegar"
+    },
+    {
+      "amount": "2",
+      "name": "english muffins, split (or use toast)"
+    },
+    {
+      "amount": "to taste",
+      "name": "butter, for spreading on the muffins, optional"
+    },
+    {
+      "amount": "4 slices",
+      "name": "ham or Canadian bacon"
+    },
+    {
+      "amount": "to taste",
+      "name": "chives, finely chopped, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Blend 3 egg yolks and 1 tablespoon of lemon juice in a blender.",
+      "spoken": "Blend the egg yolks and lemon juice in a blender. This is the base of the hollandaise sauce. You can also whisk them in a double boiler on a gentle simmer instead, which helps keep the sauce from curdling."
+    },
+    {
+      "instruction": "Slowly pour in 1/2 cup of melted butter while blending.",
+      "spoken": "Slowly pour in the melted butter while blending. The sauce should thicken and become creamy. If it gets too thick, add a little warm water or lemon juice."
+    },
+    {
+      "instruction": "Season the sauce with cayenne pepper or hot sauce, to taste."
+    },
+    {
+      "instruction": "Bring 4 inches of water in a large saucepan to a gentle simmer."
+    },
+    {
+      "instruction": "Add 1 tablespoon of white vinegar to the water.",
+      "spoken": "Add the vinegar to the water. It helps the egg whites set."
+    },
+    {
+      "instruction": "Slide 4 eggs gently into the simmering water.",
+      "spoken": "Gently slide the eggs into the water. It helps to crack each egg into a small bowl or ladle first, bring it to the surface of the water, and let the egg slide in. Stir the water into a little whirlpool while the eggs cook. Cook for 3 to four minutes.",
+      "watch": {
+        "ingredient": "eggs",
+        "timerLabel": "Eggs",
+        "timerMinutes": 3,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Lift the eggs out with a slotted spoon onto a paper towel-lined plate to drain.",
+      "cue": {
+        "timerLabel": "Eggs",
+        "secondsLeft": 0
+      }
+    },
+    {
+      "instruction": "Split 2 english muffins and toast them."
+    },
+    {
+      "instruction": "Butter both halves of the muffins if you like.",
+      "spoken": "Butter both halves if you like. You can use any kind of spongy bread instead of the muffins."
+    },
+    {
+      "instruction": "Cook 4 slices of Canadian bacon in a skillet over medium heat until slightly browned."
+    },
+    {
+      "instruction": "Put a slice of bacon on each muffin half and top with an egg and hollandaise sauce."
+    },
+    {
+      "instruction": "Garnish with chopped chives and more cayenne pepper if you like."
+    }
+  ]
+}

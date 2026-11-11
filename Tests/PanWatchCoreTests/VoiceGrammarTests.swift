@@ -5,7 +5,7 @@ import Testing
 struct VoiceGrammarTests {
     private func expect(_ cases: [(String, VoiceCommand)]) {
         for (text, command) in cases {
-            #expect(VoiceCommand.parse(text) == command, "\(text)")
+            #expect(VoiceCommand.parse(text, book: DemoBook.voice) == command, "\(text)")
         }
     }
 

@@ -1,0 +1,75 @@
+{
+  "id": "apple-crisp",
+  "title": "Apple Crisp",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/apple-crisp-0",
+    "credit": "Pennsylvania Nutrition Education Network"
+  },
+  "serves": 8,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "4 medium",
+      "name": "apples"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "quick-cooking oatmeal"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "flour"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "brown sugar"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "margarine"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Grease the bottom and sides of a square 9-inch pan."
+    },
+    {
+      "instruction": "Core and slice 4 medium apples."
+    },
+    {
+      "instruction": "Spread the sliced apples on the bottom of the pan."
+    },
+    {
+      "instruction": "Cut 1/4 cup of margarine into small pieces in a medium bowl."
+    },
+    {
+      "instruction": "Add 1/4 cup of quick oatmeal and 1/4 cup of flour to the bowl."
+    },
+    {
+      "instruction": "Add 1/2 cup of brown sugar and 1 tablespoon of cinnamon."
+    },
+    {
+      "instruction": "Cut the margarine into the mixture with two knives, until it looks like small crumbs."
+    },
+    {
+      "instruction": "Sprinkle the mixture over the top of the apples."
+    },
+    {
+      "instruction": "Bake in the oven for about 20 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    }
+  ]
+}

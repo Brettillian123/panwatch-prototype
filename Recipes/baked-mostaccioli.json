@@ -1,0 +1,61 @@
+{
+  "id": "baked-mostaccioli",
+  "title": "Baked Mostaccioli",
+  "category": "Pasta and grains",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/baked-mostaccioli/",
+    "credit": "based.cooking contributor zyansheep"
+  },
+  "serves": 8,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1 box",
+      "name": "mostaccioli rigati or penne rigate"
+    },
+    {
+      "amount": "1 jar",
+      "name": "fra diavolo sauce (24 ounces)"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "shredded mozzarella cheese"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring a large pot of water to a boil."
+    },
+    {
+      "instruction": "Add 1 box of mostaccioli or penne rigate to the boiling water.",
+      "spoken": "Add the pasta to the boiling water and cook for 6 minutes. It should be very firm, not soft.",
+      "timer": {
+        "label": "Pasta",
+        "minutes": 6
+      }
+    },
+    {
+      "instruction": "Drain the pasta."
+    },
+    {
+      "instruction": "Put the pasta in a baking dish."
+    },
+    {
+      "instruction": "Add 1 jar (24 ounces) of fra diavolo sauce and mix well."
+    },
+    {
+      "instruction": "Cover the pasta with 8 ounces of shredded mozzarella.",
+      "spoken": "Cover the pasta and sauce generously with the cheese, until you can't see the pasta."
+    },
+    {
+      "instruction": "Bake in the oven at 350 °F for 20 minutes.",
+      "spoken": "Bake in the oven at 350 °F for 20 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    }
+  ]
+}

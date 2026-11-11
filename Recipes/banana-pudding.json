@@ -1,0 +1,71 @@
+{
+  "id": "banana-pudding",
+  "title": "Banana Pudding",
+  "category": "Baking and desserts",
+  "method": "noHeat",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/banana-pudding",
+    "credit": "Choices: Steps Toward Health, Adapted from: Lisa's Famous Dessert, University of Massachusetts, Extension Nutrition Education Program"
+  },
+  "serves": 8,
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "non-fat or low-fat milk"
+    },
+    {
+      "amount": "1 box",
+      "name": "instant pudding mix, 3.4 ounces, banana or vanilla"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "fat-free yogurt"
+    },
+    {
+      "amount": "2",
+      "name": "bananas, sliced"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Combine 2 cups of milk and 1 box of pudding mix in a medium bowl."
+    },
+    {
+      "instruction": "Beat the pudding on the lowest speed for 2 minutes.",
+      "spoken": "Beat the pudding for 2 minutes with a wooden spoon, a wire whisk, or an electric mixer on its lowest speed.",
+      "timer": {
+        "label": "Beat",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Gently mix 8 ounces of yogurt into the pudding."
+    },
+    {
+      "instruction": "Refrigerate the pudding for 30 minutes.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Layer the banana slices in the bottom of 8 dessert cups."
+    },
+    {
+      "instruction": "Pour the pudding mixture over the banana slices."
+    },
+    {
+      "instruction": "Top with more banana slices."
+    },
+    {
+      "instruction": "Refrigerate for at least 5 minutes before serving.",
+      "spoken": "Refrigerate for at least 5 minutes before serving. It tastes better if it is refrigerated longer.",
+      "timer": {
+        "label": "Chill again",
+        "minutes": 5
+      }
+    }
+  ]
+}

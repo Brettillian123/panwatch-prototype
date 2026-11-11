@@ -1,0 +1,62 @@
+{
+  "id": "apple-cranberry-salad-toss",
+  "title": "Apple Cranberry Salad Toss",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/apple-cranberry-salad-toss",
+    "credit": "Creative Recipes for Less Familiar USDA Commodities Used by Household Programs, USDA, Food and Nutrition Service, Food Distribution Service"
+  },
+  "serves": 8,
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "1 medium head",
+      "name": "lettuce (about 10 cups)"
+    },
+    {
+      "amount": "2 medium",
+      "name": "apples, sliced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "walnuts, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "dried cranberries"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "green onions, sliced"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "vinaigrette dressing"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1 medium head of lettuce (about 10 cups) in a large bowl."
+    },
+    {
+      "instruction": "Add 2 sliced medium apples and 1/2 cup of chopped walnuts."
+    },
+    {
+      "instruction": "Add 1 cup of dried cranberries and 1/2 cup of sliced green onions."
+    },
+    {
+      "instruction": "Toss everything together in the bowl."
+    },
+    {
+      "instruction": "Add 3/4 cup of vinaigrette dressing."
+    },
+    {
+      "instruction": "Toss to coat."
+    },
+    {
+      "instruction": "Serve right away."
+    }
+  ]
+}

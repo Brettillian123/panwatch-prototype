@@ -1,0 +1,82 @@
+{
+  "id": "banana-pancakes",
+  "title": "Banana Pancakes",
+  "category": "Eggs and breakfast",
+  "method": "pan",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/banana-pancakes/",
+    "credit": "based.cooking contributor ricky-linden"
+  },
+  "serves": 4,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "flour"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "sugar"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "1 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "1",
+      "name": "egg"
+    },
+    {
+      "amount": "2",
+      "name": "very ripe bananas, mashed"
+    },
+    {
+      "amount": "to taste",
+      "name": "butter"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 1 cup flour, 1 tablespoon sugar and 2 teaspoons baking powder in a large bowl."
+    },
+    {
+      "instruction": "Add a little bit of salt to the bowl."
+    },
+    {
+      "instruction": "Whisk 1 cup of milk and 1 egg into the flour mixture.",
+      "spoken": "Whisk the milk and the egg into the flour mixture until no clumps remain in the batter."
+    },
+    {
+      "instruction": "Mix 2 mashed bananas into the batter."
+    },
+    {
+      "instruction": "Melt some butter in a medium frying pan over medium heat."
+    },
+    {
+      "instruction": "Pour batter into the pan to make a pancake, smaller or bigger as you like."
+    },
+    {
+      "instruction": "Cook 2 minutes, until tiny air bubbles form on top.",
+      "spoken": "Wait until tiny air bubbles form on top. This takes 2 to five minutes.",
+      "timer": {
+        "label": "Bubbles",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Turn the pancake and fry until the bottom is browned."
+    },
+    {
+      "instruction": "Repeat with the rest of the batter."
+    }
+  ]
+}

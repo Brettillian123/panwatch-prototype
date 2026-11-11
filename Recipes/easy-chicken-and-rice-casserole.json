@@ -1,0 +1,81 @@
+{
+  "id": "easy-chicken-and-rice-casserole",
+  "title": "Easy Chicken and Rice Casserole",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/easy-chicken-and-rice-casserole/",
+    "credit": "based.cooking contributor joel-maxuel"
+  },
+  "serves": 4,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "1/2 cup",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "celery, chopped"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "butter or margarine"
+    },
+    {
+      "amount": "2 cups",
+      "name": "chicken, cooked and chopped"
+    },
+    {
+      "amount": "1 3/4 cups",
+      "name": "hot water"
+    },
+    {
+      "amount": "2/3 cup",
+      "name": "long grain white rice"
+    },
+    {
+      "amount": "1 can",
+      "name": "mushrooms, with liquid"
+    },
+    {
+      "amount": "1 cup",
+      "name": "frozen peas and carrots"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "dried thyme and rosemary"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Cook 1/2 cup of onion and 1/2 cup of celery in 2 tablespoons of butter.",
+      "spoken": "In a large pan, cook 1/2 cup of chopped onion and 1/2 cup of chopped celery in 2 tablespoons of butter or margarine, until soft."
+    },
+    {
+      "instruction": "Stir in 2 cups of cooked, chopped chicken and 1 3/4 cups of hot water."
+    },
+    {
+      "instruction": "Stir in 2/3 cup of long grain white rice and 1 can of mushrooms with liquid.",
+      "spoken": "Stir in 2/3 cup of long grain white rice and the 10 ounce can of mushrooms, with their liquid."
+    },
+    {
+      "instruction": "Stir in 1 cup of frozen peas and carrots and 1 teaspoon of dried thyme and rosemary."
+    },
+    {
+      "instruction": "Put it all in a covered 8-cup baking dish."
+    },
+    {
+      "instruction": "Bake for 30 minutes, until the rice is tender.",
+      "spoken": "Bake covered for about 30 minutes, until the rice is tender.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "almond-toffee-blondies",
+  "title": "Almond Toffee Blondies",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAlmond_Toffee_Blondies",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "serves": 12,
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "1 1/2 cups",
+      "name": "flour, sifted"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "butter"
+    },
+    {
+      "amount": "1 cup",
+      "name": "white granulated sugar"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "brown sugar, packed"
+    },
+    {
+      "amount": "2",
+      "name": "eggs"
+    },
+    {
+      "amount": "1 cup",
+      "name": "almond toffee, coarsely chopped"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vanilla"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Sift 1 1/2 cups of flour, 2 teaspoons of baking powder and 1/2 teaspoon of salt together."
+    },
+    {
+      "instruction": "Cream 1/2 cup of butter in a large bowl."
+    },
+    {
+      "instruction": "Add 1 cup of white sugar and 1/2 cup of packed brown sugar and cream well."
+    },
+    {
+      "instruction": "Add 2 eggs and 1 teaspoon of vanilla."
+    },
+    {
+      "instruction": "Beat until fluffy."
+    },
+    {
+      "instruction": "Blend in the dry ingredients."
+    },
+    {
+      "instruction": "Stir in 1 cup of chopped almond toffee."
+    },
+    {
+      "instruction": "Spread the batter over the bottom of a well-greased 9 x 13-inch pan."
+    },
+    {
+      "instruction": "Bake for about 30 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Cut the cooled blondies into bars 3 inches long and 1 inch wide.",
+      "spoken": "When the blondies are cool, cut them into bars 3 inches long and 1 inch wide. This makes 3 dozen bars."
+    }
+  ]
+}

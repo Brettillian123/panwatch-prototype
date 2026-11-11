@@ -1,0 +1,104 @@
+{
+  "id": "grilled-tuna-chickpea-spinach-salad",
+  "title": "Grilled Tuna Chickpea Spinach Salad",
+  "category": "Fish",
+  "method": "oven",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/grilled-tuna-chickpea-and-spinach",
+    "credit": "NHLBI, NIH; Deliciously Healthy Dinners"
+  },
+  "serves": 4,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil, or canola oil"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "garlic, minced (about 2 to 3 cloves)"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "oregano, minced (or 1 teaspoon dried)"
+    },
+    {
+      "amount": "12 ounces",
+      "name": "tuna steak, cut into 4 portions (3 ounces each)"
+    },
+    {
+      "amount": "1/2 can",
+      "name": "low-sodium chickpeas, drained and rinsed (or garbanzo beans)"
+    },
+    {
+      "amount": "1/2 bag",
+      "name": "leaf spinach, rinsed and dried"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "lemon juice, for the salad"
+    },
+    {
+      "amount": "1 medium",
+      "name": "tomato, rinsed and cut into wedges"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "ground black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the broiler on high, with the rack 3 inches from the heat.",
+      "spoken": "Preheat the broiler on high with the rack 3 inches from the heat. You can heat a grill pan on high instead."
+    },
+    {
+      "instruction": "Mix 1 tablespoon each of oil, garlic and oregano with 2 tablespoons of lemon juice."
+    },
+    {
+      "instruction": "Brush the mixture over 12 ounces of tuna steak, cut into 4 portions."
+    },
+    {
+      "instruction": "Let the tuna marinate for 5 minutes.",
+      "spoken": "Let the tuna marinate for 5 to ten minutes.",
+      "timer": {
+        "label": "Marinate",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Mix 1/2 can of chickpeas and 1/2 bag of spinach with 1 tablespoon of lemon juice."
+    },
+    {
+      "instruction": "Add 1 tomato cut into wedges, and 1/8 teaspoon each of salt and pepper."
+    },
+    {
+      "instruction": "Grill or broil the tuna on high for 3 minutes.",
+      "spoken": "Grill or broil the tuna on high for 3 to four minutes.",
+      "timer": {
+        "label": "First side",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Flip the tuna and cook the other side for 3 minutes.",
+      "spoken": "Flip the tuna and cook the other side for 3 to four minutes, until the fish looks opaque and flakes easily with a fork. A thermometer should read 145 °F.",
+      "timer": {
+        "label": "Second side",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Serve 1 tuna steak over 1 cup of the salad."
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "id": "broccoli-potato-soup",
+  "title": "Broccoli Potato Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/broccoli-potato-soup",
+    "credit": "Don’t Play With Your Food: Fall and Winter Cookbook, Arizona Nutrition Network"
+  },
+  "serves": 4,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "4 cups",
+      "name": "broccoli, chopped"
+    },
+    {
+      "amount": "1 small",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "4 cups",
+      "name": "broth, chicken or vegetable, low-sodium"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "instant mashed potatoes"
+    },
+    {
+      "amount": "1 cup",
+      "name": "non-fat evaporated milk"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper, optional"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "cheddar cheese, shredded"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 4 cups of broccoli, 1 small onion and 4 cups of broth in a large saucepan."
+    },
+    {
+      "instruction": "Bring the soup to a boil."
+    },
+    {
+      "instruction": "Reduce the heat, cover and simmer for 10 minutes, until the vegetables are tender.",
+      "spoken": "Reduce the heat, cover and simmer for about 10 minutes, until the vegetables are tender.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Prepare 1/2 cup of instant mashed potatoes with water to make 1 cup."
+    },
+    {
+      "instruction": "Add 1 cup of evaporated milk to the soup."
+    },
+    {
+      "instruction": "Slowly stir in the mashed potatoes."
+    },
+    {
+      "instruction": "Cook, stirring constantly, until bubbly and thickened."
+    },
+    {
+      "instruction": "Season with salt and pepper to taste.",
+      "spoken": "Season with salt and pepper to taste. If the soup starts to get too thick, stir in a little more milk or water."
+    },
+    {
+      "instruction": "Ladle the soup into serving bowls."
+    },
+    {
+      "instruction": "Sprinkle about 1 tablespoon of cheese over each serving."
+    }
+  ]
+}

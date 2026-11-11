@@ -1,0 +1,53 @@
+{
+  "id": "butter-tea",
+  "title": "Butter Tea",
+  "category": "Drinks",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AButter_Tea",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "black tea leaves"
+    },
+    {
+      "amount": "3 cups",
+      "name": "whole milk"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "unsalted butter"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1 tablespoon of black tea leaves and 3 cups of whole milk in a pot."
+    },
+    {
+      "instruction": "Boil the tea and milk for 2 minutes.",
+      "spoken": "Boil the tea and milk for 2 to ten minutes. Boil longer for stronger tea.",
+      "timer": {
+        "label": "Boil",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Strain the tea into cups."
+    },
+    {
+      "instruction": "Add 2 tablespoons of unsalted butter and salt to taste."
+    },
+    {
+      "instruction": "Stir the tea thoroughly.",
+      "spoken": "Stir the tea thoroughly. A blender works best, but use it carefully because the tea is hot."
+    }
+  ]
+}

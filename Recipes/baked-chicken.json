@@ -1,0 +1,53 @@
+{
+  "id": "baked-chicken",
+  "title": "Baked Chicken",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/baked-chicken",
+    "credit": "Pennsylvania Nutrition Education Network"
+  },
+  "serves": 5,
+  "totalMinutes": 70,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "chicken, boneless and skinless"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven to 350 °F."
+    },
+    {
+      "instruction": "Put 1 pound of chicken in a baking pan or casserole dish."
+    },
+    {
+      "instruction": "Sprinkle the chicken with 1 teaspoon each of garlic powder and black pepper."
+    },
+    {
+      "instruction": "Sprinkle on salt to taste, if you like."
+    },
+    {
+      "instruction": "Bake for 1 hour.",
+      "spoken": "Bake for 1 hour. Check with a thermometer that the thickest part reads 165 °F.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 60
+      }
+    }
+  ]
+}

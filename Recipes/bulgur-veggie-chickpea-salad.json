@@ -1,0 +1,98 @@
+{
+  "id": "bulgur-veggie-chickpea-salad",
+  "title": "Bulgur Wheat, Veggie and Chickpea Salad",
+  "category": "Salads",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/5-day-bulgur-wheat",
+    "credit": "5 A Day Bulger Wheat, Choices: Steps Toward Health, University of Massachusetts Extension Nutrition Education Program"
+  },
+  "serves": 8,
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1 medium",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "broccoli, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "carrots, shredded"
+    },
+    {
+      "amount": "1 small",
+      "name": "green pepper, chopped (or red or yellow pepper)"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "fresh parsley, chopped (or 2 tablespoons dried)"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "canola oil"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "dry bulgur"
+    },
+    {
+      "amount": "2 cups",
+      "name": "low-sodium chicken broth"
+    },
+    {
+      "amount": "1 cup",
+      "name": "low-sodium canned chickpeas, drained"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Wash and chop 1 medium onion and 1 small green pepper."
+    },
+    {
+      "instruction": "Wash and chop 1 cup of broccoli and shred 1 cup of carrots."
+    },
+    {
+      "instruction": "Wash and chop 1/3 cup of fresh parsley."
+    },
+    {
+      "instruction": "Heat 1 teaspoon of canola oil in a large skillet over medium-high heat."
+    },
+    {
+      "instruction": "Add the chopped onion and cook until soft."
+    },
+    {
+      "instruction": "Add 1 1/2 cups of dry bulgur and stir to coat."
+    },
+    {
+      "instruction": "Add 2 cups of low-sodium chicken broth."
+    },
+    {
+      "instruction": "Bring the skillet to a boil."
+    },
+    {
+      "instruction": "Lower the heat."
+    },
+    {
+      "instruction": "Add the broccoli, carrots, green pepper and 1 cup of chickpeas.",
+      "spoken": "Add the broccoli, carrots, green pepper and 1 cup of drained chickpeas. Cook for 10 minutes, or until the liquid is absorbed.",
+      "watch": {
+        "ingredient": "vegetables",
+        "timerLabel": "Veggies",
+        "timerMinutes": 10,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Stir in the parsley.",
+      "spoken": "Stir in the parsley. Serve warm or cold."
+    },
+    {
+      "instruction": "Serve warm or cold."
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "id": "austrian-napkin-dumpling",
+  "title": "Austrian Napkin Dumpling",
+  "category": "Snacks and sides",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAustrian_Napkin_Dumpling_%28Serviettenkn%C3%B6del%29",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 135,
+  "ingredients": [
+    {
+      "amount": "1 1/4 cups",
+      "name": "milk, preferably whole"
+    },
+    {
+      "amount": "2",
+      "name": "eggs"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "salt"
+    },
+    {
+      "amount": "9 ounces",
+      "name": "stale French or Italian bread, cut into crouton-sized cubes"
+    },
+    {
+      "amount": "1/2 bunch",
+      "name": "broad-leaf parsley, chopped, up to 1 bunch"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "butter"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt, for the boiling water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 1 1/4 cups of milk, 2 eggs and 2 teaspoons of salt together."
+    },
+    {
+      "instruction": "Combine the mixture with 9 ounces of bread cubes and the parsley in a large bowl."
+    },
+    {
+      "instruction": "Coat as much of the bread as you can with the mixture."
+    },
+    {
+      "instruction": "Set the bowl aside while you cook the onion."
+    },
+    {
+      "instruction": "Chop 1 medium onion to make 1/4 cup."
+    },
+    {
+      "instruction": "Saute the onion in 4 tablespoons of butter."
+    },
+    {
+      "instruction": "Let the onion cool enough that it will not cook the eggs."
+    },
+    {
+      "instruction": "Add the onion to the bread mixture and mix thoroughly."
+    },
+    {
+      "instruction": "Let the mixture rest for 1 hour, mixing it once or twice.",
+      "spoken": "Let the mixture rest for 1 hour, mixing it through once or twice. You want every cube coated with the liquid on all sides so it soaks up as much as it can. This matters most if your bread is more than a few days old.",
+      "timer": {
+        "label": "Rest",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Wet a fresh cotton dishcloth, tea towel or cloth napkin."
+    },
+    {
+      "instruction": "Unfold the cloth completely and put the bread mixture in the middle."
+    },
+    {
+      "instruction": "Form the bread mixture into a log 3 inches thick."
+    },
+    {
+      "instruction": "Roll the log up tightly in the cloth."
+    },
+    {
+      "instruction": "Tie off the ends of the cloth with a short piece of string.",
+      "spoken": "Tie off the ends of the cloth with a short piece of string or twine. Some cooks also tie a string around the middle, because the edge of the cloth tends to pucker there."
+    },
+    {
+      "instruction": "Bring a large pot of water to a boil, then add salt."
+    },
+    {
+      "instruction": "Lower the dumpling slowly into the water and cook for 40 minutes.",
+      "watch": {
+        "ingredient": "dumpling",
+        "timerLabel": "Dumpling",
+        "timerMinutes": 40,
+        "minimumChange": 0.02
+      }
+    },
+    {
+      "instruction": "Lift the dumpling out of the water with tongs onto a large cutting board.",
+      "spoken": "Lift the dumpling out of the boiling water with tongs, or two forks if you have to, and put it on a large cutting board."
+    },
+    {
+      "instruction": "Cut off the string, then unroll the cloth and remove it."
+    },
+    {
+      "instruction": "Cut 1/2-inch slices, taking only as many as you need so the rest stays hot."
+    }
+  ]
+}

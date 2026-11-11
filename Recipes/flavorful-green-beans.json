@@ -1,0 +1,98 @@
+{
+  "id": "flavorful-green-beans",
+  "title": "Flavorful Green Beans",
+  "category": "Vegetables",
+  "method": "pot",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/flavorful-green-beans",
+    "credit": "NHLBI, NIH; Heart Healthy Home Cooking African American Style"
+  },
+  "serves": 7,
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "2 pounds",
+      "name": "fresh green beans"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "cold water"
+    },
+    {
+      "amount": "to taste",
+      "name": "nonstick cooking spray"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "onions, chopped"
+    },
+    {
+      "amount": "4 cloves",
+      "name": "garlic, chopped"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground black pepper"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "dried basil"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "dried oregano"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Rinse 2 pounds of green beans and snap off the tips."
+    },
+    {
+      "instruction": "Place the green beans in a large pot."
+    },
+    {
+      "instruction": "Add 1/2 cup of cold water."
+    },
+    {
+      "instruction": "Cook the green beans over medium heat for 10 minutes.",
+      "timer": {
+        "label": "Beans",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Spray a sauté pan with cooking spray."
+    },
+    {
+      "instruction": "Add 1/3 cup of chopped onions and 4 cloves of chopped garlic.",
+      "spoken": "Sauté the onions and garlic for 5 minutes, or until they are tender and very lightly browned.",
+      "watch": {
+        "ingredient": "onions",
+        "timerLabel": "Onions",
+        "timerMinutes": 5,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add the onions, garlic and 1/2 teaspoon of black pepper to the green beans."
+    },
+    {
+      "instruction": "Spray cooking spray over the mixture."
+    },
+    {
+      "instruction": "Cook on medium heat for 20 minutes, stirring now and then.",
+      "spoken": "Cook on medium heat for another 20 minutes, stirring now and then, until the green beans are tender but not soft.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Sprinkle 1/2 teaspoon of dried basil and 1/2 teaspoon of dried oregano over the beans."
+    },
+    {
+      "instruction": "Mix and serve."
+    }
+  ]
+}

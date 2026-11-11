@@ -1,0 +1,66 @@
+{
+  "id": "milk-toast",
+  "title": "Milk Toast",
+  "category": "Snacks and sides",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AMilk_Toast_II",
+    "credit": "Wikibooks contributors, CC BY-SA 4.0"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "4 tablespoons",
+      "name": "cold water"
+    },
+    {
+      "amount": "2 1/2 tablespoons",
+      "name": "bread flour"
+    },
+    {
+      "amount": "1 pint",
+      "name": "milk, scalded"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "butter"
+    },
+    {
+      "amount": "6 slices",
+      "name": "dry toast"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Gradually stir 4 tablespoons of cold water into 2 1/2 tablespoons of bread flour.",
+      "spoken": "Gradually stir 4 tablespoons of cold water into 2 1/2 tablespoons of bread flour, until you have a smooth, thin paste."
+    },
+    {
+      "instruction": "Add the paste to 1 pint of scalded milk, stirring until thickened."
+    },
+    {
+      "instruction": "Cover the pot and cook for 20 minutes.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of salt and 2 tablespoons of butter in small pieces."
+    },
+    {
+      "instruction": "Dip each of the 6 slices of dry toast in the sauce until soft."
+    },
+    {
+      "instruction": "Move the soft toast to a serving dish."
+    },
+    {
+      "instruction": "Pour the rest of the sauce over the toast."
+    }
+  ]
+}

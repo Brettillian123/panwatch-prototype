@@ -1,0 +1,70 @@
+{
+  "id": "classic-bechamel-sauce",
+  "title": "Classic Béchamel Sauce",
+  "category": "Sauces and dips",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/classic-bechamel-sauce/",
+    "credit": "based.cooking contributor yiusa"
+  },
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "5 teaspoons",
+      "name": "unsalted butter"
+    },
+    {
+      "amount": "5 teaspoons",
+      "name": "flour"
+    },
+    {
+      "amount": "4 1/4 cups",
+      "name": "whole milk"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "nutmeg"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Melt 5 teaspoons of unsalted butter in a pot over medium-low heat."
+    },
+    {
+      "instruction": "Once the butter is fully melted, stir in 5 teaspoons of flour."
+    },
+    {
+      "instruction": "Keep stirring on medium-low heat until golden and nutty-smelling.",
+      "spoken": "Keep stirring the flour and butter on medium-low heat until it is lightly golden brown and starts to smell a bit nutty."
+    },
+    {
+      "instruction": "Stir in about 1 cup of the milk until combined."
+    },
+    {
+      "instruction": "Repeat with more milk until the sauce is thick.",
+      "spoken": "Keep adding milk, a cup at a time, until you have a thick sauce and new milk mixes in easily. Never stop stirring."
+    },
+    {
+      "instruction": "Stir in the rest of the milk."
+    },
+    {
+      "instruction": "Lower the heat to low and keep stirring.",
+      "spoken": "Lower the heat to low and keep stirring. Get into the corners of the pot, because the sauce burns easily."
+    },
+    {
+      "instruction": "When the sauce is as thick as you like, add salt and pepper to taste."
+    },
+    {
+      "instruction": "Add a pinch of nutmeg, freshly grated if you can."
+    }
+  ]
+}

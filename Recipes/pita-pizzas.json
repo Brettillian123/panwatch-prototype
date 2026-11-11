@@ -1,0 +1,67 @@
+{
+  "id": "pita-pizzas",
+  "title": "Pita Pizzas",
+  "category": "Sandwiches and wraps",
+  "method": "oven",
+  "source": {
+    "name": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-healthy-living/healthy-foods/healthy-eating-recipes/pita-pizzas",
+    "credit": "NHLBI, NIH; Deliciously Healthy Family Meals"
+  },
+  "serves": 4,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "chunky tomato sauce"
+    },
+    {
+      "amount": "1 cup",
+      "name": "chicken breast, grilled, boneless, skinless and diced (about 2 small breasts)"
+    },
+    {
+      "amount": "1 cup",
+      "name": "broccoli, rinsed, chopped and cooked"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "grated parmesan cheese"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "fresh basil, rinsed, dried and chopped (or 1 teaspoon dried)"
+    },
+    {
+      "amount": "4",
+      "name": "whole-wheat pitas, 6 1/2-inch"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the oven or toaster oven to 450 °F."
+    },
+    {
+      "instruction": "Spread 1/4 cup of tomato sauce on each of the 4 pitas."
+    },
+    {
+      "instruction": "Top each pita with 1/4 cup of diced chicken breast and 1/4 cup of broccoli."
+    },
+    {
+      "instruction": "Top each pita with 1/2 tablespoon of parmesan cheese and 1/4 tablespoon of basil."
+    },
+    {
+      "instruction": "Place the pitas on a nonstick baking sheet."
+    },
+    {
+      "instruction": "Bake for 5 minutes, until golden brown and the chicken is heated through.",
+      "spoken": "Bake for 5 to eight minutes, until the pitas are golden brown and the chicken is heated through.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Serve right away."
+    }
+  ]
+}

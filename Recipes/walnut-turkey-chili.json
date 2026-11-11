@@ -1,0 +1,106 @@
+{
+  "id": "walnut-turkey-chili",
+  "title": "Walnut Turkey Chili",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/brilliant-chili-topped-walnuts",
+    "credit": "Created by the California Walnut Commission, a member of the MyPlate National Strategic Partnership Program"
+  },
+  "serves": 8,
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "extra virgin olive oil"
+    },
+    {
+      "amount": "1 large",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1 large",
+      "name": "carrot, sliced"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "cumin"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "chili powder"
+    },
+    {
+      "amount": "1 pound",
+      "name": "ground turkey breast, 85% lean"
+    },
+    {
+      "amount": "1 small",
+      "name": "red or yellow bell pepper, minced"
+    },
+    {
+      "amount": "2 cans",
+      "name": "red kidney beans, 16 ounces each, rinsed and drained"
+    },
+    {
+      "amount": "2 cans",
+      "name": "tomatoes, 14.5 ounces each, chopped or crushed"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "walnuts, lightly toasted, chopped"
+    },
+    {
+      "amount": "to taste",
+      "name": "flat leaf parsley, chopped, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 tablespoons of olive oil in a large, deep pan."
+    },
+    {
+      "instruction": "Add 1 chopped onion and cook over medium heat until it turns clear."
+    },
+    {
+      "instruction": "Add 1 sliced carrot and 1/4 teaspoon of salt."
+    },
+    {
+      "instruction": "Add 2 teaspoons of cumin and 2 tablespoons of chili powder."
+    },
+    {
+      "instruction": "Cook, stirring, until the spices are toasted."
+    },
+    {
+      "instruction": "Crumble 1 pound of ground turkey breast into the pan."
+    },
+    {
+      "instruction": "Sprinkle in 1 minced bell pepper."
+    },
+    {
+      "instruction": "Cook until the turkey is white and opaque all the way through."
+    },
+    {
+      "instruction": "Add 2 cans of kidney beans and 2 cans of tomatoes, stirring gently.",
+      "spoken": "Add 2 cans of kidney beans and 2 cans of tomatoes. Stir gently so you do not break the beans."
+    },
+    {
+      "instruction": "Bring to a boil, then lower the heat to medium-low."
+    },
+    {
+      "instruction": "Cook partly covered for 20 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Top the chili with 1 1/2 cups of walnuts and parsley."
+    }
+  ]
+}

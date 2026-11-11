@@ -1,0 +1,66 @@
+{
+  "id": "apple-salad",
+  "title": "Apple Salad with Yogurt Dressing",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/apple-salad-sweet-tangy-yogurt-dressing",
+    "credit": "Eating Smart, Being Active, Colorado State University and University of California at Davis"
+  },
+  "serves": 6,
+  "totalMinutes": 75,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "apple, diced"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "celery, diced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "carrots, grated"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "raisins"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "low-fat vanilla yogurt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Wash the apple, celery and carrots before cutting."
+    },
+    {
+      "instruction": "Toss 1 cup of diced apple with 1 teaspoon of lemon juice."
+    },
+    {
+      "instruction": "Add 1/2 cup of diced celery, 1/2 cup of grated carrots and 1/2 cup of raisins."
+    },
+    {
+      "instruction": "Fold 1/2 cup of low-fat vanilla yogurt into the apple mixture."
+    },
+    {
+      "instruction": "Cover the bowl."
+    },
+    {
+      "instruction": "Chill for at least 1 hour before serving.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Refrigerate any leftovers."
+    }
+  ]
+}

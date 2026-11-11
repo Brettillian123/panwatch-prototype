@@ -1,0 +1,122 @@
+{
+  "id": "sizzling-chicken-and-vegetables",
+  "title": "Sizzling Chicken and Vegetables",
+  "category": "Chicken",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/brown-rice-sizzling-chicken-and-vegetables",
+    "credit": "Meeting Your MyPlate Goals on a Budget, MyPlate National Strategic Partners Toolkit"
+  },
+  "serves": 4,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "3 tablespoons",
+      "name": "low-sodium soy sauce"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "honey"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "cornstarch"
+    },
+    {
+      "amount": "1 1/2 tablespoons",
+      "name": "canola or corn oil"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "16 ounces",
+      "name": "boneless chicken breast, cut into 1-inch cubes"
+    },
+    {
+      "amount": "1 small",
+      "name": "white onion, cut into small wedges"
+    },
+    {
+      "amount": "3 medium",
+      "name": "carrots, peeled and thinly sliced"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "small broccoli florets"
+    },
+    {
+      "amount": "1 medium",
+      "name": "red bell pepper, cut into 1-inch pieces"
+    },
+    {
+      "amount": "3 cups",
+      "name": "hot cooked brown rice"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 3 tablespoons soy sauce, 1/4 cup water, 1 tablespoon each honey and cornstarch.",
+      "spoken": "Mix the soy sauce, water, honey and cornstarch in a small bowl and set it aside."
+    },
+    {
+      "instruction": "Heat 1 1/2 tablespoons of oil in a wok or large skillet."
+    },
+    {
+      "instruction": "Add 2 cloves of minced garlic.",
+      "spoken": "Add the garlic and sauté about 1 minute, until the garlic is golden.",
+      "watch": {
+        "ingredient": "garlic",
+        "timerLabel": "Garlic",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 16 ounces of chicken breast cubes.",
+      "spoken": "Add the chicken and cook about 5 to six minutes.",
+      "watch": {
+        "ingredient": "chicken",
+        "timerLabel": "Chicken",
+        "timerMinutes": 5,
+        "minimumChange": 0.02,
+        "countsRelease": true
+      }
+    },
+    {
+      "instruction": "Push the chicken to the side of the pan."
+    },
+    {
+      "instruction": "Add 1 small onion, in wedges, to the center and cook until slightly tender.",
+      "spoken": "Add the onion to the center of the pan and cook until slightly tender, then push it to the side."
+    },
+    {
+      "instruction": "Add 3 sliced medium carrots to the center and cook until slightly tender.",
+      "spoken": "Add the carrots to the center of the pan and cook until slightly tender, then push them to the side."
+    },
+    {
+      "instruction": "Add 1 1/2 cups of broccoli florets to the center and cook until slightly tender.",
+      "spoken": "Add the broccoli to the center of the pan and cook until slightly tender, then push it to the side."
+    },
+    {
+      "instruction": "Add 1 red bell pepper in 1-inch pieces to the center and cook until slightly tender.",
+      "spoken": "Add the bell pepper to the center of the pan and cook until slightly tender, then push it to the side."
+    },
+    {
+      "instruction": "Pour the soy sauce mixture into the center and stir until it thickens.",
+      "spoken": "Pour the soy sauce mixture into the center of the pan, leaving the other food at the sides, and stir until it thickens."
+    },
+    {
+      "instruction": "Mix the sauce in with the vegetables and chicken."
+    },
+    {
+      "instruction": "Serve right away over 3 cups of hot cooked brown rice."
+    }
+  ]
+}

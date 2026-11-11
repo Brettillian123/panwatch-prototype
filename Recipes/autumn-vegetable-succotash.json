@@ -1,0 +1,90 @@
+{
+  "id": "autumn-vegetable-succotash",
+  "title": "Autumn Vegetable Succotash",
+  "category": "Vegetables",
+  "method": "pan",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/autumn-vegetable-succotash",
+    "credit": "More Matters Recipes, US Department of Health and Human Services, Centers for Disease Control and Prevention (CDC)"
+  },
+  "serves": 8,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "1/4 cup",
+      "name": "olive oil, or cooking oil of choice"
+    },
+    {
+      "amount": "1 cup",
+      "name": "onion, diced"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, finely chopped"
+    },
+    {
+      "amount": "2 cups",
+      "name": "red bell pepper, diced"
+    },
+    {
+      "amount": "2 cups",
+      "name": "zucchini, diced"
+    },
+    {
+      "amount": "2 cups",
+      "name": "yellow summer squash, diced"
+    },
+    {
+      "amount": "3 cups",
+      "name": "lima beans, frozen"
+    },
+    {
+      "amount": "3 cups",
+      "name": "corn kernels, frozen"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "dried sage, or 2 tablespoons fresh, coarsely chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1/4 cup of olive oil in a large deep skillet over medium-high heat."
+    },
+    {
+      "instruction": "Add 1 cup of diced onion.",
+      "spoken": "Cook for 2 minutes, until the onion is soft and clear.",
+      "watch": {
+        "ingredient": "onion",
+        "timerLabel": "Onion",
+        "timerMinutes": 2,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 2 chopped garlic cloves and 2 cups of diced red bell pepper."
+    },
+    {
+      "instruction": "Add 2 cups of diced zucchini and 2 cups of diced yellow squash."
+    },
+    {
+      "instruction": "Add 3 cups of frozen lima beans and 3 cups of frozen corn kernels."
+    },
+    {
+      "instruction": "Season the vegetables as you like."
+    },
+    {
+      "instruction": "Cook, stirring, for 10 minutes, until the vegetables are tender.",
+      "spoken": "Cook, stirring, for 10 minutes or longer, until the vegetables are tender.",
+      "timer": {
+        "label": "Vegetables",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Stir in 2 teaspoons of dried sage.",
+      "spoken": "Stir in 2 teaspoons of dried sage, or 2 tablespoons of coarsely chopped fresh sage."
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": "maple-dumplings",
+  "title": "Maple Dumplings",
+  "category": "Baking and desserts",
+  "method": "pot",
+  "source": {
+    "name": "based.cooking",
+    "url": "https://based.cooking/grands-peres/",
+    "credit": "based.cooking contributor prox"
+  },
+  "serves": 5,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "flour"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "butter, cut into pieces"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "1 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1 cup",
+      "name": "maple syrup"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Stir together 1 cup of flour, 2 teaspoons of baking powder and 1 pinch of salt.",
+      "spoken": "Stir together 1 cup of flour, 2 teaspoons of baking powder and 1 pinch of salt, until light and no longer clumpy."
+    },
+    {
+      "instruction": "Work 2 tablespoons of butter into the flour with your fingertips."
+    },
+    {
+      "instruction": "Add 1/2 cup of milk."
+    },
+    {
+      "instruction": "Form the dough into 5 balls.",
+      "spoken": "Form the dough into 5 to six balls."
+    },
+    {
+      "instruction": "Bring 1 cup of water and 1 cup of maple syrup to a simmer in a saucepan with a lid."
+    },
+    {
+      "instruction": "Add the dough balls to the simmering syrup.",
+      "watch": {
+        "ingredient": "dough balls",
+        "timerLabel": "Dumplings",
+        "timerMinutes": 12,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Cover the pot and simmer on low for 12 minutes.",
+      "spoken": "Cover the pot and simmer on low for 12 to fifteen minutes."
+    }
+  ]
+}

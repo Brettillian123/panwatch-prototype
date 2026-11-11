@@ -87,7 +87,7 @@ struct RecipeVoiceTests {
 
     @Test func noMatchSearchesForWhatWasHeard() {
         #expect(VoiceCommand.parse("make the lasagna") == .findRecipe("lasagna"))
-        #expect(VoiceCommand.parse("let's cook beef stroganoff") == .findRecipe("beef stroganoff"))
+        #expect(VoiceCommand.parse("let's cook beef stroganoff", book: DemoBook.voice) == .findRecipe("beef stroganoff"))
         #expect(match("make the lasagna") == .none)
     }
 
@@ -114,16 +114,17 @@ struct RecipeVoiceTests {
             ("eggs", .recipes, "Hard-Boiled Eggs"),
         ]
         for (text, screen, title) in cases {
-            #expect(VoiceCommand.parse(text, screen: screen) == .makeRecipe(title), "\(text)")
+            #expect(VoiceCommand.parse(text, screen: screen, book: DemoBook.voice) == .makeRecipe(title), "\(text)")
         }
     }
 
     @Test func matchingSixtyTitlesStaysFast() {
         let phrases = ["make the lentil soup", "let's do the chicken stir fry", "cook rice", "make the chicken", "make the lasagna"]
             .map(VoiceCommand.words)
+        let book = VoiceTitles(Self.sixty)
         let start = Date()
         for round in 0..<400 {
-            _ = VoiceCommand.recipeMatch(phrases[round % phrases.count], choosing: true, titles: Self.sixty)
+            _ = VoiceCommand.recipeMatch(phrases[round % phrases.count], choosing: true, in: book)
         }
         // 400 utterances well under a second, so one is far under a millisecond's worry.
         #expect(Date().timeIntervalSince(start) < 1.0)

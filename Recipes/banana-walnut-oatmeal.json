@@ -1,0 +1,80 @@
+{
+  "id": "banana-walnut-oatmeal",
+  "title": "Banana Walnut Oatmeal",
+  "category": "Eggs and breakfast",
+  "method": "pot",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/banana-walnut-oatmeal",
+    "credit": "USDA’S Collection of Nonfat Dry Milk (NDM) Recipes, USDA Food and Nutrition Service, Food Distribution Service"
+  },
+  "serves": 4,
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "2/3 cup",
+      "name": "non-fat dry milk"
+    },
+    {
+      "amount": "2 cups",
+      "name": "water, to mix with the dry milk"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "2 3/4 cups",
+      "name": "water, for the saucepan"
+    },
+    {
+      "amount": "2 cups",
+      "name": "quick cooking oats"
+    },
+    {
+      "amount": "2",
+      "name": "ripe bananas, mashed"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "maple syrup"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "walnuts, chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 2/3 cup of non-fat dry milk with 2 cups of water."
+    },
+    {
+      "instruction": "Add the milk, 1/8 teaspoon of salt and 2 3/4 cups of water to a small saucepan."
+    },
+    {
+      "instruction": "Heat over medium heat until steaming hot, but not boiling."
+    },
+    {
+      "instruction": "Add 2 cups of quick cooking oats, stirring until creamy.",
+      "spoken": "Add the oats and cook, stirring, for 1 to two minutes, until creamy.",
+      "watch": {
+        "ingredient": "oats",
+        "timerLabel": "Oats",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Take the pan off the heat."
+    },
+    {
+      "instruction": "Stir in 2 mashed ripe bananas and 2 tablespoons of maple syrup."
+    },
+    {
+      "instruction": "Divide the oatmeal between 4 bowls."
+    },
+    {
+      "instruction": "Top with 2 tablespoons of chopped walnuts."
+    }
+  ]
+}
