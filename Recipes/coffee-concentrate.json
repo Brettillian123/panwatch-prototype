@@ -1,0 +1,46 @@
+{
+  "id": "coffee-concentrate",
+  "title": "Coffee Concentrate",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACoffee_Concentrate"
+  },
+  "totalMinutes": 615,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "ground coffee, or a coffee and chicory blend"
+    },
+    {
+      "amount": "3 1/2 quarts",
+      "name": "mineral water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 1 pound of ground coffee to a jar."
+    },
+    {
+      "instruction": "Pour 3 1/2 quarts of mineral water over the coffee."
+    },
+    {
+      "instruction": "Stir only enough to wet all the grounds, then let it stand overnight.",
+      "spoken": "Stir only enough to wet all the grounds. Then let the mixture stand for 10 to twelve hours. Overnight is best."
+    },
+    {
+      "instruction": "Line a sieve with cheesecloth and set it over another jar."
+    },
+    {
+      "instruction": "Pour the mixture into the sieve so the grounds collect."
+    },
+    {
+      "instruction": "Discard the grounds and keep the concentrate in the refrigerator.",
+      "spoken": "Discard the grounds and keep the coffee concentrate in the refrigerator. It will keep for 2 to 3 weeks."
+    },
+    {
+      "instruction": "To make a cup, mix 1 part concentrate with 2 to 3 parts water."
+    }
+  ]
+}

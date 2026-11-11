@@ -1,0 +1,114 @@
+{
+  "id": "rice-with-tofu-and-nuts",
+  "title": "Rice with Tofu and Nuts",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ARice_with_Tofu_and_Nuts"
+  },
+  "serves": 1,
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1/2 cup",
+      "name": "basmati rice"
+    },
+    {
+      "amount": "2 cups",
+      "name": "water"
+    },
+    {
+      "amount": "1",
+      "name": "bay leaf"
+    },
+    {
+      "amount": "4",
+      "name": "peppercorns"
+    },
+    {
+      "amount": "1 piece",
+      "name": "cinnamon stick, 1 inch"
+    },
+    {
+      "amount": "2",
+      "name": "whole cloves"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 cup",
+      "name": "firm tofu, diced"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "blanched slivered almonds"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "cashews, chopped"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "raisins"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Wash 1/2 cup of basmati rice in several changes of cold water."
+    },
+    {
+      "instruction": "Drain the rice and put it in a pot."
+    },
+    {
+      "instruction": "Add 2 cups of water, 1 bay leaf and 4 peppercorns."
+    },
+    {
+      "instruction": "Add 1 piece of cinnamon stick, 2 whole cloves and salt to taste."
+    },
+    {
+      "instruction": "Bring the pot to a boil."
+    },
+    {
+      "instruction": "Lower to medium-low, cover and cook for 12 minutes.",
+      "spoken": "Lower the heat to medium-low, cover and cook for about 12 minutes, until all the water is gone and the rice grains are tender but separate.",
+      "timer": {
+        "label": "Rice",
+        "minutes": 12
+      }
+    },
+    {
+      "instruction": "Heat 2 tablespoons of olive oil in a pan."
+    },
+    {
+      "instruction": "Add 1 cup of diced firm tofu to the oil."
+    },
+    {
+      "instruction": "Fry the tofu a few minutes on each side."
+    },
+    {
+      "instruction": "Scoop the tofu out of the oil and set it aside."
+    },
+    {
+      "instruction": "Add 2 tablespoons each of almonds and cashews, and 1 tablespoon of raisins."
+    },
+    {
+      "instruction": "Fry until the nuts are golden brown and the raisins are plump."
+    },
+    {
+      "instruction": "Take the pan off the heat."
+    },
+    {
+      "instruction": "Put the rice in a serving bowl and fluff it gently with a fork."
+    },
+    {
+      "instruction": "Gently fold in the tofu and nuts and mix well."
+    }
+  ]
+}

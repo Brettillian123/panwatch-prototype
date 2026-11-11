@@ -1,0 +1,77 @@
+{
+  "id": "yogi-tea",
+  "title": "Yogi Tea",
+  "category": "Drinks",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AYogi_Tea"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "15",
+      "name": "whole cloves"
+    },
+    {
+      "amount": "20",
+      "name": "black peppercorns"
+    },
+    {
+      "amount": "3 sticks",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "20",
+      "name": "green cardamom pods, crushed or split"
+    },
+    {
+      "amount": "8",
+      "name": "slices of fresh ginger, 1/4 inch thick"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "black tea"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring 2 quarts of water to a boil in a 3 to 4 quart pot."
+    },
+    {
+      "instruction": "Add 15 whole cloves and boil for 1 minute.",
+      "watch": {
+        "ingredient": "cloves",
+        "timerLabel": "Cloves",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 20 black peppercorns and 3 cinnamon sticks."
+    },
+    {
+      "instruction": "Add 20 green cardamom pods and 8 slices of fresh ginger.",
+      "spoken": "Add 20 green cardamom pods, crushed or split, and 8 slices of fresh ginger, each about a quarter inch thick."
+    },
+    {
+      "instruction": "Cover and simmer gently for 30 minutes.",
+      "spoken": "Cover and simmer gently for at least 30 minutes. For the best flavor, cover tightly and simmer over low heat for two to three hours.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Remove from the heat and add 1/2 teaspoon of black tea.",
+      "spoken": "Take the pot off the heat and add 1/2 teaspoon of black tea. Decaffeinated black tea works too."
+    },
+    {
+      "instruction": "Let the tea cool."
+    },
+    {
+      "instruction": "Strain the spices out of the tea.",
+      "spoken": "Strain the spices out of the tea. When you want to drink it, sweeten to taste with honey or maple syrup, and add soy milk or dairy milk."
+    }
+  ]
+}

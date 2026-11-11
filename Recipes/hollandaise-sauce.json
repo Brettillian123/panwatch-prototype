@@ -1,0 +1,87 @@
+{
+  "id": "hollandaise-sauce",
+  "title": "Hollandaise Sauce",
+  "category": "Sauces and dips",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AHollandaise_Sauce"
+  },
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "3",
+      "name": "egg yolks"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "water"
+    },
+    {
+      "amount": "1 1/2 sticks",
+      "name": "unsalted butter, cut into pieces"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "cayenne pepper"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "white pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Melt 1 1/2 sticks of butter in the microwave or a small pan.",
+      "spoken": "Melt 1 1/2 sticks of butter in the microwave or on the stove in a small pan."
+    },
+    {
+      "instruction": "Pour a little water into the bottom of a double boiler.",
+      "spoken": "Pour a small amount of water into the bottom of a medium double boiler. The water must not touch the bowl. Put the bowl off to the side."
+    },
+    {
+      "instruction": "Bring the water to a simmer over medium heat, then lower the heat."
+    },
+    {
+      "instruction": "Put 3 egg yolks and 1 teaspoon of water in the bowl."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of salt and 2 teaspoons of lemon juice."
+    },
+    {
+      "instruction": "Add 1/8 teaspoon of cayenne pepper and 1/8 teaspoon of white pepper."
+    },
+    {
+      "instruction": "Whisk the mixture for 1 minute.",
+      "spoken": "Whisk the mixture for 1 to 2 minutes.",
+      "timer": {
+        "label": "Whisk",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Add the melted butter a little at a time, whisking well.",
+      "spoken": "Add the melted butter a little at a time. Whisk until the butter is mixed in and the mixture puffs up."
+    },
+    {
+      "instruction": "Set the bowl over the simmering water and whisk for 3 minutes.",
+      "spoken": "Set the bowl over the simmering water and whisk for 3 to 5 minutes, until the sauce is thick enough to coat the back of a spoon.",
+      "timer": {
+        "label": "Thicken",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "If it gets too thick or splits, whisk in a little hot water.",
+      "spoken": "If the sauce gets too thick or splits, whisk in very small amounts of hot water until it comes back together."
+    }
+  ]
+}

@@ -30,7 +30,7 @@
     },
     {
       "instruction": "Add 1 box of mostaccioli or penne rigate to the boiling water.",
-      "spoken": "Add the pasta to the boiling water and cook for 6 minutes. It should be very firm, not soft.",
+      "spoken": "Add 1 box of mostaccioli or penne rigate to the boiling water. Add the pasta to the boiling water and cook for 6 minutes. It should be very firm, not soft.",
       "timer": {
         "label": "Pasta",
         "minutes": 6
@@ -47,7 +47,7 @@
     },
     {
       "instruction": "Cover the pasta with 8 ounces of shredded mozzarella.",
-      "spoken": "Cover the pasta and sauce generously with the cheese, until you can't see the pasta."
+      "spoken": "Cover the pasta with 8 ounces of shredded mozzarella. Cover the pasta and sauce generously with the cheese, until you can't see the pasta."
     },
     {
       "instruction": "Bake in the oven at 350 °F for 20 minutes.",

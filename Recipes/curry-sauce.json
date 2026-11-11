@@ -66,7 +66,7 @@
     },
     {
       "instruction": "Add 1 sliced onion, 2 cloves of sliced garlic and 1 inch of sliced ginger.",
-      "spoken": "Add the sliced onion, the sliced garlic and the sliced ginger. Fry for 15 minutes, until the onion is soft.",
+      "spoken": "Add 1 sliced onion, 2 cloves of sliced garlic and 1 inch of sliced ginger. Fry for 15 minutes, until the onion is soft.",
       "watch": {
         "ingredient": "onion",
         "timerLabel": "Onion",
@@ -102,7 +102,7 @@
     },
     {
       "instruction": "Add 1 tablespoon of cornstarch and 2 tablespoons of water.",
-      "spoken": "Add the cornstarch and the water. Simmer for 5 minutes, stirring.",
+      "spoken": "Add 1 tablespoon of cornstarch and 2 tablespoons of water. Simmer for 5 minutes, stirring.",
       "watch": {
         "ingredient": "cornstarch",
         "timerLabel": "Thicken",

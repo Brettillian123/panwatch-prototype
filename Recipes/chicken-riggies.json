@@ -1,0 +1,95 @@
+{
+  "id": "chicken-riggies",
+  "title": "Chicken Riggies",
+  "category": "Chicken",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChicken_Riggies"
+  },
+  "totalMinutes": 75,
+  "ingredients": [
+    {
+      "amount": "1 stick",
+      "name": "margarine, not butter"
+    },
+    {
+      "amount": "1",
+      "name": "onion, minced"
+    },
+    {
+      "amount": "2-5 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 jar",
+      "name": "sweet peppers, sliced and seeded, 20 ounce jar"
+    },
+    {
+      "amount": "3",
+      "name": "hot cherry peppers, sliced, jarred with oil"
+    },
+    {
+      "amount": "1 cup",
+      "name": "Parmesan cheese, grated"
+    },
+    {
+      "amount": "2 pounds",
+      "name": "boneless chicken breast, cubed"
+    },
+    {
+      "amount": "1 can",
+      "name": "chicken broth"
+    },
+    {
+      "amount": "1 can",
+      "name": "tomato sauce, 15 ounce can"
+    },
+    {
+      "amount": "1/2 pint",
+      "name": "cream"
+    },
+    {
+      "amount": "1 small can",
+      "name": "sliced black olives"
+    },
+    {
+      "amount": "1-1 1/2 pounds",
+      "name": "rigatoni pasta, cooked"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Melt 1 stick of margarine in a large pan over low to medium heat."
+    },
+    {
+      "instruction": "Add 1 minced onion and 2 to 5 cloves of minced garlic."
+    },
+    {
+      "instruction": "Add 1 jar of sliced, seeded sweet peppers and 3 sliced hot cherry peppers."
+    },
+    {
+      "instruction": "Cook slowly until the onions are clear."
+    },
+    {
+      "instruction": "Add 1 cup of grated Parmesan cheese and 2 pounds of cubed chicken breast."
+    },
+    {
+      "instruction": "Add 1 can of chicken broth and 1 can of tomato sauce."
+    },
+    {
+      "instruction": "Add 1/2 pint of cream and 1 small can of sliced black olives."
+    },
+    {
+      "instruction": "Simmer for 1 hour.",
+      "spoken": "Simmer for about 1 hour.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Serve over 1 to 1 1/2 pounds of cooked rigatoni pasta."
+    }
+  ]
+}

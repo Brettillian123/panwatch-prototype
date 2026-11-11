@@ -80,7 +80,7 @@
     },
     {
       "instruction": "Add 1 pound of chicken or skirt steak, cover and refrigerate for 2 hours.",
-      "spoken": "Add the chicken or steak to the marinade, cover and refrigerate for at least 2 hours, or overnight.",
+      "spoken": "Add 1 pound of chicken or skirt steak, cover and refrigerate for 2 hours. Add the chicken or steak to the marinade, cover and refrigerate for at least 2 hours, or overnight.",
       "timer": {
         "label": "Marinate",
         "minutes": 120
@@ -114,7 +114,7 @@
     },
     {
       "instruction": "Add 1 large sliced onion and 1/2 each of green, red and yellow bell pepper.",
-      "spoken": "Add the sliced onion and the sliced green, red and yellow bell peppers. Cook until brown."
+      "spoken": "Add 1 large sliced onion and 1/2 each of green, red and yellow bell pepper. Add the sliced onion and the sliced green, red and yellow bell peppers. Cook until brown."
     },
     {
       "instruction": "Take the pan off the heat and pour the sauce over the onion and peppers."

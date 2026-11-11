@@ -1,0 +1,104 @@
+{
+  "id": "orzo-salad",
+  "title": "Orzo Salad",
+  "category": "Salads",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AOrzo_Salad"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "1 teaspoon",
+      "name": "ground turmeric"
+    },
+    {
+      "amount": "1 pound",
+      "name": "dried orzo pasta"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "pickled capers, drained"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "extra-virgin olive oil"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground pepper"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "granulated sugar"
+    },
+    {
+      "amount": "1/2-1 cup",
+      "name": "fresh parsley, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "sundried tomatoes, julienned"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "kalamata olives, chopped"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "feta cheese, crumbled"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring a large pot of water to a boil with 1 teaspoon of ground turmeric."
+    },
+    {
+      "instruction": "Stir in 1 pound of dried orzo pasta."
+    },
+    {
+      "instruction": "Boil until the orzo is tender to your taste."
+    },
+    {
+      "instruction": "Drain the orzo in a colander and rinse briefly with cold water."
+    },
+    {
+      "instruction": "Let the orzo drain well."
+    },
+    {
+      "instruction": "Add 1/2 cup of drained capers, 1/2 cup of lemon juice and 1/2 cup of olive oil to a jar."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of salt, 1/4 teaspoon of ground pepper and 1/2 teaspoon of sugar."
+    },
+    {
+      "instruction": "Seal the jar and shake well to make the dressing."
+    },
+    {
+      "instruction": "Transfer the drained orzo to a large bowl."
+    },
+    {
+      "instruction": "Pour the dressing over the orzo and toss well to coat."
+    },
+    {
+      "instruction": "Add 1/2 to 1 cup of chopped fresh parsley and 1 cup of julienned sundried tomatoes.",
+      "spoken": "Add 1/2 to 1 cup of chopped fresh parsley and 1 cup of julienned sundried tomatoes."
+    },
+    {
+      "instruction": "Add 1/2 cup of chopped kalamata olives and 8 ounces of crumbled feta cheese."
+    },
+    {
+      "instruction": "Toss to combine.",
+      "spoken": "Toss to combine. Serve warm or at room temperature."
+    }
+  ]
+}

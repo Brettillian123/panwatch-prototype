@@ -73,7 +73,7 @@
     },
     {
       "instruction": "Flip the pancake and cook for 1 more minute.",
-      "spoken": "Flip the pancake once you see bubbles, and cook for another 45 seconds to 1 minute.",
+      "spoken": "Flip the pancake once you see bubbles, and cook for 1 more minute.",
       "timer": {
         "label": "Second side",
         "minutes": 1

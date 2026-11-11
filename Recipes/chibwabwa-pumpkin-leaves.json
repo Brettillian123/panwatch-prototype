@@ -1,0 +1,99 @@
+{
+  "id": "chibwabwa-pumpkin-leaves",
+  "title": "Chibwabwa Pumpkin Leaves",
+  "category": "Vegetables",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChibwabwa_%28Zambian_Pumpkin_Leaves_with_Groundnut_Sauce%29"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1",
+      "name": "tomato, diced"
+    },
+    {
+      "amount": "1",
+      "name": "hot pepper, chopped, optional for heat"
+    },
+    {
+      "amount": "2 cups",
+      "name": "fresh pumpkin leaves, chopped"
+    },
+    {
+      "amount": "1 cup",
+      "name": "peanuts, roasted and ground into a smooth paste"
+    },
+    {
+      "amount": "2 cups",
+      "name": "water"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 tablespoons of vegetable oil in a large pot over medium heat."
+    },
+    {
+      "instruction": "Add 1 finely chopped onion and 2 cloves of minced garlic."
+    },
+    {
+      "instruction": "Cook until the onion is soft and translucent."
+    },
+    {
+      "instruction": "Add 1 diced tomato and 1 chopped hot pepper, if using."
+    },
+    {
+      "instruction": "Cook until the tomato is soft and tender."
+    },
+    {
+      "instruction": "In a blender, blend 1 cup of roasted peanuts until they form a smooth paste.",
+      "spoken": "In a blender, blend 1 cup of roasted peanuts until they form a smooth paste. You may need to add a little water to make it smooth."
+    },
+    {
+      "instruction": "Add the peanut paste to the pot."
+    },
+    {
+      "instruction": "Stir well to combine."
+    },
+    {
+      "instruction": "Pour in 2 cups of water and bring to a gentle simmer."
+    },
+    {
+      "instruction": "Add 2 cups of chopped fresh pumpkin leaves to the pot."
+    },
+    {
+      "instruction": "Stir the leaves into the sauce."
+    },
+    {
+      "instruction": "Simmer for 10 minutes, stirring now and then.",
+      "spoken": "Simmer for 10 to 15 minutes, stirring now and then, until the pumpkin leaves are tender.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Taste the sauce and season with salt as you like."
+    },
+    {
+      "instruction": "Take the pot off the heat and let it rest for a few minutes."
+    }
+  ]
+}

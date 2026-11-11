@@ -1,0 +1,109 @@
+{
+  "id": "chicken-cacciatore",
+  "title": "Chicken Cacciatore",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChicken_Cacciatore"
+  },
+  "serves": 4,
+  "totalMinutes": 380,
+  "ingredients": [
+    {
+      "amount": "1 1/2 cups",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "3 pounds",
+      "name": "chicken parts, skin removed"
+    },
+    {
+      "amount": "1 can",
+      "name": "tomatoes with juice, 14 ounce can"
+    },
+    {
+      "amount": "1 can",
+      "name": "tomato paste, 5 1/2 ounce can"
+    },
+    {
+      "amount": "1 can",
+      "name": "mushroom pieces, drained, 10 ounce can"
+    },
+    {
+      "amount": "1",
+      "name": "bay leaf"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "pepper"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "dried whole oregano"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "dried sweet basil"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "white wine, chicken broth, or alcohol-free white wine"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "liquid gravy browner"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "granulated sugar"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Place 1 1/2 cups of chopped onion and 3 pounds of chicken parts in a slow cooker.",
+      "spoken": "Place 1 and a half cups of chopped onion and 3 pounds of chicken parts, with the skin removed, in a 3 and a half quart slow cooker."
+    },
+    {
+      "instruction": "In a bowl, add 1 can of tomatoes with juice and 1 can of tomato paste."
+    },
+    {
+      "instruction": "Add 1 can of drained mushroom pieces, 1 bay leaf and 1 teaspoon of salt."
+    },
+    {
+      "instruction": "Add 1/4 teaspoon of pepper and 1/4 teaspoon of garlic powder."
+    },
+    {
+      "instruction": "Add 1 teaspoon of dried oregano and 1/2 teaspoon of dried basil."
+    },
+    {
+      "instruction": "Add 1/4 cup of white wine, 1/2 teaspoon of gravy browner and 1 teaspoon of sugar.",
+      "spoken": "Add 1/4 cup of white wine, chicken broth, or alcohol-free white wine, then 1/2 teaspoon of liquid gravy browner and 1 teaspoon of sugar."
+    },
+    {
+      "instruction": "Stir everything in the bowl together."
+    },
+    {
+      "instruction": "Pour the mixture over the chicken so the chicken is covered."
+    },
+    {
+      "instruction": "Cook on low for 6 hours.",
+      "spoken": "Cook on low for 6 to 8 hours, or on high for three to four hours.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 360
+      }
+    },
+    {
+      "instruction": "Discard the bay leaf."
+    }
+  ]
+}

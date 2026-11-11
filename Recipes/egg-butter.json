@@ -1,0 +1,52 @@
+{
+  "id": "egg-butter",
+  "title": "Egg Butter",
+  "category": "Eggs and breakfast",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AEgg_Butter"
+  },
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "3",
+      "name": "eggs"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "butter, softened"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Hard-boil 3 eggs for 10 minutes.",
+      "spoken": "Hard-boil the 3 eggs for about 10 minutes.",
+      "timer": {
+        "label": "Boil",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Chop the eggs into small pieces.",
+      "spoken": "Chop the eggs into small pieces. Larger pieces of egg white often fail to mix with the butter."
+    },
+    {
+      "instruction": "Mix the chopped eggs with 4 tablespoons of softened butter."
+    },
+    {
+      "instruction": "Add salt and pepper to taste."
+    },
+    {
+      "instruction": "Use it as a sandwich spread."
+    }
+  ]
+}

@@ -79,7 +79,7 @@
     },
     {
       "instruction": "Add 10 cloves of minced garlic and 1/2 to 1 teaspoon of red pepper flakes.",
-      "spoken": "Add the garlic and the red pepper flakes. Cook for 1 minute, until fragrant.",
+      "spoken": "Add 10 cloves of minced garlic and 1/2 to 1 teaspoon of red pepper flakes. Cook for 1 minute, until fragrant.",
       "watch": {
         "ingredient": "garlic",
         "timerLabel": "Garlic",
@@ -89,7 +89,7 @@
     },
     {
       "instruction": "Add 10 to 12 ounces of kale, a handful at a time.",
-      "spoken": "Add the kale one handful at a time, stirring until the leaves wilt. Escarole, swiss chard or spinach can be used instead."
+      "spoken": "Add 10 to 12 ounces of kale, a handful at a time. Add the kale one handful at a time, stirring until the leaves wilt. Escarole, swiss chard or spinach can be used instead."
     },
     {
       "instruction": "Add 4 cans of rinsed cannellini beans, 4 cups of broth and black pepper."

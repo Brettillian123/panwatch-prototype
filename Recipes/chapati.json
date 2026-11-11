@@ -1,0 +1,68 @@
+{
+  "id": "chapati",
+  "title": "Chapati",
+  "category": "Snacks and sides",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChapati"
+  },
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "3 cups",
+      "name": "whole wheat flour"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "warm water"
+    },
+    {
+      "amount": "to taste",
+      "name": "ghee, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 3 cups of whole wheat flour and 1 teaspoon of salt in a bowl."
+    },
+    {
+      "instruction": "Knead in about 1 1/2 cups of warm water, a little at a time.",
+      "spoken": "Knead the flour with about 1 1/2 cups of warm water. Start with only a slight dribble of water and add more as you go, until the dough is smooth but not too sticky."
+    },
+    {
+      "instruction": "Cover the dough and let it rest for 5 minutes.",
+      "spoken": "Cover the dough and let it rest for at least 5 minutes.",
+      "timer": {
+        "label": "Rest",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Divide the dough into balls."
+    },
+    {
+      "instruction": "Roll each ball into a disk a little thicker than denim, flouring as you go."
+    },
+    {
+      "instruction": "Heat a dry, unoiled pan over medium-high heat."
+    },
+    {
+      "instruction": "Hold your hand over the pan to test the heat."
+    },
+    {
+      "instruction": "Lay a chapati on the pan and press it with a spatula or dry cloth.",
+      "spoken": "When the pan is very hot, lay a chapati on it and press it flat with a spatula or a dry cloth, to make it rise up."
+    },
+    {
+      "instruction": "Flip the chapati and press again until both sides are lightly browned."
+    },
+    {
+      "instruction": "Brush the chapati with ghee, if you like."
+    }
+  ]
+}

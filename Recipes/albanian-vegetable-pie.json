@@ -1,0 +1,90 @@
+{
+  "id": "albanian-vegetable-pie",
+  "title": "Albanian Vegetable Pie",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAlbanian_Vegetable_Pie"
+  },
+  "serves": 4,
+  "totalMinutes": 70,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "oil, preferably olive oil"
+    },
+    {
+      "amount": "1 1/2 packets",
+      "name": "filo pastry leaves, about 30 leaves"
+    },
+    {
+      "amount": "1 1/2 pounds",
+      "name": "spinach, chopped"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "salt"
+    },
+    {
+      "amount": "1 cup",
+      "name": "feta cheese, diced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "green onions, chopped"
+    },
+    {
+      "amount": "2-3",
+      "name": "eggs"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Brush a medium baking pan with some of the oil."
+    },
+    {
+      "instruction": "Lay 2 filo pastry leaves in the pan, hanging 1 inch over the edges."
+    },
+    {
+      "instruction": "Sprinkle or brush the leaves with oil."
+    },
+    {
+      "instruction": "Lay 2 more leaves and oil them. Repeat until half of the leaves are in place."
+    },
+    {
+      "instruction": "Sprinkle 1 1/2 pounds of chopped spinach with 1 1/2 teaspoons of salt."
+    },
+    {
+      "instruction": "Mix the spinach well by hand."
+    },
+    {
+      "instruction": "Add 1 cup of diced feta cheese, 1/2 cup of chopped green onions and 2 to 3 eggs."
+    },
+    {
+      "instruction": "Add some of the oil and mix well."
+    },
+    {
+      "instruction": "Spread the spinach mixture over the filo leaves in the pan."
+    },
+    {
+      "instruction": "Cover the spinach with the rest of the leaves, 2 at a time, oiling between them."
+    },
+    {
+      "instruction": "Roll the hanging edges of the bottom leaves over the pie, like a pizza crust."
+    },
+    {
+      "instruction": "Sprinkle the top with oil."
+    },
+    {
+      "instruction": "Bake for 45 minutes, until golden brown. Makes 4 to 6 servings.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 45
+      }
+    }
+  ]
+}

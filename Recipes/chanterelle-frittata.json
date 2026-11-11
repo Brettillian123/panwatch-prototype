@@ -1,0 +1,79 @@
+{
+  "id": "chanterelle-frittata",
+  "title": "Chanterelle Mushroom Frittata",
+  "category": "Eggs and breakfast",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AFall_Chanterelle_Mushroom_Frittata"
+  },
+  "serves": 5,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "6",
+      "name": "egg whites"
+    },
+    {
+      "amount": "2",
+      "name": "egg yolks"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "black pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "nonstick cooking spray"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "roasted chanterelles, chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "low-fat cheddar cheese"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Combine 6 egg whites and 2 egg yolks in a medium bowl."
+    },
+    {
+      "instruction": "Add 1/2 cup of milk, 1 teaspoon of lemon juice, salt and 1 teaspoon of pepper."
+    },
+    {
+      "instruction": "Whisk until slightly frothy.",
+      "spoken": "Whisk until slightly frothy. The more you whisk, the fluffier the eggs will be."
+    },
+    {
+      "instruction": "Pour the eggs into a pan or muffin tin sprayed with nonstick cooking spray."
+    },
+    {
+      "instruction": "Add 1/2 cup of chopped roasted chanterelles and 1/2 cup of low-fat cheddar cheese."
+    },
+    {
+      "instruction": "Bake for 15 minutes, until the middle is set.",
+      "spoken": "Bake for 15 to 20 minutes. Poke the middle with a fork or knife to check that no wet egg is left.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 15
+      }
+    }
+  ]
+}

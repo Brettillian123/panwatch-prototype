@@ -1,0 +1,142 @@
+{
+  "id": "garlic-lemon-chicken",
+  "title": "Garlic Lemon Chicken",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AGarlic_Lemon_Chicken"
+  },
+  "totalMinutes": 1060,
+  "ingredients": [
+    {
+      "amount": "2",
+      "name": "lemons, juiced"
+    },
+    {
+      "amount": "6 cloves",
+      "name": "garlic, for the marinade"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt, for the marinade"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "pepper"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "basil"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "cayenne pepper"
+    },
+    {
+      "amount": "4",
+      "name": "chicken breasts, boneless and with skin"
+    },
+    {
+      "amount": "6",
+      "name": "large potatoes, sliced 1/4 inch thick"
+    },
+    {
+      "amount": "4 cloves",
+      "name": "garlic, for the garlic sauce"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "lemon juice, for the garlic sauce"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt, for the garlic sauce"
+    },
+    {
+      "amount": "1 dash",
+      "name": "cayenne, for the garlic sauce"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix the juice of 2 lemons with 6 cloves of garlic and 1 teaspoon of salt."
+    },
+    {
+      "instruction": "Add 1 teaspoon each of pepper and basil, and 1/4 teaspoon of cayenne pepper."
+    },
+    {
+      "instruction": "Put 4 chicken breasts in a deep pan and pour the marinade over them."
+    },
+    {
+      "instruction": "Cover the pan and let the chicken marinate in the fridge overnight."
+    },
+    {
+      "instruction": "In the morning, flip the chicken and marinate 4 more hours.",
+      "timer": {
+        "label": "Marinate",
+        "minutes": 240
+      }
+    },
+    {
+      "instruction": "Heat the oven to 375 °F."
+    },
+    {
+      "instruction": "Drain the pan and keep the liquid."
+    },
+    {
+      "instruction": "Bake the chicken for 10 minutes, just to brown it.",
+      "spoken": "Bake the chicken for 10 to 15 minutes, just to brown the outside. It will finish in the long, slow bake that follows. Wash your hands after handling raw chicken.",
+      "timer": {
+        "label": "Brown",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Pour the saved liquid back over the browned chicken."
+    },
+    {
+      "instruction": "Cover the pan tightly with foil and put it back in the oven."
+    },
+    {
+      "instruction": "Set the oven to 250 °F and bake for 4 hours.",
+      "spoken": "Set the oven to 250 °F and bake for 4 hours. Baste the chicken with the liquid in the pan every hour.",
+      "timer": {
+        "label": "Slow bake",
+        "minutes": 240
+      }
+    },
+    {
+      "instruction": "Add the 6 sliced potatoes to the pan."
+    },
+    {
+      "instruction": "Baste everything with the liquid in the pan."
+    },
+    {
+      "instruction": "Cover the pan with foil again."
+    },
+    {
+      "instruction": "Put the pan back in the oven for 1 hour.",
+      "timer": {
+        "label": "Final bake",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Blend 4 cloves of garlic and 1/2 cup of olive oil in a food processor."
+    },
+    {
+      "instruction": "Add 1/4 cup of lemon juice, 1/4 teaspoon of salt and a dash of cayenne."
+    },
+    {
+      "instruction": "Blend until smooth to make the garlic sauce."
+    },
+    {
+      "instruction": "Serve the chicken and potatoes with the garlic sauce."
+    }
+  ]
+}

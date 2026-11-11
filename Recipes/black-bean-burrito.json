@@ -1,0 +1,78 @@
+{
+  "id": "black-bean-burrito",
+  "title": "Black Bean Burrito",
+  "category": "Sandwiches and wraps",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/black-bean-burrito"
+  },
+  "serves": 4,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1 1/3 cups",
+      "name": "cooked black beans, mashed or low-sodium canned"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "canola oil"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "tomatoes, chopped"
+    },
+    {
+      "amount": "4",
+      "name": "corn tortillas"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "fresh tomato salsa"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "yogurt, non-fat plain"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "cilantro, chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mash 1 1/3 cups of black beans with 1 teaspoon of canola oil."
+    },
+    {
+      "instruction": "Mix in 2 tablespoons of chopped onion and 1/2 cup of chopped tomatoes."
+    },
+    {
+      "instruction": "Place 4 corn tortillas between two sheets of slightly damp white paper towels."
+    },
+    {
+      "instruction": "Microwave on high for 15 seconds."
+    },
+    {
+      "instruction": "Divide the bean mixture between the tortillas."
+    },
+    {
+      "instruction": "Fold each tortilla to enclose the filling."
+    },
+    {
+      "instruction": "Place the burritos on a microwave-safe dish."
+    },
+    {
+      "instruction": "Spoon 1/2 cup of fresh tomato salsa over the burritos."
+    },
+    {
+      "instruction": "Microwave on high for 15 seconds."
+    },
+    {
+      "instruction": "Top with 4 tablespoons of yogurt and 2 tablespoons of chopped cilantro."
+    }
+  ]
+}

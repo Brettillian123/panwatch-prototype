@@ -1,0 +1,90 @@
+{
+  "id": "cheese-stuffed-crust-pizza",
+  "title": "Cheese-Stuffed Crust Pizza",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACheese-Stuffed_Crust_Pizza"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "to taste",
+      "name": "cooking spray"
+    },
+    {
+      "amount": "to taste",
+      "name": "corn meal"
+    },
+    {
+      "amount": "1 can",
+      "name": "refrigerated pizza crust"
+    },
+    {
+      "amount": "7 pieces",
+      "name": "string cheese, 1 inch long"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "pizza sauce"
+    },
+    {
+      "amount": "24 slices",
+      "name": "pepperoni"
+    },
+    {
+      "amount": "1 cup",
+      "name": "cooked Italian sausage, crumbled"
+    },
+    {
+      "amount": "2 cups",
+      "name": "Italian blend shredded cheese"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 425 °F."
+    },
+    {
+      "instruction": "Spray a 12-inch pizza pan with cooking spray."
+    },
+    {
+      "instruction": "Sprinkle the pan lightly with corn meal, if you like."
+    },
+    {
+      "instruction": "Starting in the center, press the pizza crust dough an inch past the sides of the pan."
+    },
+    {
+      "instruction": "Fold the hanging edge toward the middle, tucking in 7 pieces of string cheese.",
+      "spoken": "Fold the hanging edge of the dough back toward the middle, placing the 7 one-inch pieces of string cheese in the pouch, all the way around the circle."
+    },
+    {
+      "instruction": "Pinch the dough to seal in the cheese."
+    },
+    {
+      "instruction": "Bake the crust for 8 minutes.",
+      "spoken": "Bake the crust for 8 to 10 minutes, until the edges are light golden and the dough has started to set.",
+      "timer": {
+        "label": "Bake crust",
+        "minutes": 8
+      }
+    },
+    {
+      "instruction": "Take the crust out of the oven."
+    },
+    {
+      "instruction": "Spread 1/2 cup of pizza sauce over the crust with the back of a spoon."
+    },
+    {
+      "instruction": "Scatter 24 slices of pepperoni, 1 cup of sausage and 2 cups of Italian cheese on top.",
+      "spoken": "Scatter 24 slices of pepperoni, 1 cup of cooked, crumbled Italian sausage and 2 cups of shredded Italian blend cheese over the sauce."
+    },
+    {
+      "instruction": "Put it back in the oven until the crust is deeply golden and the cheese melts."
+    },
+    {
+      "instruction": "Cut into 6 to 8 slices."
+    }
+  ]
+}

@@ -41,7 +41,7 @@
     },
     {
       "instruction": "Marinate 12 shucked oysters in the mixture for 10 minutes.",
-      "spoken": "Marinate the oysters in the mixture for 10 to twenty minutes.",
+      "spoken": "Marinate 12 shucked oysters in the mixture for 10 minutes. Marinate the oysters in the mixture for 10 to twenty minutes.",
       "timer": {
         "label": "Marinate",
         "minutes": 10

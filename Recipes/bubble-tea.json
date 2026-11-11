@@ -1,0 +1,50 @@
+{
+  "id": "bubble-tea",
+  "title": "Bubble Tea",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABubble_Tea"
+  },
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "1/2 cup",
+      "name": "cooked boba tapioca pearls"
+    },
+    {
+      "amount": "1 cup",
+      "name": "crushed ice"
+    },
+    {
+      "amount": "1 cup",
+      "name": "very strong chilled black tea"
+    },
+    {
+      "amount": "1 cup",
+      "name": "milk, to taste"
+    },
+    {
+      "amount": "to taste",
+      "name": "honey or granulated sugar"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Place 1/2 cup of cooked tapioca pearls in a large glass."
+    },
+    {
+      "instruction": "Add 1 cup of crushed ice and 1 cup of strong chilled black tea to a shaker."
+    },
+    {
+      "instruction": "Add 1 cup of milk, and honey or sugar to taste."
+    },
+    {
+      "instruction": "Shake vigorously until the mixture is frothy."
+    },
+    {
+      "instruction": "Pour the tea into the glass and serve with large-diameter straws."
+    }
+  ]
+}

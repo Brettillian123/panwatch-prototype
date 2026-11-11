@@ -1,0 +1,62 @@
+{
+  "id": "cream-cheese-american-buttercream",
+  "title": "Cream Cheese American Buttercream",
+  "category": "Baking and desserts",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACream_Cheese_American_Buttercream"
+  },
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "block-style cream cheese, cold"
+    },
+    {
+      "amount": "1 stick",
+      "name": "unsalted butter, cold"
+    },
+    {
+      "amount": "3 1/2 cups",
+      "name": "powdered sugar"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1 cup of cold cream cheese in a bowl."
+    },
+    {
+      "instruction": "Mix just enough to smooth out any lumps.",
+      "spoken": "Mix just enough to smooth out any lumps. Do not overmix."
+    },
+    {
+      "instruction": "Set the cream cheese aside."
+    },
+    {
+      "instruction": "Cream 1 stick of cold unsalted butter in another bowl until smooth and creamy."
+    },
+    {
+      "instruction": "Beat in 3 1/2 cups of powdered sugar, in 3 or 4 batches.",
+      "spoken": "Beat in 3 and a half cups of powdered sugar, in 3 or 4 batches. It may look crumbly at first, but don't worry. It will come together into a ball, like a dough."
+    },
+    {
+      "instruction": "Beat in 1/4 teaspoon of salt."
+    },
+    {
+      "instruction": "Beat in 1 teaspoon of vanilla extract."
+    },
+    {
+      "instruction": "Add all of the cream cheese and mix until smooth.",
+      "spoken": "Add all of the cream cheese and mix until smooth. Do not overmix, because it can make the frosting runny. This makes about 4 cups."
+    }
+  ]
+}

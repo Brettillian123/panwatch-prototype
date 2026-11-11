@@ -1,0 +1,78 @@
+{
+  "id": "flourless-chocolate-cake",
+  "title": "Bête Noire Flourless Chocolate Cake",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AB%C3%AAte_Noire_%28Flourless_Chocolate_Cake%29"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "1/2 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1 1/3 cups",
+      "name": "granulated sugar"
+    },
+    {
+      "amount": "1/2 pound",
+      "name": "butter"
+    },
+    {
+      "amount": "4 ounces",
+      "name": "bittersweet chocolate, finely chopped"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "unsweetened chocolate, finely chopped"
+    },
+    {
+      "amount": "5",
+      "name": "eggs, beaten"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Heat 1/2 cup of water and 1 1/3 cups of sugar until fully dissolved."
+    },
+    {
+      "instruction": "Melt 1/2 pound of butter in a large saucepan over low heat."
+    },
+    {
+      "instruction": "Add 4 ounces of bittersweet and 8 ounces of unsweetened chocolate."
+    },
+    {
+      "instruction": "Whisk until smooth."
+    },
+    {
+      "instruction": "Whisk in the sugar syrup."
+    },
+    {
+      "instruction": "Let the mixture cool slightly."
+    },
+    {
+      "instruction": "Add 5 beaten eggs and whisk until well blended."
+    },
+    {
+      "instruction": "Pour the mixture into a greased, parchment-lined 9-inch springform pan."
+    },
+    {
+      "instruction": "Wrap the bottom and sides of the pan in aluminum foil.",
+      "spoken": "Wrap the bottom and sides of the pan in aluminum foil, so no water can seep in while the cake bakes in the water bath."
+    },
+    {
+      "instruction": "Bake the cake in a water bath for 25 minutes.",
+      "spoken": "Bake the cake in a water bath in the oven for 25 to 30 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 25
+      }
+    }
+  ]
+}

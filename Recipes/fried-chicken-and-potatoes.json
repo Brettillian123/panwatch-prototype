@@ -1,0 +1,85 @@
+{
+  "id": "fried-chicken-and-potatoes",
+  "title": "Fried Chicken and Fried Potatoes",
+  "category": "Chicken",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AFried_Chicken_and_Fried_Potatoes"
+  },
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "8 pounds",
+      "name": "potatoes"
+    },
+    {
+      "amount": "1/2 quart",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "2 1/2 pounds",
+      "name": "chicken, cut into small pieces"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "cumin"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Peel 8 pounds of potatoes."
+    },
+    {
+      "instruction": "Slice the potatoes into small or large wedges."
+    },
+    {
+      "instruction": "Heat 1/2 quart of vegetable oil in a pan to 350 °F."
+    },
+    {
+      "instruction": "Fry the potatoes in the oil until light brown."
+    },
+    {
+      "instruction": "Season the potatoes with salt to taste."
+    },
+    {
+      "instruction": "Fry 2 1/2 pounds of small chicken pieces for 5 minutes.",
+      "timer": {
+        "label": "Fry chicken",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Drain the oil or move the chicken to a different pan."
+    },
+    {
+      "instruction": "Season the chicken with salt."
+    },
+    {
+      "instruction": "Add 3/4 cup of water and simmer the chicken for 15 minutes.",
+      "spoken": "Add 3/4 cup of water and simmer the chicken for 15 to 20 minutes. Wash your hands after handling the raw chicken.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Put the chicken and potatoes together, with the potatoes on top."
+    },
+    {
+      "instruction": "Add cumin to taste and simmer for about 20 minutes.",
+      "timer": {
+        "label": "Final simmer",
+        "minutes": 20
+      }
+    }
+  ]
+}

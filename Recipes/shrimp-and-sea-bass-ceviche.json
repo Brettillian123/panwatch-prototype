@@ -1,0 +1,114 @@
+{
+  "id": "shrimp-and-sea-bass-ceviche",
+  "title": "Shrimp and Sea Bass Ceviche",
+  "category": "Fish",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AShrimp_and_Sea_Bass_Ceviche"
+  },
+  "serves": 8,
+  "totalMinutes": 120,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "shrimp, peeled and cleaned"
+    },
+    {
+      "amount": "2 pounds",
+      "name": "meaty white fish, such as sea bass, boned and cut into large dice"
+    },
+    {
+      "amount": "1",
+      "name": "red onion, minced"
+    },
+    {
+      "amount": "1 piece",
+      "name": "ginger, peeled and minced"
+    },
+    {
+      "amount": "1 clove",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1/4",
+      "name": "habanero or Scotch bonnet pepper, seeded and minced"
+    },
+    {
+      "amount": "1 rib",
+      "name": "celery, minced"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "black pepper"
+    },
+    {
+      "amount": "5",
+      "name": "lemons, juiced"
+    },
+    {
+      "amount": "5",
+      "name": "limes, juiced"
+    },
+    {
+      "amount": "1 bunch",
+      "name": "cilantro, chopped"
+    },
+    {
+      "amount": "2 ears",
+      "name": "corn, grilled with husk on"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Boil a pot of salted water."
+    },
+    {
+      "instruction": "Have a bowl of ice water ready on the side."
+    },
+    {
+      "instruction": "Poach 1 pound of peeled shrimp in the hot water for just 30 seconds."
+    },
+    {
+      "instruction": "Cool the shrimp in the ice water, then drain them."
+    },
+    {
+      "instruction": "Combine the shrimp with 2 pounds of white fish, cut into large dice."
+    },
+    {
+      "instruction": "Toss in 1 minced red onion, 1 piece of minced ginger and 1 clove of minced garlic."
+    },
+    {
+      "instruction": "Toss in 1/4 minced hot pepper, 1 minced celery rib, salt and black pepper.",
+      "spoken": "Toss in 1/4 of a seeded and minced habanero or Scotch bonnet pepper, 1 minced celery rib, salt and black pepper."
+    },
+    {
+      "instruction": "Refrigerate for 30 minutes.",
+      "spoken": "Refrigerate for at least 30 minutes and up to two hours.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Add the juice of 5 lemons and the juice of 5 limes."
+    },
+    {
+      "instruction": "Refrigerate for 1 more hour.",
+      "timer": {
+        "label": "Chill again",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Finish with 1 bunch of chopped cilantro and 2 ears of grilled corn."
+    },
+    {
+      "instruction": "Taste and add more salt if needed."
+    }
+  ]
+}

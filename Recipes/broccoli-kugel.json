@@ -1,0 +1,91 @@
+{
+  "id": "broccoli-kugel",
+  "title": "Broccoli Kugel",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABroccoli_Kugel"
+  },
+  "serves": 8,
+  "totalMinutes": 80,
+  "ingredients": [
+    {
+      "amount": "1/2 cup",
+      "name": "margarine"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "flour"
+    },
+    {
+      "amount": "1 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "chicken soup powder"
+    },
+    {
+      "amount": "1 cup",
+      "name": "mayonnaise"
+    },
+    {
+      "amount": "3 pounds",
+      "name": "frozen chopped broccoli, thawed"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "onion soup mix"
+    },
+    {
+      "amount": "6",
+      "name": "eggs"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "pepper"
+    },
+    {
+      "amount": "4 teaspoons",
+      "name": "pine nuts"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Melt 1/2 cup of margarine in a pot."
+    },
+    {
+      "instruction": "Stir in 1/2 cup of flour."
+    },
+    {
+      "instruction": "Add 1 cup of water, 1 tablespoon of chicken soup powder and 1 cup of mayonnaise."
+    },
+    {
+      "instruction": "Stir until the sauce thickens."
+    },
+    {
+      "instruction": "Take the pot off the heat."
+    },
+    {
+      "instruction": "Add 3 pounds of thawed chopped broccoli and 2 tablespoons of onion soup mix."
+    },
+    {
+      "instruction": "Add 6 eggs, 1/2 teaspoon of pepper and 4 teaspoons of pine nuts."
+    },
+    {
+      "instruction": "Pour the mixture into a 9 by 13 inch pan."
+    },
+    {
+      "instruction": "Bake for 1 hour, until the center is firm.",
+      "spoken": "Bake for about 1 hour, until the center is firm.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 60
+      }
+    }
+  ]
+}

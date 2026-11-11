@@ -65,7 +65,7 @@
     },
     {
       "instruction": "Add 3/4 tablespoon of finely chopped onion.",
-      "spoken": "Add the onion and sauté for 2 minutes.",
+      "spoken": "Add 3/4 tablespoon of finely chopped onion. Add the onion and sauté for 2 minutes.",
       "watch": {
         "ingredient": "onion",
         "timerLabel": "Onion",

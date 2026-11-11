@@ -1,0 +1,130 @@
+{
+  "id": "awaze-tibs-ethiopian-stir-fry",
+  "title": "Awaze Tibs Ethiopian Stir-Fry",
+  "category": "Beef and pork",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AAwaze_Tibs_%28Spicy_Ethiopian_Meat_Stir-Fry%29"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "1 1/2 pounds",
+      "name": "beef or lamb, thinly sliced"
+    },
+    {
+      "amount": "1 large",
+      "name": "onion, thinly sliced"
+    },
+    {
+      "amount": "3 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "berbere spice"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "tomato paste"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "paprika"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "cayenne pepper, or to taste"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "awaze sauce"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "soy sauce"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "vinegar"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt, or to taste"
+    },
+    {
+      "amount": "to taste",
+      "name": "cilantro, chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 tablespoons of vegetable oil in a large skillet over medium-high heat."
+    },
+    {
+      "instruction": "Add 1 1/2 pounds of thinly sliced beef or lamb to the hot skillet."
+    },
+    {
+      "instruction": "Stir-fry for 3 minutes, until browned and cooked through.",
+      "spoken": "Stir-fry for 3 to 4 minutes, until the meat is browned and cooked through.",
+      "timer": {
+        "label": "Meat",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Take the meat out of the skillet and set it aside."
+    },
+    {
+      "instruction": "In the same skillet, add 1 sliced onion and 3 cloves of minced garlic."
+    },
+    {
+      "instruction": "Stir-fry for 2 minutes, until the onion is clear and smells good.",
+      "spoken": "Stir-fry for 2 to 3 minutes, until the onion is clear and smells good.",
+      "timer": {
+        "label": "Onion",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Add 2 tablespoons of berbere spice and 1 tablespoon of tomato paste."
+    },
+    {
+      "instruction": "Add 1 tablespoon of paprika and 1 tablespoon of cayenne pepper."
+    },
+    {
+      "instruction": "Stir well to coat the onions and garlic with the spices."
+    },
+    {
+      "instruction": "Return the beef or lamb to the skillet and toss it with the onion mixture."
+    },
+    {
+      "instruction": "Add 1 tablespoon each of awaze sauce, soy sauce and vinegar, and 1 teaspoon of salt."
+    },
+    {
+      "instruction": "Stir everything together to coat the meat evenly."
+    },
+    {
+      "instruction": "Keep stir-frying for 2 minutes, until the sauce thickens and coats the meat.",
+      "spoken": "Keep stir-frying for another 2 to 3 minutes, until the sauce thickens and coats the meat.",
+      "timer": {
+        "label": "Sauce",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Taste and adjust the seasoning with salt or more spices."
+    },
+    {
+      "instruction": "Take the skillet off the heat."
+    },
+    {
+      "instruction": "Top with chopped cilantro."
+    }
+  ]
+}

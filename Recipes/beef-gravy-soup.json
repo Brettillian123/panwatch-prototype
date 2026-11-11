@@ -1,0 +1,62 @@
+{
+  "id": "beef-gravy-soup",
+  "title": "Beef Gravy Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABeef_Gravy_Soup"
+  },
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "2 medium",
+      "name": "onions, sliced"
+    },
+    {
+      "amount": "1 pound",
+      "name": "root vegetables, sliced, such as carrots, turnips or radishes"
+    },
+    {
+      "amount": "1 pound",
+      "name": "lean beef, sliced"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "beef broth"
+    },
+    {
+      "amount": "2 cups",
+      "name": "vegetable broth"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Place 2 sliced onions and 1 pound of sliced root vegetables in a large stock pot."
+    },
+    {
+      "instruction": "Add 1 pound of sliced lean beef on top."
+    },
+    {
+      "instruction": "Add 2 tablespoons of beef broth."
+    },
+    {
+      "instruction": "Simmer over low heat for 30 minutes, stirring well.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Add 2 cups of vegetable broth and salt to taste.",
+      "spoken": "When the beef and vegetables look cooked, add 2 cups of vegetable broth and salt to taste."
+    },
+    {
+      "instruction": "Bring the soup back to a simmer, then serve."
+    }
+  ]
+}

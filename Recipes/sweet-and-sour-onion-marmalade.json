@@ -1,0 +1,77 @@
+{
+  "id": "sweet-and-sour-onion-marmalade",
+  "title": "Sweet and Sour Onion Marmalade",
+  "category": "Sauces and dips",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACaramelized_Sweet_and_Sour_Onion_Marmalade"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "4 tablespoons",
+      "name": "olive or vegetable oil"
+    },
+    {
+      "amount": "4 large",
+      "name": "yellow or white onions, sliced into thin strips"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "white granulated sugar"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "balsamic vinegar"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "coarse ground black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 4 tablespoons of oil in a large frying pan over medium heat."
+    },
+    {
+      "instruction": "Add 4 large sliced onions and sauté, stirring, for 15 minutes.",
+      "spoken": "Add 4 large sliced onions and sauté, stirring, for about 15 minutes, or until they begin to brown. Don't cook over high heat, or the outsides will char before the insides have softened and sweetened.",
+      "watch": {
+        "ingredient": "onions",
+        "timerLabel": "Onions",
+        "timerMinutes": 15
+      }
+    },
+    {
+      "instruction": "Add 1/2 cup of sugar once the onions are soft and light golden brown.",
+      "spoken": "When the onions have softened and turned a light golden brown, add 1/2 cup of sugar."
+    },
+    {
+      "instruction": "Keep stirring until the sugar melts and begins to bubble."
+    },
+    {
+      "instruction": "Clear a space in the center of the pan.",
+      "spoken": "As the onions turn a richer brown, clear a space in the center of the pan."
+    },
+    {
+      "instruction": "Pour 1/4 cup of balsamic vinegar onto the hot pan in that space."
+    },
+    {
+      "instruction": "Stir the vinegar into the onions until it leaves a syrupy coating."
+    },
+    {
+      "instruction": "Turn off the heat."
+    },
+    {
+      "instruction": "Stir in 1/4 teaspoon of salt and 1/8 teaspoon of pepper."
+    },
+    {
+      "instruction": "Let the onions cool."
+    }
+  ]
+}

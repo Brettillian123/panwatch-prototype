@@ -1,0 +1,90 @@
+{
+  "id": "menemen-eggs",
+  "title": "Menemen Eggs",
+  "category": "Eggs and breakfast",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AMenemen_%28Eggs_with_Onion%2C_Green_Pepper%2C_and_Tomato%29"
+  },
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "4",
+      "name": "eggs"
+    },
+    {
+      "amount": "2",
+      "name": "onions"
+    },
+    {
+      "amount": "2",
+      "name": "green peppers"
+    },
+    {
+      "amount": "4",
+      "name": "tomatoes"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "parsley, chopped"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1-2 teaspoons",
+      "name": "dried oregano, optional"
+    },
+    {
+      "amount": "1-2 teaspoons",
+      "name": "sweet paprika, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Grate the 4 tomatoes on a box grater.",
+      "spoken": "Grate the 4 tomatoes on a box grater. Or blanch, peel, seed and dice them, or grind them in a food processor."
+    },
+    {
+      "instruction": "Dice the 2 onions and 2 green peppers into medium pieces."
+    },
+    {
+      "instruction": "Cook the onions and peppers in 2 tablespoons of olive oil until tender."
+    },
+    {
+      "instruction": "Add 1 to 2 teaspoons each of oregano and paprika, if using."
+    },
+    {
+      "instruction": "Add the tomatoes to the onions and peppers.",
+      "spoken": "Add the tomatoes to the onions and peppers and cook for 5 minutes.",
+      "watch": {
+        "ingredient": "tomatoes",
+        "timerLabel": "Tomatoes",
+        "timerMinutes": 5,
+        "minimumChange": 0.02
+      }
+    },
+    {
+      "instruction": "Add 2 tablespoons of chopped parsley."
+    },
+    {
+      "instruction": "Season with salt and pepper to taste."
+    },
+    {
+      "instruction": "Beat 4 eggs in a bowl."
+    },
+    {
+      "instruction": "Pour the eggs over the mixture in the pan and stir until set."
+    }
+  ]
+}

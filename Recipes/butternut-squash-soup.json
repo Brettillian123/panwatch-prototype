@@ -1,0 +1,88 @@
+{
+  "id": "butternut-squash-soup",
+  "title": "Butternut Squash Soup",
+  "category": "Soups",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AButternut_Squash_Soup"
+  },
+  "totalMinutes": 85,
+  "ingredients": [
+    {
+      "amount": "1 medium",
+      "name": "butternut squash"
+    },
+    {
+      "amount": "2 medium",
+      "name": "onions, peeled and halved"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "4 cups",
+      "name": "chicken stock or vegetable stock"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "cream sherry"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "nutmeg"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 400 °F."
+    },
+    {
+      "instruction": "Cut the squash in half lengthwise and remove the seeds."
+    },
+    {
+      "instruction": "Rub the onions and squash with 2 tablespoons of olive oil."
+    },
+    {
+      "instruction": "Bake the squash and onions uncovered for 1 hour.",
+      "spoken": "Bake the squash and onions uncovered for about 1 hour, until soft when poked with a fork.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Let the squash and onions cool a little."
+    },
+    {
+      "instruction": "Spoon the squash pulp into a food processor."
+    },
+    {
+      "instruction": "Add the onions and 1 cup of stock.",
+      "spoken": "Add the onions and 1 to 2 cups of the chicken or vegetable stock."
+    },
+    {
+      "instruction": "Purée until smooth."
+    },
+    {
+      "instruction": "Pour the soup into a cooking pot."
+    },
+    {
+      "instruction": "Add 2 cloves of minced garlic, 1/4 cup of sherry and 1 teaspoon of nutmeg."
+    },
+    {
+      "instruction": "Stir the soup over medium heat."
+    },
+    {
+      "instruction": "Add the rest of the stock and cook until hot."
+    },
+    {
+      "instruction": "Season to taste."
+    }
+  ]
+}

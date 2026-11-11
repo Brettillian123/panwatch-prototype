@@ -1,0 +1,86 @@
+{
+  "id": "vegan-fish-sauce",
+  "title": "Vegan Fish Sauce",
+  "category": "Sauces and dips",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AFish_Sauce_%28Vegan%29"
+  },
+  "totalMinutes": 75,
+  "ingredients": [
+    {
+      "amount": "1 1/2 cups",
+      "name": "shredded dried seaweed"
+    },
+    {
+      "amount": "4 cups",
+      "name": "water"
+    },
+    {
+      "amount": "3 large cloves",
+      "name": "garlic, crushed but not peeled"
+    },
+    {
+      "amount": "1 1/2 tablespoons",
+      "name": "black peppercorns"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "dark Chinese soy sauce"
+    },
+    {
+      "amount": "2 cups",
+      "name": "boiling water, extra as needed"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Place 1 1/2 cups of shredded dried seaweed in a pot."
+    },
+    {
+      "instruction": "Add 4 cups of water to the pot."
+    },
+    {
+      "instruction": "Bring to a boil, then lower the heat to keep it bubbling."
+    },
+    {
+      "instruction": "Cook for 20 minutes.",
+      "timer": {
+        "label": "Seaweed",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Add 3 large cloves of garlic, crushed but not peeled."
+    },
+    {
+      "instruction": "Add 1 1/2 tablespoons of black peppercorns."
+    },
+    {
+      "instruction": "Add 1/2 cup of dark Chinese soy sauce."
+    },
+    {
+      "instruction": "Add enough boiling water to make about 6 cups in the pot."
+    },
+    {
+      "instruction": "Bring back to a boil, then boil fairly high for 30 minutes.",
+      "spoken": "Bring it back to a boil, then boil fairly high for at least 30 minutes.",
+      "timer": {
+        "label": "Boil",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Taste just a little. It is strong.",
+      "spoken": "Now start to taste, but only a little. It is strong."
+    },
+    {
+      "instruction": "Keep boiling until the liquid has reduced by about half.",
+      "spoken": "Keep boiling until the liquid has reduced by about half. It will be almost too salty to eat. That tells you to stop."
+    },
+    {
+      "instruction": "Strain through fine mesh or a coffee filter, and let it cool."
+    }
+  ]
+}

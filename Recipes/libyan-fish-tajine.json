@@ -1,0 +1,131 @@
+{
+  "id": "libyan-fish-tajine",
+  "title": "Libyan Fish Tajine",
+  "category": "Fish",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ATajine_bil_Samak_%28Libyan_Fish_Tajine%29"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "4-6",
+      "name": "fish fillets, such as cod, haddock, or tilapia"
+    },
+    {
+      "amount": "2",
+      "name": "tomatoes, diced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "tomato paste"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground paprika"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground cayenne pepper, adjust to your spice preference"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground coriander"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground caraway seeds"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "1 cup",
+      "name": "water"
+    },
+    {
+      "amount": "to taste",
+      "name": "fresh parsley or cilantro, chopped, for garnish"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 tablespoons of olive oil in a tajine or large pan over medium heat."
+    },
+    {
+      "instruction": "Add 1 finely chopped onion and 2 cloves of minced garlic."
+    },
+    {
+      "instruction": "Cook until the onion is translucent and fragrant."
+    },
+    {
+      "instruction": "Place 4 to 6 fish fillets in the pan."
+    },
+    {
+      "instruction": "Cook a few minutes on each side, until lightly browned."
+    },
+    {
+      "instruction": "Take the fish out of the pan and set it aside."
+    },
+    {
+      "instruction": "In the same pan, add 2 diced tomatoes and 1 tablespoon of tomato paste."
+    },
+    {
+      "instruction": "Stir well to combine."
+    },
+    {
+      "instruction": "Add 1 teaspoon of ground cumin, 1 teaspoon of paprika and 1/2 teaspoon of cayenne pepper."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of ground coriander and 1/2 teaspoon of ground caraway seeds."
+    },
+    {
+      "instruction": "Add salt and pepper to taste."
+    },
+    {
+      "instruction": "Mix the spices into the tomato mixture."
+    },
+    {
+      "instruction": "Pour in 1 cup of water and stir until the sauce is well combined."
+    },
+    {
+      "instruction": "Return the fish to the pan, nestling it into the sauce."
+    },
+    {
+      "instruction": "Cover with a lid and simmer for 10 minutes.",
+      "spoken": "Cover with a lid and let the fish simmer in the sauce for about 10 to 15 minutes, until it flakes easily with a fork.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Take the pan off the heat."
+    },
+    {
+      "instruction": "Sprinkle chopped parsley or cilantro on top."
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": "indian-beans",
+  "title": "Indian Beans",
+  "category": "Beans and lentils",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AIndian_Beans"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1/2 can",
+      "name": "tomatoes"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "paprika"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "sugar"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "cumin"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "turmeric"
+    },
+    {
+      "amount": "1 can",
+      "name": "lentils"
+    },
+    {
+      "amount": "1 can",
+      "name": "kidney beans"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Chop 1 onion."
+    },
+    {
+      "instruction": "Sauté the chopped onion in a pan."
+    },
+    {
+      "instruction": "Add 1/2 can of tomatoes."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon each of paprika, salt and sugar."
+    },
+    {
+      "instruction": "Add 1/4 teaspoon of cumin and 1 pinch of turmeric."
+    },
+    {
+      "instruction": "Add 1 can of lentils and 1 can of kidney beans, then cook for 20 minutes.",
+      "spoken": "Add 1 can of lentils and 1 can of kidney beans. Cook everything over medium heat for 20 minutes.",
+      "watch": {
+        "ingredient": "lentils and kidney beans",
+        "timerLabel": "Beans",
+        "timerMinutes": 20
+      }
+    }
+  ]
+}

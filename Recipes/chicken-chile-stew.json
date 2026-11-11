@@ -53,7 +53,7 @@
     },
     {
       "instruction": "Brown 3 pounds of cubed chicken in the skillet, in batches.",
-      "spoken": "Brown the chicken cubes in batches, using more cooking spray as needed."
+      "spoken": "Brown 3 pounds of cubed chicken in the skillet, in batches. Brown the chicken cubes in batches, using more cooking spray as needed."
     },
     {
       "instruction": "Place the chicken in a 3- or 4-quart casserole with a cover."
@@ -78,7 +78,7 @@
     },
     {
       "instruction": "Cover the casserole and simmer for 90 minutes.",
-      "spoken": "Cover the casserole and simmer for about an hour and a half, until the stew is thick and the meat is very tender.",
+      "spoken": "Cover the casserole and simmer for 90 minutes. Cover the casserole and simmer for about an hour and a half, until the stew is thick and the meat is very tender.",
       "timer": {
         "label": "Simmer",
         "minutes": 90

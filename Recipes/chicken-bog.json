@@ -1,0 +1,97 @@
+{
+  "id": "chicken-bog",
+  "title": "Chicken Bog",
+  "category": "Chicken",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChicken_Bog_II"
+  },
+  "serves": 6,
+  "totalMinutes": 115,
+  "ingredients": [
+    {
+      "amount": "6 cups",
+      "name": "water"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 medium",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "1",
+      "name": "whole chicken, about 3 pounds"
+    },
+    {
+      "amount": "1 cup",
+      "name": "long-grain rice"
+    },
+    {
+      "amount": "1/2 pound",
+      "name": "smoked sausage, sliced"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "herb seasoning"
+    },
+    {
+      "amount": "1 packet",
+      "name": "chicken and herb seasoning"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 6 cups of water, 1 tablespoon of salt and 1 chopped onion in a pot."
+    },
+    {
+      "instruction": "Add 1 whole chicken, about 3 pounds, to the pot."
+    },
+    {
+      "instruction": "Boil for 1 hour, until the chicken is tender.",
+      "spoken": "Boil for about 1 hour, until the chicken is tender.",
+      "timer": {
+        "label": "Chicken",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Take the chicken out of the pot and let it cool."
+    },
+    {
+      "instruction": "Take the meat off the bones."
+    },
+    {
+      "instruction": "Chop the meat into bite-sized pieces."
+    },
+    {
+      "instruction": "Skim the fat off the juices in the pot."
+    },
+    {
+      "instruction": "Measure 3 1/2 cups of the broth into a 6-quart saucepan."
+    },
+    {
+      "instruction": "Add 1 cup of long-grain rice and the chicken pieces."
+    },
+    {
+      "instruction": "Add 1/2 pound of sliced smoked sausage."
+    },
+    {
+      "instruction": "Add 2 tablespoons of herb seasoning and 1 packet of chicken and herb seasoning."
+    },
+    {
+      "instruction": "Bring the pan to a boil."
+    },
+    {
+      "instruction": "Lower the heat, cover, and simmer for 30 minutes.",
+      "spoken": "Lower the heat and simmer for 30 minutes. Keep the pan covered the entire time. If the rice mixture is too wet, cook it uncovered until it is the thickness you like.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 30
+      }
+    }
+  ]
+}

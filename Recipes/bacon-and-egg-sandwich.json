@@ -1,0 +1,88 @@
+{
+  "id": "bacon-and-egg-sandwich",
+  "title": "Bacon and Egg Sandwich",
+  "category": "Sandwiches and wraps",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AFried_Bacon_and_Egg_Sandwich_%28Homemade_Egg_McMuffin%29"
+  },
+  "serves": 2,
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "4 strips",
+      "name": "bacon"
+    },
+    {
+      "amount": "2",
+      "name": "English muffins, sliced in half"
+    },
+    {
+      "amount": "2",
+      "name": "eggs"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Fry 4 strips of bacon in one layer over medium heat, turning often.",
+      "spoken": "Fry 4 strips of bacon in one layer over medium heat, turning often, until browned and crisp to your taste. Lower the heat if the fat starts to spatter."
+    },
+    {
+      "instruction": "Move the bacon to a plate lined with paper towels."
+    },
+    {
+      "instruction": "Pat the bacon with another paper towel to remove extra fat."
+    },
+    {
+      "instruction": "Pour most of the fat into a teacup, leaving the brown bits in the pan."
+    },
+    {
+      "instruction": "Wash and dry the pan, then put it back on the heat."
+    },
+    {
+      "instruction": "Pour about 1 tablespoon of the bacon fat back into the pan."
+    },
+    {
+      "instruction": "Toast the 2 English muffins."
+    },
+    {
+      "instruction": "Crack 2 eggs into the pan.",
+      "spoken": "Crack 2 eggs into the pan and fry them for about 2 minutes.",
+      "watch": {
+        "ingredient": "eggs",
+        "timerLabel": "Eggs",
+        "timerMinutes": 2,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Season the eggs with salt and pepper."
+    },
+    {
+      "instruction": "Break the yolks, spread them over the whites and flip the eggs.",
+      "cue": {
+        "timerLabel": "Eggs",
+        "secondsLeft": 0
+      }
+    },
+    {
+      "instruction": "Fry the eggs for 1 more minute.",
+      "timer": {
+        "label": "Flip",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Make 2 sandwiches with the muffins, bacon and eggs."
+    }
+  ]
+}

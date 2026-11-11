@@ -1,0 +1,70 @@
+{
+  "id": "baked-brie-in-puff-pastry",
+  "title": "Baked Brie in Puff Pastry",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABaked_Brie_in_Puff_Pastry"
+  },
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "10 ounces",
+      "name": "Brie cheese, rind removed and brought to room temperature"
+    },
+    {
+      "amount": "1 sheet",
+      "name": "puff pastry, thawed"
+    },
+    {
+      "amount": "1",
+      "name": "egg, beaten"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "freshly-ground black pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 375 °F."
+    },
+    {
+      "instruction": "Place 10 ounces of Brie cheese in the middle of 1 sheet of puff pastry."
+    },
+    {
+      "instruction": "Trim about 1/2 inch off the pastry."
+    },
+    {
+      "instruction": "Fold the pastry over the cheese."
+    },
+    {
+      "instruction": "Brush the last fold with beaten egg to seal the pastry."
+    },
+    {
+      "instruction": "Brush the top with beaten egg."
+    },
+    {
+      "instruction": "Bake for 15 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Take the Brie out of the oven and cool it 10 minutes.",
+      "timer": {
+        "label": "Cool",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Season with 1 teaspoon of salt and 1 teaspoon of black pepper."
+    }
+  ]
+}

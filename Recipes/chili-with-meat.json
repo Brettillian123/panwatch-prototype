@@ -1,0 +1,101 @@
+{
+  "id": "chili-with-meat",
+  "title": "Chili with Meat",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChili_with_Meat"
+  },
+  "totalMinutes": 140,
+  "ingredients": [
+    {
+      "amount": "2 pounds",
+      "name": "ground meat, such as beef, pork or turkey"
+    },
+    {
+      "amount": "2 cans",
+      "name": "tomato sauce, 29 ounces each"
+    },
+    {
+      "amount": "2 cans",
+      "name": "kidney beans, 29 ounces each, with liquid"
+    },
+    {
+      "amount": "2 cans",
+      "name": "black beans, 29 ounces each, with liquid"
+    },
+    {
+      "amount": "2 cans",
+      "name": "pinto beans, 29 ounces each, with liquid"
+    },
+    {
+      "amount": "2 cans",
+      "name": "diced tomatoes, 29 ounces each"
+    },
+    {
+      "amount": "2 cups",
+      "name": "water"
+    },
+    {
+      "amount": "1 medium",
+      "name": "onion, diced"
+    },
+    {
+      "amount": "2 stalks",
+      "name": "celery, diced"
+    },
+    {
+      "amount": "3 teaspoons",
+      "name": "cumin powder"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "chili powder"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "black pepper"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Cook 2 pounds of ground meat in a large pot over medium-high heat.",
+      "spoken": "Cook 2 pounds of ground meat in a large pot over medium-high heat, until it is no longer pink."
+    },
+    {
+      "instruction": "Drain off the fat and throw it away."
+    },
+    {
+      "instruction": "Add 2 cans of tomato sauce and 2 cans of diced tomatoes."
+    },
+    {
+      "instruction": "Add 2 cans each of kidney beans, black beans and pinto beans.",
+      "spoken": "Add 2 cans each of kidney beans, black beans and pinto beans, with the liquid from the cans."
+    },
+    {
+      "instruction": "Add 2 cups of water, 1 diced onion and 2 diced celery stalks."
+    },
+    {
+      "instruction": "Add 3 teaspoons of cumin powder and 3 tablespoons of chili powder."
+    },
+    {
+      "instruction": "Add 2 teaspoons of black pepper and 2 teaspoons of salt."
+    },
+    {
+      "instruction": "Bring it to a boil."
+    },
+    {
+      "instruction": "Turn the heat to low and simmer for 2 hours, stirring now and then.",
+      "spoken": "Turn the heat to low and simmer for 2 to three hours, stirring now and then.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 120
+      }
+    }
+  ]
+}

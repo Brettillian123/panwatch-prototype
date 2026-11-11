@@ -1,0 +1,109 @@
+{
+  "id": "chocolate-chip-balls",
+  "title": "Chocolate Chip Balls",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChocolate_Chip_Balls"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "2 sticks",
+      "name": "butter, softened"
+    },
+    {
+      "amount": "1 cup",
+      "name": "granulated white sugar"
+    },
+    {
+      "amount": "1 cup",
+      "name": "brown sugar, packed"
+    },
+    {
+      "amount": "2",
+      "name": "extra-large eggs"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "2 cups",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "2 cups",
+      "name": "oat flour"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "baking soda"
+    },
+    {
+      "amount": "2 cups",
+      "name": "semi-sweet chocolate morsels or chocolate chips"
+    },
+    {
+      "amount": "4 ounces",
+      "name": "milk chocolate, grated"
+    },
+    {
+      "amount": "3 cups",
+      "name": "chopped nuts, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 375 °F."
+    },
+    {
+      "instruction": "Cream 2 sticks of softened butter with 1 cup of granulated white sugar."
+    },
+    {
+      "instruction": "Add 1 cup of packed brown sugar and cream again."
+    },
+    {
+      "instruction": "Beat in 2 extra-large eggs and 1 teaspoon of vanilla extract."
+    },
+    {
+      "instruction": "Sift in 2 cups of all-purpose flour and 2 cups of oat flour."
+    },
+    {
+      "instruction": "Sift in 1/2 teaspoon of salt, 1 teaspoon baking powder and 1 teaspoon baking soda."
+    },
+    {
+      "instruction": "Stir in 2 cups of chocolate chips and 4 ounces of grated milk chocolate."
+    },
+    {
+      "instruction": "Stir in 3 cups of chopped nuts, if you like."
+    },
+    {
+      "instruction": "Roll the dough into balls and place them 2 inches apart on a cookie sheet."
+    },
+    {
+      "instruction": "Bake for 10 minutes, until golden brown.",
+      "spoken": "Bake for 10 minutes, or until golden brown. Baking times may vary.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Let the cookies stand 1 minute, then move them to a plate or cooling sheet.",
+      "timer": {
+        "label": "Stand",
+        "minutes": 1
+      }
+    }
+  ]
+}

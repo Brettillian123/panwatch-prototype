@@ -1,0 +1,90 @@
+{
+  "id": "mascarpone-cornbread-stuffing",
+  "title": "Mascarpone Cornbread Stuffing",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACheesy_Mascarpone_Cornbread_Stuffing"
+  },
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "2 1/2 cups",
+      "name": "cornbread, crumbled"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "mascarpone cheese, divided"
+    },
+    {
+      "amount": "2 cups",
+      "name": "heavy cream, whipped to soft peaks"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "black pepper"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "sage, sliced thinly"
+    },
+    {
+      "amount": "4",
+      "name": "egg yolks, beaten"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "butter, melted"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Add 2 1/2 cups of crumbled cornbread and 1/2 cup of mascarpone cheese to a large bowl.",
+      "spoken": "Add 2 and a half cups of crumbled cornbread and 1/2 cup of the mascarpone to a large bowl. Keep the other 1/4 cup of mascarpone for later."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of salt, 1/2 teaspoon of black pepper and 1 tablespoon of sage."
+    },
+    {
+      "instruction": "Add 4 beaten egg yolks and 1/4 cup of melted butter."
+    },
+    {
+      "instruction": "Mix everything together."
+    },
+    {
+      "instruction": "Gently fold in 2 cups of heavy cream, whipped to soft peaks."
+    },
+    {
+      "instruction": "Put the mixture in a baking dish."
+    },
+    {
+      "instruction": "Bake for 30 minutes.",
+      "spoken": "Bake for 30 to 35 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Spread the remaining 1/4 cup of mascarpone cheese on top."
+    },
+    {
+      "instruction": "Put it under a preheated broiler until browned and bubbly."
+    },
+    {
+      "instruction": "Let it cool for 10 minutes before serving.",
+      "timer": {
+        "label": "Cool",
+        "minutes": 10
+      }
+    }
+  ]
+}

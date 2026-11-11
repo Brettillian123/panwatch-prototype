@@ -1,0 +1,87 @@
+{
+  "id": "basic-scones",
+  "title": "Basic Scones",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABasic_Scones"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "flour"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "butter"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "granulated sugar"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "to taste",
+      "name": "milk, extra for glazing"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 450 °F."
+    },
+    {
+      "instruction": "Sift 1 cup of flour, 1 teaspoon of baking powder and 1 pinch of salt into a bowl."
+    },
+    {
+      "instruction": "Rub in 2 tablespoons of butter."
+    },
+    {
+      "instruction": "Add 1 tablespoon of sugar."
+    },
+    {
+      "instruction": "Add 1/2 cup of milk and mix with a knife into a soft, not sticky, dough."
+    },
+    {
+      "instruction": "Turn the dough onto a lightly floured board."
+    },
+    {
+      "instruction": "Knead it quickly until smooth."
+    },
+    {
+      "instruction": "Roll out the dough to about 1/2 inch thick."
+    },
+    {
+      "instruction": "Cut 16 rounds with a 2-inch fluted cookie cutter."
+    },
+    {
+      "instruction": "Place the rounds on a buttered cookie sheet."
+    },
+    {
+      "instruction": "Brush the tops with milk."
+    },
+    {
+      "instruction": "Bake near the top of the oven for 8 minutes, until risen and golden brown.",
+      "spoken": "Bake near the top of the hot oven for 8 to 10 minutes, until the scones are well risen and golden brown.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 8
+      }
+    },
+    {
+      "instruction": "Cool the scones on a wire rack. Makes 16 scones."
+    }
+  ]
+}

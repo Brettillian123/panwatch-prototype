@@ -1,0 +1,72 @@
+{
+  "id": "italian-marinated-chicken",
+  "title": "Italian Marinated Chicken",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AItalian_Marinated_Chicken"
+  },
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "1 3/4 cups",
+      "name": "chicken broth"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "canned diced tomatoes, drained"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "grated Parmesan cheese"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "Italian seasoning, crushed"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "6",
+      "name": "skinless boneless chicken breast halves"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1 3/4 cups of chicken broth in a shallow non-metal dish."
+    },
+    {
+      "instruction": "Add 1 tablespoon of drained tomatoes and 1 teaspoon of Parmesan cheese."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of crushed Italian seasoning and 1/4 teaspoon of garlic powder."
+    },
+    {
+      "instruction": "Set half of this mixture aside."
+    },
+    {
+      "instruction": "Add 6 chicken breast halves to the dish and turn to coat."
+    },
+    {
+      "instruction": "Cover the dish and refrigerate for 30 minutes.",
+      "timer": {
+        "label": "Marinate",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Take the chicken out of the dish and throw away the marinade."
+    },
+    {
+      "instruction": "Grill or broil for 15 minutes, turning and brushing with the set-aside mixture.",
+      "spoken": "Grill or broil the chicken for 15 minutes, turning it and brushing it often with the mixture you set aside. Look for chicken that is no longer pink in the middle.",
+      "timer": {
+        "label": "Grill",
+        "minutes": 15
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "oaties",
+  "title": "Oaties",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AOaties"
+  },
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "8 ounces",
+      "name": "butter or margarine"
+    },
+    {
+      "amount": "4 ounces",
+      "name": "white sugar"
+    },
+    {
+      "amount": "6 ounces",
+      "name": "black treacle"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "rolled oats"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "self-rising flour"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "baking powder"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Put 8 ounces butter or margarine, 4 ounces sugar and 6 ounces treacle in a saucepan."
+    },
+    {
+      "instruction": "Stir over low heat until the butter or margarine and sugar have melted."
+    },
+    {
+      "instruction": "Add 8 ounces each of oats and self-rising flour, and 2 teaspoons of baking powder."
+    },
+    {
+      "instruction": "Mix everything together thoroughly."
+    },
+    {
+      "instruction": "Press the mixture into two well-greased 7-inch round cake tins."
+    },
+    {
+      "instruction": "Bake in the center of the oven for 20 minutes.",
+      "spoken": "Bake in the center of the oven for 20 to 25 minutes, until a skewer pushed into the middle comes out clean.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Mark the top into slices while it is still warm."
+    },
+    {
+      "instruction": "Let it cool almost completely in the tin before removing it."
+    }
+  ]
+}

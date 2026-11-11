@@ -1,0 +1,86 @@
+{
+  "id": "choripan",
+  "title": "Choripán",
+  "category": "Sandwiches and wraps",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChorip%C3%A1n_%28Argentine_Chorizo_Sandwich%29"
+  },
+  "serves": 2,
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "2",
+      "name": "fresh Argentinian chorizo sausages"
+    },
+    {
+      "amount": "2",
+      "name": "crusty bread rolls"
+    },
+    {
+      "amount": "to taste",
+      "name": "sliced tomato, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "lettuce, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "mayonnaise"
+    },
+    {
+      "amount": "to taste",
+      "name": "chimichurri sauce"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Preheat the grill to 350 °F."
+    },
+    {
+      "instruction": "Grill the 2 chorizo sausages for 20 minutes.",
+      "timer": {
+        "label": "Side one",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Turn the sausages and grill 20 more minutes.",
+      "timer": {
+        "label": "Side two",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Slice the 2 bread rolls in half.",
+      "cue": {
+        "timerLabel": "Side two",
+        "secondsLeft": 180
+      }
+    },
+    {
+      "instruction": "Char the roll halves slightly on the grill."
+    },
+    {
+      "instruction": "Take the chorizo sausages off the grill."
+    },
+    {
+      "instruction": "Slice the sausages lengthwise, butterfly style."
+    },
+    {
+      "instruction": "Spread mayonnaise on the bread halves."
+    },
+    {
+      "instruction": "Put 1 sausage in each roll."
+    },
+    {
+      "instruction": "Add tomato slices and lettuce to taste, if you like."
+    },
+    {
+      "instruction": "Top with chimichurri sauce.",
+      "spoken": "Top with chimichurri sauce. This makes 2 sandwiches."
+    }
+  ]
+}

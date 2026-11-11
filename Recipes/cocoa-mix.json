@@ -1,0 +1,40 @@
+{
+  "id": "cocoa-mix",
+  "title": "Cocoa Mix",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACocoa_Mix"
+  },
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "4 cups",
+      "name": "nonfat dry milk powder"
+    },
+    {
+      "amount": "1 cup",
+      "name": "cocoa powder"
+    },
+    {
+      "amount": "1 cup",
+      "name": "white sugar"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Combine 4 cups dry milk powder, 1 cup cocoa powder, 1 cup sugar and 1/2 teaspoon salt."
+    },
+    {
+      "instruction": "Mix everything thoroughly."
+    },
+    {
+      "instruction": "Store the mix in an airtight container."
+    }
+  ]
+}

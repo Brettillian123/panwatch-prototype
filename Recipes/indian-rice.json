@@ -1,0 +1,73 @@
+{
+  "id": "indian-rice",
+  "title": "Indian Rice",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AIndian_Rice"
+  },
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "2 teaspoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cumin"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "raisins"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "cashews"
+    },
+    {
+      "amount": "2 cups",
+      "name": "basmati rice"
+    },
+    {
+      "amount": "4 cups",
+      "name": "water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 teaspoons of olive oil in a pot."
+    },
+    {
+      "instruction": "Add 1 teaspoon of cumin."
+    },
+    {
+      "instruction": "Add 1/2 cup of raisins and 1/4 cup of cashews and stir for 2 minutes.",
+      "watch": {
+        "ingredient": "raisins and cashews",
+        "timerLabel": "Raisins",
+        "timerMinutes": 2,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Add 2 cups of basmati rice and stir for 1 minute.",
+      "watch": {
+        "ingredient": "rice",
+        "timerLabel": "Rice",
+        "timerMinutes": 1,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Pour in 4 cups of water and bring everything to a boil."
+    },
+    {
+      "instruction": "Lower the heat, cover the pot and cook for 12 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 12
+      }
+    }
+  ]
+}

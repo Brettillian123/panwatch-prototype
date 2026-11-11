@@ -1,0 +1,104 @@
+{
+  "id": "brioche-stuffing",
+  "title": "Brioche Stuffing",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABrioche_Stuffing"
+  },
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "brioche bread, coarsely chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "shelled walnuts, finely chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "dried apples, coarsely chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "red onion, diced"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "celery, diced"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, smashed and minced"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "honey"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "unsalted butter, cut into small cubes"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "brown sugar"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "dried rubbed sage"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 375 °F."
+    },
+    {
+      "instruction": "Add 2 cups of chopped brioche bread to a deep roasting pan."
+    },
+    {
+      "instruction": "Add 1/2 cup of chopped walnuts and 1/4 cup of chopped dried apples."
+    },
+    {
+      "instruction": "Add 1/4 cup of diced red onion, 1/4 cup of diced celery and 2 cloves of minced garlic."
+    },
+    {
+      "instruction": "Add 1/4 cup of honey and 1/4 cup of butter cut into small cubes."
+    },
+    {
+      "instruction": "Add 2 tablespoons of brown sugar and 1/2 teaspoon of dried rubbed sage."
+    },
+    {
+      "instruction": "Season with salt and pepper."
+    },
+    {
+      "instruction": "Press everything into a loose, flat layer."
+    },
+    {
+      "instruction": "Bake for 25 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 25
+      }
+    },
+    {
+      "instruction": "Raise the oven temperature to 425 °F."
+    },
+    {
+      "instruction": "Bake for 10 minutes.",
+      "timer": {
+        "label": "Crisp",
+        "minutes": 10
+      }
+    }
+  ]
+}

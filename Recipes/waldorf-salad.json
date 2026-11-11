@@ -1,0 +1,97 @@
+{
+  "id": "waldorf-salad",
+  "title": "Waldorf Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AWaldorf_Salad"
+  },
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "1 large",
+      "name": "Granny Smith apple"
+    },
+    {
+      "amount": "1 large",
+      "name": "Red Delicious apple"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "raisins"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "chopped walnuts"
+    },
+    {
+      "amount": "1/3 cup",
+      "name": "chopped celery"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "mayonnaise"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "white granulated sugar"
+    },
+    {
+      "amount": "6 large leaves",
+      "name": "lettuce"
+    },
+    {
+      "amount": "10",
+      "name": "maraschino cherries, halved"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Slice the 2 apples into wedges and place them in a bowl."
+    },
+    {
+      "instruction": "Pour 1 tablespoon of lemon juice over the apples.",
+      "spoken": "Pour 1 tablespoon of lemon juice over the apples, so they have a light coating. This keeps them from browning."
+    },
+    {
+      "instruction": "Soak 1/3 cup of raisins in warm water for 5 minutes.",
+      "timer": {
+        "label": "Raisins",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Drain the raisins well."
+    },
+    {
+      "instruction": "Mix the celery, raisins and walnuts into the apples."
+    },
+    {
+      "instruction": "Mix 2 tablespoons of mayonnaise and 1 tablespoon of sugar together."
+    },
+    {
+      "instruction": "Pour the mayonnaise mixture over the apples and mix to coat lightly."
+    },
+    {
+      "instruction": "Chill the salad for at least 30 minutes.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Place 3 lettuce leaves on each of 2 plates."
+    },
+    {
+      "instruction": "Put half of the salad on each set of leaves."
+    },
+    {
+      "instruction": "Sprinkle 5 halved cherries on each salad."
+    }
+  ]
+}

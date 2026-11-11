@@ -1,0 +1,78 @@
+{
+  "id": "corn-soup",
+  "title": "Corn Soup",
+  "category": "Soups",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACorn_Soup"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "4 cups",
+      "name": "corn, cut off the cob"
+    },
+    {
+      "amount": "6 cups",
+      "name": "water"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "unsalted butter"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "flour"
+    },
+    {
+      "amount": "1 large",
+      "name": "egg"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Combine 4 cups of corn and 6 cups of water in a large pot."
+    },
+    {
+      "instruction": "Bring the pot to a boil."
+    },
+    {
+      "instruction": "Melt 4 tablespoons of unsalted butter in a pan."
+    },
+    {
+      "instruction": "Stir in 1 tablespoon of flour to make a roux."
+    },
+    {
+      "instruction": "Add the roux to the soup when the corn is tender."
+    },
+    {
+      "instruction": "Boil the soup for 10 more minutes.",
+      "spoken": "Boil the soup for another 10 to 15 minutes.",
+      "timer": {
+        "label": "Boil",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Beat 1 large egg."
+    },
+    {
+      "instruction": "Add the beaten egg to the soup."
+    },
+    {
+      "instruction": "Take the soup off the heat right away."
+    },
+    {
+      "instruction": "Season with salt and pepper to taste."
+    }
+  ]
+}

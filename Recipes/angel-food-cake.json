@@ -60,7 +60,7 @@
     },
     {
       "instruction": "Bake for 75 minutes, until the top is nicely browned.",
-      "spoken": "Bake for an hour and fifteen minutes, or until the top is nicely browned.",
+      "spoken": "Bake for 75 minutes, until the top is nicely browned. Bake for an hour and fifteen minutes, or until the top is nicely browned.",
       "timer": {
         "label": "Bake",
         "minutes": 75

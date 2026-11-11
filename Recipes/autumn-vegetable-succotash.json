@@ -54,7 +54,7 @@
     },
     {
       "instruction": "Add 1 cup of diced onion.",
-      "spoken": "Cook for 2 minutes, until the onion is soft and clear.",
+      "spoken": "Add 1 cup of diced onion. Cook for 2 minutes, until the onion is soft and clear.",
       "watch": {
         "ingredient": "onion",
         "timerLabel": "Onion",

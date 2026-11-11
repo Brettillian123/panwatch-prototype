@@ -1,0 +1,56 @@
+{
+  "id": "creamy-parmesan-dressing",
+  "title": "Creamy Parmesan Dressing",
+  "category": "Sauces and dips",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3A%27Out_of_Salad_Dressing%27_Salad_Dressing"
+  },
+  "totalMinutes": 490,
+  "ingredients": [
+    {
+      "amount": "1 1/2",
+      "name": "lemons, juiced"
+    },
+    {
+      "amount": "1 cup",
+      "name": "Parmesan cheese, freshly grated"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "garlic salt"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "mayonnaise"
+    },
+    {
+      "amount": "1 cup",
+      "name": "milk"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add the juice of 1 1/2 lemons to a bowl."
+    },
+    {
+      "instruction": "Add 1 cup of freshly grated Parmesan cheese and 2 teaspoons of garlic salt."
+    },
+    {
+      "instruction": "Add 3/4 cup of mayonnaise and mix until smooth."
+    },
+    {
+      "instruction": "Stir in 1 cup of milk.",
+      "spoken": "Stir in 1 cup of milk. Use less milk, or add a little water, to make the dressing as thin or thick as you like."
+    },
+    {
+      "instruction": "Cover and refrigerate for 8 hours.",
+      "spoken": "Cover and refrigerate for 8 hours, or overnight.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 480
+      }
+    }
+  ]
+}

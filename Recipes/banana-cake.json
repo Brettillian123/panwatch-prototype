@@ -1,0 +1,116 @@
+{
+  "id": "banana-cake",
+  "title": "Banana Cake",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABanana_Cake"
+  },
+  "serves": 8,
+  "totalMinutes": 90,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "baking soda"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground cinnamon"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "unsalted butter, softened"
+    },
+    {
+      "amount": "1 cup",
+      "name": "granulated sugar"
+    },
+    {
+      "amount": "2",
+      "name": "eggs"
+    },
+    {
+      "amount": "1 1/2 teaspoons",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "3",
+      "name": "ripe bananas, mashed"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "buttermilk"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Grease and flour a 9-inch round cake pan."
+    },
+    {
+      "instruction": "Whisk 2 cups of flour and 1 1/2 teaspoons of baking powder in a medium bowl."
+    },
+    {
+      "instruction": "Whisk in 1/2 teaspoon each of baking soda, salt and ground cinnamon."
+    },
+    {
+      "instruction": "Set the flour mixture aside."
+    },
+    {
+      "instruction": "Cream 1/2 cup of softened butter and 1 cup of sugar until light and fluffy."
+    },
+    {
+      "instruction": "Beat in 2 eggs, one at a time."
+    },
+    {
+      "instruction": "Beat in 1 1/2 teaspoons of vanilla extract."
+    },
+    {
+      "instruction": "Add 3 mashed ripe bananas and mix until well combined."
+    },
+    {
+      "instruction": "Add the flour mixture a little at a time, alternating with 1/2 cup of buttermilk.",
+      "spoken": "Add the flour mixture a little at a time, alternating with 1/2 cup of buttermilk. Begin and end with the flour mixture. Mix just until combined after each addition. Be careful not to overmix."
+    },
+    {
+      "instruction": "Pour the batter into the cake pan."
+    },
+    {
+      "instruction": "Smooth the top with a spatula."
+    },
+    {
+      "instruction": "Bake for 45 minutes.",
+      "spoken": "Bake for 45 to 50 minutes, until a toothpick put into the center of the cake comes out clean.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 45
+      }
+    },
+    {
+      "instruction": "Let the cake cool in the pan for 10 minutes.",
+      "spoken": "Take the cake out of the oven. Let it cool in the pan for about 10 minutes.",
+      "timer": {
+        "label": "Cool",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Move the cake to a wire rack to cool completely."
+    }
+  ]
+}

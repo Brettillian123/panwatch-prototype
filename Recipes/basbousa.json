@@ -1,0 +1,113 @@
+{
+  "id": "basbousa",
+  "title": "Basbousa (Egyptian Semolina Cake)",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABasbousa_%28Egyptian_Semolina_Cake%29"
+  },
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "fine semolina"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "desiccated coconut"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "unsalted butter, melted"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "granulated sugar"
+    },
+    {
+      "amount": "1 cup",
+      "name": "plain yogurt"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "to taste",
+      "name": "almonds or pistachios, chopped (for garnish)"
+    },
+    {
+      "amount": "1 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1 cup",
+      "name": "granulated sugar, for the syrup"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "lemon juice"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Combine 1 cup of fine semolina and 1/2 cup of desiccated coconut in a bowl."
+    },
+    {
+      "instruction": "Add 1/2 cup of melted butter and 3/4 cup of granulated sugar."
+    },
+    {
+      "instruction": "Add 1 cup of yogurt, 1 teaspoon baking powder and 1/2 teaspoon vanilla extract."
+    },
+    {
+      "instruction": "Stir well until you have a smooth batter."
+    },
+    {
+      "instruction": "Grease a 9x9 inch baking pan."
+    },
+    {
+      "instruction": "Pour the batter into the pan and spread it evenly."
+    },
+    {
+      "instruction": "Score the top into diamond or square shapes with a knife.",
+      "spoken": "Score the top into diamond or square shapes with a knife. This helps the syrup soak into the cake."
+    },
+    {
+      "instruction": "Bake for 30 minutes, until the top is golden brown.",
+      "spoken": "Bake for 30 to 35 minutes, until the top is golden brown and a toothpick in the center comes out clean.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Bring 1 cup of water, 1 cup of sugar and 1 tablespoon of lemon juice to a boil."
+    },
+    {
+      "instruction": "Stir the syrup now and then until the sugar dissolves."
+    },
+    {
+      "instruction": "Take the syrup off the heat and let it cool."
+    },
+    {
+      "instruction": "Take the cake out of the oven and let it cool for a few minutes."
+    },
+    {
+      "instruction": "Pour the syrup evenly over the warm cake and let it soak in."
+    },
+    {
+      "instruction": "Top with chopped almonds or pistachios."
+    },
+    {
+      "instruction": "Let the cake cool completely before cutting."
+    }
+  ]
+}

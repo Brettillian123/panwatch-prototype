@@ -1,0 +1,72 @@
+{
+  "id": "wheat-halva",
+  "title": "Wheat Halva",
+  "category": "Baking and desserts",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AHalva_%28Wheat-based%29"
+  },
+  "totalMinutes": 80,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "butter or margarine"
+    },
+    {
+      "amount": "1 cup",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "1 1/4 cups",
+      "name": "granulated sugar"
+    },
+    {
+      "amount": "5 cups",
+      "name": "water"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1 cup of butter or margarine very gently in a saucepan."
+    },
+    {
+      "instruction": "Add 1 cup of all-purpose flour to the pan."
+    },
+    {
+      "instruction": "Cook over low to medium heat until golden brown.",
+      "spoken": "Cook for 40 minutes over low to moderate heat, until golden brown.",
+      "timer": {
+        "label": "Flour",
+        "minutes": 40
+      }
+    },
+    {
+      "instruction": "Combine 1 1/4 cups of sugar and 5 cups of water in a separate saucepan.",
+      "spoken": "When the flour turns light golden, combine 1 1/4 cups of sugar and 5 cups of water in a separate saucepan."
+    },
+    {
+      "instruction": "Boil the sugar and water gently to make a syrup."
+    },
+    {
+      "instruction": "Pour the syrup into the saucepan with the flour."
+    },
+    {
+      "instruction": "Simmer for 20 minutes.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Scoop small portions of halva with a wooden spoon."
+    },
+    {
+      "instruction": "Form the portions into balls."
+    },
+    {
+      "instruction": "Place the balls on a serving plate.",
+      "spoken": "Place the balls on a serving plate. Serve warm."
+    }
+  ]
+}

@@ -83,7 +83,7 @@
     },
     {
       "instruction": "Add 1 carrot, cut into thin sticks, and 2 cups of broccoli florets.",
-      "spoken": "Add the carrot and the broccoli florets. Stir-fry for 2 minutes.",
+      "spoken": "Add 1 carrot, cut into thin sticks, and 2 cups of broccoli florets. Stir-fry for 2 minutes.",
       "watch": {
         "ingredient": "broccoli",
         "timerLabel": "Veggies",
@@ -94,7 +94,7 @@
     },
     {
       "instruction": "Add 6 ounces of firm tofu, cut into cubes.",
-      "spoken": "Add the tofu cubes. Stir-fry for 4 minutes.",
+      "spoken": "Add 6 ounces of firm tofu, cut into cubes. Stir-fry for 4 minutes.",
       "watch": {
         "ingredient": "tofu",
         "timerLabel": "Tofu",
@@ -105,7 +105,7 @@
     },
     {
       "instruction": "Add 2 cloves of minced garlic and 2 teaspoons of grated ginger.",
-      "spoken": "Add the garlic and the ginger. Stir-fry for 1 minute.",
+      "spoken": "Add 2 cloves of minced garlic and 2 teaspoons of grated ginger. Stir-fry for 1 minute.",
       "watch": {
         "ingredient": "garlic",
         "timerLabel": "Garlic",

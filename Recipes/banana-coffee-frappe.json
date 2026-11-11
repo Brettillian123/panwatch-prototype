@@ -1,0 +1,43 @@
+{
+  "id": "banana-coffee-frappe",
+  "title": "Banana Coffee Frappe",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABanana_Coffee_Frappe"
+  },
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "1 large",
+      "name": "scoop of vanilla ice cream"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "instant coffee powder"
+    },
+    {
+      "amount": "1/2",
+      "name": "banana, chopped"
+    },
+    {
+      "amount": "6",
+      "name": "ice cubes"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 1 large scoop of vanilla ice cream to a blender."
+    },
+    {
+      "instruction": "Add 1 teaspoon of instant coffee powder and 1/2 banana, chopped."
+    },
+    {
+      "instruction": "Add 6 ice cubes."
+    },
+    {
+      "instruction": "Blend until smooth and frothy."
+    }
+  ]
+}

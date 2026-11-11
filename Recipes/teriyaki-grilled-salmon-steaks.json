@@ -1,0 +1,85 @@
+{
+  "id": "teriyaki-grilled-salmon-steaks",
+  "title": "Teriyaki Grilled Salmon Steaks",
+  "category": "Fish",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ATeriyaki_Grilled_Salmon_Steaks"
+  },
+  "serves": 5,
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "5",
+      "name": "salmon steaks"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "black pepper"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "canola oil"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "soy sauce, reduced-sodium"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "water"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "honey"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "ginger, minced"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "garlic, minced"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Season 5 salmon steaks with 2 tablespoons of black pepper."
+    },
+    {
+      "instruction": "Mix 1 tablespoon of canola oil, 2 tablespoons of soy sauce and 1/4 cup of water."
+    },
+    {
+      "instruction": "Stir in 1 tablespoon of honey, 2 tablespoons each of minced ginger and garlic."
+    },
+    {
+      "instruction": "Put the salmon on a hot grill and cook for 3 minutes.",
+      "spoken": "Put the salmon on a hot grill and cook for 3 to 4 minutes.",
+      "timer": {
+        "label": "First side",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Flip the salmon and cook for 3 minutes, until it flakes.",
+      "spoken": "Flip the salmon and cook for 3 to 4 minutes, until it flakes easily.",
+      "timer": {
+        "label": "Second side",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Brush the sauce mixture over the salmon for 2 minutes.",
+      "spoken": "Brush the teriyaki mixture over the salmon for the last 2 minutes of cooking.",
+      "cue": {
+        "timerLabel": "Second side",
+        "secondsLeft": 120
+      },
+      "timer": {
+        "label": "Glaze",
+        "minutes": 2
+      }
+    }
+  ]
+}

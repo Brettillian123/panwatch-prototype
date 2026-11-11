@@ -1,0 +1,87 @@
+{
+  "id": "cucumber-sprout-sandwich",
+  "title": "Cucumber Sprout Sandwich",
+  "category": "Sandwiches and wraps",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACucumber_Sprout_Sandwich"
+  },
+  "totalMinutes": 15,
+  "ingredients": [
+    {
+      "amount": "2 slices",
+      "name": "whole wheat bread"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "cream cheese, softened"
+    },
+    {
+      "amount": "6 slices",
+      "name": "cucumber, peeled"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "alfalfa sprouts"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "red wine vinegar"
+    },
+    {
+      "amount": "1",
+      "name": "tomato, sliced"
+    },
+    {
+      "amount": "1",
+      "name": "romaine lettuce leaf"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "pepperoncini, sliced"
+    },
+    {
+      "amount": "1/2",
+      "name": "avocado, peeled and mashed"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Spread 1 tablespoon of cream cheese on each slice of bread."
+    },
+    {
+      "instruction": "Arrange 6 slices of peeled cucumber on one slice of bread."
+    },
+    {
+      "instruction": "Cover that slice with 2 tablespoons of alfalfa sprouts."
+    },
+    {
+      "instruction": "Sprinkle on 1 teaspoon of olive oil and 1 teaspoon of red wine vinegar."
+    },
+    {
+      "instruction": "Layer on 1 sliced tomato, 1 lettuce leaf and 2 tablespoons of pepperoncini."
+    },
+    {
+      "instruction": "Spread 1/2 of a mashed avocado on the other slice of bread."
+    },
+    {
+      "instruction": "Add salt and pepper to taste."
+    },
+    {
+      "instruction": "Put the two slices together and serve right away."
+    }
+  ]
+}

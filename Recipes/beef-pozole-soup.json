@@ -77,7 +77,7 @@
     },
     {
       "instruction": "Add 1 can of stewed tomatoes and 2 ounces of tomato paste.",
-      "spoken": "Add the tomatoes and tomato paste. Keep cooking for about 20 minutes.",
+      "spoken": "Add 1 can of stewed tomatoes and 2 ounces of tomato paste. Keep cooking for about 20 minutes.",
       "watch": {
         "ingredient": "tomatoes",
         "timerLabel": "Tomatoes",
@@ -86,7 +86,7 @@
     },
     {
       "instruction": "Add 2 cans of hominy and cook over low heat, stirring now and then.",
-      "spoken": "Add the hominy and keep cooking over low heat for another 15 minutes, stirring now and then. If the soup is too thick, add water.",
+      "spoken": "Add 2 cans of hominy and cook over low heat, stirring now and then. Add the hominy and keep cooking over low heat for another 15 minutes, stirring now and then. If the soup is too thick, add water.",
       "watch": {
         "ingredient": "hominy",
         "timerLabel": "Hominy",

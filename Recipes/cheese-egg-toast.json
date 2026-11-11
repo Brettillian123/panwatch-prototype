@@ -1,0 +1,69 @@
+{
+  "id": "cheese-egg-toast",
+  "title": "Cheese Egg Toast",
+  "category": "Sandwiches and wraps",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACheese_Egg_Toast"
+  },
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "4",
+      "name": "bread slices"
+    },
+    {
+      "amount": "2",
+      "name": "cheese slices"
+    },
+    {
+      "amount": "2",
+      "name": "eggs"
+    },
+    {
+      "amount": "to taste",
+      "name": "butter"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Beat 2 eggs in a bowl."
+    },
+    {
+      "instruction": "Mix salt and pepper into the eggs."
+    },
+    {
+      "instruction": "Place a cheese slice on each of 2 bread slices."
+    },
+    {
+      "instruction": "Sprinkle pepper over the cheese."
+    },
+    {
+      "instruction": "Top each one with another bread slice."
+    },
+    {
+      "instruction": "Cut each sandwich in half diagonally."
+    },
+    {
+      "instruction": "Melt butter in a pan over medium heat."
+    },
+    {
+      "instruction": "Dip the sandwich halves in the beaten egg and place them in the pan."
+    },
+    {
+      "instruction": "Pan fry the sandwiches, flipping partway, until golden brown on both sides."
+    },
+    {
+      "instruction": "Serve right away."
+    }
+  ]
+}

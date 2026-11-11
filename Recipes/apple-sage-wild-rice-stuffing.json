@@ -62,7 +62,7 @@
     },
     {
       "instruction": "Add 4 ounces of chopped pecans and stir often.",
-      "spoken": "Cook the pecans for 2 to 3 minutes, stirring often, until they begin to brown.",
+      "spoken": "Add 4 ounces of chopped pecans and stir often. Cook the pecans for 2 to 3 minutes, stirring often, until they begin to brown.",
       "watch": {
         "ingredient": "pecans",
         "timerLabel": "Pecans",
@@ -78,7 +78,7 @@
     },
     {
       "instruction": "Add 1 1/2 cups of diced celery and 1 1/2 cups of diced onions.",
-      "spoken": "Cook for 8 minutes, stirring now and then, until the celery and onions begin to brown lightly at the edges.",
+      "spoken": "Add 1 1/2 cups of diced celery and 1 1/2 cups of diced onions. Cook for 8 minutes, stirring now and then, until the celery and onions begin to brown lightly at the edges.",
       "watch": {
         "ingredient": "celery and onions",
         "timerLabel": "Celery",
@@ -88,7 +88,7 @@
     },
     {
       "instruction": "Add 1 diced red apple and cook for 4 minutes.",
-      "spoken": "Add the diced apple and cook for 4 minutes, until it is tender but still crisp.",
+      "spoken": "Add 1 diced red apple and cook for 4 minutes. Add the diced apple and cook for 4 minutes, until it is tender but still crisp.",
       "watch": {
         "ingredient": "apple",
         "timerLabel": "Apple",
@@ -101,11 +101,11 @@
     },
     {
       "instruction": "Stir in 1/2 cup of dried cranberries and the finely chopped jalapeno pepper.",
-      "spoken": "Stir in the cranberries and the finely chopped jalapeno pepper. You can use 1/4 teaspoon of dried pepper flakes instead."
+      "spoken": "Stir in 1/2 cup of dried cranberries and the finely chopped jalapeno pepper. You can use 1/4 teaspoon of dried pepper flakes instead."
     },
     {
       "instruction": "Stir in 1 1/2 tablespoons of chopped sage and 3/4 teaspoon of salt.",
-      "spoken": "Stir in the chopped fresh sage, or use 1 1/2 teaspoons of dried rubbed sage, and the salt."
+      "spoken": "Stir in 1 1/2 tablespoons of chopped sage and 3/4 teaspoon of salt. Stir in the chopped fresh sage, or use 1 1/2 teaspoons of dried rubbed sage, and the salt."
     },
     {
       "instruction": "Cook 3 minutes, stirring now and then, until the rice mixture is hot.",

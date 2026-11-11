@@ -1,0 +1,88 @@
+{
+  "id": "horchata",
+  "title": "Horchata",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AHorchata"
+  },
+  "totalMinutes": 385,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "uncooked rice"
+    },
+    {
+      "amount": "1 pound",
+      "name": "almonds, blanched and peeled"
+    },
+    {
+      "amount": "5",
+      "name": "cinnamon sticks"
+    },
+    {
+      "amount": "12 cups",
+      "name": "hot water"
+    },
+    {
+      "amount": "20 cups",
+      "name": "cold water"
+    },
+    {
+      "amount": "15",
+      "name": "lime peel slivers, 2 inches long"
+    },
+    {
+      "amount": "5 cups",
+      "name": "white granulated sugar, or enough to sweeten to taste"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Pulverize 1 pound of uncooked rice in a blender."
+    },
+    {
+      "instruction": "Transfer the rice to a medium bowl."
+    },
+    {
+      "instruction": "Add 1 pound of almonds, 5 cinnamon sticks and 15 lime peel slivers."
+    },
+    {
+      "instruction": "Stir in 12 cups of hot water."
+    },
+    {
+      "instruction": "Cover and let stand for 6 hours.",
+      "spoken": "Cover and let stand for at least 6 hours, or overnight.",
+      "timer": {
+        "label": "Stand",
+        "minutes": 360
+      }
+    },
+    {
+      "instruction": "Put the mixture in the blender and blend for 3 minutes.",
+      "spoken": "Put the mixture in the blender and blend for 3 to 4 minutes, until it no longer feels gritty.",
+      "timer": {
+        "label": "Blend",
+        "minutes": 3
+      }
+    },
+    {
+      "instruction": "Add 10 cups of cold water and blend until combined."
+    },
+    {
+      "instruction": "Strain a little at a time through a strainer lined with cheesecloth."
+    },
+    {
+      "instruction": "Add 10 cups of cold water and stir in sugar until sweet enough for you.",
+      "spoken": "Add 10 more cups of cold water. Stir in enough sugar to sweeten the drink to your taste. The recipe lists 5 cups of sugar."
+    },
+    {
+      "instruction": "If the drink is too thick, add more water."
+    },
+    {
+      "instruction": "Cover and refrigerate the drink.",
+      "spoken": "Cover and refrigerate the drink. Stir before pouring."
+    }
+  ]
+}

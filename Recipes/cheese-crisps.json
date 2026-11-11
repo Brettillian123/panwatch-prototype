@@ -1,0 +1,67 @@
+{
+  "id": "cheese-crisps",
+  "title": "Cheese Crisps",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACheese_Crisps"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1/2 pound",
+      "name": "margarine, softened"
+    },
+    {
+      "amount": "2 cups",
+      "name": "sharp cheddar, grated"
+    },
+    {
+      "amount": "2 cups",
+      "name": "flour"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "3/4 teaspoon",
+      "name": "powdered cayenne pepper"
+    },
+    {
+      "amount": "2 cups",
+      "name": "puffed rice cereal"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 300 °F."
+    },
+    {
+      "instruction": "In a large bowl, blend 1/2 pound of margarine and 2 cups of grated cheddar."
+    },
+    {
+      "instruction": "Add 2 cups of flour, 1 teaspoon of salt and 3/4 teaspoon of cayenne pepper."
+    },
+    {
+      "instruction": "Stir in 2 cups of puffed rice cereal, mixing thoroughly."
+    },
+    {
+      "instruction": "Shape the dough into small balls."
+    },
+    {
+      "instruction": "Flatten each ball with a fork."
+    },
+    {
+      "instruction": "Place each cookie onto an ungreased cookie sheet."
+    },
+    {
+      "instruction": "Bake for 20 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 20
+      }
+    }
+  ]
+}

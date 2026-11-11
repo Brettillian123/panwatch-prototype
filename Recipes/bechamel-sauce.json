@@ -1,0 +1,74 @@
+{
+  "id": "bechamel-sauce",
+  "title": "Bechamel Sauce",
+  "category": "Sauces and dips",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AB%C3%A9chamel_Sauce_%28Louisiannaise%29"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "1/4",
+      "name": "onion, or 2 garlic cloves"
+    },
+    {
+      "amount": "1",
+      "name": "bay leaf"
+    },
+    {
+      "amount": "1-2 tablespoons",
+      "name": "butter"
+    },
+    {
+      "amount": "1-2 tablespoons",
+      "name": "flour"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Warm 1 cup of milk in a pot."
+    },
+    {
+      "instruction": "Add 1/4 onion or 2 garlic cloves and 1 bay leaf to the milk."
+    },
+    {
+      "instruction": "Steep the milk for 15 minutes.",
+      "timer": {
+        "label": "Steep",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Melt 1 to 2 tablespoons of butter in a saucepan."
+    },
+    {
+      "instruction": "Whisk in 1 to 2 tablespoons of flour."
+    },
+    {
+      "instruction": "Cook over medium to medium-high heat, whisking, to make a paste."
+    },
+    {
+      "instruction": "Gradually whisk in the milk."
+    },
+    {
+      "instruction": "Cook, stirring constantly, until thick."
+    },
+    {
+      "instruction": "Season with salt and pepper."
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "id": "hominy-grits",
+  "title": "Hominy Grits",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AHominy_Grits"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "5 cups",
+      "name": "water"
+    },
+    {
+      "amount": "1 cup",
+      "name": "hominy grits"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "butter"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "honey, brown sugar, or maple syrup, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Bring 5 cups of water to a rapid boil in a saucepan."
+    },
+    {
+      "instruction": "Gradually stir in 1 cup of hominy grits."
+    },
+    {
+      "instruction": "Reduce the heat to low."
+    },
+    {
+      "instruction": "Stir in 1 tablespoon of butter."
+    },
+    {
+      "instruction": "Cook for 20 minutes, until the water is absorbed.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "If you like, sweeten with 1 tablespoon of honey, brown sugar or maple syrup.",
+      "spoken": "If you like, sweeten with 1 tablespoon of honey, brown sugar, maple syrup, or jelly."
+    }
+  ]
+}

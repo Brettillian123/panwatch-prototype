@@ -1,0 +1,52 @@
+{
+  "id": "danish-braised-cabbage",
+  "title": "Danish Braised Cabbage",
+  "category": "Vegetables",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ADanish_Braised_Cabbage_%28R%C3%B8dk%C3%A5l%29"
+  },
+  "totalMinutes": 130,
+  "ingredients": [
+    {
+      "amount": "1/4 cup",
+      "name": "butter"
+    },
+    {
+      "amount": "5 pounds",
+      "name": "red cabbage, finely cut"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "vinegar"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "sugar"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1/4 cup of butter in a large pot until lightly browned."
+    },
+    {
+      "instruction": "Add 5 pounds of finely cut red cabbage and stir well."
+    },
+    {
+      "instruction": "Add 1/2 cup of vinegar, 1/2 cup of sugar and 1 tablespoon of salt."
+    },
+    {
+      "instruction": "Let it simmer for 2 hours.",
+      "spoken": "Let it simmer for 2 to three hours.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 120
+      }
+    }
+  ]
+}

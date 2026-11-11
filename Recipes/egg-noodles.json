@@ -1,0 +1,81 @@
+{
+  "id": "egg-noodles",
+  "title": "Egg Noodles",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AEgg_Noodles_I"
+  },
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "3",
+      "name": "eggs"
+    },
+    {
+      "amount": "1/8 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "wine"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "3 cups",
+      "name": "flour"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "In a bowl, beat 3 eggs and 1/8 teaspoon of salt."
+    },
+    {
+      "instruction": "Beat in 1 tablespoon of olive oil and 1/2 cup of wine."
+    },
+    {
+      "instruction": "Stir in 1 cup of flour with a fork."
+    },
+    {
+      "instruction": "Gently add a second cup of flour after the first is mixed in thoroughly."
+    },
+    {
+      "instruction": "Put the dough on a lightly floured work surface."
+    },
+    {
+      "instruction": "Knead in the last cup of flour a bit at a time.",
+      "spoken": "Knead in the last cup of flour a bit at a time. If the dough becomes too dry, add a bit of cold water."
+    },
+    {
+      "instruction": "Keep kneading until the dough is uniform and shiny."
+    },
+    {
+      "instruction": "Roll the dough into a large ball and cut it into quarters."
+    },
+    {
+      "instruction": "Turn the mixing bowl upside down over the pieces.",
+      "spoken": "Turn the mixing bowl upside down over the pieces to protect them from dust and drying out."
+    },
+    {
+      "instruction": "Let the dough rest for 30 minutes.",
+      "spoken": "Let the dough relax for about 30 minutes.",
+      "timer": {
+        "label": "Rest",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Shape the noodles as you like."
+    },
+    {
+      "instruction": "Bring a large pot of lightly salted water to a rolling boil."
+    },
+    {
+      "instruction": "Add the rolled and cut noodles and cook until tender but still a little firm."
+    }
+  ]
+}

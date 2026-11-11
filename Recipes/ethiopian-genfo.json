@@ -1,0 +1,75 @@
+{
+  "id": "ethiopian-genfo",
+  "title": "Ethiopian Genfo Porridge",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AGenfo_%28Ethiopian_Porridge%29"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "roasted barley flour"
+    },
+    {
+      "amount": "2 cups",
+      "name": "water"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt, or to taste"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "niter kibbeh, regular butter, or oil"
+    },
+    {
+      "amount": "to taste",
+      "name": "honey or sugar"
+    },
+    {
+      "amount": "to taste",
+      "name": "mitmita or berbere spice, optional"
+    },
+    {
+      "amount": "to taste",
+      "name": "nigella seeds or cinnamon, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Whisk 1 cup of roasted barley flour and 2 cups of water in a pot until smooth."
+    },
+    {
+      "instruction": "Cook over medium heat, stirring all the time, until it is thick like porridge.",
+      "spoken": "Cook over medium heat for 10 to 15 minutes, until it is thick like porridge. Keep stirring all the time so lumps do not form.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Stir in 1/4 teaspoon of salt until it is mixed in."
+    },
+    {
+      "instruction": "Stir in 2 tablespoons of niter kibbeh, butter or oil, and mix well."
+    },
+    {
+      "instruction": "Taste, and add more salt if needed."
+    },
+    {
+      "instruction": "Spoon the hot porridge into bowls."
+    },
+    {
+      "instruction": "Drizzle with honey or sprinkle with sugar to taste."
+    },
+    {
+      "instruction": "Sprinkle on mitmita or berbere spice if you want more heat."
+    },
+    {
+      "instruction": "Top with nigella seeds or a sprinkle of cinnamon."
+    }
+  ]
+}

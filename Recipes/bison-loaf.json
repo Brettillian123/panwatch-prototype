@@ -1,0 +1,91 @@
+{
+  "id": "bison-loaf",
+  "title": "Bison Loaf",
+  "category": "Beef and pork",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABison_Loaf"
+  },
+  "totalMinutes": 65,
+  "ingredients": [
+    {
+      "amount": "2 pounds",
+      "name": "ground bison meat"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "soft bread crumbs (or 1/2 cup fine dry bread crumbs)"
+    },
+    {
+      "amount": "1",
+      "name": "egg"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "milk, 1%"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1/2 medium",
+      "name": "green pepper, chopped"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "Worcestershire sauce (optional)"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "garlic powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "oil, for the pan"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 300 °F."
+    },
+    {
+      "instruction": "Put 2 pounds of ground bison meat and 1 1/2 cups of soft bread crumbs in a large bowl."
+    },
+    {
+      "instruction": "Add 1 egg and 1/2 cup of milk."
+    },
+    {
+      "instruction": "Add 1/2 cup of chopped onion and 1/2 chopped medium green pepper."
+    },
+    {
+      "instruction": "Add 2 teaspoons of Worcestershire sauce, if you like."
+    },
+    {
+      "instruction": "Add 1 teaspoon of garlic powder, 1/2 teaspoon of salt and 1/2 teaspoon of pepper."
+    },
+    {
+      "instruction": "Mix everything together."
+    },
+    {
+      "instruction": "Shape the mixture into a loaf, or pat it into a lightly oiled loaf pan."
+    },
+    {
+      "instruction": "Bake at 300 °F for 45 minutes, until a thermometer reads 160 °F.",
+      "spoken": "Bake at 300 °F for 45 minutes, until a thermometer in the middle of the loaf reads 160 °F.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 45
+      }
+    }
+  ]
+}

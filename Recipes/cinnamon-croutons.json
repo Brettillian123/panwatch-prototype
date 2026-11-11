@@ -1,0 +1,67 @@
+{
+  "id": "cinnamon-croutons",
+  "title": "Cinnamon Croutons",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACinnamon_Croutons"
+  },
+  "serves": 4,
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "4 tablespoons",
+      "name": "white granulated sugar"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground cinnamon"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "walnut oil"
+    },
+    {
+      "amount": "4 slices",
+      "name": "day-old French bread, cubed"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Combine 4 tablespoons of sugar and 1/2 teaspoon of cinnamon in a small bowl."
+    },
+    {
+      "instruction": "Set the cinnamon sugar aside."
+    },
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Heat 4 tablespoons of walnut oil in a frying pan."
+    },
+    {
+      "instruction": "Add 4 cubed slices of day-old French bread to the pan."
+    },
+    {
+      "instruction": "Fry the bread cubes, tossing to coat them with oil."
+    },
+    {
+      "instruction": "Spread the bread cubes on a baking sheet."
+    },
+    {
+      "instruction": "Sprinkle the cubes with the cinnamon sugar."
+    },
+    {
+      "instruction": "Bake for 8 minutes, until crispy and dry.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 8
+      }
+    },
+    {
+      "instruction": "Let the croutons cool well before handling.",
+      "spoken": "Let the croutons cool well before you touch them. The sugar helps them brown, so they are hot at first."
+    }
+  ]
+}

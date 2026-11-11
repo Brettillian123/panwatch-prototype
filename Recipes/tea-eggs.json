@@ -1,0 +1,79 @@
+{
+  "id": "tea-eggs",
+  "title": "Tea Eggs",
+  "category": "Snacks and sides",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ATea_Eggs"
+  },
+  "totalMinutes": 80,
+  "ingredients": [
+    {
+      "amount": "4 cups",
+      "name": "water"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "jasmine green tea leaves"
+    },
+    {
+      "amount": "3/4 teaspoon",
+      "name": "dark soy sauce"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ginger, minced"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "6",
+      "name": "chicken eggs"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Pour 4 cups of water into a pot."
+    },
+    {
+      "instruction": "Add 3 tablespoons of jasmine green tea leaves and 3/4 teaspoon of dark soy sauce."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of minced ginger and 1/2 teaspoon of minced garlic."
+    },
+    {
+      "instruction": "Bring the pot to a boil."
+    },
+    {
+      "instruction": "Add 6 eggs to the pot and boil for 3 minutes.",
+      "watch": {
+        "ingredient": "eggs",
+        "timerLabel": "Boil",
+        "timerMinutes": 3,
+        "minimumChange": 0
+      }
+    },
+    {
+      "instruction": "Lift the eggs out of the liquid."
+    },
+    {
+      "instruction": "Roll the eggs gently on a hard surface to crack the shells all over."
+    },
+    {
+      "instruction": "Return the eggs to the pot of liquid."
+    },
+    {
+      "instruction": "Simmer the eggs for 1 hour.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Turn the heat to low and leave the eggs in the liquid until you serve them."
+    }
+  ]
+}

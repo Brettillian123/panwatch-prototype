@@ -1,0 +1,88 @@
+{
+  "id": "egg-ham-and-cheese-casserole",
+  "title": "Egg, Ham and Cheese Casserole",
+  "category": "Eggs and breakfast",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACazuela_Gallega_%28Egg%2C_Ham%2C_and_Cheese_Casserole%29"
+  },
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "butter"
+    },
+    {
+      "amount": "2 slices",
+      "name": "ham"
+    },
+    {
+      "amount": "2",
+      "name": "eggs"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "canned peas"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "ketchup"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "ground Parmesan cheese"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 400 °F."
+    },
+    {
+      "instruction": "Press 3 sheets of foil into a bowl 5 inches wide and 2 inches deep.",
+      "spoken": "Place 3 sheets of foil, each about 15 by 15 inches, into a bowl 5 inches across and 2 inches deep. Press the foil gently downward to give it the shape of the bowl."
+    },
+    {
+      "instruction": "Spread 1 tablespoon of butter all over the inside of the foil bowl."
+    },
+    {
+      "instruction": "Place 1 slice of ham in the bottom of the foil bowl."
+    },
+    {
+      "instruction": "Cut the other slice of ham into three strips."
+    },
+    {
+      "instruction": "Line the inside walls of the foil bowl with the ham strips."
+    },
+    {
+      "instruction": "Add 2 eggs to the bowl."
+    },
+    {
+      "instruction": "Spread 2 tablespoons of canned peas over the eggs.",
+      "spoken": "Spread 2 tablespoons of canned peas all over the eggs. Be careful with the yolks and don't break them."
+    },
+    {
+      "instruction": "Add 1 teaspoon of the liquid from the can."
+    },
+    {
+      "instruction": "Add 1 pinch of salt and 2 tablespoons of ketchup, covering the whole surface."
+    },
+    {
+      "instruction": "Carefully lift the foil with the casserole out of the bowl."
+    },
+    {
+      "instruction": "Top with 1/2 cup of ground Parmesan cheese."
+    },
+    {
+      "instruction": "Bake in the 400 °F oven for 30 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    }
+  ]
+}

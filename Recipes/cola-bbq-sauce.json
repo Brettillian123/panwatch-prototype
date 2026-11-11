@@ -1,0 +1,58 @@
+{
+  "id": "cola-bbq-sauce",
+  "title": "Cola BBQ Sauce",
+  "category": "Sauces and dips",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACola_BBQ_Sauce"
+  },
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "1 bottle",
+      "name": "ketchup"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "Worcestershire sauce"
+    },
+    {
+      "amount": "1 1/2 cans",
+      "name": "cola"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "soy sauce"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "cider vinegar"
+    },
+    {
+      "amount": "to taste",
+      "name": "hot sauce"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1 bottle of ketchup, 1/4 cup of Worcestershire sauce and 1 1/2 cans of cola in a pot."
+    },
+    {
+      "instruction": "Add 1/2 cup of soy sauce, 1/4 cup of cider vinegar and hot sauce to taste."
+    },
+    {
+      "instruction": "Bring everything to a boil."
+    },
+    {
+      "instruction": "Cook over high heat for 10 minutes.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Store the sauce in a nonreactive container in the fridge for up to 1 week."
+    }
+  ]
+}

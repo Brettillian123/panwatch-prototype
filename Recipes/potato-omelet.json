@@ -1,0 +1,89 @@
+{
+  "id": "potato-omelet",
+  "title": "Potato Omelet",
+  "category": "Eggs and breakfast",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3APotato_Omelet"
+  },
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "5",
+      "name": "eggs"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "white granulated sugar"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "pepper"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "1-2 tablespoons",
+      "name": "butter or margarine, or use cooking spray (optional)"
+    },
+    {
+      "amount": "1",
+      "name": "potato, cut into 1/4 to 1/2-inch cubes"
+    },
+    {
+      "amount": "1 small",
+      "name": "onion, minced or chopped"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "shredded cheese"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Beat 5 eggs with 1 teaspoon of sugar, 1/4 teaspoon of salt and 1/4 teaspoon of pepper."
+    },
+    {
+      "instruction": "Mix in 1/2 cup of milk."
+    },
+    {
+      "instruction": "Heat two frying pans over medium heat."
+    },
+    {
+      "instruction": "Grease the pans with 1 to 2 tablespoons of butter or margarine.",
+      "spoken": "Grease each pan with 1 to 2 tablespoons of butter or margarine in all, or use cooking spray."
+    },
+    {
+      "instruction": "Add 1 cubed potato to one pan."
+    },
+    {
+      "instruction": "Cook the potato until light brown."
+    },
+    {
+      "instruction": "Add 1 minced small onion to the potato."
+    },
+    {
+      "instruction": "Pour half of the egg mixture into the other pan."
+    },
+    {
+      "instruction": "Cook the egg for about 1 minute, until it starts to set.",
+      "timer": {
+        "label": "Egg",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Add the onion, the potato and 1/2 cup of shredded cheese on top of the egg."
+    },
+    {
+      "instruction": "Fold the plain side over the filling and cook 30 seconds more."
+    }
+  ]
+}

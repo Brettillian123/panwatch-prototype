@@ -1,0 +1,86 @@
+{
+  "id": "egyptian-tomato-salad",
+  "title": "Egyptian Tomato Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AEgyptian_Tomato_Salad"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "4-5",
+      "name": "ripe tomatoes, sliced"
+    },
+    {
+      "amount": "1 small",
+      "name": "red onion, thinly sliced"
+    },
+    {
+      "amount": "1",
+      "name": "cucumber, peeled and diced"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "fresh parsley, chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "fresh mint, chopped"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 4 to 5 sliced ripe tomatoes to a mixing bowl."
+    },
+    {
+      "instruction": "Add 1 thinly sliced small red onion and 1 peeled, diced cucumber."
+    },
+    {
+      "instruction": "Add 1/4 cup of chopped fresh parsley and 1/4 cup of chopped fresh mint."
+    },
+    {
+      "instruction": "Toss gently to combine."
+    },
+    {
+      "instruction": "In a small bowl, whisk 2 tablespoons of lemon juice and 2 tablespoons of olive oil."
+    },
+    {
+      "instruction": "Whisk in salt and pepper to taste."
+    },
+    {
+      "instruction": "Pour the dressing over the tomato salad."
+    },
+    {
+      "instruction": "Toss gently to coat everything evenly."
+    },
+    {
+      "instruction": "Taste the salad and add more salt, pepper or lemon juice if you like."
+    },
+    {
+      "instruction": "Let the salad sit at room temperature for 15 minutes before serving.",
+      "spoken": "Let the salad sit at room temperature for 15 to 20 minutes, so the flavors blend together.",
+      "timer": {
+        "label": "Sit",
+        "minutes": 15
+      }
+    }
+  ]
+}

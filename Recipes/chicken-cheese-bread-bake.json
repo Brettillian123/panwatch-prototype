@@ -1,0 +1,85 @@
+{
+  "id": "chicken-cheese-bread-bake",
+  "title": "Chicken Cheese Bread Bake",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "USDA MyPlate Kitchen",
+    "url": "https://www.myplate.gov/recipes/bread-bake-chicken-cheese-vegetables"
+  },
+  "serves": 6,
+  "totalMinutes": 135,
+  "ingredients": [
+    {
+      "amount": "6 slices",
+      "name": "bread, cubed"
+    },
+    {
+      "amount": "1 1/2 cups",
+      "name": "broccoli, frozen, chopped and cooked"
+    },
+    {
+      "amount": "1 cup",
+      "name": "low-fat cheddar cheese, shredded"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "onion, minced, optional"
+    },
+    {
+      "amount": "1 cup",
+      "name": "cooked chicken, skinless and diced"
+    },
+    {
+      "amount": "3",
+      "name": "eggs"
+    },
+    {
+      "amount": "4",
+      "name": "egg whites"
+    },
+    {
+      "amount": "2 cups",
+      "name": "non-fat milk"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Place half of the bread cubes in a well greased 9 by 9 inch pan."
+    },
+    {
+      "instruction": "Top with 1 1/2 cups of cooked broccoli and 1 cup of shredded cheddar cheese."
+    },
+    {
+      "instruction": "Add 1 tablespoon of minced onion, if you like, and 1 cup of diced cooked chicken."
+    },
+    {
+      "instruction": "Place the rest of the bread cubes on top."
+    },
+    {
+      "instruction": "In a bowl, mix 3 eggs, 4 egg whites and 2 cups of milk."
+    },
+    {
+      "instruction": "Pour the egg mixture over the bread in the pan."
+    },
+    {
+      "instruction": "Cover the pan and refrigerate for at least 1 hour.",
+      "spoken": "Cover the pan and refrigerate overnight, or for at least 1 hour.",
+      "timer": {
+        "label": "Chill",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Heat the oven to 325 °F."
+    },
+    {
+      "instruction": "Bake uncovered for 1 hour, until the center is firm and lightly browned.",
+      "spoken": "Bake uncovered for 1 to 1 1/4 hours, until the center is firm and lightly browned.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 60
+      }
+    }
+  ]
+}

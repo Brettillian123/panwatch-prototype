@@ -1,0 +1,64 @@
+{
+  "id": "kansas-city-barbecue-sauce",
+  "title": "Kansas City Barbecue Sauce",
+  "category": "Sauces and dips",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AKansas_City_Barbecue_Sauce"
+  },
+  "totalMinutes": 30,
+  "ingredients": [
+    {
+      "amount": "4 cups",
+      "name": "ketchup"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "molasses"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "Worcestershire sauce"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "soy sauce"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "cider vinegar"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "cayenne pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 4 cups of ketchup and 3/4 cup of molasses in a large saucepan."
+    },
+    {
+      "instruction": "Add 1/4 cup of Worcestershire sauce and 1/4 cup of soy sauce."
+    },
+    {
+      "instruction": "Add 1/4 cup of cider vinegar and 2 tablespoons of cayenne pepper."
+    },
+    {
+      "instruction": "Bring the sauce to a boil over high heat."
+    },
+    {
+      "instruction": "Cook for 15 minutes, stirring often.",
+      "timer": {
+        "label": "Cook",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Let the sauce cool."
+    },
+    {
+      "instruction": "Keep it in the refrigerator in a nonreactive container for up to 2 months."
+    }
+  ]
+}

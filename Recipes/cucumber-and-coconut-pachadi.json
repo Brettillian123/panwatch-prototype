@@ -1,0 +1,78 @@
+{
+  "id": "cucumber-and-coconut-pachadi",
+  "title": "Cucumber and Coconut Pachadi",
+  "category": "Snacks and sides",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABoiled_Cucumber_and_Grated_Coconut_%28Pachadi%29"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "large cucumber"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "grated coconut"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "cumin seeds"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "oil"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "mustard seeds"
+    },
+    {
+      "amount": "1-2",
+      "name": "dried red chillies"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Peel the cucumber."
+    },
+    {
+      "instruction": "Cut the cucumber in half lengthwise and scoop out the seeds. Throw the seeds away."
+    },
+    {
+      "instruction": "Grate the cucumber, or cut it into very small pieces."
+    },
+    {
+      "instruction": "Microwave the cucumber for 4 minutes.",
+      "spoken": "Microwave the cucumber for 4 to 5 minutes.",
+      "timer": {
+        "label": "Microwave",
+        "minutes": 4
+      }
+    },
+    {
+      "instruction": "Grind 1/2 cup of grated coconut and 1 teaspoon of cumin seeds into a fine paste."
+    },
+    {
+      "instruction": "Heat 1 tablespoon of oil in a deep pan."
+    },
+    {
+      "instruction": "Add 1 teaspoon of mustard seeds and 1 or 2 dried red chillies until they splutter."
+    },
+    {
+      "instruction": "Add the cooked cucumber, the coconut paste and salt to taste."
+    },
+    {
+      "instruction": "Mix well and warm it on low heat, without letting it boil."
+    },
+    {
+      "instruction": "Take the pan off the stove if the mixture starts to boil."
+    }
+  ]
+}

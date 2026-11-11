@@ -1,0 +1,73 @@
+{
+  "id": "moroccan-salad",
+  "title": "Moroccan Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AMoroccan_Salad"
+  },
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "3 large",
+      "name": "ripe tomatoes"
+    },
+    {
+      "amount": "1",
+      "name": "green bell pepper"
+    },
+    {
+      "amount": "1 small",
+      "name": "onion"
+    },
+    {
+      "amount": "1 handful",
+      "name": "fresh coriander, finely chopped"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cumin"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "black pepper"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "vinegar or lemon juice"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Cut 3 large ripe tomatoes into small dice."
+    },
+    {
+      "instruction": "Cut 1 green bell pepper and 1 small onion into small dice."
+    },
+    {
+      "instruction": "Add 1 handful of finely chopped fresh coriander and 1 teaspoon of ground cumin."
+    },
+    {
+      "instruction": "Add salt, black pepper and 2 tablespoons of vinegar or lemon juice."
+    },
+    {
+      "instruction": "Put everything in a container and close the lid tightly."
+    },
+    {
+      "instruction": "Shake the container well to combine everything."
+    },
+    {
+      "instruction": "Let the salad rest for 30 minutes before serving.",
+      "spoken": "Let the salad rest for 30 minutes so the flavors can mingle before serving.",
+      "timer": {
+        "label": "Rest",
+        "minutes": 30
+      }
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "id": "banana-pecan-bread",
+  "title": "Banana Pecan Bread",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABanana_Pecan_Bread"
+  },
+  "serves": 8,
+  "totalMinutes": 80,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "all-purpose flour, sifted"
+    },
+    {
+      "amount": "3 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "butter, room temperature"
+    },
+    {
+      "amount": "1 cup",
+      "name": "white sugar"
+    },
+    {
+      "amount": "2",
+      "name": "eggs, room temperature and beaten"
+    },
+    {
+      "amount": "2",
+      "name": "bananas, a little over-ripe is best"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "lemon juice"
+    },
+    {
+      "amount": "1 cup",
+      "name": "chopped pecans"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 325 °F."
+    },
+    {
+      "instruction": "Spray a 1 1/2 pound loaf pan with baking spray."
+    },
+    {
+      "instruction": "Sift together 2 cups of flour, 3 teaspoons of baking powder and 1/2 teaspoon of salt."
+    },
+    {
+      "instruction": "Cream 1/2 cup of butter, 1 cup of sugar and 2 eggs on medium speed.",
+      "spoken": "In the bowl of a stand mixer, cream 1/2 cup of butter, 1 cup of sugar and 2 eggs together on medium speed."
+    },
+    {
+      "instruction": "Add 2 bananas and 1 teaspoon of lemon juice and mix until creamy."
+    },
+    {
+      "instruction": "Add the dry ingredients and mix until just combined."
+    },
+    {
+      "instruction": "Turn the mixer off and scrape down the sides."
+    },
+    {
+      "instruction": "Mix on medium speed for 1 minute.",
+      "timer": {
+        "label": "Mix",
+        "minutes": 1
+      }
+    },
+    {
+      "instruction": "Add 1 cup of chopped pecans and mix for about 20 seconds."
+    },
+    {
+      "instruction": "Pour the batter into the prepared loaf pan."
+    },
+    {
+      "instruction": "Bake at 325 °F for 60 minutes.",
+      "spoken": "Bake at 325 °F for 60 to 75 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 60
+      }
+    }
+  ]
+}

@@ -51,7 +51,7 @@
   "steps": [
     {
       "instruction": "Add 1 pound of ground beef to a large pan over medium heat.",
-      "spoken": "Brown the beef for 8 to ten minutes.",
+      "spoken": "Add 1 pound of ground beef to a large pan over medium heat. Brown the beef for 8 to ten minutes.",
       "watch": {
         "ingredient": "ground beef",
         "timerLabel": "Beef",

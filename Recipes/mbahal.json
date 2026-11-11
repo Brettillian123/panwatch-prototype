@@ -1,0 +1,118 @@
+{
+  "id": "mbahal",
+  "title": "Mbahal (Gambian Fish and Okra)",
+  "category": "Fish",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AMbahal_%28Gambian_Fish_and_Okra%29"
+  },
+  "totalMinutes": 45,
+  "ingredients": [
+    {
+      "amount": "1 pound",
+      "name": "smoked fish, such as catfish or mackerel"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "palm oil"
+    },
+    {
+      "amount": "2 large",
+      "name": "onions, finely chopped"
+    },
+    {
+      "amount": "3 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "2",
+      "name": "tomatoes, diced"
+    },
+    {
+      "amount": "2",
+      "name": "red or green bell peppers, diced"
+    },
+    {
+      "amount": "2",
+      "name": "Scotch bonnet chile peppers, finely chopped (or to taste)"
+    },
+    {
+      "amount": "1 cup",
+      "name": "dried okra, finely ground"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "tomato paste"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground ginger"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground coriander"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "ground cayenne pepper (optional)"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Remove any bones from 1 pound of smoked fish."
+    },
+    {
+      "instruction": "Flake the fish into small pieces and set it aside."
+    },
+    {
+      "instruction": "Heat 2 tablespoons of palm oil in a large pot over medium heat."
+    },
+    {
+      "instruction": "Add 2 chopped onions and 3 cloves of minced garlic."
+    },
+    {
+      "instruction": "Cook until soft and clear."
+    },
+    {
+      "instruction": "Add 2 diced tomatoes, 2 diced bell peppers and 2 chopped Scotch bonnet peppers."
+    },
+    {
+      "instruction": "Stir well and cook a few minutes, until the vegetables begin to soften."
+    },
+    {
+      "instruction": "Add 1 cup of ground dried okra, stirring constantly so it does not lump."
+    },
+    {
+      "instruction": "Stir in 1 tablespoon of tomato paste."
+    },
+    {
+      "instruction": "Stir in 1 teaspoon each of ground ginger and ground coriander."
+    },
+    {
+      "instruction": "Stir in 1 teaspoon of ground cayenne pepper if you want it spicier."
+    },
+    {
+      "instruction": "Lower the heat, cover the pot and simmer for 15 minutes.",
+      "spoken": "Lower the heat to low, cover the pot and simmer for 15 to 20 minutes, until the okra is soft and the flavors have blended.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Add the flaked fish and gently stir it in. Try not to break it up."
+    },
+    {
+      "instruction": "Taste and season with salt and pepper."
+    }
+  ]
+}

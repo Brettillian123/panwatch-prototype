@@ -1,0 +1,99 @@
+{
+  "id": "fishermans-casserole",
+  "title": "Fisherman's Casserole",
+  "category": "Fish",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AFisherman%27s_Casserole"
+  },
+  "totalMinutes": 65,
+  "ingredients": [
+    {
+      "amount": "1 package",
+      "name": "macaroni, 8 ounce"
+    },
+    {
+      "amount": "1/2 pound",
+      "name": "cheddar cheese, grated"
+    },
+    {
+      "amount": "2/3 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "dry mustard"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "1 can",
+      "name": "cream of celery soup, 10 3/4 ounce"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 can",
+      "name": "salmon, 14 3/4 ounce"
+    },
+    {
+      "amount": "1 bag",
+      "name": "frozen peas, 8 ounce"
+    },
+    {
+      "amount": "1 cup",
+      "name": "bread crumbs"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "butter, melted"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Cook 1 package of macaroni by the package directions."
+    },
+    {
+      "instruction": "Drain the macaroni."
+    },
+    {
+      "instruction": "In a large bowl, add 1/2 pound of grated cheddar cheese and the macaroni."
+    },
+    {
+      "instruction": "Add 2/3 cup of milk and 1/2 teaspoon of dry mustard."
+    },
+    {
+      "instruction": "Add 1/2 cup of chopped onion, 1 can of cream of celery soup and 1 teaspoon of salt."
+    },
+    {
+      "instruction": "Mix everything together."
+    },
+    {
+      "instruction": "Add 1 can of salmon and 1 bag of frozen peas."
+    },
+    {
+      "instruction": "Place the mixture in a greased 9 by 13 inch pan."
+    },
+    {
+      "instruction": "Cover the mixture with 1 cup of bread crumbs."
+    },
+    {
+      "instruction": "Drizzle 2 tablespoons of melted butter over the top."
+    },
+    {
+      "instruction": "Bake for 45 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 45
+      }
+    }
+  ]
+}

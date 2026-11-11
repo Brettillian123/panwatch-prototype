@@ -1,0 +1,71 @@
+{
+  "id": "cream-cheese-stuffed-bell-peppers",
+  "title": "Cream Cheese-Stuffed Bell Peppers",
+  "category": "Vegetables",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACream_Cheese-Stuffed_Bell_Peppers"
+  },
+  "totalMinutes": 50,
+  "ingredients": [
+    {
+      "amount": "4",
+      "name": "bell peppers, assorted colors, stemmed and seeded"
+    },
+    {
+      "amount": "1 cup",
+      "name": "cream cheese"
+    },
+    {
+      "amount": "2 strips",
+      "name": "bacon, crisp cooked and crumbled"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "unsalted butter, cut into small cubes"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    },
+    {
+      "amount": "to taste",
+      "name": "hot sauce"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 375 °F."
+    },
+    {
+      "instruction": "Combine 1 cup of cream cheese and 2 strips of crisp, crumbled bacon."
+    },
+    {
+      "instruction": "Mix in 1/4 cup of unsalted butter, cut into small cubes."
+    },
+    {
+      "instruction": "Mix in salt, pepper and hot sauce to taste."
+    },
+    {
+      "instruction": "Put the mixture into a piping bag without a tip."
+    },
+    {
+      "instruction": "Pipe the mixture into 4 stemmed and seeded bell peppers."
+    },
+    {
+      "instruction": "Place the peppers on an ungreased half-sheet pan."
+    },
+    {
+      "instruction": "Bake for 35 minutes, until browned and bubbly on top.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 35
+      }
+    }
+  ]
+}

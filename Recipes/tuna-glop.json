@@ -1,0 +1,61 @@
+{
+  "id": "tuna-glop",
+  "title": "Tuna Glop",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ATuna_Glop"
+  },
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "elbow macaroni"
+    },
+    {
+      "amount": "1 can",
+      "name": "cream of mushroom soup, 10 ounce can"
+    },
+    {
+      "amount": "1 can",
+      "name": "tuna, 6 ounce can chunk in water"
+    },
+    {
+      "amount": "2 cups",
+      "name": "frozen vegetables, such as peas and carrots"
+    },
+    {
+      "amount": "1 cup",
+      "name": "potato chips, crushed"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Cook 2 cups of elbow macaroni by the package directions, without salt."
+    },
+    {
+      "instruction": "Drain the macaroni and return it to the pot."
+    },
+    {
+      "instruction": "Stir in 1 can of cream of mushroom soup."
+    },
+    {
+      "instruction": "Drain 1 can of tuna and add it to the pot."
+    },
+    {
+      "instruction": "Add 2 cups of frozen vegetables and mix well."
+    },
+    {
+      "instruction": "Heat on low for 5 minutes, stirring often.",
+      "spoken": "Heat on low for 5 minutes, stirring often, if you like crunchy vegetables. Heat longer for softer vegetables.",
+      "timer": {
+        "label": "Heat",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Top with 1 cup of crushed potato chips."
+    }
+  ]
+}

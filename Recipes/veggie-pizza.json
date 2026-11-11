@@ -1,0 +1,113 @@
+{
+  "id": "veggie-pizza",
+  "title": "Veggie Pizza",
+  "category": "Sandwiches and wraps",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AVeggie_Pizza"
+  },
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "1",
+      "name": "pre-made pizza crust, rolled out to 12 inches across"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "olive oil"
+    },
+    {
+      "amount": "9 tablespoons",
+      "name": "pre-made tomato sauce"
+    },
+    {
+      "amount": "9 ounces",
+      "name": "grated mozzarella cheese"
+    },
+    {
+      "amount": "4 ounces",
+      "name": "grated parmesan cheese"
+    },
+    {
+      "amount": "1/2",
+      "name": "green bell pepper, seeded and thinly sliced"
+    },
+    {
+      "amount": "1/2",
+      "name": "Roma tomato, diced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "fresh spinach"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "baby bella mushrooms, thinly sliced"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "onion, thinly sliced"
+    },
+    {
+      "amount": "9",
+      "name": "fresh basil leaves"
+    },
+    {
+      "amount": "4 1/2 tablespoons",
+      "name": "black olives, pitted and sliced"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 450 °F."
+    },
+    {
+      "instruction": "Brush the pizza crust with 2 tablespoons of olive oil."
+    },
+    {
+      "instruction": "Ladle 9 tablespoons of tomato sauce over the crust and spread it evenly."
+    },
+    {
+      "instruction": "Spread 9 ounces of grated mozzarella cheese evenly over the sauce."
+    },
+    {
+      "instruction": "Spread 4 ounces of grated parmesan cheese evenly over the crust."
+    },
+    {
+      "instruction": "Lay 1/2 sliced green bell pepper and 1/2 diced Roma tomato over the cheese."
+    },
+    {
+      "instruction": "Add 1/2 cup of spinach, 1/2 cup of sliced mushrooms and 1/2 cup of sliced onion."
+    },
+    {
+      "instruction": "Add 9 fresh basil leaves and 4 1/2 tablespoons of sliced black olives."
+    },
+    {
+      "instruction": "Press the toppings down with a utensil if they stand too high.",
+      "spoken": "If needed, press the toppings down with a utensil so they clear the top of the oven. You can also top the vegetables with extra cheese and sauce to hold them down."
+    },
+    {
+      "instruction": "Bake the pizza for 15 minutes, until the crust edges are deep dark brown.",
+      "spoken": "Bake the pizza until the crust edges are deep dark brown. That takes roughly 15 minutes for a pre-made crust, and much longer for fresh dough.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Take the pizza out of the oven and let it cool."
+    },
+    {
+      "instruction": "Season with salt and pepper to taste."
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "egyptian-rice-with-vermicelli",
+  "title": "Egyptian Rice with Vermicelli",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AEgyptian_Rice_with_Vermicelli"
+  },
+  "totalMinutes": 40,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "butter or olive oil"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "vermicelli noodles, in 1- to 2-inch pieces"
+    },
+    {
+      "amount": "1 cup",
+      "name": "long-grain rice"
+    },
+    {
+      "amount": "2 cups",
+      "name": "water or vegetable broth"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 2 tablespoons of butter or olive oil in a medium saucepan over medium heat."
+    },
+    {
+      "instruction": "Add 1/2 cup of vermicelli noodles to the pan."
+    },
+    {
+      "instruction": "Stir constantly until the noodles turn golden brown.",
+      "spoken": "Toast the noodles, stirring constantly so they don't burn, until they turn golden brown."
+    },
+    {
+      "instruction": "Add 1 cup of long-grain rice and stir it in with the noodles."
+    },
+    {
+      "instruction": "Pour in 2 cups of water or vegetable broth."
+    },
+    {
+      "instruction": "Add salt to taste and stir gently."
+    },
+    {
+      "instruction": "Bring to a boil over medium-high heat."
+    },
+    {
+      "instruction": "Lower the heat to low and cover the pan with a lid."
+    },
+    {
+      "instruction": "Simmer for 15 minutes, until the liquid is absorbed.",
+      "spoken": "Let the rice simmer for about 15 to 20 minutes, until the liquid is absorbed and the rice is tender.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 15
+      }
+    },
+    {
+      "instruction": "Take the pan off the heat and let it sit covered for 5 minutes.",
+      "spoken": "Take the pan off the heat and let it sit, covered, for another 5 minutes, so the rice can steam.",
+      "timer": {
+        "label": "Steam",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Fluff the rice with a fork, mixing in the toasted noodles evenly."
+    },
+    {
+      "instruction": "Move the rice to a serving dish."
+    }
+  ]
+}

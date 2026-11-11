@@ -81,7 +81,7 @@
     },
     {
       "instruction": "Add 1 cup of onion, 2 cloves of minced garlic and 1/2 teaspoon of salt.",
-      "spoken": "Add the chopped onion, the minced garlic and the salt. Cook until the onions are soft."
+      "spoken": "Add 1 cup of onion, 2 cloves of minced garlic and 1/2 teaspoon of salt. Add the chopped onion, the minced garlic and the salt. Cook until the onions are soft."
     },
     {
       "instruction": "Add 2 pounds of chopped raw spinach and cook for 2 minutes.",
@@ -98,14 +98,14 @@
     },
     {
       "instruction": "Mix in 2 tablespoons of tamari and 3 dashes each of nutmeg and cayenne.",
-      "spoken": "Mix in 2 tablespoons of tamari and a few dashes each of nutmeg and cayenne."
+      "spoken": "Mix in 2 tablespoons of tamari and 3 dashes each of nutmeg and cayenne. Mix in 2 tablespoons of tamari and a few dashes each of nutmeg and cayenne."
     },
     {
       "instruction": "Spread it in a buttered casserole dish."
     },
     {
       "instruction": "Sprinkle 1/4 cup of sunflower seeds and 3 dashes of paprika on top.",
-      "spoken": "Sprinkle 1/4 cup of sunflower seeds and a few dashes of paprika on top."
+      "spoken": "Sprinkle 1/4 cup of sunflower seeds and 3 dashes of paprika on top. Sprinkle 1/4 cup of sunflower seeds and a few dashes of paprika on top."
     },
     {
       "instruction": "Cover the dish and bake for 35 minutes.",

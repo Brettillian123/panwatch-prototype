@@ -1,0 +1,83 @@
+{
+  "id": "carrot-cake-smoothie",
+  "title": "Carrot Cake Smoothie",
+  "category": "Drinks",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACarrot_Cake_Smoothie"
+  },
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "2",
+      "name": "carrots"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "water, to cook the carrots"
+    },
+    {
+      "amount": "3/4 cup",
+      "name": "water, for the blender"
+    },
+    {
+      "amount": "1/2",
+      "name": "very ripe banana"
+    },
+    {
+      "amount": "1",
+      "name": "orange, peeled and chopped"
+    },
+    {
+      "amount": "3/4 inch",
+      "name": "ginger, peeled and chopped"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ground cinnamon, plus extra for dusting"
+    },
+    {
+      "amount": "1/2 tablespoon",
+      "name": "plain yogurt, fat-free"
+    },
+    {
+      "amount": "a few cubes",
+      "name": "ice"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 2 carrots and 2 teaspoons of water in a microwave-safe bowl."
+    },
+    {
+      "instruction": "Microwave on high for 4 minutes.",
+      "spoken": "Microwave on high for 4 to 5 minutes.",
+      "timer": {
+        "label": "Microwave",
+        "minutes": 4
+      }
+    },
+    {
+      "instruction": "Put the carrots in a blender."
+    },
+    {
+      "instruction": "Add 3/4 cup of water and 1/2 of a very ripe banana."
+    },
+    {
+      "instruction": "Add 1 peeled and chopped orange and 3/4 inch of ginger."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of ground cinnamon and 1/2 tablespoon of yogurt."
+    },
+    {
+      "instruction": "Blend until smooth."
+    },
+    {
+      "instruction": "Pour into two tall glasses and add a few ice cubes."
+    },
+    {
+      "instruction": "Dust with a little ground cinnamon."
+    }
+  ]
+}

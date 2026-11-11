@@ -1,0 +1,104 @@
+{
+  "id": "ethiopian-chicken-salad",
+  "title": "Ethiopian Chicken Salad",
+  "category": "Salads",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ADoro_Fitfit_%28Ethiopian_Chicken_Salad%29"
+  },
+  "totalMinutes": 35,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "injera, shredded"
+    },
+    {
+      "amount": "2 cups",
+      "name": "cooked chicken, shredded or diced"
+    },
+    {
+      "amount": "1 medium",
+      "name": "onion, finely chopped"
+    },
+    {
+      "amount": "2",
+      "name": "tomatoes, diced"
+    },
+    {
+      "amount": "2",
+      "name": "green chile peppers, finely chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "fresh lemon juice"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "olive oil"
+    },
+    {
+      "amount": "2 cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "paprika"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "cayenne pepper, or to taste"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    },
+    {
+      "amount": "to taste",
+      "name": "fresh cilantro or parsley, chopped"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Add 2 cups of shredded injera to a large bowl."
+    },
+    {
+      "instruction": "Add 2 cups of cooked chicken, shredded or diced."
+    },
+    {
+      "instruction": "Add 1 medium onion, finely chopped, and 2 diced tomatoes."
+    },
+    {
+      "instruction": "Add 2 finely chopped green chile peppers."
+    },
+    {
+      "instruction": "In a small bowl, whisk 1/4 cup of fresh lemon juice and 1/4 cup of olive oil."
+    },
+    {
+      "instruction": "Add 2 cloves of minced garlic and 1 teaspoon of paprika."
+    },
+    {
+      "instruction": "Whisk in 1/2 teaspoon of cayenne pepper and salt to taste."
+    },
+    {
+      "instruction": "Pour the dressing over the salad in the large bowl."
+    },
+    {
+      "instruction": "Toss gently until everything is coated with the dressing."
+    },
+    {
+      "instruction": "Let the salad sit for 10 minutes before tasting it.",
+      "spoken": "Let the salad sit for 10 to 15 minutes, so the flavors blend together.",
+      "timer": {
+        "label": "Sit",
+        "minutes": 10
+      }
+    },
+    {
+      "instruction": "Taste the salad and add more salt or spices if you like."
+    },
+    {
+      "instruction": "Garnish with fresh cilantro or parsley, chopped."
+    }
+  ]
+}

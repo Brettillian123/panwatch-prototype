@@ -1,0 +1,75 @@
+{
+  "id": "mild-salty-lassi",
+  "title": "Mild Salty Lassi",
+  "category": "Drinks",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AMild_Salty_Lassi"
+  },
+  "serves": 4,
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1 teaspoon",
+      "name": "cumin seeds"
+    },
+    {
+      "amount": "1 cup",
+      "name": "full-fat yogurt"
+    },
+    {
+      "amount": "1 cup",
+      "name": "milk, chilled"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "lime or lemon juice"
+    },
+    {
+      "amount": "1/2-1 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "ice cubes"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "dried mint, finely crumbled, optional"
+    },
+    {
+      "amount": "1 small pinch",
+      "name": "cayenne pepper, optional"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Dry-roast 1 teaspoon of cumin seeds in a small pan over low heat for 2 minutes.",
+      "spoken": "Dry-roast 1 teaspoon of cumin seeds in a small pan over low heat for 2 to 3 minutes, until you can smell them.",
+      "timer": {
+        "label": "Roast",
+        "minutes": 2
+      }
+    },
+    {
+      "instruction": "Take the cumin seeds out of the pan and let them cool."
+    },
+    {
+      "instruction": "Grind the cumin seeds into a powder."
+    },
+    {
+      "instruction": "Add the cumin powder, 1 cup of yogurt and 1 cup of chilled milk to a blender."
+    },
+    {
+      "instruction": "Add 2 teaspoons of lime juice, 1/2 to 1 teaspoon of salt and 1/2 cup of ice cubes."
+    },
+    {
+      "instruction": "Blend until smooth."
+    },
+    {
+      "instruction": "Serve chilled, topped with 1/4 teaspoon of dried mint and a pinch of cayenne pepper.",
+      "spoken": "Serve chilled. If you like, top with 1/4 teaspoon of finely crumbled dried mint and a small pinch of cayenne pepper."
+    }
+  ]
+}

@@ -68,8 +68,8 @@
       }
     },
     {
-      "instruction": "Stir in the garlic and 1/2 teaspoon of ground cumin.",
-      "spoken": "Stir in the garlic and the cumin, and cook for 30 seconds more."
+      "instruction": "Stir in the garlic and 1/2 teaspoon of ground cumin for 30 seconds.",
+      "spoken": "Stir in the garlic and 1/2 teaspoon of ground cumin, and cook for 30 seconds more."
     },
     {
       "instruction": "Stir in the mashed beans and the second can of beans, with its juice."

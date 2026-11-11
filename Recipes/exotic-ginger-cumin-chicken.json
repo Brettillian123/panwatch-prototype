@@ -98,7 +98,7 @@
     },
     {
       "instruction": "Add 2 teaspoons of garlic, 1/2 cup of onion and 1 tablespoon of ginger.",
-      "spoken": "Add the garlic, onion and ginger. Lower the heat to medium and stir constantly for 5 minutes, until soft.",
+      "spoken": "Add 2 teaspoons of garlic, 1/2 cup of onion and 1 tablespoon of ginger. Lower the heat to medium and stir constantly for 5 minutes, until soft.",
       "watch": {
         "ingredient": "onion",
         "timerLabel": "Onion",
@@ -108,7 +108,7 @@
     },
     {
       "instruction": "Stir in 1/2 teaspoon of cayenne pepper, 1 teaspoon of cumin and 1 teaspoon of turmeric.",
-      "spoken": "Stir in the cayenne, cumin and turmeric. Saute for 1 minute.",
+      "spoken": "Stir in 1/2 teaspoon of cayenne pepper, 1 teaspoon of cumin and 1 teaspoon of turmeric. Saute for 1 minute.",
       "watch": {
         "ingredient": "spices",
         "timerLabel": "Spices",

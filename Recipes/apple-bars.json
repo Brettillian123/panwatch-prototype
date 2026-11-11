@@ -1,0 +1,123 @@
+{
+  "id": "apple-bars",
+  "title": "Apple Bars",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AApple_Bars"
+  },
+  "totalMinutes": 55,
+  "ingredients": [
+    {
+      "amount": "1 cup",
+      "name": "baking mix"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "brown sugar"
+    },
+    {
+      "amount": "1",
+      "name": "egg"
+    },
+    {
+      "amount": "1 ounce",
+      "name": "butter"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "cinnamon"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "powdered ginger"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground nutmeg"
+    },
+    {
+      "amount": "2",
+      "name": "soft-textured apples, sliced"
+    },
+    {
+      "amount": "1 dash",
+      "name": "grapefruit or lemon juice"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "cinnamon, for the topping"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "powdered ginger, for the topping"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "ground nutmeg, for the topping"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "baking mix, for the topping"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "brown sugar, for the topping"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "In a bowl, combine 1 cup of baking mix, 1 egg and 1/4 cup of brown sugar."
+    },
+    {
+      "instruction": "Mix in 1/2 teaspoon of cinnamon, 1/4 teaspoon of ginger and 1/4 teaspoon of nutmeg."
+    },
+    {
+      "instruction": "Rub 1 ounce of butter into the mixture with your fingers.",
+      "spoken": "Rub 1 ounce of butter into the mixture with your fingers. The mixture should not be sticky."
+    },
+    {
+      "instruction": "Line an 8 by 8-inch baking pan with parchment paper."
+    },
+    {
+      "instruction": "Press the mixture into the bottom of the baking pan.",
+      "spoken": "Press the mixture into the bottom of the baking pan. You might want to press it up the sides a little."
+    },
+    {
+      "instruction": "Toss 2 sliced apples in 1 dash of grapefruit or lemon juice.",
+      "spoken": "Toss 2 sliced soft-textured apples in 1 dash of grapefruit or lemon juice, spreading the juice evenly."
+    },
+    {
+      "instruction": "Combine 1/2 teaspoon of cinnamon, 1/4 teaspoon of ginger and 1/4 teaspoon of nutmeg."
+    },
+    {
+      "instruction": "Add 3 tablespoons of baking mix and 3 tablespoons of brown sugar and combine."
+    },
+    {
+      "instruction": "Toss most of the spice mixture with the apples.",
+      "spoken": "Toss most of the spice mixture with the apples. Keep the rest to the side."
+    },
+    {
+      "instruction": "Tip the apples onto the base in the pan.",
+      "spoken": "Tip the lightly coated apples on top of the base in the pan. Try to arrange the slices in an even layer."
+    },
+    {
+      "instruction": "Sprinkle the remaining spice mixture over the apples."
+    },
+    {
+      "instruction": "Heat the oven to 375 °F."
+    },
+    {
+      "instruction": "Bake at 375 °F for 30 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 30
+      }
+    },
+    {
+      "instruction": "Let it cool, then lift it out by the corners of the paper.",
+      "spoken": "Let it cool. Then lift it out of the pan by the corners of the parchment paper and put it on a plate for easy slicing."
+    }
+  ]
+}

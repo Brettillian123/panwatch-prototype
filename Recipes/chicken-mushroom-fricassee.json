@@ -74,11 +74,11 @@
     },
     {
       "instruction": "Heat 1 tablespoon of olive oil in a heavy roasting or braising pan.",
-      "spoken": "Heat the olive oil in a medium heavy-bottom roasting or braising pan. A large sauté pan with a metal handle will work as well."
+      "spoken": "Heat 1 tablespoon of olive oil in a heavy roasting or braising pan. Heat the olive oil in a medium heavy-bottom roasting or braising pan. A large sauté pan with a metal handle will work as well."
     },
     {
       "instruction": "Add 10 ounces of quartered mushrooms to the pan.",
-      "spoken": "Add the mushrooms and cook for 3 to five minutes, until golden brown.",
+      "spoken": "Add 10 ounces of quartered mushrooms to the pan. Add the mushrooms and cook for 3 to five minutes, until golden brown.",
       "watch": {
         "ingredient": "mushrooms",
         "timerLabel": "Mushrooms",
@@ -124,7 +124,7 @@
     },
     {
       "instruction": "Season with 1/2 teaspoon salt and 1/4 teaspoon pepper, then pour sauce over the chicken.",
-      "spoken": "Season with the salt and pepper. Pour 1 cup of the vegetables and sauce over the chicken."
+      "spoken": "Season with 1/2 teaspoon salt and 1/4 teaspoon pepper, then pour sauce over the chicken. Pour 1 cup of the vegetables and sauce over the chicken."
     }
   ]
 }

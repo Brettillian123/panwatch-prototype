@@ -1,0 +1,115 @@
+{
+  "id": "cornbread-and-chicken-casserole",
+  "title": "Cornbread and Chicken Casserole",
+  "category": "Chicken",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ACornbread_and_Chicken_Casserole"
+  },
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "unsalted butter, for sautéing"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "olive oil"
+    },
+    {
+      "amount": "1/2 large",
+      "name": "onion, finely diced"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "2 cups",
+      "name": "shredded cooked chicken"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "freshly-ground black pepper"
+    },
+    {
+      "amount": "2 cups",
+      "name": "shredded Monterey Jack cheese, divided"
+    },
+    {
+      "amount": "3 cups",
+      "name": "cornbread, crumbled finely"
+    },
+    {
+      "amount": "2/3 cup",
+      "name": "dried breadcrumbs"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "unsalted butter, melted"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 375 °F."
+    },
+    {
+      "instruction": "Melt 2 tablespoons of butter with 1 teaspoon of olive oil in a large sauté pan.",
+      "spoken": "Melt 2 tablespoons of butter with 1 teaspoon of olive oil in a large sauté pan over medium-high heat."
+    },
+    {
+      "instruction": "Add 1/2 large diced onion and cook until the onion is translucent."
+    },
+    {
+      "instruction": "Add 1 tablespoon of minced garlic and sauté until golden."
+    },
+    {
+      "instruction": "Take the onion mixture out of the pan and set it aside to cool."
+    },
+    {
+      "instruction": "Mix 2 cups of shredded cooked chicken with the onion mixture."
+    },
+    {
+      "instruction": "Mix in 1/4 teaspoon of salt, 1/4 teaspoon of pepper and 1 cup of cheese."
+    },
+    {
+      "instruction": "Set the chicken mixture aside."
+    },
+    {
+      "instruction": "Lay enough cornbread in a lined roasting pan to lightly coat the bottom.",
+      "spoken": "Use 3 cups of finely crumbled cornbread in all. Lay enough cornbread in the bottom of a parchment-lined, high-sided roasting pan to lightly coat the bottom."
+    },
+    {
+      "instruction": "Put a layer of the chicken mixture on top."
+    },
+    {
+      "instruction": "Repeat the layers until all the cornbread and chicken mixture are used."
+    },
+    {
+      "instruction": "Mix 1 cup of cheese, 2/3 cup of breadcrumbs and 1/4 cup of melted butter."
+    },
+    {
+      "instruction": "Sprinkle the breadcrumb mixture over the top layer."
+    },
+    {
+      "instruction": "Cover with foil and bake in the center of the oven for 20 minutes.",
+      "timer": {
+        "label": "Covered",
+        "minutes": 20
+      }
+    },
+    {
+      "instruction": "Take off the foil and bake for 15 more minutes.",
+      "spoken": "Take off the foil and bake for 15 more minutes, until the top is browned and bubbly.",
+      "timer": {
+        "label": "Uncovered",
+        "minutes": 15
+      }
+    }
+  ]
+}

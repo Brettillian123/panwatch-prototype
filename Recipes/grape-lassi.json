@@ -1,0 +1,54 @@
+{
+  "id": "grape-lassi",
+  "title": "Grape Lassi",
+  "category": "Drinks",
+  "method": "noHeat",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AGrape_Lassi"
+  },
+  "totalMinutes": 10,
+  "ingredients": [
+    {
+      "amount": "2 cups",
+      "name": "black grapes"
+    },
+    {
+      "amount": "4 tablespoons",
+      "name": "sugar"
+    },
+    {
+      "amount": "1 cup",
+      "name": "fresh curd, thick plain Indian yogurt"
+    },
+    {
+      "amount": "1 cup",
+      "name": "milk"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "salt"
+    },
+    {
+      "amount": "6",
+      "name": "ice cubes"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 2 cups of black grapes and 4 tablespoons of sugar in a blender."
+    },
+    {
+      "instruction": "Add 1 cup of curd, 1 cup of milk and 1 tablespoon of salt."
+    },
+    {
+      "instruction": "Blend until smooth."
+    },
+    {
+      "instruction": "Crush 6 ice cubes and divide them between 4 glasses."
+    },
+    {
+      "instruction": "Pour the lassi over the ice."
+    }
+  ]
+}

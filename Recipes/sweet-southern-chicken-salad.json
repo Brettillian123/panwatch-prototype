@@ -1,0 +1,92 @@
+{
+  "id": "sweet-southern-chicken-salad",
+  "title": "Sweet Southern Chicken Salad",
+  "category": "Salads",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ASweet_Southern_Chicken_Salad"
+  },
+  "totalMinutes": 80,
+  "ingredients": [
+    {
+      "amount": "4",
+      "name": "skinless chicken breasts"
+    },
+    {
+      "amount": "2 stalks",
+      "name": "celery"
+    },
+    {
+      "amount": "2",
+      "name": "bay leaves"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "salt, for the pot"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "peppercorns"
+    },
+    {
+      "amount": "1 cup",
+      "name": "mayonnaise"
+    },
+    {
+      "amount": "1 cup",
+      "name": "mango chutney"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt, to season the salad"
+    },
+    {
+      "amount": "to taste",
+      "name": "pepper"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 4 skinless chicken breasts in a small pot."
+    },
+    {
+      "instruction": "Add enough water to cover the chicken."
+    },
+    {
+      "instruction": "Slice 2 stalks of celery into large sticks."
+    },
+    {
+      "instruction": "Add the celery, 2 bay leaves, 1 teaspoon of salt and 1/4 cup of peppercorns."
+    },
+    {
+      "instruction": "Bring the pot to a boil."
+    },
+    {
+      "instruction": "Lower the heat and simmer for 1 hour.",
+      "spoken": "Lower the heat and simmer for at least 1 hour. The chicken should be tender and pull apart easily.",
+      "timer": {
+        "label": "Simmer",
+        "minutes": 60
+      }
+    },
+    {
+      "instruction": "Take the chicken out of the water.",
+      "spoken": "Take the chicken out of the water. You may want to save the water as a base for a stock or a soup."
+    },
+    {
+      "instruction": "Slice the chicken into small bite-size cubes.",
+      "spoken": "Slice the chicken into small bite-size cubes. Don't shred it, because the salad should be chunky."
+    },
+    {
+      "instruction": "Put the cut chicken in a medium bowl."
+    },
+    {
+      "instruction": "Add 1 cup of mayonnaise and 1 cup of mango chutney, a spoonful at a time.",
+      "spoken": "Add the mayonnaise and the mango chutney, 1 cup of each, one spoonful at a time, until the salad is moist and chunky, not wet and mushy."
+    },
+    {
+      "instruction": "Season with salt and pepper to taste."
+    }
+  ]
+}

@@ -54,7 +54,7 @@
     },
     {
       "instruction": "Add 2 cups of sliced leeks and 3 medium carrots.",
-      "spoken": "Cook gently for 3 to five minutes, stirring often, until the vegetables begin to soften.",
+      "spoken": "Add 2 cups of sliced leeks and 3 medium carrots. Cook gently for 3 to five minutes, stirring often, until the vegetables begin to soften.",
       "watch": {
         "ingredient": "leeks",
         "timerLabel": "Leeks",
@@ -89,7 +89,7 @@
       }
     },
     {
-      "instruction": "Cover the pan with a tight-fitting lid and cook over low heat.",
+      "instruction": "Cover the pan with a tight-fitting lid and cook over low heat for 5 minutes.",
       "spoken": "Cover with a tight-fitting lid and cook over low heat for 5 minutes, until the fish is white and flakes easily with a fork in the thickest part. A thermometer reads 145 °F there."
     },
     {

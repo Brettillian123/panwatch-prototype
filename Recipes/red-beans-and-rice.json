@@ -54,7 +54,7 @@
     },
     {
       "instruction": "Add 1 cup of onion pieces to the pan.",
-      "spoken": "Cook for 5 minutes, stirring occasionally, until the pieces begin to soften but not brown.",
+      "spoken": "Add 1 cup of onion pieces to the pan. Cook for 5 minutes, stirring occasionally, until the pieces begin to soften but not brown.",
       "watch": {
         "ingredient": "onion",
         "timerLabel": "Onion",
@@ -76,7 +76,7 @@
     },
     {
       "instruction": "Add 1 tablespoon of garlic, 1 1/2 teaspoons of cumin and 1 1/2 teaspoons of oregano.",
-      "spoken": "Cook and stir for 1 minute.",
+      "spoken": "Add 1 tablespoon of garlic, 1 1/2 teaspoons of cumin and 1 1/2 teaspoons of oregano. Cook and stir for 1 minute.",
       "watch": {
         "ingredient": "garlic",
         "timerLabel": "Garlic",

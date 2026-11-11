@@ -1,0 +1,83 @@
+{
+  "id": "basic-indian-tomato-gravy",
+  "title": "Basic Indian Tomato Gravy",
+  "category": "Sauces and dips",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3ABasic_Indian_Tomato_Gravy"
+  },
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1 tablespoon",
+      "name": "ghee"
+    },
+    {
+      "amount": "1",
+      "name": "onion, diced small"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "ginger paste"
+    },
+    {
+      "amount": "5 cloves",
+      "name": "garlic, pounded"
+    },
+    {
+      "amount": "1 teaspoon",
+      "name": "chile powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "coriander powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "cumin powder"
+    },
+    {
+      "amount": "1/4 teaspoon",
+      "name": "turmeric powder"
+    },
+    {
+      "amount": "5",
+      "name": "tomatoes, diced large"
+    },
+    {
+      "amount": "to taste",
+      "name": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat 1 tablespoon of ghee in a pan."
+    },
+    {
+      "instruction": "Fry 1 diced onion in the hot ghee until it starts to brown."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of ginger paste and 5 cloves of pounded garlic, and stir."
+    },
+    {
+      "instruction": "Add 1 teaspoon of chile powder and 1/2 teaspoon of coriander powder."
+    },
+    {
+      "instruction": "Add 1/2 teaspoon of cumin powder and 1/4 teaspoon of turmeric powder."
+    },
+    {
+      "instruction": "Blend the spices in well."
+    },
+    {
+      "instruction": "Add 5 diced tomatoes and salt to taste."
+    },
+    {
+      "instruction": "Cover the pan over medium heat for 10 minutes.",
+      "timer": {
+        "label": "Cover",
+        "minutes": 10
+      }
+    }
+  ]
+}

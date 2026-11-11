@@ -1,0 +1,89 @@
+{
+  "id": "hashbrown-casserole",
+  "title": "Hashbrown Casserole",
+  "category": "Snacks and sides",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AHashbrown_Casserole"
+  },
+  "totalMinutes": 60,
+  "ingredients": [
+    {
+      "amount": "32 ounces",
+      "name": "frozen hash browns"
+    },
+    {
+      "amount": "2 cups",
+      "name": "shredded cheddar cheese"
+    },
+    {
+      "amount": "1 can",
+      "name": "cream of chicken soup"
+    },
+    {
+      "amount": "1 cup",
+      "name": "sour cream"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "melted butter (optional)"
+    },
+    {
+      "amount": "1/2 cup",
+      "name": "chopped green onions (optional)"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "pepper"
+    },
+    {
+      "amount": "1 cup",
+      "name": "corn flakes cereal"
+    },
+    {
+      "amount": "1 tablespoon",
+      "name": "melted butter, for the topping"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Put 32 ounces of frozen hash browns in a large bowl."
+    },
+    {
+      "instruction": "Add 2 cups of shredded cheddar cheese and 1 can of cream of chicken soup."
+    },
+    {
+      "instruction": "Add 1 cup of sour cream and 1/4 cup of melted butter."
+    },
+    {
+      "instruction": "Add 1/2 cup of green onions, 1/2 teaspoon of salt and 1/2 teaspoon of pepper."
+    },
+    {
+      "instruction": "Stir everything together."
+    },
+    {
+      "instruction": "Transfer the mixture to an 11x13-inch glass baking dish."
+    },
+    {
+      "instruction": "Toss 1 cup of corn flakes cereal with 1 tablespoon of melted butter."
+    },
+    {
+      "instruction": "Sprinkle the corn flake mixture on top."
+    },
+    {
+      "instruction": "Bake at 350 °F for 40 minutes, until bubbly and a little browned on top.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 40
+      }
+    }
+  ]
+}

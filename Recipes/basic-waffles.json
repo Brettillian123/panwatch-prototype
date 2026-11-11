@@ -57,14 +57,14 @@
     },
     {
       "instruction": "Alternate adding 1 1/2 cups of milk and 4 cups of flour, stirring constantly.",
-      "spoken": "Add the milk and flour in turns, stirring constantly. The source uses about 1 1/2 to one and three quarter cups of milk."
+      "spoken": "Alternate adding 1 1/2 cups of milk and 4 cups of flour, stirring constantly. Add the milk and flour in turns, stirring constantly. The source uses about 1 1/2 to one and three quarter cups of milk."
     },
     {
       "instruction": "Mix on the highest mixer speed until the dough is smooth."
     },
     {
       "instruction": "Let the dough rest for 2 minutes.",
-      "spoken": "Let the dough rest for a couple of minutes.",
+      "spoken": "Let the dough rest for 2 minutes. Let the dough rest for a couple of minutes.",
       "timer": {
         "label": "Rest",
         "minutes": 2

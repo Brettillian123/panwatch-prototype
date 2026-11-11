@@ -1,0 +1,72 @@
+{
+  "id": "hawthorn-tea",
+  "title": "Hawthorn Tea",
+  "category": "Drinks",
+  "method": "pot",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AHawthorn_Tea"
+  },
+  "totalMinutes": 20,
+  "ingredients": [
+    {
+      "amount": "1 quart",
+      "name": "water"
+    },
+    {
+      "amount": "1",
+      "name": "hawthorn tea bag"
+    },
+    {
+      "amount": "1 small sprig",
+      "name": "rosemary, leaves only"
+    },
+    {
+      "amount": "1 small sprig",
+      "name": "sage, leaves only"
+    },
+    {
+      "amount": "7",
+      "name": "thin slices of fresh ginger"
+    },
+    {
+      "amount": "3 tablespoons",
+      "name": "sugar"
+    },
+    {
+      "amount": "5 tablespoons",
+      "name": "lemon juice"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Put 1 quart of water and 1 hawthorn tea bag in a pot."
+    },
+    {
+      "instruction": "Add the leaves of 1 small sprig of rosemary and 1 small sprig of sage."
+    },
+    {
+      "instruction": "Add 7 thin slices of fresh ginger."
+    },
+    {
+      "instruction": "Boil briefly."
+    },
+    {
+      "instruction": "Take the pot off the heat and let it steep for 5 minutes.",
+      "spoken": "Take the pot off the heat and let the tea steep for 5 to 10 minutes.",
+      "timer": {
+        "label": "Steep",
+        "minutes": 5
+      }
+    },
+    {
+      "instruction": "Strain the tea to remove the solids."
+    },
+    {
+      "instruction": "Stir in 3 tablespoons of sugar and 5 tablespoons of lemon juice."
+    },
+    {
+      "instruction": "Let the tea cool, then serve."
+    }
+  ]
+}

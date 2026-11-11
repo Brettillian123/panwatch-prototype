@@ -1,0 +1,114 @@
+{
+  "id": "hamburger-stoup",
+  "title": "Hamburger Stoup",
+  "category": "Soups",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AHamburger_Stoup"
+  },
+  "serves": 6,
+  "totalMinutes": 380,
+  "ingredients": [
+    {
+      "amount": "1 dash",
+      "name": "oil"
+    },
+    {
+      "amount": "1 large",
+      "name": "onion, chopped"
+    },
+    {
+      "amount": "2 pounds",
+      "name": "lean ground beef (80/20)"
+    },
+    {
+      "amount": "36 ounces",
+      "name": "stewed tomatoes"
+    },
+    {
+      "amount": "16 ounces",
+      "name": "canned corn"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "canned peas"
+    },
+    {
+      "amount": "6 large stalks",
+      "name": "celery, chopped"
+    },
+    {
+      "amount": "6 large",
+      "name": "potatoes, cubed"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "beef broth"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "chicken broth"
+    },
+    {
+      "amount": "1 cup",
+      "name": "white rice"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "salt"
+    },
+    {
+      "amount": "2 tablespoons",
+      "name": "pepper"
+    },
+    {
+      "amount": "2 cups",
+      "name": "water"
+    },
+    {
+      "amount": "to taste",
+      "name": "cooked pasta (optional)"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Fry 1 chopped onion in a skillet with 1 dash of oil.",
+      "spoken": "Fry 1 chopped onion in a skillet with 1 dash of oil until the onion is soft and clear."
+    },
+    {
+      "instruction": "Add 2 pounds of ground beef to the onion."
+    },
+    {
+      "instruction": "Cook, breaking up the meat, until it is browned."
+    },
+    {
+      "instruction": "Put the meat mixture in a large stockpot."
+    },
+    {
+      "instruction": "Add 36 ounces of stewed tomatoes, 16 ounces of corn and 8 ounces of peas."
+    },
+    {
+      "instruction": "Add 6 chopped celery stalks and 6 cubed potatoes."
+    },
+    {
+      "instruction": "Add 8 ounces of beef broth, 8 ounces of chicken broth and 1 cup of rice."
+    },
+    {
+      "instruction": "Add 2 tablespoons of salt and 2 tablespoons of pepper."
+    },
+    {
+      "instruction": "Add about 2 cups of water, enough to cover everything by a few inches."
+    },
+    {
+      "instruction": "Place the pot in a 325 °F oven and bake for 6 hours.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 360
+      }
+    },
+    {
+      "instruction": "Stir in cooked pasta if using it. Makes 6 quarts."
+    }
+  ]
+}

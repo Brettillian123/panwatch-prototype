@@ -1,0 +1,86 @@
+{
+  "id": "chocolate-crinkles",
+  "title": "Chocolate Crinkles",
+  "category": "Baking and desserts",
+  "method": "oven",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3AChocolate_Crinkles"
+  },
+  "totalMinutes": 510,
+  "ingredients": [
+    {
+      "amount": "1/2 cup",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "4 ounces",
+      "name": "unsweetened chocolate, melted"
+    },
+    {
+      "amount": "2 cups",
+      "name": "granulated sugar"
+    },
+    {
+      "amount": "4",
+      "name": "eggs"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "vanilla extract"
+    },
+    {
+      "amount": "2 cups",
+      "name": "all-purpose flour"
+    },
+    {
+      "amount": "2 teaspoons",
+      "name": "baking powder"
+    },
+    {
+      "amount": "1/2 teaspoon",
+      "name": "salt"
+    },
+    {
+      "amount": "1 cup",
+      "name": "confectioners' sugar"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Mix 1/2 cup of oil, 4 ounces of melted chocolate and 2 cups of sugar."
+    },
+    {
+      "instruction": "Blend in 4 eggs, one at a time, until well mixed."
+    },
+    {
+      "instruction": "Add 2 teaspoons of vanilla extract."
+    },
+    {
+      "instruction": "Stir in 2 cups of flour, 2 teaspoons of baking powder and 1/2 teaspoon of salt."
+    },
+    {
+      "instruction": "Chill the dough overnight, or at least several hours."
+    },
+    {
+      "instruction": "Heat the oven to 350 °F."
+    },
+    {
+      "instruction": "Drop teaspoonfuls of dough into 1 cup of confectioners' sugar."
+    },
+    {
+      "instruction": "Roll the dough in the sugar and shape it into balls."
+    },
+    {
+      "instruction": "Place the balls about 2 inches apart on a greased baking sheet."
+    },
+    {
+      "instruction": "Bake for 10 minutes.",
+      "spoken": "Bake for 10 to 12 minutes.",
+      "timer": {
+        "label": "Bake",
+        "minutes": 10
+      }
+    }
+  ]
+}

@@ -50,7 +50,7 @@
     },
     {
       "instruction": "Heat 3 tablespoons of oil and 1 tablespoon of butter in a 12-inch sauté pan.",
-      "spoken": "Heat the oil and melt the butter in a deep-sided, 12-inch sauté pan over medium-high heat. Wait until the oil is hot, but not smoking."
+      "spoken": "Heat 3 tablespoons of oil and 1 tablespoon of butter in a 12-inch sauté pan. Heat the oil and melt the butter in a deep-sided, 12-inch sauté pan over medium-high heat. Wait until the oil is hot, but not smoking."
     },
     {
       "instruction": "Lay the chicken pieces in the pan, skin side down.",
@@ -88,7 +88,7 @@
     },
     {
       "instruction": "Add 1 cup of creme fraiche or heavy cream and cook for 5 minutes.",
-      "spoken": "Add the creme fraiche or cream and cook for about 5 minutes, until it is blended and brown.",
+      "spoken": "Add 1 cup of creme fraiche or heavy cream and cook for 5 minutes. Add the creme fraiche or cream and cook for about 5 minutes, until it is blended and brown.",
       "watch": {
         "ingredient": "cream",
         "timerLabel": "Cream",

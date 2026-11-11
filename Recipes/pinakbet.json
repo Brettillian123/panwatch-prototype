@@ -1,0 +1,96 @@
+{
+  "id": "pinakbet",
+  "title": "Pinakbet",
+  "category": "Vegetables",
+  "method": "pan",
+  "source": {
+    "name": "Wikibooks Cookbook",
+    "url": "https://en.wikibooks.org/wiki/Cookbook%3APinakbet"
+  },
+  "totalMinutes": 25,
+  "ingredients": [
+    {
+      "amount": "2 tablespoons",
+      "name": "vegetable oil"
+    },
+    {
+      "amount": "2 medium cloves",
+      "name": "garlic, minced"
+    },
+    {
+      "amount": "1 small",
+      "name": "yellow onion, finely chopped"
+    },
+    {
+      "amount": "2",
+      "name": "plum tomatoes, cored and chopped"
+    },
+    {
+      "amount": "1/4 cup",
+      "name": "bagoong alamang"
+    },
+    {
+      "amount": "1 pinch",
+      "name": "salt"
+    },
+    {
+      "amount": "1",
+      "name": "bitter melon, halved lengthwise, seeded and sliced 1/4 inch thick"
+    },
+    {
+      "amount": "1 small",
+      "name": "sweet potato, peeled, quartered and cut into 1/4-inch slices"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "string beans, trimmed and cut into 2-inch lengths"
+    },
+    {
+      "amount": "1 medium",
+      "name": "eggplant, halved lengthwise and sliced 1/2 inch thick"
+    },
+    {
+      "amount": "8 ounces",
+      "name": "okra, caps trimmed and pods halved on the bias"
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Heat a skillet over medium heat."
+    },
+    {
+      "instruction": "Add 2 tablespoons of vegetable oil to the pan."
+    },
+    {
+      "instruction": "Add 2 minced garlic cloves."
+    },
+    {
+      "instruction": "Cook the garlic briefly until fragrant."
+    },
+    {
+      "instruction": "Add 1 small chopped onion and cook until softened."
+    },
+    {
+      "instruction": "Add 2 chopped tomatoes, 1/4 cup of bagoong alamang and 1 pinch of salt.",
+      "spoken": "Add 2 chopped plum tomatoes, 1/4 cup of bagoong alamang and 1 pinch of salt. Simmer for 5 minutes.",
+      "watch": {
+        "ingredient": "tomatoes",
+        "timerLabel": "Tomatoes",
+        "timerMinutes": 5,
+        "minimumChange": 0.02
+      }
+    },
+    {
+      "instruction": "Add the sliced bitter melon and the sliced sweet potato."
+    },
+    {
+      "instruction": "Cover and cook until almost, but not quite, tender."
+    },
+    {
+      "instruction": "Add the string beans, the eggplant and the okra."
+    },
+    {
+      "instruction": "Cover and cook a few minutes, until all the vegetables are tender."
+    }
+  ]
+}
