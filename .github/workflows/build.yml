@@ -61,7 +61,7 @@ jobs:
     continue-on-error: true
     env:
       BUNDLE_ID: com.brettillian123.panwatch
-      SCREENS: "recipes recipe cook offer voices makeVoice profile help"
+      SCREENS: "recipes recipe recipeList cook offer voices makeVoice profile help"
     steps:
       - uses: actions/checkout@v4
 
