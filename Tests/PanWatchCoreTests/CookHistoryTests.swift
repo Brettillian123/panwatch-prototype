@@ -38,9 +38,11 @@ struct CookHistoryTests {
         #expect(Credits.recipeNotices().isEmpty)
         var lentils = Recipe(title: "Lentil Soup", category: .soups, steps: [])
         lentils.source = RecipeSource(name: "Serious Eats", url: "https://www.seriouseats.com/lentil-soup")
-        let notices = Credits.recipeNotices([lentils, Recipe.rice])
-        #expect(notices.map(\.title) == ["Recipes from Serious Eats"])
-        #expect(notices.first?.text == "Lentil soup, adapted from https://www.seriouseats.com/lentil-soup")
+        let entries = [RecipeEntry(lentils, hasPhoto: false), RecipeEntry(Recipe.rice, hasPhoto: false), RecipeEntry(lentils, hasPhoto: false)]
+        let sources = [RecipeSourceCredit(name: "Serious Eats", credit: "Recipes adapted from Serious Eats.", url: "https://www.seriouseats.com")]
+        let notices = Credits.recipeNotices(entries, sources: sources)
+        #expect(notices.map(\.title) == ["Serious Eats"])
+        #expect(notices.first?.text == "Recipes adapted from Serious Eats.\nhttps://www.seriouseats.com")
     }
 
     @Test func listFiltersKeepTheirRecipes() {

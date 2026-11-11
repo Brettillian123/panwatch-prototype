@@ -26,19 +26,6 @@ struct IngredientLine: Equatable, Sendable {
 }
 
 extension Recipe {
-    /// Recipes this long or shorter go in Home's "Quick ones" row.
-    static let quickMinutes = 20
-
-    /// The title in sentence case, as the screens show it: "Hard-boiled eggs".
-    var displayTitle: String {
-        title.prefix(1).uppercased() + title.dropFirst().lowercased()
-    }
-
-    /// "20 min · Serves 4".
-    var summary: String { "\(totalMinutes) min · Serves \(serves)" }
-
-    var isQuick: Bool { totalMinutes <= Recipe.quickMinutes }
-
     var ingredientLines: [IngredientLine] { items.map { IngredientLine(name: $0.name, amount: $0.amount) } }
 
     /// The recipes whose name, an ingredient or the category holds every word of `query`:

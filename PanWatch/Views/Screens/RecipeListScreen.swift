@@ -74,7 +74,7 @@ struct RecipeListScreen: View {
         } else {
             LazyVStack(alignment: .leading, spacing: 0) {
                 ForEach(recipes, id: \.id) { recipe in
-                    RecipeRow(recipe: recipe) { session.open(recipe: recipe) }
+                    RecipeRow(entry: recipe) { session.open(entry: recipe) }
                     if recipe.id != recipes.last?.id {
                         Rectangle().fill(Theme.divider).frame(height: 1).padding(.leading, 76)
                     }

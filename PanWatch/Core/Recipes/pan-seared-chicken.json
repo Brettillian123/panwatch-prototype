@@ -27,6 +27,6 @@
       "spoken": "Flip the chicken and cook about 6 more minutes, until a thermometer reads 165 °F in the thickest part.",
       "cue": { "timerLabel": "Chicken", "secondsLeft": 0 }
     },
-    { "instruction": "Let the chicken rest for 5 minutes before slicing." }
+    { "instruction": "Let the chicken rest for 5 minutes before slicing.", "timer": { "label": "Rest", "minutes": 5 } }
   ]
 }

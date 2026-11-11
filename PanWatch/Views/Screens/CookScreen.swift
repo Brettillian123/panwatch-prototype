@@ -149,9 +149,10 @@ struct CookScreen: View {
         Group {
             if let timer = featuredTimer(session.timers) {
                 CookTimerCard(session: session, timer: timer) { showTimers = true }
-            } else if session.canStartStepTimer, let watch = session.currentStep.watch {
+            } else if session.canStartStepTimer,
+                      let minutes = session.currentStep.watch?.timerMinutes ?? session.currentStep.timer?.minutes {
                 // No timer yet on a timed step: start it by touch, as the old Timer button did.
-                QuietButton(title: "Start the \(watch.timerMinutes)-minute timer", systemImage: "timer") {
+                QuietButton(title: "Start the \(minutes)-minute timer", systemImage: "timer") {
                     session.noteTouch()
                     session.startStepTimer()
                 }

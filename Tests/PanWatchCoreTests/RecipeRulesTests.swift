@@ -91,7 +91,8 @@ struct RecipeRulesTests {
         let timed = soup().steps + [step(4, "Simmer the salt for 10 minutes.", timer: StepTimer(label: "Simmer", minutes: 10))]
         #expect(soup(totalMinutes: 60, steps: timed).authoringProblems().isEmpty)
         let resting = soup().steps + [step(4, "Let the salt rest off the heat for 10 minutes.")]
-        #expect(soup(steps: resting).authoringProblems().isEmpty, "\(soup(steps: resting).authoringProblems())")
+        // A wait off the heat needs its timer too.
+        expectProblem(soup(steps: resting), mentioning: "no step has a 10-minute timer")
     }
 
     @Test func ingredientsUseUSUnitsAndAppearInASteps() {

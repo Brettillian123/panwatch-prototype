@@ -29,19 +29,19 @@ enum Credits {
         ),
     ]
 
-    /// One notice per outside source of recipes, naming the dishes adapted from it, for
-    /// Profile > Advanced > About. The app's own recipes need none.
-    static func recipeNotices(_ recipes: [Recipe] = Recipe.all) -> [Notice] {
-        var order: [String] = []
-        var bySource: [String: [Recipe]] = [:]
-        for recipe in recipes where !recipe.source.isOwn {
-            if bySource[recipe.source.name] == nil { order.append(recipe.source.name) }
-            bySource[recipe.source.name, default: []].append(recipe)
+    /// One notice per outside source of recipes, each source once in book order, with its
+    /// credit line and link from `Recipes/sources.json`, for Profile > Advanced > About.
+    /// The app's own recipes need none.
+    static func recipeNotices(_ entries: [RecipeEntry] = RecipeIndex.bundled.entries,
+                              sources: [RecipeSourceCredit] = RecipeBook.bundledFolder().map(RecipeBook.sources(in:)) ?? []) -> [Notice] {
+        var seen: Set<String> = []
+        var notices: [Notice] = []
+        for entry in entries where entry.source != RecipeSource.own.name && !seen.contains(entry.source) {
+            seen.insert(entry.source)
+            let credit = sources.first { $0.name == entry.source }
+            let text = credit.map { $0.credit + "\n" + $0.url } ?? "Recipes adapted from \(entry.source)."
+            notices.append(Notice(title: entry.source, text: text))
         }
-        return order.map { name in
-            let dishes = bySource[name] ?? []
-            let lines = dishes.map { "\($0.displayTitle), adapted from \($0.source.url)" }
-            return Notice(title: "Recipes from \(name)", text: lines.joined(separator: "\n"))
-        }
+        return notices
     }
 }

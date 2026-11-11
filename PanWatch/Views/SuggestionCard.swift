@@ -20,12 +20,12 @@ struct SuggestionCard: View {
     var body: some View {
         let shape = RoundedRectangle(cornerRadius: Theme.radiusCard, style: .continuous)
         VStack(alignment: .leading, spacing: 4) {
-            Text("Looks like the \(offer.watch.ingredient) went in.")
+            Text(offer.offer.caption)
                 .font(Theme.cookCaption)
                 .foregroundStyle(Theme.slate)
                 .lineLimit(1)
                 .minimumScaleFactor(0.8)
-            Text("Start a \(offer.watch.timerMinutes)-minute timer?")
+            Text(offer.offer.question)
                 .font(Theme.cookBodyStrong)
                 .foregroundStyle(Theme.ink)
                 .lineLimit(1)

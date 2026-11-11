@@ -19,7 +19,10 @@ struct TimerSuggestion: Identifiable {
     let id = UUID()
     let stepIndex: Int
     let watch: AdditionWatch
-    let decision: DetectorDecision
+    /// The card's words: the camera's offer, or a step's plain timer as the step opens.
+    var offer: TimerOffer
+    /// What the camera saw; nil for a plain timer.
+    let decision: DetectorDecision?
     let before: CGImage?
     let after: CGImage?
 }
@@ -267,12 +270,13 @@ final class CookSession {
         }
         usage.stepChanged(to: index, of: recipe.steps.count) // usage-log
         suggestion = nil
+        let plainOffer = offerPlainTimer()
         refreshArming()
         saveCook()
         if let text {
-            speak(.timerDone, text)
+            speak(.timerDone, text + plainOffer)
         } else {
-            speak(.stepChanged(by: source), "Step \(index + 1). \(currentStep.spokenText)")
+            speak(.stepChanged(by: source), "Step \(index + 1). \(currentStep.spokenText)" + plainOffer)
         }
     }
 
@@ -293,9 +297,10 @@ final class CookSession {
         suggestion = nil
         stats = CookStats()
         stepIndex = 0
+        let plainOffer = offerPlainTimer()
         refreshArming()
         saveCook()
-        speak(.recipeChosen(by: source), "\(recipe.title). Step 1. \(currentStep.spokenText)", short: "\(recipe.title). Step 1.")
+        speak(.recipeChosen(by: source), "\(recipe.title). Step 1. \(currentStep.spokenText)" + plainOffer, short: "\(recipe.title). Step 1.")
         openPanDrawingIfNeeded()
     }
 
@@ -535,6 +540,7 @@ final class CookSession {
         suggestion = TimerSuggestion(
             stepIndex: stepIndex,
             watch: watch,
+            offer: .seen(watch),
             decision: decision,
             before: pictures.before,
             after: pictures.after
@@ -546,8 +552,15 @@ final class CookSession {
         speak(.offer, offerText(watch))
     }
 
-    private func offerText(_ watch: AdditionWatch) -> String {
-        "Looks like the \(watch.ingredient) went in. Start a \(watch.timerMinutes) minute timer?"
+    private func offerText(_ watch: AdditionWatch) -> String { TimerOffer.seen(watch).spoken }
+
+    /// A step with a plain timer and no camera watch offers its timer as it opens; the
+    /// timer starts only on "yes" or a tap. Returns the words to say after the step.
+    @discardableResult private func offerPlainTimer() -> String {
+        let running = timers.filter { !$0.isDone }.map(\.label)
+        guard let offer = TimerOffer.onOpen(currentStep, started: finishedSteps.contains(stepIndex), running: running) else { return "" }
+        suggestion = TimerSuggestion(stepIndex: stepIndex, watch: offer.watch, offer: offer, decision: nil, before: nil, after: nil)
+        return " " + offer.spoken
     }
 
     // MARK: Voice commands
@@ -574,7 +587,7 @@ final class CookSession {
     private var intentContext: IntentContext? {
         return IntentContext(
             step: currentStep.instruction,
-            offer: suggestion.map { offerText($0.watch) },
+            offer: suggestion.map(\.offer.spoken),
             timers: timers.filter { !$0.isDone }.map {
                 IntentContext.RunningTimer(label: $0.label, secondsLeft: Int($0.end.timeIntervalSinceNow.rounded()))
             }
@@ -592,7 +605,7 @@ final class CookSession {
             nextStep: next,
             ingredients: recipe.ingredients,
             timers: intentContext?.timers ?? [],
-            offer: suggestion.map { offerText($0.watch) },
+            offer: suggestion.map(\.offer.spoken),
             facts: recipe.steps.flatMap { [$0.instruction, $0.spokenText] }
                 + recipe.steps.compactMap(\.watch).map { "\($0.timerMinutes) minutes" }
                 + recipe.ingredients
@@ -702,6 +715,12 @@ final class CookSession {
     private(set) var viewedRecipe: Recipe?
 
     /// Opens one recipe's page.
+    /// Opens a dish from a shelf, a list or search: its file is read now, not before.
+    func open(entry: RecipeEntry) {
+        guard let recipe = Recipe.withID(entry.id) else { return }
+        open(recipe: recipe)
+    }
+
     func open(recipe: Recipe) {
         viewedRecipe = recipe
         recipeFromList = screen == .recipeList
@@ -723,10 +742,9 @@ final class CookSession {
     private(set) var recipeChoice: [String] = []
 
     /// The recipes the list shows: the search's matches within the filter.
-    var listRecipes: [Recipe] {
-        if !listChoice.isEmpty { return Recipe.all.filter { listChoice.contains($0.title) } }
-        let kept = Recipe.filtered(listFilter)
-        return listQuery.trimmingCharacters(in: .whitespaces).isEmpty ? kept : Recipe.matching(listQuery, in: kept)
+    var listRecipes: [RecipeEntry] {
+        if !listChoice.isEmpty { return RecipeIndex.bundled.entries(titled: listChoice) }
+        return RecipeIndex.bundled.search(listQuery, within: listFilter)
     }
 
     /// Opens the recipe list on a filter, a shelf's heading, or a search heard by voice.
@@ -1098,7 +1116,7 @@ final class CookSession {
             }
         case .repeatStep:
             if let suggestion {
-                speak(.answer, offerText(suggestion.watch))
+                speak(.answer, suggestion.offer.spoken)
             } else {
                 speak(.answer, "Step \(stepIndex + 1). \(currentStep.spokenText)")
             }
@@ -1202,7 +1220,7 @@ final class CookSession {
             open(.recipes)
             speak(.confirmation(visible: true), "What are you cooking?")
         case .makeRecipe(let title):
-            guard let dish = Recipe.all.first(where: { $0.title == title }) else { return speak(.notUnderstood, "") }
+            guard let dish = Recipe.titled(title) else { return speak(.notUnderstood, "") }
             if dish.title == recipe.title && !isChoosingRecipe {
                 speak(.answer, "Already cooking \(dish.title). Step \(stepIndex + 1).")
             } else if dish.title == recipe.title && stepIndex > 0 {
@@ -1403,14 +1421,16 @@ final class CookSession {
     func acceptSuggestion() {
         guard let offer = suggestion else { return }
         suggestion = nil
-        stats.noteAccepted()
-        usage.offerAnswered(accepted: true) // usage-log
+        if !offer.offer.plain {
+            stats.noteAccepted()
+            usage.offerAnswered(accepted: true) // usage-log
+        }
         ingredientWentIn(step: offer.stepIndex, watch: offer.watch)
     }
 
     /// This step still has a timer to start: something goes in, and it hasn't yet.
     var canStartStepTimer: Bool {
-        currentStep.watch != nil && !finishedSteps.contains(stepIndex)
+        (currentStep.watch != nil || currentStep.timer != nil) && !finishedSteps.contains(stepIndex)
     }
 
     /// "Start the timer": accepts the offer, or starts the step's timer when the camera
@@ -1418,7 +1438,8 @@ final class CookSession {
     func startStepTimer() {
         if suggestion != nil {
             acceptSuggestion()
-        } else if let watch = currentStep.watch, canStartStepTimer {
+        } else if let watch = currentStep.watch ?? currentStep.timer.map({ TimerOffer(label: $0.label, minutes: $0.minutes, plain: true).watch }),
+                  canStartStepTimer {
             usage.likelyMiss(step: stepIndex, watching: cameraOn && region != nil) // usage-log
             ingredientWentIn(step: stepIndex, watch: watch)
         } else {
@@ -1491,10 +1512,12 @@ final class CookSession {
     }
 
     func dismissSuggestion() {
-        guard suggestion != nil else { return }
+        guard let offer = suggestion else { return }
         suggestion = nil
-        stats.noteDismissed()
-        usage.offerAnswered(accepted: false) // usage-log
+        if !offer.offer.plain {
+            stats.noteDismissed()
+            usage.offerAnswered(accepted: false) // usage-log
+        }
         refreshArming()
     }
 
@@ -1629,7 +1652,7 @@ final class CookSession {
     private func resumeCook(timers saved: [SavedTimer]) -> Bool {
         guard let data = UserDefaults.standard.data(forKey: Self.cookKey),
               let cook = SavedCook.decode(data),
-              let recipe = cook.recipe(in: Recipe.all, at: Date()) else { return false }
+              let recipe = cook.recipe(in: Recipe.titled(cook.recipeTitle).map { [$0] } ?? [], at: Date()) else { return false }
         self.recipe = recipe
         stepIndex = cook.stepIndex
         finishedSteps = cook.finishedSteps
@@ -1675,7 +1698,7 @@ final class CookSession {
         recipe = .garlicButterPasta
         viewedRecipe = .garlicButterPasta
         // The list pictured on its first category, as a shelf heading opens it.
-        if name == "recipeList" { openList(.category(Recipe.all.first?.category ?? .pastaAndGrains)) }
+        if name == "recipeList" { openList(.category(RecipeIndex.bundled.entries.first?.category ?? .pastaAndGrains)) }
         // The recipe page is pictured before a cook starts, with "Start cooking".
         cookUnderWay = name != "recipe"
         finishedSteps = []
@@ -1690,7 +1713,7 @@ final class CookSession {
                     medianLumaShift: 0, dwell: 1, handOpened: 0, released: false, settledCleanly: true,
                     before: patch, after: patch
                 )
-                suggestion = TimerSuggestion(stepIndex: 1, watch: watch, decision: decision, before: nil, after: nil)
+                suggestion = TimerSuggestion(stepIndex: 1, watch: watch, offer: .seen(watch), decision: decision, before: nil, after: nil)
             }
         } else {
             stepIndex = 2

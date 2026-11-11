@@ -50,15 +50,21 @@ extension RecipeStep {
 }
 
 /// The shelves of the recipe book, in the order Home shows them.
-enum RecipeCategory: String, CaseIterable, Sendable {
+enum RecipeCategory: String, CaseIterable, Codable, Sendable {
     case pastaAndGrains = "Pasta and grains"
     case eggsAndBreakfast = "Eggs and breakfast"
     case vegetables = "Vegetables"
+    case salads = "Salads"
     case chicken = "Chicken"
     case beefAndPork = "Beef and pork"
     case fish = "Fish"
     case soups = "Soups"
     case beansAndLentils = "Beans and lentils"
+    case sandwichesAndWraps = "Sandwiches and wraps"
+    case snacksAndSides = "Snacks and sides"
+    case saucesAndDips = "Sauces and dips"
+    case bakingAndDesserts = "Baking and desserts"
+    case drinks = "Drinks"
 
     /// The words on screen: "Pasta and grains".
     var title: String { rawValue }
@@ -69,20 +75,30 @@ enum RecipeCategory: String, CaseIterable, Sendable {
         case .pastaAndGrains: "fork.knife"
         case .eggsAndBreakfast: "sun.horizon"
         case .vegetables: "carrot"
+        case .salads: "leaf"
         case .chicken: "bird"
         case .beefAndPork: "flame"
         case .fish: "fish"
         case .soups: "mug"
-        case .beansAndLentils: "leaf"
+        case .beansAndLentils: "circle.hexagongrid"
+        case .sandwichesAndWraps: "takeoutbag.and.cup.and.straw"
+        case .snacksAndSides: "popcorn"
+        case .saucesAndDips: "drop"
+        case .bakingAndDesserts: "birthday.cake"
+        case .drinks: "cup.and.saucer"
         }
     }
 
-    /// Where it sits in `allCases`, for alternating tile colors.
+    /// Where it sits in `allCases`, for book order.
     var index: Int { Self.allCases.firstIndex(of: self) ?? 0 }
+
+    /// The no-photo tile's color: neighbouring shelves alternate blush and sky, so a shelf of
+    /// ten plain tiles reads as one deliberate run and the next shelf as a new one.
+    var tileIsBlush: Bool { index.isMultiple(of: 2) }
 }
 
 /// The main way a dish is cooked.
-enum CookMethod: String, CaseIterable, Sendable {
+enum CookMethod: String, CaseIterable, Codable, Sendable {
     /// In a pot on the stove: boiling, simmering, steaming.
     case pot
     /// In a pan on the stove: searing, frying, sautéing.
@@ -122,7 +138,7 @@ struct Ingredient: Equatable, Sendable {
     }
 }
 
-struct Recipe: Equatable, Sendable {
+struct Recipe: BookItem, Equatable, Sendable {
     /// The slug: lowercase words joined by hyphens, stable, and the file's name.
     let id: String
     let title: String
@@ -152,12 +168,18 @@ struct Recipe: Equatable, Sendable {
 }
 
 extension Recipe {
-    /// Every recipe the app offers, in book order: by category, then by title. Loaded once
-    /// from the recipe files.
+    /// Every bundled recipe parsed in full, in book order. Only the tests and the checker use
+    /// it; the app never parses the whole book: titles, lists, search and voice come from
+    /// `RecipeIndex.bundled`, and one recipe is read when it is opened (`withID`).
     static let all: [Recipe] = RecipeBook.bundled()
 
-    /// The recipe with this id, from `all`.
-    static func withID(_ id: String) -> Recipe? { all.first { $0.id == id } }
+    /// The recipe with this id, read from its own file (once, then kept).
+    static func withID(_ id: String) -> Recipe? { RecipeBook.recipe(id: id) }
+
+    /// The recipe with this exact title, through the index.
+    static func titled(_ title: String) -> Recipe? {
+        RecipeIndex.bundled.entry(titled: title).flatMap { withID($0.id) }
+    }
 
     /// The six the app started with, by id, for callers and tests that name one.
     static var garlicButterPasta: Recipe { named("garlic-butter-pasta") }
@@ -168,7 +190,7 @@ extension Recipe {
     static var panSearedChicken: Recipe { named("pan-seared-chicken") }
 
     private static func named(_ id: String) -> Recipe {
-        withID(id) ?? all.first ?? Recipe(title: "Recipe", steps: [])
+        withID(id) ?? RecipeIndex.bundled.entries.first.flatMap { withID($0.id) } ?? Recipe(title: "Recipe", steps: [])
     }
 
     /// The title in lowercase words joined by hyphens: "Hard-Boiled Eggs" is "hard-boiled-eggs".
@@ -183,9 +205,7 @@ extension Recipe {
     /// The lines read aloud when the cook says "ingredients".
     var ingredients: [String] { items.map(\.spoken) }
 
-    /// The name of the dish's photo in the asset catalog, "dish-<slug>".
-    var photoName: String { "dish-" + id }
 
-    /// Where the recipe sits in `all`; 0 for one not listed.
-    var menuIndex: Int { Recipe.all.firstIndex(where: { $0.id == id }) ?? 0 }
+    /// Where the recipe sits in the book's index; 0 for one not listed.
+    var menuIndex: Int { RecipeIndex.bundled.position(of: id) ?? 0 }
 }

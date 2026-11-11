@@ -21,7 +21,7 @@
       "cue": { "timerLabel": "Eggs", "secondsLeft": 120 }
     },
     {
-      "instruction": "Move the eggs into the ice water for 5 minutes.",
+      "instruction": "Move the eggs into the ice water for 5 minutes.", "timer": { "label": "Cool", "minutes": 5 },
       "cue": { "timerLabel": "Eggs", "secondsLeft": 0 }
     },
     { "instruction": "Peel the eggs and serve." }

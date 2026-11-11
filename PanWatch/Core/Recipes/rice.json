@@ -19,7 +19,7 @@
       "watch": { "ingredient": "rice", "timerLabel": "Rice", "timerMinutes": 18, "minimumChange": 0 }
     },
     {
-      "instruction": "Turn off the heat and let the rice rest, covered, for 5 minutes.",
+      "instruction": "Turn off the heat and let the rice rest, covered, for 5 minutes.", "timer": { "label": "Rest", "minutes": 5 },
       "cue": { "timerLabel": "Rice", "secondsLeft": 0 }
     },
     { "instruction": "Fluff the rice with a fork and serve." }

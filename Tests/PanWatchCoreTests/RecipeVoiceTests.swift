@@ -65,8 +65,11 @@ struct RecipeVoiceTests {
     }
 
     @Test func theQuestionNamesAtMostThreeInPlainWords() {
-        #expect(VoiceCommand.whichRecipeQuestion(["Chicken Soup", "Chicken Stir-Fry", "Lemon Chicken", "Chicken Tacos"])
+        #expect(VoiceCommand.whichRecipeQuestion(["Chicken Soup", "Chicken Stir-Fry", "Lemon Chicken"])
             == "Chicken soup, chicken stir-fry, or lemon chicken?")
+        // More than three: one line, and the list shows them.
+        #expect(VoiceCommand.whichRecipeQuestion(["Chicken Soup", "Chicken Stir-Fry", "Lemon Chicken", "Chicken Tacos"])
+            == "I found several. Here they are.")
         #expect(VoiceCommand.whichRecipeQuestion(["Rice Pudding", "Fried Rice"]) == "Rice pudding or fried rice?")
         #expect(PlainWords.bannedWords(in: VoiceCommand.whichRecipeQuestion(Self.sixty)).isEmpty)
     }

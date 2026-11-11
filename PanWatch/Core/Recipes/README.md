@@ -1,14 +1,23 @@
 # Writing a recipe for Sous Vision
 
-Every recipe is one JSON file in this folder, named `<id>.json`. The app and the tests load
-every file here; nothing else needs changing to add a recipe. Check your work with:
+Every recipe is one JSON file in this folder, named `<id>.json`. Beside them sit two files
+that are not recipes: `index.json` (written by the checker; the app reads only it at launch
+and opens a recipe's own file when the cook opens the dish) and `sources.json` (credits).
+
+## Checking a batch
+
+Run from the repo's top folder:
 
 ```
-swift run PanWatchScenarios --check-recipes
+swift run -c release PanWatchScenarios --check-recipes --only pad-thai,fish-tacos
+swift run -c release PanWatchScenarios --check-recipes --write-index
 ```
 
-run from the repo's top folder (`swift test` runs the same checks). It prints one line per
-problem, starting with the file's name, and "N recipes, no problems." when the book is clean.
+The first checks just your batch (slugs, comma-separated; titles and ids are still checked
+as unique against the whole folder). The second checks the whole book and, when it is clean,
+rewrites `index.json`; commit that file with your recipes, or `swift test` fails ("index.json
+is out of date"). Each prints one line per problem, starting with the file's name, then a
+summary: files, passed, failed, and the failures counted by rule. It exits 1 on any problem.
 A recipe is done only when the checker prints no problems for it.
 
 ## Who reads it
@@ -72,9 +81,9 @@ seconds left the garlic, and when the timer ends, the draining.
 |---|---|---|
 | `id` | The slug: the title in lowercase words joined by hyphens, `"hard-boiled-eggs"`. Never changes once shipped. The dish photo is the asset `dish-<id>`. | Lowercase letters, digits and single hyphens. The file is named `<id>.json`. Unique in the book. |
 | `title` | The dish's name, in title case: `"Garlic Butter Pasta"`, `"Chicken with Rice"`, `"Hard-Boiled Eggs"`. Screens show it in sentence case ("Garlic butter pasta") on their own. | Every word capitalized, including after a hyphen, except `a an and the of with in on or for to at by` after the first word. At most 40 characters, no period. Unique in the book. Make the words distinctive: the cook picks a dish by voice from them ("make the lentil soup"). |
-| `category` | Its shelf on Home. | Exactly one of: `"Pasta and grains"`, `"Eggs and breakfast"`, `"Vegetables"`, `"Chicken"`, `"Beef and pork"`, `"Fish"`, `"Soups"`, `"Beans and lentils"`. |
+| `category` | Its shelf on Home. | Exactly one of: `"Pasta and grains"`, `"Eggs and breakfast"`, `"Vegetables"`, `"Salads"`, `"Chicken"`, `"Beef and pork"`, `"Fish"`, `"Soups"`, `"Beans and lentils"`, `"Sandwiches and wraps"`, `"Snacks and sides"`, `"Sauces and dips"`, `"Baking and desserts"`, `"Drinks"`. |
 | `method` | The main way it's cooked. | One of `"pot"` (boil, simmer, steam on the stove), `"pan"` (sear, fry, sauté on the stove), `"oven"`, `"noHeat"`. Only `pot` and `pan` recipes may use the camera (`watch`); the list's "Stovetop" filter shows those. |
-| `source` | Where the recipe comes from, for the credits on Profile > Advanced > About (never shown on the recipe). | `{ "name": "Sous Vision" }` for the app's own. Otherwise `{ "name": "Serious Eats", "url": "https://..." }`; the url must start `https://`. |
+| `source` | Where the recipe comes from, for the credits on Profile > Advanced > About (never shown on the recipe). | `{ "name": "Sous Vision" }` for the app's own. Otherwise `{ "name": "Serious Eats", "url": "https://..." }`; the url must start `https://`, and the name must have its entry in `sources.json` (below). |
 | `serves` | How many people the amounts feed. | 1 to 12. |
 | `totalMinutes` | Start to plate, including waits (boiling water, resting). | 1 to 240, and at least the sum of every timer in the steps. 20 or less puts it in "Quick ones". |
 | `ingredients` | What to gather, in the order used. | At least one. See below. |
@@ -104,7 +113,7 @@ seconds left the garlic, and when the timer ends, the draining.
 | `spoken` | no | What is read aloud when it should say more than the screen: "Flip the chicken and cook about 6 more minutes, until a thermometer reads 165 °F in the thickest part." Leave it out when the instruction says it all. May be several sentences. |
 | `watch` | no | The camera watches for something going into the pot or pan and offers a timer. Pot and pan recipes only. |
 | `cue` | no | Call this step out on its own when an earlier step's timer has this much left. |
-| `timer` | no | A plain timer the step names with no camera: `{ "label": "Bake", "minutes": 25 }`. Use it for oven and no-heat recipes, and any stovetop time with nothing being added. A step has a `watch` or a `timer`, not both. |
+| `timer` | no | A plain timer the step names with no camera: `{ "label": "Bake", "minutes": 25 }`. Use it for oven and no-heat recipes, any stovetop time with nothing being added, and waits off the heat ("Let it rest for 5 minutes."). A step has a `watch` or a `timer`, not both. When the step opens, cook mode offers it on the card: "This step takes 25 minutes." / "Start a 25-minute timer?"; it starts only on a tap or "yes". |
 
 #### `watch`
 
@@ -135,8 +144,8 @@ seconds left the garlic, and when the timer ends, the draining.
 
 1. **Times have timers.** Any cooking time in a step ("simmer 10 minutes", "bake for 25
    minutes", "1 hour") must equal a timer in the recipe (`watch.timerMinutes` or
-   `timer.minutes`). Waits off the heat (rest, sit, stand, cool, chill, soak, marinate, ice
-   water, refrigerate) may name their minutes without one.
+   `timer.minutes`). Waits off the heat (rest, sit, stand, cool, chill, soak, ice water) need
+   their timer too, on the step that names them.
 2. **No step is only a wait.** "Wait 10 minutes." or "Let it rest for 5 minutes." alone is not
    a step; put the time on the step that starts it.
 3. **Plain words.** None of: model, engine, sample, calibrate, exposure, flicker, frame,
@@ -150,6 +159,19 @@ seconds left the garlic, and when the timer ends, the draining.
    3 minutes). Write it as "until a thermometer reads 165 °F".
 7. **No unknown fields.** A typo like `"spokn"` is reported, not ignored.
 
+## Sources and credits
+
+Profile > Advanced > About lists each outside source once, with its credit line and link,
+from `sources.json`. The first recipe from a new source adds its entry:
+
+```json
+[
+  { "name": "Serious Eats", "credit": "Recipes adapted from Serious Eats.", "url": "https://www.seriouseats.com" }
+]
+```
+
+`name` matches the recipes' `source.name` exactly. The checker reports a source with no entry.
+
 ## Checklist for a new recipe
 
 - [ ] `id` matches the file name; `title` is title case and distinctive.
@@ -159,5 +181,6 @@ seconds left the garlic, and when the timer ends, the draining.
 - [ ] Pot or pan: the step where the main ingredient goes in has a `watch` with its timer.
 - [ ] Oven or no-heat: timed steps have a `timer`, never a `watch`.
 - [ ] `totalMinutes` covers every timer plus the waits.
-- [ ] `swift run PanWatchScenarios --check-recipes` prints no problems.
+- [ ] `--check-recipes --only <your slugs>` prints no problems; then `--write-index`, and commit `index.json`.
+- [ ] An outside source has its entry in `sources.json`.
 - [ ] A photo can come later: without `dish-<id>` the app shows a plain tile with the category's symbol.

@@ -19,7 +19,7 @@
       "watch": { "ingredient": "oats", "timerLabel": "Oatmeal", "timerMinutes": 5, "minimumChange": 0 }
     },
     {
-      "instruction": "Turn off the heat, cover, and let it sit for 2 minutes.",
+      "instruction": "Turn off the heat, cover, and let it sit for 2 minutes.", "timer": { "label": "Rest", "minutes": 2 },
       "cue": { "timerLabel": "Oatmeal", "secondsLeft": 0 }
     },
     { "instruction": "Top with 1 tablespoon of brown sugar and serve." }

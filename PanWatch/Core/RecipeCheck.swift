@@ -73,9 +73,10 @@ extension Recipe {
             found += RecipeRules.instructionProblems(step.instruction).map { "\(name): \($0)" }
             for text in [step.instruction, step.spoken].compactMap({ $0 }) {
                 found += RecipeRules.wordProblems(text).map { "\(name): \($0)" }
-                for minutes in RecipeRules.statedMinutes(in: text) where !timerMinutes.contains(minutes)
-                    && !RecipeRules.isOffTheHeat(text) {
-                    found.append("\(name): it says \(minutes) minutes, but no step has a \(minutes)-minute timer.")
+                // Off the heat too: "let it rest 5 minutes" needs its 5-minute timer.
+                for minutes in RecipeRules.statedMinutes(in: text) where !timerMinutes.contains(minutes) {
+                    let wait = RecipeRules.isOffTheHeat(text) ? " (waits off the heat need a timer too)" : ""
+                    found.append("\(name): it says \(minutes) minutes, but no step has a \(minutes)-minute timer\(wait).")
                 }
             }
             if let watch = step.watch {
@@ -267,13 +268,13 @@ enum RecipeRules {
     // MARK: Helpers
 
     static func matches(_ pattern: String, in text: String) -> Bool {
-        guard let regex = try? NSRegularExpression(pattern: pattern) else { return false }
+        guard let regex = RegexCache.shared.regex(pattern) else { return false }
         return regex.firstMatch(in: text, range: NSRange(text.startIndex..., in: text)) != nil
     }
 
     /// The first captured number of every match.
     static func numbers(_ pattern: String, in text: String) -> [Int] {
-        guard let regex = try? NSRegularExpression(pattern: pattern) else { return [] }
+        guard let regex = RegexCache.shared.regex(pattern) else { return [] }
         return regex.matches(in: text, range: NSRange(text.startIndex..., in: text)).compactMap { match in
             Range(match.range(at: 1), in: text).flatMap { Int(text[$0]) }
         }
@@ -295,40 +296,105 @@ extension RecipeBook {
     /// Every problem with the recipe files in `folder`, one line each, starting with the
     /// file's name. Empty means the whole book is fine.
     static func check(folder: URL) -> [String] {
+        checkReport(folder: folder).lines
+    }
+
+    /// What the checker found: how many files, which failed, and failures counted by rule.
+    struct CheckReport: Equatable, Sendable {
+        var files = 0
+        var failedFiles: Set<String> = []
         var lines: [String] = []
-        let names = ((try? FileManager.default.contentsOfDirectory(atPath: folder.path)) ?? []).filter { $0.hasSuffix(".json") }.sorted()
-        if names.isEmpty { return ["\(folder.path): no recipe files here."] }
-        var fileOf: [String: String] = [:]
-        for name in names {
-            guard let data = FileManager.default.contents(atPath: folder.appendingPathComponent(name).path) else { continue }
-            lines += unknownKeys(in: data).map { "\(name): \($0)" }
-            switch decode(data) {
-            case .failure(let error):
-                lines.append("\(name): \(error.text)")
-            case .success(let recipe):
-                fileOf[recipe.id] = name
-                if name != recipe.id + ".json" { lines.append("\(name): the file name must be the id: \(recipe.id).json.") }
-                if !matches(recipe.id) { lines.append("\(name): the id is lowercase words joined by hyphens, like \"garlic-butter-pasta\".") }
-                lines += recipe.authoringProblems().map { "\(name): \($0)" }
+        /// Each rule's short name and how many problems broke it, most first.
+        var byRule: [(rule: String, count: Int)] {
+            var counts: [String: Int] = [:]
+            for line in lines { counts[RecipeBook.rule(of: line), default: 0] += 1 }
+            return counts.sorted { ($0.value, $1.key) > ($1.value, $0.key) }.map { ($0.key, $0.value) }
+        }
+        var passed: Int { files - failedFiles.count }
+
+        /// The closing lines: files, passed, failed, then failures by rule.
+        var summary: [String] {
+            var out = ["\(files) files, \(passed) passed, \(failedFiles.count) failed."]
+            out += byRule.map { "  \($0.count) × \($0.rule)" }
+            return out
+        }
+
+        static func == (a: CheckReport, b: CheckReport) -> Bool {
+            a.files == b.files && a.failedFiles == b.failedFiles && a.lines == b.lines
+        }
+    }
+
+    /// Files in the recipe folder that are not recipes.
+    static let indexFile = "index.json"
+    static let sourcesFile = "sources.json"
+
+    /// Checks every recipe file in `folder`, or only the slugs in `only`. Titles and ids are
+    /// checked as unique against the whole folder either way, and every outside source must
+    /// have its credit in `sources.json`.
+    static func checkReport(folder: URL, only: Set<String>? = nil) -> CheckReport {
+        var report = CheckReport()
+        let all = ((try? FileManager.default.contentsOfDirectory(atPath: folder.path)) ?? [])
+            .filter { $0.hasSuffix(".json") && $0 != indexFile && $0 != sourcesFile }.sorted()
+        if all.isEmpty {
+            report.lines = ["\(folder.path): no recipe files here."]
+            return report
+        }
+        let names = only.map { wanted in all.filter { wanted.contains(String($0.dropLast(5))) } } ?? all
+        if let only {
+            let found = Set(names.map { String($0.dropLast(5)) })
+            for slug in only.subtracting(found).sorted() {
+                report.lines.append("\(slug).json: no such file in \(folder.path).")
+                report.failedFiles.insert(slug + ".json")
             }
         }
-        // Titles and ids are unique across the book.
-        let loaded = names.compactMap { name -> (String, Recipe)? in
-            guard let data = FileManager.default.contents(atPath: folder.appendingPathComponent(name).path),
-                  case .success(let recipe) = decode(data) else { return nil }
-            return (name, recipe)
-        }
+        report.files = names.count
+        let checked = Set(names)
+        let sources = Self.sources(in: folder)
         var seenTitles: [String: String] = [:]
         var seenIDs: [String: String] = [:]
-        for (name, recipe) in loaded {
-            if let other = seenTitles[recipe.title.lowercased()] {
-                lines.append("\(name): the title \"\(recipe.title)\" is already used by \(other).")
-            } else { seenTitles[recipe.title.lowercased()] = name }
-            if let other = seenIDs[recipe.id] {
-                lines.append("\(name): the id \"\(recipe.id)\" is already used by \(other).")
-            } else { seenIDs[recipe.id] = name }
+        // Every file is read once; only the chosen ones get the full rules.
+        for name in all {
+            guard let data = FileManager.default.contents(atPath: folder.appendingPathComponent(name).path) else { continue }
+            let full = checked.contains(name)
+            var lines: [String] = []
+            if full { lines += unknownKeys(in: data).map { "\(name): \($0)" } }
+            switch decode(data) {
+            case .failure(let error):
+                if full { lines.append("\(name): \(error.text)") }
+            case .success(let recipe):
+                if let other = seenTitles[recipe.title.lowercased()] {
+                    if full || checked.contains(other) { lines.append("\(name): the title \"\(recipe.title)\" is already used by \(other).") }
+                } else { seenTitles[recipe.title.lowercased()] = name }
+                if let other = seenIDs[recipe.id] {
+                    if full || checked.contains(other) { lines.append("\(name): the id \"\(recipe.id)\" is already used by \(other).") }
+                } else { seenIDs[recipe.id] = name }
+                guard full else { break }
+                if name != recipe.id + ".json" { lines.append("\(name): the file name must be the id: \(recipe.id).json.") }
+                if !matches(recipe.id) { lines.append("\(name): the id is lowercase words joined by hyphens, like \"garlic-butter-pasta\".") }
+                if !recipe.source.isOwn && !sources.contains(where: { $0.name == recipe.source.name }) {
+                    lines.append("\(name): the source \"\(recipe.source.name)\" needs its credit in sources.json.")
+                }
+                lines += recipe.authoringProblems().map { "\(name): \($0)" }
+            }
+            if !lines.isEmpty { report.failedFiles.insert(name) }
+            report.lines += lines
         }
-        return lines
+        return report
+    }
+
+    /// A problem line's rule, for the summary: the words with the file, step, quoted text and
+    /// numbers taken out, up to the first semicolon or colon.
+    static func rule(of line: String) -> String {
+        var text = line
+        if let colon = text.range(of: ": ") { text = String(text[colon.upperBound...]) }
+        if text.hasPrefix("Step "), let colon = text.range(of: ": ") { text = String(text[colon.upperBound...]) }
+        if text.hasPrefix("Ingredient "), let quote = text.range(of: "\" ", options: .backwards) ?? text.range(of: "\": ") {
+            text = String(text[quote.upperBound...]).trimmingCharacters(in: CharacterSet(charactersIn: ": "))
+        }
+        text = text.replacingOccurrences(of: #""[^"]*""#, with: "…", options: .regularExpression)
+            .replacingOccurrences(of: #"\d+"#, with: "N", options: .regularExpression)
+        if let stop = text.firstIndex(where: { $0 == ";" || $0 == ":" || $0 == "(" }) { text = String(text[..<stop]) }
+        return text.trimmingCharacters(in: CharacterSet(charactersIn: " ."))
     }
 
     private static func matches(_ id: String) -> Bool {
@@ -358,5 +424,22 @@ extension RecipeBook {
             check(fields?["timer"], as: "timer", at: " in step \(index + 1) timer")
         }
         return found
+    }
+}
+
+/// Compiled patterns, kept: the checker runs the same few dozen over every line of a
+/// thousand recipes, and compiling each time was most of its run time.
+final class RegexCache: @unchecked Sendable {
+    static let shared = RegexCache()
+    private let lock = NSLock()
+    private var compiled: [String: NSRegularExpression] = [:]
+
+    func regex(_ pattern: String) -> NSRegularExpression? {
+        lock.lock()
+        defer { lock.unlock() }
+        if let regex = compiled[pattern] { return regex }
+        guard let regex = try? NSRegularExpression(pattern: pattern) else { return nil }
+        compiled[pattern] = regex
+        return regex
     }
 }

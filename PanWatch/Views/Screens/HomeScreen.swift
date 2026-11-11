@@ -36,7 +36,7 @@ struct HomeScreen: View {
                         if !favored.isEmpty {
                             shelf("Favorites", favored)
                         }
-                        shelf("Quick ones", Recipe.filtered(.quick), opens: .quick)
+                        shelf("Quick ones", RecipeIndex.bundled.filtered(.quick), opens: .quick)
                         ForEach(Self.shelves(), id: \.title) { shelf in
                             self.shelf(shelf.title, shelf.recipes, opens: shelf.filter)
                         }
@@ -80,7 +80,9 @@ struct HomeScreen: View {
 
     /// The dish to suggest with nothing under way: one not cooked yet, else the one cooked
     /// longest ago.
-    private var suggestion: Recipe { session.history.suggestion() ?? session.recipe }
+    private var suggestion: Recipe {
+        session.history.suggestion(from: RecipeIndex.bundled.entries).flatMap { Recipe.withID($0.id) } ?? session.recipe
+    }
 
     /// Shelves of at least this many get their own category; smaller ones share "More recipes".
     private static let shelfMinimum = 3
@@ -91,13 +93,13 @@ struct HomeScreen: View {
     /// still fill a shelf and sixty don't make one endless.
     private struct Shelf {
         let title: String
-        let recipes: [Recipe]
+        let recipes: [RecipeEntry]
         let filter: RecipeFilter
     }
 
-    private static func shelves(_ recipes: [Recipe] = Recipe.all) -> [Shelf] {
+    private static func shelves(_ recipes: [RecipeEntry] = RecipeIndex.bundled.entries) -> [Shelf] {
         var result: [Shelf] = []
-        var rest: [Recipe] = []
+        var rest: [RecipeEntry] = []
         for category in RecipeCategory.allCases {
             let inIt = recipes.filter { $0.category == category }
             if inIt.count >= shelfMinimum {
@@ -153,7 +155,7 @@ struct HomeScreen: View {
 
     // MARK: Rows
 
-    private func shelf(_ title: String, _ recipes: [Recipe], opens filter: RecipeFilter? = nil) -> some View {
+    private func shelf(_ title: String, _ recipes: [RecipeEntry], opens filter: RecipeFilter? = nil) -> some View {
         VStack(alignment: .leading, spacing: Theme.space8) {
             ShelfHeading(title: title, action: opener(filter))
             .padding(.horizontal, Theme.margin)
@@ -179,7 +181,7 @@ struct HomeScreen: View {
 
     /// Search results: the matches as rows, or one line saying nothing matched.
     @ViewBuilder private var results: some View {
-        let found = Recipe.matching(query)
+        let found = RecipeIndex.bundled.search(query)
         if found.isEmpty {
             HStack(spacing: Theme.space12) {
                 Text("No recipe matches \u{201C}\(query.trimmingCharacters(in: .whitespaces))\u{201D}")
@@ -194,7 +196,7 @@ struct HomeScreen: View {
         } else {
             LazyVStack(alignment: .leading, spacing: 0) {
                 ForEach(found, id: \.id) { recipe in
-                    RecipeRow(recipe: recipe) { session.open(recipe: recipe) }
+                    RecipeRow(entry: recipe) { session.open(entry: recipe) }
                 }
             }
             .padding(.horizontal, Theme.margin)
@@ -203,13 +205,13 @@ struct HomeScreen: View {
 
     /// A small photo card: the photo 124 tall with the heart on it, the name (up to two
     /// lines) and "10 min · Serves 4". The card opens the recipe's page.
-    private func smallCard(_ recipe: Recipe, width: CGFloat?) -> some View {
+    private func smallCard(_ recipe: RecipeEntry, width: CGFloat?) -> some View {
         ZStack(alignment: .topTrailing) {
             Button {
-                session.open(recipe: recipe)
+                session.open(entry: recipe)
             } label: {
                 VStack(alignment: .leading, spacing: 4) {
-                    DishPhoto(recipe: recipe)
+                    DishPhoto(entry: recipe)
                         .frame(height: 124)
                         .frame(maxWidth: .infinity)
                         .clipShape(RoundedRectangle(cornerRadius: Theme.radiusField, style: .continuous))

@@ -41,7 +41,7 @@ enum VoiceCommand: Equatable, Sendable {
     case clearDone
     /// "Recipes", "what can I cook".
     case showRecipes
-    /// "Make the rice", "let's do pasta": the title of the recipe, from `Recipe.all`.
+    /// "Make the rice", "let's do pasta": the title of the recipe, from the book's index.
     case makeRecipe(String)
     /// "Make the chicken" with several chicken dishes: ask once which one, naming up to three.
     case askWhichRecipe([String])
@@ -306,7 +306,7 @@ enum VoiceCommand: Equatable, Sendable {
     /// plurals forgiven. An exact title wins: "cook rice" is Rice, not Fried Rice. Two words
     /// are needed, where a choosing word like "make" counts as one, so ordinary talk that
     /// mentions a dish ("the pasta looks good") is not a choice. Equal matches are `several`.
-    static func recipeMatch(_ words: [String], choosing: Bool, titles: [String] = Recipe.all.map(\.title)) -> RecipeMatch {
+    static func recipeMatch(_ words: [String], choosing: Bool, titles: [String] = RecipeIndex.bundled.titles) -> RecipeMatch {
         let said = words.filter { !choosingWords.contains($0) && !titleFiller.contains($0) }.map(stem)
         guard !said.isEmpty else { return .none }
         let saidSet = Set(said)
@@ -337,7 +337,7 @@ enum VoiceCommand: Equatable, Sendable {
     }
 
     /// The recipe named by any two words of its title; nil for none or several.
-    static func recipeTitle(in words: [String], titles: [String] = Recipe.all.map(\.title)) -> String? {
+    static func recipeTitle(in words: [String], titles: [String] = RecipeIndex.bundled.titles) -> String? {
         if case .one(let title) = recipeMatch(words, choosing: words.contains { choosingWords.contains($0) }, titles: titles) {
             return title
         }
@@ -346,7 +346,7 @@ enum VoiceCommand: Equatable, Sendable {
 
     /// The one dish whose title has `word` in it: "rice", "eggs", "oatmeal". Only the
     /// recipe screens listen for a single word, because anywhere else it's talk.
-    static func dish(word: String, titles: [String] = Recipe.all.map(\.title)) -> String? {
+    static func dish(word: String, titles: [String] = RecipeIndex.bundled.titles) -> String? {
         if case .one(let title) = recipeMatch([word], choosing: true, titles: titles) { return title }
         return nil
     }
@@ -373,9 +373,11 @@ enum VoiceCommand: Equatable, Sendable {
     /// "the last one", or a word of one of them ("lemon", "the soup").
     static func pick(_ text: String, among titles: [String]) -> String? {
         let words = allWords(in: text).filter { !fillerWords.contains($0) && $0 != "one" }
-        guard !words.isEmpty, words.count <= 4, !titles.isEmpty else { return nil }
-        let ordinals: [String: Int] = ["first": 0, "second": 1, "third": 2, "last": titles.count - 1]
-        if let place = words.compactMap({ ordinals[$0] }).first, place < titles.count { return titles[place] }
+        guard !titles.isEmpty else { return nil }
+        if allWords(in: text).contains("number"), allWords(in: text).contains("one") { return titles[0] }
+        guard !words.isEmpty, words.count <= 4 else { return nil }
+        if let place = words.compactMap({ ordinals[$0] ?? ($0 == "last" ? titles.count - 1 : nil) }).first,
+           place < titles.count { return titles[place] }
         if case .one(let title) = recipeMatch(words, choosing: true, titles: titles) { return title }
         return nil
     }
@@ -383,6 +385,8 @@ enum VoiceCommand: Equatable, Sendable {
     /// The question asked when several dishes match: "Chicken soup, chicken stir-fry, or
     /// lemon chicken?", at most three, in the screens' sentence case.
     static func whichRecipeQuestion(_ titles: [String]) -> String {
+        // More than three is a list to look at, not a question to hold in your head.
+        if titles.count > 3 { return severalFound }
         let names = titles.prefix(3).enumerated().map { index, title in
             index == 0 ? title.prefix(1).uppercased() + title.dropFirst().lowercased() : title.lowercased()
         }
@@ -393,6 +397,20 @@ enum VoiceCommand: Equatable, Sendable {
         default: return names.dropLast().joined(separator: ", ") + ", or \(names[names.count - 1])?"
         }
     }
+
+    /// Said once when more than three dishes match; the list shows them.
+    static let severalFound = "I found several. Here they are."
+
+    /// "The first one", "number two", "the 3rd": a place in a list of dishes, 0-based.
+    private static let ordinals: [String: Int] = {
+        let words = [["first", "1", "1st"], ["second", "two", "2", "2nd"], ["third", "three", "3", "3rd"],
+                     ["fourth", "four", "4", "4th"], ["fifth", "five", "5", "5th"], ["sixth", "six", "6", "6th"],
+                     ["seventh", "seven", "7", "7th"], ["eighth", "eight", "8", "8th"], ["ninth", "nine", "9", "9th"],
+                     ["tenth", "ten", "10", "10th"]]
+        var table: [String: Int] = [:]
+        for (place, names) in words.enumerated() { for name in names { table[name] = place } }
+        return table
+    }()
 
     /// "Eggs" and "egg" are the same dish.
     private static func stem(_ word: String) -> String {

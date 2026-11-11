@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D0CAFE00000000000000001B /* PanWatchTimer.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D0CAFE000000000000000010 /* PanWatchTimer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D0CAFE00000000000000001E /* FluidAudio in Frameworks */ = {isa = PBXBuildFile; productRef = D0CAFE00000000000000001F /* FluidAudio */; };
+		D0CAFE000000000000000032 /* Recipes in Resources */ = {isa = PBXBuildFile; fileRef = D0CAFE000000000000000031 /* Recipes */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,11 +39,25 @@
 /* Begin PBXFileReference section */
 		D0CAFE000000000000000004 /* PanWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PanWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0CAFE000000000000000010 /* PanWatchTimer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PanWatchTimer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0CAFE000000000000000031 /* Recipes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Recipes; path = PanWatch/Core/Recipes; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D0CAFE000000000000000033 /* Exceptions for "PanWatch" folder in "PanWatch" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Core/Recipes,
+			);
+			target = D0CAFE000000000000000006 /* PanWatch */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D0CAFE000000000000000005 /* PanWatch */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D0CAFE000000000000000033 /* Exceptions for "PanWatch" folder in "PanWatch" target */,
+			);
 			path = PanWatch;
 			sourceTree = "<group>";
 		};
@@ -83,6 +98,7 @@
 				D0CAFE000000000000000005 /* PanWatch */,
 				D0CAFE000000000000000011 /* PanWatchTimer */,
 				D0CAFE000000000000000012 /* Shared */,
+				D0CAFE000000000000000031 /* Recipes */,
 				D0CAFE000000000000000003 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -194,6 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0CAFE000000000000000032 /* Recipes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

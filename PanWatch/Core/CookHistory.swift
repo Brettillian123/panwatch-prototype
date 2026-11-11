@@ -13,16 +13,16 @@ struct CookHistory: Equatable, Codable, Sendable {
     mutating func noteStarted(_ recipe: Recipe, at date: Date = Date()) { started[recipe.id] = date }
     mutating func noteFinished(_ recipe: Recipe, at date: Date = Date()) { finished[recipe.id] = date }
 
-    func hasCooked(_ recipe: Recipe) -> Bool { started[recipe.id] != nil || finished[recipe.id] != nil }
+    func hasCooked(_ recipe: some BookItem) -> Bool { started[recipe.id] != nil || finished[recipe.id] != nil }
 
     /// When the recipe was last cooked, started or finished.
-    func lastCooked(_ recipe: Recipe) -> Date? {
+    func lastCooked(_ recipe: some BookItem) -> Date? {
         [started[recipe.id], finished[recipe.id]].compactMap { $0 }.max()
     }
 
     /// The first recipe in book order never cooked; once all have been, the one cooked
     /// longest ago. Nil only for an empty book.
-    func suggestion(from recipes: [Recipe] = Recipe.all) -> Recipe? {
+    func suggestion<Item: BookItem>(from recipes: [Item]) -> Item? {
         if let fresh = recipes.first(where: { !hasCooked($0) }) { return fresh }
         return recipes.min { (lastCooked($0) ?? .distantPast) < (lastCooked($1) ?? .distantPast) }
     }

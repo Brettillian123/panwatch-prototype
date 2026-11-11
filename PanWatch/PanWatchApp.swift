@@ -6,6 +6,7 @@ struct PanWatchApp: App {
     @State private var session: CookSession
 
     init() {
+        RecipeIndex.preload()
         let session = CookSession()
         #if DEBUG
         if let name = ScreenshotStage.requested { session.stageForScreenshot(name) }
