@@ -45,6 +45,16 @@ jobs:
           find build/Build/Products/Debug-iphoneos/PanWatch.app -name "*.m4a" | head -3
           test "$HAVE" -ge "$WANT" && test "$WANT" -gt 0
 
+      - name: Check the recipe book is inside the app
+        run: |
+          APP=build/Build/Products/Debug-iphoneos/PanWatch.app
+          WANT=$(ls PanWatch/Core/Recipes/*.json | wc -l | tr -d ' ')
+          HAVE=$(ls "$APP"/Recipes/*.json 2>/dev/null | wc -l | tr -d ' ')
+          LOOSE=$(ls "$APP"/*.json 2>/dev/null | wc -l | tr -d ' ')
+          INDEXED=$(grep -c '"id":' "$APP"/Recipes/index.json || echo 0)
+          echo "recipe book: $HAVE json files in PanWatch.app/Recipes ($INDEXED in index.json), $WANT in the repo, $LOOSE loose json at the top of the app"
+          test "$HAVE" -eq "$WANT" && test "$INDEXED" -gt 0 && test -f "$APP/Recipes/index.json"
+
       - name: Upload the build log
         if: always()
         uses: actions/upload-artifact@v4
@@ -61,7 +71,7 @@ jobs:
     continue-on-error: true
     env:
       BUNDLE_ID: com.brettillian123.panwatch
-      SCREENS: "recipes recipe cook offer voices makeVoice profile help"
+      SCREENS: "recipes recipeList recipe cook offer voices makeVoice profile help"
     steps:
       - uses: actions/checkout@v4
 
