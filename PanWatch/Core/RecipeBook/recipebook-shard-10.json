@@ -1,0 +1,3 @@
+{"version":1,"recipes":{
+"steamed-broccoli":{"id":"steamed-broccoli","title":"Steamed Broccoli","category":"Vegetables","method":"pot","source":{"name":"Sous Vision"},"serves":4,"totalMinutes":10,"ingredients":[{"amount":"1 pound","name":"broccoli florets"},{"amount":"1 tablespoon","name":"butter"},{"amount":"a pinch","name":"salt"}],"steps":[{"instruction":"Bring 1 inch of water to a boil in a pot with a steamer basket."},{"instruction":"Add 1 pound of broccoli florets to the basket and cover the pot.","watch":{"ingredient":"broccoli","timerLabel":"Broccoli","timerMinutes":5,"minimumChange":0.02,"countsRelease":true}},{"instruction":"Toss the broccoli with 1 tablespoon of butter and a pinch of salt.","cue":{"timerLabel":"Broccoli","secondsLeft":0}}]}
+}}

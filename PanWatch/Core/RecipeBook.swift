@@ -1,20 +1,22 @@
 import Foundation
 
-/// The recipe book: one JSON file per recipe, `<slug>.json`, in `PanWatch/Core/Recipes`.
-/// The format is described in `Recipes/README.md`. One loader serves both places the
-/// files live: the Core package's resource bundle in the tests (`Bundle.module`, the
-/// `Recipes` folder copied whole) and the app bundle, where Xcode's synchronized group
-/// copies each file to the top of the bundle.
+/// The recipe book. Its sources are one JSON file per recipe, `<slug>.json`, in `Recipes/`
+/// at the repo root (the format is in `Recipes/README.md`); the app never sees them. The
+/// add and pack commands turn them into a fixed handful of packed files in
+/// `PanWatch/Core/RecipeBook/` (`RecipePack.swift`), and only those ship. One loader reads
+/// them in both places: the Core package's resource bundle in the tests (`Bundle.module`,
+/// the `RecipeBook` folder copied whole) and the app bundle, where Xcode's synchronized
+/// group puts each packed file at the top under its own `recipebook-` name.
 enum RecipeBook {
-    /// The folder holding the recipe files that shipped with this build.
-    static func bundledFolder() -> URL? {
+    /// The folder holding the packed book that shipped with this build.
+    static func packedFolder() -> URL? {
         #if SWIFT_PACKAGE
         let bundle = Bundle.module
         #else
         let bundle = Bundle.main
         #endif
         guard let root = bundle.resourceURL else { return nil }
-        let nested = root.appendingPathComponent("Recipes", isDirectory: true)
+        let nested = root.appendingPathComponent(packedFolderName, isDirectory: true)
         var isFolder: ObjCBool = false
         if FileManager.default.fileExists(atPath: nested.path, isDirectory: &isFolder), isFolder.boolValue {
             return nested
@@ -22,11 +24,11 @@ enum RecipeBook {
         return root
     }
 
-    /// The bundled recipes in book order. A file that fails to load is left out; the
-    /// checker and the tests make sure none does.
+    /// Every bundled recipe in book order, from all the shards. Only the tests and the
+    /// checker want the whole book; the app opens one recipe at a time.
     static func bundled() -> [Recipe] {
-        guard let folder = bundledFolder() else { return [] }
-        return load(from: folder).recipes
+        guard let folder = packedFolder() else { return [] }
+        return inBookOrder((0..<shardCount).flatMap { Array(shard($0, in: folder).values) })
     }
 
     /// A file that could not be read as a recipe, and why, in plain words.
@@ -87,15 +89,28 @@ enum RecipeBook {
         let file: RecipeFile
         do {
             file = try JSONDecoder().decode(RecipeFile.self, from: data)
-        } catch let DecodingError.keyNotFound(key, context) {
-            return .failure(ReadError(text: "missing \"\(key.stringValue)\"\(where_(context))."))
-        } catch let DecodingError.typeMismatch(_, context) {
-            return .failure(ReadError(text: "wrong kind of value\(where_(context))."))
-        } catch let DecodingError.valueNotFound(_, context) {
-            return .failure(ReadError(text: "empty value\(where_(context))."))
         } catch {
-            return .failure(ReadError(text: "not valid JSON."))
+            return .failure(readError(error))
         }
+        return recipe(from: file)
+    }
+
+    /// A decoding error in plain words.
+    static func readError(_ error: Error) -> ReadError {
+        switch error {
+        case DecodingError.keyNotFound(let key, let context):
+            return ReadError(text: "missing \"\(key.stringValue)\"\(where_(context)).")
+        case DecodingError.typeMismatch(_, let context):
+            return ReadError(text: "wrong kind of value\(where_(context)).")
+        case DecodingError.valueNotFound(_, let context):
+            return ReadError(text: "empty value\(where_(context)).")
+        default:
+            return ReadError(text: "not valid JSON.")
+        }
+    }
+
+    /// The recipe a decoded file describes, or why it can't be one.
+    static func recipe(from file: RecipeFile) -> Result<Recipe, ReadError> {
         guard let category = RecipeCategory(rawValue: file.category) else {
             let known = RecipeCategory.allCases.map { "\"\($0.rawValue)\"" }.joined(separator: ", ")
             return .failure(ReadError(text: "unknown category \"\(file.category)\"; use one of \(known)."))
@@ -131,7 +146,7 @@ enum RecipeBook {
     }
 
     /// The file's shape, field for field.
-    private struct RecipeFile: Decodable {
+    struct RecipeFile: Decodable, Sendable {
         let id: String
         let title: String
         let category: String
@@ -142,23 +157,23 @@ enum RecipeBook {
         let ingredients: [Item]
         let steps: [Step]
 
-        struct Source: Decodable { let name: String; let url: String? }
-        struct Item: Decodable { let amount: String; let name: String }
-        struct Step: Decodable {
+        struct Source: Decodable, Sendable { let name: String; let url: String? }
+        struct Item: Decodable, Sendable { let amount: String; let name: String }
+        struct Step: Decodable, Sendable {
             let instruction: String
             let spoken: String?
             let watch: Watch?
             let cue: Cue?
             let timer: Timer?
         }
-        struct Watch: Decodable {
+        struct Watch: Decodable, Sendable {
             let ingredient: String
             let timerLabel: String
             let timerMinutes: Int
             let minimumChange: Double?
             let countsRelease: Bool?
         }
-        struct Cue: Decodable { let timerLabel: String; let secondsLeft: Int }
-        struct Timer: Decodable { let label: String; let minutes: Int }
+        struct Cue: Decodable, Sendable { let timerLabel: String; let secondsLeft: Int }
+        struct Timer: Decodable, Sendable { let label: String; let minutes: Int }
     }
 }

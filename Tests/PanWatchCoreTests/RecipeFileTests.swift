@@ -72,18 +72,18 @@ struct RecipeFileTests {
     }
 
     @Test func theBookLoadsInTheTestsFromTheResourceFolder() throws {
-        let folder = try #require(RecipeBook.bundledFolder())
-        #expect(folder.lastPathComponent == "Recipes")
-        let loaded = RecipeBook.load(from: folder)
+        let folder = try #require(RecipeBook.packedFolder())
+        #expect(folder.lastPathComponent == "RecipeBook")
+        let loaded = RecipeBook.load(from: BookPaths.sources)
         #expect(loaded.problems.isEmpty, "\(loaded.problems.map(\.line))")
         #expect(loaded.recipes.count == Recipe.all.count)
         #expect(Recipe.all.count >= 6)
     }
 
-    /// The app's bundle has the files at its top, beside other resources: the same loader
-    /// finds them there, and skips JSON that isn't a recipe.
+    /// The app's bundle has the packed files at its top, beside other resources: the same
+    /// loader finds them there.
     @Test func theBookLoadsFromAFlatFolderLikeTheAppBundle() throws {
-        let source = try #require(RecipeBook.bundledFolder())
+        let source = try #require(RecipeBook.packedFolder())
         let flat = FileManager.default.temporaryDirectory.appendingPathComponent("flat-\(UUID().uuidString)")
         try FileManager.default.createDirectory(at: flat, withIntermediateDirectories: true)
         defer { try? FileManager.default.removeItem(at: flat) }
@@ -91,9 +91,9 @@ struct RecipeFileTests {
             try FileManager.default.copyItem(at: source.appendingPathComponent(name), to: flat.appendingPathComponent(name))
         }
         try Data(#"{"voices": ["a", "b"]}"#.utf8).write(to: flat.appendingPathComponent("voices.json"))
-        let loaded = RecipeBook.load(from: flat)
-        #expect(loaded.problems.isEmpty)
-        #expect(loaded.recipes == Recipe.all)
+        let loaded = RecipeBook.inBookOrder((0..<RecipeBook.shardCount).flatMap { Array(RecipeBook.shard($0, in: flat).values) })
+        #expect(loaded == Recipe.all)
+        for recipe in Recipe.all { #expect(RecipeBook.recipe(id: recipe.id, in: flat) == recipe) }
     }
 
     @Test func theBookIsInCategoryThenTitleOrder() {

@@ -29,8 +29,8 @@ extension BookItem {
     var photoName: String { "dish-" + id }
 }
 
-/// One dish in the book's index, `Recipes/index.json`: enough for shelves, lists, search,
-/// voice and credits. The full recipe is read from its own file when it is opened.
+/// One dish in the book's index, `recipebook-index.json`: enough for shelves, lists, search,
+/// voice and credits. The full recipe is read from its shard when it is opened.
 struct RecipeEntry: BookItem, Identifiable, Hashable, Codable, Sendable {
     let id: String
     let title: String
@@ -131,8 +131,8 @@ final class RecipeIndex: Sendable {
     /// The index that shipped with this build, read on first use. The app starts reading
     /// it off the main thread at launch (`preload`); nothing parses the recipes themselves.
     static let bundled: RecipeIndex = {
-        guard let folder = RecipeBook.bundledFolder(),
-              let data = FileManager.default.contents(atPath: folder.appendingPathComponent(RecipeBook.indexFile).path),
+        guard let folder = RecipeBook.packedFolder(),
+              let data = FileManager.default.contents(atPath: folder.appendingPathComponent(RecipeBook.packedIndexFile).path),
               let index = try? decode(data) else { return RecipeIndex(entries: []) }
         return index
     }()
@@ -198,34 +198,6 @@ extension RecipeBook {
     static func sources(in folder: URL) -> [RecipeSourceCredit] {
         guard let data = FileManager.default.contents(atPath: folder.appendingPathComponent(sourcesFile).path) else { return [] }
         return (try? JSONDecoder().decode([RecipeSourceCredit].self, from: data)) ?? []
-    }
-
-    /// One recipe, read from its own file the first time it is asked for, then kept.
-    static func recipe(id: String, in folder: URL? = bundledFolder()) -> Recipe? {
-        guard let folder else { return nil }
-        let key = folder.path + "/" + id
-        if let kept = RecipeCache.shared.get(key) { return kept }
-        guard let data = FileManager.default.contents(atPath: folder.appendingPathComponent(id + ".json").path),
-              case .success(let recipe) = decode(data) else { return nil }
-        RecipeCache.shared.put(key, recipe)
-        return recipe
-    }
-}
-
-/// Recipes already read this run, by folder and id.
-final class RecipeCache: @unchecked Sendable {
-    static let shared = RecipeCache()
-    private let lock = NSLock()
-    private var kept: [String: Recipe] = [:]
-
-    func get(_ key: String) -> Recipe? {
-        lock.lock(); defer { lock.unlock() }
-        return kept[key]
-    }
-
-    func put(_ key: String, _ recipe: Recipe) {
-        lock.lock(); defer { lock.unlock() }
-        kept[key] = recipe
     }
 }
 
