@@ -1,0 +1,27 @@
+{
+  "id": "oatmeal",
+  "title": "Oatmeal",
+  "category": "Eggs and breakfast",
+  "method": "pot",
+  "source": { "name": "Sous Vision" },
+  "serves": 2,
+  "totalMinutes": 10,
+  "ingredients": [
+    { "amount": "1 cup", "name": "old-fashioned oats" },
+    { "amount": "2 cups", "name": "water" },
+    { "amount": "a pinch", "name": "salt" },
+    { "amount": "1 tablespoon", "name": "brown sugar" }
+  ],
+  "steps": [
+    { "instruction": "Bring 2 cups of water and a pinch of salt to a boil." },
+    {
+      "instruction": "Stir in 1 cup of old-fashioned oats and turn the heat to medium-low.",
+      "watch": { "ingredient": "oats", "timerLabel": "Oatmeal", "timerMinutes": 5, "minimumChange": 0 }
+    },
+    {
+      "instruction": "Turn off the heat, cover, and let it sit for 2 minutes.",
+      "cue": { "timerLabel": "Oatmeal", "secondsLeft": 0 }
+    },
+    { "instruction": "Top with 1 tablespoon of brown sugar and serve." }
+  ]
+}

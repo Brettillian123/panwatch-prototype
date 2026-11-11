@@ -50,7 +50,15 @@ struct RecipeBrowseTests {
     @Test func searchMatchesNameOrIngredient() {
         #expect(Recipe.matching("").count == Recipe.all.count)
         #expect(Recipe.matching("  ").count == Recipe.all.count)
-        #expect(Recipe.matching("PASTA").map(\.title) == [Recipe.garlicButterPasta.title])
+        // By name first, then by category: rice is in "Pasta and grains".
+        #expect(Recipe.matching("PASTA").map(\.title) == [Recipe.garlicButterPasta.title, Recipe.rice.title])
+        #expect(Recipe.matching("pasta grains").map(\.title) == [Recipe.garlicButterPasta.title, Recipe.rice.title])
+        // Plurals and small typos are forgiven.
+        // "Eggs" by name, then oatmeal by its category, "Eggs and breakfast".
+        #expect(Recipe.matching("egg").map(\.title) == [Recipe.hardBoiledEggs.title, Recipe.oatmeal.title])
+        #expect(Recipe.matching("brocoli").map(\.title) == [Recipe.steamedBroccoli.title])
+        #expect(Recipe.matching("chiken").map(\.title) == [Recipe.panSearedChicken.title])
+        #expect(Recipe.matching("breakfast").map(\.title) == [Recipe.hardBoiledEggs.title, Recipe.oatmeal.title])
         let butter = Recipe.matching("butter").map(\.title)
         #expect(butter == [Recipe.garlicButterPasta.title, Recipe.steamedBroccoli.title])
         #expect(Recipe.matching("brown sugar").map(\.title) == [Recipe.oatmeal.title])

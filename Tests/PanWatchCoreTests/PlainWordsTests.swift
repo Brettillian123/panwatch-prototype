@@ -5,17 +5,10 @@ import Testing
 /// sees in the help list or hears in a fixed spoken line may come from the inside of the app.
 @Suite("Plain words")
 struct PlainWordsTests {
-    static let banned = [
-        "mb", "gb", "model", "engine", "sample", "calibrate", "calibrating", "calibration", "exposure",
-        "flicker", "frame", "frames", "detection", "debug", "session", "on-device", "ms", "kokoro",
-        "pocket", "alarmkit", "foundation", "n/a", "null", "unavailable", "ai",
-    ]
+    static let banned = PlainWords.banned
 
     static func bannedWords(in text: String) -> [String] {
-        let words = text.lowercased()
-            .split(whereSeparator: { !$0.isLetter && !$0.isNumber && $0 != "-" && $0 != "/" })
-            .map(String.init)
-        return words.filter { banned.contains($0) }
+        PlainWords.bannedWords(in: text)
     }
 
     static let findings: [SetupCalibration.Finding] = [

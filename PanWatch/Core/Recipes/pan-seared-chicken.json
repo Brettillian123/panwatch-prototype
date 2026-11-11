@@ -1,0 +1,32 @@
+{
+  "id": "pan-seared-chicken",
+  "title": "Pan-Seared Chicken",
+  "category": "Chicken",
+  "method": "pan",
+  "source": { "name": "Sous Vision" },
+  "serves": 2,
+  "totalMinutes": 25,
+  "ingredients": [
+    { "amount": "2", "name": "boneless chicken breasts" },
+    { "amount": "1/2 teaspoon", "name": "salt" },
+    { "amount": "1/4 teaspoon", "name": "pepper" },
+    { "amount": "1 tablespoon", "name": "oil" }
+  ],
+  "steps": [
+    {
+      "instruction": "Season 2 chicken breasts with 1/2 teaspoon salt, 1/4 teaspoon pepper.",
+      "spoken": "Season 2 boneless chicken breasts with 1/2 teaspoon of salt and 1/4 teaspoon of pepper."
+    },
+    { "instruction": "Heat 1 tablespoon of oil in a pan over medium-high heat." },
+    {
+      "instruction": "Lay the chicken in the hot pan.",
+      "watch": { "ingredient": "chicken", "timerLabel": "Chicken", "timerMinutes": 6, "minimumChange": 0.02, "countsRelease": true }
+    },
+    {
+      "instruction": "Flip and cook 6 more minutes, until a thermometer reads 165 °F.",
+      "spoken": "Flip the chicken and cook about 6 more minutes, until a thermometer reads 165 °F in the thickest part.",
+      "cue": { "timerLabel": "Chicken", "secondsLeft": 0 }
+    },
+    { "instruction": "Let the chicken rest for 5 minutes before slicing." }
+  ]
+}

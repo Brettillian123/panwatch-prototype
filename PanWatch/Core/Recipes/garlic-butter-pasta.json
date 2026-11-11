@@ -1,0 +1,35 @@
+{
+  "id": "garlic-butter-pasta",
+  "title": "Garlic Butter Pasta",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": { "name": "Sous Vision" },
+  "serves": 4,
+  "totalMinutes": 20,
+  "ingredients": [
+    { "amount": "1 pound", "name": "pasta" },
+    { "amount": "1 tablespoon", "name": "salt" },
+    { "amount": "3 tablespoons", "name": "butter" },
+    { "amount": "4 cloves", "name": "garlic, minced" }
+  ],
+  "steps": [
+    { "instruction": "Bring 4 quarts of water and 1 tablespoon of salt to a boil." },
+    {
+      "instruction": "Add 1 pound of pasta to the boiling water.",
+      "watch": { "ingredient": "pasta", "timerLabel": "Pasta", "timerMinutes": 9, "minimumChange": 0.02, "countsRelease": true }
+    },
+    {
+      "instruction": "Melt 3 tablespoons of butter in a pan over medium heat.",
+      "cue": { "timerLabel": "Pasta", "secondsLeft": 180 }
+    },
+    {
+      "instruction": "Add 4 cloves of minced garlic to the butter.",
+      "watch": { "ingredient": "garlic", "timerLabel": "Garlic", "timerMinutes": 1, "minimumChange": 0 },
+      "cue": { "timerLabel": "Pasta", "secondsLeft": 90 }
+    },
+    {
+      "instruction": "Drain the pasta and toss it in the garlic butter.",
+      "cue": { "timerLabel": "Pasta", "secondsLeft": 0 }
+    }
+  ]
+}
