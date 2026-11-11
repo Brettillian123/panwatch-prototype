@@ -118,7 +118,11 @@ struct AssistantTests {
         #expect(AssistantAction.recipe("cameraOff", name: nil)?.command == .camera(on: false))
         #expect(AssistantAction.recipe("choose", name: "garlic butter pasta")?.command == .makeRecipe(Recipe.garlicButterPasta.title))
         #expect(AssistantAction.recipe("choose", name: "rice")?.command == .makeRecipe(Recipe.rice.title))
-        #expect(AssistantAction.recipe("choose", name: "the chicken")?.command == .makeRecipe(Recipe.panSearedChicken.title))
+        #expect(AssistantAction.recipe("choose", name: "the chicken", book: DemoBook.voice)?.command == .makeRecipe(Recipe.panSearedChicken.title))
+        // With several chicken dishes, the model's "the chicken" shows them and asks, as the cook's words would.
+        if case .pickRecipe(let titles) = AssistantAction.recipe("choose", name: "the chicken", book: DemoBook.crowded) {
+            #expect(Set(titles) == ["Pan-Seared Chicken", "Chicken Soup", "Lemon Chicken"])
+        } else { Issue.record("the chicken among several") }
         #expect(AssistantAction.recipe("choose", name: "lasagna") == nil)
         #expect(AssistantAction.recipe("choose", name: nil) == nil)
         for action in AssistantAction.recipeActions where action != "choose" {
@@ -145,7 +149,7 @@ struct AssistantTests {
         let all: [AssistantAction] = [
             .next, .back, .goToStep(2), .repeatStep, .startOver, .startStepTimer, .setTimer(minutes: 5, name: nil),
             .cancelTimer(name: nil), .cancelTimer(name: "pasta"), .timeLeft, .ingredients, .showRecipes,
-            .chooseRecipe("Rice"), .camera(on: true), .camera(on: false),
+            .chooseRecipe("Rice"), .pickRecipe(["Rice", "Fried Rice"]), .camera(on: true), .camera(on: false),
         ] + AssistantAction.appCommands.map(AssistantAction.app)
         for action in all {
             #expect(action.command != nil, "\(action)")

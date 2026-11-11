@@ -35,7 +35,11 @@ struct CookHistoryTests {
     }
 
     @Test func sourcedRecipesAreCreditedOwnOnesAreNot() {
-        #expect(Credits.recipeNotices().isEmpty)
+        // The demo dishes are the app's own: no notice.
+        #expect(Credits.recipeNotices(DemoBook.index.entries).isEmpty)
+        // Every outside source in the shipped book is credited once.
+        let shipped = Set(RecipeIndex.bundled.entries.map(\.source)).subtracting([RecipeSource.own.name])
+        #expect(Set(Credits.recipeNotices().map(\.title)) == shipped)
         var lentils = Recipe(title: "Lentil Soup", category: .soups, steps: [])
         lentils.source = RecipeSource(name: "Serious Eats", url: "https://www.seriouseats.com/lentil-soup")
         let entries = [RecipeEntry(lentils, hasPhoto: false), RecipeEntry(Recipe.rice, hasPhoto: false), RecipeEntry(lentils, hasPhoto: false)]
@@ -51,7 +55,8 @@ struct CookHistoryTests {
         #expect(!quick.isEmpty && !quick.contains(false))
         let stovetop = Recipe.filtered(.stovetop).map(\.method.cameraCanHelp)
         #expect(!stovetop.contains(false))
-        #expect(Recipe.filtered(.category(.chicken)).map(\.id) == ["pan-seared-chicken"])
+        #expect(Recipe.filtered(.category(.chicken), in: DemoBook.recipes).map(\.id) == ["pan-seared-chicken"])
+        #expect(Recipe.filtered(.category(.chicken)).allSatisfy { $0.category == .chicken })
         #expect(RecipeFilter.chips.map(\.title).prefix(3) == ["All", "Under 20 min", "Stovetop"])
         #expect(RecipeFilter.chips.count == 3 + RecipeCategory.allCases.count)
         for chip in RecipeFilter.chips { #expect(PlainWords.bannedWords(in: chip.title).isEmpty) }

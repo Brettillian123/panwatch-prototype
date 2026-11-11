@@ -1,8 +1,8 @@
 import SwiftUI
 
 /// Home: the recipe book. The title, a search field, one top card (the cook under way to
-/// resume, else a suggestion), then sideways shelves of small photo cards: favorites, quick
-/// ones, then one per category. A shelf shows at most ten; its heading opens the full list.
+/// resume, else a suggestion), then sideways shelves of small photo cards: favorites, the
+/// dishes with photos ("Start here"), quick ones, then one per category. A shelf shows at most ten; its heading opens the full list.
 /// A card opens the recipe's page; naming a dish by voice still starts it straight away.
 struct HomeScreen: View {
     let session: CookSession
@@ -36,6 +36,11 @@ struct HomeScreen: View {
                         if !favored.isEmpty {
                             shelf("Favorites", favored)
                         }
+                        // The dishes with photos, where the camera helps, first: the easiest to start with.
+                        let pictured = RecipeIndex.bundled.entries.filter(\.hasPhoto)
+                        if !pictured.isEmpty, pictured.count < RecipeIndex.bundled.entries.count {
+                            shelf("Start here", pictured)
+                        }
                         shelf("Quick ones", RecipeIndex.bundled.filtered(.quick), opens: .quick)
                         ForEach(Self.shelves(), id: \.title) { shelf in
                             self.shelf(shelf.title, shelf.recipes, opens: shelf.filter)
@@ -47,7 +52,13 @@ struct HomeScreen: View {
         }
         .scrollDismissesKeyboard(.immediately)
         .screenColumn()
-        .onAppear { favorites = Favorites.load() }
+        .onAppear {
+            favorites = Favorites.load()
+            if !session.homeSearch.isEmpty {
+                query = session.homeSearch
+                session.homeSearch = ""
+            }
+        }
     }
 
     // MARK: Top card

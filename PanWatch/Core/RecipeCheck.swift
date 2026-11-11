@@ -88,6 +88,9 @@ extension Recipe {
                     found.append("\(name): it says \(time.minutes) minutes, but no step has a \(time.minutes)-minute timer\(wait).")
                 }
             }
+            if let spoken = step.spoken {
+                found += RecipeRules.numberProblems(shown: step.instruction, spoken: spoken).map { "\(name): \($0)" }
+            }
             if let watch = step.watch {
                 if !method.cameraCanHelp {
                     found.append("\(name): only pot and pan recipes have a \"watch\"; this one is \(method.rawValue).")
@@ -328,6 +331,53 @@ enum RecipeRules {
 
     /// Every number of minutes the text names: each time's upper number.
     static func statedMinutes(in text: String) -> [Int] { statedTimes(in: text).map(\.minutes) }
+
+    /// The screen and the spoken text never disagree on a number. Every number the screen
+    /// shows is said too (as digits, or a word up to twenty: "5 minutes" may be "five minutes").
+    /// The spoken text may add what doesn't fit on screen, an amount to measure or a range's
+    /// upper end ("Cook 3 minutes." / "Cook 3 to 4 minutes."), but never a time or a
+    /// temperature the screen leaves out.
+    static func numberProblems(shown: String, spoken: String) -> [String] {
+        var found: [String] = []
+        let shownNumbers = digitRuns(in: shown)
+        let said = Set(digitRuns(in: spoken)).union(wordNumbers(in: spoken))
+        var reported: Set<String> = []
+        for number in shownNumbers where !said.contains(number) && reported.insert(number).inserted {
+            found.append("the screen says \(number) but \"spoken\" doesn't; say every number the screen shows.")
+        }
+        let lower = spoken.lowercased()
+        let words = numberWords.keys.sorted { $0.count > $1.count }.joined(separator: "|")
+        let pattern = #"(?<![\d/.])(\d+)(?:\s*(?:to|-|–|or)\s*(?:\d+|"# + words + #"))?\s*(?:more\s+)?((?:minutes|minute|mins|min|hours|hour|hrs|hr|seconds|second|secs|sec|degrees)\b|°)"#
+        guard let regex = RegexCache.shared.regex(pattern) else { return found }
+        let onScreen = Set(shownNumbers)
+        for match in regex.matches(in: lower, range: NSRange(lower.startIndex..., in: lower)) {
+            guard let numberRange = Range(match.range(at: 1), in: lower),
+                  let unitRange = Range(match.range(at: 2), in: lower) else { continue }
+            let number = String(lower[numberRange])
+            guard !onScreen.contains(number) else { continue }
+            let unit = lower[unitRange]
+            let what = unit == "°" || unit == "degrees" ? "\(number) °F" : "\(number) \(unit)"
+            found.append("\"spoken\" says \(what) but the screen doesn't; a time or temperature goes on the screen too (spoken may add only a range's upper end or an amount to measure).")
+        }
+        return found
+    }
+
+    /// Every run of digits: "1 1/2 cups" gives 1, 1, 2.
+    static func digitRuns(in text: String) -> [String] {
+        text.split(whereSeparator: { !$0.isASCII || !$0.isNumber }).map(String.init)
+    }
+
+    private static let numberWords: [String: Int] = [
+        "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+        "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14, "fifteen": 15, "sixteen": 16, "seventeen": 17,
+        "eighteen": 18, "nineteen": 19, "twenty": 20,
+    ]
+
+    /// The numbers said as words, as digits: "five minutes" gives 5.
+    private static func wordNumbers(in text: String) -> Set<String> {
+        let words = text.lowercased().split(whereSeparator: { !$0.isLetter })
+        return Set(words.compactMap { numberWords[String($0)].map(String.init) })
+    }
 
     static func isOffTheHeat(_ text: String) -> Bool {
         let lower = text.lowercased()

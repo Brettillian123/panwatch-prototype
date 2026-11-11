@@ -73,6 +73,8 @@ final class RecipeIndex: Sendable {
     let entries: [RecipeEntry]
     /// Every title, in book order, for voice.
     let titles: [String]
+    /// The titles' words for matching what the cook says.
+    let voice: VoiceTitles
     private let byID: [String: Int]
     private let byTitle: [String: Int]
     /// Search words per entry, stemmed once: the title's, then the ingredients' and category's.
@@ -85,6 +87,7 @@ final class RecipeIndex: Sendable {
         }
         self.entries = sorted
         titles = sorted.map(\.title)
+        voice = VoiceTitles(titles)
         var byID: [String: Int] = [:]
         var byTitle: [String: Int] = [:]
         for (place, entry) in sorted.enumerated() {

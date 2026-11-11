@@ -152,7 +152,7 @@ enum BookPaths {
         #expect(result.book.count == before + 2)
         #expect(result.newSources == [RecipeSourceCredit(name: "Test Kitchen", credit: "Recipes adapted from Test Kitchen.", url: "https://test.example/")])
         #expect(RecipeBook.sources(in: book).contains { $0.name == "Test Kitchen" })
-        #expect(RecipeBook.check(folder: book) == [])
+        #expect(RecipeLibraryTests.withoutAwaitedNumberLines(RecipeBook.check(folder: book)) == [])
         #expect(RecipeBook.stalePackedFiles(sources: book, assets: nil, packed: packed) == [])
         #expect(RecipeBook.recipe(id: "brown-rice", in: packed)?.title == "Brown Rice")
         #expect(result.summary.first == "Added 2 recipes; the book has \(before + 2).")

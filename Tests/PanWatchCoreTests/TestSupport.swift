@@ -61,3 +61,18 @@ func decisions(for timeline: Timeline, settings: DetectorSettings = DetectorSett
     detector.setArmed(armed)
     return timeline.frames.compactMap { detector.process($0) }
 }
+
+/// The six demo dishes as a book of their own. Behavior tests (voice phrases, search, order,
+/// credits) run against it, passed in explicitly, so adding recipes to the shipped book never
+/// changes their result. The six themselves come from the shipped book by id.
+enum DemoBook {
+    static let ids = ["garlic-butter-pasta", "rice", "hard-boiled-eggs", "oatmeal", "steamed-broccoli", "pan-seared-chicken"]
+    static let index = RecipeIndex(entries: ids.compactMap(Recipe.withID).map { RecipeEntry($0, hasPhoto: true) })
+    /// In book order.
+    static let recipes: [Recipe] = index.entries.compactMap { Recipe.withID($0.id) }
+    static var voice: VoiceTitles { index.voice }
+    /// The six with made-up neighbours that share their words, where the point is ambiguity.
+    static let crowded = VoiceTitles(index.titles + [
+        "Fried Rice", "Pasta Salad", "Penne Pasta Bake", "Chicken Soup", "Lemon Chicken", "Deviled Eggs",
+    ])
+}

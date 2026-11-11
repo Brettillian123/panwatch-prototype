@@ -31,7 +31,7 @@ struct VoiceCoverageTests {
             ("done", .recipes, .done), ("close", .settings, .done), ("never mind", .help, .done),
         ]
         for (text, screen, command) in cases {
-            #expect(VoiceCommand.parse(text, screen: screen) == command, "\(text) on \(screen)")
+            #expect(VoiceCommand.parse(text, screen: screen, book: DemoBook.voice) == command, "\(text) on \(screen)")
         }
     }
 

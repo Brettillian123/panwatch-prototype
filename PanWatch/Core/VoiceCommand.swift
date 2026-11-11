@@ -100,14 +100,16 @@ enum VoiceCommand: Equatable, Sendable {
     /// one word of a single dish, like "rice" or "eggs", picks it.
     /// `choosing` holds the dishes the app just asked about ("Chicken soup, chicken
     /// stir-fry, or lemon chicken?"): one word of one of them, or "the second one", picks it.
-    static func parse(_ text: String, screen: AppScreen = .cook, choosing: [String] = []) -> VoiceCommand? {
+    /// `book` is the dishes a name can pick from: the shipped book, or a test's own.
+    static func parse(_ text: String, screen: AppScreen = .cook, choosing: [String] = [],
+                      book: VoiceTitles = RecipeIndex.bundled.voice) -> VoiceCommand? {
         let spoken = allWords(in: text)
         // Filler is dropped before counting, so "okay, next step please" is still short.
         let words = spoken.filter { !fillerWords.contains($0) }
         guard !words.isEmpty, words.count <= maximumWords else { return nil }
         if !choosing.isEmpty, let title = pick(text, among: choosing) { return .makeRecipe(title) }
         if screen.listsRecipes, words.count == 1 {
-            switch recipeMatch(words, choosing: true) {
+            switch recipeMatch(words, choosing: true, in: book) {
             case .one(let title): return .makeRecipe(title)
             case .several(let titles): return .askWhichRecipe(titles)
             case .none: break
@@ -198,7 +200,7 @@ enum VoiceCommand: Equatable, Sendable {
             if let nudge = BoxNudge.allCases.first(where: { set.contains($0.rawValue) }) { return .nudge(nudge) }
         }
         if set.contains("timer") { return .startTimer }
-        switch recipeMatch(words, choosing: words.contains { choosingWords.contains($0) }) {
+        switch recipeMatch(words, choosing: words.contains { choosingWords.contains($0) }, in: book) {
         case .one(let title): return .makeRecipe(title)
         case .several(let titles): return .askWhichRecipe(titles)
         case .none: if let wanted = wantedDish(words) { return .findRecipe(wanted) }
@@ -306,7 +308,7 @@ enum VoiceCommand: Equatable, Sendable {
     /// plurals forgiven. An exact title wins: "cook rice" is Rice, not Fried Rice. Two words
     /// are needed, where a choosing word like "make" counts as one, so ordinary talk that
     /// mentions a dish ("the pasta looks good") is not a choice. Equal matches are `several`.
-    static func recipeMatch(_ words: [String], choosing: Bool, titles: [String] = RecipeIndex.bundled.titles) -> RecipeMatch {
+    static func recipeMatch(_ words: [String], choosing: Bool, in book: VoiceTitles = RecipeIndex.bundled.voice) -> RecipeMatch {
         let said = words.filter { !choosingWords.contains($0) && !titleFiller.contains($0) }.map(stem)
         guard !said.isEmpty else { return .none }
         let saidSet = Set(said)
@@ -314,8 +316,7 @@ enum VoiceCommand: Equatable, Sendable {
         var exact: [String] = []
         var best = 0
         var tied: [String] = []
-        for title in titles {
-            let titleWords = distinctiveWords(of: title)
+        for (title, titleWords) in zip(book.titles, book.words) {
             if titleWords == saidSet { exact.append(title) }
             let matched = saidSet.intersection(titleWords).count
             if matched > best {
@@ -331,24 +332,36 @@ enum VoiceCommand: Equatable, Sendable {
         return tied.count == 1 ? .one(tied[0]) : .several(tied)
     }
 
+    static func recipeMatch(_ words: [String], choosing: Bool, titles: [String]) -> RecipeMatch {
+        recipeMatch(words, choosing: choosing, in: VoiceTitles(titles))
+    }
+
     /// The title's words that tell it apart, stemmed: "Chicken with Rice" is chicken, rice.
     static func distinctiveWords(of title: String) -> Set<String> {
         Set(allWords(in: title).filter { !titleFiller.contains($0) }.map(stem))
     }
 
     /// The recipe named by any two words of its title; nil for none or several.
-    static func recipeTitle(in words: [String], titles: [String] = RecipeIndex.bundled.titles) -> String? {
-        if case .one(let title) = recipeMatch(words, choosing: words.contains { choosingWords.contains($0) }, titles: titles) {
+    static func recipeTitle(in words: [String], book: VoiceTitles = RecipeIndex.bundled.voice) -> String? {
+        if case .one(let title) = recipeMatch(words, choosing: words.contains { choosingWords.contains($0) }, in: book) {
             return title
         }
         return nil
     }
 
+    static func recipeTitle(in words: [String], titles: [String]) -> String? {
+        recipeTitle(in: words, book: VoiceTitles(titles))
+    }
+
     /// The one dish whose title has `word` in it: "rice", "eggs", "oatmeal". Only the
     /// recipe screens listen for a single word, because anywhere else it's talk.
-    static func dish(word: String, titles: [String] = RecipeIndex.bundled.titles) -> String? {
-        if case .one(let title) = recipeMatch([word], choosing: true, titles: titles) { return title }
+    static func dish(word: String, book: VoiceTitles = RecipeIndex.bundled.voice) -> String? {
+        if case .one(let title) = recipeMatch([word], choosing: true, in: book) { return title }
         return nil
+    }
+
+    static func dish(word: String, titles: [String]) -> String? {
+        dish(word: word, book: VoiceTitles(titles))
     }
 
     /// "Make the lasagna" when no dish matches: the words after "make", "cook" or "let's
@@ -380,6 +393,16 @@ enum VoiceCommand: Equatable, Sendable {
            place < titles.count { return titles[place] }
         if case .one(let title) = recipeMatch(words, choosing: true, titles: titles) { return title }
         return nil
+    }
+
+    /// The dishes the words could mean, for a list to pick from: all of them when several
+    /// match equally, the one when one does, none otherwise.
+    static func recipeMatches(in words: [String], book: VoiceTitles = RecipeIndex.bundled.voice) -> [String] {
+        switch recipeMatch(words, choosing: true, in: book) {
+        case .one(let title): [title]
+        case .several(let titles): titles
+        case .none: []
+        }
     }
 
     /// The question asked when several dishes match: "Chicken soup, chicken stir-fry, or
@@ -590,5 +613,17 @@ enum AppTab: String, Sendable, CaseIterable {
         case .voices: "waveform"
         case .profile: "person"
         }
+    }
+}
+
+/// Titles with the words that tell each apart, worked out once: the book's index keeps one,
+/// so matching what was said against hundreds of dishes is a set comparison per title.
+struct VoiceTitles: Sendable {
+    let titles: [String]
+    let words: [Set<String>]
+
+    init(_ titles: [String]) {
+        self.titles = titles
+        words = titles.map(VoiceCommand.distinctiveWords)
     }
 }

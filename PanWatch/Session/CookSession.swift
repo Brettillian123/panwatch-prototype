@@ -737,6 +737,8 @@ final class CookSession {
     /// The dishes just asked about, shown as the list instead of a filter or search.
     var listChoice: [String] = []
     var listQuery = ""
+    /// What Home's search field starts with once; only a screenshot sets it.
+    var homeSearch = ""
     /// The dishes the app just asked about ("Chicken soup, chicken stir-fry, or lemon
     /// chicken?"); the next thing said can pick one. Empty when nothing was asked.
     private(set) var recipeChoice: [String] = []
@@ -1683,6 +1685,8 @@ final class CookSession {
         switch name {
         case "offer": target = .cook
         case "settings": target = .profile
+        case "search": target = .recipes
+        case "recipeLong": target = .recipe
         default:
             guard let known = AppScreen(rawValue: name) else { return false }
             target = known
@@ -1697,10 +1701,17 @@ final class CookSession {
         removeScheduled(scheduledSteps)
         recipe = .garlicButterPasta
         viewedRecipe = .garlicButterPasta
+        // A long real recipe with no serving count, picked by rule so a later batch can't rename it away.
+        if name == "recipeLong", let long = RecipeIndex.bundled.entries.lazy
+            .filter({ $0.serves == nil }).compactMap({ Recipe.withID($0.id) }).first(where: { $0.steps.count >= 15 }) {
+            viewedRecipe = long
+        }
+        // Home with a common word typed in the search field.
+        homeSearch = name == "search" ? "chicken" : ""
         // The list pictured on its first category, as a shelf heading opens it.
         if name == "recipeList" { openList(.category(RecipeIndex.bundled.entries.first?.category ?? .pastaAndGrains)) }
         // The recipe page is pictured before a cook starts, with "Start cooking".
-        cookUnderWay = name != "recipe"
+        cookUnderWay = name != "recipe" && name != "recipeLong" && name != "search"
         finishedSteps = []
         let now = Date()
         if name == "offer" {
