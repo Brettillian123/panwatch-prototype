@@ -51,7 +51,7 @@ enum SyntheticBook {
 
     /// `count` recipe files in a fresh temp folder, each the rice recipe under a new name.
     static func folder(count: Int) throws -> URL {
-        let source = try #require(RecipeBook.bundledFolder())
+        let source = BookPaths.sources
         let template = try String(contentsOf: source.appendingPathComponent("rice.json"), encoding: .utf8)
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent("synthetic-\(UUID().uuidString)")
         try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
@@ -104,26 +104,24 @@ enum SyntheticBook {
         #expect(ms < 100 * SyntheticBook.slack)
     }
 
-    @Test func theCommittedIndexMatchesTheRecipeFiles() throws {
-        let repo = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
-        let folder = repo.appendingPathComponent("PanWatch/Core/Recipes")
-        let built = RecipeIndex.build(folder: folder, assets: repo.appendingPathComponent("PanWatch/Assets.xcassets"))
-        let data = try #require(FileManager.default.contents(atPath: folder.appendingPathComponent("index.json").path))
-        let committed = try RecipeIndex.decode(data)
-        #expect(committed.entries == RecipeIndex(entries: built).entries,
-                "index.json is out of date: run swift run PanWatchScenarios --check-recipes --write-index")
-        #expect(RecipeIndex.bundled.entries == committed.entries)
-        #expect(RecipeIndex.bundled.entries.count == RecipeBook.load(from: folder).recipes.count)
+    @Test func thePackedBookMatchesTheRecipeFiles() throws {
+        #expect(RecipeBook.stalePackedFiles(sources: BookPaths.sources, assets: BookPaths.assets, packed: BookPaths.packed) == [],
+                "the packed book is out of date: run swift run -c release PanWatchScenarios --check-recipes --pack")
+        let count = RecipeBook.load(from: BookPaths.sources).recipes.count
+        #expect(RecipeIndex.bundled.entries.count == count)
+        #expect(Recipe.all.count == count)
     }
 
     @Test func oneRecipeIsReadWhenOpenedAndKept() throws {
         let folder = try SyntheticBook.folder(count: 3)
+        let packed = folder.appendingPathComponent("packed")
+        try RecipeBook.writePack(sources: folder, assets: nil, to: packed)
         let id = SyntheticBook.entries[1].id
-        let recipe = try #require(RecipeBook.recipe(id: id, in: folder))
+        let recipe = try #require(RecipeBook.recipe(id: id, in: packed))
         #expect(recipe.title == SyntheticBook.entries[1].title)
-        try FileManager.default.removeItem(at: folder.appendingPathComponent(id + ".json"))
-        #expect(RecipeBook.recipe(id: id, in: folder) == recipe)
-        #expect(RecipeBook.recipe(id: "no-such-dish", in: folder) == nil)
+        try FileManager.default.removeItem(at: packed.appendingPathComponent(RecipeBook.shardFile(RecipeBook.shardNumber(of: id))))
+        #expect(RecipeBook.recipe(id: id, in: packed) == recipe)
+        #expect(RecipeBook.recipe(id: "no-such-dish", in: packed) == nil)
     }
 
     // MARK: Search

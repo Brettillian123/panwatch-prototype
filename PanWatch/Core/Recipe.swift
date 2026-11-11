@@ -173,7 +173,7 @@ extension Recipe {
     /// `RecipeIndex.bundled`, and one recipe is read when it is opened (`withID`).
     static let all: [Recipe] = RecipeBook.bundled()
 
-    /// The recipe with this id, read from its own file (once, then kept).
+    /// The recipe with this id, from its shard of the packed book (read once, then kept).
     static func withID(_ id: String) -> Recipe? { RecipeBook.recipe(id: id) }
 
     /// The recipe with this exact title, through the index.

@@ -33,7 +33,7 @@ enum Credits {
     /// credit line and link from `Recipes/sources.json`, for Profile > Advanced > About.
     /// The app's own recipes need none.
     static func recipeNotices(_ entries: [RecipeEntry] = RecipeIndex.bundled.entries,
-                              sources: [RecipeSourceCredit] = RecipeBook.bundledFolder().map(RecipeBook.sources(in:)) ?? []) -> [Notice] {
+                              sources: [RecipeSourceCredit] = RecipeBook.bundledSources()) -> [Notice] {
         var seen: Set<String> = []
         var notices: [Notice] = []
         for entry in entries where entry.source != RecipeSource.own.name && !seen.contains(entry.source) {

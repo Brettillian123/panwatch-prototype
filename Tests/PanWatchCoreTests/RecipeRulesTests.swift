@@ -46,8 +46,7 @@ struct RecipeRulesTests {
     }
 
     @Test func everyBundledFilePassesTheChecker() throws {
-        let folder = try #require(RecipeBook.bundledFolder())
-        #expect(RecipeBook.check(folder: folder) == [])
+        #expect(RecipeBook.check(folder: BookPaths.sources) == [])
     }
 
     @Test func titleIsInTitleCase() {
@@ -136,7 +135,7 @@ struct RecipeRulesTests {
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent("book-\(UUID().uuidString)")
         try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
         defer { try? FileManager.default.removeItem(at: folder) }
-        let source = try #require(RecipeBook.bundledFolder())
+        let source = BookPaths.sources
         let rice = try Data(contentsOf: source.appendingPathComponent("rice.json"))
         try rice.write(to: folder.appendingPathComponent("rice.json"))
         // The same title again under another id, a misnamed file, and a typo in a field.
