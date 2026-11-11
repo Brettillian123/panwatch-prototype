@@ -87,6 +87,12 @@ struct RecipeScreen: View {
         .padding(.top, Theme.space8)
     }
 
+    @ViewBuilder private var facts: some View {
+        InfoChip(text: "\(recipe.totalMinutes) min", systemImage: "clock")
+        InfoChip(text: "Serves \(recipe.serves)", systemImage: "person.2")
+        InfoChip(text: "\(recipe.steps.count) steps", systemImage: "list.bullet")
+    }
+
     private var sheet: some View {
         VStack(alignment: .leading, spacing: Theme.space16) {
             Text(recipe.displayTitle)
@@ -94,10 +100,13 @@ struct RecipeScreen: View {
                 .foregroundStyle(Theme.ink)
                 .fixedSize(horizontal: false, vertical: true)
                 .accessibilityAddTraits(.isHeader)
-            HStack(spacing: Theme.space8) {
-                InfoChip(text: "\(recipe.totalMinutes) min", systemImage: "clock")
-                InfoChip(text: "Serves \(recipe.serves)", systemImage: "person.2")
-                InfoChip(text: "\(recipe.steps.count) steps", systemImage: "list.bullet")
+            // The category is one more chip, only when the row still fits on one line.
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: Theme.space8) {
+                    facts
+                    InfoChip(text: recipe.category.title, systemImage: recipe.category.symbol)
+                }
+                HStack(spacing: Theme.space8) { facts }
             }
             SegmentedPicker(
                 options: [(value: Part.ingredients, title: "Ingredients"), (value: Part.steps, title: "Steps")],

@@ -135,7 +135,7 @@ enum AssistantAction: Equatable, Sendable {
     }
 
     /// The `recipe` tool's call. A dish must be one of the app's recipes.
-    static func recipe(_ action: String, name: String?, titles: [String] = Recipe.all.map(\.title)) -> AssistantAction? {
+    static func recipe(_ action: String, name: String?, titles: [String] = RecipeIndex.bundled.titles) -> AssistantAction? {
         switch action {
         case "readIngredients": return .ingredients
         case "openRecipes": return .showRecipes
@@ -153,7 +153,7 @@ enum AssistantAction: Equatable, Sendable {
 
     /// The recipe the model named: the title itself, any two of its words, or the one dish
     /// with that word ("rice", "the chicken").
-    static func recipeTitle(for name: String, titles: [String] = Recipe.all.map(\.title)) -> String? {
+    static func recipeTitle(for name: String, titles: [String] = RecipeIndex.bundled.titles) -> String? {
         if let exact = titles.first(where: { $0.caseInsensitiveCompare(name) == .orderedSame }) { return exact }
         let words = name.lowercased().split(whereSeparator: { !$0.isLetter && !$0.isNumber && $0 != "'" }).map(String.init)
         if let title = VoiceCommand.recipeTitle(in: words + ["make"], titles: titles) { return title }

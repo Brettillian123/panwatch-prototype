@@ -24,6 +24,13 @@ struct StepCue: Equatable, Sendable {
     let secondsLeft: Int
 }
 
+/// A timer a step names with no camera involved, like "Bake for 25 minutes": for oven and
+/// no-heat recipes, where the camera never watches.
+struct StepTimer: Equatable, Sendable {
+    let label: String
+    let minutes: Int
+}
+
 struct RecipeStep: Identifiable, Equatable, Sendable {
     let id: Int
     let instruction: String
@@ -33,6 +40,8 @@ struct RecipeStep: Identifiable, Equatable, Sendable {
     var cue: StepCue? = nil
     /// The full wording read aloud; the screen shows `instruction`. Nil when they match.
     var spoken: String? = nil
+    /// A plain timer the step names, when no camera watches it.
+    var timer: StepTimer? = nil
 }
 
 extension RecipeStep {
@@ -40,201 +49,163 @@ extension RecipeStep {
     var spokenText: String { spoken ?? instruction }
 }
 
-struct Recipe: Sendable {
+/// The shelves of the recipe book, in the order Home shows them.
+enum RecipeCategory: String, CaseIterable, Codable, Sendable {
+    case pastaAndGrains = "Pasta and grains"
+    case eggsAndBreakfast = "Eggs and breakfast"
+    case vegetables = "Vegetables"
+    case salads = "Salads"
+    case chicken = "Chicken"
+    case beefAndPork = "Beef and pork"
+    case fish = "Fish"
+    case soups = "Soups"
+    case beansAndLentils = "Beans and lentils"
+    case sandwichesAndWraps = "Sandwiches and wraps"
+    case snacksAndSides = "Snacks and sides"
+    case saucesAndDips = "Sauces and dips"
+    case bakingAndDesserts = "Baking and desserts"
+    case drinks = "Drinks"
+
+    /// The words on screen: "Pasta and grains".
+    var title: String { rawValue }
+
+    /// The SF Symbol on a dish's plain tile while it has no photo.
+    var symbol: String {
+        switch self {
+        case .pastaAndGrains: "fork.knife"
+        case .eggsAndBreakfast: "sun.horizon"
+        case .vegetables: "carrot"
+        case .salads: "leaf"
+        case .chicken: "bird"
+        case .beefAndPork: "flame"
+        case .fish: "fish"
+        case .soups: "mug"
+        case .beansAndLentils: "circle.hexagongrid"
+        case .sandwichesAndWraps: "takeoutbag.and.cup.and.straw"
+        case .snacksAndSides: "popcorn"
+        case .saucesAndDips: "drop"
+        case .bakingAndDesserts: "birthday.cake"
+        case .drinks: "cup.and.saucer"
+        }
+    }
+
+    /// Where it sits in `allCases`, for book order.
+    var index: Int { Self.allCases.firstIndex(of: self) ?? 0 }
+
+    /// The no-photo tile's color: neighbouring shelves alternate blush and sky, so a shelf of
+    /// ten plain tiles reads as one deliberate run and the next shelf as a new one.
+    var tileIsBlush: Bool { index.isMultiple(of: 2) }
+}
+
+/// The main way a dish is cooked.
+enum CookMethod: String, CaseIterable, Codable, Sendable {
+    /// In a pot on the stove: boiling, simmering, steaming.
+    case pot
+    /// In a pan on the stove: searing, frying, sautéing.
+    case pan
+    case oven
+    /// Nothing is heated: salads, overnight oats.
+    case noHeat
+
+    /// The camera can watch what goes into a pot or pan on the stove.
+    var cameraCanHelp: Bool { self == .pot || self == .pan }
+}
+
+/// Where a recipe comes from, for the credits on Profile.
+struct RecipeSource: Equatable, Sendable {
+    let name: String
+    /// Empty for the app's own recipes.
+    var url: String = ""
+
+    static let own = RecipeSource(name: "Sous Vision")
+    var isOwn: Bool { name == RecipeSource.own.name }
+}
+
+/// One thing to gather: "1 pound" of "pasta".
+struct Ingredient: Equatable, Sendable {
+    let name: String
+    let amount: String
+
+    /// The line read aloud: "1 pound of pasta", "4 eggs", "salt, to taste".
+    var spoken: String {
+        if amount.isEmpty { return name }
+        if amount == "to taste" { return "\(name), to taste" }
+        // "1 pound of pasta" when the amount ends in a unit; "4 eggs", "1 large onion" when not.
+        let words = amount.lowercased().split(separator: " ").map(String.init)
+        let unit = words.count >= 2 ? words.suffix(2).joined(separator: " ") : ""
+        let endsInUnit = words.last.map(RecipeRules.isUnit) == true || RecipeRules.isUnit(unit)
+        return endsInUnit ? "\(amount) of \(name)" : "\(amount) \(name)"
+    }
+}
+
+struct Recipe: BookItem, Equatable, Sendable {
+    /// The slug: lowercase words joined by hyphens, stable, and the file's name.
+    let id: String
     let title: String
+    var category: RecipeCategory
+    var method: CookMethod
+    var source: RecipeSource
     let steps: [RecipeStep]
-    /// What to gather before starting, read aloud when the cook says "ingredients".
-    var ingredients: [String] = []
+    /// What to gather before starting.
+    var items: [Ingredient]
     /// Start to plate, in minutes, counting the waits the steps name (boiling, timers, resting).
-    var totalMinutes = 0
+    var totalMinutes: Int
     /// How many people the amounts feed.
-    var serves = 0
+    var serves: Int
+
+    init(id: String? = nil, title: String, category: RecipeCategory = .vegetables, method: CookMethod = .pot,
+         source: RecipeSource = .own, steps: [RecipeStep], items: [Ingredient] = [], totalMinutes: Int = 0, serves: Int = 0) {
+        self.id = id ?? Recipe.slug(of: title)
+        self.title = title
+        self.category = category
+        self.method = method
+        self.source = source
+        self.steps = steps
+        self.items = items
+        self.totalMinutes = totalMinutes
+        self.serves = serves
+    }
 }
 
 extension Recipe {
-    /// Lists every recipe the app offers, in menu order.
-    static let all: [Recipe] = [garlicButterPasta, rice, hardBoiledEggs, steamedBroccoli, oatmeal, panSearedChicken]
+    /// Every bundled recipe parsed in full, in book order. Only the tests and the checker use
+    /// it; the app never parses the whole book: titles, lists, search and voice come from
+    /// `RecipeIndex.bundled`, and one recipe is read when it is opened (`withID`).
+    static let all: [Recipe] = RecipeBook.bundled()
+
+    /// The recipe with this id, read from its own file (once, then kept).
+    static func withID(_ id: String) -> Recipe? { RecipeBook.recipe(id: id) }
+
+    /// The recipe with this exact title, through the index.
+    static func titled(_ title: String) -> Recipe? {
+        RecipeIndex.bundled.entry(titled: title).flatMap { withID($0.id) }
+    }
+
+    /// The six the app started with, by id, for callers and tests that name one.
+    static var garlicButterPasta: Recipe { named("garlic-butter-pasta") }
+    static var rice: Recipe { named("rice") }
+    static var hardBoiledEggs: Recipe { named("hard-boiled-eggs") }
+    static var steamedBroccoli: Recipe { named("steamed-broccoli") }
+    static var oatmeal: Recipe { named("oatmeal") }
+    static var panSearedChicken: Recipe { named("pan-seared-chicken") }
+
+    private static func named(_ id: String) -> Recipe {
+        withID(id) ?? RecipeIndex.bundled.entries.first.flatMap { withID($0.id) } ?? Recipe(title: "Recipe", steps: [])
+    }
 
     /// The title in lowercase words joined by hyphens: "Hard-Boiled Eggs" is "hard-boiled-eggs".
-    var slug: String {
+    static func slug(of title: String) -> String {
         title.lowercased()
             .split(whereSeparator: { !$0.isLetter && !$0.isNumber })
             .joined(separator: "-")
     }
 
-    /// The name of the dish's photo in the asset catalog, "dish-<slug>".
-    var photoName: String { "dish-" + slug }
+    var slug: String { id }
 
-    /// Where the recipe sits in `all`, for alternating tile colors; 0 for one not listed.
-    var menuIndex: Int { Recipe.all.firstIndex(where: { $0.title == title }) ?? 0 }
+    /// The lines read aloud when the cook says "ingredients".
+    var ingredients: [String] { items.map(\.spoken) }
 
-    /// Two watched steps and three unwatched ones, so the demo shows the camera switching
-    /// itself on and off as the recipe moves. Once the pasta timer runs, the butter, the
-    /// garlic and the draining are each called out at the right moment.
-    static let garlicButterPasta = Recipe(
-        title: "Garlic Butter Pasta",
-        steps: [
-            RecipeStep(id: 1, instruction: "Bring 4 quarts of water and 1 tablespoon of salt to a boil.", watch: nil),
-            RecipeStep(
-                id: 2,
-                instruction: "Add 1 pound of pasta to the boiling water.",
-                // Pasta is big enough to see: it sticks out of the pot, or the hand holding
-                // it opens over the pot. A hand that only visits isn't enough.
-                watch: AdditionWatch(ingredient: "pasta", timerLabel: "Pasta", timerMinutes: 9, minimumChange: 0.02, countsRelease: true)
-            ),
-            RecipeStep(
-                id: 3,
-                instruction: "Melt 3 tablespoons of butter in a pan over medium heat.",
-                watch: nil,
-                cue: StepCue(timerLabel: "Pasta", secondsLeft: 180)
-            ),
-            RecipeStep(
-                id: 4,
-                instruction: "Add 4 cloves of minced garlic to the butter.",
-                // Minced garlic is too small to see in the pan, so a hand visiting the pan is enough.
-                watch: AdditionWatch(ingredient: "garlic", timerLabel: "Garlic", timerMinutes: 1, minimumChange: 0),
-                cue: StepCue(timerLabel: "Pasta", secondsLeft: 90)
-            ),
-            RecipeStep(
-                id: 5,
-                instruction: "Drain the pasta and toss it in the garlic butter.",
-                watch: nil,
-                cue: StepCue(timerLabel: "Pasta", secondsLeft: 0)
-            ),
-        ],
-        ingredients: ["1 pound of pasta", "1 tablespoon of salt", "3 tablespoons of butter", "4 cloves of garlic, minced"],
-        totalMinutes: 20,
-        serves: 4
-    )
 
-    /// Rice hides inside the pot from a phone on the counter, so a hand visit counts.
-    static let rice = Recipe(
-        title: "Rice",
-        steps: [
-            RecipeStep(id: 1, instruction: "Rinse 1 cup of long-grain white rice in a strainer.", watch: nil),
-            RecipeStep(id: 2, instruction: "Bring 2 cups of water and 1/2 teaspoon of salt to a boil in a pot.", watch: nil),
-            RecipeStep(
-                id: 3,
-                instruction: "Add the rice, stir once, cover, and turn the heat to low.",
-                watch: AdditionWatch(ingredient: "rice", timerLabel: "Rice", timerMinutes: 18, minimumChange: 0)
-            ),
-            RecipeStep(
-                id: 4,
-                instruction: "Turn off the heat and let the rice rest, covered, for 5 minutes.",
-                watch: nil,
-                cue: StepCue(timerLabel: "Rice", secondsLeft: 0)
-            ),
-            RecipeStep(id: 5, instruction: "Fluff the rice with a fork and serve.", watch: nil),
-        ],
-        ingredients: ["1 cup of long-grain white rice", "2 cups of water", "1/2 teaspoon of salt"],
-        totalMinutes: 30,
-        serves: 3
-    )
-
-    /// The ice bath is called out two minutes early, so it's ready when the eggs are.
-    static let hardBoiledEggs = Recipe(
-        title: "Hard-Boiled Eggs",
-        steps: [
-            RecipeStep(id: 1, instruction: "Bring a large pot of water to a boil.", watch: nil),
-            RecipeStep(
-                id: 2,
-                instruction: "Lower 4 eggs into the boiling water with a spoon.",
-                // Eggs go in on a spoon and sink out of sight, so a hand visit counts.
-                watch: AdditionWatch(ingredient: "eggs", timerLabel: "Eggs", timerMinutes: 12, minimumChange: 0)
-            ),
-            RecipeStep(
-                id: 3,
-                instruction: "Fill a bowl with ice and cold water.",
-                watch: nil,
-                cue: StepCue(timerLabel: "Eggs", secondsLeft: 120)
-            ),
-            RecipeStep(
-                id: 4,
-                instruction: "Move the eggs into the ice water for 5 minutes.",
-                watch: nil,
-                cue: StepCue(timerLabel: "Eggs", secondsLeft: 0)
-            ),
-            RecipeStep(id: 5, instruction: "Peel the eggs and serve.", watch: nil),
-        ],
-        ingredients: ["4 eggs", "a bowl of ice water"],
-        totalMinutes: 25,
-        serves: 2
-    )
-
-    /// Broccoli goes in by the handful and sits above the water, so it counts like pasta.
-    static let steamedBroccoli = Recipe(
-        title: "Steamed Broccoli",
-        steps: [
-            RecipeStep(id: 1, instruction: "Bring 1 inch of water to a boil in a pot with a steamer basket.", watch: nil),
-            RecipeStep(
-                id: 2,
-                instruction: "Add 1 pound of broccoli florets to the basket and cover the pot.",
-                watch: AdditionWatch(ingredient: "broccoli", timerLabel: "Broccoli", timerMinutes: 5, minimumChange: 0.02, countsRelease: true)
-            ),
-            RecipeStep(
-                id: 3,
-                instruction: "Toss the broccoli with 1 tablespoon of butter and a pinch of salt.",
-                watch: nil,
-                cue: StepCue(timerLabel: "Broccoli", secondsLeft: 0)
-            ),
-        ],
-        ingredients: ["1 pound of broccoli florets", "1 tablespoon of butter", "a pinch of salt"],
-        totalMinutes: 10,
-        serves: 4
-    )
-
-    /// Oats are poured in and sink into the water, so a hand visit counts.
-    static let oatmeal = Recipe(
-        title: "Oatmeal",
-        steps: [
-            RecipeStep(id: 1, instruction: "Bring 2 cups of water and a pinch of salt to a boil.", watch: nil),
-            RecipeStep(
-                id: 2,
-                instruction: "Stir in 1 cup of old-fashioned oats and turn the heat to medium-low.",
-                watch: AdditionWatch(ingredient: "oats", timerLabel: "Oatmeal", timerMinutes: 5, minimumChange: 0)
-            ),
-            RecipeStep(
-                id: 3,
-                instruction: "Turn off the heat, cover, and let it sit for 2 minutes.",
-                watch: nil,
-                cue: StepCue(timerLabel: "Oatmeal", secondsLeft: 0)
-            ),
-            RecipeStep(id: 4, instruction: "Top with 1 tablespoon of brown sugar and serve.", watch: nil),
-        ],
-        ingredients: ["1 cup of old-fashioned oats", "2 cups of water", "a pinch of salt", "1 tablespoon of brown sugar"],
-        totalMinutes: 10,
-        serves: 2
-    )
-
-    /// The timer is for the first side only. Doneness comes from a thermometer, never the
-    /// camera: USDA says color is not a safe sign for chicken.
-    static let panSearedChicken = Recipe(
-        title: "Pan-Seared Chicken",
-        steps: [
-            RecipeStep(
-                id: 1,
-                instruction: "Season 2 chicken breasts with 1/2 teaspoon salt, 1/4 teaspoon pepper.",
-                watch: nil,
-                spoken: "Season 2 boneless chicken breasts with 1/2 teaspoon of salt and 1/4 teaspoon of pepper."
-            ),
-            RecipeStep(id: 2, instruction: "Heat 1 tablespoon of oil in a pan over medium-high heat.", watch: nil),
-            RecipeStep(
-                id: 3,
-                instruction: "Lay the chicken in the hot pan.",
-                // A hand lets go of each piece, and a low pan shows them from the counter.
-                watch: AdditionWatch(ingredient: "chicken", timerLabel: "Chicken", timerMinutes: 6, minimumChange: 0.02, countsRelease: true)
-            ),
-            RecipeStep(
-                id: 4,
-                instruction: "Flip and cook 6 more minutes, until a thermometer reads 165 °F.",
-                watch: nil,
-                cue: StepCue(timerLabel: "Chicken", secondsLeft: 0),
-                spoken: "Flip the chicken and cook about 6 more minutes, until a thermometer reads 165 °F in the thickest part."
-            ),
-            RecipeStep(id: 5, instruction: "Let the chicken rest for 5 minutes before slicing.", watch: nil),
-        ],
-        ingredients: ["2 boneless chicken breasts", "1/2 teaspoon of salt", "1/4 teaspoon of pepper", "1 tablespoon of oil"],
-        totalMinutes: 25,
-        serves: 2
-    )
+    /// Where the recipe sits in the book's index; 0 for one not listed.
+    var menuIndex: Int { RecipeIndex.bundled.position(of: id) ?? 0 }
 }

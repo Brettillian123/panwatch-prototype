@@ -1,0 +1,8 @@
+{"version":1,"recipes":[
+{"category":"Pasta and grains","id":"garlic-butter-pasta","ingredients":["pasta","salt","butter","garlic, minced"],"method":"pot","minutes":20,"photo":true,"serves":4,"source":"Sous Vision","title":"Garlic Butter Pasta"},
+{"category":"Pasta and grains","id":"rice","ingredients":["long-grain white rice","water","salt"],"method":"pot","minutes":30,"photo":true,"serves":3,"source":"Sous Vision","title":"Rice"},
+{"category":"Eggs and breakfast","id":"hard-boiled-eggs","ingredients":["eggs","ice water"],"method":"pot","minutes":25,"photo":true,"serves":2,"source":"Sous Vision","title":"Hard-Boiled Eggs"},
+{"category":"Eggs and breakfast","id":"oatmeal","ingredients":["old-fashioned oats","water","salt","brown sugar"],"method":"pot","minutes":10,"photo":true,"serves":2,"source":"Sous Vision","title":"Oatmeal"},
+{"category":"Vegetables","id":"steamed-broccoli","ingredients":["broccoli florets","butter","salt"],"method":"pot","minutes":10,"photo":true,"serves":4,"source":"Sous Vision","title":"Steamed Broccoli"},
+{"category":"Chicken","id":"pan-seared-chicken","ingredients":["boneless chicken breasts","salt","pepper","oil"],"method":"pan","minutes":25,"photo":true,"serves":2,"source":"Sous Vision","title":"Pan-Seared Chicken"}
+]}

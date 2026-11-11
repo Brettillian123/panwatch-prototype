@@ -1,0 +1,29 @@
+{
+  "id": "hard-boiled-eggs",
+  "title": "Hard-Boiled Eggs",
+  "category": "Eggs and breakfast",
+  "method": "pot",
+  "source": { "name": "Sous Vision" },
+  "serves": 2,
+  "totalMinutes": 25,
+  "ingredients": [
+    { "amount": "4", "name": "eggs" },
+    { "amount": "a bowl", "name": "ice water" }
+  ],
+  "steps": [
+    { "instruction": "Bring a large pot of water to a boil." },
+    {
+      "instruction": "Lower 4 eggs into the boiling water with a spoon.",
+      "watch": { "ingredient": "eggs", "timerLabel": "Eggs", "timerMinutes": 12, "minimumChange": 0 }
+    },
+    {
+      "instruction": "Fill a bowl with ice and cold water.",
+      "cue": { "timerLabel": "Eggs", "secondsLeft": 120 }
+    },
+    {
+      "instruction": "Move the eggs into the ice water for 5 minutes.", "timer": { "label": "Cool", "minutes": 5 },
+      "cue": { "timerLabel": "Eggs", "secondsLeft": 0 }
+    },
+    { "instruction": "Peel the eggs and serve." }
+  ]
+}

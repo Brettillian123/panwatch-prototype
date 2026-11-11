@@ -12,9 +12,13 @@ struct Favorites: Equatable, Sendable {
     }
 
     /// The saved favorites, keeping only titles that are still recipes.
-    static func load(from defaults: UserDefaults = .standard, recipes: [Recipe] = Recipe.all) -> Favorites {
+    static func load(from defaults: UserDefaults = .standard, recipes: [some BookItem]) -> Favorites {
+        load(from: defaults, titles: recipes.map(\.title))
+    }
+
+    static func load(from defaults: UserDefaults = .standard, titles: [String] = RecipeIndex.bundled.titles) -> Favorites {
         let saved = defaults.stringArray(forKey: key) ?? []
-        let known = Set(recipes.map(\.title))
+        let known = Set(titles)
         return Favorites(titles: saved.filter { known.contains($0) })
     }
 
@@ -22,10 +26,10 @@ struct Favorites: Equatable, Sendable {
         defaults.set(titles, forKey: Favorites.key)
     }
 
-    func contains(_ recipe: Recipe) -> Bool { titles.contains(recipe.title) }
+    func contains(_ recipe: some BookItem) -> Bool { titles.contains(recipe.title) }
 
     /// Hearts the recipe, or takes the heart away.
-    mutating func toggle(_ recipe: Recipe) {
+    mutating func toggle(_ recipe: some BookItem) {
         if let index = titles.firstIndex(of: recipe.title) {
             titles.remove(at: index)
         } else {
@@ -34,7 +38,13 @@ struct Favorites: Equatable, Sendable {
     }
 
     /// The hearted recipes in menu order.
-    func recipes(in all: [Recipe] = Recipe.all) -> [Recipe] {
-        all.filter(contains)
+    func contains(_ recipe: Recipe) -> Bool { titles.contains(recipe.title) }
+    mutating func toggle(_ recipe: Recipe) { toggle(RecipeEntry(recipe, hasPhoto: false)) }
+
+    /// The hearted dishes from the book's index, in book order.
+    func recipes() -> [RecipeEntry] { recipes(in: RecipeIndex.bundled.entries) }
+
+    func recipes<Item: BookItem>(in all: [Item]) -> [Item] {
+        all.filter { contains($0) }
     }
 }

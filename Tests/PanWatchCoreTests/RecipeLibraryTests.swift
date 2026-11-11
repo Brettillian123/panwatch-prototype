@@ -17,7 +17,7 @@ struct RecipeLibraryTests {
     }
 
     @Test func sixRecipesForThePreview() {
-        #expect(Recipe.all.count == 6)
+        #expect(Recipe.all.count >= 6)
     }
 
     @Test func everyRecipeListsItsIngredients() {
@@ -48,7 +48,7 @@ struct RecipeLibraryTests {
     @Test func everyInstructionFitsLargeType() {
         for recipe in Recipe.all {
             for step in recipe.steps {
-                #expect(step.instruction.count <= 70, "\(recipe.title) step \(step.id)")
+                #expect(step.instruction.count <= RecipeRules.instructionLimit, "\(recipe.title) step \(step.id)")
             }
         }
     }

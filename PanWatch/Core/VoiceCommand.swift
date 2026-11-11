@@ -41,8 +41,12 @@ enum VoiceCommand: Equatable, Sendable {
     case clearDone
     /// "Recipes", "what can I cook".
     case showRecipes
-    /// "Make the rice", "let's do pasta": the title of the recipe, from `Recipe.all`.
+    /// "Make the rice", "let's do pasta": the title of the recipe, from the book's index.
     case makeRecipe(String)
+    /// "Make the chicken" with several chicken dishes: ask once which one, naming up to three.
+    case askWhichRecipe([String])
+    /// "Make the lasagna" with no such dish: say nothing and show the search results for it.
+    case findRecipe(String)
     /// "Bigger", "left": moves the pan box while it's being drawn.
     case nudge(BoxNudge)
     /// "Turn off the camera" / "turn on the camera".
@@ -94,12 +98,21 @@ enum VoiceCommand: Equatable, Sendable {
 
     /// What `text` asks for on `screen`. The screens only differ on the recipe menu, where
     /// one word of a single dish, like "rice" or "eggs", picks it.
-    static func parse(_ text: String, screen: AppScreen = .cook) -> VoiceCommand? {
+    /// `choosing` holds the dishes the app just asked about ("Chicken soup, chicken
+    /// stir-fry, or lemon chicken?"): one word of one of them, or "the second one", picks it.
+    static func parse(_ text: String, screen: AppScreen = .cook, choosing: [String] = []) -> VoiceCommand? {
         let spoken = allWords(in: text)
         // Filler is dropped before counting, so "okay, next step please" is still short.
         let words = spoken.filter { !fillerWords.contains($0) }
         guard !words.isEmpty, words.count <= maximumWords else { return nil }
-        if screen == .recipes, words.count == 1, let title = dish(word: words[0]) { return .makeRecipe(title) }
+        if !choosing.isEmpty, let title = pick(text, among: choosing) { return .makeRecipe(title) }
+        if screen.listsRecipes, words.count == 1 {
+            switch recipeMatch(words, choosing: true) {
+            case .one(let title): return .makeRecipe(title)
+            case .several(let titles): return .askWhichRecipe(titles)
+            case .none: break
+            }
+        }
         let set = Set(words)
         let phrase = words.joined(separator: " ")
         // First, so "restart the recipe" restarts rather than opening the recipes. "Restart", "restart the recipe", "start over", "start again", "from the top".
@@ -185,7 +198,11 @@ enum VoiceCommand: Equatable, Sendable {
             if let nudge = BoxNudge.allCases.first(where: { set.contains($0.rawValue) }) { return .nudge(nudge) }
         }
         if set.contains("timer") { return .startTimer }
-        if let title = recipeTitle(in: words) { return .makeRecipe(title) }
+        switch recipeMatch(words, choosing: words.contains { choosingWords.contains($0) }) {
+        case .one(let title): return .makeRecipe(title)
+        case .several(let titles): return .askWhichRecipe(titles)
+        case .none: if let wanted = wantedDish(words) { return .findRecipe(wanted) }
+        }
         if !set.isDisjoint(with: yesWords) || phrase == "start" || phrase == "start it" || phrase == "do it" {
             return .yes
         }
@@ -267,33 +284,133 @@ enum VoiceCommand: Equatable, Sendable {
 
     /// Words that ask for a dish: "make the rice", "let's do pasta", "cook the eggs".
     private static let choosingWords: Set<String> = ["make", "cook", "let's", "lets", "do"]
+    /// Words in a title or around a dish's name that don't tell dishes apart.
+    private static let titleFiller: Set<String> = [
+        "and", "with", "of", "in", "on", "the", "a", "an",
+    ]
+    /// After "make", words that are talk rather than a dish: "make sure", "cook it longer".
+    private static let notDishes: Set<String> = [
+        "it", "that", "this", "sure", "more", "some", "something", "again", "one", "them", "so", "too", "thing", "things",
+        "time", "it's", "that's", "sense", "way", "room", "space", "less", "longer", "faster", "slower", "much", "any",
+    ]
 
-    /// The recipe named by any two words of its title, where a choosing word like "make"
-    /// counts as one: "make the rice", "garlic butter pasta". Ordinary talk that mentions a
-    /// dish, like "the pasta looks good", has one title word among other words, so it's nil.
-    static func recipeTitle(in words: [String], titles: [String] = Recipe.all.map(\.title)) -> String? {
-        let choosing = words.contains { choosingWords.contains($0) }
-        let said = words.filter { !choosingWords.contains($0) }.map(stem)
-        let scored = titles.map { title -> (title: String, matched: Int, other: Int) in
-            let titleWords = Set(allWords(in: title).map(stem))
-            let matched = Set(said.filter(titleWords.contains)).count
-            let other = said.filter { !titleWords.contains($0) }.count
-            return (title, matched, other)
+    /// What the cook's words name among the titles.
+    enum RecipeMatch: Equatable, Sendable {
+        case one(String)
+        /// Several dishes match equally, in book order.
+        case several([String])
+        case none
+    }
+
+    /// The dish named by the distinctive words of its title, with filler ignored and
+    /// plurals forgiven. An exact title wins: "cook rice" is Rice, not Fried Rice. Two words
+    /// are needed, where a choosing word like "make" counts as one, so ordinary talk that
+    /// mentions a dish ("the pasta looks good") is not a choice. Equal matches are `several`.
+    static func recipeMatch(_ words: [String], choosing: Bool, titles: [String] = RecipeIndex.bundled.titles) -> RecipeMatch {
+        let said = words.filter { !choosingWords.contains($0) && !titleFiller.contains($0) }.map(stem)
+        guard !said.isEmpty else { return .none }
+        let saidSet = Set(said)
+        let enough = saidSet.count + (choosing ? 1 : 0) >= 2
+        var exact: [String] = []
+        var best = 0
+        var tied: [String] = []
+        for title in titles {
+            let titleWords = distinctiveWords(of: title)
+            if titleWords == saidSet { exact.append(title) }
+            let matched = saidSet.intersection(titleWords).count
+            if matched > best {
+                best = matched
+                tied = [title]
+            } else if matched == best, matched > 0 {
+                tied.append(title)
+            }
         }
-        guard let best = scored.max(by: { $0.matched < $1.matched }), best.matched > 0,
-              best.matched + (choosing ? 1 : 0) >= 2, best.other <= 1,
-              scored.filter({ $0.matched == best.matched }).count == 1 else { return nil }
-        return best.title
+        if enough, exact.count == 1 { return .one(exact[0]) }
+        let other = saidSet.count - best
+        guard best > 0, best + (choosing ? 1 : 0) >= 2, other <= 1 else { return .none }
+        return tied.count == 1 ? .one(tied[0]) : .several(tied)
     }
 
-    /// The one dish whose title has `word` in it: "rice", "eggs", "oatmeal", "chicken",
-    /// "broccoli", "pasta". Only the recipe menu listens for a single word, because
-    /// anywhere else "the pasta looks good" is talk.
-    static func dish(word: String, titles: [String] = Recipe.all.map(\.title)) -> String? {
-        let said = stem(word)
-        let having = titles.filter { allWords(in: $0).map(stem).contains(said) }
-        return having.count == 1 ? having[0] : nil
+    /// The title's words that tell it apart, stemmed: "Chicken with Rice" is chicken, rice.
+    static func distinctiveWords(of title: String) -> Set<String> {
+        Set(allWords(in: title).filter { !titleFiller.contains($0) }.map(stem))
     }
+
+    /// The recipe named by any two words of its title; nil for none or several.
+    static func recipeTitle(in words: [String], titles: [String] = RecipeIndex.bundled.titles) -> String? {
+        if case .one(let title) = recipeMatch(words, choosing: words.contains { choosingWords.contains($0) }, titles: titles) {
+            return title
+        }
+        return nil
+    }
+
+    /// The one dish whose title has `word` in it: "rice", "eggs", "oatmeal". Only the
+    /// recipe screens listen for a single word, because anywhere else it's talk.
+    static func dish(word: String, titles: [String] = RecipeIndex.bundled.titles) -> String? {
+        if case .one(let title) = recipeMatch([word], choosing: true, titles: titles) { return title }
+        return nil
+    }
+
+    /// "Make the lasagna" when no dish matches: the words after "make", "cook" or "let's
+    /// do", to search for. Nil when it's talk, like "make sure it's hot".
+    static func wantedDish(_ words: [String]) -> String? {
+        var rest = words
+        if let first = rest.first, first == "let's" || first == "lets" {
+            rest.removeFirst()
+            guard let verb = rest.first, ["make", "cook", "do", "have"].contains(verb) else { return nil }
+            rest.removeFirst()
+        } else if let first = rest.first, first == "make" || first == "cook" {
+            rest.removeFirst()
+        } else {
+            return nil
+        }
+        rest = rest.filter { !titleFiller.contains($0) }
+        guard (1...4).contains(rest.count), rest.allSatisfy({ $0.count >= 3 && !notDishes.contains($0) }) else { return nil }
+        return rest.joined(separator: " ")
+    }
+
+    /// The answer to "Chicken soup, chicken stir-fry, or lemon chicken?": "the second one",
+    /// "the last one", or a word of one of them ("lemon", "the soup").
+    static func pick(_ text: String, among titles: [String]) -> String? {
+        let words = allWords(in: text).filter { !fillerWords.contains($0) && $0 != "one" }
+        guard !titles.isEmpty else { return nil }
+        if allWords(in: text).contains("number"), allWords(in: text).contains("one") { return titles[0] }
+        guard !words.isEmpty, words.count <= 4 else { return nil }
+        if let place = words.compactMap({ ordinals[$0] ?? ($0 == "last" ? titles.count - 1 : nil) }).first,
+           place < titles.count { return titles[place] }
+        if case .one(let title) = recipeMatch(words, choosing: true, titles: titles) { return title }
+        return nil
+    }
+
+    /// The question asked when several dishes match: "Chicken soup, chicken stir-fry, or
+    /// lemon chicken?", at most three, in the screens' sentence case.
+    static func whichRecipeQuestion(_ titles: [String]) -> String {
+        // More than three is a list to look at, not a question to hold in your head.
+        if titles.count > 3 { return severalFound }
+        let names = titles.prefix(3).enumerated().map { index, title in
+            index == 0 ? title.prefix(1).uppercased() + title.dropFirst().lowercased() : title.lowercased()
+        }
+        switch names.count {
+        case 0: return ""
+        case 1: return names[0] + "?"
+        case 2: return "\(names[0]) or \(names[1])?"
+        default: return names.dropLast().joined(separator: ", ") + ", or \(names[names.count - 1])?"
+        }
+    }
+
+    /// Said once when more than three dishes match; the list shows them.
+    static let severalFound = "I found several. Here they are."
+
+    /// "The first one", "number two", "the 3rd": a place in a list of dishes, 0-based.
+    private static let ordinals: [String: Int] = {
+        let words = [["first", "1", "1st"], ["second", "two", "2", "2nd"], ["third", "three", "3", "3rd"],
+                     ["fourth", "four", "4", "4th"], ["fifth", "five", "5", "5th"], ["sixth", "six", "6", "6th"],
+                     ["seventh", "seven", "7", "7th"], ["eighth", "eight", "8", "8th"], ["ninth", "nine", "9", "9th"],
+                     ["tenth", "ten", "10", "10th"]]
+        var table: [String: Int] = [:]
+        for (place, names) in words.enumerated() { for name in names { table[name] = place } }
+        return table
+    }()
 
     /// "Eggs" and "egg" are the same dish.
     private static func stem(_ word: String) -> String {
@@ -363,6 +480,8 @@ enum AppScreen: String, Sendable, CaseIterable {
     case recipes
     /// One recipe's page, the one in `CookSession.viewedRecipe`.
     case recipe
+    /// A list of recipes: one category, a filter, or search results.
+    case recipeList
     /// Cook mode, landscape only.
     case cook
     case voices
@@ -378,7 +497,7 @@ enum AppScreen: String, Sendable, CaseIterable {
     /// The tab this screen belongs to, lit in the tab bar; nil for help.
     var tab: AppTab? {
         switch self {
-        case .recipes, .recipe: .recipes
+        case .recipes, .recipe, .recipeList: .recipes
         case .cook: .cook
         case .voices, .makeVoice: .voices
         case .profile: .profile
@@ -388,6 +507,9 @@ enum AppScreen: String, Sendable, CaseIterable {
 
     /// The floating tab bar shows only on the three top-level screens.
     var showsTabBar: Bool { self == .recipes || self == .voices || self == .profile }
+
+    /// Screens that show recipes, where one word of a dish's name picks it.
+    var listsRecipes: Bool { self == .recipes || self == .recipeList }
 
     /// Cook mode is landscape only; every other screen follows the phone.
     var isLandscapeOnly: Bool { self == .cook }
@@ -407,7 +529,7 @@ enum AppScreen: String, Sendable, CaseIterable {
                         cookUnderWay: Bool = true) -> AppScreen {
         switch screen {
         case .help: helpFrom == .help ? .cook : helpFrom
-        case .recipe: .recipes
+        case .recipe, .recipeList: .recipes
         case .makeVoice: makeVoiceOrigin(makeVoiceFrom)
         case .recipes, .cook, .voices, .profile: cookUnderWay || screen == .cook ? .cook : .recipes
         }
@@ -432,6 +554,7 @@ enum AppScreen: String, Sendable, CaseIterable {
         switch screen {
         case .recipes: return ["make the rice", "let's do pasta", "done"]
         case .recipe: return ["start cooking", "back"]
+        case .recipeList: return ["make the rice", "back"]
         case .profile: return [cameraOn ? "turn off the camera" : "turn on the camera", "change the voice", "done"]
         case .voices: return ["try \(voiceName)", "use \(voiceName)", "next voice", "done"]
         case .makeVoice: return ["use my voice", "done"]

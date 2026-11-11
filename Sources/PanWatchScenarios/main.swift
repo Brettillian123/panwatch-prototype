@@ -8,6 +8,39 @@ func pad(_ text: String, _ width: Int) -> String {
     text.count >= width ? String(text.prefix(width)) : text + String(repeating: " ", count: width - text.count)
 }
 
+// The recipe checker, for whole books and for batches:
+//   swift run PanWatchScenarios --check-recipes [folder] [--only slug,slug] [--write-index]
+// One line per problem, starting with the file's name, then a summary: files, passed,
+// failed, and failures counted by rule. Exits 1 on any problem. The folder defaults to
+// PanWatch/Core/Recipes under the current directory. --write-index, with no problems,
+// writes the folder's index.json (the app reads only that at launch).
+if let flag = CommandLine.arguments.firstIndex(of: "--check-recipes") {
+    let arguments = CommandLine.arguments
+    let next = flag + 1 < arguments.count ? arguments[flag + 1] : ""
+    let path = next.isEmpty || next.hasPrefix("--") ? "PanWatch/Core/Recipes" : next
+    let folder = URL(fileURLWithPath: path, isDirectory: true)
+    var only: Set<String>?
+    if let at = arguments.firstIndex(of: "--only"), at + 1 < arguments.count {
+        only = Set(arguments[at + 1].split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }.map { $0.hasSuffix(".json") ? String($0.dropLast(5)) : $0 })
+    }
+    let started = Date()
+    let report = RecipeBook.checkReport(folder: folder, only: only)
+    report.lines.forEach { print($0) }
+    report.summary.forEach { print($0) }
+    print(String(format: "Checked in %.1f s.", Date().timeIntervalSince(started)))
+    if arguments.contains("--write-index") {
+        if !report.lines.isEmpty {
+            print("index.json not written: fix the problems first.")
+        } else {
+            let assets = folder.deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("Assets.xcassets")
+            let entries = RecipeIndex.build(folder: folder, assets: assets)
+            try RecipeIndex.encode(entries).write(to: folder.appendingPathComponent(RecipeBook.indexFile))
+            print("Wrote index.json: \(entries.count) recipes.")
+        }
+    }
+    exit(report.lines.isEmpty ? 0 : 1)
+}
+
 if let flag = CommandLine.arguments.firstIndex(of: "--explain"), flag + 1 < CommandLine.arguments.count {
     let wanted = CommandLine.arguments[flag + 1]
     for run in Run.suite() where run.name == wanted {

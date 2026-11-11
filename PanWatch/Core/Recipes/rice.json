@@ -1,0 +1,27 @@
+{
+  "id": "rice",
+  "title": "Rice",
+  "category": "Pasta and grains",
+  "method": "pot",
+  "source": { "name": "Sous Vision" },
+  "serves": 3,
+  "totalMinutes": 30,
+  "ingredients": [
+    { "amount": "1 cup", "name": "long-grain white rice" },
+    { "amount": "2 cups", "name": "water" },
+    { "amount": "1/2 teaspoon", "name": "salt" }
+  ],
+  "steps": [
+    { "instruction": "Rinse 1 cup of long-grain white rice in a strainer." },
+    { "instruction": "Bring 2 cups of water and 1/2 teaspoon of salt to a boil in a pot." },
+    {
+      "instruction": "Add the rice, stir once, cover, and turn the heat to low.",
+      "watch": { "ingredient": "rice", "timerLabel": "Rice", "timerMinutes": 18, "minimumChange": 0 }
+    },
+    {
+      "instruction": "Turn off the heat and let the rice rest, covered, for 5 minutes.", "timer": { "label": "Rest", "minutes": 5 },
+      "cue": { "timerLabel": "Rice", "secondsLeft": 0 }
+    },
+    { "instruction": "Fluff the rice with a fork and serve." }
+  ]
+}

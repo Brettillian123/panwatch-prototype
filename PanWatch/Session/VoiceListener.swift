@@ -59,6 +59,8 @@ final class VoiceListener {
     var onBargeIn: (() -> Void)?
     /// The screen showing, since the recipe menu also takes one word of a dish's name.
     var screen: (() -> AppScreen)?
+    /// The dishes the app just asked the cook to pick between; the next utterance can name one.
+    var choosing: (() -> [String])?
     /// Called whenever `report` changes.
     var onReport: ((VoiceReport) -> Void)?
     private(set) var report = VoiceReport() {
@@ -282,7 +284,7 @@ final class VoiceListener {
         // isn't an answer either.
         let backchannel = heardOverApp && speaking && isBackchannel(SelfEcho.words(in: text))
         // Keywords first: a clear short command acts at once, with no model to wait for.
-        let command = backchannel ? nil : VoiceCommand.parse(text, screen: screen?() ?? .cook)
+        let command = backchannel ? nil : VoiceCommand.parse(text, screen: screen?() ?? .cook, choosing: choosing?() ?? [])
         if !text.isEmpty {
             report.heard = text
             report.outcome = backchannel ? "backchannel" : Self.outcome(of: text, command: command)

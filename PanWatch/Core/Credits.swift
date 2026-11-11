@@ -28,4 +28,20 @@ enum Credits {
                 + "licensed under the Apache License 2.0 (apache.org/licenses/LICENSE-2.0)."
         ),
     ]
+
+    /// One notice per outside source of recipes, each source once in book order, with its
+    /// credit line and link from `Recipes/sources.json`, for Profile > Advanced > About.
+    /// The app's own recipes need none.
+    static func recipeNotices(_ entries: [RecipeEntry] = RecipeIndex.bundled.entries,
+                              sources: [RecipeSourceCredit] = RecipeBook.bundledFolder().map(RecipeBook.sources(in:)) ?? []) -> [Notice] {
+        var seen: Set<String> = []
+        var notices: [Notice] = []
+        for entry in entries where entry.source != RecipeSource.own.name && !seen.contains(entry.source) {
+            seen.insert(entry.source)
+            let credit = sources.first { $0.name == entry.source }
+            let text = credit.map { $0.credit + "\n" + $0.url } ?? "Recipes adapted from \(entry.source)."
+            notices.append(Notice(title: entry.source, text: text))
+        }
+        return notices
+    }
 }

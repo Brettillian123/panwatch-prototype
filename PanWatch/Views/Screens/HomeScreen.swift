@@ -1,7 +1,8 @@
 import SwiftUI
 
-/// Home: the recipes. The title, a search field, one top card (the cook under way to resume,
-/// else a suggestion), then sideways rows of small photo cards: favorites, quick ones, all.
+/// Home: the recipe book. The title, a search field, one top card (the cook under way to
+/// resume, else a suggestion), then sideways shelves of small photo cards: favorites, quick
+/// ones, then one per category. A shelf shows at most ten; its heading opens the full list.
 /// A card opens the recipe's page; naming a dish by voice still starts it straight away.
 struct HomeScreen: View {
     let session: CookSession
@@ -30,12 +31,16 @@ struct HomeScreen: View {
                 if searching {
                     results
                 } else {
-                    let favored = favorites.recipes()
-                    if !favored.isEmpty {
-                        shelf("Favorites", favored)
+                    LazyVStack(alignment: .leading, spacing: Theme.space24) {
+                        let favored = favorites.recipes()
+                        if !favored.isEmpty {
+                            shelf("Favorites", favored)
+                        }
+                        shelf("Quick ones", RecipeIndex.bundled.filtered(.quick), opens: .quick)
+                        ForEach(Self.shelves(), id: \.title) { shelf in
+                            self.shelf(shelf.title, shelf.recipes, opens: shelf.filter)
+                        }
                     }
-                    shelf("Quick ones", Recipe.all.filter(\.isQuick))
-                    shelf("All recipes", Recipe.all)
                 }
             }
             .padding(.bottom, Theme.space24)
@@ -73,9 +78,39 @@ struct HomeScreen: View {
         }
     }
 
-    /// The dish to suggest with nothing under way. The cook stats don't record which dishes
-    /// were cooked, so it is the first in the menu.
-    private var suggestion: Recipe { Recipe.all.first ?? session.recipe }
+    /// The dish to suggest with nothing under way: one not cooked yet, else the one cooked
+    /// longest ago.
+    private var suggestion: Recipe {
+        session.history.suggestion(from: RecipeIndex.bundled.entries).flatMap { Recipe.withID($0.id) } ?? session.recipe
+    }
+
+    /// Shelves of at least this many get their own category; smaller ones share "More recipes".
+    private static let shelfMinimum = 3
+    /// Cards on one shelf; the heading's list has the rest.
+    private static let shelfLimit = 10
+
+    /// One shelf per category with enough recipes, then the rest together, so six recipes
+    /// still fill a shelf and sixty don't make one endless.
+    private struct Shelf {
+        let title: String
+        let recipes: [RecipeEntry]
+        let filter: RecipeFilter
+    }
+
+    private static func shelves(_ recipes: [RecipeEntry] = RecipeIndex.bundled.entries) -> [Shelf] {
+        var result: [Shelf] = []
+        var rest: [RecipeEntry] = []
+        for category in RecipeCategory.allCases {
+            let inIt = recipes.filter { $0.category == category }
+            if inIt.count >= shelfMinimum {
+                result.append(Shelf(title: category.title, recipes: inIt, filter: .category(category)))
+            } else {
+                rest += inIt
+            }
+        }
+        if !rest.isEmpty { result.append(Shelf(title: result.isEmpty ? "All recipes" : "More recipes", recipes: rest, filter: .all)) }
+        return result
+    }
 
     private func photoCard<Below: View>(_ recipe: Recipe, @ViewBuilder below: () -> Below) -> some View {
         Card(padded: false) {
@@ -120,16 +155,13 @@ struct HomeScreen: View {
 
     // MARK: Rows
 
-    private func shelf(_ title: String, _ recipes: [Recipe]) -> some View {
-        VStack(alignment: .leading, spacing: Theme.space12) {
-            Text(title)
-                .font(Theme.bodyStrong)
-                .foregroundStyle(Theme.ink)
-                .accessibilityAddTraits(.isHeader)
-                .padding(.horizontal, Theme.margin)
+    private func shelf(_ title: String, _ recipes: [RecipeEntry], opens filter: RecipeFilter? = nil) -> some View {
+        VStack(alignment: .leading, spacing: Theme.space8) {
+            ShelfHeading(title: title, action: opener(filter))
+            .padding(.horizontal, Theme.margin)
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: Theme.space12) {
-                    ForEach(recipes, id: \.title) { recipe in
+                LazyHStack(alignment: .top, spacing: Theme.space12) {
+                    ForEach(recipes.prefix(Self.shelfLimit), id: \.id) { recipe in
                         smallCard(recipe, width: 156)
                     }
                 }
@@ -138,9 +170,18 @@ struct HomeScreen: View {
         }
     }
 
-    /// Search results: the matches two to a row, or one line saying nothing matched.
+    /// What a shelf's heading does: opens the list on its filter; nothing for Favorites.
+    private func opener(_ filter: RecipeFilter?) -> (() -> Void)? {
+        guard let filter else { return nil }
+        return {
+            session.noteTouch()
+            session.openList(filter)
+        }
+    }
+
+    /// Search results: the matches as rows, or one line saying nothing matched.
     @ViewBuilder private var results: some View {
-        let found = Recipe.matching(query)
+        let found = RecipeIndex.bundled.search(query)
         if found.isEmpty {
             HStack(spacing: Theme.space12) {
                 Text("No recipe matches \u{201C}\(query.trimmingCharacters(in: .whitespaces))\u{201D}")
@@ -153,14 +194,9 @@ struct HomeScreen: View {
             }
             .padding(.horizontal, Theme.margin)
         } else {
-            LazyVGrid(
-                columns: [GridItem(.flexible(), spacing: Theme.space12, alignment: .top),
-                          GridItem(.flexible(), spacing: Theme.space12, alignment: .top)],
-                alignment: .leading,
-                spacing: Theme.space16
-            ) {
-                ForEach(found, id: \.title) { recipe in
-                    smallCard(recipe, width: nil)
+            LazyVStack(alignment: .leading, spacing: 0) {
+                ForEach(found, id: \.id) { recipe in
+                    RecipeRow(entry: recipe) { session.open(entry: recipe) }
                 }
             }
             .padding(.horizontal, Theme.margin)
@@ -169,13 +205,13 @@ struct HomeScreen: View {
 
     /// A small photo card: the photo 124 tall with the heart on it, the name (up to two
     /// lines) and "10 min · Serves 4". The card opens the recipe's page.
-    private func smallCard(_ recipe: Recipe, width: CGFloat?) -> some View {
+    private func smallCard(_ recipe: RecipeEntry, width: CGFloat?) -> some View {
         ZStack(alignment: .topTrailing) {
             Button {
-                session.open(recipe: recipe)
+                session.open(entry: recipe)
             } label: {
                 VStack(alignment: .leading, spacing: 4) {
-                    DishPhoto(recipe: recipe)
+                    DishPhoto(entry: recipe)
                         .frame(height: 124)
                         .frame(maxWidth: .infinity)
                         .clipShape(RoundedRectangle(cornerRadius: Theme.radiusField, style: .continuous))
